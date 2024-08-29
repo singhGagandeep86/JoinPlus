@@ -101,7 +101,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    
     height: 100vh;
     width: 232px;
     background-color: var(--sideheader-main-color);
@@ -126,12 +126,13 @@ body {
     margin-right: 10px;
 }
 
-.legecyMenu {
+.legacyMenu {
     display: flex;
     flex-direction: column;
+    padding-bottom: 64px;
 }
 
-.legecyMenu a {
+.legacyMenu a {
     padding-top: 30px;
 }
 
@@ -139,6 +140,18 @@ body {
     width: 100%;
     height: 100vh;
     background-color: var(--content-main-color);
+}
+
+.mainDesignAsideImg{
+    padding:64px 0px 64px 0px ;
+}
+.mainDesignAsideLinks{
+    height: 100%;
+    width: 232px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header {
@@ -156,6 +169,7 @@ body {
     display: flex;
     justify-content: end;
     align-items: center;
+    gap: 16px;
 }
 
 .picHelp {
