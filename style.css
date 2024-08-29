@@ -25,9 +25,9 @@ body {
 
 .mainDesignAside {
     display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     height: 100vh;
     width: 232px;
     background-color: var(--sideheader-main-color);
@@ -36,9 +36,11 @@ body {
 .overDisplay a {
     text-decoration: none;
     color: var(--sideheader-font-color);
+    cursor: pointer;
 
 }
-.asideMenu{
+
+.asideMenu {
     display: flex;
     align-items: center;
     padding-top: 30px;
@@ -52,18 +54,20 @@ body {
 
 .legecyMenu {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
 }
-.legecyMenu a{
+
+.legecyMenu a {
     padding-top: 30px;
 }
 
-.mainDesign{
+.mainDesign {
     width: 100%;
     height: 100vh;
     background-color: var(--content-main-color);
 }
-.header{
+
+.header {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -72,16 +76,18 @@ body {
     background-color: white;
     box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
 }
-.test{
+
+.test {
     width: 60%;
     display: flex;
     justify-content: end;
     align-items: center;
 
-    
+
 }
 
-.picHelp{
+.picHelp {
     width: 32px;
     height: 32px;
+    cursor: pointer;
 }
