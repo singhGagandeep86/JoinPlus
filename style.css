@@ -2,10 +2,49 @@
     --sideheader-main-color: #2A3647;
     --sideheader-hover-color: #2A3D59;
     --sideheader-active-color: #091931;
+    --content-main-color: #F6F7F8;
+    --sideheader-font-color: #CDCDCD;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.overDisplay {
+    display: flex;
+    max-width: 1440px;
+    height: 100%;
+}
+
+.mainDesignAside {
+    display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-around;
+    height: 100vh;
+    width: 232px;
+    background-color: var(--sideheader-main-color);
+}
+
+.overDisplay a {
+    text-decoration: none;
+    color: var(--sideheader-font-color);
+
+}
+.asideMenu{
+    display: flex;
+    align-items: center;
+}
+
+.asideMenu img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
