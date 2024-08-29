@@ -1,3 +1,9 @@
+:root {
+    --sideheader-main-color: #2A3647;
+    --sideheader-hover-color: #2A3D59;
+    --sideheader-active-color: #091931;
+}
+
 * {
     margin: 0;
     padding: 0;
