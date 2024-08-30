@@ -124,14 +124,15 @@
     display: flex;
     width: 1208px;
     height: 688px;
-    gap: 16px;
+    gap: 30px;
 }
 
 .dragAndDropBoardArea{
     
     width: 246px;
-    height: 688;
+    height: 48px;
     overflow: auto;
+    
 }
 
 .emptyBoardArea{
