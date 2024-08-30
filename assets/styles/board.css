@@ -1,25 +1,34 @@
-.headlineBoard{
+.headlineBoard {
     display: flex;
     flex-direction: column;
-    
+    justify-content: space-around;
     height: 232px;
     width: 1208px;
+    padding-top: 64px;
+
 }
 
-.headlinbar{
+.content {
+    padding: 0 4rem 0 4rem;
+    max-width: 1440px;
+}
+
+.headlinbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 1056px;
     height: 73px;
-    margin-left: 64px;
+
 }
-.headlinbar span{
-    font-size:61px ;
-    font-weight: 700;
-    
+
+.headlinbar span {
+    font-size: 61px;
+    font-weight: bold;
+
 }
-.btnBoardTask{
+
+.btnBoardTask {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +38,8 @@
     cursor: pointer;
     border-radius: 10px;
 }
-.btnBoardTask button{
+
+.btnBoardTask button {
     width: 92px;
     height: 24px;
     background-color: var(--sideheader-main-color);
@@ -38,15 +48,16 @@
     cursor: pointer;
     font-size: 21px;
     font-weight: 700;
-    
-}
-.searchBar{
-    display: flex;
-    gap: 32px;
-    
+
 }
 
-.inputArea{
+.searchBar {
+    display: flex;
+    gap: 32px;
+
+}
+
+.inputArea {
     display: flex;
     align-items: center;
     width: 312px;
@@ -56,30 +67,53 @@
     background-color: white;
     padding-left: 16px;
     padding-right: 16px;
-    
+
 }
 
 
-.inputArea input{
+.inputArea input {
     height: 32px;
-    flex:1;
+    flex: 1;
     border: none;
     background-color: white;
     font-size: 20px;
     font-weight: 400;
 
 }
-.inputArea input:focus{
+
+.inputArea input:focus {
     outline: none;
 }
 
-.inputImgArea{
+.inputImgArea {
     display: flex;
     justify-content: end;
     background-color: white;
     width: 48px;
     height: 32px;
     border-left: 1px solid #b2b2b2;
+    cursor: pointer;
 }
 
+.headlineDragMain {
+    width: 1208px;
+    height: 24px;
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
 
+.headlineDrag {
+    width: 244px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headlineDrag span {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #42526E;
+}
