@@ -59,3 +59,7 @@ body {
     height: 740px;
     overflow: auto;
 }
+
+.arrow-sticky {
+    position: sticky;
+}
