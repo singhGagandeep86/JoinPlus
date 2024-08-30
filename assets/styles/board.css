@@ -1,6 +1,85 @@
 .headlineBoard{
     display: flex;
     flex-direction: column;
+    
     height: 232px;
     width: 1208px;
 }
+
+.headlinbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1056px;
+    height: 73px;
+    margin-left: 64px;
+}
+.headlinbar span{
+    font-size:61px ;
+    font-weight: 700;
+    
+}
+.btnBoardTask{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 48px;
+    background-color: var(--sideheader-main-color);
+    cursor: pointer;
+    border-radius: 10px;
+}
+.btnBoardTask button{
+    width: 92px;
+    height: 24px;
+    background-color: var(--sideheader-main-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 21px;
+    font-weight: 700;
+    
+}
+.searchBar{
+    display: flex;
+    gap: 32px;
+    
+}
+
+.inputArea{
+    display: flex;
+    align-items: center;
+    width: 312px;
+    height: 48px;
+    border: 1px solid #b2b2b2;
+    border-radius: 10px;
+    background-color: white;
+    padding-left: 16px;
+    padding-right: 16px;
+    
+}
+
+
+.inputArea input{
+    height: 32px;
+    flex:1;
+    border: none;
+    background-color: white;
+    font-size: 20px;
+    font-weight: 400;
+
+}
+.inputArea input:focus{
+    outline: none;
+}
+
+.inputImgArea{
+    display: flex;
+    justify-content: end;
+    background-color: white;
+    width: 48px;
+    height: 32px;
+    border-left: 1px solid #b2b2b2;
+}
+
+
