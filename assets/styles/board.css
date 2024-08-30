@@ -3,13 +3,13 @@
     flex-direction: column;
     justify-content: space-around;
     height: 232px;
-    width: 1208px;
+    max-width: 1208px;
     padding-top: 64px;
 
 }
 
 .content {
-    padding: 0 4rem 0 4rem;
+    padding: 0 64px 0 64px;
     max-width: 1440px;
 }
 
@@ -17,7 +17,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 1056px;
+    
     height: 73px;
 
 }
@@ -54,6 +54,8 @@
 .searchBar {
     display: flex;
     gap: 32px;
+    height: 48px; ;
+    width: 504px;
 
 }
 
@@ -96,7 +98,7 @@
 }
 
 .headlineDragMain {
-    width: 1208px;
+   
     height: 24px;
     display: flex;
     gap: 35px;
@@ -111,9 +113,13 @@
     justify-content: space-between;
 }
 
+
 .headlineDrag span {
     font-size: 20px;
     font-weight: 700;
-    line-height: 24px;
     color: #42526E;
+}
+
+.d_none{
+    display: none;
 }
