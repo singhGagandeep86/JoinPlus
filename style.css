@@ -101,7 +101,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
     height: 100vh;
     width: 232px;
     background-color: var(--sideheader-main-color);
@@ -111,7 +110,6 @@ body {
     text-decoration: none;
     color: var(--sideheader-font-color);
     cursor: pointer;
-
 }
 
 .asideMenu {
@@ -145,6 +143,7 @@ body {
 .mainDesignAsideImg{
     padding:64px 0px 64px 0px ;
 }
+
 .mainDesignAsideLinks{
     height: 100%;
     width: 232px;
