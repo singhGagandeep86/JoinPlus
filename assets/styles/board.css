@@ -1,0 +1,6 @@
+.headlineBoard{
+    display: flex;
+    flex-direction: column;
+    height: 232px;
+    width: 1208px;
+}
