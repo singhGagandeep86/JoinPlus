@@ -42,6 +42,24 @@ body {
     font-weight: 700;
 }
 
-.text-2 p, span {
+.text-2 h2 {
+    font-size: 1.688rem;
+}
+
+.text-2 p {
     font-size: 1rem;
+    font-weight: 400;
+}
+
+.text-2 h3 {
+    font-size: 1.5rem;
+}
+
+.text-2 {
+    height: 740px;
+    overflow: auto;
+}
+
+.arrow-sticky {
+    position: sticky;
 }
