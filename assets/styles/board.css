@@ -1,3 +1,32 @@
+.bg_user {
+    background-color: #0838FF;
+    width: 113px;
+    height: 27px;
+    font-size: 16px;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.bg_tech {
+    display: flex;
+    align-items: center;
+    background-color: #1ed7c1;
+    width: 144px;
+    height: 27px;
+    font-size: 16px;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .headlineBoard {
     display: flex;
     flex-direction: column;
@@ -5,6 +34,7 @@
     height: 232px;
     max-width: 1208px;
     padding-top: 64px;
+
 
 }
 
@@ -54,7 +84,8 @@
 .searchBar {
     display: flex;
     gap: 32px;
-    height: 48px; ;
+    height: 48px;
+    ;
     width: 504px;
 
 }
@@ -98,10 +129,10 @@
 }
 
 .headlineDragMain {
-   max-width: 1208px;
+    max-width: 1208px;
     height: 24px;
-    display: flex;    
-    align-items: center;    
+    display: flex;
+    align-items: center;
     gap: 35px;
 }
 
@@ -120,28 +151,78 @@
     color: #42526E;
 }
 
-.dragAndDropBoard{
+.dragAndDropBoard {
     display: flex;
     width: 1208px;
     height: 688px;
     gap: 30px;
 }
 
-.dragAndDropBoardArea{
-    
+.dragAndDropBoardArea {
+    display: flex;
+    flex-direction: column;
     width: 246px;
-    height: 48px;
-    overflow: auto;
-    
+    height: 688px;
+    gap: 16px;
+
 }
 
-.emptyBoardArea{
+.emptyBoardArea {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 246px;
-    height: 48px;    
+    height: 48px;
     border-radius: 10px;
-    background-color:#E7E7E7;
+    background-color: #E7E7E7;
     border: 1px dashed black;
+}
+
+.task {
+    display: flex;
+    flex-direction: column;
+    width: 246px;
+    min-height: 215px;
+    background-color: white;
+    border-radius: 16px;
+    padding: 16px;
+    cursor: pointer;
+    gap: 20px;
+}
+
+.task:active {
+    transform: rotate(10deg);
+    cursor: grab;
+}
+
+.taskInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 220px;
+    min-height: 183px;
+}
+
+.taskTitle {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    height: 84px;
+    gap: 8px;
+}
+
+.taskTitle span:nth-of-type(1) {
+    font-size: 16px;
+    font-weight: 700;
+    min-height: 19px;
+}
+
+.taskTitle span:nth-of-type(2) {
+    font-size: 16px;
+    min-height: 19px;
+}
+
+.subtaskArea{
+    height: 16px;
+    width: 220px;
 }
