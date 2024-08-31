@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/assets/img/Join logo white.png">
-
     <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="../styles/board.css">
+    <link rel="stylesheet" href="../styles/task.css">
     <title>Join</title>
 </head>
 
@@ -31,20 +30,64 @@
 
         <div class="mainDesign">
             <div class="header"><span>Kanban Projekt Management Tool</span>
-                <div class="headerContentRightSide"><img class="picHelp" src="../img/help.png" alt=""> <img
-                        src="../img/sm.png" alt="">
+                <div class="headerContentRightSide"><img class="picHelp" src="../img/help.png" alt="">
+                    <img src="../img/sm.png">
                 </div>
             </div>
             <div class="content">
-                <h1>Das ist Test von Singh</h1>
-                <h2>Test 2</h2>
+                <div class="heading">Add Task</div>
+                <form onsubmit="">
+                    <div class="mainSubmition">
+                        <div class="leftSubmition">
+                            <div class="title">
+                                <p>Title*</p>
+                                <input class="titleTxt" type="text">
+                            </div>
+                            <div class="description">
+                                <p>Description</p>
+                                <input class="descriptionTxt" type="text">
+                            </div>
+                            <div class="assign">
+                                <label for="contacts">Assigned to</label>
+                                <select class="assignment" id="contacts">
+                                    <option value="user">Select contacts to assign</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="partition"></div>
+                        <div class="rightSubmition">
+                            <div class="dueDate">
+                                <p>Due Date</p>
+                                <input type="date">
+                            </div>
+                            <div class="prio">
+                                <p>Prio</p>
+                                <div class="buttons">
+                                    <img src="/assets/img/buttonLow.svg">
+                                    <img src="/assets/img/buttonMedium.svg">
+                                    <img src="/assets/img/buttonUrgent.svg">
+                                </div>
+                            </div>
+                            <div class="Assign">
+                                <label for="Category">Category</label>
+                                <select id="Category">
+                                    <option value="user">Select Task Category</option>
+                                </select>
+                            </div>
+                            <div class="Subtasks">
+                                <p>Subtasks</p>
+                                <input type="text">
+                            </div>
+                        </div>
+                    </div>
 
+                </form>
             </div>
 
         </div>
 
     </div>
-        <script src="/script.js"></script>
+    <script src="/script.js"></script>
 </body>
 
 </html>
