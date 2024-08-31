@@ -1,5 +1,5 @@
 function templateTaskHTML(element) {
-    return `<div class="task" draggable="true" ondragstart="startDragging(${element['number']}) " onclick="test()">
+    return `<div  class="task" draggable="true" ondragstart="startDragging(${element['number']}, this) " onclick="test()">
     <div class="taskInfo">
         <span class="bg_${element['color']}">${element['category']}</span>
         <div class="taskTitle">

@@ -188,11 +188,12 @@
     padding: 16px;
     cursor: pointer;
     gap: 20px;
+    
 }
 
-.task:active {
-    transform:scale(1.13);
-    cursor: grab;
+.drag {
+    transform:scale(1.13);   
+    
 }
 
 .taskInfo {

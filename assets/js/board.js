@@ -91,8 +91,10 @@ function done() {
     }
 }
 
-function startDragging(number) {
-    draggedElement = number;    
+function startDragging(number,element) {
+    draggedElement = number; 
+    element.classList.add('drag');
+     
 }
 function allowDrop(ev) {
     ev.preventDefault();
