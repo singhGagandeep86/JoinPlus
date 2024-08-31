@@ -19,8 +19,10 @@ body {
 }
 
 .content {
-    padding: 4rem 4rem 0 4rem;
-    max-width: 1440px;
+    overflow-y: scroll;
+    height: calc(100vh - 10%);
+    display: flex;
+    justify-content: center;
 }
 
 .text-arrow {
@@ -49,17 +51,34 @@ body {
 .text-2 p {
     font-size: 1rem;
     font-weight: 400;
-}
-
-.text-2 h3 {
-    font-size: 1.5rem;
+    line-height: 19.2px;
 }
 
 .text-2 {
-    height: 740px;
-    overflow: auto;
+    height: calc(100vh - 50px);
+    width: 88%;
 }
 
 .arrow-sticky {
     position: sticky;
+}
+
+.guides {
+    display: flex;
+    gap: 55px;
+}
+
+.guide {
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.tophead {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.headtext {
+    font-size: 16px;
+    font-weight: 400;
 }
