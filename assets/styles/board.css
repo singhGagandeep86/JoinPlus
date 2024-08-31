@@ -192,7 +192,8 @@
 }
 
 .drag {
-    transform:scale(1.13);   
+    transform:scale(1.13); 
+    margin-bottom: 10px;  
     
 }
 
