@@ -11,7 +11,7 @@
     <title>Join</title>
 </head>
 
-<body>
+<body onload="load()">
     <div class="overDisplay">
         <aside class="mainDesignAside">
             <img class="mainDesignAsideImg" src="../img/Join logo white.png" alt="">
@@ -49,15 +49,20 @@
                     <div class="headlineDragMain  ">
                         <div class="headlineDrag"><span>To do</span><img src="../img/plusbutton.png" alt=""></div>
                         <div class="headlineDrag"><span>In progress</span><img src="../img/plusbutton.png" alt=""></div>
-                        <div class="headlineDrag"><span>Await feedback</span><img src="../img/plusbutton.png" alt=""></div>                        
+                        <div class="headlineDrag"><span>Await feedback</span><img src="../img/plusbutton.png" alt="">
+                        </div>
                         <div class="headlineDrag"><span>Done</span></div>
                     </div>
                 </div>
                 <div class="dragAndDropBoard">
-                    <div class="dragAndDropBoardArea" id="toDo"><div class="emptyBoardArea"><span>No tasks To do</span></div></div>
-                    <div class="dragAndDropBoardArea" id="inPorgess"><div class="emptyBoardArea"><span>No tasks to in progress</span></div></div>
-                    <div class="dragAndDropBoardArea" id="await"><div class="emptyBoardArea"><span>No tasks to await feedback</span></div></div>
-                    <div class="dragAndDropBoardArea" id="done"><div class="emptyBoardArea"><span>No tasks to done</span></div></div>
+                    <div class="dragAndDropBoardArea" id="toDo" ondragover="allowDrop(event)"
+                        ondrop="moveTo('toDo'); remove('toDo')"></div>
+                    <div class="dragAndDropBoardArea" id="inProgess" ondragover="allowDrop(event)"
+                        ondrop="moveTo('inProgess'); remove('inProgess')"></div>
+                    <div class="dragAndDropBoardArea" id="await" ondragover="allowDrop(event)"
+                        ondrop="moveTo('await'); remove('await')"></div>
+                    <div class="dragAndDropBoardArea" id="done" ondragover="allowDrop(event)"
+                        ondrop="moveTo('done'); remove('done')"></div>
                 </div>
             </div>
 
@@ -65,6 +70,8 @@
 
     </div>
     <script src="/script.js"></script>
+    <script src="../js/board.js"></script>
+    <script src="../js/boardTemplate.js"></script>
 </body>
 
 </html>
