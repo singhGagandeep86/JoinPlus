@@ -75,9 +75,6 @@ p {
     text-align: left;
 }
 
-.descriptionTxt input  { border: none; background:#fff; display:block; width: 100%; box-sizing: border-box }
-.descriptionTxt img { position: absolute; top: 2px; right: 5px }
-
 .assign {
     width: 440px;
     height: 80px;

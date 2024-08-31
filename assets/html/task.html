@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="../styles/task.css">
     <link rel="stylesheet" href="../styles/task.css">
+    <link rel="stylesheet" href="/assets/styles/fonts.css">
     <title>Join</title>
     <script>
         function submition(){
@@ -47,12 +48,12 @@
                         <div class="leftSubmition">
                             <div class="title">
                                 <p>Title*</p>
-                                <input class="titleTxt" type="text" placeholder="Enter a title">
+                                <input class="titleTxt" type="text" placeholder="Enter a title" required>
                             </div>
                             <div class="description">
                                 <p>Description</p>
-                                <input class="descriptionTxt" placeholder="Enter a Description" type="text" />
-                                <img src="/assets/img/Capa.svg" width=25 />
+                                <textarea rows="4" cols="50" placeholder="Enter a Description" class="descriptionTxt">
+                                </textarea>
                             </div>
                             <div class="assign">
                                 <label for="contacts">Assigned to</label>
@@ -65,7 +66,7 @@
                         <div class="rightSubmition">
                             <div class="dueDate">
                                 <p>Due Date *</p>
-                                <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy" onfocus="(this.type='date')">
+                                <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy" onfocus="(this.type='date')" required>
                             </div>
                             <div class="prio">
                                 <p>Prio</p>
@@ -77,7 +78,7 @@
                             </div>
                             <div class="assign">
                                 <label for="Category">Category *</label>
-                                <select class="assignment" id="Category">
+                                <select class="assignment" id="Category" required>
                                     <option value="user">Select Task Category</option>
                                 </select>
                             </div>
