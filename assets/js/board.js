@@ -53,14 +53,14 @@ function todo() {
 }
 
 function inPorgess() {
-    let inPorgess = array.filter(e => e['id'] == 'inPorgess');
-    if (inPorgess.length == 0) {
-        document.getElementById('inProgress').innerHTML = templateTaskEmptyInProegress();
+    let inprogress = array.filter(e => e['id'] == 'progress');
+    if (inprogress.length == 0) {
+        document.getElementById('progress').innerHTML = templateTaskEmptyInProegress();
     } else {
-        document.getElementById('inProgess').innerHTML = '';
-        for (let index = 0; index < inPorgess.length; index++) {
-            let element = inPorgess[index];
-            document.getElementById('inProgess').innerHTML += templateTaskHTML(element);
+        document.getElementById('progress').innerHTML = '';
+        for (let index = 0; index < inprogress.length; index++) {
+            let element = inprogress[index];
+            document.getElementById('progress').innerHTML += templateTaskHTML(element);
         }
     }
 
@@ -101,4 +101,9 @@ function allowDrop(ev) {
 function moveTo(element) {
     array[draggedElement]['id'] = element;
     taskAdd();
+}
+
+function test(){
+    document.getElementById('done').classList.add('d_none');
+    
 }
