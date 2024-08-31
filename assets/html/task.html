@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="../styles/task.css">
     <link rel="stylesheet" href="../styles/task.css">
     <title>Join</title>
+    <script>
+        function submition(){
+            alert (`test`)
+        }
+    </script>
 </head>
 
 <body>
@@ -37,16 +42,17 @@
             </div>
             <div class="content">
                 <div class="heading">Add Task</div>
-                <form onsubmit="">
+                <form onsubmit="submition()">
                     <div class="mainSubmition">
                         <div class="leftSubmition">
                             <div class="title">
                                 <p>Title*</p>
-                                <input class="titleTxt" type="text">
+                                <input class="titleTxt" type="text" placeholder="Enter a title">
                             </div>
                             <div class="description">
                                 <p>Description</p>
-                                <input class="descriptionTxt" type="text">
+                                <input class="descriptionTxt" placeholder="Enter a Description" type="text" />
+                                <img src="/assets/img/Capa.svg" width=25 />
                             </div>
                             <div class="assign">
                                 <label for="contacts">Assigned to</label>
@@ -58,30 +64,36 @@
                         <div class="partition"></div>
                         <div class="rightSubmition">
                             <div class="dueDate">
-                                <p>Due Date</p>
-                                <input type="date">
+                                <p>Due Date *</p>
+                                <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy" onfocus="(this.type='date')">
                             </div>
                             <div class="prio">
                                 <p>Prio</p>
-                                <div class="buttons">
-                                    <img src="/assets/img/buttonLow.svg">
-                                    <img src="/assets/img/buttonMedium.svg">
+                                <div>
                                     <img src="/assets/img/buttonUrgent.svg">
+                                    <img src="/assets/img/buttonMedium.svg">
+                                    <img src="/assets/img/buttonLow.svg">
                                 </div>
                             </div>
-                            <div class="Assign">
-                                <label for="Category">Category</label>
-                                <select id="Category">
+                            <div class="assign">
+                                <label for="Category">Category *</label>
+                                <select class="assignment" id="Category">
                                     <option value="user">Select Task Category</option>
                                 </select>
                             </div>
-                            <div class="Subtasks">
+                            <div class="subtasks">
                                 <p>Subtasks</p>
-                                <input type="text">
+                                <input class="subtasksTxt" placeholder="Add  new subtask" type="text">
                             </div>
                         </div>
                     </div>
-
+                    <div class="contentFeet">
+                        <p>*This field is required</p>
+                        <div class="submitionButtons">
+                            <button class="secondary"><p>Clear</p><img class="scndVect" src="/assets/img/SecondaryVector.png"></button>
+                            <button class="primaryCheck"><p>Create Task</p><img src="/assets/img/check.svg"></button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
