@@ -1,5 +1,5 @@
 body {
-
+    font-family: 'inter';
     margin: 0px auto;
     box-sizing: border-box;
     max-width: 1440px;
@@ -32,11 +32,26 @@ body {
     gap: 16px;
 }
 
-p {
-    font-family: Inter;
+.smallHead {
     font-size: 20px;
     font-weight: 400;
     text-align: left;
+    display: flex;
+}
+
+label {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+    display: flex;
+}
+
+.imp {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: #FF8190;
 }
 
 .title {
@@ -61,9 +76,6 @@ p {
 }
 
 .descriptionTxt {
-    position: relative;
-    width: 440px;
-    height: 168px;
     padding: 18px 16px 18px 16px;
     gap: 10px;
     border-radius: 10px;
@@ -73,6 +85,10 @@ p {
     font-weight: 400;
     line-height: 24px;
     text-align: left;
+}
+
+textarea {
+    resize: none;
 }
 
 .assign {
@@ -85,10 +101,11 @@ p {
     font-weight: 400;
     line-height: 24px;
     text-align: left;
-
+    margin-top: 32px;
 }
 
 .assignment {
+    justify-content: space-between;
     width: 440px;
     height: 48px;
     background: #FFFFFF;
@@ -101,7 +118,6 @@ p {
     font-weight: 400;
     line-height: 24px;
     text-align: left;
-
 }
 
 .rightSubmition {
@@ -137,7 +153,7 @@ p {
 .subtasks {
     width: 440px;
     height: 80px;
-    top: 336px;
+    margin-top: 36px;
     gap: 8px;
 }
 
@@ -203,7 +219,7 @@ p {
     cursor: pointer;
     width: 163px;
     height: 56px;
-    padding: 16px;
+    padding: 16px 0px 16px 16px;
     gap: 4px;
     border-radius: 10px;
     display: flex;
@@ -217,4 +233,9 @@ p {
     animation: Move in Bottom;
     animation-timing-function: ease-in-out;
     animation-duration: 100ms;
+}
+
+.primevect {
+    width: 24px;
+    height: 24px;
 }

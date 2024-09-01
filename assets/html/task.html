@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="/assets/styles/fonts.css">
     <title>Join</title>
     <script>
-        function submition(){
-            alert (`test`)
+        function submition() {
+            alert(`test`)
         }
     </script>
 </head>
@@ -47,13 +47,14 @@
                     <div class="mainSubmition">
                         <div class="leftSubmition">
                             <div class="title">
-                                <p>Title*</p>
+                                <div class="smallHead">Title <div class="imp">*</div>
+                                </div>
                                 <input class="titleTxt" type="text" placeholder="Enter a title" required>
                             </div>
                             <div class="description">
-                                <p>Description</p>
-                                <textarea rows="4" cols="50" placeholder="Enter a Description" class="descriptionTxt">
-                                </textarea>
+                                <div class="smallHead">Description</div>
+                                <textarea rows="4" cols="50" placeholder="Enter a Description"
+                                    class="descriptionTxt"></textarea>
                             </div>
                             <div class="assign">
                                 <label for="contacts">Assigned to</label>
@@ -65,11 +66,13 @@
                         <div class="partition"></div>
                         <div class="rightSubmition">
                             <div class="dueDate">
-                                <p>Due Date *</p>
-                                <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy" onfocus="(this.type='date')" required>
+                                <div class="smallHead">Due Date <div class="imp">*</div>
+                                </div>
+                                <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy"
+                                    onfocus="(this.type='date')" required>
                             </div>
                             <div class="prio">
-                                <p>Prio</p>
+                                <div class="smallHead">Prio</div>
                                 <div>
                                     <img src="/assets/img/buttonUrgent.svg">
                                     <img src="/assets/img/buttonMedium.svg">
@@ -77,22 +80,30 @@
                                 </div>
                             </div>
                             <div class="assign">
-                                <label for="Category">Category *</label>
+                                <label for="Category">Category <div class="imp">*</div></label>
                                 <select class="assignment" id="Category" required>
                                     <option value="user">Select Task Category</option>
                                 </select>
                             </div>
                             <div class="subtasks">
-                                <p>Subtasks</p>
+                                <div class="smallHead">Subtasks</div>
                                 <input class="subtasksTxt" placeholder="Add  new subtask" type="text">
                             </div>
                         </div>
                     </div>
                     <div class="contentFeet">
-                        <p>*This field is required</p>
+                        <div class="smallHead">
+                            <div class="imp">*</div>This field is required
+                        </div>
                         <div class="submitionButtons">
-                            <button class="secondary"><p>Clear</p><img class="scndVect" src="/assets/img/SecondaryVector.png"></button>
-                            <button class="primaryCheck"><p>Create Task</p><img src="/assets/img/check.svg"></button>
+                            <button class="secondary">
+                                <div class="smallHead">Clear</div><img class="scndVect"
+                                    src="/assets/img/SecondaryVector.png">
+                            </button>
+                            <button class="primaryCheck">
+                                <div class="smallHead">Create Task</div><img class="primevect"
+                                    src="/assets/img/check.svg">
+                            </button>
                         </div>
                     </div>
                 </form>
