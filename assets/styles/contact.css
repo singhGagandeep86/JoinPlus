@@ -6,15 +6,24 @@
     --sideheader-font-color: #CDCDCD;
 }
 
-.content {
-    max-width: 1440px;
-    filter: drop-shadow(3px 0 1px #000000);
+body {
+    margin: 0;
+    padding: 0;
 }
 
-.container-left {
+.content {
+    max-width: 1440px;
+}
+
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 352px;
+    height: 100%;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 32px 24px 32px 24px;
 }
 
 .btn-image {
@@ -43,4 +52,80 @@
 .btn-image img {
     width: 32px;
     height: 32px;
+}
+
+.contact-group {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.contact-group h2 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.contact-item .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ff9800;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.contact-item .details {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-item .details .name {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.contact-item .details .email {
+    color: #555;
+}
+
+.contact-item.orange .avatar {
+    background-color: #FF7A00;
+}
+
+.contact-item.purple .avatar {
+    background-color: #9327FF;
+}
+
+.contact-item.blue .avatar {
+    background-color: #6E52FF;
+}
+
+.contact-item.pink .avatar {
+    background-color: #FC71FF;
+}
+
+.contact-item.yellow .avatar {
+    background-color: #FFBB2B;
+}
+
+.contact-item.green .avatar {
+    background-color: #1FD7C1;
+}
+
+.contact-item.darkblue .avatar {
+    background-color: #462F8A;
+}
+
+.contact-item.red .avatar {
+    background-color: #FF4646;
 }
