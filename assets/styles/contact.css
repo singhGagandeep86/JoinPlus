@@ -81,7 +81,6 @@ body {
 
 .contact-item:hover {
     background-color: var(--item-hover-color);
-    /* background-color: #9327FF; */
     border-radius: 10px;
 }
 
@@ -146,4 +145,31 @@ body {
 
 .contact-item.red .avatar {
     background-color: #FF4646;
+}
+
+.contact-container-right {
+    display: flex;
+}
+
+.contact-text img {
+    max-width: 100%;
+    height: auto;
+}
+
+.contact-text {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.contact-text h1 {
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 73.2px;
+}
+
+.contact-text p {
+    font-size: 27px;
+    font-weight: 400;
+    line-height: 32.4px;
 }
