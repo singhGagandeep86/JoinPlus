@@ -41,13 +41,16 @@
                     <div class="headlinbar">
                         <span>Board</span>
                         <div class="searchBar">
-                            <div class="inputArea"><input type="text" placeholder="Find task">
-                                <div class="inputImgArea"><img src="../img/lupe.png" alt=""></div>
+                            <div class="inputArea">
+                                <div class="inputSearch">
+                                    <input type="text" placeholder="Find task">
+                                    <div class="inputImgArea"><img src="../img//lupe.png" alt=""></div>
+                                </div>
                             </div>
                             <div class="btnBoardTask"><button>Add task </button><img src="../img/add.png" alt=""></div>
                         </div>
                     </div>
-                    <div class="headlineDragMain  ">
+                    <div class="headlineDragMain">
                         <div class="headlineDrag"><span>To do</span><img src="../img/plusbutton.png" alt=""></div>
                         <div class="headlineDrag"><span>In progress</span><img src="../img/plusbutton.png" alt=""></div>
                         <div class="headlineDrag"><span>Await feedback</span><img src="../img/plusbutton.png" alt="">
@@ -57,13 +60,13 @@
                 </div>
                 <div class="dragAndDropBoard">
                     <div class="dragAndDropBoardArea" id="toDo" ondragover="allowDrop(event)"
-                        ondrop="moveTo('toDo');dragHighliteOn(id)" ></div>
+                        ondrop="moveTo('toDo')"></div>
                     <div class="dragAndDropBoardArea" id="progress" ondragover="allowDrop(event)"
-                        ondrop="moveTo('progress');dragHighliteOn(id)"></div>
+                        ondrop="moveTo('progress')"></div>
                     <div class="dragAndDropBoardArea" id="await" ondragover="allowDrop(event)"
-                        ondrop="moveTo('await');dragHighliteOn(id)"></div>
-                    <div class="dragAndDropBoardArea" id="done" ondragover="allowDrop(event)"
-                        ondrop="moveTo('done');"></div>
+                        ondrop="moveTo('await')"></div>
+                    <div class="dragAndDropBoardArea" id="done" ondragover="allowDrop(event)" ondrop="moveTo('done');">
+                    </div>
                 </div>
             </div>
 

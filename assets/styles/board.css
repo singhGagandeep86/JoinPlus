@@ -73,14 +73,22 @@
 .btnBoardTask button {
     width: 92px;
     height: 24px;
-    background-color: var(--sideheader-main-color);
+    background-color: transparent;
     color: white;
     border: none;
     cursor: pointer;
     font-size: 21px;
     font-weight: 700;
+    margin-right: 8px;
 
 }
+
+.btnBoardTask:hover {
+    background-color: #29abe2;
+    box-shadow: 0px 5px 6px 0px rgb(0, 0, 0, 0.2);
+}
+
+
 
 .searchBar {
     display: flex;
@@ -91,6 +99,7 @@
 
 }
 
+
 .inputArea {
     display: flex;
     align-items: center;
@@ -99,24 +108,29 @@
     border: 1px solid #b2b2b2;
     border-radius: 10px;
     background-color: white;
-    padding-left: 16px;
-    padding-right: 16px;
 
 }
 
+.inputArea:focus-within{
+    border: 1px solid #29abe2 ;
+}
 
 .inputArea input {
     height: 32px;
-    flex: 1;
+    width: 240px;
     border: none;
     background-color: white;
     font-size: 20px;
     font-weight: 400;
+    padding-left: 16px;
+    opacity: 0.3;
 
 }
 
 .inputArea input:focus {
     outline: none;
+    color: black;
+    opacity: 1;
 }
 
 .inputImgArea {
@@ -127,6 +141,31 @@
     height: 32px;
     border-left: 1px solid #b2b2b2;
     cursor: pointer;
+    padding-left: 16px;
+
+}
+
+.inputImgArea img {
+    width: 32px;
+    height:32px;
+    
+}
+
+.inputImgArea img:hover {
+    background-color: var(--content-main-color);
+    border-radius: 100%;
+}
+
+.inputImgArea img:active {
+    
+    filter: hue-rotate(180deg) brightness(1) saturate(2);
+}
+
+.inputSearch {
+    width: 280px;
+    height: 32px;
+    display: flex;
+
 }
 
 .headlineDragMain {
@@ -162,7 +201,7 @@
 .dragAndDropBoardArea {
     display: flex;
     flex-direction: column;
-    width: 265px;
+    width: 252px;
     height: 688px;
     gap: 16px;
 
@@ -192,13 +231,13 @@
     padding: 16px;
     cursor: pointer;
     gap: 20px;
-    
+
 }
 
 .drag {
-    transform:rotate(5deg); 
-    margin-bottom: 10px;  
-    
+    transform: rotate(5deg);
+    margin-bottom: 10px;
+
 }
 
 .taskInfo {
@@ -228,18 +267,19 @@
     min-height: 19px;
 }
 
-.subtaskArea{
+.subtaskArea {
     height: 16px;
     width: 220px;
 }
-.dragEmptyBody{
-    width:246px;
+
+.dragEmptyBody {
+    width: 246px;
     height: 215px;
     background-color: var(--content-main-color);
     border: 1px dashed black;
-    border-radius:16px ;
+    border-radius: 16px;
 }
 
-.d_none{
+.d_none {
     display: none;
 }
