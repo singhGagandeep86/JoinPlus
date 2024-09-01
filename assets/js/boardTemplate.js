@@ -15,14 +15,18 @@ function templateTaskHTML(element) {
 }
 
 function templateTaskEmptyTodo() {
-    return `<div class="emptyBoardArea"><span>No tasks To do</span></div>`    
+    return `<div class="emptyBoardArea"><span>No tasks To do</span></div>
+    `    
 }
 function templateTaskEmptyInProegress() {
-    return `<div class="emptyBoardArea"><span>No tasks to in progress</span></div>`    
+    return `<div class="emptyBoardArea"><span>No tasks to in progress</span></div>
+    `    
 }
 function templateTaskEmptyAwait() {
-    return `<div class="emptyBoardArea"><span>No tasks to await feedback</span></div>`    
+    return `<div class="emptyBoardArea"><span>No tasks to await feedback</span></div>
+    <div id="dragEmpty" class="dragEmptyBody d_none"></div>`    
 }
 function templateTaskEmptyDone() {
-    return `<div class="emptyBoardArea"><span>No tasks to done</span></div>`    
+    return `<div class="emptyBoardArea"><span>No tasks to done</span></div>
+    <div id="dragEmpty" class="dragEmptyBody d_none "></div>`    
 }

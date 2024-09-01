@@ -109,3 +109,8 @@ function test(){
     document.getElementById('done').classList.add('d_none');
     
 }
+
+function dragHighliteOn(id) {
+document.getElementById(id).classList.remove('d_none');
+    
+}
