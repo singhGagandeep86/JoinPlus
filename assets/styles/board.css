@@ -111,8 +111,8 @@
 
 }
 
-.inputArea:focus-within{
-    border: 1px solid #29abe2 ;
+.inputArea:focus-within {
+    border: 1px solid #29abe2;
 }
 
 .inputArea input {
@@ -147,18 +147,19 @@
 
 .inputImgArea img {
     width: 32px;
-    height:32px;
-    
+    height: 32px;
+
 }
 
 .inputImgArea img:hover {
     background-color: var(--content-main-color);
     border-radius: 100%;
+
 }
 
 .inputImgArea img:active {
-    
-    filter: hue-rotate(180deg) brightness(1) saturate(2);
+    content: url('../img/lupe2.png');
+    background-color: white;
 }
 
 .inputSearch {
@@ -184,6 +185,14 @@
     justify-content: space-between;
 }
 
+.headlineDrag img{
+    cursor: pointer;
+}
+
+.headlineDrag img:hover{
+    content: url('../img/plusMitRahmen.png');
+}
+
 
 .headlineDrag span {
     font-size: 20px;
@@ -204,9 +213,6 @@
     width: 252px;
     height: 688px;
     gap: 16px;
-
-
-
 }
 
 
