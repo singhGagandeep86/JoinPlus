@@ -27,6 +27,7 @@
 
 }
 
+
 .headlineBoard {
     display: flex;
     flex-direction: column;
@@ -192,7 +193,7 @@
 }
 
 .drag {
-    transform:scale(1.13); 
+    transform:rotate(10deg); 
     margin-bottom: 10px;  
     
 }
