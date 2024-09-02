@@ -203,8 +203,26 @@ body {
 
 .contact-info-images {
     display: flex;
+    align-items: center;
     margin-left: 40px;
     gap: 8px;
+    cursor: pointer;
+}
+
+.editimages {
+    width: 24px;
+    height: 24px;
+}
+
+.edit {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    color: black;
+}
+
+.edit:hover {
+    color: var(--button-hover-color);
 }
 
 .CI-info {
