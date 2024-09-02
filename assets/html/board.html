@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/assets/img/Join logo white.png">
     <link rel="stylesheet" href="../styles/fonts.css">
-
+    <link rel="stylesheet" href="../styles/boardTask.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="../styles/board.css">
-    <title>Join</title>
+    <title>Board</title>
 </head>
 
 <body onload="load()">
@@ -18,10 +18,14 @@
             <img class="mainDesignAsideImg" src="../img/Join logo white.png" alt="">
             <div class="mainDesignAsideLinks">
                 <div>
-                    <div class="asideMenu"><img src="../img/Summary.png" alt=""><a href="">Summary</a></div>
-                    <div class="asideMenu"><img src="../img/Add task.png" alt=""><a href="">Add Task</a></div>
-                    <div class="asideMenu"><img src="../img/Board.png" alt=""><a href="">Board</a></div>
-                    <div class="asideMenu"><img src="../img/Contacts.png" alt=""><a href="">Contacts</a></div>
+                    <div class="asideMenu"><img src="../img/Summary.png" alt=""><a
+                            href="../html/summary.html">Summary</a></div>
+                    <div class="asideMenu"><img src="../img/Add task.png" alt=""><a href="../html/task.html">Add
+                            Task</a></div>
+                    <div class="asideMenu"><img src="../img/Board.png" alt=""><a href="../html/board.html">Board</a>
+                    </div>
+                    <div class="asideMenu"><img src="../img/Contacts.png" alt=""><a
+                            href="../html/contact.html">Contacts</a></div>
                 </div>
                 <div class="legacyMenu">
                     <a href="/assets/html/privacy.html">Privacy Policy</a>
@@ -47,7 +51,9 @@
                                     <div class="inputImgArea"><img src="../img//lupe.png" alt=""></div>
                                 </div>
                             </div>
-                            <div class="btnBoardTask"><button>Add task </button><img src="../img/add.png" alt=""></div>
+                            <div id="btnTaskPopupcloseArea" onclick="openPopUpTask()" class="btnBoardTask"><button
+                                    onclick="openPopUpTask()">Add task </button><img onclick="openPopUpTask()"
+                                    src="../img/add.png" alt=""></div>
                         </div>
                     </div>
                     <div class="headlineDragMain">
@@ -59,12 +65,12 @@
                     </div>
                 </div>
                 <div class="dragAndDropBoard">
-                    <div class="dragAndDropBoardArea" id="toDo" ondragover="allowDrop(event)"
-                        ondrop="moveTo('toDo')"></div>
+                    <div class="dragAndDropBoardArea" id="toDo" ondragover="allowDrop(event)" ondrop="moveTo('toDo')">
+                    </div>
                     <div class="dragAndDropBoardArea" id="progress" ondragover="allowDrop(event)"
                         ondrop="moveTo('progress')"></div>
-                    <div class="dragAndDropBoardArea" id="await" ondragover="allowDrop(event)"
-                        ondrop="moveTo('await')"></div>
+                    <div class="dragAndDropBoardArea" id="await" ondragover="allowDrop(event)" ondrop="moveTo('await')">
+                    </div>
                     <div class="dragAndDropBoardArea" id="done" ondragover="allowDrop(event)" ondrop="moveTo('done');">
                     </div>
                 </div>
@@ -73,6 +79,7 @@
         </div>
 
     </div>
+    <div id="popupTaskMain" class="popupArea d_none" onclick="closePopUpTask()"></div>
     <script src="/script.js"></script>
     <script src="../js/board.js"></script>
     <script src="../js/boardTemplate.js"></script>

@@ -12,6 +12,9 @@
     box-sizing: border-box;
     font-family: 'Inter';
 }
+html{
+    max-width: 1440px;
+}
 
 body {
     margin: 0px;
@@ -86,7 +89,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 100%;
+    width: 1208px;
     height: 96px;
     background-color: white;
     box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);

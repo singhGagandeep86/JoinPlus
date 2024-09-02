@@ -1,0 +1,269 @@
+.heading {
+    display: flex;
+    justify-content: space-between;
+    font-size: 61px;
+    font-weight: 700;
+    margin-top: 86px;
+    margin-left: 48px;
+}
+
+.mainSubmition {
+    display: flex;
+    margin-left: 42px;
+    margin-top: 82px;
+}
+
+.partition {
+    width: 0px;
+    height: 424px;
+    margin-inline: 32px;
+    border: 1px solid #D1D1D1;
+}
+
+.leftSubmition {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.smallHead {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+    display: flex;
+}
+
+label {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+    display: flex;
+}
+
+.imp {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: #FF8190;
+}
+
+.title {
+    width: 440px;
+    height: 96px;
+    gap: 8px;
+}
+
+.titleTxt {
+    width: 440px;
+    height: 48px;
+    padding: 12px 21px 12px 21px;
+    gap: 10px;
+    border-radius: 10px;
+    opacity: 0px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+.descriptionTxt {
+    padding: 18px 16px 18px 16px;
+    gap: 10px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    background: #FFFFFF;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    width: 440px;
+    height: 120px;
+}
+
+
+.assign {
+    width: 440px;
+    height: 80px;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    margin-top: 32px;
+}
+
+.assignment {
+    justify-content: space-between;
+    width: 440px;
+    height: 48px;
+    background: #FFFFFF;
+    padding: 12px 16px 12px 16px;
+    gap: 0px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+.rightSubmition {
+    width: Fill (440px)px;
+    height: Hug (48px)px;
+    padding: 12px 21px 12px 21px;
+    gap: 10px;
+    border-radius: 10px 0px 0px 0px;
+    border: 1px 0px 0px 0px;
+}
+
+.dueDate {
+    width: 440px;
+    height: 96px;
+    gap: 8px;
+}
+
+.dueDateTxt {
+    width: 440px;
+    height: 48px;
+    padding: 12px 16px 12px 16px;
+    border-radius: 10px;
+    border: 1px;
+    justify-content: space-between;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+.subtasks {
+    width: 440px;
+    height: 80px;
+    margin-top: 36px;
+    gap: 8px;
+}
+
+.subtasksTxt {
+    width: 440px;
+    height: 48px;
+    padding: 12px 16px 12px 16px;
+    gap: 0px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    justify-content: space-between;
+    background: #FFFFFF;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+.contentFeet {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 89px;
+    margin-left: 95.25px;
+    margin-right: 95.25px;
+    gap: 16px;
+}
+
+.submitionButtons {
+    width: 309px;
+    height: 56px;
+    top: 889px;
+    left: 995.25px;
+    gap: 16px;
+    display: flex;
+}
+
+.secondary {
+    cursor: pointer;
+    width: 126px;
+    height: 56px;
+    padding: 16px;
+    gap: 4px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: white;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    animation: Instant;
+    animation-duration: 10ms;
+    color: #2A3647;
+}
+
+.primaryCheck {
+    cursor: pointer;
+    width: 183px;
+    height: 56px;
+    padding: 16px 0px 16px 16px;
+    gap: 4px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 25.2px;
+    text-align: left;
+    background: #2A3647;
+    color: #FFFFFF;
+    animation: Move in Bottom;
+    animation-timing-function: ease-in-out;
+    animation-duration: 100ms;
+}
+
+.primevect {
+    width: 24px;
+    height: 24px;
+}
+
+
+
+.primaryCheck .smallHead {
+    font-weight: 700;
+}
+
+.closeIconTask{
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    margin-right: 64px;
+}
+
+.popupArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(25, 25, 25, 0.55);
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+
+
+.taskArea{
+    width: 1116px;
+    height: 870px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;  
+    
+}
+

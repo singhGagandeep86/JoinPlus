@@ -30,3 +30,77 @@ function templateTaskEmptyDone() {
     return `<div class="emptyBoardArea"><span>No tasks to done</span></div>
     <div id="dragEmpty" class="dragEmptyBody d_none "></div>`    
 }
+
+function templatePopUpTask1() {
+    return `<div id="CloseArea" class="taskArea">
+     <div class="heading">Add Task <img class="closeIconTask" onclick="closePopUpTask()" src="../img/Close.png" alt=""></div>
+                <form  onsubmit="submition()">
+                    <div class="mainSubmition">
+                    
+                        <div class="leftSubmition">
+                            <div class="title">
+                                <div class="smallHead">Title <div class="imp">*</div>
+                                </div>
+                                <input class="titleTxt" type="text" placeholder="Enter a title" required>
+                            </div>
+                            <div class="description">
+                                <div class="smallHead">Description</div>
+                                <textarea  placeholder="Enter a Description"
+                                    class="descriptionTxt"></textarea>
+                            </div>
+                            <div class="assign">
+                                <label for="contacts">Assigned to</label>
+                                <select class="assignment" id="contacts">
+                                    <option value="user">Select contacts to assign</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="partition"></div>
+                        <div class="rightSubmition">
+                            <div class="dueDate">
+                                <div class="smallHead">Due Date <div class="imp">*</div>
+                                </div>
+                                <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy"
+                                    onfocus="(this.type='date')" required>
+                            </div>
+                            <div class="prio">
+                                <div class="smallHead">Prio</div>
+                                <div>
+                                    <img src="/assets/img/buttonUrgent.svg">
+                                    <img src="/assets/img/buttonMedium.svg">
+                                    <img src="/assets/img/buttonLow.svg">
+                                </div>
+                            </div>
+                            <div class="assign">
+                                <label for="Category">Category <div class="imp">*</div></label>
+                                <select class="assignment" id="Category" required>
+                                    <option value="">Select task category</option>
+                                    <option value="user">User Story</option>
+                                    <option value="user">Technical Task</option>                                    
+                                </select>
+                            </div>
+                            <div class="subtasks">
+                                <div class="smallHead">Subtasks</div>
+                                <input class="subtasksTxt" placeholder="Add  new subtask" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contentFeet">
+                        <div class="smallHead">
+                            <div class="imp">*</div>This field is required
+                        </div>
+                        <div class="submitionButtons">
+                            <button class="secondary">
+                                <div class="smallHead">Cancel</div><img 
+                                    src="/assets/img/xPic.png">
+                            </button>
+                            <button class="primaryCheck">
+                                <div class="smallHead">Create Task</div><img class="primevect"
+                                    src="/assets/img/check.svg">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                 </div>`
+                
+}

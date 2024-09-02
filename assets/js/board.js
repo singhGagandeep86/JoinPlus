@@ -91,10 +91,10 @@ function done() {
     }
 }
 
-function startDragging(number,element) {
-    draggedElement = number; 
+function startDragging(number, element) {
+    draggedElement = number;
     element.classList.add('drag');
-     
+
 }
 function allowDrop(ev) {
     ev.preventDefault();
@@ -105,12 +105,24 @@ function moveTo(element) {
     taskAdd();
 }
 
-function test(){
-    document.getElementById('done').classList.add('d_none');
-    
+
+function openPopUpTask() {
+    let taskPopUp = document.getElementById('popupTaskMain');
+    taskPopUp.classList.remove('d_none');
+    taskPopUp.innerHTML = '';
+    taskPopUp.innerHTML = templatePopUpTask1();
+    let area = document.getElementById('CloseArea');
+    area.addEventListener('click', (event) => {
+        event.stopPropagation()
+    })
 }
 
-function dragHighliteOn(id) {
-document.getElementById(id).classList.remove('d_none');
-    
+function closePopUpTask() {
+    let button = document.getElementById('btnTaskPopupcloseArea');
+    button.addEventListener('click', (event) => {
+        event.stopPropagation()
+    })
+    let taskPopUp = document.getElementById('popupTaskMain');
+    taskPopUp.classList.add('d_none');
 }
+

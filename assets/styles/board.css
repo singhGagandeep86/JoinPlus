@@ -28,6 +28,8 @@
 }
 
 
+
+
 .headlineBoard {
     display: flex;
     flex-direction: column;
@@ -41,7 +43,7 @@
 
 .content {
     padding: 0 64px 0 64px;
-    max-width: 1440px;
+    max-width: 1208px;
 }
 
 .headlinbar {
@@ -185,11 +187,11 @@
     justify-content: space-between;
 }
 
-.headlineDrag img{
+.headlineDrag img {
     cursor: pointer;
 }
 
-.headlineDrag img:hover{
+.headlineDrag img:hover {
     content: url('../img/plusMitRahmen.png');
 }
 
@@ -202,7 +204,7 @@
 
 .dragAndDropBoard {
     display: flex;
-    width: 1208px;
+    width: 908px;
     height: 688px;
     gap: 30px;
 }
@@ -289,3 +291,4 @@
 .d_none {
     display: none;
 }
+
