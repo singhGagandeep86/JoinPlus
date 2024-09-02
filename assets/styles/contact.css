@@ -9,11 +9,6 @@
     --details-font-color: #007CEE;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-}
-
 .content {
     max-width: 1440px;
     display: flex;
