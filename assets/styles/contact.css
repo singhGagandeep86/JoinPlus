@@ -16,6 +16,7 @@ body {
 
 .content {
     max-width: 1440px;
+    display: flex;
 }
 
 .container {
@@ -148,12 +149,8 @@ body {
 }
 
 .contact-container-right {
-    display: flex;
-}
-
-.contact-text img {
-    max-width: 100%;
-    height: auto;
+    margin-top: 70px;
+    margin-left: 40px;
 }
 
 .contact-text {
