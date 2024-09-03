@@ -50,9 +50,11 @@ body {
     justify-content: center;
     width: 232px;
     height: 46px;
+    transition: 125ms ease-in-out;
 }
 .asideMenu:hover{
     background-color:#2A3D59 ;
+     
 }
 
 .asideMenu a {
@@ -61,6 +63,7 @@ body {
     align-items: center;
     width: 232px;
     justify-content: center;
+     
 
 }
 
@@ -165,4 +168,5 @@ body {
 
 .active:hover {
     background-color: #091931;
+    
 }
