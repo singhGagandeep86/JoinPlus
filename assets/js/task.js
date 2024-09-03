@@ -11,7 +11,7 @@ function renderSubTask() {
     document.getElementById('inputField').style.backgroundImage = 'none';
 }
 
-// this is test
+// this is w3School template
 var x, i, j, l, ll, selElmnt, a, b, c;
 /*look for any elements with the class "assign":*/
 x = document.getElementsByClassName("assign");
