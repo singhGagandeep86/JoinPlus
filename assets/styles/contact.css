@@ -321,7 +321,7 @@
 
 .popup-actions {
     display: flex;
-    justify-content: space-between;
+    gap: 24px;
 }
 
 .popup-actions button {
