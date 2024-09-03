@@ -251,6 +251,8 @@ label {
     width: 440px;
     height: 80px;
     margin-top: 96px;
+    display: flex;
+    flex-direction: column;
     gap: 8px;
 }
 
