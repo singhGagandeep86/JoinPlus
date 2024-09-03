@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../styles/task.css">
     <link rel="stylesheet" href="../styles/task.css">
     <link rel="stylesheet" href="/assets/styles/fonts.css">
+   
     <title>Join</title>
     <script>
         function submition() {
@@ -47,16 +48,15 @@
                     <div class="mainSubmition">
                         <div class="leftSubmition">
                             <div class="title">
-                                <div class="smallHead">Title <div class="imp">*</div>
+                                <div class="smallHead"><span>Title <sup>*</sup></span>
                                 </div>
                                 <input class="titleTxt" type="text" placeholder="Enter a title" required>
                             </div>
                             <div class="description">
                                 <div class="smallHead">Description</div>
-                                <textarea rows="4" cols="50" placeholder="Enter a Description"
-                                    class="descriptionTxt"></textarea>
+                                <textarea rows="4" cols="37" placeholder="Enter a Description" class="descriptionTxt"></textarea>
                             </div>
-                            <div class="assign">
+                            <div class="assignContacts">
                                 <label for="contacts">Assigned to</label>
                                 <select class="assignment" id="contacts">
                                     <option value="user">Select contacts to assign</option>
@@ -66,7 +66,7 @@
                         <div class="partition"></div>
                         <div class="rightSubmition">
                             <div class="dueDate">
-                                <div class="smallHead">Due Date <div class="imp">*</div>
+                                <div class="smallHead"><span>Due Date <sup>*</sup></span>
                                 </div>
                                 <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy"
                                     onfocus="(this.type='date')" required>
@@ -74,23 +74,25 @@
                             <div class="prio">
                                 <div class="smallHead">Prio</div>
                                 <div>
-                                    <img src="/assets/img/buttonUrgent.svg">
-                                    <img src="/assets/img/buttonMedium.svg">
-                                    <img src="/assets/img/buttonLow.svg">
+                                    <img class="priobtn" src="/assets/img/buttonUrgent.svg">
+                                    <img class="priobtn" src="/assets/img/buttonMedium.svg">
+                                    <img class="priobtn" src="/assets/img/buttonLow.svg">
                                 </div>
                             </div>
-                            <div class="assign">
-                                <label for="Category">Category <div class="imp">*</div></label>
-                                <select class="assignment" id="Category" required>
+                        
+                            <div class="assign"> 
+                                <label for="Category"><span>Category <sup>*</sup></span></label>
+                                <select id="Category" required>
                                     <option value="">Select task category</option>
-                                    <option value="user">test 1</option>
-                                    <option value="user">test 2</option>
-                                    <option value="user">test 3</option>
+                                    <option value="user">Technical Task</option>
+                                    <option value="user">User Story</option>
                                 </select>
                             </div>
-                            <div class="subtasks">
+                              
+                            
+                            <div id="inputSubClass" class="subtasks">
                                 <div class="smallHead">Subtasks</div>
-                                <input class="subtasksTxt" placeholder="Add  new subtask" type="text">
+                                <input class="subtasksTxt" placeholder="Add  new subtask" type="text" onfocus="renderSubTask()">
                             </div>
                         </div>
                     </div>
@@ -114,6 +116,7 @@
         </div>
     </div>
     <script src="/script.js"></script>
+    <script src="/assets/js/task.js"></script>
 </body>
 
 </html>
