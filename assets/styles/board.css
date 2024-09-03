@@ -8,8 +8,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-
 }
 
 .bg_tech {
@@ -24,11 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
-
-
-
 
 .headlineBoard {
     display: flex;
@@ -37,8 +31,6 @@
     height: 232px;
     max-width: 1208px;
     padding-top: 64px;
-
-
 }
 
 .content {
@@ -52,13 +44,11 @@
     align-items: center;
     max-width: 1056px;
     height: 73px;
-
 }
 
 .headlinbar span {
     font-size: 61px;
     font-weight: bold;
-
 }
 
 .btnBoardTask {
@@ -82,7 +72,6 @@
     font-size: 21px;
     font-weight: 700;
     margin-right: 8px;
-
 }
 
 .btnBoardTask:hover {
@@ -90,17 +79,13 @@
     box-shadow: 0px 5px 6px 0px rgb(0, 0, 0, 0.2);
 }
 
-
-
 .searchBar {
     display: flex;
     gap: 32px;
     height: 48px;
     ;
     width: 504px;
-
 }
-
 
 .inputArea {
     display: flex;
@@ -110,7 +95,6 @@
     border: 1px solid #b2b2b2;
     border-radius: 10px;
     background-color: white;
-
 }
 
 .inputArea:focus-within {
@@ -126,7 +110,6 @@
     font-weight: 400;
     padding-left: 16px;
     opacity: 0.3;
-
 }
 
 .inputArea input:focus {
@@ -144,19 +127,16 @@
     border-left: 1px solid #b2b2b2;
     cursor: pointer;
     padding-left: 16px;
-
 }
 
 .inputImgArea img {
     width: 32px;
     height: 32px;
-
 }
 
 .inputImgArea img:hover {
     background-color: var(--content-main-color);
     border-radius: 100%;
-
 }
 
 .inputImgArea img:active {
@@ -168,7 +148,6 @@
     width: 280px;
     height: 32px;
     display: flex;
-
 }
 
 .headlineDragMain {
@@ -195,7 +174,6 @@
     content: url('../img/plusMitRahmen.png');
 }
 
-
 .headlineDrag span {
     font-size: 20px;
     font-weight: 700;
@@ -216,7 +194,6 @@
     height: 688px;
     gap: 16px;
 }
-
 
 .emptyBoardArea {
     display: flex;
@@ -239,13 +216,11 @@
     padding: 16px;
     cursor: pointer;
     gap: 20px;
-
 }
 
 .drag {
     transform: rotate(5deg);
     margin-bottom: 10px;
-
 }
 
 .taskInfo {
@@ -292,3 +267,11 @@
     display: none;
 }
 
+.activeBoard{
+    content: url("../img/IconsBoard.png");
+    
+}
+
+.activeBoard a{
+    cursor:default;
+}

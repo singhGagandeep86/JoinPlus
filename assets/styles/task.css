@@ -393,3 +393,7 @@ label {
     width: 24px;
     height: 24px;
 }
+
+.activeTask{
+    content: url("../img/IconsTask.png");
+}
