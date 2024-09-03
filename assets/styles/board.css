@@ -266,3 +266,12 @@
 .d_none {
     display: none;
 }
+
+.activeBoard{
+    content: url("../img/IconsBoard.png");
+    
+}
+
+.activeBoard a{
+    cursor:default;
+}

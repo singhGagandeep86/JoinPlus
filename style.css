@@ -12,7 +12,8 @@
     box-sizing: border-box;
     font-family: 'Inter';
 }
-html{
+
+html {
     max-width: 1440px;
 }
 
@@ -40,14 +41,47 @@ body {
 
 .overDisplay a {
     text-decoration: none;
-    color: var(--sideheader-font-color);
     cursor: pointer;
 }
 
 .asideMenu {
     display: flex;
     align-items: center;
-    padding-top: 30px;
+    justify-content: center;
+    width: 232px;
+    height: 46px;
+}
+.asideMenu:hover{
+    background-color:#2A3D59 ;
+}
+
+.asideMenu a {
+    color: var(--sideheader-font-color);
+    display: flex;
+    align-items: center;
+    width: 232px;
+    justify-content: center;
+
+}
+
+.asideMenu a img {
+    justify-content: center;
+}
+
+.asideMenu:nth-of-type(3) {
+    padding-right: 23px;
+}
+
+.asideMenuArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 229px;
+    width: 232px;
+    gap: 20px;
+    margin-top: 64px;
+
 }
 
 .asideMenu img {
@@ -64,6 +98,12 @@ body {
 
 .legacyMenu a {
     padding-top: 30px;
+    color: var(--sideheader-font-color);
+}
+
+.legacyMenu a:hover {
+    color: #29ABE2;
+    transform: scale(1.03);
 }
 
 .mainDesign {
@@ -72,11 +112,11 @@ body {
     background-color: var(--content-main-color);
 }
 
-.mainDesignAsideImg{
-    padding:64px 0px 64px 0px ;
+.mainDesignAsideImg {
+    padding: 64px 0px 64px 0px;
 }
 
-.mainDesignAsideLinks{
+.mainDesignAsideLinks {
     height: 100%;
     width: 232px;
     display: flex;
@@ -107,4 +147,22 @@ body {
     width: 32px;
     height: 32px;
     cursor: pointer;
+}
+
+.active {
+    background-color: #091931;
+    width: 232px;
+    height: 46px;
+    cursor: default;
+
+
+}
+
+.active a {
+    color: white;
+    cursor: default;
+}
+
+.active:hover {
+    background-color: #091931;
 }
