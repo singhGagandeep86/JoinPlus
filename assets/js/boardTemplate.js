@@ -7,36 +7,32 @@ function templateTaskHTML(element) {
             <span>${element['description']}</span>
         </div>
         <div id="subtask" class="subtaskArea"></div>
-
-
-
     </div>
     </div>`;
 }
 
 function templateTaskEmptyTodo() {
     return `<div class="emptyBoardArea"><span>No tasks To do</span></div>
-    `    
+    `
 }
 function templateTaskEmptyInProegress() {
     return `<div class="emptyBoardArea"><span>No tasks to in progress</span></div>
-    `    
+    `
 }
 function templateTaskEmptyAwait() {
     return `<div class="emptyBoardArea"><span>No tasks to await feedback</span></div>
-    <div id="dragEmpty" class="dragEmptyBody d_none"></div>`    
+    <div id="dragEmpty" class="dragEmptyBody d_none"></div>`
 }
 function templateTaskEmptyDone() {
     return `<div class="emptyBoardArea"><span>No tasks to done</span></div>
-    <div id="dragEmpty" class="dragEmptyBody d_none "></div>`    
+    <div id="dragEmpty" class="dragEmptyBody d_none "></div>`
 }
 
 function templatePopUpTask1() {
     return `<div id="CloseArea" class="taskArea">
-     <div class="heading">Add Task <img class="closeIconTask" onclick="closePopUpTask()" src="../img/Close.png" alt=""></div>
+        <div class="heading">Add Task <img class="closeIconTask" onclick="closePopUpTask()" src="../img/Close.png" alt=""></div>
                 <form  onsubmit="submition()">
                     <div class="mainSubmition">
-                    
                         <div class="leftSubmition">
                             <div class="title">
                                 <div class="smallHead">Title <div class="imp">*</div>
@@ -76,7 +72,7 @@ function templatePopUpTask1() {
                                 <select class="assignment" id="Category" required>
                                     <option value="">Select task category</option>
                                     <option value="user">User Story</option>
-                                    <option value="user">Technical Task</option>                                    
+                                    <option value="user">Technical Task</option>
                                 </select>
                             </div>
                             <div class="subtasks">
@@ -91,7 +87,7 @@ function templatePopUpTask1() {
                         </div>
                         <div class="submitionButtons">
                             <button class="secondary">
-                                <div class="smallHead">Cancel</div><img 
+                                <div class="smallHead">Cancel</div><img
                                     src="/assets/img/xPic.png">
                             </button>
                             <button class="primaryCheck">
@@ -101,6 +97,5 @@ function templatePopUpTask1() {
                         </div>
                     </div>
                 </form>
-                 </div>`
-                
+        </div>`
 }

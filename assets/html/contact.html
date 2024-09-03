@@ -38,7 +38,7 @@
 
             <div class="content">
                 <div class="container">
-                    <div class="btn-image">
+                    <div class="btn-image" id="add-contact-btn">
                         <button>Add new contact</button>
                         <img src="/assets/img/person_add.png">
                     </div>
@@ -102,6 +102,32 @@
                     </div>
                 </div>
 
+                <div class="overlay" id="overlay">
+                    <div class="popup">
+                        <div class="popup-left">
+                            <div class="logo">
+                                <img src="/assets/img/Join logo white.png" alt="Logo">
+                            </div>
+                            <h2>Add contact</h2>
+                            <p>Tasks are better with a team!</p>
+                        </div>
+                        <div class="popup-right">
+                            <button class="close-btn" id="close-btn"><img src="/assets/img/Close.png"></button>
+                            <form>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Name" required>
+                                    <input type="email" placeholder="Email" required>
+                                    <input type="tel" placeholder="Phone">
+                                </div>
+                                <div class="popup-actions">
+                                    <button type="button" id="cancel-btn">Cancel</button>
+                                    <button type="submit">Create contact</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="contact-container-right">
                     <div class="contact-text">
                         <h1>Contacts</h1>
@@ -133,5 +159,6 @@
         </div>
     </div>
         <script src="/script.js"></script>
+        <script src="/assets/js/contacttemplate.js"></script>
 </body>
 </html>

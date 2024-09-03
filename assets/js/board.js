@@ -63,8 +63,8 @@ function inPorgess() {
             document.getElementById('progress').innerHTML += templateTaskHTML(element);
         }
     }
-
 }
+
 function await() {
     let await = array.filter(e => e['id'] == 'await');
     if (await.length == 0) {
@@ -94,8 +94,8 @@ function done() {
 function startDragging(number, element) {
     draggedElement = number;
     element.classList.add('drag');
-
 }
+
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -104,7 +104,6 @@ function moveTo(element) {
     array[draggedElement]['id'] = element;
     taskAdd();
 }
-
 
 function openPopUpTask() {
     let taskPopUp = document.getElementById('popupTaskMain');
@@ -125,4 +124,3 @@ function closePopUpTask() {
     let taskPopUp = document.getElementById('popupTaskMain');
     taskPopUp.classList.add('d_none');
 }
-
