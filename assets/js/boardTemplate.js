@@ -6,11 +6,16 @@ function templateTaskHTML(element) {
             <span>${element['title']}</span>
             <span>${element['description']}</span>
         </div>
-        <div id="subtask" class="subtaskArea"></div>
+        <div id="subtaskRange" class="subtaskArea"><span class="range"><input type="range"  id="subTaskRange" min="2" max="2" value="2"> 
+    <label class="labelRange" for="subTaskRange">2/2 Subtask</label></span></div>
     </div>
     </div>`;
 }
-
+function templateRange() {
+    return `<span class="range"><input type="range"  id="subTaskRange" min="2" max="2" value="2"> 
+    <label class="labelRange" for="subTaskRange">2/2 Subtask</label></span>
+`
+}
 function templateTaskEmptyTodo() {
     return `<div class="emptyBoardArea"><span>No tasks To do</span></div>
     `

@@ -276,12 +276,55 @@ label {
     0% {
         transform: translateY(-40%);
         left: 100%;
-
     }
 
     100% {
         transform: translateY(-40%);
         left: calc(10%);
     }
+}
 
+.range {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.labelRange {
+    width: 75px;
+    height: 14px;
+    font-size: 12px;
+}
+
+.range input {
+    background-color: #4589FF;
+    appearance: none;
+    width: 128px;
+    height: 8px;
+    border-radius: 16px;
+    border: none;
+}
+
+.range input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+    background: transparent;
+    border: none;
+}
+
+.range input::-ms-thumb {
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+    background: transparent;
+    border: none;
+}
+
+.range input::-moz-range-thumb {
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+    background: transparent;
+    border: none;
 }

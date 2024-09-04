@@ -2,9 +2,8 @@ const BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.
 const path = "";
 const data = {};
 let array = [];
+let subtask= [];
 let draggedElement;
-
-
 
 function load() {
     // postData("/task",{"name":"name"})
@@ -15,8 +14,10 @@ async function loadData(path) {
     let response = await fetch(BASE_URL + path + ".json");
     let responsetoJason = await response.json();
     let taskArray = Object.values(responsetoJason);
-    for (let i = 0; i < taskArray.length; i++) {
-
+    for (let i = 0; i < taskArray.length; i++) {  
+        let subTask = taskArray[i].subtask;  
+        let subTaskObjekt = Object.values(subTask);
+        subtask.push(subTaskObjekt);    
         array.push(taskArray[i]);
     }
     taskAdd();
@@ -36,7 +37,7 @@ function taskAdd() {
     todo();
     inPorgess();
     await();
-    done();
+    done();       
 }
 
 function todo() {
@@ -48,8 +49,10 @@ function todo() {
         for (let index = 0; index < toDo.length; index++) {
             let element = toDo[index];
             document.getElementById('toDo').innerHTML += templateTaskHTML(element);
+            
         }
     }
+
 }
 
 function inPorgess() {
@@ -61,6 +64,7 @@ function inPorgess() {
         for (let index = 0; index < inprogress.length; index++) {
             let element = inprogress[index];
             document.getElementById('progress').innerHTML += templateTaskHTML(element);
+            
         }
     }
 }
@@ -123,4 +127,18 @@ function closePopUpTask() {
     })
     let taskPopUp = document.getElementById('popupTaskMain');
     taskPopUp.classList.add('d_none');
+}
+
+function rangeTask() {
+    let range = document.getElementById('subtaskRange');
+
+    range.innerHTML = "";
+
+    for (let i = 0; i < subtask.length; i++) {
+
+        range.innerHTML=templateRange(i);
+        
+        
+    }
+    
 }
