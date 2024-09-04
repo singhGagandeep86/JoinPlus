@@ -49,15 +49,19 @@ form {
     flex-direction: column;
     width: 440px;
     height: 416px;
-    margin-left: 644.25px;;
+    margin-left: 644.25px;
+    ;
     gap: 16px;
 }
 
 .smallHead {
+    position: fixed;
     font-size: 20px;
     font-weight: 400;
     text-align: left;
     display: flex;
+    margin-top: 926px;
+    margin-left: 328px;
 }
 
 sup {
@@ -128,6 +132,102 @@ label {
     background-origin: content-box;
     cursor: pointer;
     background-image: url("http://127.0.0.1:5500/assets/img/textArea.svg");
+}
+
+.assignCntcts {
+    position: fixed;
+    width: 440px;
+    height: 80px;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    margin-top: 296px;
+}
+
+.assignCntcts assignment {
+    display: none;
+}
+
+.assignment {
+    color: #080808;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    justify-content: space-between;
+    width: 440px;
+    height: 48px;
+    background: #FFFFFF;
+    padding: 6px 24px 8px 16px;
+    gap: 0px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    appearance: none;
+    cursor: pointer;
+    border: 1px solid #D1D1D1;
+}
+
+
+/*style the arrow inside the select element:*/
+.assignment-selected:after {
+    position: absolute;
+    content: "";
+    justify-content: space-between;
+    background: #FFFFFF;
+    gap: 0px;
+    margin-top: 4px;
+    right: 30px;
+    border: 1px solid;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    border: 6px solid transparent;
+    border-color: transparent transparent #080808 transparent;
+}
+
+.assignment-selected.assignment-arrow-active:after {
+    border-color: #080808 transparent transparent transparent;
+    margin-top: 14px;
+}
+
+/*style the items (options), including the selected item:*/
+.assignment-items div {
+    padding: 8px 16px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 10px;
+    text-align: left;
+}
+
+/*style items (options):*/
+.assignment-items {
+    position: absolute;
+    background-color: #FFFFFF;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    border: 1px transparent;
+    border-radius: 10px;
+}
+
+/*hide the items when the select box is closed:*/
+.assignment-hide {
+    display: none;
+    background-image: none;
+}
+
+.assignment-items div:hover,
+.same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .assign {
@@ -276,8 +376,9 @@ label {
     gap: 8px;
 }
 
-.prioBtns{
+.prioBtns {
     display: flex;
+    gap: 16px;
 }
 
 .subtasksTxt {
@@ -333,10 +434,41 @@ label {
     cursor: pointer;
 }
 
+.priobtn {
+    width: 136px;
+    height: 56px;
+    padding: 16px 10px 16px 10px;
+    gap: 8px;
+    border-radius: 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .priobtn:hover {
     border-radius: 10px;
-    box-shadow: 0px 4px 0px 4px #0000001A;
     cursor: pointer;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.btnUrgnt {
+    background-color: #FF3D00;
+    color: white;
+}
+
+.btnMed {
+    background-color: #FFA800;
+    color: white;
+}
+
+.btnLow {
+    background-color: #7AE229;
+    color: white;
 }
 
 .contentFeet {

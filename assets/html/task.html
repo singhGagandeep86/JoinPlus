@@ -57,12 +57,16 @@
                             <textarea rows="4" cols="37" placeholder="Enter a Description"
                                 class="descriptionTxt"></textarea>
                         </div>
-                        <div class="assign">
+                        <div class="assignCntcts">
                             <label for="contacts">Assigned to</label>
                             <select class="assignment" id="contacts">
                                 <option value="user">Select contacts to assign</option>
+                                <option value="contact1">Contact 1</option>
+                                <option value="contact2">Contact 2</option>
+                                <option value="contact3">Contact 3</option>
                             </select>
                         </div>
+
                     </div>
                     <div class="partition"></div>
                     <div class="rightSubmition">
@@ -75,9 +79,12 @@
                         <div class="prio">
                             <div class="smallHead">Prio</div>
                             <div class="prioBtns">
-                                <img class="priobtn" src="/assets/img/buttonUrgent.svg">
-                                <img class="priobtn" src="/assets/img/buttonMedium.svg">
-                                <img class="priobtn" src="/assets/img/buttonLow.svg">
+                                <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
+                                        src="/assets/img/prioUrgent.svg"></div>
+                                <div id="btnMed" onclick="activateMedium()" class="priobtn med">Medium <img
+                                        src="/assets/img/prioMedium.svg"></div>
+                                <div id="btnLow" onclick="activateLow()" class="priobtn low">Low <img
+                                        src="/assets/img/prioLow.svg"></div>
                             </div>
                         </div>
 
@@ -97,21 +104,20 @@
                                 onfocus="renderSubTask()">
                         </div>
                     </div>
-                    <div class="contentFeet">
-                        <div class="smallHead">
-                            <div class="imp">*</div>This field is required
-                        </div>
-                        <div class="submitionButtons">
-                            <button class="secondary">
-                                <div class="smallHead">Clear</div><img class="scndVect"
-                                    src="/assets/img/SecondaryVector.png">
-                            </button>
-                            <button class="primaryCheck">
-                                <div class="smallHead">Create Task</div><img class="primevect"
-                                    src="/assets/img/check.svg">
-                            </button>
-                        </div>
+
+                    <div class="smallHead">
+                        This field is required
                     </div>
+                    <div class="submitionButtons">
+                        <button class="secondary">
+                            <span>Clear</span><img class="scndVect"
+                                src="/assets/img/SecondaryVector.png">
+                        </button>
+                        <button class="primaryCheck">
+                            <span>Create Task</span><img class="primevect" src="/assets/img/check.svg">
+                        </button>
+                    </div>
+
                 </form>
             </div>
         </div>
