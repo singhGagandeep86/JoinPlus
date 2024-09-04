@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="../styles/task.css">
     <link rel="stylesheet" href="../styles/task.css">
     <link rel="stylesheet" href="/assets/styles/fonts.css">
-   
+
     <title>addTask</title>
-    
+
 </head>
 
 <body>
@@ -22,10 +22,10 @@
                 <div class="asideMenuArea">
                     <div class="asideMenu"><a href="../html/summary.html"><img src="../img/Summary.png"
                                 alt="">Summary</a></div>
-                    <div class="asideMenu active"><a href="../html/task.html"><img class="activeTask" src="../img/Add task.png" alt="">Add
+                    <div class="asideMenu active"><a href="../html/task.html"><img class="activeTask"
+                                src="../img/Add task.png" alt="">Add
                             Task</a></div>
-                    <div class="asideMenu "><a href="../html/board.html"> <img 
-                                src="../img/Board.png" alt="">Board</a>
+                    <div class="asideMenu "><a href="../html/board.html"> <img src="../img/Board.png" alt="">Board</a>
                     </div>
                     <div class="asideMenu"><a href="../html/contact.html"><img src="../img/Contacts.png"
                                 alt="">Contacts</a></div>
@@ -46,55 +46,55 @@
             <div class="content">
                 <div class="heading">Add Task</div>
                 <form onsubmit="submition()">
-                    <div class="mainSubmition">
-                        <div class="leftSubmition">
-                            <div class="title">
-                                <div class="smallHead"><span>Title <sup>*</sup></span>
-                                </div>
-                                <input class="titleTxt" type="text" placeholder="Enter a title" required>
+                    <div class="leftSubmition">
+                        <div class="title">
+                            <div class="smallHead"><span>Title <sup>*</sup></span>
                             </div>
-                            <div class="description">
-                                <div class="smallHead">Description</div>
-                                <textarea rows="4" cols="37" placeholder="Enter a Description" class="descriptionTxt"></textarea>
+                            <input class="titleTxt" type="text" placeholder="Enter a title" required>
+                        </div>
+                        <div class="description">
+                            <div class="smallHead">Description</div>
+                            <textarea rows="4" cols="37" placeholder="Enter a Description"
+                                class="descriptionTxt"></textarea>
+                        </div>
+                        <div class="assign">
+                            <label for="contacts">Assigned to</label>
+                            <select class="assignment" id="contacts">
+                                <option value="user">Select contacts to assign</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="partition"></div>
+                    <div class="rightSubmition">
+                        <div class="dueDate">
+                            <div class="smallHead"><span>Due Date <sup>*</sup></span>
                             </div>
-                            <div class="assignContacts">
-                                <label for="contacts">Assigned to</label>
-                                <select class="assignment" id="contacts">
-                                    <option value="user">Select contacts to assign</option>
-                                </select>
+                            <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy" onfocus="(this.type='date')"
+                                required>
+                        </div>
+                        <div class="prio">
+                            <div class="smallHead">Prio</div>
+                            <div class="prioBtns">
+                                <img class="priobtn" src="/assets/img/buttonUrgent.svg">
+                                <img class="priobtn" src="/assets/img/buttonMedium.svg">
+                                <img class="priobtn" src="/assets/img/buttonLow.svg">
                             </div>
                         </div>
-                        <div class="partition"></div>
-                        <div class="rightSubmition">
-                            <div class="dueDate">
-                                <div class="smallHead"><span>Due Date <sup>*</sup></span>
-                                </div>
-                                <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy"
-                                    onfocus="(this.type='date')" required>
-                            </div>
-                            <div class="prio">
-                                <div class="smallHead">Prio</div>
-                                <div>
-                                    <img class="priobtn" src="/assets/img/buttonUrgent.svg">
-                                    <img class="priobtn" src="/assets/img/buttonMedium.svg">
-                                    <img class="priobtn" src="/assets/img/buttonLow.svg">
-                                </div>
-                            </div>
-                        
-                            <div class="assign"> 
-                                <label for="Category"><span>Category <sup>*</sup></span></label>
-                                <select id="Category" required>
-                                    <option value="">Select task category</option>
-                                    <option value="user">Technical Task</option>
-                                    <option value="user">User Story</option>
-                                </select>
-                            </div>
-                              
-                            
-                            <div id="inputSubClass" class="subtasks">
-                                <div class="smallHead">Subtasks</div>
-                                <input class="subtasksTxt" placeholder="Add new subtask" type="text" onfocus="renderSubTask()">
-                            </div>
+
+                        <div class="assign">
+                            <label for="Category"><span>Category <sup>*</sup></span></label>
+                            <select id="Category" required>
+                                <option value="">Select task category</option>
+                                <option value="user">Technical Task</option>
+                                <option value="user">User Story</option>
+                            </select>
+                        </div>
+
+
+                        <div id="inputSubClass" class="subtasks">
+                            <div class="smallHead">Subtasks</div>
+                            <input class="subtasksTxt" placeholder="Add new subtask" type="text"
+                                onfocus="renderSubTask()">
                         </div>
                     </div>
                     <div class="contentFeet">

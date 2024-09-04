@@ -6,6 +6,17 @@ body {
     max-height: 1024px;
 }
 
+form {
+    position: relative;
+    width: 1440px;
+    height: 1024px;
+    gap: 0px;
+    opacity: 0px;
+    display: flex;
+    margin-left: 42px;
+    margin-top: 82px;
+}
+
 .heading {
     font-size: 61px;
     font-weight: 700;
@@ -13,22 +24,32 @@ body {
     margin-left: 48px;
 }
 
-.mainSubmition {
+.leftSubmition {
+    position: absolute;
     display: flex;
-    margin-left: 42px;
-    margin-top: 82px;
+    flex-direction: column;
+    gap: 16px;
+    width: 440px;
+    height: 376px;
+    gap: 16px;
 }
 
 .partition {
+    position: fixed;
     width: 0px;
     height: 424px;
-    margin-inline: 32px;
+    top: 327px;
+    left: 816.25px;
     border: 1px solid #D1D1D1;
 }
 
-.leftSubmition {
+.rightSubmition {
+    position: absolute;
     display: flex;
     flex-direction: column;
+    width: 440px;
+    height: 416px;
+    margin-left: 644.25px;;
     gap: 16px;
 }
 
@@ -62,6 +83,7 @@ label {
     width: 440px;
     height: 96px;
     gap: 8px;
+    position: fixed;
 }
 
 .titleTxt {
@@ -77,6 +99,14 @@ label {
     font-weight: 400;
     line-height: 24px;
     text-align: left;
+}
+
+.description {
+    position: fixed;
+    width: 440px;
+    height: 168px;
+    margin-top: 112px;
+    gap: 8px;
 }
 
 .descriptionTxt {
@@ -100,23 +130,8 @@ label {
     background-image: url("http://127.0.0.1:5500/assets/img/textArea.svg");
 }
 
-.assignContacts {
-    position: absolute;
-    width: 440px;
-    height: 80px;
-    gap: 8px;
-    display: flex;
-    flex-direction: column;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: left;
-    margin-top: 328px;    
-}
-
-
 .assign {
-    position: absolute;
+    position: fixed;
     width: 440px;
     height: 80px;
     gap: 8px;
@@ -126,7 +141,7 @@ label {
     font-weight: 400;
     line-height: 24px;
     text-align: left;
-    margin-top: 0px;    
+    margin-top: 232px;
 }
 
 .assign select {
@@ -195,7 +210,7 @@ label {
     left: 0;
     right: 0;
     z-index: 99;
-    border: 1px transparent ;
+    border: 1px transparent;
     border-radius: 10px;
 }
 
@@ -210,16 +225,10 @@ label {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.rightSubmition {
-    width: Fill (440px)px;
-    height: Hug (48px)px;
-    padding: 12px 21px 12px 21px;
-    gap: 10px;
-    border-radius: 10px 0px 0px 0px;
-    border: 1px 0px 0px 0px;
-}
-
 .dueDate {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
     width: 440px;
     height: 96px;
     gap: 8px;
@@ -247,13 +256,28 @@ label {
     background-image: none;
 }
 
+.prio {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 440px;
+    height: 88px;
+    margin-top: 120px;
+    gap: 8px;
+    opacity: 0px;
+}
+
 .subtasks {
     width: 440px;
     height: 80px;
-    margin-top: 96px;
+    margin-top: 336px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+.prioBtns{
+    display: flex;
 }
 
 .subtasksTxt {
@@ -396,6 +420,6 @@ label {
     height: 24px;
 }
 
-.activeTask{
+.activeTask {
     content: url("../img/IconsTask.png");
 }
