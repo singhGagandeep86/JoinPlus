@@ -8,7 +8,7 @@ function templateTaskHTML(element) {
         </div>
         <div id="subtaskRange" class="subtaskArea"><span class="range"><input type="range"  id="subTaskRange" min="2" max="2" value="2"> 
     <label class="labelRange" for="subTaskRange">2/2 Subtask</label></span></div>
-    <div class= "contactAndPrioArea"><div class="contact">
+    <div id="" class= "contactAndPrioArea"><div class="contact">
     <div class="box1 box"><img src="../img/c1.png" alt=""></div>
     <div class="box2 box"><img src="../img/c2.png" alt=""></div>
     <div class="box3 box"><img src="../img/c3.png" alt=""></div>

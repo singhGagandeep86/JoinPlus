@@ -329,32 +329,29 @@
 .box1 {
     width: 32px;
     height: 32px;
-    left: 0px;
-    /* Startet ganz links */
+    left: 0px;    
     top: 0;
     z-index: 1;
-    /* Höchste Ebene */
+   
 
 }
 
 .box2 {
     width: 32px;
     height: 32px;
-    left: 25px;
-    /* Startet ganz links */
+    left: 25px;    
     top: 0;
-    z-index: 2;
-    /* Höchste Ebene */
+    z-index: 1;
+   
 
 }
 
 .box3 {
     width: 32px;
     height: 32px;
-    left: 50px;
-    /* Startet ganz links */
+    left: 50px;    
     top: 0;
-    z-index: 3;
-    /* Höchste Ebene */
+    z-index: 1;
+    
 
 }
