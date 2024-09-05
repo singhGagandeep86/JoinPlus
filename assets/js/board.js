@@ -109,7 +109,7 @@ function moveTo(element) {
     taskAdd();
 }
 
-function openPopUpTask() {
+function openPopUpTask(id) {
     let taskPopUp = document.getElementById('popupTaskMain');
     taskPopUp.classList.remove('d_none');
     taskPopUp.innerHTML = '';
