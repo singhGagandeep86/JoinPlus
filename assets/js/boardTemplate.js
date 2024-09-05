@@ -8,7 +8,15 @@ function templateTaskHTML(element) {
         </div>
         <div id="subtaskRange" class="subtaskArea"><span class="range"><input type="range"  id="subTaskRange" min="2" max="2" value="2"> 
     <label class="labelRange" for="subTaskRange">2/2 Subtask</label></span></div>
+    <div class= "contactAndPrioArea"><div class="contact">
+    <div class="box1 box"><img src="../img/c1.png" alt=""></div>
+    <div class="box2 box"><img src="../img/c2.png" alt=""></div>
+    <div class="box3 box"><img src="../img/c3.png" alt=""></div>
+    </div> 
+    <div class="bg_${element['prio']}"></div> </div>
     </div>
+
+    
     </div>`;
 }
 function templateRange() {
@@ -65,13 +73,16 @@ function templatePopUpTask1() {
                                     onfocus="(this.type='date')" required>
                             </div>
                             <div class="prio">
-                                <div class="smallHead">Prio</div>
-                                <div>
-                                    <img src="/assets/img/buttonUrgent.svg">
-                                    <img src="/assets/img/buttonMedium.svg">
-                                    <img src="/assets/img/buttonLow.svg">
-                                </div>
+                            <div class="smallHead">Prio</div>
+                            <div class="prioBtns">
+                                <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
+                                        src="/assets/img/prioUrgent.svg"></div>
+                                <div id="btnMed" onclick="activateMedium()" class="priobtn med">Medium <img
+                                        src="/assets/img/prioMedium.svg"></div>
+                                <div id="btnLow" onclick="activateLow()" class="priobtn low">Low <img
+                                        src="/assets/img/prioLow.svg"></div>
                             </div>
+                        </div>
                             <div class="assign">
                                 <label for="Category">Category <div class="imp">*</div></label>
                                 <select class="assignment" id="Category" required>

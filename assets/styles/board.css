@@ -24,6 +24,30 @@
     align-items: center;
 }
 
+.bg_low {
+    background-image: url("../img/Prioritylow.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 32px;
+    height: 32px;
+}
+
+.bg_medium {
+    background-image: url("../img/Prioritymiddel.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 32px;
+    height: 32px;
+}
+
+.bg_urgent {
+    background-image: url("../img/Priorityhigh.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 32px;
+    height: 32px;
+}
+
 .headlineBoard {
     display: flex;
     flex-direction: column;
@@ -209,13 +233,14 @@
 .task {
     display: flex;
     flex-direction: column;
-    width: 246px;
-    min-height: 215px;
+
+    width: 252px;
+    max-height: 263px;
     background-color: white;
     border-radius: 16px;
     padding: 16px;
     cursor: pointer;
-    gap: 20px;
+    gap: 10px;
 }
 
 .drag {
@@ -228,7 +253,7 @@
     flex-direction: column;
     gap: 20px;
     width: 220px;
-    min-height: 183px;
+    max-height: 231px;
 }
 
 .taskTitle {
@@ -267,11 +292,69 @@
     display: none;
 }
 
-.activeBoard{
+.activeBoard {
     content: url("../img/IconsBoard.png");
-    
+
 }
 
-.activeBoard a{
-    cursor:default;
+.activeBoard a {
+    cursor: default;
+}
+
+.contactAndPrioArea {
+    width: 220px;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contactAndPrioArea img {
+    width: 32px;
+    height: 32px;
+}
+
+.contact {
+    width: 80px;
+    height: 32px;
+    display: flex;
+    position: relative;
+
+}
+
+.box {
+    position: absolute;
+
+}
+
+.box1 {
+    width: 32px;
+    height: 32px;
+    left: 0px;
+    /* Startet ganz links */
+    top: 0;
+    z-index: 1;
+    /* Höchste Ebene */
+
+}
+
+.box2 {
+    width: 32px;
+    height: 32px;
+    left: 25px;
+    /* Startet ganz links */
+    top: 0;
+    z-index: 2;
+    /* Höchste Ebene */
+
+}
+
+.box3 {
+    width: 32px;
+    height: 32px;
+    left: 50px;
+    /* Startet ganz links */
+    top: 0;
+    z-index: 3;
+    /* Höchste Ebene */
+
 }
