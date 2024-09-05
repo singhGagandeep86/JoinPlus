@@ -257,7 +257,7 @@
     background: white;
     width: 1100px;
     height: 600px;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
@@ -278,8 +278,10 @@
 }
 
 .popup-left .underline-img {
-    display: flex;
-    align-items: flex-start;
+    height: 4px;
+    background-color: #29abe2;
+    width: 90px;
+    border-radius: 3px;
 }
 
 .popup-left h2 {
@@ -302,12 +304,21 @@
 
 .popup-right .close-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 48px;
+    right: 30px;
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
+}
+
+.popup-right .close-btn:hover {
+    background: #eeeeee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: ease-in-out 2ms;
 }
 
 .popup-right .form-group {
@@ -326,29 +337,34 @@
 
 .popup-actions {
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    gap: 24px;
 }
 
 .popup-actions button {
     padding: 12px 24px;
     font-size: 16px;
-    border: none;
-    border-radius: 5px;
+    border: 1px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
-.popup-actions #cancel-btn {
-    background: #ddd;
+.popup-actions .cancelbutton {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: 1px solid var(--sideheader-main-color);
 }
 
 .popup-actions button[type="submit"] {
     background: var(--sideheader-main-color);
     color: white;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 25.2px;
 }
 
-.popup-actions button:hover {
-    background: var(--button-hover-color);
+.popup-actions .check-img {
+    padding-left: 10px;
 }
 
 .overlay.show {
