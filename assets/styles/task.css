@@ -6,6 +6,10 @@ body {
     max-height: 1024px;
 }
 
+.content {
+    position: fixed;
+}
+
 form {
     position: relative;
     width: 1440px;
@@ -13,7 +17,7 @@ form {
     gap: 0px;
     opacity: 0px;
     display: flex;
-    margin-left: 42px;
+    margin-left: 36px;
     margin-top: 82px;
 }
 
@@ -21,7 +25,7 @@ form {
     font-size: 61px;
     font-weight: 700;
     margin-top: 86px;
-    margin-left: 48px;
+    margin-left: 36px;
 }
 
 .leftSubmition {
@@ -55,13 +59,10 @@ form {
 }
 
 .smallHead {
-    position: fixed;
     font-size: 20px;
     font-weight: 400;
     text-align: left;
     display: flex;
-    margin-top: 926px;
-    margin-left: 328px;
 }
 
 sup {
@@ -88,6 +89,8 @@ label {
     height: 96px;
     gap: 8px;
     position: fixed;
+    display: flex;
+    flex-direction: column;
 }
 
 .titleTxt {
@@ -107,6 +110,8 @@ label {
 
 .description {
     position: fixed;
+    display: flex;
+    flex-direction: column;
     width: 440px;
     height: 168px;
     margin-top: 112px;
@@ -402,7 +407,6 @@ label {
 }
 
 .inputWrapper {
-    position: relative;
     display: flex;
     align-items: center;
     width: 100%;
@@ -481,7 +485,19 @@ label {
     gap: 16px;
 }
 
+
+.info {
+    position: fixed;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: right;
+    display: flex;
+    margin-top: 554px;
+}
+
+
 .submitionButtons {
+    position: fixed;
     width: 309px;
     height: 56px;
     top: 889px;
@@ -504,14 +520,16 @@ label {
     font-weight: 400;
     line-height: 24px;
     text-align: left;
-    animation: Instant;
-    animation-duration: 10ms;
+    background-repeat: no-repeat;
+    background-position: 72px center;
+    background-image: url("http://127.0.0.1:5500/assets/img/SecondaryVector.png");
 }
 
 .secondary:hover {
     box-shadow: 0px 4px 4px 0px #00000040;
     color: #29ABE2;
     border: 2px solid #29ABE2;
+       background-image: url("http://127.0.0.1:5500/assets/img/ScndryVectHvr.png");
 }
 
 .scndVect {
@@ -526,8 +544,6 @@ label {
 
 .primaryCheck {
     cursor: pointer;
-    width: 163px;
-    height: 56px;
     padding: 16px 0px 16px 16px;
     gap: 4px;
     border-radius: 10px;

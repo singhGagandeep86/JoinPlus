@@ -1,5 +1,36 @@
 
 
+let base_Url = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
+
+
+
+function init(){
+  fetchUrl();
+}
+
+async function fetchUrl(){
+   console.log(`test`);
+   let firebaseUrl = await fetch(base_Url + ".json");
+   let firebaseUrlAsJson = await firebaseUrl.json();
+   console.log(firebaseUrlAsJson);
+  contactsData(firebaseUrlAsJson);
+}
+
+
+function contactsData(firebase) {
+  let contactsSurname = firebase.contact.nachname;
+  let contactsFirstname = firebase.contact.vorname;
+  console.log(`${contactsFirstname } ` + `${contactsSurname}`);
+ let contact = document.getElementById("contacts");
+  if (contact.selectedIndex >= 0) {
+    const option = document.createElement("option");
+    option.text = `${contactsFirstname} ` + `${contactsSurname}`;
+    const sel = contact.options[contact.selectedIndex + 4];  
+    contact.add(option, sel);
+  }
+}
+
+
 function renderSubTask() {
   if (!document.getElementById('inputField')) {
     document.getElementById('inputSubClass').innerHTML = ` <div class="smallHead">Subtasks</div>
