@@ -357,9 +357,6 @@
 
 .popup-actions .cancelbutton:hover {
     content: url(/assets/img/cancel\ hover\ add\ contact.png);
-    display: flex;
-    align-items: center;
-    background: none;
 }
 
 .popup-actions button[type="submit"] {
@@ -368,6 +365,11 @@
     font-size: 21px;
     font-weight: 700;
     line-height: 25.2px;
+}
+
+.popup-actions button:hover {
+    background-color: var(--button-hover-color);
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
 }
 
 .popup-actions .check-img {
