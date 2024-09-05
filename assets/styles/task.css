@@ -6,6 +6,10 @@ body {
     max-height: 1024px;
 }
 
+.content {
+    position: fixed;
+}
+
 form {
     position: relative;
     width: 1440px;
@@ -402,7 +406,6 @@ label {
 }
 
 .inputWrapper {
-    position: relative;
     display: flex;
     align-items: center;
     width: 100%;
@@ -482,6 +485,7 @@ label {
 }
 
 .submitionButtons {
+    position: fixed;
     width: 309px;
     height: 56px;
     top: 889px;
@@ -526,8 +530,6 @@ label {
 
 .primaryCheck {
     cursor: pointer;
-    width: 163px;
-    height: 56px;
     padding: 16px 0px 16px 16px;
     gap: 4px;
     border-radius: 10px;
