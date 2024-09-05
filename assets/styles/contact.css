@@ -355,6 +355,13 @@
     border: 1px solid var(--sideheader-main-color);
 }
 
+.popup-actions .cancelbutton:hover {
+    content: url(/assets/img/cancel\ hover\ add\ contact.png);
+    display: flex;
+    align-items: center;
+    background: none;
+}
+
 .popup-actions button[type="submit"] {
     background: var(--sideheader-main-color);
     color: white;
