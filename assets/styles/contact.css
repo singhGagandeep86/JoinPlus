@@ -302,11 +302,6 @@
     position: relative;
 }
 
-.popup-right .elipse {
-    width: 120px;
-    height: 120px;
-}
-
 .popup-right .close-btn {
     position: absolute;
     top: 48px;
