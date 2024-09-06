@@ -337,44 +337,40 @@
 
 .popup-actions {
     display: flex;
-    gap: 24px;
+    gap: 20px;
 }
 
 .popup-actions button {
+    padding: 12px 24px; /* Gleiche Größe für beide Buttons */
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Nur Farbe und Hintergrundfarbe ändern */
+}
+
+/* .popup-actions #cancel-btn {
+    background: transparent;
+    color: var(--sideheader-main-color);
+    border: 1px solid var(--sideheader-main-color);
     padding: 12px 24px;
     font-size: 16px;
-    border: 1px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.popup-actions .cancelbutton {
-    display: flex;
-    align-items: center;
-    background: none;
-    border: 1px solid var(--sideheader-main-color);
-}
-
-.popup-actions .cancelbutton:hover {
-    content: url(/assets/img/cancel\ hover\ add\ contact.png);
-}
+    border-radius: 5px;
+    position: relative;
+} */
 
 .popup-actions button[type="submit"] {
-    background: var(--sideheader-main-color);
+    background: #2A3647;
     color: white;
-    font-size: 21px;
-    font-weight: 700;
-    line-height: 25.2px;
 }
 
-.popup-actions button:hover {
-    background-color: var(--button-hover-color);
-    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+.popup-actions button[type="submit"]:hover {
+    background: #1F2A3B; /* Dunklere Farbe beim Hover */
 }
 
-.popup-actions .check-img {
-    padding-left: 10px;
-}
+/* .popup-actions .check-img:hover {
+    content: url(/assets/img/cancel\ hover\ add\ contact.png);
+} */
 
 .overlay.show {
     display: flex;
