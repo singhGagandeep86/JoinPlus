@@ -3,11 +3,16 @@ const path = "";
 const data = {};
 let array = [];
 let subtask= [];
+let contact=[];
+let initialenContact = [];
 let draggedElement;
 
+
+
 function load() {
-    // postData("/task",{"name":"name"})
+    loadDataContact("/contact");
     loadData("/task");
+    loadContactTask();
 }
 
 async function loadData(path) {
@@ -20,6 +25,17 @@ async function loadData(path) {
         subtask.push(subTaskObjekt);    
         array.push(taskArray[i]);
     }
+    taskAdd();
+}
+async function loadDataContact(path) {
+    let response = await fetch(BASE_URL + path + ".json");
+    let responsetoJason = await response.json();
+    let taskArray = Object.values(responsetoJason);
+    for (let i = 0; i < taskArray.length; i++) {  
+                 
+        contact.push(taskArray[i]);
+    }
+    extrahiereInitialen(contact);
     taskAdd();
 }
 
@@ -37,7 +53,9 @@ function taskAdd() {
     todo();
     inPorgess();
     await();
-    done();       
+    done(); 
+    
+          
 }
 
 function todo() {
@@ -50,8 +68,10 @@ function todo() {
             let element = toDo[index];
             document.getElementById('toDo').innerHTML += templateTaskHTML(element);
             
+            
         }
     }
+    
 
 }
 
@@ -67,6 +87,7 @@ function inPorgess() {
             
         }
     }
+    
 }
 
 function await() {
@@ -80,6 +101,7 @@ function await() {
             document.getElementById('await').innerHTML += templateTaskHTML(element);
         }
     }
+    
 }
 
 function done() {
@@ -93,6 +115,7 @@ function done() {
             document.getElementById('done').innerHTML += templateTaskHTML(element);
         }
     }
+    
 }
 
 function startDragging(number, element) {
@@ -141,4 +164,30 @@ function rangeTask() {
         
     }
     
+}
+function loadContactTask() {
+    let taskContac = document.getElementById('contactPic');
+    
+
+    for (let i = 0; i < contact.length; i++) {
+        
+        taskContac.innerHTML += templateContact(i);
+        
+    }
+    
+}
+
+function extrahiereInitialen(contact) {
+    
+  
+    for (let i = 0; i < contact.length; i++) {
+      let nameParts = contact[i].name.split(' '); 
+      let initials = '';
+  
+      for (let j = 0; j < nameParts.length; j++) {
+        initials += nameParts[j].charAt(0).toUpperCase(); 
+      }
+  
+      initialenContact.push(initials); 
+    }
 }

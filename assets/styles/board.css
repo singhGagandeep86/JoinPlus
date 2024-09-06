@@ -326,32 +326,44 @@
 
 }
 
-.box1 {
+.box span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    font-size: 12px;
+}
+
+.boxred {
     width: 32px;
     height: 32px;
     left: 0px;    
     top: 0;
     z-index: 1;
+    border-radius: 100%;
+    background-color: #FF4646;
    
 
 }
 
-.box2 {
+.boxgreen {
     width: 32px;
     height: 32px;
-    left: 25px;    
+    left: 26px;    
     top: 0;
-    z-index: 1;
-   
+    z-index: 2;
+    border-radius: 100%;
+    background-color: #C3FF2B;
 
 }
 
-.box3 {
+.boxyellow {
     width: 32px;
     height: 32px;
-    left: 50px;    
+    left: 52px;    
     top: 0;
-    z-index: 1;
-    
+    z-index: 3;
+    border-radius: 100%;
+    background-color: #FFE62B;
 
 }
