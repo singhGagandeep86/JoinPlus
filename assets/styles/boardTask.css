@@ -370,3 +370,106 @@ label {
     display: flex;
     gap: 16px;
 }
+
+
+/* Small Task Info */
+
+.popupArea2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(25, 25, 25, 0.55);
+    position: absolute;
+    top: 0;
+    z-index: 4;
+}
+
+
+.popupTaskInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 525px;
+    min-height: 871px;
+    border-radius: 30px;
+    background-color: white;
+    padding: 48px 40px 48px 40px;
+}
+
+.infoTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 445px;
+    height: 36px;
+
+}
+
+.infoTitle img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.popupTitleInfo {
+    width: 445px;
+    height: 219px;
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.descriptionInfo {
+    width: 445px;
+    height: 24px;
+    font-size: 20px;
+}
+
+.dateInfo {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    width: 445px;
+    height: 24px;
+    font-size: 20px;
+}
+
+.prioInfo{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    width: 445px;
+    height: 32px;
+    font-size: 20px;
+}
+
+.prioInfoData{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 139px;
+    height: 32px;
+    font-size: 20px;
+}
+
+.contactInfo{
+    width: 445px;
+    height: 208px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contactInfo span{
+    width: 445px;
+    height: 24px;
+    font-size: 20px;
+}
+.contactInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 445px;
+    height: 176px;
+}

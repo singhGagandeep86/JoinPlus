@@ -1,22 +1,4 @@
-function templateTaskHTML(element) {
-    return `<div  class="task" draggable="true" ondragstart="startDragging(${element['number']}, this) ">
-    <div class="taskInfo">
-        <span class="bg_${element['color']}">${element['category']}</span>
-        <div class="taskTitle">
-            <span>${element['title']}</span>
-            <span>${element['description']}</span>
-        </div>
-        <div id="subtaskRange" class="subtaskArea"><span class="range"><input type="range"  id="subTaskRange" min="2" max="2" value="2">
-    <label class="labelRange" for="subTaskRange">2/2 Subtask</label></span></div>
-    <div  class= "contactAndPrioArea"><div id="contactPic" class="contact">   
-   <div class="box${contact[0]['color']} box"> <span>${initialenContact[0]}</span></div>
-   <div class="box${contact[1]['color']} box"><span>${initialenContact[1]}</span></div>
-   <div class="box${contact[2]['color']} box"><span>${initialenContact[2]}</span></div>
-    </div>
-    <div class="bg_${element['prio']}"></div> </div>
-    </div>
-    </div>`;
-}
+
 function templateRange() {
     return `<span class="range"><input type="range"  id="subTaskRange" min="2" max="2" value="2"> 
     <label class="labelRange" for="subTaskRange">2/2 Subtask</label></span>
@@ -112,4 +94,41 @@ function templatePopUpTask1() {
                     </div>
                 </form>
         </div>`
+}
+function templateTaskHTML(element) {
+    return `<div onclick="openPopUpTaskSmall(${element['number']})" class="task" draggable="true" ondragstart="startDragging(${element['number']}, this) ">
+    <div class="taskInfo">
+        <span class="bg_${element['color']}">${element['category']}</span>
+        <div class="taskTitle">
+            <span>${element['title']}</span>
+            <span>${element['description']}</span>
+        </div>
+        <div id="subtaskRange" class="subtaskArea"><span class="range"><input type="range"  id="subTaskRange" min="2" max="2" value="2">
+    <label class="labelRange" for="subTaskRange">2/2 Subtask</label></span></div>
+    <div  class= "contactAndPrioArea"><div id="contactPic" class="contact">   
+   <div class="box${contact[0]['color']} box"> <span>${initialenContact[0]}</span></div>
+   <div class="box${contact[1]['color']} box"><span>${initialenContact[1]}</span></div>
+   <div class="box${contact[2]['color']} box"><span>${initialenContact[2]}</span></div>
+    </div>
+    <div class="bg_${element['prio']}"></div> </div>
+    </div>
+    </div>`;
+}
+
+
+function templateTaskSmallInfo(i) {
+    return `<div id="closeAreaInfo" class="popupTaskInfo">
+            <div class="infoTitle"><div><span class=" bgInfo_${array[i].color}" >${array[i].category}</span>
+            </div><img onclick="closePopUpTaskSmall()" src="../img/Close.png" alt=""></div>
+            <div class="popupTitleInfo">${array[i].title}</div>
+            <div class="descriptionInfo">${array[i].description}</div>
+            <div class="dateInfo"><div><span>Due date:</span></div><div id="dateAreaInfo"></div></div>
+            <div class="prioInfo"><div><span>Priorty:</span></div>
+            <div class="prioInfoData"><span>${array[i].prio.charAt(0).toUpperCase() + array[i].prio.slice(1)}</span>
+            <div class="bg_${array[i].prio}"></div></div></div>
+            <div class="contactInfo"><span>Assigned To:</span> <div id="contactAreaInfo" class="contactInfo" ></div></div>
+            
+            
+        </div>`;
+    
 }

@@ -2,40 +2,40 @@ const BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.
 const path = "";
 const data = {};
 let array = [];
-let subtask= [];
-let contact=[];
+let subtask = [];
+let contact = [];
 let initialenContact = [];
 let draggedElement;
 
 
 
-function load() {
-    loadDataContact("/contact");
-    loadData("/task");
-    loadContactTask();
+async function load() {
+    await loadDataContact("/contact");
+    await loadData("/task");
+   
+
 }
 
 async function loadData(path) {
     let response = await fetch(BASE_URL + path + ".json");
     let responsetoJason = await response.json();
     let taskArray = Object.values(responsetoJason);
-    for (let i = 0; i < taskArray.length; i++) {  
-        let subTask = taskArray[i].subtask;  
-        let subTaskObjekt = Object.values(subTask);
-        subtask.push(subTaskObjekt);    
+    for (let i = 0; i < taskArray.length; i++) {
+
         array.push(taskArray[i]);
+
     }
     taskAdd();
 }
 async function loadDataContact(path) {
     let response = await fetch(BASE_URL + path + ".json");
     let responsetoJason = await response.json();
-    let taskArray = Object.values(responsetoJason);
-    for (let i = 0; i < taskArray.length; i++) {  
-                 
-        contact.push(taskArray[i]);
+    let contactsArray = Object.values(responsetoJason);
+    for (let i = 0; i < contactsArray.length; i++) {
+
+        contact.push(contactsArray[i]);
     }
-    extrahiereInitialen(contact);
+    extrahiereInitialen();
     taskAdd();
 }
 
@@ -49,13 +49,13 @@ async function postData(path, data) {
     });
 }
 
-function taskAdd() {
+async function taskAdd() {
     todo();
     inPorgess();
-    await();
-    done(); 
-    
-          
+    awaits();
+    done();
+
+
 }
 
 function todo() {
@@ -67,11 +67,9 @@ function todo() {
         for (let index = 0; index < toDo.length; index++) {
             let element = toDo[index];
             document.getElementById('toDo').innerHTML += templateTaskHTML(element);
-            
-            
         }
     }
-    
+
 
 }
 
@@ -84,13 +82,12 @@ function inPorgess() {
         for (let index = 0; index < inprogress.length; index++) {
             let element = inprogress[index];
             document.getElementById('progress').innerHTML += templateTaskHTML(element);
-            
         }
     }
-    
+
 }
 
-function await() {
+function awaits() {
     let await = array.filter(e => e['id'] == 'await');
     if (await.length == 0) {
         document.getElementById('await').innerHTML = templateTaskEmptyAwait();
@@ -101,7 +98,7 @@ function await() {
             document.getElementById('await').innerHTML += templateTaskHTML(element);
         }
     }
-    
+
 }
 
 function done() {
@@ -115,7 +112,7 @@ function done() {
             document.getElementById('done').innerHTML += templateTaskHTML(element);
         }
     }
-    
+
 }
 
 function startDragging(number, element) {
@@ -159,33 +156,59 @@ function rangeTask() {
 
     for (let i = 0; i < subtask.length; i++) {
 
-        range.innerHTML=templateRange(i);
-        
-        
+        range.innerHTML = templateRange(i);
     }
-    
+
 }
 function loadContactTask() {
-    let taskContac = document.getElementById('contactPic');   
+    let taskContact = document.getElementById('contactPic');
 
     for (let i = 0; i < contact.length; i++) {
-        
-        taskContac.innerHTML += templateContact(i);
-        
+
+        taskContact.innerHTML += templateContact(i);
+
     }
-    
+
 }
 
-function extrahiereInitialen(contact) {    
-  
+function extrahiereInitialen() {
+
     for (let i = 0; i < contact.length; i++) {
-      let nameParts = contact[i].name.split(' '); 
-      let initials = '';
-  
-      for (let j = 0; j < nameParts.length; j++) {
-        initials += nameParts[j].charAt(0).toUpperCase(); 
-      }
-  
-      initialenContact.push(initials); 
+        let nameParts = contact[i].name.split(' ');
+        let initials = '';
+
+        for (let j = 0; j < nameParts.length; j++) {
+            initials += nameParts[j].charAt(0).toUpperCase();
+        }
+
+        initialenContact.push(initials);
     }
 }
+
+function openPopUpTaskSmall(i) {
+    let info = document.getElementById('popupTaskInfo');
+    document.getElementById('popupTaskInfo').classList.remove('d_none');
+    info.innerHTML = templateTaskSmallInfo(i);
+    time(i);
+    let area = document.getElementById('closeAreaInfo');
+    area.addEventListener('click', (event) => {
+        event.stopPropagation()
+    })
+}
+
+function closePopUpTaskSmall() {
+    document.getElementById('popupTaskInfo').classList.add('d_none');
+}
+
+function time(i) {
+    let dateArea = document.getElementById('dateAreaInfo');
+    let times = array[i].date; 
+    if (times) {
+        let [year, month, day] = times.split('-'); 
+        let formattedDate = `${day}-${month}-${year}`;
+        let dateReplace = formattedDate.replace(/-/g, "/");
+        dateArea.innerHTML = dateReplace;
+    }
+}
+
+
