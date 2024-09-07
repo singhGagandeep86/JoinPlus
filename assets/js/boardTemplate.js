@@ -105,7 +105,7 @@ function templateTaskHTML(element) {
         </div>
         <div id="subtaskRange" class="subtaskArea"><span class="range"><input type="range"  id="subTaskRange" min="2" max="2" value="2">
     <label class="labelRange" for="subTaskRange">2/2 Subtask</label></span></div>
-    <div  class= "contactAndPrioArea"><div id="contactPic" class="contact">   
+    <div  class= "contactAndPrioArea"><div id="contactPic" class="contact">
    <div class="box${contact[0]['color']} box"> <span>${initialenContact[0]}</span></div>
    <div class="box${contact[1]['color']} box"><span>${initialenContact[1]}</span></div>
    <div class="box${contact[2]['color']} box"><span>${initialenContact[2]}</span></div>
@@ -114,7 +114,6 @@ function templateTaskHTML(element) {
     </div>
     </div>`;
 }
-
 
 function templateTaskSmallInfo(i) {
     return `<div id="closeAreaInfo" class="popupTaskInfo">
@@ -127,8 +126,5 @@ function templateTaskSmallInfo(i) {
             <div class="prioInfoData"><span>${array[i].prio.charAt(0).toUpperCase() + array[i].prio.slice(1)}</span>
             <div class="bg_${array[i].prio}"></div></div></div>
             <div class="contactInfo"><span>Assigned To:</span> <div id="contactAreaInfo" class="contactInfo" ></div></div>
-            
-            
         </div>`;
-    
 }

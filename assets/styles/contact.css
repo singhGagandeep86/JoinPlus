@@ -351,9 +351,14 @@
     border: 1px solid #D1D1D1;
     border-radius: 10px;
 }
+
 .input-container input:focus{
     outline: none;
-    border: 1px solid #29ABE2 ;
+    border: 1px solid #D1D1D1;
+}
+
+input::placeholder {
+    color: #D1D1D1;
 }
 
 .input-container:nth-child(1)::before {

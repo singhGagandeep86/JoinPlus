@@ -23,6 +23,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .bgInfo_user {
     background-color: #0838FF;
     width: 164px;
@@ -258,7 +259,6 @@
 .task {
     display: flex;
     flex-direction: column;
-
     width: 252px;
     max-height: 263px;
     background-color: white;
@@ -319,7 +319,6 @@
 
 .activeBoard {
     content: url("../img/IconsBoard.png");
-
 }
 
 .activeBoard a {
@@ -343,12 +342,10 @@
     height: 32px;
     display: flex;
     position: relative;
-
 }
 
 .box {
     position: absolute;
-
 }
 
 .box span{
@@ -362,33 +359,29 @@
 .boxred {
     width: 32px;
     height: 32px;
-    left: 0px;    
+    left: 0px;
     top: 0;
     z-index: 1;
     border-radius: 100%;
     background-color: #FF4646;
-   
-
 }
 
 .boxgreen {
     width: 32px;
     height: 32px;
-    left: 26px;    
+    left: 26px;
     top: 0;
     z-index: 2;
     border-radius: 100%;
     background-color: #C3FF2B;
-
 }
 
 .boxyellow {
     width: 32px;
     height: 32px;
-    left: 52px;    
+    left: 52px;
     top: 0;
     z-index: 3;
     border-radius: 100%;
     background-color: #FFE62B;
-
 }

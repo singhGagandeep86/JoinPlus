@@ -12,8 +12,6 @@ let draggedElement;
 async function load() {
     await loadDataContact("/contact");
     await loadData("/task");
-   
-
 }
 
 async function loadData(path) {
@@ -27,6 +25,7 @@ async function loadData(path) {
     }
     taskAdd();
 }
+
 async function loadDataContact(path) {
     let response = await fetch(BASE_URL + path + ".json");
     let responsetoJason = await response.json();
@@ -54,8 +53,6 @@ async function taskAdd() {
     inPorgess();
     awaits();
     done();
-
-
 }
 
 function todo() {
@@ -69,8 +66,6 @@ function todo() {
             document.getElementById('toDo').innerHTML += templateTaskHTML(element);
         }
     }
-
-
 }
 
 function inPorgess() {
@@ -84,7 +79,6 @@ function inPorgess() {
             document.getElementById('progress').innerHTML += templateTaskHTML(element);
         }
     }
-
 }
 
 function awaits() {
@@ -98,7 +92,6 @@ function awaits() {
             document.getElementById('await').innerHTML += templateTaskHTML(element);
         }
     }
-
 }
 
 function done() {
@@ -112,7 +105,6 @@ function done() {
             document.getElementById('done').innerHTML += templateTaskHTML(element);
         }
     }
-
 }
 
 function startDragging(number, element) {
@@ -166,9 +158,7 @@ function loadContactTask() {
     for (let i = 0; i < contact.length; i++) {
 
         taskContact.innerHTML += templateContact(i);
-
     }
-
 }
 
 function extrahiereInitialen() {
@@ -210,5 +200,3 @@ function time(i) {
         dateArea.innerHTML = dateReplace;
     }
 }
-
-
