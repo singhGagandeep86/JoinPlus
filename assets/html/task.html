@@ -87,16 +87,22 @@
                                         src="/assets/img/prioLow.svg"></div>
                             </div>
                         </div>
-
+                        <select id="Category" name="Category" style="display: none;">
+                            <option value="technical">Technical Task</option>
+                            <option value="userStory">User Story</option>
+                        </select>
+                        
                         <div class="assign">
                             <label for="Category"><span>Category <sup>*</sup></span></label>
-                            <select id="Category" required>
-                                <option value="">Select task category</option>
-                                <option value="user">Technical Task</option>
-                                <option value="user">User Story</option>
-                            </select>
+                            <div class="custom-select">
+                                <div class="select-selected">Select task category</div>
+                                <div class="select-items select-hide">
+                                    <div data-value="technical">Technical Task</div>
+                                    <div data-value="userStory">User Story</div>
+                                </div>
+                            </div>
                         </div>
-
+                        
 
                         <div id="inputSubClass" class="subtasks">
                             <div class="smallHead">Subtasks</div>
