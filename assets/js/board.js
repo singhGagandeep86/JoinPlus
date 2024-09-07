@@ -166,8 +166,7 @@ function rangeTask() {
     
 }
 function loadContactTask() {
-    let taskContac = document.getElementById('contactPic');
-    
+    let taskContac = document.getElementById('contactPic');   
 
     for (let i = 0; i < contact.length; i++) {
         
@@ -177,8 +176,7 @@ function loadContactTask() {
     
 }
 
-function extrahiereInitialen(contact) {
-    
+function extrahiereInitialen(contact) {    
   
     for (let i = 0; i < contact.length; i++) {
       let nameParts = contact[i].name.split(' '); 
