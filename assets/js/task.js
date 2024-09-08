@@ -6,35 +6,30 @@ let base_Url = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.ap
 
 function init() {
   fetchUrl();
-  dropdown();
+  toggleDropdown();
 }
 
 async function fetchUrl() {
-  console.log(`test`);
   let firebaseUrl = await fetch(base_Url + ".json");
   let firebaseUrlAsJson = await firebaseUrl.json();
-  console.log(firebaseUrlAsJson);
-  contactsData(firebaseUrlAsJson);
+  let firebaseData = Object.values(firebaseUrlAsJson);
+  contactsData(firebaseData[0]);
 }
 
 
 function contactsData(firebase) {
-  let name = firebase.contact.contact.name;
-  let contactsLength = firebase.contact;
-  let objLngth = Object.keys(contactsLength).length;
-  console.log(objLngth);
-  console.log(contactsLength);
-  console.log(name);
+  let contactsLength = Object.values(firebase);
+  let objLngth = contactsLength.length;
   let contact = document.getElementById("contacts");
-  //for (let i = 2; i < objLngth; i++) {
-  const eachName = contactsLength.contact`${2}`.name;
-  console.log(eachName);
-  // }  
-  if (contact.selectedIndex >= 0) {
-    const option = document.createElement("option");
-    option.text = `${name} `;
-    const sel = contact.options[contact.selectedIndex + 4];
-    contact.add(option, sel);
+  for (let i = 0; i < objLngth; i++) {
+    const eachName = contactsLength[i].name;
+
+    if (contact.selectedIndex >= 0) {
+      const option = document.createElement("option");
+      option.text = `${eachName} `;
+      const sel = contact.options[contact.selectedIndex + 4];
+      contact.add(option, sel);
+    }
   }
 }
 
@@ -44,12 +39,21 @@ function renderSubTask() {
     document.getElementById('inputSubClass').innerHTML = ` <div class="smallHead">Subtasks</div>
     <div class="inputWrapper">
     <input id="inputField" class="subtasksTxt" placeholder="Add  new subtask" type="text" onfocus="renderSubTask()">
-    <img class="inputIcon" src="/assets/img/subTaskCancel.svg"><img class="inputIcon2" src="/assets/img/subTaskEnter.svg">
+    <div class="tsksBtns"><img class="inputIcon" src="/assets/img/subTaskCancel.svg"><img onclick="addList()" class="inputIcon2" src="/assets/img/subTaskEnter.svg"></div>
 </div>`;
   }
   document.getElementById('inputField').style.backgroundImage = 'none';
 }
 
+
+function addList() {
+  let subTaskInput = document.getElementById('inputField').value;
+  let subTaskBoard = document.getElementById('subTsksBoard');
+  subTaskBoard.innerHTML += `<li>${subTaskInput}</li>`;
+  document.getElementById('inputField').value = '';
+  document.getElementById('inputSubClass').innerHTML = `  <div class="smallHead">Subtasks</div>
+  <input class="subtasksTxt" placeholder="Add new subtask" type="text" onfocus="renderSubTask()">`;
+}
 
 function activateUrgent() {
   document.getElementById('btnUrgnt').classList.add("btnUrgnt");
@@ -80,16 +84,29 @@ function activateLow() {
 
 
 
-function dropdown() {
+function toggleDropdown() {
   const selectedElement = document.querySelector('.select-selected');
   const itemsContainer = document.querySelector('.select-items');
   const items = itemsContainer.querySelectorAll('div');
 
-  // Toggle the dropdown when clicking on the selected element
-  selectedElement.addEventListener('click', function () {
-    itemsContainer.classList.toggle('select-hide');
-    this.classList.toggle('select-arrow-active');
+  // Close the dropdown if clicked outside
+  document.addEventListener('click', function (e) {
+    if (!selectedElement.contains(e.target)) {
+      itemsContainer.classList.add('select-hide');
+      selectedElement.classList.remove('select-arrow-active');
+    }
   });
+};
+
+
+
+function dropDown(element) {
+  const selectedElement = document.querySelector('.select-selected');
+  const itemsContainer = document.querySelector('.select-items');
+  const items = itemsContainer.querySelectorAll('div');
+
+  document.getElementById('slection').classList.toggle('select-hide');
+  element.classList.toggle('select-arrow-active');
 
   // Handle item selection
   items.forEach(item => {
@@ -100,11 +117,18 @@ function dropdown() {
       selectedElement.classList.remove('select-arrow-active');
     });
   });
-  // Close the dropdown if clicked outside
-  document.addEventListener('click', function (e) {
-    if (!selectedElement.contains(e.target)) {
-      itemsContainer.classList.add('select-hide');
-      selectedElement.classList.remove('select-arrow-active');
-    }
-  });
-};
+}
+
+
+// reseting all
+
+function resetAll() {
+  document.getElementById('btnUrgnt').innerHTML = ` <div>Urgent <img src="/assets/img/prioUrgent.svg"></div>`;
+  document.getElementById('btnUrgnt').classList.remove("btnUrgnt");
+  document.getElementById('btnMed').innerHTML = ` <div>Medium <img src="/assets/img/prioMedium.svg"></div>`;
+  document.getElementById('btnMed').classList.remove("btnMed");
+  document.getElementById('btnLow').innerHTML = ` <div>Low <img src="/assets/img/prioLow.svg"></div>`;
+  document.getElementById('btnLow').classList.remove("btnLow");
+  document.querySelector('.select-selected').innerText = `Select task category`;
+  document.getElementById('subTsksBoard').innerHTML = '';
+}

@@ -61,9 +61,6 @@
                             <label for="contacts">Assigned to</label>
                             <select class="assignment" id="contacts">
                                 <option value="user">Select contacts to assign</option>
-                                <option value="contact1">Contact 1</option>
-                                <option value="contact2">Contact 2</option>
-                                <option value="contact3">Contact 3</option>
                             </select>
                         </div>
 
@@ -95,8 +92,8 @@
                         <div class="assign">
                             <label for="Category"><span>Category <sup>*</sup></span></label>
                             <div class="custom-select">
-                                <div class="select-selected">Select task category</div>
-                                <div class="select-items select-hide">
+                                <div onclick="dropDown(this)" class="select-selected">Select task category</div>
+                                <div id="slection" class="select-items select-hide">
                                     <div data-value="technical">Technical Task</div>
                                     <div data-value="userStory">User Story</div>
                                 </div>
@@ -106,16 +103,16 @@
 
                         <div id="inputSubClass" class="subtasks">
                             <div class="smallHead">Subtasks</div>
-                            <input class="subtasksTxt" placeholder="Add new subtask" type="text"
-                                onfocus="renderSubTask()">
+                            <input class="subtasksTxt" placeholder="Add new subtask" type="text" onfocus="renderSubTask()">
                         </div>
+                        <ul class="a" id="subTsksBoard"></ul>
                     </div>
-
+                    
                     <div class="info">
                       <sup>* </sup>This field is required
                     </div>
                     <div class="submitionButtons">
-                        <button class="secondary">
+                        <button class="secondary" type="reset" onclick="resetAll()">
                             <span>Clear</span> </button>
                         <button class="primaryCheck">
                             <span>Create Task</span><img class="primevect" src="/assets/img/check.svg">
