@@ -1,0 +1,113 @@
+:root {
+    --sideheader-main-color: #2A3647;
+    --sideheader-hover-color: #2A3D59;
+    --sideheader-active-color: #091931;
+    --content-main-color: #F6F7F8;
+    --sideheader-font-color: #CDCDCD;
+    --button-hover-color: #29ABE2;
+    --item-hover-color: #F8F8F8;
+    --details-font-color: #007CEE;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginarea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    width: 652px;
+    height: 493px;
+    background-color: white;
+    border-radius: 30px;
+    padding: 48px 115px 48px 115px;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.loginheadline {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.loginheadline .textline {
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 73.2px;
+}
+
+.loginheadline .underlineLogin {
+    width: 150px;
+    border: 3px;
+}
+
+.form-group .input-images {
+    width: 24px;
+    height: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-container input {
+    padding: 13px 21px;
+    width: 422px;
+    font-size: 20px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+} */
+
+.input-container input:focus{
+    outline: none;
+    border: 1px solid #D1D1D1;
+}
+
+input::placeholder {
+    color: #D1D1D1;
+}
+
+.input-container:nth-child(1)::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    background-image: url('/assets/img/person.png');
+    background-repeat: no-repeat;
+}
+
+.input-container:nth-child(2)::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    background-image: url('/assets/img/mail.png');
+    background-repeat: no-repeat;
+}
