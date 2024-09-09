@@ -579,15 +579,20 @@ label {
 ul.a{
     position: absolute;
     margin-top: 418px;
-    padding-left: 38px;
+    padding-left: 10px;
     overflow: scroll;
     height: 98px;
-    width: 100%;
+    width: 98%;
     border-radius: 10px;
+    list-style-position: inside;
 }
 
 li{
-    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 18px;
+    margin: 1px;
 }
 
 li:hover{
@@ -595,4 +600,8 @@ li:hover{
  background-color: #eeeeee;
  width: 100%;
  border-radius: 10px;
+}
+
+.subTaskIcon{
+    display: none;
 }

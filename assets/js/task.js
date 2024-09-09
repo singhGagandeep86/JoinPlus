@@ -39,20 +39,45 @@ function renderSubTask() {
     document.getElementById('inputSubClass').innerHTML = ` <div class="smallHead">Subtasks</div>
     <div class="inputWrapper">
     <input id="inputField" class="subtasksTxt" placeholder="Add  new subtask" type="text" onfocus="renderSubTask()">
-    <div class="tsksBtns"><img class="inputIcon" src="/assets/img/subTaskCancel.svg"><img onclick="addList()" class="inputIcon2" src="/assets/img/subTaskEnter.svg"></div>
+    <div class="tsksBtns"><img class="inputIcon" src="/assets/img/subTaskCancel.svg" onclick="resetInput()"><img onclick="addList()" class="inputIcon2" src="/assets/img/subTaskEnter.svg"></div>
 </div>`;
   }
   document.getElementById('inputField').style.backgroundImage = 'none';
 }
 
+function resetInput() {
+  document.getElementById('inputField').value = '';
+  document.getElementById('inputSubClass').innerHTML = `  <div class="smallHead">Subtasks</div>
+  <input class="subtasksTxt" placeholder="Add new subtask" type="text" onfocus="renderSubTask()">`;
+}
 
 function addList() {
   let subTaskInput = document.getElementById('inputField').value;
   let subTaskBoard = document.getElementById('subTsksBoard');
-  subTaskBoard.innerHTML += `<li>${subTaskInput}</li>`;
+  subTaskBoard.innerHTML += `<li onmouseover="hoverEffect(this)" onmouseleave="normalEffect(this)">${subTaskInput} <div id="btns" class="subTaskIcon">
+  <img onclick="editsubTask(this)" class="inputIcon" src="/assets/img/SubtasksEdit.svg" alt="Edit">
+  <img onclick="delsubTask(this)" class="deleteIcon" src="/assets/img/SubtasksDel.svg" alt="Delete">
+</div></li>`;
   document.getElementById('inputField').value = '';
   document.getElementById('inputSubClass').innerHTML = `  <div class="smallHead">Subtasks</div>
   <input class="subtasksTxt" placeholder="Add new subtask" type="text" onfocus="renderSubTask()">`;
+}
+
+function hoverEffect() {
+  document.getElementById('btns').style.display="block";
+}
+
+
+function normalEffect() {
+  document.getElementById('btns').style.display="none";
+}
+
+function editsubTask() {
+  console.log(`hallo`);
+}
+
+function delsubTask() {
+  console.log(`delete`);
 }
 
 function activateUrgent() {
@@ -97,8 +122,6 @@ function toggleDropdown() {
     }
   });
 };
-
-
 
 function dropDown(element) {
   const selectedElement = document.querySelector('.select-selected');
