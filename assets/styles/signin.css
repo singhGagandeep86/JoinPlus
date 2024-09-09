@@ -12,6 +12,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Inter';
 }
 
 body {
@@ -25,9 +26,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 32px;
-    width: 652px;
-    height: 493px;
+    width: 450px;
+    height: 450px;
     background-color: white;
     border-radius: 30px;
     padding: 48px 115px 48px 115px;
@@ -53,61 +55,96 @@ body {
     border: 3px;
 }
 
-.form-group .input-images {
-    width: 24px;
-    height: 24px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.input-container {
+.loginarea form .custome-input {
     position: relative;
+    margin-bottom: 20px;
 }
 
-.input-container input {
+.loginarea form .custome-input input {
+    color: #D1D1D1;
+    font-size: 20px;
     padding: 13px 21px;
     width: 422px;
-    font-size: 20px;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
-    display: flex;
-    gap: 8px;
-    justify-content: space-between;
-} */
-
-.input-container input:focus{
+    gap: 10px;
     outline: none;
-    border: 1px solid #D1D1D1;
+}
+
+.loginarea form .custome-input input:focus{
+    border-color: #D1D1D1;
+}
+
+.loginarea form .custome-input .socialicons {
+    position: absolute;
+    font-size: 24px;
+    right: 14px;
+    top: 14px;
 }
 
 input::placeholder {
     color: #D1D1D1;
 }
 
-.input-container:nth-child(1)::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
-    background-image: url('/assets/img/person.png');
-    background-repeat: no-repeat;
+.loginarea form .check-container {
+    display: flex;
+    margin-left: 39px;
+    gap: 8px;
 }
 
-.input-container:nth-child(2)::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
-    background-image: url('/assets/img/mail.png');
-    background-repeat: no-repeat;
+.loginarea form .check-container p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+}
+
+.loginarea form .btns {
+    margin: 35px 0;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+}
+
+.loginarea form .btns .login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 24px 15px 24px;
+    width: 120px;
+    height: 48px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--sideheader-main-color);
+    color: white;
+    font-size: 21px;
+    line-height: 25.2px;
+    font-weight: 700;
+}
+
+.loginarea form .btns .login:hover {
+    background-color: var(--button-hover-color);
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+}
+
+.loginarea form .btns .guestlogin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 24px 15px 24px;
+    width: 178px;
+    height: 48px;
+    border-radius: 8px;
+    border: 1px solid var(--sideheader-main-color);
+    background: transparent;
+    color: var(--sideheader-main-color);
+    font-size: 21px;
+    line-height: 25.2px;
+    font-weight: 700;
+}
+
+.loginarea form .btns .guestlogin:hover {
+    background-color: white;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+    color: var(--button-hover-color);
+    border: 1px solid var(--button-hover-color);
 }

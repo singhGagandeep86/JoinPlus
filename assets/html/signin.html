@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
-
     <link rel="stylesheet" href="/assets/styles/signin.css">
+    <link rel="stylesheet" href="/assets/styles/fonts.css">
 </head>
 <body>
     <div class="loginarea">
@@ -15,13 +15,21 @@
         </div>
 
         <form>
-            <div class="form-group">
-                <div class="input-container">
-                    <input type="email" placeholder="Email" required>
-                </div>
-                <div class="input-container">
-                    <input type="password" placeholder="Password" required>
-                </div>
+            <div class="custome-input">
+                <input type="email" name="email" placeholder="Email">
+                <img class="socialicons" src="/assets/img/mail.png" alt="">
+            </div>
+            <div class="custome-input">
+                <input type="password" name="password" placeholder="Password">
+                <img class="socialicons" src="/assets/img/lock.png">
+            </div>
+            <div class="check-container">
+                <input type="checkbox" checked="checked">
+                <p>Remember Me</p>
+            </div>
+            <div class="btns">
+                <button class="login">Log in</button>
+                <button class="guestlogin">Guest Log in</button>
             </div>
         </form>
     </div>
