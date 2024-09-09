@@ -99,11 +99,19 @@ input::placeholder {
 
 .loginarea form .check-container {
     display: flex;
-    margin-left: 39px;
     gap: 8px;
+    align-items: center;
+    justify-content: center;
 }
 
 .loginarea form .check-container p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+}
+
+.policycolor {
+    color: var(--button-hover-color);
     font-size: 16px;
     font-weight: 400;
     line-height: 19.2px;

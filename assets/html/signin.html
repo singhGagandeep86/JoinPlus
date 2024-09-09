@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
+    <title>Sign up</title>
     <link rel="stylesheet" href="/assets/styles/signin.css">
     <link rel="stylesheet" href="/assets/styles/fonts.css">
 </head>
@@ -14,22 +14,30 @@
 
     <div class="loginarea">
         <div class="loginheadline">
-            <span class="textline">Log in</span>
+            <span class="textline">Sign up</span>
             <img class="underlineLogin" src="/assets/img/unterstrich vector.png">
         </div>
 
         <form>
             <div class="custome-input">
+                <input type="name" name="name" placeholder="Name">
+                <img class="socialicons" src="/assets/img/person.png">
+            </div>
+            <div class="custome-input">
                 <input type="email" name="email" placeholder="Email">
-                <img class="socialicons" src="/assets/img/mail.png" alt="">
+                <img class="socialicons" src="/assets/img/mail.png">
             </div>
             <div class="custome-input">
                 <input type="password" name="password" placeholder="Password">
                 <img class="socialicons" src="/assets/img/lock.png">
             </div>
+            <div class="custome-input">
+                <input type="password" name="confirm password" placeholder="Confirm Password">
+                <img class="socialicons" src="/assets/img/lock.png">
+            </div>
             <div class="check-container">
                 <input type="checkbox" checked="checked">
-                <p>Remember Me</p>
+                <p>I accept the <span class="policycolor">Privacy policy</span></p>
             </div>
             <div class="btns">
                 <button class="login">Log in</button>
