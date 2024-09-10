@@ -83,7 +83,7 @@ header .topline .login:hover {
     z-index: 1000;
 }
 
-.big-logo {
+.join-logo {
     position: absolute;
     width: 101px;
     height: 121px;
@@ -91,10 +91,10 @@ header .topline .login:hover {
     left: 42%;
     animation-fill-mode: forwards;
     animation-timing-function: ease;
-    animation: BiglogoScreen 1.5s forwards;
+    animation: JoinlogoScreen 1.5s forwards;
 }
 
-@keyframes BiglogoScreen {
+@keyframes JoinlogoScreen {
     from {
         top: 50%;
         left: 50%;
@@ -251,4 +251,28 @@ input::placeholder {
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
     color: var(--button-hover-color);
     border: 1px solid var(--button-hover-color);
+}
+
+footer .footercontent {
+    position: absolute;
+    bottom: 0;
+    left: 44%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    margin-bottom: 20px;
+}
+
+.footercontent h3 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    color: #A8A8A8;
+    cursor: pointer;
+}
+
+.footercontent h3:hover {
+    color: var(--button-hover-color);
+    font-weight: bold;
 }
