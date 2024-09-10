@@ -299,49 +299,6 @@ label {
     }
 }
 
-.range {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.labelRange {
-    width: 75px;
-    height: 14px;
-    font-size: 12px;
-}
-
-.range input {
-    background-color: #4589FF;
-    appearance: none;
-    width: 128px;
-    height: 8px;
-    border-radius: 16px;
-    border: none;
-}
-
-.range input::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 0;
-    height: 0;
-    background: transparent;
-    border: none;
-}
-
-.range input::-ms-thumb {
-    width: 0;
-    height: 0;
-    background: transparent;
-    border: none;
-}
-
-.range input::-moz-range-thumb {
-    width: 0;
-    height: 0;
-    background: transparent;
-    border: none;
-}
-
 .btnUrgnt {
     background-color: #FF3D00;
     color: white;
@@ -415,7 +372,7 @@ label {
 
 .popupTitleInfo {
     width: 445px;
-    height: 219px;
+    min-height: 150px;
     font-size: 61px;
     font-weight: 700;
 }
@@ -473,3 +430,48 @@ label {
     width: 445px;
     height: 176px;
 }
+
+.contactInfoData{
+    padding-left: 20px;
+}
+
+.range {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 220px;
+    height: 16px;
+}
+
+progress {
+    width: 128px;
+    height: 8px;
+    border: 1px solid #f4f4f4;
+    border-radius: 8px;
+    background: #f4f4f4;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+progress::-webkit-progress-bar {
+    background: #f4f4f4;
+    border-radius: 8px;
+}
+
+progress::-webkit-progress-value {
+    background: #4589ff; 
+    border-radius: 8px;
+}
+
+progress::-moz-progress-bar {
+    background: #4589ff;
+    border-radius: 8px;
+}
+
+.range span{
+    width: 75px;
+    height: 14px;
+    display: flex;
+    font-size: 12px;
+}
+

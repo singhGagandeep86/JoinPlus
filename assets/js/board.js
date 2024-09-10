@@ -8,7 +8,7 @@ let initialenContact = [];
 let draggedElement;
 
 
-
+Object.keys(subtask).length
 async function load() {
     await loadDataContact("/contact");
     await loadData("/task");
@@ -24,6 +24,7 @@ async function loadData(path) {
 
     }
     taskAdd();
+
 }
 
 async function loadDataContact(path) {
@@ -63,7 +64,12 @@ function todo() {
         document.getElementById('toDo').innerHTML = '';
         for (let index = 0; index < toDo.length; index++) {
             let element = toDo[index];
-            document.getElementById('toDo').innerHTML += templateTaskHTML(element);
+            if (element.subtask == null) {
+                document.getElementById('toDo').innerHTML += templateTaskHTML(element);
+            } else {
+                document.getElementById('toDo').innerHTML += templateTaskHTML(element);
+                subtaskBar(element);
+            }
         }
     }
 }
@@ -76,7 +82,12 @@ function inPorgess() {
         document.getElementById('progress').innerHTML = '';
         for (let index = 0; index < inprogress.length; index++) {
             let element = inprogress[index];
-            document.getElementById('progress').innerHTML += templateTaskHTML(element);
+            if (element.subtask == null) {
+                document.getElementById('progress').innerHTML += templateTaskHTML(element);
+            } else {
+                document.getElementById('progress').innerHTML += templateTaskHTML(element);
+                subtaskBar(element);
+            }
         }
     }
 }
@@ -89,7 +100,14 @@ function awaits() {
         document.getElementById('await').innerHTML = '';
         for (let index = 0; index < await.length; index++) {
             let element = await[index];
-            document.getElementById('await').innerHTML += templateTaskHTML(element);
+            if (element.subtask == null) {
+                document.getElementById('await').innerHTML += templateTaskHTML(element);
+            } else {
+                document.getElementById('await').innerHTML += templateTaskHTML(element);
+                subtaskBar(element);
+            }
+
+
         }
     }
 }
@@ -102,7 +120,12 @@ function done() {
         document.getElementById('done').innerHTML = '';
         for (let index = 0; index < done.length; index++) {
             let element = done[index];
-            document.getElementById('done').innerHTML += templateTaskHTML(element);
+            if (element.subtask == null) {
+                document.getElementById('done').innerHTML += templateTaskHTML(element);
+            } else {
+                document.getElementById('done').innerHTML += templateTaskHTML(element);
+                subtaskBar(element);
+            }
         }
     }
 }
@@ -141,16 +164,15 @@ function closePopUpTask() {
     taskPopUp.classList.add('d_none');
 }
 
-function rangeTask() {
-    let range = document.getElementById('subtaskRange');
-
-    range.innerHTML = "";
-
-    for (let i = 0; i < subtask.length; i++) {
-
-        range.innerHTML = templateRange(i);
+function subtaskBar(element) {
+    let rangeId = `subtaskRange-${element['number']}`;
+    let range = document.getElementById(rangeId);
+    let subtaskCount = Object.keys(element.subtask).length
+    if (rangeId == '') {
+        document.getElementById('rangeId').classList.add('d_none');
+    } else {
+        range.innerHTML = templateRange(subtaskCount);
     }
-
 }
 function loadContactTask() {
     let taskContact = document.getElementById('contactPic');
@@ -166,11 +188,9 @@ function extrahiereInitialen() {
     for (let i = 0; i < contact.length; i++) {
         let nameParts = contact[i].name.split(' ');
         let initials = '';
-
         for (let j = 0; j < nameParts.length; j++) {
             initials += nameParts[j].charAt(0).toUpperCase();
         }
-
         initialenContact.push(initials);
     }
 }
@@ -180,6 +200,7 @@ function openPopUpTaskSmall(i) {
     document.getElementById('popupTaskInfo').classList.remove('d_none');
     info.innerHTML = templateTaskSmallInfo(i);
     time(i);
+    addcontactInfo(i);
     let area = document.getElementById('closeAreaInfo');
     area.addEventListener('click', (event) => {
         event.stopPropagation()
@@ -192,11 +213,19 @@ function closePopUpTaskSmall() {
 
 function time(i) {
     let dateArea = document.getElementById('dateAreaInfo');
-    let times = array[i].date; 
+    let times = array[i].date;
     if (times) {
-        let [year, month, day] = times.split('-'); 
+        let [year, month, day] = times.split('-');
         let formattedDate = `${day}-${month}-${year}`;
         let dateReplace = formattedDate.replace(/-/g, "/");
         dateArea.innerHTML = dateReplace;
+    }
+}
+
+function addcontactInfo(i) {
+    let contacts = document.getElementById('contactAreaInfo');
+    contacts.innerHTML = '';
+    for (let i = 0; i < contact.length; i++) {
+        contacts.innerHTML += templateContactInfo(i);
     }
 }

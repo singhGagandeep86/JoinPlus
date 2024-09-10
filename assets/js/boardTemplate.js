@@ -1,9 +1,4 @@
 
-function templateRange() {
-    return `<span class="range"><input type="range"  id="subTaskRange" min="2" max="2" value="2"> 
-    <label class="labelRange" for="subTaskRange">2/2 Subtask</label></span>
-`
-}
 function templateTaskEmptyTodo() {
     return `<div class="emptyBoardArea"><span>No tasks To do</span></div>
     `
@@ -56,11 +51,11 @@ function templatePopUpTask1() {
                             <div class="smallHead">Prio</div>
                             <div class="prioBtns">
                                 <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
-                                        src="/assets/img/prioUrgent.svg"></div>
+                                        src="../../assets/img/prioUrgent.svg"></div>
                                 <div id="btnMed" onclick="activateMedium()" class="priobtn med">Medium <img
-                                        src="/assets/img/prioMedium.svg"></div>
+                                        src="../../assets/img/prioMedium.svg"></div>
                                 <div id="btnLow" onclick="activateLow()" class="priobtn low">Low <img
-                                        src="/assets/img/prioLow.svg"></div>
+                                        src="../../assets/img/prioLow.svg"></div>
                             </div>
                         </div>
                             <div class="assign">
@@ -84,11 +79,11 @@ function templatePopUpTask1() {
                         <div class="submitionButtons">
                             <button class="secondary">
                                 <div class="smallHead">Cancel</div><img
-                                    src="/assets/img/xPic.png">
+                                    src="../../assets/img/xPic.png">
                             </button>
                             <button class="primaryCheck">
                                 <div class="smallHead">Create Task</div><img class="primevect"
-                                    src="/assets/img/check.svg">
+                                    src="../../assets/img/check.svg">
                             </button>
                         </div>
                     </div>
@@ -96,6 +91,7 @@ function templatePopUpTask1() {
         </div>`
 }
 function templateTaskHTML(element) {
+    let rangeId = `subtaskRange-${element['number']}`;
     return `<div onclick="openPopUpTaskSmall(${element['number']})" class="task" draggable="true" ondragstart="startDragging(${element['number']}, this) ">
     <div class="taskInfo">
         <span class="bg_${element['color']}">${element['category']}</span>
@@ -103,9 +99,8 @@ function templateTaskHTML(element) {
             <span>${element['title']}</span>
             <span>${element['description']}</span>
         </div>
-        <div id="subtaskRange" class="subtaskArea"><span class="range"><input type="range"  id="subTaskRange" min="2" max="2" value="2">
-    <label class="labelRange" for="subTaskRange">2/2 Subtask</label></span></div>
-    <div  class= "contactAndPrioArea"><div id="contactPic" class="contact">
+        <div id="${rangeId}"></div>
+    <div class="contactAndPrioArea"><div id="contactPic" class="contact">
    <div class="box${contact[0]['color']} box"> <span>${initialenContact[0]}</span></div>
    <div class="box${contact[1]['color']} box"><span>${initialenContact[1]}</span></div>
    <div class="box${contact[2]['color']} box"><span>${initialenContact[2]}</span></div>
@@ -125,6 +120,22 @@ function templateTaskSmallInfo(i) {
             <div class="prioInfo"><div><span>Priorty:</span></div>
             <div class="prioInfoData"><span>${array[i].prio.charAt(0).toUpperCase() + array[i].prio.slice(1)}</span>
             <div class="bg_${array[i].prio}"></div></div></div>
-            <div class="contactInfo"><span>Assigned To:</span> <div id="contactAreaInfo" class="contactInfo" ></div></div>
+            <div class="contactInfo"><span class="contactInfoHeadline">Assigned To:</span><div id="contactAreaInfo" class="contactInfoData"></div></div>
+            <div class="subtask"><span>Subtask:</span><div id="subtaskArea" class="subtaskAreaData"></div></div>
         </div>`;
+}
+function templateRange(subtask) {
+    return ` <div class="range"><progress id="subTaskRange" max="${subtask}" value="1"></progress>
+    <span>0/${subtask} Subtask</span></div>`
+}
+
+function templateContactInfo(i) {
+    return `<div class="contactArea"><div class="boxInfo${contact[i]['color']} boxInfo">
+    <span>${initialenContact[i]}</span></div> <span class="contactName">${contact[i].name}</span></div>`    
+}
+
+function templateSubtask() {
+        return`<form>
+        
+        </form>`
 }
