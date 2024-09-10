@@ -77,9 +77,11 @@ function normalEffect(element) {
 }
 
 function editsubTask(element, index) {
-  console.log(`hallo`);
-  alert(`du willst den text ${index} ändern`);
-  console.log(index);
+  let parent = element.parentElement.parentElement;
+  parent.innerHTML = `<input type="text" value="${index}" class="subTaskInput"></input> <div class="btns subTaskIcon">
+  <img class="inputIcon" src="/assets/img/SubTaskDelete.svg">
+  <img class="deleteIcon" src="/assets/img/SubTaskDone.svg">
+</div>`;
 }
 
 function delsubTask(element, index) {
@@ -124,7 +126,8 @@ function toggleDropdown() {
     if (!selectedElement.contains(e.target)) {
       itemsContainer.classList.add('select-hide');
       selectedElement.classList.remove('select-arrow-active');
-    }});
+    }
+  });
 }
 
 function dropDown(element) {
