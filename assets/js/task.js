@@ -57,8 +57,8 @@ function addList() {
   subTaskBoard.innerHTML += `<li onmouseover="hoverEffect(this)" onmouseleave="normalEffect(this)" ondblclick="editsubTask(this)">
   ${subTaskInput} 
   <div class="btns subTaskIcon">
-  <img onclick="editsubTask(this)" class="inputIcon" src="/assets/img/SubtasksEdit.svg">
-  <img onclick="delsubTask(this)" class="deleteIcon" src="/assets/img/SubtasksDel.svg">
+  <img onclick="editsubTask(this, '${subTaskInput}')" class="inputIcon" src="/assets/img/SubtasksEdit.svg">
+  <img onclick="delsubTask(this, '${subTaskInput}')" class="deleteIcon" src="/assets/img/SubtasksDel.svg">
 </div></li>`;
   document.getElementById('inputField').value = '';
   document.getElementById('inputSubClass').innerHTML = `  <div class="smallHead">Subtasks</div>
@@ -76,14 +76,16 @@ function normalEffect(element) {
   buttons.classList.add('subTaskIcon');
 }
 
-function editsubTask() {
-  console.log(`hallo`);
-  alert(`hast du edit Button geklickt`)
+function editsubTask(element, index) {
+  let parent = element.parentElement.parentElement;
+  parent.innerHTML = `<input type="text" value="${index}" class="subTaskInput"></input> <div class="btns subTaskIcon">
+  <img class="inputIcon" src="/assets/img/SubTaskDelete.svg">
+  <img class="deleteIcon" src="/assets/img/SubTaskDone.svg">
+</div>`;
 }
 
-function delsubTask() {
-  console.log(`delete`);
-  alert(`hast du Delete Button geklickt`)
+function delsubTask(element, index) {
+  element.parentElement.parentElement.remove();
 }
 
 function activateUrgent() {
@@ -118,7 +120,6 @@ function activateLow() {
 function toggleDropdown() {
   const selectedElement = document.querySelector('.select-selected');
   const itemsContainer = document.querySelector('.select-items');
-  const items = itemsContainer.querySelectorAll('div');
 
   // Close the dropdown if clicked outside
   document.addEventListener('click', function (e) {
@@ -127,7 +128,7 @@ function toggleDropdown() {
       selectedElement.classList.remove('select-arrow-active');
     }
   });
-};
+}
 
 function dropDown(element) {
   const selectedElement = document.querySelector('.select-selected');
