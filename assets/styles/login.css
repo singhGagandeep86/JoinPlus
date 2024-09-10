@@ -68,7 +68,63 @@ header .topline .login:hover {
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
 }
 
-.logo {
+.Screen-Logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    animation: logoScreen 1.5s forwards;
+    animation-timing-function: ease;
+    z-index: 1000;
+}
+
+.big-logo {
+    position: absolute;
+    width: 101px;
+    height: 121px;
+    top: 33%;
+    left: 42%;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+    animation: BiglogoScreen 1.5s forwards;
+}
+
+@keyframes BiglogoScreen {
+    from {
+        top: 50%;
+        left: 50%;
+        width: 274px;
+        height: 334px;
+    }
+    to {
+        top: 190px;
+        left: 150px;
+        width: 101px;
+        height: 121px;
+    }
+}
+
+@keyframes logoScreen {
+    from {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+    }
+    to {
+        display: block;
+        transform: scale(0.5) translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+
+/* .logo {
     position: absolute;
     top: 80px;
     left: 77px;
@@ -77,7 +133,7 @@ header .topline .login:hover {
 .logo img {
     width: 100.03px;
     height: 121.97px;
-}
+} */
 
 .loginarea {
     display: flex;
