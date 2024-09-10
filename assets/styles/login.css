@@ -115,6 +115,7 @@ header .topline .login:hover {
 .loginarea form .custome-input {
     position: relative;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .loginarea form .custome-input input {
@@ -176,6 +177,7 @@ input::placeholder {
     font-size: 21px;
     line-height: 25.2px;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .loginarea form .btns .login:hover {
@@ -197,6 +199,7 @@ input::placeholder {
     font-size: 21px;
     line-height: 25.2px;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .loginarea form .btns .guestlogin:hover {
