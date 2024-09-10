@@ -47,12 +47,21 @@ body {
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* .loginarea .loginheadline .arrowleft {
+.loginheadline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    gap: 16px;
+}
+
+.arrowleft {
     width: 34px;
     height: 34px;
     cursor: pointer;
     position: absolute;
-    left: -50px;
+    left: -163px;
 }
 
 .loginheadline .textline {
@@ -63,45 +72,10 @@ body {
     position: relative;
 }
 
-.loginarea .underlineLogin {
-    width: 150px;
-    position: absolute;
-    bottom: -10px;
-} */
-
-.loginheadline {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    position: relative;
-}
-
-.arrowLeft {
-    position: absolute;
-    left: 5px; /* Abstand vom linken Rand */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 34px;
-    height: 34px;
-    cursor: pointer;
-}
-
-.textline {
-    font-size: 61px;
-    font-weight: 700;
-    line-height: 73.2px;
-    position: relative;
-}
-
 .underlineLogin {
     width: 150px;
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: -16px;
 }
-
 
 .loginarea form .custome-input {
     position: relative;
@@ -205,4 +179,28 @@ input::placeholder {
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
     color: var(--button-hover-color);
     border: 1px solid var(--button-hover-color);
+}
+
+footer .footercontent {
+    position: absolute;
+    bottom: 0;
+    left: 44%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    margin-bottom: 20px;
+}
+
+.footercontent h3 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    color: #A8A8A8;
+    cursor: pointer;
+}
+
+.footercontent h3:hover {
+    color: var(--button-hover-color);
+    font-weight: bold;
 }
