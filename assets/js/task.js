@@ -54,30 +54,36 @@ function resetInput() {
 function addList() {
   let subTaskInput = document.getElementById('inputField').value;
   let subTaskBoard = document.getElementById('subTsksBoard');
-  subTaskBoard.innerHTML += `<li onmouseover="hoverEffect(this)" onmouseleave="normalEffect(this)">${subTaskInput} <div id="btns" class="subTaskIcon">
-  <img onclick="editsubTask(this)" class="inputIcon" src="/assets/img/SubtasksEdit.svg" alt="Edit">
-  <img onclick="delsubTask(this)" class="deleteIcon" src="/assets/img/SubtasksDel.svg" alt="Delete">
+  subTaskBoard.innerHTML += `<li onmouseover="hoverEffect(this)" onmouseleave="normalEffect(this)" ondblclick="editsubTask(this)">
+  ${subTaskInput} 
+  <div class="btns subTaskIcon">
+  <img onclick="editsubTask(this)" class="inputIcon" src="/assets/img/SubtasksEdit.svg">
+  <img onclick="delsubTask(this)" class="deleteIcon" src="/assets/img/SubtasksDel.svg">
 </div></li>`;
   document.getElementById('inputField').value = '';
   document.getElementById('inputSubClass').innerHTML = `  <div class="smallHead">Subtasks</div>
   <input class="subtasksTxt" placeholder="Add new subtask" type="text" onfocus="renderSubTask()">`;
 }
 
-function hoverEffect() {
-  document.getElementById('btns').style.display="block";
+function hoverEffect(element) {
+  let buttons = element.querySelector('.btns');
+  buttons.classList.remove('subTaskIcon');
 }
 
 
-function normalEffect() {
-  document.getElementById('btns').style.display="none";
+function normalEffect(element) {
+  let buttons = element.querySelector('.btns');
+  buttons.classList.add('subTaskIcon');
 }
 
 function editsubTask() {
   console.log(`hallo`);
+  alert(`hast du edit Button geklickt`)
 }
 
 function delsubTask() {
   console.log(`delete`);
+  alert(`hast du Delete Button geklickt`)
 }
 
 function activateUrgent() {
