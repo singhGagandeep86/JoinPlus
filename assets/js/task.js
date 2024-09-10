@@ -78,10 +78,12 @@ function normalEffect(element) {
 
 function editsubTask() {
   console.log(`hallo`);
+  alert(`hast du edit Button geklickt`)
 }
 
 function delsubTask() {
   console.log(`delete`);
+  alert(`hast du Delete Button geklickt`)
 }
 
 function activateUrgent() {
