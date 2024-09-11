@@ -157,10 +157,11 @@ label {
     text-align: left;
 }
 
-.subtasks {
+.subtaskInfo {
+    display: flex;
+    flex-direction: column;
     width: 440px;
-    height: 80px;
-    margin-top: 36px;
+    min-height: 24px;
     gap: 8px;
 }
 
@@ -392,7 +393,7 @@ label {
     font-size: 20px;
 }
 
-.prioInfo{
+.prioInfo {
     display: flex;
     align-items: center;
     gap: 25px;
@@ -401,7 +402,7 @@ label {
     font-size: 20px;
 }
 
-.prioInfoData{
+.prioInfoData {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -410,7 +411,7 @@ label {
     font-size: 20px;
 }
 
-.contactInfo{
+.contactInfo {
     width: 445px;
     height: 208px;
     display: flex;
@@ -418,12 +419,13 @@ label {
     gap: 8px;
 }
 
-.contactInfo span{
+.contactInfo span {
     width: 445px;
     height: 24px;
     font-size: 20px;
 }
-.contactInfo{
+
+.contactInfo {
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -431,7 +433,7 @@ label {
     height: 176px;
 }
 
-.contactInfoData{
+.contactInfoData {
     padding-left: 20px;
 }
 
@@ -459,7 +461,7 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-    background: #4589ff; 
+    background: #4589ff;
     border-radius: 8px;
 }
 
@@ -468,10 +470,40 @@ progress::-moz-progress-bar {
     border-radius: 8px;
 }
 
-.range span{
+.range span {
     width: 75px;
     height: 14px;
     display: flex;
     font-size: 12px;
 }
 
+.subtastTitle {
+    min-width: 100px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+}
+
+.checkboxDesign {
+    display: none;
+}
+
+.checkboxDesign+span {
+    display: inline-block;
+    content: url("../img/CheckbuttonEmpty.png");
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    text-align: center;
+
+}
+.checkboxDesign:checked+span {
+    content: url("../img/Checkbutton.png");
+}
+
+.subtastTitle label>p{
+    margin-left: 16px;
+    font-size: 16px;
+    cursor: pointer;
+}

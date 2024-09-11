@@ -121,12 +121,12 @@ function templateTaskSmallInfo(i) {
             <div class="prioInfoData"><span>${array[i].prio.charAt(0).toUpperCase() + array[i].prio.slice(1)}</span>
             <div class="bg_${array[i].prio}"></div></div></div>
             <div class="contactInfo"><span class="contactInfoHeadline">Assigned To:</span><div id="contactAreaInfo" class="contactInfoData"></div></div>
-            <div class="subtask"><span>Subtask:</span><div id="subtaskArea" class="subtaskAreaData"></div></div>
+            <div class="subtaskInfo"><span>Subtasks:</span><div  class="subtaskAreaData"><div id="subtaskArea"></div></div></div>
         </div>`;
 }
-function templateRange(subtask) {
-    return ` <div class="range"><progress id="subTaskRange" max="${subtask}" value="1"></progress>
-    <span>0/${subtask} Subtask</span></div>`
+function templateRange(subtask,checkedCount) {
+    return ` <div class="range"><progress id="subTaskRange" max="${subtask}" value="${checkedCount}"></progress>
+    <span>${checkedCount}/${subtask} Subtasks</span></div>`
 }
 
 function templateContactInfo(i) {
@@ -134,8 +134,8 @@ function templateContactInfo(i) {
     <span>${initialenContact[i]}</span></div> <span class="contactName">${contact[i].name}</span></div>`    
 }
 
-function templateSubtask() {
-        return`<form>
-        
-        </form>`
+function templateSubtask(element) {
+        return`
+       <div class="subtastTitle"><label><input oninput="inputChecklistInfo()" type="checkbox" class="checkboxDesign" name="subtask"> <span></span><p>${element}</p></label></div>
+        `
 }
