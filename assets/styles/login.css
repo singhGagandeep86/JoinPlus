@@ -246,6 +246,16 @@ input::placeholder {
     cursor: pointer;
 }
 
+.loginarea form .btns .guestlogin a {
+    text-decoration: none;
+    color: var(--sideheader-main-color);
+}
+
+.loginarea form .btns .guestlogin a:hover {
+    color: var(--button-hover-color);
+    background-color: white;
+}
+
 .loginarea form .btns .guestlogin:hover {
     background-color: white;
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
