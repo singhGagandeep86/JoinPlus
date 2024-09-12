@@ -1,16 +1,56 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/assets/img/Join logo white.png">
-    <title>Join</title>
+    <title>Log In</title>
+    <link rel="stylesheet" href="/assets/styles/login.css">
+    <link rel="stylesheet" href="/assets/styles/fonts.css">
 </head>
-
 <body>
+    <header>
+        <div class="topline">
+            <p>Not a Join User?</p>
+            <button class="login"><a href="/assets/html/signin.html">Sign up</a></button>
+        </div>
+    </header>
 
-    <script src="/script.js"></script>
+    <div class="Screen-Logo">
+        <img id="logoscreen" class="join-logo" src="/assets/img/Capa2.svg">
+    </div>
+
+    <div class="loginarea">
+        <div class="loginheadline">
+            <span class="textline">Log in</span>
+            <img class="underlineLogin" src="/assets/img/unterstrich vector.png">
+        </div>
+
+        <form>
+            <div class="custome-input">
+                <input type="email" name="email" placeholder="Email">
+                <img class="socialicons" src="/assets/img/mail.png" alt="">
+            </div>
+            <div class="custome-input">
+                <input type="password" name="password" placeholder="Password">
+                <img class="socialicons" src="/assets/img/lock.png">
+            </div>
+            <div class="check-container">
+                <input type="checkbox" checked="checked">
+                <p>Remember Me</p>
+            </div>
+            <div class="btns">
+                <button class="login">Log in</button>
+                <button class="guestlogin"><a href="/assets/html/summary.html">Guest Log in</a></button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footercontent">
+            <h3>Privacy Policy</h3>
+            <h3>Legal notice</h3>
+        </div>
+    </footer>
 </body>
-
 </html>
