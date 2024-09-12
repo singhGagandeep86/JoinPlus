@@ -141,12 +141,17 @@ body {
     justify-content: end;
     align-items: center;
     gap: 16px;
+    cursor: pointer;
 }
 
 .picHelp {
     width: 32px;
     height: 32px;
     cursor: pointer;
+}
+
+.picSm:hover {
+    content: url(/assets/img/sm\ hover.png);
 }
 
 .active {
@@ -163,4 +168,35 @@ body {
 
 .active:hover {
     background-color: #091931;
+}
+
+.burger-menu {
+    background-color: var(--sideheader-main-color);
+    position: absolute;
+    right: 500px;
+    top: 96px;
+    border-radius: 20px 0px 20px 20px;
+    width: 158px;
+    height: 158px;
+    padding: 10px;
+    display: none;
+}
+
+.burger-menu.active {
+    display: block;
+}
+
+.burger-menu .burger-content {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 8px 16px 8px 16px;
+    gap: 24px;
+}
+
+.burger-menu .burger-content h2 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    color: #CDCDCD;
 }
