@@ -58,7 +58,7 @@ function addList() {
   ${subTaskInput} 
   <div class="btns subTaskIcon">
   <img onclick="editsubTask(this, '${subTaskInput}')" class="inputIcon" src="/assets/img/SubtasksEdit.svg">
-  <img onclick="delsubTask(this, '${subTaskInput}')" class="deleteIcon" src="/assets/img/SubtasksDel.svg">
+  <img onclick="delsubTask(this)" class="deleteIcon" src="/assets/img/SubtasksDel.svg">
 </div></li>`;
   document.getElementById('inputField').value = '';
   document.getElementById('inputSubClass').innerHTML = `  <div class="smallHead">Subtasks</div>
@@ -77,15 +77,27 @@ function normalEffect(element) {
 }
 
 function editsubTask(element, index) {
-  let parent = element.parentElement.parentElement;
-  parent.innerHTML = `<input type="text" value="${index}" class="subTaskInput"></input> <div class="btns subTaskIcon">
-  <img class="inputIcon" src="/assets/img/SubTaskDelete.svg">
-  <img class="deleteIcon" src="/assets/img/SubTaskDone.svg">
-</div>`;
+  let parent = element.closest('li');
+  parent.innerHTML = `<div class="wrapper">
+  <input type="text" value="${index}" class="subTaskInput"></input> 
+  <div class="btns subTaskIcon subTaskEdit">
+  <img class="inputIcon" onclick="delsubTask(this)" src="/assets/img/SubTaskDelete.svg">
+  <img class="deleteIcon" onclick="newSubTask(this)" src="/assets/img/SubTaskDone.svg">
+</div></div>`;
 }
 
-function delsubTask(element, index) {
-  element.parentElement.parentElement.remove();
+function delsubTask(element) {
+  element.closest('li').remove();
+}
+
+function newSubTask(element){
+  let parent = element.closest('li');
+ let newValue = parent.querySelector('.subTaskInput').value;
+ parent.innerHTML = `${newValue} 
+ <div class="btns subTaskIcon">
+ <img onclick="editsubTask(this, '${newValue}')" class="inputIcon" src="/assets/img/SubtasksEdit.svg">
+ <img onclick="delsubTask(this)" class="deleteIcon" src="/assets/img/SubtasksDel.svg">
+</div>`;
 }
 
 function activateUrgent() {

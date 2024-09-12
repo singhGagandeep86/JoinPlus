@@ -607,13 +607,24 @@ li:hover {
 }
 
 .subTaskInput {
-    width: 440px;
     height: 32px;
     padding: 4px 16px 4px 16px;
-    gap: 0px;
     border: none;
-    display: flex;
-    justify-content: space-between;
     background: #FFFFFF;
-    border-bottom: 1px solid #29ABE2
+    border-bottom: 1px solid #29ABE2;
+    flex-grow: 2;
+    float: left;
+}
+
+.wrapper{
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.subTaskEdit{
+    position: absolute;
+    display: flex;
+    right: 0;
+    bottom: 3px;
 }
