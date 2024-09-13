@@ -132,6 +132,8 @@ body {
 
 .headerContentRightSide {
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .picHelp {
