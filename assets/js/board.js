@@ -305,10 +305,11 @@ async function inputCheckBoxInfo(i, j) {
     let checkbox = document.getElementById(checkboxId);
     let path = `/task/task${i + 1}/checked`;
     let url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/${path}.json`;
-    let upData = { [`task${i + 1}`]: checkbox.checked };
+    let upData = { [`task${j + 1}`]: checkbox.checked };
     await postDataCheck(url, upData);
     array = [];
     load();
+    
 }
 
 async function postDataCheck(url, data) {
