@@ -186,6 +186,7 @@ body {
     flex-direction: column;
     padding: 8px 16px;
     gap: 15px;
+    cursor: pointer;
 }
 
 .burger-menu .burger-content h2 {
