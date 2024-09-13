@@ -133,6 +133,7 @@ body {
 .headerContentRightSide {
     position: relative;
     display: flex;
+    gap: 16px;
     align-items: center;
 }
 
@@ -183,15 +184,21 @@ body {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    padding: 8px 16px 8px 16px;
-    gap: 24px;
-    background-color: #2a3d59;
-    padding: 8px;
+    padding: 8px 16px;
+    gap: 15px;
 }
 
 .burger-menu .burger-content h2 {
     font-size: 16px;
     font-weight: 400;
     line-height: 19.2px;
+    color: #CDCDCD;
+    padding: 8px;
+    background-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.burger-menu .burger-content h2:hover {
+    background-color: #2a3d59;
     color: #CDCDCD;
 }
