@@ -57,11 +57,17 @@ body {
 }
 
 .arrowleft {
+    top: 36px;
     width: 34px;
     height: 34px;
     cursor: pointer;
     position: absolute;
     left: -163px;
+}
+
+.arrowleft:hover {
+    background-color: #eeeeee;
+    border-radius: 50%;
 }
 
 .loginheadline .textline {
