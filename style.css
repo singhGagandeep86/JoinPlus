@@ -166,7 +166,7 @@ body {
     position: absolute;
     top: 82px;
     right: 0;
-    width: 158px;
+    width: 175px;
     height: 158px;
     background-color: var(--sideheader-main-color);
     border-radius: 20px 0px 20px 20px;
@@ -185,6 +185,8 @@ body {
     flex-direction: column;
     padding: 8px 16px 8px 16px;
     gap: 24px;
+    background-color: #2a3d59;
+    padding: 8px;
 }
 
 .burger-menu .burger-content h2 {
