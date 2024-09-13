@@ -23,15 +23,10 @@ function contactsData(firebase) {
   let contact = document.getElementById("contacts");
   for (let i = 0; i < objLngth; i++) {
     const eachName = contactsLength[i].name;
-
-    if (contact.selectedIndex >= 0) {
-      const option = document.createElement("option");
-      option.text = `${eachName} `;
-      const sel = contact.options[contact.selectedIndex + 4];
-      contact.add(option, sel);
-    }
+    console.log(eachName);
   }
 }
+
 
 
 function renderSubTask() {
@@ -90,10 +85,10 @@ function delsubTask(element) {
   element.closest('li').remove();
 }
 
-function newSubTask(element){
+function newSubTask(element) {
   let parent = element.closest('li');
- let newValue = parent.querySelector('.subTaskInput').value;
- parent.innerHTML = `${newValue} 
+  let newValue = parent.querySelector('.subTaskInput').value;
+  parent.innerHTML = `${newValue} 
  <div class="btns subTaskIcon">
  <img onclick="editsubTask(this, '${newValue}')" class="inputIcon" src="/assets/img/SubtasksEdit.svg">
  <img onclick="delsubTask(this)" class="deleteIcon" src="/assets/img/SubtasksDel.svg">
@@ -128,7 +123,7 @@ function activateLow() {
 }
 
 
-
+// function for categoru drop down function
 function toggleDropdown() {
   const selectedElement = document.querySelector('.select-selected');
   const itemsContainer = document.querySelector('.select-items');
@@ -160,10 +155,25 @@ function dropDown(element) {
     });
   });
 }
+// end of Dropdown
+
+//Drop down function for Assigned Contacts
+
+let expanded = false;
+
+function showCheckBoxes() {
+  const checkboxes = document.getElementById("checkboxes");
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+  }
+}
 
 
 // reseting all
-
 function resetAll() {
   document.getElementById('btnUrgnt').innerHTML = ` <div>Urgent <img src="/assets/img/prioUrgent.svg"></div>`;
   document.getElementById('btnUrgnt').classList.remove("btnUrgnt");

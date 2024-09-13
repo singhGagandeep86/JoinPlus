@@ -64,11 +64,22 @@
                             <textarea rows="4" cols="37" placeholder="Enter a Description"
                                 class="descriptionTxt"></textarea>
                         </div>
+
+
                         <div class="assignCntcts">
                             <label for="contacts">Assigned to</label>
-                            <select class="assignment" id="contacts">
-                                <option value="user">Select contacts to assign</option>
-                            </select>
+                            <div class="assignment" onclick="showCheckBoxes()">
+                                <select>
+                                    <option>Select contacts to assign</option>
+                                </select>
+                                <div class="overSelect"></div>
+                            </div>
+                            <div id="checkboxes">
+                                <label for="test1">
+                                    Test 1 <input type="checkbox" id="test1"></label>
+                                <label for="test2">
+                                    Test 2 <input type="checkbox" id="test2"></label>
+                            </div>
                         </div>
 
                     </div>
@@ -95,7 +106,7 @@
                             <option value="technical">Technical Task</option>
                             <option value="userStory">User Story</option>
                         </select>
-                        
+
                         <div class="assign">
                             <label for="Category"><span>Category <sup>*</sup></span></label>
                             <div class="custom-select">
@@ -106,16 +117,17 @@
                                 </div>
                             </div>
                         </div>
-                       
+
                         <div id="inputSubClass" class="subtasks">
                             <div class="smallHead">Subtasks</div>
-                            <input class="subtasksTxt" placeholder="Add new subtask" type="text" onfocus="renderSubTask()">
+                            <input class="subtasksTxt" placeholder="Add new subtask" type="text"
+                                onfocus="renderSubTask()">
                         </div>
                         <ul class="a" id="subTsksBoard"></ul>
                     </div>
-                    
+
                     <div class="info">
-                      <sup>* </sup>This field is required
+                        <sup>* </sup>This field is required
                     </div>
                     <div class="submitionButtons">
                         <button class="secondary" type="reset" onclick="resetAll()">

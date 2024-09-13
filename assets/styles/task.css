@@ -144,7 +144,6 @@ label {
     position: fixed;
     width: 440px;
     height: 80px;
-    gap: 8px;
     display: flex;
     flex-direction: column;
     font-size: 20px;
@@ -154,11 +153,8 @@ label {
     margin-top: 296px;
 }
 
-.assignCntcts assignment {
-    display: none;
-}
-
 .assignment {
+    position: relative;
     color: #080808;
     padding: 8px 16px;
     border: none;
@@ -180,61 +176,51 @@ label {
     border: 1px solid #D1D1D1;
 }
 
+.assignment:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 1px 1px #00000020;
+}
 
-/*style the arrow inside the select element:*/
-.assignment-selected:after {
-    position: absolute;
-    content: "";
-    justify-content: space-between;
+
+.assignment select {
+    width: 100%;
     background: #FFFFFF;
-    gap: 0px;
-    margin-top: 4px;
-    right: 30px;
-    border: 1px solid;
+    cursor: pointer;
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
     text-align: left;
     border: 6px solid transparent;
-    border-color: transparent transparent #080808 transparent;
 }
 
-.assignment-selected.assignment-arrow-active:after {
-    border-color: #080808 transparent transparent transparent;
-    margin-top: 14px;
-}
-
-/*style the items (options), including the selected item:*/
-.assignment-items div {
-    padding: 8px 16px;
-    cursor: pointer;
-    user-select: none;
-    border-radius: 10px;
-    text-align: left;
-}
-
-/*style items (options):*/
-.assignment-items {
+.overSelect {
     position: absolute;
-    background-color: #FFFFFF;
-    top: 100%;
     left: 0;
     right: 0;
-    z-index: 99;
-    border: 1px transparent;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes {
+    display: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #FFFFFF;
+}
+
+#checkboxes label {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+    padding: 7px 16px;
+    cursor: pointer;
     border-radius: 10px;
 }
 
-/*hide the items when the select box is closed:*/
-.assignment-hide {
-    display: none;
-    background-image: none;
-}
-
-.assignment-items div:hover,
-.same-as-selected {
+#checkboxes label:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
+
 
 .assign {
     position: fixed;
@@ -274,6 +260,12 @@ label {
     appearance: none;
     cursor: pointer;
     border: 1px solid #D1D1D1;
+}
+
+
+.select-selected:hover {
+    cursor: pointer;
+    box-shadow: 0px -1px 0px 0px #00000040;
 }
 
 /*style the arrow inside the select element:*/
@@ -616,13 +608,13 @@ li:hover {
     float: left;
 }
 
-.wrapper{
+.wrapper {
     position: relative;
     display: flex;
     width: 100%;
 }
 
-.subTaskEdit{
+.subTaskEdit {
     position: absolute;
     display: flex;
     right: 0;
