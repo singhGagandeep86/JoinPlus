@@ -1,16 +1,12 @@
-const BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
-const path = "";
-const data = {};
+let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
+let path = "";
+let data = {};
+let url = '';
 let array = [];
-let subtask = [];
-let contact = [];
-let initialenContact = [];
 let draggedElement;
 
-
-Object.keys(subtask).length
 async function load() {
-    await loadDataContact("/contact");
+
     await loadData("/task");
 }
 
@@ -19,36 +15,24 @@ async function loadData(path) {
     let responsetoJason = await response.json();
     let taskArray = Object.values(responsetoJason);
     for (let i = 0; i < taskArray.length; i++) {
-
         array.push(taskArray[i]);
-        loadCheck(i, taskArray);
-
     }
     taskAdd();
-
-}
-function loadCheck(i, taskArray) {
-    let checkTask = taskArray[i].checked;
-    if (checkTask !== null && checkTask !== undefined) {
-        checkTask = Object.values(checkTask);
-
-        if (typeof subtask !== 'undefined') {
-            subtask.push(checkTask);
-        }
-    }
 }
 
-async function loadDataContact(path) {
-    let response = await fetch(BASE_URL + path + ".json");
-    let responsetoJason = await response.json();
-    let contactsArray = Object.values(responsetoJason);
-    for (let i = 0; i < contactsArray.length; i++) {
+// async function loadDataContact(path) {
+//     let response = await fetch(BASE_URL + path + ".json");
+//     let responsetoJason = await response.json();
+//     let contactsArray = Object.values(responsetoJason);
+//     for (let i = 0; i < contactsArray.length; i++) {
 
-        contact.push(contactsArray[i]);
-    }
-    extrahiereInitialen();
-    taskAdd();
-}
+//         contact.push(contactsArray[i]);
+
+
+//     }
+
+//     taskAdd();
+// }
 
 async function postData(path, data) {
     let response = await fetch(BASE_URL + path + ".json", {
@@ -75,17 +59,23 @@ function todo() {
         document.getElementById('toDo').innerHTML = '';
         for (let index = 0; index < toDo.length; index++) {
             let element = toDo[index];
+            let contacts = element.contactcolor ? Object.values(toDo[index].contactcolor) : null;
+            let contactName = element.contact ? Object.values(toDo[index].contact) : null;
             let checkBoxObject = element.checked ? Object.values(element.checked) : null;
             if (element.subtask == null) {
                 document.getElementById('toDo').innerHTML += templateTaskHTML(element);
-            } else if (checkBoxObject == null) {
+                loadContactTask(element, contacts, contactName);
+            } else if (checkBoxObject == null && contacts == null) {
                 let checkedCount = 0;
                 document.getElementById('toDo').innerHTML += templateTaskHTML(element);
                 subtaskBar(element, checkedCount);
+                loadContactTask(element, contacts, contactName);
+
             } else {
                 let checkedCount = checkBoxObject.filter(e => e === true).length;
                 document.getElementById('toDo').innerHTML += templateTaskHTML(element);
                 subtaskBar(element, checkedCount);
+                loadContactTask(element, contacts, contactName);
             }
         }
     }
@@ -99,17 +89,22 @@ function inPorgess() {
         document.getElementById('progress').innerHTML = '';
         for (let index = 0; index < inprogress.length; index++) {
             let element = inprogress[index];
+            let contacts = element.contactcolor ? Object.values(inprogress[index].contactcolor) : null;
+            let contactName = element.contact ? Object.values(inprogress[index].contact) : null;
             let checkBoxObject = element.checked ? Object.values(element.checked) : null;
             if (element.subtask == null) {
                 document.getElementById('progress').innerHTML += templateTaskHTML(element);
-            } else if (checkBoxObject == null) {
+                loadContactTask(element, contacts, contactName);
+            } else if (checkBoxObject == null && contacts == null) {
                 let checkedCount = 0;
                 document.getElementById('progress').innerHTML += templateTaskHTML(element);
                 subtaskBar(element, checkedCount);
+                loadContactTask(element, contacts, contactName);
             } else {
                 let checkedCount = checkBoxObject.filter(e => e === true).length;
                 document.getElementById('progress').innerHTML += templateTaskHTML(element);
                 subtaskBar(element, checkedCount);
+                loadContactTask(element, contacts, contactName);
             }
         }
     }
@@ -123,17 +118,22 @@ function awaits() {
         document.getElementById('await').innerHTML = '';
         for (let index = 0; index < await.length; index++) {
             let element = await[index];
+            let contacts = element.contactcolor ? Object.values(await[index].contactcolor) : null;
+            let contactName = element.contact ? Object.values(await[index].contact) : null;
             let checkBoxObject = element.checked ? Object.values(element.checked) : null;
             if (element.subtask == null) {
                 document.getElementById('await').innerHTML += templateTaskHTML(element);
-            } else if (checkBoxObject == null) {
+                loadContactTask(element, contacts, contactName);
+            } else if (checkBoxObject == null && contacts == null) {
                 let checkedCount = 0;
                 document.getElementById('await').innerHTML += templateTaskHTML(element);
                 subtaskBar(element, checkedCount);
+                loadContactTask(element, contacts, contactName);
             } else {
                 let checkedCount = checkBoxObject.filter(e => e === true).length;
                 document.getElementById('await').innerHTML += templateTaskHTML(element);
                 subtaskBar(element, checkedCount);
+                loadContactTask(element, contacts, contactName);
             }
 
 
@@ -149,17 +149,22 @@ function done() {
         document.getElementById('done').innerHTML = '';
         for (let index = 0; index < done.length; index++) {
             let element = done[index];
+            let contacts = element.contactcolor ? Object.values(done[index].contactcolor) : null;
+            let contactName = element.contact ? Object.values(done[index].contact) : null;
             let checkBoxObject = element.checked ? Object.values(element.checked) : null;
             if (element.subtask == null) {
                 document.getElementById('done').innerHTML += templateTaskHTML(element);
-            } else if (checkBoxObject == null) {
+                loadContactTask(element, contacts, contactName);
+            } else if (checkBoxObject == null && contacts == null) {
                 let checkedCount = 0;
                 document.getElementById('done').innerHTML += templateTaskHTML(element);
                 subtaskBar(element, checkedCount);
+                loadContactTask(element, contacts, contactName);
             } else {
                 let checkedCount = checkBoxObject.filter(e => e === true).length;
                 document.getElementById('done').innerHTML += templateTaskHTML(element);
                 subtaskBar(element, checkedCount);
+                loadContactTask(element, contacts, contactName);
             }
         }
     }
@@ -206,24 +211,29 @@ function subtaskBar(element, checkedCount) {
     range.innerHTML = templateRange(subtaskCount, checkedCount);
 
 }
-function loadContactTask() {
-    let taskContact = document.getElementById('contactPic');
-
-    for (let i = 0; i < contact.length; i++) {
-
-        taskContact.innerHTML += templateContact(i);
+function loadContactTask(element, contacts, contactName) {
+    let contactpic = `contact-${element['number']}`
+    let taskContact = document.getElementById(contactpic);
+    let color = contacts;
+    if (color == null && contactName == null) {
+        taskContact.innerHTML = '';
+    } else {
+        for (let i = 0; i < color.length; i++) {
+            let colors = color[i];
+            let initials = extrahiereInitialen(contactName[i]);
+            taskContact.innerHTML += templateContact(colors, initials);
+        }
     }
 }
 
-function extrahiereInitialen() {
-
-    for (let i = 0; i < contact.length; i++) {
-        let nameParts = contact[i].name.split(' ');
+function extrahiereInitialen(contactName) {
+    for (let i = 0; i < contactName.length; i++) {
+        let nameParts = contactName.split(' ');
         let initials = '';
         for (let j = 0; j < nameParts.length; j++) {
             initials += nameParts[j].charAt(0).toUpperCase();
         }
-        initialenContact.push(initials);
+        return initials;
     }
 }
 
@@ -256,11 +266,20 @@ function time(i) {
 }
 
 function addcontactInfo(i) {
-    let contacts = document.getElementById('contactAreaInfo');
-    contacts.innerHTML = '';
-    for (let i = 0; i < contact.length; i++) {
-        contacts.innerHTML += templateContactInfo(i);
+    let contactArea = document.getElementById('contactAreaInfo');
+    let contactName = array[i].contact ? Object.values(array[i].contact) : null;
+    let contactscolor = array[i].contactcolor ? Object.values(array[i].contactcolor) : null;
+    contactArea.innerHTML = '';
+    if (contactName == null) {
+        contactArea.innerHTML = '';
+    } else {
+        for (let i = 0; i < contactName.length; i++) {
+
+            let initials = extrahiereInitialen(contactName[i])
+            contactArea.innerHTML += templateContactInfo(contactscolor[i], initials, contactName[i]);
+        }
     }
+
 }
 
 function addSubtaskInfo(i) {
@@ -275,16 +294,35 @@ function addSubtaskInfo(i) {
         let subtastChecked = Object.values(array[i].checked);
         for (let j = 0; j < subtaskTitle.length; j++) {
             let element = subtaskTitle[j];
-
-            subtaskInput.innerHTML += templateSubtask(element,);
+            subtaskInput.innerHTML += templateSubtask(element, i, j);
             checked(subtastChecked);
         }
     }
+
+}
+async function inputCheckBoxInfo(i, j) {
+    let checkboxId = `checkbox-${i}-${j}`;
+    let checkbox = document.getElementById(checkboxId);
+    let path = `/task/task${i + 1}/checked`;
+    let url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/${path}.json`;
+    let upData = { [`task${i + 1}`]: checkbox.checked };
+    await postDataCheck(url, upData);
+    array = [];
+    load();
 }
 
-function inputChecklistInfo() {
-    let subtaskCheckbox = document.querySelectorAll(`input[name="${subtask}]`)
-    console.log(subtaskCheckbox.length);
+async function postDataCheck(url, data) {
+    let response = await fetch(url, {
+        method: "PATCH",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return await response.json();
 }
 
 function checked(subtastChecked) {

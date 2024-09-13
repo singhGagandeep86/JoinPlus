@@ -92,6 +92,7 @@ function templatePopUpTask1() {
 }
 function templateTaskHTML(element) {
     let rangeId = `subtaskRange-${element['number']}`;
+    let contactpic = `contact-${element['number']}`;
     return `<div onclick="openPopUpTaskSmall(${element['number']})" class="task" draggable="true" ondragstart="startDragging(${element['number']}, this) ">
     <div class="taskInfo">
         <span class="bg_${element['color']}">${element['category']}</span>
@@ -100,11 +101,7 @@ function templateTaskHTML(element) {
             <span>${element['description']}</span>
         </div>
         <div id="${rangeId}"></div>
-    <div class="contactAndPrioArea"><div id="contactPic" class="contact">
-   <div class="box${contact[0]['color']} box"> <span>${initialenContact[0]}</span></div>
-   <div class="box${contact[1]['color']} box"><span>${initialenContact[1]}</span></div>
-   <div class="box${contact[2]['color']} box"><span>${initialenContact[2]}</span></div>
-    </div>
+    <div class="contactAndPrioArea"><div id="${contactpic}" class="contact"></div>   
     <div class="bg_${element['prio']}"></div> </div>
     </div>
     </div>`;
@@ -129,13 +126,20 @@ function templateRange(subtask,checkedCount) {
     <span>${checkedCount}/${subtask} Subtasks</span></div>`
 }
 
-function templateContactInfo(i) {
-    return `<div class="contactArea"><div class="boxInfo${contact[i]['color']} boxInfo">
-    <span>${initialenContact[i]}</span></div> <span class="contactName">${contact[i].name}</span></div>`    
+function templateContact(colors, initials) {
+
+    return ` <div class="box${colors} box"> <span>${initials}</span></div>`
+    
 }
 
-function templateSubtask(element) {
+function templateContactInfo(contactscolor, initials , contactName) {
+    return `<div class="contactArea"><div class="boxInfo${contactscolor}" boxInfo">
+    <span>${initials}</span></div> <span class="contactName">${contactName}</span></div>`    
+}
+
+function templateSubtask(element, i, j) {
+    let checkboxId = `checkbox-${i}-${j}`;
         return`
-       <div class="subtastTitle"><label><input oninput="inputChecklistInfo()" type="checkbox" class="checkboxDesign" name="subtask"> <span></span><p>${element}</p></label></div>
+       <div class="subtastTitle"><label><input id="${checkboxId}" oninput="inputCheckBoxInfo(${i}, ${j})" type="checkbox" class="checkboxDesign" name="subtask"> <span></span><p>${element}</p></label></div>
         `
 }
