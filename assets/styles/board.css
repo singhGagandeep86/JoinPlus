@@ -232,7 +232,7 @@
 
 .dragAndDropBoard {
     display: flex;
-    width: 908px;
+    width: calc(1208px - 64px);
     height: 688px;
     gap: 30px;
 }
@@ -241,7 +241,7 @@
     display: flex;
     flex-direction: column;
     width: 252px;
-    height: 688px;
+    height: 100%;
     gap: 16px;
 }
 
@@ -418,14 +418,8 @@
     justify-content: center;
     font-size: 12px;
 }
-.contactArea{
-    display: flex;
-    gap: 25px;
-    align-items: center;
-   
-}
 
-.boxInfo span:nth-of-type(1){
+.boxinfo span:nth-of-type(1){
     display: flex;
     align-items: center;
     justify-content: center;

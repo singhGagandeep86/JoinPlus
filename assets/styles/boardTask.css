@@ -40,12 +40,7 @@
     display: flex;
 }
 
-label {
-    font-size: 20px;
-    font-weight: 400;
-    text-align: left;
-    display: flex;
-}
+
 
 .imp {
     font-size: 20px;
@@ -157,13 +152,7 @@ label {
     text-align: left;
 }
 
-.subtaskInfo {
-    display: flex;
-    flex-direction: column;
-    width: 440px;
-    min-height: 24px;
-    gap: 8px;
-}
+
 
 .subtasksTxt {
     width: 440px;
@@ -366,8 +355,8 @@ label {
 }
 
 .infoTitle img {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     cursor: pointer;
 }
 
@@ -393,6 +382,10 @@ label {
     font-size: 20px;
 }
 
+.dateInfo div:nth-child(1) {
+    color: #2A3647;
+}
+
 .prioInfo {
     display: flex;
     align-items: center;
@@ -400,6 +393,11 @@ label {
     width: 445px;
     height: 32px;
     font-size: 20px;
+}
+
+.prioInfo div:nth-child(1) {
+    margin-right: 22px;
+    color: #2A3647;
 }
 
 .prioInfoData {
@@ -413,7 +411,7 @@ label {
 
 .contactInfo {
     width: 445px;
-    height: 208px;
+    min-height: 24px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -423,19 +421,21 @@ label {
     width: 445px;
     height: 24px;
     font-size: 20px;
+
 }
 
-.contactInfo {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    width: 445px;
-    height: 176px;
-}
 
 .contactInfoData {
     padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
+
+.contactInfoHeadline {
+    color: #2A3647;
+}
+
 
 .range {
     display: flex;
@@ -485,6 +485,7 @@ progress::-moz-progress-bar {
     padding-left: 16px;
 }
 
+
 .checkboxDesign {
     display: none;
 }
@@ -498,12 +499,79 @@ progress::-moz-progress-bar {
     text-align: center;
 
 }
+
 .checkboxDesign:checked+span {
     content: url("../img/Checkbutton.png");
 }
 
-.subtastTitle label>p{
+.subtastTitle label>p {
     margin-left: 16px;
     font-size: 16px;
     cursor: pointer;
+}
+
+.subtaskInfo {
+    display: flex;
+    flex-direction: column;
+    width: 440px;
+    min-height: 24px;
+    gap: 8px;
+}
+
+.subtaskInfo span:nth-of-type(1) {
+    font-size: 20px;
+    color: #2A3647;
+}
+
+.contactArea {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    width: 445px;
+    height: 56px;
+
+}
+
+.editInfo {  
+    display: flex;
+    justify-content: end; 
+     
+    width: 445px;
+    height: 24px;
+}
+
+
+.editInfoData{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 159px;
+    height: 24px;
+    gap: 8px;
+}
+
+.editInfoData div{
+    display: flex;
+    align-items: center;
+    height: 24px;
+    cursor: pointer;
+}
+
+.deletePic:hover{
+content: url("../img/delethovertask.png");
+}
+.editPic:hover{
+    content: url("../img/edithovertask.png");
+}
+
+.labelInfo {
+    font-size: 20px;
+    padding-right: 20px;
+    text-align: left;
+    display: flex;
+}
+
+.labelInfo:hover:hover{
+    background-color:#efeeee ;
+    border-radius: 8px;
 }

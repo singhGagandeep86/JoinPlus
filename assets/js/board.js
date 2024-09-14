@@ -3,11 +3,13 @@ let path = "";
 let data = {};
 let url = '';
 let array = [];
+let searchArray = [];
 let draggedElement;
 
 async function load() {
 
     await loadData("/task");
+
 }
 
 async function loadData(path) {
@@ -45,6 +47,7 @@ async function postData(path, data) {
 }
 
 async function taskAdd() {
+
     todo();
     inPorgess();
     awaits();
@@ -179,11 +182,6 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
-function moveTo(element) {
-    array[draggedElement]['id'] = element;
-    taskAdd();
-}
-
 function openPopUpTask(id) {
     let taskPopUp = document.getElementById('popupTaskMain');
     taskPopUp.classList.remove('d_none');
@@ -300,6 +298,30 @@ function addSubtaskInfo(i) {
     }
 
 }
+function moveTo(element) {
+    array[draggedElement]['id'] = element;
+    let changeId = array[draggedElement];
+    taskAdd();
+    postId(element, changeId);
+
+}
+async function postId(element, changeId) {
+    let number = changeId.number;
+    let path = `/task/task${number + 1}`;
+    let url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app${path}.json`;
+    let idChange = { id: element };
+    await postDataId(url, idChange);
+}
+
+async function postDataId(url, data) {
+    const response = await fetch(url, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+}
 async function inputCheckBoxInfo(i, j) {
     let checkboxId = `checkbox-${i}-${j}`;
     let checkbox = document.getElementById(checkboxId);
@@ -309,7 +331,6 @@ async function inputCheckBoxInfo(i, j) {
     await postDataCheck(url, upData);
     array = [];
     load();
-    
 }
 
 async function postDataCheck(url, data) {
@@ -320,15 +341,26 @@ async function postDataCheck(url, data) {
         },
         body: JSON.stringify(data)
     });
-    if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return await response.json();
 }
 
 function checked(subtastChecked) {
     let checkboxes = document.getElementsByName('subtask');
     for (let i = 0; i < subtastChecked.length && i < checkboxes.length; i++) {
         checkboxes[i].checked = subtastChecked[i];
+    }
+}
+
+function search() {
+    let inputSearch = document.getElementById('search');
+    let searchArray = array.filter(item => 
+        item['title'].toLowerCase().includes(inputSearch.value.toLowerCase()) || 
+        item['description'].toLowerCase().includes(inputSearch.value.toLowerCase())
+    );
+    if (inputSearch.value.length == 0) {
+        array = [];
+        load();
+    } else if((inputSearch.value.length > 2)) {
+        array = searchArray;
+        taskAdd();
     }
 }

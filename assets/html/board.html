@@ -18,10 +18,14 @@
             <img class="mainDesignAsideImg" src="../img/Join logo white.png" alt="">
             <div class="mainDesignAsideLinks">
                 <div class="asideMenuArea">
-                    <div class="asideMenu"><a href="../html/summary.html"><img src="../img/Summary.png" alt="">Summary</a></div>
-                    <div class="asideMenu"><a href="../html/task.html"><img src="../img/Add task.png" alt="">Add Task</a></div>
-                    <div class="asideMenu active"><a href="../html/board.html"> <img class="activeBoard" src="../img/Board.png" alt="">Board</a></div>
-                    <div class="asideMenu"><a href="../html/contact.html"><img src="../img/Contacts.png" alt="">Contacts</a></div>
+                    <div class="asideMenu"><a href="../html/summary.html"><img src="../img/Summary.png"
+                                alt="">Summary</a></div>
+                    <div class="asideMenu"><a href="../html/task.html"><img src="../img/Add task.png" alt="">Add
+                            Task</a></div>
+                    <div class="asideMenu active"><a href="../html/board.html"> <img class="activeBoard"
+                                src="../img/Board.png" alt="">Board</a></div>
+                    <div class="asideMenu"><a href="../html/contact.html"><img src="../img/Contacts.png"
+                                alt="">Contacts</a></div>
                 </div>
                 <div class="legacyMenu">
                     <a href="/assets/html/privacy.html">Privacy Policy</a>
@@ -33,16 +37,16 @@
         <div class="mainDesign">
             <div class="header"><span>Kanban Projekt Management Tool</span>
                 <div class="headerContentRightSide">
-                        <img class="picHelp" src="../img/help.png" alt="">
-                        <img class="picSm" id="burgerToggle" src="../img/sm.png" alt="">
-                        <div class="burger-menu" id="burgerMenu">
-                            <div class="burger-content">
-                                <h2>Legal Notice</h2>
-                                <h2>Privacy Policy</h2>
-                                <h2>Log Out</h2>
-                            </div>
+                    <img class="picHelp" src="../img/help.png" alt="">
+                    <img class="picSm" id="burgerToggle" src="../img/sm.png" alt="">
+                    <div class="burger-menu" id="burgerMenu">
+                        <div class="burger-content">
+                            <h2>Legal Notice</h2>
+                            <h2>Privacy Policy</h2>
+                            <h2>Log Out</h2>
                         </div>
                     </div>
+                </div>
             </div>
             <div class="content">
                 <div class="headlineBoard">
@@ -51,7 +55,7 @@
                         <div class="searchBar">
                             <div class="inputArea">
                                 <div class="inputSearch">
-                                    <input type="text" placeholder="Find task">
+                                    <input id="search" oninput="search()" type="text" placeholder="Find task">
                                     <div class="inputImgArea"><img src="../img//lupe.png" alt=""></div>
                                 </div>
                             </div>
@@ -61,8 +65,10 @@
                         </div>
                     </div>
                     <div class="headlineDragMain">
-                        <div class="headlineDrag"><span>To do</span><img onclick="openPopUpTask('todo')" src="../img/plusbutton.png" alt=""></div>
-                        <div class="headlineDrag"><span>In progress</span><img onclick="openPopUpTask('progress')" src="../img/plusbutton.png" alt=""></div>
+                        <div class="headlineDrag"><span>To do</span><img onclick="openPopUpTask('todo')"
+                                src="../img/plusbutton.png" alt=""></div>
+                        <div class="headlineDrag"><span>In progress</span><img onclick="openPopUpTask('progress')"
+                                src="../img/plusbutton.png" alt=""></div>
                         <div class="headlineDrag"><span>Await feedback</span>
                             <img onclick="openPopUpTask('await')" src="../img/plusbutton.png">
                         </div>
@@ -84,10 +90,8 @@
     </div>
 
     <div id="popupTaskMain" class="popupArea d_none" onclick="closePopUpTask() "></div>
-    <div id="popupTaskInfo" class="popupArea2 d_none " onclick="closePopUpTaskSmall()">
-
-
-    </div>
+    <div id="popupTaskInfo" class="popupArea2 d_none " onclick="closePopUpTaskSmall()"></div>
+    
     <script src="/script.js"></script>
     <script src="../js/board.js"></script>
     <script src="../js/boardTemplate.js"></script>
@@ -96,4 +100,3 @@
 </body>
 
 </html>
-
