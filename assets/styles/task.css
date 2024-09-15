@@ -73,7 +73,6 @@ sup {
 label {
     font-size: 20px;
     font-weight: 400;
-    margin-bottom: 8px;
     text-align: left;
     display: flex;
 }
@@ -145,6 +144,7 @@ label {
     position: fixed;
     width: 440px;
     height: 80px;
+    gap: 8px;
     display: flex;
     flex-direction: column;
     font-size: 20px;
@@ -207,6 +207,11 @@ label {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     background: #FFFFFF;
+    position: absolute;
+    height: 232px;
+    overflow: scroll;
+    width: 100%;
+    margin-top: 80px;
 }
 
 #checkboxes label {
@@ -632,12 +637,32 @@ li:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+}
+
+label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    border: 2px solid #2A3647;
+    cursor: pointer;
+}
+
+input:checked + .checkmark {
+    background-color: #2196F3;
 }
 
 .showSel {
+    position: static;
     display: flex;
-    width: 142px;
     height: 42px;
     gap: 8px;
-    margin-top: 8px;
 }

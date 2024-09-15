@@ -3,6 +3,7 @@
 let base_Url = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
 let names = [];
 let namesInitials = [];
+let colours = [];
 
 function init() {
   fetchUrl();
@@ -23,27 +24,29 @@ function contactsData(firebase) {
   let contact = document.getElementById("checkboxes");
   for (let i = 0; i < objLngth; i++) {
     const eachName = contactsLength[i].name;
+    let colour = contactsLength[i].color;
     const sanitizedEachName = eachName.replace(/\s+/g, '_');
     const nameArray = eachName.split(' ');
-    const firstName = nameArray[0];
-    const lastName = nameArray[1];
+    const firstName = nameArray[0].toUpperCase();
+    const lastName = nameArray[1].toUpperCase();
     const firstNameStart = firstName[0];
     const lastNameStart = lastName[0];
-    contact.innerHTML += `<label for="${sanitizedEachName}"><div class="namesInitials">${firstNameStart}${lastNameStart}</div>
-    ${eachName}<input type="checkbox" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}')"></label>`;
+    contact.innerHTML += `<label for="${sanitizedEachName}"><div class="namesInitials" style="background-color:${colour}">${firstNameStart}${lastNameStart}</div>
+    ${eachName}<span class="checkmark"></span><input type="checkbox" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}')"></label>`;
   }
 }
 
-function selectionContact(name) {
+function selectionContact(name, colour) {
   const abc = document.getElementById(name);
   if (abc.checked == true) {
     names.push(name);
     const nameArray = name.split('_');
-    const firstName = nameArray[0];
-    const lastName = nameArray[1];
+    const firstName = nameArray[0].toUpperCase();
+    const lastName = nameArray[1].toUpperCase();
     let firstNameStart = firstName[0];
     let lastNameStart = lastName[0];
     namesInitials.push(firstNameStart + lastNameStart);
+    colours.push(colour);
   }
   else {
     const currentName = names.indexOf(name);
@@ -54,7 +57,8 @@ function selectionContact(name) {
   SelectedContactsBoard.innerHTML = '';
   for (let i = 0; i < namesInitials.length; i++) {
     const namesInitial = namesInitials[i];
-    SelectedContactsBoard.innerHTML += `<div class="namesInitials">${namesInitial}</div>`;
+    const color = colours[i];
+    SelectedContactsBoard.innerHTML += `<div class="namesInitials" style="background-color:${color}">${namesInitial}</div>`;
   }
 
 }
@@ -214,4 +218,7 @@ function resetAll() {
   document.getElementById('btnLow').classList.remove("btnLow");
   document.querySelector('.select-selected').innerText = `Select task category`;
   document.getElementById('subTsksBoard').innerHTML = '';
+  document.getElementById('selCntcts').innerHTML = '';
+  names = [];
+  namesInitials = [];
 }
