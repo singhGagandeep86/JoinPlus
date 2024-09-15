@@ -198,6 +198,10 @@ footer .footercontent {
     margin-bottom: 20px;
 }
 
+.footercontent a {
+    text-decoration: none;
+}
+
 .footercontent h3 {
     font-size: 16px;
     font-weight: 400;
