@@ -1,8 +1,8 @@
 
 
 let base_Url = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
-
-
+let names = [];
+let namesInitials = [];
 
 function init() {
   fetchUrl();
@@ -20,13 +20,44 @@ async function fetchUrl() {
 function contactsData(firebase) {
   let contactsLength = Object.values(firebase);
   let objLngth = contactsLength.length;
-  let contact = document.getElementById("contacts");
+  let contact = document.getElementById("checkboxes");
   for (let i = 0; i < objLngth; i++) {
     const eachName = contactsLength[i].name;
-    console.log(eachName);
+    const sanitizedEachName = eachName.replace(/\s+/g, '_');
+    const nameArray = eachName.split(' ');
+    const firstName = nameArray[0];
+    const lastName = nameArray[1];
+    const firstNameStart = firstName[0];
+    const lastNameStart = lastName[0];
+    contact.innerHTML += `<label for="${sanitizedEachName}"><div class="namesInitials">${firstNameStart}${lastNameStart}</div>
+    ${eachName}<input type="checkbox" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}')"></label>`;
   }
 }
 
+function selectionContact(name) {
+  const abc = document.getElementById(name);
+  if (abc.checked == true) {
+    names.push(name);
+    const nameArray = name.split('_');
+    const firstName = nameArray[0];
+    const lastName = nameArray[1];
+    let firstNameStart = firstName[0];
+    let lastNameStart = lastName[0];
+    namesInitials.push(firstNameStart + lastNameStart);
+  }
+  else {
+    const currentName = names.indexOf(name);
+    names.splice(currentName, 1);
+    namesInitials.splice(currentName, 1);
+  }
+  let SelectedContactsBoard = document.getElementById('selCntcts');
+  SelectedContactsBoard.innerHTML = '';
+  for (let i = 0; i < namesInitials.length; i++) {
+    const namesInitial = namesInitials[i];
+    SelectedContactsBoard.innerHTML += `<div class="namesInitials">${namesInitial}</div>`;
+  }
+
+}
 
 
 function renderSubTask() {
