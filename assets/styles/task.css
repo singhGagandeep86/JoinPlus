@@ -1,6 +1,6 @@
 body {
     font-family: 'inter';
-    margin: 0px auto;
+    margin: 0px;
     box-sizing: border-box;
     max-width: 1440px;
     max-height: 1024px;
@@ -73,6 +73,7 @@ sup {
 label {
     font-size: 20px;
     font-weight: 400;
+    margin-bottom: 8px;
     text-align: left;
     display: flex;
 }
@@ -211,6 +212,7 @@ label {
 #checkboxes label {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 10px 0px;
     padding: 7px 16px;
     cursor: pointer;
@@ -475,7 +477,6 @@ label {
 
 
 .info {
-    position: fixed;
     font-size: 20px;
     font-weight: 400;
     text-align: right;
@@ -619,4 +620,24 @@ li:hover {
     display: flex;
     right: 0;
     bottom: 3px;
+}
+
+.namesInitials {
+    color: white;
+    border: 1px solid white;
+    background-color: #FF3D00;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.showSel {
+    display: flex;
+    width: 142px;
+    height: 42px;
+    gap: 8px;
+    margin-top: 8px;
 }

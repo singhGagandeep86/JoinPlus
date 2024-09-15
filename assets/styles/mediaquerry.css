@@ -1,0 +1,62 @@
+@media(max-width:1439px){
+    .content{
+        padding-left: 10px;
+        padding-right: 0px;
+    }
+
+    .mainDesignAside{
+        width:200px;
+    }
+    .dragAndDropBoard{
+        width:calc(1208px - 128px);
+        gap: 8px;
+    }
+    .headlineDrag{
+        width: 230px;
+    }
+}
+
+@media(max-width:1356px){
+    .mainDesignAside{
+        width:160px;
+    }
+    .dragAndDropBoard{
+        width:calc(1208px - 128px);
+        gap: 8px;
+        
+    }
+    .headlineDrag{
+        width: 230px;
+    }
+}
+
+@media(max-width:1300px){
+    .overDisplay{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .mainDesign{
+        height: 100%;
+    }
+
+    .mainDesignAside{
+        display: flex;
+        width: 100%;
+        height: 254px;
+        align-items: center;
+        
+    }
+    .legacyMenu{
+        display: none;
+    }
+    .mainDesignAsideImg{
+        display: none;
+    }
+    .asideMenuArea{
+        width: 100%;
+        flex-direction: row;
+        height: 100%;
+        margin-top: 0;
+       
+    }
+}

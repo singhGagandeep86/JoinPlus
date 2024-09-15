@@ -534,8 +534,7 @@ progress::-moz-progress-bar {
 
 .editInfo {  
     display: flex;
-    justify-content: end; 
-     
+    justify-content: end;     
     width: 445px;
     height: 24px;
 }
@@ -548,6 +547,7 @@ progress::-moz-progress-bar {
     width: 159px;
     height: 24px;
     gap: 8px;
+    
 }
 
 .editInfoData div{
@@ -555,6 +555,7 @@ progress::-moz-progress-bar {
     align-items: center;
     height: 24px;
     cursor: pointer;
+    transition: 125ms ease-in-out;
 }
 
 .deletePic:hover{
@@ -574,4 +575,20 @@ content: url("../img/delethovertask.png");
 .labelInfo:hover:hover{
     background-color:#efeeee ;
     border-radius: 8px;
+}
+.emptySearch{
+    display: flex;
+    justify-content: center;  
+    position: relative; 
+    top:-20px;
+    padding-left: 200px;
+    width:100%;
+    
+    font-size: 20px;
+    color: #FF3D00;
+}
+
+.drag-area-highlight{
+    border: 1px black dashed;
+    border-radius: 10px;
 }
