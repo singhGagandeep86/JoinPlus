@@ -259,6 +259,18 @@
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+    animation: ShowPopupAni 1.0s forwards;
+}
+
+@keyframes ShowPopupAni {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
 
 .popup-left {
