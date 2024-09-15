@@ -2,8 +2,6 @@
 
 let base_Url = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
 
-
-
 function init() {
   fetchUrl();
   toggleDropdown();
@@ -20,10 +18,11 @@ async function fetchUrl() {
 function contactsData(firebase) {
   let contactsLength = Object.values(firebase);
   let objLngth = contactsLength.length;
-  let contact = document.getElementById("contacts");
+  let contact = document.getElementById("checkboxes");
   for (let i = 0; i < objLngth; i++) {
     const eachName = contactsLength[i].name;
-    console.log(eachName);
+    contact.innerHTML += `<label for="${eachName}">
+    ${eachName} <input type="checkbox" id="${eachName}"></label>`;
   }
 }
 
