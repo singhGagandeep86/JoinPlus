@@ -22,20 +22,6 @@ async function loadData(path) {
     taskAdd();
 }
 
-// async function loadDataContact(path) {
-//     let response = await fetch(BASE_URL + path + ".json");
-//     let responsetoJason = await response.json();
-//     let contactsArray = Object.values(responsetoJason);
-//     for (let i = 0; i < contactsArray.length; i++) {
-
-//         contact.push(contactsArray[i]);
-
-
-//     }
-
-//     taskAdd();
-// }
-
 async function postData(path, data) {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
@@ -149,7 +135,7 @@ function done() {
     if (done.length == 0) {
         document.getElementById('done').innerHTML = templateTaskEmptyDone();
     } else {
-        document.getElementById('done').innerHTML = '';
+        document.getElementById('done').innerHTML = '';        
         for (let index = 0; index < done.length; index++) {
             let element = done[index];
             let contacts = element.contactcolor ? Object.values(done[index].contactcolor) : null;
@@ -352,15 +338,30 @@ function checked(subtastChecked) {
 
 function search() {
     let inputSearch = document.getElementById('search');
-    let searchArray = array.filter(item => 
-        item['title'].toLowerCase().includes(inputSearch.value.toLowerCase()) || 
+    let searchArray = array.filter(item =>
+        item['title'].toLowerCase().includes(inputSearch.value.toLowerCase()) ||
         item['description'].toLowerCase().includes(inputSearch.value.toLowerCase())
     );
-    if (inputSearch.value.length == 0) {
+    searchStart(inputSearch, searchArray);
+}
+
+function searchStart(inputSearch, searchArray) {
+    if (searchArray == '') {
+        document.getElementById('emptySearchOn').classList.remove('d_none');
+    } else if (inputSearch.value.length < 3 && inputSearch.value == 0) {
+        document.getElementById('emptySearchOn').classList.add('d_none');
         array = [];
         load();
-    } else if((inputSearch.value.length > 2)) {
+    } else if ((inputSearch.value.length > 2)) {
+        document.getElementById('emptySearchOn').classList.add('d_none');
         array = searchArray;
         taskAdd();
     }
+}
+function highlight(id) {
+    document.getElementById(id).classList.add('drag-area-highlight');
+    
+}
+function removeHighlight(id) {
+    document.getElementById(id).classList.remove('drag-area-highlight');    
 }

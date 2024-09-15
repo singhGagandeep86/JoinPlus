@@ -27,7 +27,7 @@
 .bgInfo_user {
     background-color: #0838FF;
     width: 164px;
-    height:36px;
+    height: 36px;
     font-size: 23px;
     border-radius: 8px;
     color: white;
@@ -235,26 +235,37 @@
     width: calc(1208px - 64px);
     height: 688px;
     gap: 30px;
+    
+   
 }
 
 .dragAndDropBoardArea {
     display: flex;
     flex-direction: column;
+    position: relative;
     width: 252px;
     height: 100%;
     gap: 16px;
+    overflow:auto;    
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    
+   
 }
 
-.emptyBoardArea {
+.dragAndDropBoardArea::-webkit-scrollbar {   
+    display: none;
+} 
+
+.taskInfo {    
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 252px;
-    height: 48px;
-    border-radius: 10px;
-    background-color: #E7E7E7;
-    border: 1px dashed black;
+    flex-direction: column;
+    gap: 20px;
+    width: 220px;
+    max-height: 231px;   
 }
+
+
 
 .task {
     display: flex;
@@ -266,20 +277,25 @@
     padding: 16px;
     cursor: pointer;
     gap: 10px;
+    
 }
 
 .drag {
     transform: rotate(5deg);
-    margin-bottom: 10px;
+    scale:0.9;
+    margin-bottom: 10px;    
+}
+.emptyBoardArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 252px;
+    height: 48px;
+    border-radius: 10px;
+    background-color: #E7E7E7;
+    border: 1px dashed black;
 }
 
-.taskInfo {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 220px;
-    max-height: 231px;
-}
 
 .taskTitle {
     display: flex;
@@ -345,7 +361,7 @@
     position: absolute;
 }
 
-.box span{
+.box span {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -392,7 +408,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
 }
 
 .boxInfogreen {
@@ -404,7 +420,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
 }
 
 .boxInfoyellow {
@@ -419,11 +435,11 @@
     font-size: 12px;
 }
 
-.boxinfo span:nth-of-type(1){
+.boxinfo span:nth-of-type(1) {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 12px;
     width: 42px;
-    height: 42px;    
+    height: 42px;
 }

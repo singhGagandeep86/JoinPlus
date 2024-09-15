@@ -64,6 +64,7 @@
                                     src="../img/add.png" alt=""></div>
                         </div>
                     </div>
+                    <p id="emptySearchOn" class="emptySearch d_none">No task found</p>
                     <div class="headlineDragMain">
                         <div class="headlineDrag"><span>To do</span><img onclick="openPopUpTask('todo')"
                                 src="../img/plusbutton.png" alt=""></div>
@@ -76,13 +77,16 @@
                     </div>
                 </div>
                 <div class="dragAndDropBoard">
-                    <div class="dragAndDropBoardArea" id="toDo" ondragover="allowDrop(event)" ondrop="moveTo('toDo')">
+                    <div class="dragAndDropBoardArea" id="toDo" ondragover="allowDrop(event);highlight(id)" ondrop="moveTo('toDo');removeHighlight('toDo')"
+                    ondragleave="removeHighlight('toDo')">
                     </div>
-                    <div class="dragAndDropBoardArea" id="progress" ondragover="allowDrop(event)"
-                        ondrop="moveTo('progress')"></div>
-                    <div class="dragAndDropBoardArea" id="await" ondragover="allowDrop(event)" ondrop="moveTo('await')">
+                    <div class="dragAndDropBoardArea" id="progress" ondragover="allowDrop(event);highlight(id)"
+                        ondrop="moveTo('progress');removeHighlight('progress')" ondragleave="removeHighlight('progress')"></div>
+                    <div class="dragAndDropBoardArea" id="await" ondragover="allowDrop(event);highlight(id)" ondrop="moveTo('await');removeHighlight('await')"
+                    ondragleave="removeHighlight('await')">
                     </div>
-                    <div class="dragAndDropBoardArea" id="done" ondragover="allowDrop(event)" ondrop="moveTo('done');">
+                    <div class="dragAndDropBoardArea" id="done" ondragover="allowDrop(event);highlight(id)" ondrop="moveTo('done');removeHighlight('done')"
+                    ondragleave="removeHighlight('done')">
                     </div>
                 </div>
             </div>
@@ -91,7 +95,7 @@
 
     <div id="popupTaskMain" class="popupArea d_none" onclick="closePopUpTask() "></div>
     <div id="popupTaskInfo" class="popupArea2 d_none " onclick="closePopUpTaskSmall()"></div>
-    
+
     <script src="/script.js"></script>
     <script src="../js/board.js"></script>
     <script src="../js/boardTemplate.js"></script>

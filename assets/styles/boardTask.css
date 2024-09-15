@@ -575,3 +575,19 @@ content: url("../img/delethovertask.png");
     background-color:#efeeee ;
     border-radius: 8px;
 }
+.emptySearch{
+    display: flex;
+    justify-content: center;  
+    position: relative; 
+    top:-20px;
+    padding-left: 200px;
+    width:100%;
+    
+    font-size: 20px;
+    color: #FF3D00;
+}
+
+.drag-area-highlight{
+    border: 1px black dashed;
+    border-radius: 10px;
+}
