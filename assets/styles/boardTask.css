@@ -534,8 +534,7 @@ progress::-moz-progress-bar {
 
 .editInfo {  
     display: flex;
-    justify-content: end; 
-     
+    justify-content: end;     
     width: 445px;
     height: 24px;
 }
@@ -548,6 +547,7 @@ progress::-moz-progress-bar {
     width: 159px;
     height: 24px;
     gap: 8px;
+    
 }
 
 .editInfoData div{
@@ -555,6 +555,7 @@ progress::-moz-progress-bar {
     align-items: center;
     height: 24px;
     cursor: pointer;
+    transition: 125ms ease-in-out;
 }
 
 .deletePic:hover{
