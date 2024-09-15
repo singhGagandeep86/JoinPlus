@@ -1,4 +1,4 @@
 document.getElementById('burgerToggle').addEventListener('click', function() {
     const menu = document.getElementById('burgerMenu');
-    menu.classList.toggle('active');
+    menu.classList.toggle('open');
 });
