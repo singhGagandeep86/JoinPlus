@@ -4,6 +4,7 @@ let base_Url = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.ap
 let names = [];
 let namesInitials = [];
 let colours = [];
+let array = [];
 
 function init() {
   fetchUrl();
@@ -20,19 +21,23 @@ async function fetchUrl() {
 
 function contactsData(firebase) {
   let contactsLength = Object.values(firebase);
+
   let objLngth = contactsLength.length;
   let contact = document.getElementById("checkboxes");
   for (let i = 0; i < objLngth; i++) {
     const eachName = contactsLength[i].name;
-    let colour = contactsLength[i].color;
+    array.push(contactsLength[i]);
+    let colour = array[i].color;
     const sanitizedEachName = eachName.replace(/\s+/g, '_');
-    const nameArray = eachName.split(' ');
-    const firstName = nameArray[0].toUpperCase();
-    const lastName = nameArray[1].toUpperCase();
+    const firstName = array[i].name.split(' ')[0].toUpperCase();
+    const lastName = array[i].name.split(' ')[1].toUpperCase();
     const firstNameStart = firstName[0];
     const lastNameStart = lastName[0];
-    contact.innerHTML += `<label for="${sanitizedEachName}"><div class="namesInitials" style="background-color:${colour}">${firstNameStart}${lastNameStart}</div>
-    ${eachName}<span class="checkmark"></span><input type="checkbox" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}')"></label>`;
+    contact.innerHTML += `<label class="labelInfo" for="${sanitizedEachName}">
+    <input type="checkbox" class="checkboxDesign" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}')">
+    <div class="namesInitials" style="background-color:${colour}">${firstNameStart}${lastNameStart}</div>
+    ${eachName}<span class="checkmark"></span>
+    </label>`;
   }
 }
 
@@ -52,6 +57,7 @@ function selectionContact(name, colour) {
     const currentName = names.indexOf(name);
     names.splice(currentName, 1);
     namesInitials.splice(currentName, 1);
+    colours.splice(currentName, 1);
   }
   let SelectedContactsBoard = document.getElementById('selCntcts');
   SelectedContactsBoard.innerHTML = '';
@@ -199,9 +205,11 @@ let expanded = false;
 function showCheckBoxes() {
   const checkboxes = document.getElementById("checkboxes");
   if (!expanded) {
+    document.getElementById('arrow').style.transform = "rotate(-180deg)";
     checkboxes.style.display = "block";
     expanded = true;
   } else {
+    document.getElementById('arrow').style.transform = "rotate(0deg)";
     checkboxes.style.display = "none";
     expanded = false;
   }
@@ -217,6 +225,9 @@ function resetAll() {
   document.getElementById('btnLow').innerHTML = ` <div>Low <img src="/assets/img/prioLow.svg"></div>`;
   document.getElementById('btnLow').classList.remove("btnLow");
   document.querySelector('.select-selected').innerText = `Select task category`;
+  document.getElementById('checkboxes').style.display = "none";
+  expanded = false;
+  document.getElementById('arrow').style.transform = "rotate(0deg)";
   document.getElementById('subTsksBoard').innerHTML = '';
   document.getElementById('selCntcts').innerHTML = '';
   names = [];

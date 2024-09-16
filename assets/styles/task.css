@@ -142,39 +142,44 @@ label {
 
 .assignCntcts {
     position: fixed;
-    width: 440px;
-    height: 80px;
     gap: 8px;
     display: flex;
     flex-direction: column;
-    font-size: 20px;
-    font-weight: 400;
     line-height: 24px;
-    text-align: left;
     margin-top: 296px;
 }
 
 .assignment {
     position: relative;
     color: #080808;
-    padding: 8px 16px;
-    border: none;
     cursor: pointer;
-    user-select: none;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 440px;
     height: 48px;
     background: #FFFFFF;
     padding: 6px 24px 8px 16px;
-    gap: 0px;
     border-radius: 10px;
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
     text-align: left;
-    appearance: none;
     cursor: pointer;
     border: 1px solid #D1D1D1;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    right: 32px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #000;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
 }
 
 .assignment:hover {
@@ -640,12 +645,10 @@ li:hover {
     cursor: pointer;
 }
 
-label input {
+label input[type="checkbox"] {
     position: absolute;
     opacity: 0;
     cursor: pointer;
-    height: 0;
-    width: 0;
 }
 
 .checkmark {
@@ -654,10 +657,47 @@ label input {
     border-radius: 7px;
     border: 2px solid #2A3647;
     cursor: pointer;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
 }
 
-input:checked + .checkmark {
-    background-color: #2196F3;
+.checkmark:hover {
+    background-color:#fff;
+}
+
+label input:checked + .checkmark {
+    background-color: #29ABE2;
+    border-color: #29ABE2;
+}
+
+.checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 8px;
+    top: 4px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+label input:checked + .checkmark::after {
+    display: block;
+}
+
+/* Style des Labels für besseren Abstand und Ausrichtung */
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.custom-checkbox span {
+    margin-right: 8px; /* Abstand zwischen Checkbox und Text */
 }
 
 .showSel {
