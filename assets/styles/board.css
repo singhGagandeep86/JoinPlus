@@ -279,10 +279,8 @@
     height: 32px;
     display: flex;
     position: relative;
+    font-size: 12px;
 }
-
-
-
 
 .box span {
     display: flex;
@@ -291,8 +289,6 @@
     height: 32px;
     font-size: 12px;
 }
-
-
 
 .boxinfo{
     display: flex;

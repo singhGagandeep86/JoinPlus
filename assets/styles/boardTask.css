@@ -273,8 +273,7 @@
     top: 39%;
     left: 11%;
     transform: translateY(-40%);
-    animation: taskAnimation 125ms ease-in-out;
-    animation: taskCloseAnimation 125ms ease-in-out;
+    animation: taskAnimation taskCloseAnimation 125ms ease-in-out;
     z-index: 99;
 }
 
@@ -289,11 +288,13 @@
         left: calc(10%);
     }
 }
+
 @keyframes taskCloseAnimation {
     0% {
         transform: translateY(-40%);
         left: calc(10%);
     }
+
     100% {
         transform: translateY(-40%);
         left: 100%;
@@ -501,17 +502,13 @@ progress::-moz-progress-bar {
 }
 
 .checkboxDesign+span {
-    display: inline-block;
     content: url("../img/CheckbuttonEmpty.png");
-    position: relative;
     cursor: pointer;
-    vertical-align: middle;
-    text-align: center;
-
 }
 
 .checkboxDesign:checked+span {
     content: url("../img/Checkbutton.png");
+    cursor: pointer;
 }
 
 .subtastTitle label>p {
@@ -542,25 +539,25 @@ progress::-moz-progress-bar {
 
 }
 
-.editInfo {  
+.editInfo {
     display: flex;
-    justify-content: end;     
+    justify-content: end;
     width: 445px;
     height: 24px;
 }
 
 
-.editInfoData{
+.editInfoData {
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     width: 159px;
     height: 24px;
     gap: 8px;
-    
+
 }
 
-.editInfoData div{
+.editInfoData div {
     display: flex;
     align-items: center;
     height: 24px;
@@ -568,10 +565,11 @@ progress::-moz-progress-bar {
     transition: 125ms ease-in-out;
 }
 
-.deletePic:hover{
-content: url("../img/delethovertask.png");
+.deletePic:hover {
+    content: url("../img/delethovertask.png");
 }
-.editPic:hover{
+
+.editPic:hover {
     content: url("../img/edithovertask.png");
 }
 
@@ -582,23 +580,24 @@ content: url("../img/delethovertask.png");
     display: flex;
 }
 
-.labelInfo:hover:hover{
-    background-color:#efeeee ;
+.labelInfo:hover:hover {
+    background-color: #efeeee;
     border-radius: 8px;
 }
-.emptySearch{
+
+.emptySearch {
     display: flex;
-    justify-content: center;  
-    position: relative; 
-    top:-20px;
+    justify-content: center;
+    position: relative;
+    top: -20px;
     padding-left: 200px;
-    width:100%;
-    
+    width: 100%;
+
     font-size: 20px;
     color: #FF3D00;
 }
 
-.drag-area-highlight{
+.drag-area-highlight {
     border: 1px black dashed;
     border-radius: 10px;
 }

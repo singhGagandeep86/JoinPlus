@@ -35,7 +35,7 @@ function contactsData(firebase) {
     const lastNameStart = lastName[0];
     contact.innerHTML += `<label class="labelInfo" for="${sanitizedEachName}">
     <input type="checkbox" class="checkboxDesign" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}')">
-    <div class="namesInitials" style="background-color:${colour}">${firstNameStart}${lastNameStart}</div>
+    <div class="namesInitials b-${colour}" >${firstNameStart}${lastNameStart}</div>
     ${eachName}<span class="checkmark"></span>
     </label>`;
   }

@@ -61,4 +61,8 @@
         margin-top: 0;
        
     }
+    .content{
+        padding-left: 64px;
+        padding-right: 0px;
+    }
 }

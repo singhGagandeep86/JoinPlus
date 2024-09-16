@@ -588,6 +588,11 @@ ul.a {
     width: 98%;
     border-radius: 10px;
     list-style-position: inside;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+ul.a::-webkit-scrollbar {   
+    display: none;
 }
 
 li {
