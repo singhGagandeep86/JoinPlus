@@ -61,3 +61,172 @@
 .b-neonorange {
     background-color: #FFBB2B;
 }
+
+.bg_user {
+    background-color: #0838FF;
+    width: 113px;
+    height: 27px;
+    font-size: 16px;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg_tech {
+    display: flex;
+    align-items: center;
+    background-color: #1ed7c1;
+    width: 144px;
+    height: 27px;
+    font-size: 16px;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bgInfo_user {
+    background-color: #0838FF;
+    width: 164px;
+    height: 36px;
+    font-size: 23px;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bgInfo_tech {
+    display: flex;
+    align-items: center;
+    background-color: #1ed7c1;
+    width: 208px;
+    height: 36px;
+    font-size: 23px;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg_low {
+    background-image: url("../img/Prioritylow.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 32px;
+    height: 32px;
+}
+
+.bg_medium {
+    background-image: url("../img/Prioritymiddel.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 32px;
+    height: 32px;
+}
+
+.bg_urgent {
+    background-image: url("../img/Priorityhigh.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 32px;
+    height: 32px;
+}
+
+.box0 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 0px;
+    top: 0;
+    z-index: 1;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.box1 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 26px;
+    top: 0;
+    z-index: 2;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.box2 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 53px;
+    top: 0;
+    z-index: 3;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.box3 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 79px;
+    top: 0;
+    z-index: 4;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.box4 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 105px;
+    top: 0;
+    z-index: 5;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.box5 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 131px;
+    top: 0;
+    z-index: 6;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.box6 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 157px;
+    top: 0;
+    z-index: 7;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
