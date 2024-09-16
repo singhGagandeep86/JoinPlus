@@ -16,7 +16,6 @@ async function loadData(path){
         for (let i = 0; i < contactsArray.length; i++) {
             array.push(contactsArray[i]);
         }
-        // displayContacts();
     }
 }
 
@@ -37,10 +36,8 @@ function loadContact() {
     for (let i = 0; i < array.length; i++) {
         let contactName = array[i].name;
         let initials = extrahiereInitialen(contactName)
-        
-       contactSpace.innerHTML +=loadContactData(i, initials);
+        contactSpace.innerHTML += loadContactData(i, initials);
     }
-    
 }
 
 function extrahiereInitialen(contactName) {

@@ -80,11 +80,10 @@
     border-radius: 10px;
 }
 
- .avatar {
+.avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    /* background-color: #ff9800; */
     color: white;
     display: flex;
     justify-content: center;
@@ -92,6 +91,7 @@
     font-weight: bold;
     margin-right: 10px;
 }
+
 .avatar span{
     color: black;
     width: 40px;
@@ -101,7 +101,6 @@
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    
 }
 
 .contact-item .details {
