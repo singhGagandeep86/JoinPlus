@@ -135,7 +135,7 @@ function done() {
     if (done.length == 0) {
         document.getElementById('done').innerHTML = templateTaskEmptyDone();
     } else {
-        document.getElementById('done').innerHTML = '';        
+        document.getElementById('done').innerHTML = '';
         for (let index = 0; index < done.length; index++) {
             let element = done[index];
             let contacts = element.contactcolor ? Object.values(done[index].contactcolor) : null;
@@ -205,7 +205,7 @@ function loadContactTask(element, contacts, contactName) {
         for (let i = 0; i < color.length; i++) {
             let colors = color[i];
             let initials = extrahiereInitialen(contactName[i]);
-            taskContact.innerHTML += templateContact(colors, initials);
+            taskContact.innerHTML += templateContact(colors, initials, i);
         }
     }
 }
@@ -360,8 +360,8 @@ function searchStart(inputSearch, searchArray) {
 }
 function highlight(id) {
     document.getElementById(id).classList.add('drag-area-highlight');
-    
+
 }
 function removeHighlight(id) {
-    document.getElementById(id).classList.remove('drag-area-highlight');    
+    document.getElementById(id).classList.remove('drag-area-highlight');
 }

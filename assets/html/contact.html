@@ -8,17 +8,11 @@
     <link rel="stylesheet" href="../styles/fonts.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="../styles/contact.css">
+    <link rel="stylesheet" href="../styles/joincolor.css">
     <title>Contact</title>
 </head>
 
-<body>
-    <div class="burger-menu" id="burgerMenu">
-        <div class="burger-content">
-            <h2>Legal Notice</h2>
-            <h2>Privacy Policy</h2>
-            <h2>Log Out</h2>
-        </div>
-    </div>
+<body onload="load()">
     <div class="overDisplay">
         <aside class="mainDesignAside">
             <img class="mainDesignAsideImg" src="../img/Join logo white.png" alt="">
@@ -37,9 +31,18 @@
         </aside>
 
         <div class="mainDesign">
-            <div class="header"><span>Kanban Projekt Management Tool</span>
-                <div class="headerContentRightSide"><img class="picHelp" src="../img/help.png">
-                    <img src="../img/sm.png">
+            <div class="header">
+                <span>Kanban Projekt Management Tool</span>
+                <div class="headerContentRightSide">
+                    <img class="picHelp" src="../img/help.png">
+                    <img class="picSm" id="burgerToggle" src="../img/sm.png">
+                    <div class="burger-menu" id="burgerMenu">
+                        <div class="burger-content">
+                            <h2>Legal Notice</h2>
+                            <h2>Privacy Policy</h2>
+                            <a href="/assets/html/login.html"><h2>Log Out</h2></a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -49,8 +52,8 @@
                         <button>Add new contact</button>
                         <img src="/assets/img/person_add.png">
                     </div>
-
-                    <div class="contact-group">
+                    <div id="contactArea"></div>
+                    <!-- <div class="contact-group">
                         <h2>A</h2>
                         <div class="contact-item orange" onclick="loadContactData('Anton Mayer', 'antom@gmail.com', '+49 1111 111 11 1')">
                             <div class="avatar">AM</div>
@@ -107,7 +110,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="overlay testshow" id="overlay">
                     <div class="popup">
@@ -160,6 +163,8 @@
     </div>
     <script src="/script.js"></script>
     <script src="/assets/js/contacttemplate.js"></script>
+    <script src="/assets/js/submenu.js"></script>
+    <script src="/assets/js/contact.js"></script>
 </body>
 
 </html>

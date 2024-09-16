@@ -259,7 +259,7 @@
     background-color: rgba(25, 25, 25, 0.55);
     position: absolute;
     top: 0;
-    z-index: 4;
+    z-index: 99;
 }
 
 .taskArea {
@@ -274,7 +274,8 @@
     left: 11%;
     transform: translateY(-40%);
     animation: taskAnimation 125ms ease-in-out;
-    z-index: 1;
+    animation: taskCloseAnimation 125ms ease-in-out;
+    z-index: 99;
 }
 
 @keyframes taskAnimation {
@@ -286,6 +287,16 @@
     100% {
         transform: translateY(-40%);
         left: calc(10%);
+    }
+}
+@keyframes taskCloseAnimation {
+    0% {
+        transform: translateY(-40%);
+        left: calc(10%);
+    }
+    100% {
+        transform: translateY(-40%);
+        left: 100%;
     }
 }
 
@@ -319,8 +330,6 @@
 }
 
 
-/* Small Task Info */
-
 .popupArea2 {
     display: flex;
     justify-content: center;
@@ -330,7 +339,7 @@
     background-color: rgba(25, 25, 25, 0.55);
     position: absolute;
     top: 0;
-    z-index: 4;
+    z-index: 99;
 }
 
 
@@ -343,6 +352,7 @@
     border-radius: 30px;
     background-color: white;
     padding: 48px 40px 48px 40px;
+    z-index: 99;
 }
 
 .infoTitle {

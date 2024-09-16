@@ -1,79 +1,3 @@
-.bg_user {
-    background-color: #0838FF;
-    width: 113px;
-    height: 27px;
-    font-size: 16px;
-    border-radius: 8px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bg_tech {
-    display: flex;
-    align-items: center;
-    background-color: #1ed7c1;
-    width: 144px;
-    height: 27px;
-    font-size: 16px;
-    border-radius: 8px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bgInfo_user {
-    background-color: #0838FF;
-    width: 164px;
-    height: 36px;
-    font-size: 23px;
-    border-radius: 8px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bgInfo_tech {
-    display: flex;
-    align-items: center;
-    background-color: #1ed7c1;
-    width: 208px;
-    height: 36px;
-    font-size: 23px;
-    border-radius: 8px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bg_low {
-    background-image: url("../img/Prioritylow.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 32px;
-    height: 32px;
-}
-
-.bg_medium {
-    background-image: url("../img/Prioritymiddel.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 32px;
-    height: 32px;
-}
-
-.bg_urgent {
-    background-image: url("../img/Priorityhigh.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 32px;
-    height: 32px;
-}
-
 .headlineBoard {
     display: flex;
     flex-direction: column;
@@ -351,15 +275,14 @@
 }
 
 .contact {
-    width: 80px;
+    min-width: 80px;
     height: 32px;
     display: flex;
     position: relative;
 }
 
-.box {
-    position: absolute;
-}
+
+
 
 .box span {
     display: flex;
@@ -369,70 +292,17 @@
     font-size: 12px;
 }
 
-.boxred {
-    width: 32px;
-    height: 32px;
-    left: 0px;
-    top: 0;
-    z-index: 1;
-    border-radius: 100%;
-    background-color: #FF4646;
-}
 
-.boxgreen {
-    width: 32px;
-    height: 32px;
-    left: 26px;
-    top: 0;
-    z-index: 2;
-    border-radius: 100%;
-    background-color: #C3FF2B;
-}
 
-.boxyellow {
-    width: 32px;
-    height: 32px;
-    left: 52px;
-    top: 0;
-    z-index: 3;
-    border-radius: 100%;
-    background-color: #FFE62B;
-}
-
-.boxInfored {
-    width: 42px;
-    height: 42px;
-    color: white;
-    border-radius: 100%;
-    background-color: #FF4646;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.boxInfogreen {
-    width: 42px;
-    height: 42px;
-    color: white;
-    border-radius: 100%;
-    background-color: #C3FF2B;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.boxInfoyellow {
-    width: 42px;
-    height: 42px;
-    color: white;
-    border-radius: 100%;
-    background-color: #FFE62B;
+.boxinfo{
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 12px;
+    width: 42px;
+    height: 42px;
+    color: white;
+    border-radius: 100%;
 }
 
 .boxinfo span:nth-of-type(1) {

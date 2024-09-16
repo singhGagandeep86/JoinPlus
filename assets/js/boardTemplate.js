@@ -128,12 +128,12 @@ function templateRange(subtask, checkedCount) {
     <span>${checkedCount}/${subtask} Subtasks</span></div>`
 }
 
-function templateContact(colors, initials) {
-    return ` <div class="box${colors} box"> <span>${initials}</span></div>`
+function templateContact(colors, initials, i) {
+    return ` <div class="b-${colors} box${i}"> <span>${initials}</span></div>`
 }
 
 function templateContactInfo(contactscolor, initials, contactName) {
-    return `<div class="contactArea"><div class="boxInfo${contactscolor} boxinfo">
+    return `<div class="contactArea"><div class="b-${contactscolor} boxinfo">
     <span>${initials}</span></div> <span class="contactName">${contactName}</span></div>`
 }
 
