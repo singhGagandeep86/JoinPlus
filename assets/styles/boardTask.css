@@ -274,7 +274,8 @@
     left: 11%;
     transform: translateY(-40%);
     animation: taskAnimation 125ms ease-in-out;
-    z-index: 1;
+    animation: taskCloseAnimation 125ms ease-in-out;
+    z-index: 99;
 }
 
 @keyframes taskAnimation {
@@ -286,6 +287,16 @@
     100% {
         transform: translateY(-40%);
         left: calc(10%);
+    }
+}
+@keyframes taskCloseAnimation {
+    0% {
+        transform: translateY(-40%);
+        left: calc(10%);
+    }
+    100% {
+        transform: translateY(-40%);
+        left: 100%;
     }
 }
 
