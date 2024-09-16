@@ -1,7 +1,3 @@
-.b-orange {
-    background-color:  #FF7A00;
-}
-
 .b-purple {
     background-color: #9327FF;
 }
@@ -47,6 +43,10 @@
 }
 
 .b-rot {
+    background-color: #FF7A00;
+}
+
+.b-rot2 {
     background-color: #FF4646;
 }
 

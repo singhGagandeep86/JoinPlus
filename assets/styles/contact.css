@@ -93,7 +93,7 @@
 }
 
 .avatar span{
-    color: black;
+    color: white;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -120,38 +120,6 @@
     font-size: 16px;
     font-weight: 400;
 }
-
-/* .contact-item.orange .avatar {
-    background-color: #FF7A00;
-}
-
-.contact-item.purple .avatar {
-    background-color: #9327FF;
-}
-
-.contact-item.blue .avatar {
-    background-color: #6E52FF;
-}
-
-.contact-item.pink .avatar {
-    background-color: #FC71FF;
-}
-
-.contact-item.yellow .avatar {
-    background-color: #FFBB2B;
-}
-
-.contact-item.green .avatar {
-    background-color: #1FD7C1;
-}
-
-.contact-item.darkblue .avatar {
-    background-color: #462F8A;
-}
-
-.contact-item.red .avatar {
-    background-color: #FF4646;
-} */
 
 .contact-container-right {
     margin-top: 70px;
