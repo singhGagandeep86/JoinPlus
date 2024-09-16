@@ -50,3 +50,4 @@ function extrahiereInitialen(contactName) {
         return initials;
     }
 }
+
