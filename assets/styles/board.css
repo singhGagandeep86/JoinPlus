@@ -1,3 +1,6 @@
+html{
+    scroll-behavior: smooth;
+}
 .headlineBoard {
     display: flex;
     flex-direction: column;
@@ -124,13 +127,7 @@
     display: flex;
 }
 
-.headlineDragMain {
-    max-width: 1208px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    gap: 35px;
-}
+
 
 .headlineDrag {
     width: 244px;
@@ -138,6 +135,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 10px;
+
 }
 
 .headlineDrag img {
@@ -158,9 +157,7 @@
     display: flex;
     width: calc(1208px - 64px);
     height: 688px;
-    gap: 30px;
-    
-   
+    gap: 30px;   
 }
 
 .dragAndDropBoardArea {

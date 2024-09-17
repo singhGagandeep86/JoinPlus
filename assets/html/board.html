@@ -67,28 +67,35 @@
                         </div>
                     </div>
                     <p id="emptySearchOn" class="emptySearch d_none">No task found</p>
-                    <div class="headlineDragMain">
+                </div>
+                <div class="dragAndDropBoard">
+                    <div class="taskAreaMobile">
                         <div class="headlineDrag"><span>To do</span><img onclick="openPopUpTask('todo')"
                                 src="../img/plusbutton.png" alt=""></div>
+                        <div class="dragAndDropBoardArea" id="toDo" ondragover="allowDrop(event);highlight(id)"
+                            ondrop="moveTo('toDo');removeHighlight('toDo')" ondragleave="removeHighlight('toDo')">
+                        </div>
+                    </div>
+                    <div class="taskAreaMobile">
                         <div class="headlineDrag"><span>In progress</span><img onclick="openPopUpTask('progress')"
                                 src="../img/plusbutton.png" alt=""></div>
+                        <div class="dragAndDropBoardArea" id="progress" ondragover="allowDrop(event);highlight(id)"
+                            ondrop="moveTo('progress');removeHighlight('progress')"
+                            ondragleave="removeHighlight('progress')"></div>
+                    </div>
+                    <div class="taskAreaMobile">
                         <div class="headlineDrag"><span>Await feedback</span>
                             <img onclick="openPopUpTask('await')" src="../img/plusbutton.png">
                         </div>
+                        <div class="dragAndDropBoardArea" id="await" ondragover="allowDrop(event);highlight(id)"
+                            ondrop="moveTo('await');removeHighlight('await')" ondragleave="removeHighlight('await')">
+                        </div>
+                    </div>
+                    <div class="taskAreaMobile">
                         <div class="headlineDrag"><span>Done</span></div>
-                    </div>
-                </div>
-                <div class="dragAndDropBoard">
-                    <div class="dragAndDropBoardArea" id="toDo" ondragover="allowDrop(event);highlight(id)" ondrop="moveTo('toDo');removeHighlight('toDo')"
-                    ondragleave="removeHighlight('toDo')">
-                    </div>
-                    <div class="dragAndDropBoardArea" id="progress" ondragover="allowDrop(event);highlight(id)"
-                        ondrop="moveTo('progress');removeHighlight('progress')" ondragleave="removeHighlight('progress')"></div>
-                    <div class="dragAndDropBoardArea" id="await" ondragover="allowDrop(event);highlight(id)" ondrop="moveTo('await');removeHighlight('await')"
-                    ondragleave="removeHighlight('await')">
-                    </div>
-                    <div class="dragAndDropBoardArea" id="done" ondragover="allowDrop(event);highlight(id)" ondrop="moveTo('done');removeHighlight('done')"
-                    ondragleave="removeHighlight('done')">
+                        <div class="dragAndDropBoardArea" id="done" ondragover="allowDrop(event);highlight(id)"
+                            ondrop="moveTo('done');removeHighlight('done')" ondragleave="removeHighlight('done')">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,7 +108,7 @@
     <script src="/script.js"></script>
     <script src="../js/board.js"></script>
     <script src="../js/boardTemplate.js"></script>
-    <script src="../js/task.js"></script>
+    <!-- <script src="../js/task.js"></script> -->
     <script src="/assets/js/submenu.js"></script>
 </body>
 

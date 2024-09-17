@@ -494,6 +494,7 @@ progress::-moz-progress-bar {
     display: flex;
     align-items: center;
     padding-left: 16px;
+    
 }
 
 
@@ -509,7 +510,10 @@ progress::-moz-progress-bar {
 .checkboxDesign:checked+span {
     content: url("../img/Checkbutton.png");
     cursor: pointer;
+   
 }
+
+
 
 .subtastTitle label>p {
     margin-left: 16px;
