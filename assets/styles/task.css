@@ -7,15 +7,13 @@ body {
 }
 
 .content {
-    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 form {
-    position: relative;
-    width: 1440px;
-    height: 1024px;
-    gap: 0px;
-    opacity: 0px;
+    gap: 48.5px;
     display: flex;
     margin-left: 36px;
     margin-top: 82px;
@@ -24,37 +22,28 @@ form {
 .heading {
     font-size: 61px;
     font-weight: 700;
+    width: 100%;
     margin-top: 86px;
     margin-left: 36px;
 }
 
 .leftSubmition {
-    position: absolute;
     display: flex;
     flex-direction: column;
     gap: 16px;
     width: 440px;
-    height: 376px;
-    gap: 16px;
 }
 
 .partition {
-    position: fixed;
     width: 0px;
     height: 424px;
-    top: 327px;
-    left: 816.25px;
     border: 1px solid #D1D1D1;
 }
 
 .rightSubmition {
-    position: absolute;
     display: flex;
     flex-direction: column;
     width: 440px;
-    height: 416px;
-    margin-left: 644.25px;
-    ;
     gap: 16px;
 }
 
@@ -89,7 +78,6 @@ label {
     width: 440px;
     height: 96px;
     gap: 8px;
-    position: fixed;
     display: flex;
     flex-direction: column;
 }
@@ -98,9 +86,7 @@ label {
     width: 440px;
     height: 48px;
     padding: 12px 21px 12px 21px;
-    gap: 10px;
     border-radius: 10px;
-    opacity: 0px;
     background: #FFFFFF;
     border: 1px solid #D1D1D1;
     font-size: 20px;
@@ -110,12 +96,10 @@ label {
 }
 
 .description {
-    position: fixed;
     display: flex;
     flex-direction: column;
     width: 440px;
     height: 168px;
-    margin-top: 112px;
     gap: 8px;
 }
 
@@ -141,12 +125,10 @@ label {
 }
 
 .assignCntcts {
-    position: fixed;
     gap: 8px;
     display: flex;
     flex-direction: column;
     line-height: 24px;
-    margin-top: 296px;
 }
 
 .assignment {
@@ -171,15 +153,14 @@ label {
 
 .arrow {
     position: absolute;
-    top: 50%;
-    right: 32px;
-    width: 0;
-    height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid #000;
-    transform: translateY(-50%);
+    right: 20px;
     transition: transform 0.3s ease;
+}
+
+.arrow:hover {
+    background-color: #d1d1d1;
+    border-radius: 50%;
+    padding: 0.01px;
 }
 
 .assignment:hover {
@@ -215,7 +196,7 @@ label {
     position: absolute;
     height: 232px;
     overflow: scroll;
-    width: 100%;
+    width: 440px;
     margin-top: 80px;
 }
 
@@ -248,72 +229,8 @@ label {
     margin-top: 232px;
 }
 
-.assign select {
-    display: none;
-}
-
-.select-selected {
-    color: #080808;
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-    user-select: none;
-    justify-content: space-between;
-    width: 440px;
-    height: 48px;
-    background: #FFFFFF;
-    padding: 10px 24px 8px 16px;
-    gap: 0px;
-    border-radius: 10px;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: left;
-    appearance: none;
-    cursor: pointer;
-    border: 1px solid #D1D1D1;
-}
-
-
-.select-selected:hover {
-    cursor: pointer;
-    box-shadow: 0px -1px 0px 0px #00000040;
-}
-
-/*style the arrow inside the select element:*/
-.select-selected:after {
-    position: absolute;
-    content: "";
-    justify-content: space-between;
-    background: #FFFFFF;
-    gap: 0px;
-    margin-top: 4px;
-    right: 30px;
-    border: 1px solid;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: left;
-    border: 6px solid transparent;
-    border-color: transparent transparent #080808 transparent;
-}
-
-.select-selected.select-arrow-active:after {
-    border-color: #080808 transparent transparent transparent;
-    margin-top: 14px;
-}
-
-/*style the items (options), including the selected item:*/
-.select-items div {
-    padding: 8px 16px;
-    cursor: pointer;
-    user-select: none;
-    border-radius: 10px;
-    text-align: left;
-}
-
 /*style items (options):*/
-.select-items {
+.selectItems {
     position: absolute;
     background-color: #FFFFFF;
     top: 100%;
@@ -324,15 +241,22 @@ label {
     border-radius: 10px;
 }
 
-/*hide the items when the select box is closed:*/
-.select-hide {
-    display: none;
-    background-image: none;
+/*style the items (options), including the selected item:*/
+.selectItems div {
+    padding: 8px 16px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 10px;
+    text-align: left;
 }
 
-.select-items div:hover,
-.same-as-selected {
+.selectItems div:hover {
     background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.selectHide {
+    display: none;
 }
 
 .dueDate {
@@ -395,20 +319,13 @@ label {
     width: 440px;
     height: 48px;
     padding: 12px 16px 12px 16px;
-    gap: 0px;
     border-radius: 10px;
     border: 1px solid #D1D1D1;
-    justify-content: space-between;
     background: #FFFFFF;
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
     text-align: left;
-    background-position: right bottom;
-    background-repeat: no-repeat;
-    background-size: 2ex;
-    background-origin: content-box;
-    background-image: url("http://127.0.0.1:5500/assets/img/subTaskIcon.svg");
 }
 
 .inputWrapper {
@@ -433,9 +350,21 @@ label {
     border-right: 1px solid #D1D1D1
 }
 
+.inputIcon:hover {
+    background-color: #d1d1d1;
+    border-radius: 50%;
+    padding: 0.01px;
+}
+
 .inputIcon2 {
     height: 22px;
     cursor: pointer;
+}
+
+.inputIcon2:hover {
+    background-color: #d1d1d1;
+    border-radius: 50%;
+    padding: 0.01px;
 }
 
 .priobtn {
@@ -491,16 +420,15 @@ label {
     font-weight: 400;
     text-align: right;
     display: flex;
-    margin-top: 554px;
+    align-items: end;
+    margin-left: 36px;
 }
 
 
 .submitionButtons {
-    position: fixed;
     width: 309px;
     height: 56px;
-    top: 889px;
-    left: 995.25px;
+    margin-left: 470.25px;
     gap: 16px;
     display: flex;
 }
@@ -571,36 +499,65 @@ label {
     content: url("../img/IconsTask.png");
 }
 
+.tsksGen {
+    position: absolute;
+    margin-left: 392px;
+}
+
+.tsksGen:hover {
+    cursor: pointer;
+    background-color: #d1d1d1;
+    border-radius: 50%;
+    padding: 0.01px;
+}
+
 .tsksBtns {
     position: absolute;
     display: flex;
     margin-top: 0px;
-    right: 10px;
+    margin-left: 384px;
     justify-content: center;
 }
 
 ul.a {
-    position: absolute;
-    margin-top: 418px;
-    padding-left: 10px;
     overflow: scroll;
     height: 98px;
     width: 98%;
     border-radius: 10px;
-    list-style-position: inside;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0.75em;
+    text-align: left;
 }
-ul.a::-webkit-scrollbar {   
-    display: none;
+
+.leftPart{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+
+.bullet-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bullet {
+    width: 8px;
+    height: 8px;
+    background-color: black;
+    border-radius: 50%;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
 }
 
 li {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 8px 18px;
     margin: 1px;
+    justify-content: space-between;
 }
 
 li:hover {
@@ -609,6 +566,7 @@ li:hover {
     width: 100%;
     border-radius: 10px;
 }
+
 
 .subTaskIcon {
     display: none;
@@ -669,10 +627,10 @@ label input[type="checkbox"] {
 }
 
 .checkmark:hover {
-    background-color:#fff;
+    background-color: #fff;
 }
 
-label input:checked + .checkmark {
+label input:checked+.checkmark {
     background-color: #29ABE2;
     border-color: #29ABE2;
 }
@@ -690,7 +648,7 @@ label input:checked + .checkmark {
     transform: rotate(45deg);
 }
 
-label input:checked + .checkmark::after {
+label input:checked+.checkmark::after {
     display: block;
 }
 
@@ -702,7 +660,8 @@ label input:checked + .checkmark::after {
 }
 
 .custom-checkbox span {
-    margin-right: 8px; /* Abstand zwischen Checkbox und Text */
+    margin-right: 8px;
+    /* Abstand zwischen Checkbox und Text */
 }
 
 .showSel {

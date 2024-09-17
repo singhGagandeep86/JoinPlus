@@ -8,7 +8,6 @@ let array = [];
 
 function init() {
   fetchUrl();
-  toggleDropdown();
 }
 
 async function fetchUrl() {
@@ -35,7 +34,7 @@ function contactsData(firebase) {
     const lastNameStart = lastName[0];
     contact.innerHTML += `<label class="labelInfo" for="${sanitizedEachName}">
     <input type="checkbox" class="checkboxDesign" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}')">
-    <div class="namesInitials b-${colour}" >${firstNameStart}${lastNameStart}</div>
+    <div class="namesInitials" style="background-color:${colour}">${firstNameStart}${lastNameStart}</div>
     ${eachName}<span class="checkmark"></span>
     </label>`;
   }
@@ -72,7 +71,7 @@ function selectionContact(name, colour) {
 
 function renderSubTask() {
   if (!document.getElementById('inputField')) {
-    document.getElementById('inputSubClass').innerHTML = ` <div class="smallHead">Subtasks</div>
+    document.getElementById('inputSubClass').innerHTML = `<div class="smallHead">Subtasks</div>
     <div class="inputWrapper">
     <input id="inputField" class="subtasksTxt" placeholder="Add  new subtask" type="text" onfocus="renderSubTask()">
     <div class="tsksBtns"><img class="inputIcon" src="/assets/img/subTaskCancel.svg" onclick="resetInput()"><img onclick="addList()" class="inputIcon2" src="/assets/img/subTaskEnter.svg"></div>
@@ -83,19 +82,21 @@ function renderSubTask() {
 
 function resetInput() {
   document.getElementById('inputField').value = '';
-  document.getElementById('inputSubClass').innerHTML = `  <div class="smallHead">Subtasks</div>
-  <input class="subtasksTxt" placeholder="Add new subtask" type="text" onfocus="renderSubTask()">`;
+  document.getElementById('inputSubClass').innerHTML = `<div class="smallHead">Subtasks</div>
+  <div  onclick="renderSubTask()"><input class="subtasksTxt" placeholder="Add new subtask" type="text"><img class="tsksGen" src="/assets/img/subTaskIcon.svg"></div>`;
 }
 
 function addList() {
   let subTaskInput = document.getElementById('inputField').value;
   let subTaskBoard = document.getElementById('subTsksBoard');
-  subTaskBoard.innerHTML += `<li onmouseover="hoverEffect(this)" onmouseleave="normalEffect(this)" ondblclick="editsubTask(this)">
-  ${subTaskInput} 
+  if (subTaskInput) {
+    subTaskBoard.innerHTML += `<li onmouseover="hoverEffect(this)" onmouseleave="normalEffect(this)" ondblclick="editsubTask(this)">
+  <div class="leftPart"><span class="bullet"></span>${subTaskInput}</div>
   <div class="btns subTaskIcon">
   <img onclick="editsubTask(this, '${subTaskInput}')" class="inputIcon" src="/assets/img/SubtasksEdit.svg">
   <img onclick="delsubTask(this)" class="deleteIcon" src="/assets/img/SubtasksDel.svg">
 </div></li>`;
+  }
   document.getElementById('inputField').value = '';
   document.getElementById('inputSubClass').innerHTML = `  <div class="smallHead">Subtasks</div>
   <input class="subtasksTxt" placeholder="Add new subtask" type="text" onfocus="renderSubTask()">`;
@@ -129,7 +130,7 @@ function delsubTask(element) {
 function newSubTask(element) {
   let parent = element.closest('li');
   let newValue = parent.querySelector('.subTaskInput').value;
-  parent.innerHTML = `${newValue} 
+  parent.innerHTML = ` <div class="leftPart"><span class="bullet"></span>${newValue}</div>
  <div class="btns subTaskIcon">
  <img onclick="editsubTask(this, '${newValue}')" class="inputIcon" src="/assets/img/SubtasksEdit.svg">
  <img onclick="delsubTask(this)" class="deleteIcon" src="/assets/img/SubtasksDel.svg">
@@ -164,44 +165,8 @@ function activateLow() {
 }
 
 
-// function for categoru drop down function
-function toggleDropdown() {
-  const selectedElement = document.querySelector('.select-selected');
-  const itemsContainer = document.querySelector('.select-items');
-
-  // Close the dropdown if clicked outside
-  document.addEventListener('click', function (e) {
-    if (!selectedElement.contains(e.target)) {
-      itemsContainer.classList.add('select-hide');
-      selectedElement.classList.remove('select-arrow-active');
-    }
-  });
-}
-
-function dropDown(element) {
-  const selectedElement = document.querySelector('.select-selected');
-  const itemsContainer = document.querySelector('.select-items');
-  const items = itemsContainer.querySelectorAll('div');
-
-  document.getElementById('slection').classList.toggle('select-hide');
-  element.classList.toggle('select-arrow-active');
-
-  // Handle item selection
-  items.forEach(item => {
-    item.addEventListener('click', function () {
-      selectedElement.innerText = this.innerText;
-      selectedElement.setAttribute('data-value', this.getAttribute('data-value'));
-      itemsContainer.classList.add('select-hide');
-      selectedElement.classList.remove('select-arrow-active');
-    });
-  });
-}
-// end of Dropdown
-
 //Drop down function for Assigned Contacts
-
 let expanded = false;
-
 function showCheckBoxes() {
   const checkboxes = document.getElementById("checkboxes");
   if (!expanded) {
@@ -215,6 +180,31 @@ function showCheckBoxes() {
   }
 }
 
+
+// Drop down function for category
+
+
+function showCategory() {
+  let subTaskexpanded = false;
+  const select = document.getElementById("slection");
+  document.getElementById('assignHeading').innerHTML = `Select task category <img class="arrow" id="arrowRight" src="../img/dropArrow.svg"> `;
+  if (!subTaskexpanded) {
+    document.getElementById('arrowRight').style.transform = "rotate(-180deg)";
+    select.classList.remove("selectHide");
+    subTaskexpanded = true;
+  } else {
+    document.getElementById('arrowRight').style.transform = "rotate(0deg)";
+    select.classList.add("selectHide");
+    subTaskexpanded = false;
+  }
+}
+
+
+function showSelection(element){
+  const select = element.innerHTML;
+ document.getElementById('assignHeading').innerHTML = `${select}<img class="arrow" id="arrowRight" src="../img/dropArrow.svg">`;
+ document.getElementById("slection").classList.add("selectHide");
+}
 
 // reseting all
 function resetAll() {
