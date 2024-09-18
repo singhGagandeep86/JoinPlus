@@ -75,6 +75,12 @@
     margin-bottom: 15px;
 }
 
+.conname {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .contact-item:hover {
     background-color: var(--item-hover-color);
     border-radius: 10px;
