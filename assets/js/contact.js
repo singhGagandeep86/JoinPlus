@@ -41,13 +41,35 @@ function loadContact() {
 }
 
 function extrahiereInitialen(contactName) {
-    for (let i = 0; i < contactName.length; i++) {
-        let nameParts = contactName.split(' ');
-        let initials = '';
-        for (let j = 0; j < nameParts.length; j++) {
-            initials += nameParts[j].charAt(0).toUpperCase();
-        }
-        return initials;
+    let nameParts = contactName.split(' ');
+    let initials = '';
+    for (let j = 0; j < nameParts.length; j++) {
+        initials += nameParts[j].charAt(0).toUpperCase();
     }
+    return initials;
+}
+
+function loadContactData(i, initials) {
+    return `<div class="contact-group">
+                <h2>${initials.charAt(0)}</h2>
+                <div class="contact-item" onclick="showContactDetails(${i})">
+                    <div class="avatar"><span class="b-${array[i].color}">${initials}</span></div>
+                    <div class="details">
+                        <div class="name">${array[i].name}</div>
+                        <div class="email">${array[i].email}</div>
+                    </div>
+                </div>
+            </div>`;
+}
+
+function showContactDetails(i) {
+    let contactDetails = document.getElementById('contactDetails');
+    contactDetails.innerHTML = `
+        <div class="contact-info">
+            <h2>${array[i].name}</h2>
+            <p>Email: ${array[i].email}</p>
+            <p>Phone: ${array[i].rufnummer || 'N/A'}</p>
+        </div>
+    `;
 }
 

@@ -15,18 +15,3 @@ document.getElementById('overlay').addEventListener('click', function(event) {
         document.getElementById('overlay').classList.remove('show');
     }
 });
-
-function loadContactData(i,initials) {
-    return ` <div class="contact-group">
-                <h2>A</h2>
-                <div class="contact-item">
-                    <div class="avatar"><span class="b-${array[i].color}">${initials}</span></div>
-                        <div class="details">
-                            <div class="name">${array[i].name}</div>
-                            <div class="email">${array[i].email}</div>
-                        </div>
-                </div>
-            </div>`;
-}
-
-
