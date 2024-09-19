@@ -103,24 +103,6 @@
     font-weight: bold;
 }
 
-.contact-item .details {
-    display: flex;
-    flex-direction: column;
-}
-
-.contact-item .details .name {
-    font-weight: bold;
-    margin-bottom: 3px;
-    font-size: 20px;
-    font-weight: 400;
-}
-
-.contact-item .details .email {
-    color: var(--details-font-color);
-    font-size: 16px;
-    font-weight: 400;
-}
-
 .contact-container-right {
     margin-top: 70px;
     margin-left: 40px;
@@ -144,9 +126,23 @@
     line-height: 32.4px;
 }
 
-.contactfinal {
+.contact-ellipse {
     display: flex;
     align-items: center;
+    gap: 54px;
+    margin-top: 20px;
+}
+
+.contact-mini {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contact-mini h1 {
+    font-size: 47px;
+    line-height: 56.4px;
+    font-weight: 500;
 }
 
 .contact-ellipse button {
@@ -163,11 +159,11 @@
 }
 
 .contact-info {
+    display: flex;
+    flex-direction: column;
     padding: 20px;
-    background-color: #f0f0f0;
+    gap: 22px;
     border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
 }
 
 .contact-info h2 {
@@ -176,9 +172,26 @@
 }
 
 .contact-info p {
-    font-size: 18px;
-    color: #555;
+    font-size: 16px;
+    line-height: 19.2px;
+    font-weight: 700;
+    color: #000000;
     margin: 5px 0;
+}
+
+.CI-info {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.editimage {
+    display: flex;
+    align-items: center;
+    gap: 13px;
 }
 
 .editimages:hover {
@@ -189,32 +202,25 @@
     content: url(/assets/img/Property\ 1=Variant1.png);
 }
 
-.CI-info {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: 400;
-    color: black;
+.contact-slide-in {
+    opacity: 0;
+    transform: translateX(-100%);
+    animation: slideIn 0.5s forwards ease;
 }
 
-.rest-info {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-.rest-info h5 {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 19.2px;
-}
-
-.rest-info h6 {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.2px;
+.changemycolor {
+    color: var(--details-font-color);
 }
 
 .overlay {
@@ -238,7 +244,7 @@
     overflow: hidden;
     animation-fill-mode: forwards;
     animation-timing-function: ease;
-    animation: ShowPopupAni 1.0s forwards;
+    animation: ShowPopupAni 0.1s forwards;
 }
 
 @keyframes ShowPopupAni {

@@ -65,11 +65,25 @@ function loadContactData(i, initials) {
 function showContactDetails(i) {
     let contactDetails = document.getElementById('contactDetails');
     contactDetails.innerHTML = `
+        <div class="contact-ellipse">
+            <button>AM</button>
+            <div class="contact-mini">
+                <h1>${array[i].name}</h1>
+                <div class="editimage">
+                    <img class="editimages" src="/assets/img/edit contacts.png">
+                    <img class="editimages2" src="/assets/img/Delete contact.png">
+                </div>
+            </div>
+        </div>
         <div class="contact-info">
-            <h2>${array[i].name}</h2>
-            <p>Email: ${array[i].email}</p>
-            <p>Phone: ${array[i].rufnummer || 'N/A'}</p>
+            <span class="CI-info">Contact Information</span>
+            <p><b>Email</b></p>
+            <div class="changemycolor">${array[i].email}</div>
+            <p><b>Phone</b></p>
+            ${array[i].rufnummer || ''}
         </div>
     `;
+
+    contactDetails.classList.add('contact-slide-in')
 }
 
