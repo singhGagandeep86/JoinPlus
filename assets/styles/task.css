@@ -202,9 +202,10 @@ label {
 
 #checkboxes label {
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0px;
+    margin-bottom: 3px;
     padding: 7px 16px;
     cursor: pointer;
     border-radius: 10px;
@@ -214,6 +215,31 @@ label {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+.checkboxDesign+span {
+    content: url("../img/CheckbuttonEmpty.png");
+    cursor: pointer;
+}
+
+.checkboxDesign:checked+span {
+    content: url("../img/Checkbutton.png");
+    cursor: pointer;
+}
+
+.namesInitials {
+    color: white;
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.checkboxDesign {
+    display: none;
+}
 
 .assign {
     position: fixed;
@@ -424,6 +450,10 @@ label {
     margin-left: 36px;
 }
 
+.info div:nth-of-type(1){
+    color: red;
+
+}
 
 .submitionButtons {
     width: 309px;
@@ -530,10 +560,10 @@ ul.a {
     text-align: left;
 }
 
-.leftPart{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+.leftPart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .bullet-container {
@@ -593,75 +623,6 @@ li:hover {
     display: flex;
     right: 0;
     bottom: 3px;
-}
-
-.namesInitials {
-    color: white;
-    border: 1px solid white;
-    background-color: #FF3D00;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-label input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.checkmark {
-    width: 24px;
-    height: 24px;
-    border-radius: 7px;
-    border: 2px solid #2A3647;
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-    vertical-align: middle;
-}
-
-.checkmark:hover {
-    background-color: #fff;
-}
-
-label input:checked+.checkmark {
-    background-color: #29ABE2;
-    border-color: #29ABE2;
-}
-
-.checkmark::after {
-    content: "";
-    position: absolute;
-    display: none;
-    left: 8px;
-    top: 4px;
-    width: 6px;
-    height: 12px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-label input:checked+.checkmark::after {
-    display: block;
-}
-
-/* Style des Labels für besseren Abstand und Ausrichtung */
-.custom-checkbox {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.custom-checkbox span {
-    margin-right: 8px;
-    /* Abstand zwischen Checkbox und Text */
 }
 
 .showSel {

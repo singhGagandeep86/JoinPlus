@@ -71,7 +71,7 @@
 
                         <div class="assignCntcts">
                             <label for="contacts">Assigned to</label>
-                            <div class="assignment" onclick="showCheckBoxes()">
+                            <div class="assignment" id="assign" onclick="showCheckBoxes()">
                                 Select contacts to assign
                                 <img class="arrow" id="arrow" src="../img/dropArrow.svg">
                             </div>
@@ -92,12 +92,9 @@
                         <div class="prio">
                             <div class="smallHead">Prio</div>
                             <div class="prioBtns">
-                                <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
-                                        src="/assets/img/prioUrgent.svg"></div>
-                                <div id="btnMed" onclick="activateMedium()" class="priobtn med">Medium <img
-                                        src="/assets/img/prioMedium.svg"></div>
-                                <div id="btnLow" onclick="activateLow()" class="priobtn low">Low <img
-                                        src="/assets/img/prioLow.svg"></div>
+                                <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img src="/assets/img/prioUrgent.svg"></div>
+                                <div id="btnMed" onclick="activateMedium()" class="priobtn med">Medium <img src="/assets/img/prioMedium.svg"></div>
+                                <div id="btnLow" onclick="activateLow()" class="priobtn low">Low <img src="/assets/img/prioLow.svg"></div>
                             </div>
                         </div>
 

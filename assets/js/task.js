@@ -1,5 +1,4 @@
 
-
 let base_Url = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
 let names = [];
 let namesInitials = [];
@@ -20,7 +19,6 @@ async function fetchUrl() {
 
 function contactsData(firebase) {
   let contactsLength = Object.values(firebase);
-
   let objLngth = contactsLength.length;
   let contact = document.getElementById("checkboxes");
   for (let i = 0; i < objLngth; i++) {
@@ -32,10 +30,10 @@ function contactsData(firebase) {
     const lastName = array[i].name.split(' ')[1].toUpperCase();
     const firstNameStart = firstName[0];
     const lastNameStart = lastName[0];
-    contact.innerHTML += `<label class="labelInfo" for="${sanitizedEachName}">
-    <input type="checkbox" class="checkboxDesign" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}')">
-    <div class="namesInitials" style="background-color:${colour}">${firstNameStart}${lastNameStart}</div>
-    ${eachName}<span class="checkmark"></span>
+    contact.innerHTML += `<label>
+    <input type="checkbox"class="checkboxDesign" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}')">
+    <span value="${sanitizedEachName}"></span>${eachName}
+    <div class="namesInitials b-${colour}">${firstNameStart}${lastNameStart}</div>
     </label>`;
   }
 }
@@ -43,6 +41,9 @@ function contactsData(firebase) {
 function selectionContact(name, colour) {
   const abc = document.getElementById(name);
   if (abc.checked == true) {
+    abc.parentElement.style.backgroundColor = "#2A3647";
+    abc.parentElement.style.color = "white";
+    abc.nextElementSibling.style.content = "url(../img/checkButtonSelected.svg)";
     names.push(name);
     const nameArray = name.split('_');
     const firstName = nameArray[0].toUpperCase();
@@ -53,6 +54,9 @@ function selectionContact(name, colour) {
     colours.push(colour);
   }
   else {
+    abc.parentElement.style.backgroundColor = "transparent";
+    abc.parentElement.style.color = "black";
+    abc.nextElementSibling.style.content = "url(../img/CheckbuttonEmpty.png)";
     const currentName = names.indexOf(name);
     names.splice(currentName, 1);
     namesInitials.splice(currentName, 1);
@@ -63,7 +67,7 @@ function selectionContact(name, colour) {
   for (let i = 0; i < namesInitials.length; i++) {
     const namesInitial = namesInitials[i];
     const color = colours[i];
-    SelectedContactsBoard.innerHTML += `<div class="namesInitials" style="background-color:${color}">${namesInitial}</div>`;
+    SelectedContactsBoard.innerHTML += `<div class="namesInitials b-${color}">${namesInitial}</div>`;
   }
 
 }
@@ -180,12 +184,25 @@ function showCheckBoxes() {
   }
 }
 
+// to close popup when clicked outside
+document.addEventListener('click', function(event) {
+  const assign = document.getElementById("assign");
+  const checkboxes = document.getElementById("checkboxes");
+  const arrow = document.getElementById('arrow');
+  
+  if (expanded && !assign.contains(event.target) && !arrow.contains(event.target)) {
+    checkboxes.style.display = "none";
+    document.getElementById('arrow').style.transform = "rotate(0deg)";
+    expanded = false;
+  }
+});
+document.getElementById("checkboxes").addEventListener('click', function(event) {
+  event.stopPropagation(); 
+});
 
 // Drop down function for category
-
-
+let subTaskexpanded = false;
 function showCategory() {
-  let subTaskexpanded = false;
   const select = document.getElementById("slection");
   document.getElementById('assignHeading').innerHTML = `Select task category <img class="arrow" id="arrowRight" src="../img/dropArrow.svg"> `;
   if (!subTaskexpanded) {
@@ -199,11 +216,10 @@ function showCategory() {
   }
 }
 
-
-function showSelection(element){
+function showSelection(element) {
   const select = element.innerHTML;
- document.getElementById('assignHeading').innerHTML = `${select}<img class="arrow" id="arrowRight" src="../img/dropArrow.svg">`;
- document.getElementById("slection").classList.add("selectHide");
+  document.getElementById('assignHeading').innerHTML = `${select}<img class="arrow" id="arrowRight" src="../img/dropArrow.svg">`;
+  document.getElementById("slection").classList.add("selectHide");
 }
 
 // reseting all
