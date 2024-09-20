@@ -104,20 +104,22 @@ header .topline .login:hover {
     to {
         top: 190px;
         left: 150px;
-        width: 101px;
-        height: 121px;
+        width: 274px;
+        height: 334px;
     }
 }
 
 @keyframes logoScreen {
     from {
+        background-color: white;
         display: none;
         justify-content: center;
         align-items: center;
-        opacity: 0;
+        opacity: 1;
     }
     to {
         display: block;
+        background-color: white;
         transform: scale(0.5) translate(-50%, -50%);
         opacity: 1;
     }
