@@ -214,6 +214,16 @@ function showCategory() {
     select.classList.add("selectHide");
     subTaskexpanded = false;
   }
+  let area = document.getElementById('asignCloseStop');
+  area.addEventListener('click', (event) => {
+      event.stopPropagation()
+  })
+}
+
+function showCategoryOff(){
+  const select = document.getElementById("slection");
+  document.getElementById('arrowRight').style.transform = "rotate(0deg)";
+    select.classList.add("selectHide");
 }
 
 function showSelection(element) {

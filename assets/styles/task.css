@@ -75,6 +75,9 @@ label {
     text-align: left;
     display: flex;
 }
+.assignLabel{
+    margin-bottom: 8px;
+}
 
 .imp {
     font-size: 20px;
@@ -203,7 +206,7 @@ label {
     background: #FFFFFF;
     position: absolute;
     height: 232px;
-    overflow: scroll;
+    overflow: auto;
     width: 440px;
     margin-top: 80px;
 }
@@ -251,8 +254,7 @@ label {
 
 .assign {
     width: 440px;
-    height: 80px;
-    gap: 8px;
+    height: 80px;    
     display: flex;
     flex-direction: column;
     font-size: 20px;
