@@ -52,7 +52,7 @@ function extrahiereInitialen(contactName) {
 function loadContactData(i, initials) {
     return `<div class="contact-group">
                 <h2>${initials.charAt(0)}</h2>
-                <div class="contact-item" onclick="showContactDetails(${i})">
+                <div class="contact-item" onclick="showContactDetails(${i}, '${initials}')">
                     <div class="avatar"><span class="b-${array[i].color}">${initials}</span></div>
                     <div class="details">
                         <div class="name">${array[i].name}</div>
@@ -62,11 +62,11 @@ function loadContactData(i, initials) {
             </div>`;
 }
 
-function showContactDetails(i) {
+function showContactDetails(i, initials) {
     let contactDetails = document.getElementById('contactDetails');
     contactDetails.innerHTML = `
         <div class="contact-ellipse">
-            <button>AM</button>
+            <span class=" contact-ellipse button b-${array[i].color}">${initials}</span>
             <div class="contact-mini">
                 <h1>${array[i].name}</h1>
                 <div class="editimage">
