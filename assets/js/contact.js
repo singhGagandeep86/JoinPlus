@@ -40,15 +40,6 @@ function loadContact() {
     }
 }
 
-function extrahiereInitialen(contactName) {
-    let nameParts = contactName.split(' ');
-    let initials = '';
-    for (let j = 0; j < nameParts.length; j++) {
-        initials += nameParts[j].charAt(0).toUpperCase();
-    }
-    return initials;
-}
-
 function loadContactData(i, initials) {
     return `<div class="contact-group">
                 <h2>${initials.charAt(0)}</h2>
@@ -87,3 +78,11 @@ function showContactDetails(i, initials) {
     contactDetails.classList.add('contact-slide-in')
 }
 
+function extrahiereInitialen(contactName) {
+    let nameParts = contactName.split(' ');
+    let initials = '';
+    for (let j = 0; j < nameParts.length; j++) {
+        initials += nameParts[j].charAt(0).toUpperCase();
+    }
+    return initials;
+}
