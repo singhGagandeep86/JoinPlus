@@ -5,6 +5,7 @@ let url = '';
 let array = [];
 let searchArray = [];
 let draggedElement;
+let mediaQuery = window.matchMedia("(max-width: 1100px)");
 
 async function load() {
 
@@ -170,14 +171,25 @@ function allowDrop(ev) {
 
 function openPopUpTask(id) {
     let taskPopUp = document.getElementById('popupTaskMain');
-    taskPopUp.classList.remove('d_none');
-    taskPopUp.innerHTML = '';
-    taskPopUp.innerHTML = templatePopUpTask1();
-    let area = document.getElementById('CloseArea');
-    area.addEventListener('click', (event) => {
-        event.stopPropagation()
-    })
+    if (handleMediaChange(mediaQuery)) {
+        window.location.href = 'task.html';
+    } else {
+        taskPopUp.classList.remove('d_none');
+        taskPopUp.innerHTML = '';
+        taskPopUp.innerHTML = templatePopUpTask1();
+        let area = document.getElementById('CloseArea');
+        area.addEventListener('click', (event) => {
+            event.stopPropagation()
+        })
+    }
+
 }
+function handleMediaChange(e) {
+    if (e.matches) {
+        window.location.href = 'task.html';
+    }
+}
+
 
 function closePopUpTask() {
     let button = document.getElementById('btnTaskPopupcloseArea');
