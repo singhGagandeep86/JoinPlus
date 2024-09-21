@@ -202,34 +202,40 @@ document.getElementById("checkboxes").addEventListener('click', function(event) 
 
 // Drop down function for category
 let subTaskexpanded = false;
+
 function showCategory() {
-  const select = document.getElementById("slection");
-  document.getElementById('assignHeading').innerHTML = `Select task category <img class="arrow" id="arrowRight" src="../img/dropArrow.svg"> `;
+  let select = document.getElementById("slection");
+  let arrow = document.getElementById('arrowRight');   
   if (!subTaskexpanded) {
-    document.getElementById('arrowRight').style.transform = "rotate(-180deg)";
+    arrow.style.transform = "rotate(-180deg)";
     select.classList.remove("selectHide");
     subTaskexpanded = true;
   } else {
-    document.getElementById('arrowRight').style.transform = "rotate(0deg)";
+    arrow.style.transform = "rotate(0deg)";
     select.classList.add("selectHide");
     subTaskexpanded = false;
-  }
+  }  
   let area = document.getElementById('asignCloseStop');
   area.addEventListener('click', (event) => {
-      event.stopPropagation()
-  })
+    event.stopPropagation();
+  });
 }
 
-function showCategoryOff(){
+function showCategoryOff() {
   const select = document.getElementById("slection");
-  document.getElementById('arrowRight').style.transform = "rotate(0deg)";
-    select.classList.add("selectHide");
+  const arrow = document.getElementById('arrowRight');  
+  arrow.style.transform = "rotate(0deg)";
+  select.classList.add("selectHide"); 
+  subTaskexpanded = false; 
 }
 
 function showSelection(element) {
   const select = element.innerHTML;
-  document.getElementById('assignHeading').innerHTML = `${select}<img class="arrow" id="arrowRight" src="../img/dropArrow.svg">`;
+  const assignHeading = document.getElementById('assignHeading');   
+  assignHeading.innerHTML = `${select} <img class="arrow" id="arrowRight" src="../img/dropArrow.svg">`; 
   document.getElementById("slection").classList.add("selectHide");
+  subTaskexpanded = false; 
+  document.getElementById('arrowRight').style.transform = "rotate(0deg)";
 }
 
 // reseting all
