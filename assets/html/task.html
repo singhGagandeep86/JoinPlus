@@ -55,7 +55,7 @@
             </div>
             <div class="content">
                 <div class="heading">Add Task</div>
-                <form onsubmit="submition()">
+                <form onsubmit="submition()" onclick="showCategoryOff()">
                     <div class="formular">
                         <div class="leftSubmition">
                             <div class="title">
@@ -102,12 +102,13 @@
                                 </div>
                             </div>
 
-                            <div class="assign">
-                                <label for="Category"><span>Category <sup>*</sup></span></label>
+                            <div id="asignCloseStop" class="assign">
+                                <label class="assignLabel" for="Category"><span>Category <sup>*</sup></span></label>
                                 <div class="assignment" id="assignHeading" onclick="showCategory()">
                                     Select task category
                                     <img class="arrow" id="arrowRight" src="../img/dropArrow.svg">
                                 </div>
+                            
                                 <div id="slection" class="selectItems selectHide">
                                     <div data-value="technical" onclick="showSelection(this)">Technical Task</div>
                                     <div data-value="userStory" onclick="showSelection(this)">User Story</div>
