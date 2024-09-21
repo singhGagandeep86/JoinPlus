@@ -195,3 +195,17 @@
     font-weight: 400;
     line-height: 24px;
 }
+
+.block-main .pen-section-1:hover,
+.block-mid .pen-section-2:hover,
+.block-end .pen-section-3:hover {
+    background-color: var(--sideheader-main-color);
+    transform: scale(1.05); /* vergrößert das Element leicht */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    color: white;
+    cursor: pointer;
+}
+
+.psmall:hover {
+    color: white;
+}
