@@ -61,23 +61,29 @@
 .contact-group {
     padding: 15px;
     border-bottom: 1px solid #ddd;
+    cursor: pointer;
 }
 
-.contact-group h2 {
-    margin: 0 0 10px 0;
-    font-size: 16px;
-    color: #333;
+.contactArea h2 {
+    font-size: 20px;
+    margin-left: 40px;
+    margin-top: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #000000;
 }
 
 .contact-item {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    padding: 10px;
 }
 
 .contact-item:hover {
-    background-color: var(--item-hover-color);
+    background-color: var(--sideheader-main-color);
     border-radius: 10px;
+    color: var(--details-font-color);
 }
 
 .avatar {
@@ -129,7 +135,23 @@
 .contact-ellipse {
     display: flex;
     align-items: center;
+    justify-self: center;
     gap: 54px;
+    margin-top: 20px;
+}
+
+.contact-ellipse2 {
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid white;
+    font-size: 47px;
+    line-height: 56.4px;
+    color: white;
+    text-align: center;
     margin-top: 20px;
 }
 
@@ -143,19 +165,6 @@
     font-size: 47px;
     line-height: 56.4px;
     font-weight: 500;
-}
-
-.contact-ellipse button {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background-color: #FF7A00;
-    border: 3px solid white;
-    font-size: 47px;
-    line-height: 56.4px;
-    color: white;
-    text-align: center;
-    margin-top: 20px;
 }
 
 .contact-info {
@@ -233,6 +242,7 @@
     display: none;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .popup {

@@ -5,6 +5,7 @@ let array = [];
 
 async function load() {
     await loadData("/contact");
+    sortContactsByName();
     loadContact();
 }
 
@@ -17,6 +18,20 @@ async function loadData(path){
             array.push(contactsArray[i]);
         }
     }
+}
+
+function sortContactsByName() {
+    array.sort((a, b) => {
+        let nameA = a.name.toUpperCase();
+        let nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+        return 0;
+    });
 }
 
 async function postData(path, data) {
@@ -32,17 +47,22 @@ async function postData(path, data) {
 function loadContact() {
     let contactSpace = document.getElementById('contactArea');
     contactSpace.innerHTML = '';
+    let currentLetter = '';
 
     for (let i = 0; i < array.length; i++) {
         let contactName = array[i].name;
-        let initials = extrahiereInitialen(contactName)
+        let initials = extrahiereInitialen(contactName);
+        let firstLetter = contactName.charAt(0).toUpperCase();
+
+        if (firstLetter !== currentLetter) {
+            contactSpace.innerHTML += `<h2>${firstLetter}</h2>`;
+            currentLetter = firstLetter;
+        }
         contactSpace.innerHTML += loadContactData(i, initials);
-    }
-}
+    }}
 
 function loadContactData(i, initials) {
     return `<div class="contact-group">
-                <h2>${initials.charAt(0)}</h2>
                 <div class="contact-item" onclick="showContactDetails(${i}, '${initials}')">
                     <div class="avatar"><span class="b-${array[i].color}">${initials}</span></div>
                     <div class="details">
@@ -57,7 +77,7 @@ function showContactDetails(i, initials) {
     let contactDetails = document.getElementById('contactDetails');
     contactDetails.innerHTML = `
         <div class="contact-ellipse">
-            <span class=" contact-ellipse button b-${array[i].color}">${initials}</span>
+            <span class="contact-ellipse2 b-${array[i].color}">${initials}</span>
             <div class="contact-mini">
                 <h1>${array[i].name}</h1>
                 <div class="editimage">
@@ -81,8 +101,8 @@ function showContactDetails(i, initials) {
 function extrahiereInitialen(contactName) {
     let nameParts = contactName.split(' ');
     let initials = '';
-    for (let j = 0; j < nameParts.length; j++) {
-        initials += nameParts[j].charAt(0).toUpperCase();
+    for (let i = 0; i < nameParts.length; i++) {
+        initials += nameParts[i].charAt(0).toUpperCase();
     }
     return initials;
 }
