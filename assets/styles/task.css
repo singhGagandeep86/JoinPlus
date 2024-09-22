@@ -13,24 +13,33 @@ body {
 }
 
 form {
-    gap: 48.5px;
-    display: flex;
+    flex-direction: column;
+    display: flex;      
     margin-left: 36px;
     margin-top: 82px;
+    gap: 64px;
+    
+    
+}
+
+.formular{
+    display: flex;
+    gap: 48.5px;
 }
 
 .heading {
     font-size: 61px;
     font-weight: 700;
-    width: 100%;
+    max-width: 1208px;
     margin-top: 86px;
     margin-left: 36px;
+    
 }
 
 .leftSubmition {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 24px;
     width: 440px;
 }
 
@@ -44,7 +53,8 @@ form {
     display: flex;
     flex-direction: column;
     width: 440px;
-    gap: 16px;
+    min-height: 416px;
+    gap: 24px;
 }
 
 .smallHead {
@@ -64,6 +74,9 @@ label {
     font-weight: 400;
     text-align: left;
     display: flex;
+}
+.assignLabel{
+    margin-bottom: 8px;
 }
 
 .imp {
@@ -152,8 +165,6 @@ label {
 }
 
 .arrow {
-    position: absolute;
-    right: 20px;
     transition: transform 0.3s ease;
 }
 
@@ -195,7 +206,7 @@ label {
     background: #FFFFFF;
     position: absolute;
     height: 232px;
-    overflow: scroll;
+    overflow: auto;
     width: 440px;
     margin-top: 80px;
 }
@@ -242,26 +253,21 @@ label {
 }
 
 .assign {
-    position: fixed;
     width: 440px;
-    height: 80px;
-    gap: 8px;
+    height: 80px;    
     display: flex;
     flex-direction: column;
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
     text-align: left;
-    margin-top: 232px;
+
 }
 
 /*style items (options):*/
 .selectItems {
-    position: absolute;
     background-color: #FFFFFF;
     top: 100%;
-    left: 0;
-    right: 0;
     z-index: 99;
     border: 1px transparent;
     border-radius: 10px;
@@ -288,7 +294,6 @@ label {
 .dueDate {
     display: flex;
     flex-direction: column;
-    position: fixed;
     width: 440px;
     height: 96px;
     gap: 8px;
@@ -319,18 +324,16 @@ label {
 .prio {
     display: flex;
     flex-direction: column;
-    position: fixed;
     width: 440px;
     height: 88px;
-    margin-top: 120px;
+
     gap: 8px;
     opacity: 0px;
 }
 
 .subtasks {
     width: 440px;
-    height: 80px;
-    margin-top: 336px;
+    height: 80px;    
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -444,21 +447,21 @@ label {
 .info {
     font-size: 20px;
     font-weight: 400;
-    text-align: right;
     display: flex;
     align-items: end;
     margin-left: 36px;
+    justify-content: space-between;
+    width: 960px;
+    
 }
 
-.info div:nth-of-type(1){
+.info div:nth-of-type(1) {
     color: red;
-
 }
 
 .submitionButtons {
     width: 309px;
-    height: 56px;
-    margin-left: 470.25px;
+    height: 56px;   
     gap: 16px;
     display: flex;
 }
@@ -550,7 +553,7 @@ label {
 }
 
 ul.a {
-    overflow: scroll;
+    overflow: auto;
     height: 98px;
     width: 98%;
     border-radius: 10px;
@@ -558,6 +561,12 @@ ul.a {
     padding-left: 0;
     margin-left: 0.75em;
     text-align: left;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+ul.a::-webkit-scrollbar{
+    display: none;
 }
 
 .leftPart {

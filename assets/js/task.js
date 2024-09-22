@@ -202,18 +202,31 @@ document.getElementById("checkboxes").addEventListener('click', function (event)
 
 // Drop down function for category
 let subTaskexpanded = false;
+
 function showCategory() {
-  const select = document.getElementById("selection");
+  const select = document.getElementById("slection");
   document.getElementById('assignHeading').innerHTML = `Select task category <img class="arrow" id="arrowRight" src="../img/dropArrow.svg"> `;
   if (!subTaskexpanded) {
-    document.getElementById('arrowRight').style.transform = "rotate(-180deg)";
+    arrow.style.transform = "rotate(-180deg)";
     select.classList.remove("selectHide");
     subTaskexpanded = true;
   } else {
-    document.getElementById('arrowRight').style.transform = "rotate(0deg)";
+    arrow.style.transform = "rotate(0deg)";
     select.classList.add("selectHide");
     subTaskexpanded = false;
-  }
+  }  
+  let area = document.getElementById('asignCloseStop');
+  area.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
+}
+
+function showCategoryOff() {
+  const select = document.getElementById("slection");
+  const arrow = document.getElementById('arrowRight');  
+  arrow.style.transform = "rotate(0deg)";
+  select.classList.add("selectHide"); 
+  subTaskexpanded = false; 
 }
 
 // Event-Listener für Klick außerhalb der "Category"-Dropdown
@@ -232,7 +245,7 @@ document.addEventListener('click', function (rightEvent) {
 function showSelection(element) {
   const select = element.innerHTML;
   document.getElementById('assignHeading').innerHTML = `${select}<img class="arrow" id="arrowRight" src="../img/dropArrow.svg">`;
-  document.getElementById("selection").classList.add("selectHide");
+  document.getElementById("slection").classList.add("selectHide");
 }
 
 // reseting all
