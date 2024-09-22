@@ -1,26 +1,35 @@
-@media(min-width:1439px){
+@media(min-width:1439px) {
     .content {
         padding: 0 64px 0 64px;
         max-width: 1208px;
     }
-    .dragAndDropBoardArea{
+
+    .dragAndDropBoardArea {
         scrollbar-width: none;
         -ms-overflow-style: none;
-    }  
+    }
+
     .dragAndDropBoardArea::-webkit-scrollbar {
         display: none;
-    }  
-    .arrowImg{
+    }
+
+    .arrowImg {
         display: none;
-     }
+    }
+
+    .mobileBtnAdd {
+        display: none;
+    }
 }
-
-
 
 @media(min-width:1301px) and (max-width:1439px) {
     .content {
         padding-left: 10px;
-        padding-right: 0px;        
+        padding-right: 0px;
+    }
+
+    .emptySearch {
+        padding-left: 90px;
     }
 
     .mainDesignAside {
@@ -35,26 +44,20 @@
     .headlineDrag {
         width: 230px;
     }
-    .dragAndDropBoardArea{
+
+    .dragAndDropBoardArea {
         scrollbar-width: none;
         -ms-overflow-style: none;
-    }  
+    }
+
     .dragAndDropBoardArea::-webkit-scrollbar {
         display: none;
-    } 
-   
-     .arrowImg{
-        display: none;
-     }
-}
-
-@media(max-width:1301px) {
-    .content {
-        padding-left: 10px;
-        padding-right: 0px;
-       
     }
-  
+
+    .arrowImg {
+        display: none;
+    }
+
     .mainDesignAside {
         width: 160px;
     }
@@ -62,25 +65,35 @@
     .dragAndDropBoard {
         width: 100%;
         gap: 8px;
-
     }
 
     .headlineDrag {
         width: 230px;
     }
-    
-    
+
+    .mobileBtnAdd {
+        display: none;
+    }
 }
 
-@media(max-width:1300px) {
+@media(min-width: 801px) and (max-width:1300px) {
     .content {
         padding-left: 64px;
-        padding-right: 0px;   
-        height: 140vh;
+        padding-right: 0px;
+        height: 140vh
     }
+
     .overDisplay {
         display: flex;
         flex-direction: column-reverse;
+    }
+
+    .searchBar {
+        margin-right: 10px;
+    }
+
+    .emptySearch {
+        padding-left: 50px;
     }
 
     .mainDesign {
@@ -92,26 +105,27 @@
         bottom: 0;
         display: flex;
         width: 100%;
-        height: 200px;
+        height: 150px;
         align-items: center;
         z-index: 99;
+    }
 
+    .asideMenuArea {
+        width: 100%;
+        gap: 0;
     }
-    .asideMenuArea{
-        order: 0;
-    }
-    #summary{
+
+    #summary {
         order: -3;
     }
+
     #task {
-        order: -1; 
+        order: -1;
     }
-    
+
     #board {
         order: -2;
     }
-    
-   
 
     .legacyMenu {
         display: none;
@@ -126,10 +140,13 @@
         width: 100%;
         flex-direction: row;
         height: 100%;
-        margin-top: 0;       
-
+        margin-top: 0;
     }
-   
+
+    .emptyBoardArea {
+        width: 100%;
+    }
+
     .header span {
         content: url("../img/logosmall.png");
     }
@@ -137,8 +154,7 @@
     .dragAndDropBoard {
         display: flex;
         flex-direction: column;
-        width: 100%;
-
+        width: 95%;
     }
 
     .dragAndDropBoardArea {
@@ -147,19 +163,29 @@
         width: 100%;
         margin-bottom: 15px;
         margin-top: 15px;
-        overflow-y: auto;
-        min-height: 251px;   
+        overflow: auto;
+        min-height: 48px;
+        scrollbar-width: none;
+    }
 
+    .dragAndDropBoardArea::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .dragAndDropBoardArea:hover {
+        overflow: auto;
+        scrollbar-width: thin;
     }
 
     .headlineDrag {
         padding-top: 15px;
         margin-bottom: 15px;
-        width:96%;
+        width: 96%;
         height: 32px;
     }
-    .headlineDrag span{
-        font-size:27px ;
+
+    .headlineDrag span {
+        font-size: 27px;
         color: #2A3647;
     }
 
@@ -169,64 +195,316 @@
         height: 32px;
     }
 
-        .taskAreaMobile {
+    .taskAreaMobile {
         display: flex;
         flex-direction: column;
         width: 100%;
     }
-   }
 
-@media(max-width:1163px){
-    .headlineDrag{
-       width:96%;
+    .mobileBtnAdd {
+        display: none;
     }
+
+    .asideMenu a {
+        width: 200px;
+    }
+
+    .popupArea2 {
+        position: fixed;
+    }
+}
+
+@media (max-width:800px) {
+    .content {
+        padding-left: 10px;
+        padding-right: 0px;
+        height: 140vh
+    }
+
+    .popupArea2 {
+        position: fixed;
+
+    }
+
+    .overDisplay {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .searchBar {
+        width: 100%;
+        padding-right: 10px;
+    }
+
+    .emptySearch {
+        justify-content: start;
+        top: 12px;
+        padding: 20px;
+    }
+
+    .mainDesign {
+        height: 100%;
+    }
+
     .mainDesignAside {
         position: fixed;
         bottom: 0;
         display: flex;
         width: 100%;
-        height: 200px;
+        height: 80px;
         align-items: center;
-
+        z-index: 99;
     }
-    .mobileBoard{
+
+    .asideMenuArea {
+        gap: 10px;
+    }
+
+    #summary {
+        order: -3;
+    }
+
+    #task {
+        order: -1;
+    }
+
+    #board {
+        order: -2;
+    }
+
+    .legacyMenu {
+        display: none;
+    }
+
+    .mainDesignAsideImg {
+        display: none;
+    }
+
+    .asideMenuArea {
+        width: 100%;
+        flex-direction: row;
+        height: 100%;
+        margin-top: 0;
+    }
+
+    .emptyBoardArea {
+        width: 100%;
+    }
+
+    .header span {
+        content: url("../img/logosmall.png");
+    }
+
+    .dragAndDropBoard {
         display: flex;
-        flex-direction: row-reverse;
+        flex-direction: column;
+        width: 95%;
     }
 
     .dragAndDropBoardArea {
         display: flex;
-        flex-direction: row;        
+        flex-direction: row;
+        width: 100%;
         margin-bottom: 15px;
         margin-top: 15px;
-        overflow-y: auto;
-        min-height: 251px;
-        margin-right: 10px;
-        width: 90%;
-    
-
+        overflow: auto;
+        min-height: 48px;
+        scrollbar-width: none;
     }
-    .dragAndDropBoard {
+
+    .dragAndDropBoardArea::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .dragAndDropBoardArea:hover {
+        overflow: auto;
+        scrollbar-width: thin;
+    }
+
+    .headlineDrag {
+        padding-top: 15px;
+        margin-bottom: 15px;
+        width: 100%;
+        height: 32px;
+    }
+
+    .headlineDrag span {
+        font-size: 27px;
+        color: #2A3647;
+    }
+
+    .headlineDrag img {
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+    }
+
+    .taskAreaMobile {
         display: flex;
         flex-direction: column;
         width: 100%;
-        
+    }
 
+    .asideMenu {
+        height: 76px;
     }
-    .asideMenuArea{
-        order: 0;
-    }
-    #summary{
-        order: -3;
-    }
-    #task {
-        order: -1; 
-    }
-    
-    #board {
-        order: -2;
-    }
-    
 
+    .asideMenu img {
+        margin: 0;
+    }
+
+    .asideMenu a {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 80px;
+        height: 76px;
+    }
+
+    .asideMenu:nth-of-type(3) {
+        padding: 0;
+        border-radius: 10px;
+    }
+
+    .headlinbar {
+        flex-wrap: wrap;
+    }
+
+    .btnBoardTask {
+        display: none;
+    }
+
+    .mobileBtnAdd {
+        display: flex;
+        justify-content: center;
+        width: 100px;
+        cursor: pointer;
+        padding-left: 20px;
+    }
+
+    .inputArea input {
+        width: 100%;
+    }
+
+    .inputArea {
+        width: 97%;
+    }
+
+    .inputSearch {
+        width: 100%;
+    }
+
+    .inputImgArea {
+        padding-right: 10px;
+    }
 }
 
+@media(max-width:563px) {
+    .popupTaskInfo {
+        width: 300px;
+        height: 700px;
+        gap: 15px;
+    }
+
+    .infoTitle {
+        width: 300px;
+        justify-content: start;
+
+    }
+
+    .infoTitle img {
+        margin-left: 30px;
+    }
+
+    .popupTitleInfo {
+        width: 220px;
+        font-size: 20px;
+        min-height: 50px;
+    }
+
+    .descriptionInfo {
+        width: 220px;
+        min-height: 24px;
+        padding-right: 20px;
+        margin-bottom: 10px;
+    }
+
+    .boxinfo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .contactInfo {
+        width: 200px;
+    }
+
+    .contactInfo span {
+        font-size: 18px;
+        width: 180px;
+        height: auto;
+    }
+
+    .contactInfoData {
+        width: 200px;
+        overflow: auto;
+        scrollbar-width: thin;
+        padding: 0;
+    }
+
+    .contactArea {
+        width: 180px;
+        gap: 15px;
+    }
+
+    .subtaskInfo {
+        width: 220px;
+        min-height: 100px;
+        gap: 0;
+    }
+
+    .subtaskAreaData {
+        width: 220px;
+        height: 60px;
+        overflow: auto;
+        margin-top: 10px;
+        scrollbar-width: thin;
+        scroll-behavior: smooth;
+    }
+
+    .subtaskAreaData span {
+        display: flex;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+    }
+
+    .subtastTitle {
+        min-height: 50px;
+    }
+
+    .editInfo {
+        justify-content: end;
+        width: 220px;
+    }
+
+    .bgInfo_user {
+        width: 100px;
+        height: 20px;
+    }
+}
+
+@media(max-width:380px) {
+    .asideMenuArea {
+        gap: 0;
+    }
+
+    .asideMenu a {
+        width: 70px;
+        text-align: center;
+    }
+
+    .asideMenu:nth-of-type(3) {
+        margin-left: 5px;
+    }
+}

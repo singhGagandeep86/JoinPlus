@@ -349,7 +349,7 @@
     flex-direction: column;
     gap: 24px;
     width: 525px;
-    min-height: 871px;
+    min-height: 700px;
     border-radius: 30px;
     background-color: white;
     padding: 48px 40px 48px 40px;
@@ -370,6 +370,10 @@
     height: 32px;
     cursor: pointer;
 }
+.infoTitle img:hover{
+    background-color: #edeaea;
+    border-radius: 100%;
+}
 
 .popupTitleInfo {
     width: 445px;
@@ -380,7 +384,7 @@
 
 .descriptionInfo {
     width: 445px;
-    height: 24px;
+    min-height: 24px;
     font-size: 20px;
 }
 
@@ -579,9 +583,9 @@ progress::-moz-progress-bar {
 
 .labelInfo {
     font-size: 20px;
-    padding-right: 20px;
-    text-align: left;
+    padding-right: 20px;    
     display: flex;
+    align-items: center;
 }
 
 .labelInfo:hover:hover {
@@ -593,7 +597,7 @@ progress::-moz-progress-bar {
     display: flex;
     justify-content: center;
     position: relative;
-    top: -20px;
+    top: -45px;
     padding-left: 200px;
     width: 100%;
 

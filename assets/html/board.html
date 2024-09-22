@@ -20,9 +20,10 @@
             <img class="mainDesignAsideImg" src="../img/Join logo white.png" alt="">
             <div class="mainDesignAsideLinks">
                 <div class="asideMenuArea">
-                    <div id="summary"  class="asideMenu"><a href="../html/summary.html"><img src="../img/Summary.png"
+                    <div id="summary" class="asideMenu"><a href="../html/summary.html"><img src="../img/Summary.png"
                                 alt="">Summary</a></div>
-                    <div id="task" class="asideMenu"><a href="../html/task.html"><img src="../img/Add task.png" alt="">Add
+                    <div id="task" class="asideMenu"><a href="../html/task.html"><img src="../img/Add task.png"
+                                alt="">Add
                             Task</a></div>
                     <div id="board" class="asideMenu active"><a href="../html/board.html"> <img class="activeBoard"
                                 src="../img/Board.png" alt="">Board</a></div>
@@ -54,6 +55,9 @@
                 <div class="headlineBoard">
                     <div class="headlinbar">
                         <span>Board</span>
+                        <div class="mobileBtnAdd" onclick="openPopUpTask('toDo')">
+                            <img  src="../img/plusaddtaskmobile.png" alt="">
+                        </div>
                         <div class="searchBar">
                             <div class="inputArea">
                                 <div class="inputSearch">
@@ -104,7 +108,7 @@
 
     <div id="popupTaskMain" class="popupArea d_none" onclick="closePopUpTask() "></div>
     <div id="popupTaskInfo" class="popupArea2 d_none " onclick="closePopUpTaskSmall()"></div>
-    
+
 
     <script src="/script.js"></script>
     <script src="../js/board.js"></script>
