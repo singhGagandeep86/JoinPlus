@@ -168,8 +168,7 @@ function activateLow() {
   document.getElementById('btnUrgnt').innerHTML = ` <div>Urgent <img src="/assets/img/prioUrgent.svg"></div>`;
 }
 
-
-//Drop down function for Assigned Contacts
+// Drop down function for Assigned Contacts
 let expanded = false;
 function showCheckBoxes() {
   const checkboxes = document.getElementById("checkboxes");
@@ -184,26 +183,27 @@ function showCheckBoxes() {
   }
 }
 
-// to close popup when clicked outside
-document.addEventListener('click', function(event) {
+// Event-Listener für Klick außerhalb der "Assigned Contacts"-Dropdown
+document.addEventListener('click', function (event) {
   const assign = document.getElementById("assign");
   const checkboxes = document.getElementById("checkboxes");
-  const arrow = document.getElementById('arrow');
-  
-  if (expanded && !assign.contains(event.target) && !arrow.contains(event.target)) {
+  if (expanded && !assign.contains(event.target)) {
     checkboxes.style.display = "none";
     document.getElementById('arrow').style.transform = "rotate(0deg)";
     expanded = false;
   }
 });
-document.getElementById("checkboxes").addEventListener('click', function(event) {
-  event.stopPropagation(); 
+
+// Klick innerhalb der "Assigned Contacts"-Dropdown verhindert das Schließen
+document.getElementById("checkboxes").addEventListener('click', function (event) {
+  event.stopPropagation();
 });
+
 
 // Drop down function for category
 let subTaskexpanded = false;
 function showCategory() {
-  const select = document.getElementById("slection");
+  const select = document.getElementById("selection");
   document.getElementById('assignHeading').innerHTML = `Select task category <img class="arrow" id="arrowRight" src="../img/dropArrow.svg"> `;
   if (!subTaskexpanded) {
     document.getElementById('arrowRight').style.transform = "rotate(-180deg)";
@@ -216,10 +216,23 @@ function showCategory() {
   }
 }
 
+// Event-Listener für Klick außerhalb der "Category"-Dropdown
+document.addEventListener('click', function (rightEvent) {
+  const assignHeading = document.getElementById('assignHeading');
+  const selection = document.getElementById('selection');
+  const arrowRight = document.getElementById("arrowRight");
+  if (subTaskexpanded && !assignHeading.contains(rightEvent.target) && !arrowRight.contains(rightEvent.target)) {
+    selection.classList.add("selectHide");
+    arrowRight.style.transform = "rotate(-180deg)";
+    subTaskexpanded = false;
+  }
+});
+
+
 function showSelection(element) {
   const select = element.innerHTML;
   document.getElementById('assignHeading').innerHTML = `${select}<img class="arrow" id="arrowRight" src="../img/dropArrow.svg">`;
-  document.getElementById("slection").classList.add("selectHide");
+  document.getElementById("selection").classList.add("selectHide");
 }
 
 // reseting all
@@ -230,7 +243,7 @@ function resetAll() {
   document.getElementById('btnMed').classList.remove("btnMed");
   document.getElementById('btnLow').innerHTML = ` <div>Low <img src="/assets/img/prioLow.svg"></div>`;
   document.getElementById('btnLow').classList.remove("btnLow");
-  document.querySelector('.select-selected').innerText = `Select task category`;
+  document.getElementById('assignHeading').innerHTML = `Select task category <img class="arrow" id="arrowRight" src="../img/dropArrow.svg" style="transform: rotate(0deg)">`;
   document.getElementById('checkboxes').style.display = "none";
   expanded = false;
   document.getElementById('arrow').style.transform = "rotate(0deg)";
