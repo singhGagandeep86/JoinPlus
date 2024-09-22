@@ -107,6 +107,14 @@
     height: 60px;
 }
 
+.block-main .pen-section-1:hover .pen-img img {
+    content: url("/assets/img/Frame\ 59.png");
+}
+
+.block-main .pen-section-1:nth-child(2):hover .pen-img img {
+    content: url("/assets/img/Frame\ 599.png"); /* Hier das neue Bild für das zweite Element */
+}
+
 .ontake2 {
     display: flex;
     flex-direction: column;
@@ -148,6 +156,10 @@
     color: gray;
     font-weight: 400;
     line-height: 19.2px;
+}
+
+.pen-section-2:hover .psmall {
+    color: white;
 }
 
 .activeSummary{
@@ -209,3 +221,4 @@
 .psmall:hover {
     color: white;
 }
+
