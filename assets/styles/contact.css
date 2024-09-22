@@ -80,10 +80,15 @@
     padding: 10px;
 }
 
-.contact-item:hover {
+.active2 {
     background-color: var(--sideheader-main-color);
+    cursor: pointer;
     border-radius: 10px;
-    color: var(--details-font-color);
+    color: white;
+}
+
+.contact-item:hover {
+    border-radius: 10px;
 }
 
 .avatar {
@@ -98,7 +103,7 @@
     margin-right: 10px;
 }
 
-.avatar span{
+.avatar span {
     color: white;
     width: 40px;
     height: 40px;

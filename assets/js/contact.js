@@ -63,7 +63,7 @@ function loadContact() {
 
 function loadContactData(i, initials) {
     return `<div class="contact-group">
-                <div class="contact-item" onclick="showContactDetails(${i}, '${initials}')">
+                <div class="contact-item active2" onclick="showContactDetails(${i}, '${initials}')">
                     <div class="avatar"><span class="b-${array[i].color}">${initials}</span></div>
                     <div class="details">
                         <div class="name">${array[i].name}</div>
