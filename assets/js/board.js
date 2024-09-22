@@ -6,6 +6,7 @@ let array = [];
 let searchArray = [];
 let draggedElement;
 let mediaQuery = window.matchMedia("(max-width: 1100px)");
+let toggle = 0;
 
 async function load() {
 
@@ -21,16 +22,6 @@ async function loadData(path) {
         array.push(taskArray[i]);
     }
     taskAdd();
-}
-
-async function postData(path, data) {
-    let response = await fetch(BASE_URL + path + ".json", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
 }
 
 async function taskAdd() {
@@ -248,6 +239,60 @@ function openPopUpTaskSmall(i) {
 
 function closePopUpTaskSmall() {
     document.getElementById('popupTaskInfo').classList.add('d_none');
+}
+
+function openPopUpTaskSwitch(element) {
+    let select = document.getElementById('popupTaskSwitch' + element);
+    let arrow = document.getElementById('arrowSwitch' + element);
+    let id = array[element].id;
+    if (toggle === 0) {
+        select.classList.remove('d_none');
+        arrow.classList.add('arrowTaskImg');
+        select.innerHTML = dataSwitch(id, element);
+        toggle = 1;
+    } else if (toggle === 1) {
+        closePopUpTaskSwitch(element);
+        arrow.classList.remove('arrowTaskImg');
+        toggle = 0;
+    }
+    let area = document.getElementById('popupTaskSwitch' + element);
+    area.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+}
+
+function closePopUpTaskSwitch(element) {
+    let select = document.getElementById('popupTaskSwitch' + element);
+    select.classList.add('d_none');
+}
+function dataSwitch(id, element) {
+    if ('toDo' == id) {
+        return moveTaskTo1(element);
+    } else if ('progress' == id) {
+        return moveTaskTo2(element);
+    } else if ('await' == id) {
+        return moveTaskTo3(element);
+    } else {
+        return moveTaskTo4(element);
+    }
+}
+
+async function changeIdTaskValue(value, element) {
+    let arrow = document.getElementById('arrowSwitch' + element);
+    await changeIdTask(value, element);
+    array = [];
+    closePopUpTaskSwitch(element);
+    arrow.classList.remove('arrowTaskImg');
+    await loadData("/task");
+
+
+
+}
+async function changeIdTask(value, element) {
+    let path = `/task/task${element + 1}`;
+    let url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app${path}.json`;
+    let idChange = { id: value };
+    await postDataId(url, idChange);
 }
 
 function time(i) {

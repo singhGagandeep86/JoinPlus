@@ -93,9 +93,12 @@ function templatePopUpTask1() {
 function templateTaskHTML(element) {
     let rangeId = `subtaskRange-${element['number']}`;
     let contactpic = `contact-${element['number']}`;
-    return `<div onclick="openPopUpTaskSmall(${element['number']})" class="task" draggable="true" ondragstart="startDragging(${element['number']}, this) ">
-    <div class="taskInfo">
+    return `<div id="taskAll" onclick="openPopUpTaskSmall(${element['number']})" class="task" draggable="true" ondragstart="startDragging(${element['number']}, this) ">
+    <div class="taskInfo">     
+        <div id="taskSwitch" class="taskName">
         <span class="bg_${element['color']}">${element['category']}</span>
+        <span  onclick="openPopUpTaskSwitch(${element['number']});event.stopPropagation();"><img class="arrowImg" id="arrowSwitch${element['number']}" src="../img/arrow_drop_downaa.svg" alt=""></span>       
+        </div>
         <div class="taskTitle">
             <span>${element['title']}</span>
             <span>${element['description']}</span>
@@ -103,6 +106,7 @@ function templateTaskHTML(element) {
         <div id="${rangeId}"></div>
     <div class="contactAndPrioArea"><div id="${contactpic}" class="contact"></div>   
     <div class="bg_${element['prio']}"></div> </div>
+    <div id="popupTaskSwitch${element['number']}" class="taskSwitchArea d_none" ></div>
     </div>
     </div>`;
 }
@@ -142,4 +146,33 @@ function templateSubtask(element, i, j) {
     return `
        <div class="subtastTitle"><label class="labelInfo"><input id="${checkboxId}" oninput="inputCheckBoxInfo(${i}, ${j})" type="checkbox" class="checkboxDesign" name="subtask"> <span></span><p>${element}</p></label></div>
         `
+}
+
+function moveTaskTo1(element) {
+    return`<span class="moveTitle">Move Task To:</span>
+    <div class="moveTaskBTN">
+    <button value="progress" onclick="changeIdTaskValue(this.value, ${element})">In progress</button>
+    <button value="await" onclick="changeIdTaskValue(this.value, ${element})">Await</button>
+    <button value="done" onclick="changeIdTaskValue(this.value, ${element})">Done</button></div>`
+}
+function moveTaskTo2(element) {
+    return`<span class="moveTitle">Move Task To:</span>
+    <div class="moveTaskBTN">
+    <button value="toDo" onclick="changeIdTaskValue(this.value, ${element})">To do</button>
+    <button value="await" onclick="changeIdTaskValue(this.value, ${element})">Await</button>
+    <button value="done" onclick="changeIdTaskValue(this.value, ${element})">Done</button></div>`
+}
+function moveTaskTo3(element) {
+    return`<span class="moveTitle">Move Task To:</span>
+    <div class="moveTaskBTN">
+    <button value="toDo" onclick="changeIdTaskValue(this.value, ${element})">To do</button>
+    <button value="progress" onclick="changeIdTaskValue(this.value, ${element})">In progress</button>
+    <button value="done" onclick="changeIdTaskValue(this.value, ${element})">Done</button></div>`
+}
+function moveTaskTo4(element) {
+    return`<span class="moveTitle">Move Task To:</span>
+    <div class="moveTaskBTN">
+    <button value="toDo" onclick="changeIdTaskValue(this.value, ${element})">To do</button>
+    <button value="progress" onclick="changeIdTaskValue(this.value, ${element})">In progress</button>
+    <button value="await" onclick="changeIdTaskValue(this.value, ${element})">Await</button></div>`
 }

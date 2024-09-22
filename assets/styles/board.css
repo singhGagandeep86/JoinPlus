@@ -176,6 +176,7 @@ html {
     gap: 20px;
     width: 220px;
     max-height: 231px;
+    z-index: 1;
 
 }
 
@@ -191,8 +192,7 @@ html {
     padding: 16px;
     cursor: pointer;
     gap: 10px;
-    /* touch-action: none;
-  user-select: none; */
+
 
 }
 
@@ -213,6 +213,76 @@ html {
     border: 1px dashed black;
 }
 
+.taskName {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 220px;
+
+}
+
+.taskName span:nth-of-type(2) {
+    display: flex;
+    align-items: center;
+}
+
+.taskName span:nth-of-type(2):hover {
+    background-color: #CDCDCD;
+    border-radius: 100%;
+}
+
+.taskName img {
+    transition: transform 125ms ease-in-out;
+}
+
+.arrowTaskImg {
+    transform: rotate(-180deg);
+}
+
+.taskSwitchArea {
+    position: absolute;
+    top: 60px;
+    margin-left: 10px;
+    width: 200px;
+    height: 150px;
+    background-color: white;
+    z-index: 3;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.moveTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid black;
+}
+
+.moveTaskBTN {
+    width: 100%;
+    height: 86%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;    
+}
+
+.moveTaskBTN button{
+    width: 100px;
+    height: 20px;
+    background-color: #2A3647;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+.moveTaskBTN button:hover{
+    box-shadow: 0px 1px 3px rgb(11 10 10);
+}
 
 .taskTitle {
     display: flex;
@@ -231,6 +301,7 @@ html {
 .taskTitle span:nth-of-type(2) {
     font-size: 16px;
     min-height: 19px;
+    color: #A8A8A8;
 }
 
 
