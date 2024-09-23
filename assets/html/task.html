@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/assets/styles/fonts.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="../styles/joincolor.css">
-
     <title>addTask</title>
 
 </head>
@@ -55,7 +54,7 @@
             </div>
             <div class="content">
                 <div class="heading">Add Task</div>
-                <form onsubmit="submition()" onclick="showCategoryOff()">
+                <form onsubmit="submition()">
                     <div class="formular">
                         <div class="leftSubmition">
                             <div class="title">
@@ -68,19 +67,16 @@
                                 <textarea rows="4" cols="37" placeholder="Enter a Description"
                                     class="descriptionTxt"></textarea>
                             </div>
-
-
                             <div class="assignCntcts">
                                 <label for="contacts">Assigned to</label>
                                 <div class="assignment" id="assign" onclick="showCheckBoxes()">
                                     Select contacts to assign
                                     <img class="arrow" id="arrow" src="../img/dropArrow.svg">
                                 </div>
-                                <div id="checkboxes">
+                                <div id="checkboxes" class="checkboxes">
                                 </div>
                                 <div id="selCntcts" class="showSel"></div>
                             </div>
-
                         </div>
                         <div class="partition"></div>
                         <div class="rightSubmition">
@@ -101,19 +97,17 @@
                                             src="/assets/img/prioLow.svg"></div>
                                 </div>
                             </div>
-
-                        <div class="assign">
-                            <label for="Category"><span>Category <sup>*</sup></span></label>
-                            <div class="assignment" id="assignHeading" onclick="showCategory()">
-                                Select task category
-                                <img class="arrow" id="arrowRight" src="../img/dropArrow.svg">
+                            <div class="assign">
+                                <label for="Category"><span>Category <sup>*</sup></span></label>
+                                <div class="assignment" id="assignHeading" onclick="showCategory()">
+                                    Select task category
+                                    <img class="arrow" id="arrowRight" src="../img/dropArrow.svg">
+                                </div>
+                                <div id="slection" class="selectItems selectHide">
+                                    <div data-value="technical" onclick="showSelection(this)">Technical Task</div>
+                                    <div data-value="userStory" onclick="showSelection(this)">User Story</div>
+                                </div>
                             </div>
-                            <div id="slection" class="selectItems selectHide">
-                                <div data-value="technical" onclick="showSelection(this)">Technical Task</div>
-                                <div data-value="userStory" onclick="showSelection(this)">User Story</div>
-                            </div>
-                        </div>
-
 
                             <div id="inputSubClass" class="subtasks">
                                 <div class="smallHead">Subtasks</div>
@@ -135,8 +129,6 @@
                             </button>
                         </div>
                     </div>
-
-
                 </form>
             </div>
 
@@ -146,6 +138,8 @@
 
     <script src="/script.js"></script>
     <script src="/assets/js/task.js"></script>
+    <script src="/assets/js/taskTemplate.js"></script>
     <script src="/assets/js/submenu.js"></script>
 </body>
+
 </html>
