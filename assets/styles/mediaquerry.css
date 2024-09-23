@@ -3,8 +3,6 @@
         padding: 0 64px 0 64px;
         max-width: 1208px;
     }
-
-
 }
 
 @media(min-width:1301px) and (max-width:1439px) {
@@ -66,7 +64,6 @@
     }
 
     .mainDesignAsideImg {
-
         display: none;
     }
 
