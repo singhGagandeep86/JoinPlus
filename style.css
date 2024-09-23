@@ -86,8 +86,18 @@
 }
 
 .legacyMenu a {
-    padding-top: 30px;
+   
+    width:232px;
+    height:35px;
     color: var(--sideheader-font-color);
+}
+
+.activeSite{
+    display: flex;
+    align-items: center;
+    width:232px;
+    height:35px;
+   
 }
 
 .legacyMenu a:hover {
