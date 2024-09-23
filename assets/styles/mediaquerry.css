@@ -4,22 +4,7 @@
         max-width: 1208px;
     }
 
-    .dragAndDropBoardArea {
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
 
-    .dragAndDropBoardArea::-webkit-scrollbar {
-        display: none;
-    }
-
-    .arrowImg {
-        display: none;
-    }
-
-    .mobileBtnAdd {
-        display: none;
-    }
 }
 
 @media(min-width:1301px) and (max-width:1439px) {
@@ -28,52 +13,14 @@
         padding-right: 0px;
     }
 
-    .emptySearch {
-        padding-left: 90px;
-    }
-
     .mainDesignAside {
         width: 200px;
-    }
-
-    .dragAndDropBoard {
-        width: calc(1208px - 128px);
-        gap: 8px;
-    }
-
-    .headlineDrag {
-        width: 230px;
-    }
-
-    .dragAndDropBoardArea {
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .dragAndDropBoardArea::-webkit-scrollbar {
-        display: none;
-    }
-
-    .arrowImg {
-        display: none;
     }
 
     .mainDesignAside {
         width: 160px;
     }
 
-    .dragAndDropBoard {
-        width: 100%;
-        gap: 8px;
-    }
-
-    .headlineDrag {
-        width: 230px;
-    }
-
-    .mobileBtnAdd {
-        display: none;
-    }
 }
 
 @media(min-width: 801px) and (max-width:1300px) {
@@ -81,19 +28,6 @@
         padding-left: 64px;
         padding-right: 0px;
         height: 140vh
-    }
-
-    .overDisplay {
-        display: flex;
-        flex-direction: column-reverse;
-    }
-
-    .searchBar {
-        margin-right: 10px;
-    }
-
-    .emptySearch {
-        padding-left: 50px;
     }
 
     .mainDesign {
@@ -143,74 +77,12 @@
         margin-top: 0;
     }
 
-    .emptyBoardArea {
-        width: 100%;
-    }
-
     .header span {
         content: url("../img/logosmall.png");
     }
 
-    .dragAndDropBoard {
-        display: flex;
-        flex-direction: column;
-        width: 95%;
-    }
-
-    .dragAndDropBoardArea {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        margin-bottom: 15px;
-        margin-top: 15px;
-        overflow: auto;
-        min-height: 48px;
-        scrollbar-width: none;
-    }
-
-    .dragAndDropBoardArea::-webkit-scrollbar {
-        width: 0;
-    }
-
-    .dragAndDropBoardArea:hover {
-        overflow: auto;
-        scrollbar-width: thin;
-    }
-
-    .headlineDrag {
-        padding-top: 15px;
-        margin-bottom: 15px;
-        width: 96%;
-        height: 32px;
-    }
-
-    .headlineDrag span {
-        font-size: 27px;
-        color: #2A3647;
-    }
-
-    .headlineDrag img {
-        cursor: pointer;
-        width: 32px;
-        height: 32px;
-    }
-
-    .taskAreaMobile {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .mobileBtnAdd {
-        display: none;
-    }
-
     .asideMenu a {
         width: 200px;
-    }
-
-    .popupArea2 {
-        position: fixed;
     }
 }
 
@@ -219,27 +91,6 @@
         padding-left: 10px;
         padding-right: 0px;
         height: 140vh
-    }
-
-    .popupArea2 {
-        position: fixed;
-
-    }
-
-    .overDisplay {
-        display: flex;
-        flex-direction: column-reverse;
-    }
-
-    .searchBar {
-        width: 100%;
-        padding-right: 10px;
-    }
-
-    .emptySearch {
-        justify-content: start;
-        top: 12px;
-        padding: 20px;
     }
 
     .mainDesign {
@@ -287,62 +138,8 @@
         margin-top: 0;
     }
 
-    .emptyBoardArea {
-        width: 100%;
-    }
-
     .header span {
         content: url("../img/logosmall.png");
-    }
-
-    .dragAndDropBoard {
-        display: flex;
-        flex-direction: column;
-        width: 95%;
-    }
-
-    .dragAndDropBoardArea {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        margin-bottom: 15px;
-        margin-top: 15px;
-        overflow: auto;
-        min-height: 48px;
-        scrollbar-width: none;
-    }
-
-    .dragAndDropBoardArea::-webkit-scrollbar {
-        width: 0;
-    }
-
-    .dragAndDropBoardArea:hover {
-        overflow: auto;
-        scrollbar-width: thin;
-    }
-
-    .headlineDrag {
-        padding-top: 15px;
-        margin-bottom: 15px;
-        width: 100%;
-        height: 32px;
-    }
-
-    .headlineDrag span {
-        font-size: 27px;
-        color: #2A3647;
-    }
-
-    .headlineDrag img {
-        cursor: pointer;
-        width: 30px;
-        height: 30px;
-    }
-
-    .taskAreaMobile {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
     }
 
     .asideMenu {
@@ -365,132 +162,6 @@
     .asideMenu:nth-of-type(3) {
         padding: 0;
         border-radius: 10px;
-    }
-
-    .headlinbar {
-        flex-wrap: wrap;
-    }
-
-    .btnBoardTask {
-        display: none;
-    }
-
-    .mobileBtnAdd {
-        display: flex;
-        justify-content: center;
-        width: 100px;
-        cursor: pointer;
-        padding-left: 20px;
-    }
-
-    .inputArea input {
-        width: 100%;
-    }
-
-    .inputArea {
-        width: 97%;
-    }
-
-    .inputSearch {
-        width: 100%;
-    }
-
-    .inputImgArea {
-        padding-right: 10px;
-    }
-}
-
-@media(max-width:563px) {
-    .popupTaskInfo {
-        width: 300px;
-        height: 700px;
-        gap: 15px;
-    }
-
-    .infoTitle {
-        width: 300px;
-        justify-content: start;
-
-    }
-
-    .infoTitle img {
-        margin-left: 30px;
-    }
-
-    .popupTitleInfo {
-        width: 220px;
-        font-size: 20px;
-        min-height: 50px;
-    }
-
-    .descriptionInfo {
-        width: 220px;
-        min-height: 24px;
-        padding-right: 20px;
-        margin-bottom: 10px;
-    }
-
-    .boxinfo {
-        width: 30px;
-        height: 30px;
-    }
-
-    .contactInfo {
-        width: 200px;
-    }
-
-    .contactInfo span {
-        font-size: 18px;
-        width: 180px;
-        height: auto;
-    }
-
-    .contactInfoData {
-        width: 200px;
-        overflow: auto;
-        scrollbar-width: thin;
-        padding: 0;
-    }
-
-    .contactArea {
-        width: 180px;
-        gap: 15px;
-    }
-
-    .subtaskInfo {
-        width: 220px;
-        min-height: 100px;
-        gap: 0;
-    }
-
-    .subtaskAreaData {
-        width: 220px;
-        height: 60px;
-        overflow: auto;
-        margin-top: 10px;
-        scrollbar-width: thin;
-        scroll-behavior: smooth;
-    }
-
-    .subtaskAreaData span {
-        display: flex;
-        align-items: center;
-        width: 24px;
-        height: 24px;
-    }
-
-    .subtastTitle {
-        min-height: 50px;
-    }
-
-    .editInfo {
-        justify-content: end;
-        width: 220px;
-    }
-
-    .bgInfo_user {
-        width: 100px;
-        height: 20px;
     }
 }
 
