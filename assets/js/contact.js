@@ -75,6 +75,22 @@ function loadContactData(i, initials) {
 
 function showContactDetails(i, initials) {
     let contactDetails = document.getElementById('contactDetails');
+    let allContacts = document.querySelectorAll('.contact-item');
+
+    if (allContacts[i].classList.contains('active-contact')) {
+
+        allContacts[i].classList.remove('active-contact');
+        contactDetails.innerHTML = '';
+        return;
+    }
+
+    for (let i = 0; i < allContacts.length; i++) {
+        allContacts[i].classList.remove('active-contact');
+    }
+
+    allContacts[i].classList.add('active-contact');
+    contactDetails.classList.add('contact-slide-in')
+
     contactDetails.innerHTML = `
         <div class="contact-ellipse">
             <span class="contact-ellipse2 b-${array[i].color}">${initials}</span>
@@ -94,14 +110,6 @@ function showContactDetails(i, initials) {
             ${array[i].rufnummer || ''}
         </div>
     `;
-
-    let allContacts = document.querySelectorAll('.contact-item');
-    for (let i = 0; i < allContacts.length; i++) {
-        allContacts[i].classList.remove('active-contact');
-    }
-
-    allContacts[i].classList.add('active-contact');
-    contactDetails.classList.add('contact-slide-in')
 }
 
 function extrahiereInitialen(contactName) {
