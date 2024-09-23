@@ -1,7 +1,7 @@
 @media(min-width:1439px) {
     .content {
         padding: 0 64px 0 64px;
-        max-width: 1208px;
+        
     }
 }
 
@@ -25,7 +25,7 @@
     .content {
         padding-left: 64px;
         padding-right: 0px;
-        height: 140vh
+        height: 160vh
     }
 
     .mainDesign {
@@ -87,7 +87,7 @@
     .content {
         padding-left: 10px;
         padding-right: 0px;
-        height: 140vh
+        height: 160vh
     }
 
     .mainDesign {
