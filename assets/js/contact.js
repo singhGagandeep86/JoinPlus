@@ -67,7 +67,7 @@ function loadContactData(i, initials) {
                     <div class="avatar"><span class="b-${array[i].color}">${initials}</span></div>
                     <div class="details">
                         <div class="name">${array[i].name}</div>
-                        <div class="email">${array[i].email}</div>
+                        <div class="email changemycolor">${array[i].email}</div>
                     </div>
                 </div>
             </div>`;
@@ -95,6 +95,12 @@ function showContactDetails(i, initials) {
         </div>
     `;
 
+    let allContacts = document.querySelectorAll('.contact-item');
+    for (let i = 0; i < allContacts.length; i++) {
+        allContacts[i].classList.remove('active-contact');
+    }
+
+    allContacts[i].classList.add('active-contact');
     contactDetails.classList.add('contact-slide-in')
 }
 
