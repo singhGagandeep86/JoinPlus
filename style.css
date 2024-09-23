@@ -85,20 +85,12 @@
     padding-bottom: 64px;
 }
 
-.legacyMenu a {
-   
-    width:232px;
-    height:35px;
+.legacyMenu a {   
+    padding-top: 30px;
     color: var(--sideheader-font-color);
 }
 
-.activeSite{
-    display: flex;
-    align-items: center;
-    width:232px;
-    height:35px;
-   
-}
+
 
 .legacyMenu a:hover {
     color: #29ABE2;
