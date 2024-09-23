@@ -222,3 +222,14 @@
     color: white;
 }
 
+.summaryContent{
+    display: flex;
+    flex-direction: column;
+}
+#divHead{
+    width: 3px;
+    height: 64px;
+    background-color:#29ABE2 ;
+    transform: rotate(180deg);
+    border: 3px;
+}
