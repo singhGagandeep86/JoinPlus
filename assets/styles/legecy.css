@@ -96,13 +96,25 @@ body {
 }
 
 .legacyMenu a {
-    padding-top: 30px;
+    margin-top: 30px;
     color: var(--sideheader-font-color);
+}
+.legacyMenu a:nth-of-type(1){
+    text-align: center;
 }
 
 .legacyMenu a:hover {
     color: #29ABE2;
     transform: scale(1.03);
+}
+.activeSite{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width:232px;
+    height:35px;
+    background-color: #091931;
 }
 
 .mainDesign {
