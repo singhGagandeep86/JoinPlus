@@ -9,6 +9,14 @@
         flex-direction: column-reverse;
     }
 
+    form{
+        align-items: center;
+        margin-left: 0px;
+    }
 }
 
-@media(max-width: 1020px) {}
+@media(max-width: 1020px) {
+    .formular{
+        gap: 28px;
+    }
+}
