@@ -4,6 +4,8 @@ let names = [];
 let namesInitials = [];
 let colours = [];
 let array = [];
+let expanded = false;
+let subTaskexpanded = false;
 
 function init() {
   fetchUrl();
@@ -21,7 +23,7 @@ async function fetchUrl() {
 function contactsData(firebase) {
   let contactsLength = Object.values(firebase);
   let objLngth = contactsLength.length;
-  let contact = document.getElementById("checkboxes");
+  let contact = document.getElementById("allCntcts");
   for (let i = 0; i < objLngth; i++) {
     const eachName = contactsLength[i].name;
     array.push(contactsLength[i]);
@@ -173,16 +175,15 @@ function activateLow() {
 }
 
 // Drop down function for Assigned Contacts
-let expanded = false;
 function showCheckBoxes() {
-  const checkboxes = document.getElementById("checkboxes");
+  const allCntcts = document.getElementById("allCntcts");
   if (!expanded) {
     document.getElementById('arrow').style.transform = "rotate(-180deg)";
-    checkboxes.style.display = "block";
+    allCntcts.style.display = "block";
     expanded = true;
   } else {
     document.getElementById('arrow').style.transform = "rotate(0deg)";
-    checkboxes.style.display = "none";
+    allCntcts.style.display = "none";
     expanded = false;
   }
 }
@@ -190,21 +191,20 @@ function showCheckBoxes() {
 // Event-Listener für Klick außerhalb der "Assigned Contacts"-Dropdown
 document.addEventListener('click', function (event) {
   const assign = document.getElementById("assign");
-  const checkboxes = document.getElementById("checkboxes");
+  const allCntcts = document.getElementById("allCntcts");
   if (expanded && !assign.contains(event.target)) {
-    checkboxes.style.display = "none";
+    allCntcts.style.display = "none";
     document.getElementById('arrow').style.transform = "rotate(0deg)";
     expanded = false;
   }
 });
 
 // Klick innerhalb der "Assigned Contacts"-Dropdown verhindert das Schließen
-document.getElementById("checkboxes").addEventListener('click', function (event) {
+document.getElementById("allCntcts").addEventListener('click', function (event) {
   event.stopPropagation();
 });
 
 // Drop down function for category
-let subTaskexpanded = false;
 function showCategory() {
   const select = document.getElementById("slection");
   let arrow = document.getElementById('arrowRight');
@@ -240,19 +240,16 @@ function showSelection(element) {
 
 // reseting all
 function resetAll() {
-  expanded = false;
-  names = [];
-  namesInitials = [];
-  document.getElementById('btnUrgnt').innerHTML = ` <div>Urgent <img src="/assets/img/prioUrgent.svg"></div>`;
-  document.getElementById('btnMed').innerHTML = ` <div>Medium <img src="/assets/img/prioMedium.svg"></div>`;
-  document.getElementById('btnLow').innerHTML = ` <div>Low <img src="/assets/img/prioLow.svg"></div>`;
-  document.getElementById('btnUrgnt').classList.remove("btnUrgnt");
-  document.getElementById('btnMed').classList.remove("btnMed");
-  document.getElementById('btnLow').classList.remove("btnLow");
-  document.getElementById('assignHeading').innerHTML = `Select task category <img class="arrow" id="arrowRight" src="../img/dropArrow.svg" style="transform: rotate(0deg)">`;
-  document.getElementById('checkboxes').style.display = "none";
-  document.getElementById('arrow').style.transform = "rotate(0deg)";
-  document.getElementById('subTsksBoard').innerHTML = '';
-  document.getElementById('selCntcts').innerHTML = '';
+  resetingGlobalVariable();
+  resetingLocalVariables();
+  let allContacts = document.getElementById('allCntcts');
+  let allLabels = allContacts.getElementsByTagName('label');
+  for (i = 0; i < allLabels.length; i++) {
+    let label = allLabels[i];
+    let chkBox = label.querySelector('span');
+    label.style.backgroundColor = "transparent";
+    label.style.color = "black";
+    chkBox.style.content = "url(../img/CheckbuttonEmpty.png)";
+  }
 }
 

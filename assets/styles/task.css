@@ -6,7 +6,7 @@ body {
     max-height: 1024px;
 }
 
-.content {
+.contentTask {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -293,11 +293,13 @@ label {
 
 /*style items (options):*/
 .selectItems {
+    position: absolute;
+    margin-top: 80px;
+    width: 440px;
     background-color: #FFFFFF;
-    top: 100%;
     z-index: 99;
     border: 1px transparent;
-    border-radius: 10px;
+    border-radius: 0px 0px 10px 10px;
 }
 
 /*style the items (options), including the selected item:*/
@@ -358,6 +360,7 @@ label {
 }
 
 .subtasks {
+    position: relative;
     width: 440px;
     height: 80px;
     margin-top: 24px;

@@ -30,3 +30,25 @@ function emptyField() {
     <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt" placeholder="Add new subtask" type="text">
     <img class="tsksGen" src="/assets/img/subTaskIcon.svg"></div>`;
 }
+
+// reseting Global Variables
+function resetingGlobalVariable() {
+    expanded = false;
+    names = [];
+    namesInitials = [];
+  }
+  
+  // reseting Local Variables
+  function resetingLocalVariables() {
+    document.getElementById('btnUrgnt').innerHTML = ` <div>Urgent <img src="/assets/img/prioUrgent.svg"></div>`;
+    document.getElementById('btnMed').innerHTML = ` <div>Medium <img src="/assets/img/prioMedium.svg"></div>`;
+    document.getElementById('btnLow').innerHTML = ` <div>Low <img src="/assets/img/prioLow.svg"></div>`;
+    document.getElementById('btnUrgnt').classList.remove("btnUrgnt");
+    document.getElementById('btnMed').classList.remove("btnMed");
+    document.getElementById('btnLow').classList.remove("btnLow");
+    document.getElementById('assignHeading').innerHTML = `Select task category <img class="arrow" id="arrowRight" src="../img/dropArrow.svg" style="transform: rotate(0deg)">`;
+    document.getElementById('allCntcts').style.display = "none";
+    document.getElementById('arrow').style.transform = "rotate(0deg)";
+    document.getElementById('subTsksBoard').innerHTML = '';
+    document.getElementById('selCntcts').innerHTML = '';
+  }
