@@ -18,72 +18,79 @@ function templateTaskEmptyDone() {
 
 function templatePopUpTask1() {
     return `<div id="CloseArea" class="taskArea">
-        <div class="heading">Add Task <img class="closeIconTask" onclick="closePopUpTask()" src="../img/Close.png" alt=""></div>
-                <form  onsubmit="submition()">
-                    <div class="mainSubmition">
+        <div class="heading">Add Task <img class="closeIconTask" onclick="closePopUpTask()" src="../img/Close.png" alt=""></img></div>
+                <form onsubmit="submition()">
+                    <div class="formular">
                         <div class="leftSubmition">
                             <div class="title">
-                                <div class="smallHead">Title <div class="imp">*</div>
+                                <div class="smallHead"><span>Title <sup>*</sup></span>
                                 </div>
                                 <input class="titleTxt" type="text" placeholder="Enter a title" required>
                             </div>
                             <div class="description">
                                 <div class="smallHead">Description</div>
-                                <textarea  placeholder="Enter a Description"
+                                <textarea rows="4" cols="37" placeholder="Enter a Description"
                                     class="descriptionTxt"></textarea>
                             </div>
-                            <div class="assign">
+                            <div class="assignCntcts">
                                 <label for="contacts">Assigned to</label>
-                                <select class="assignment" id="contacts">
-                                    <option value="user">Select contacts to assign</option>
-                                </select>
+                                <div class="assignment" id="assign" onclick="showCheckBoxes()">
+                                    Select contacts to assign
+                                    <img class="arrow" id="arrow" src="../img/dropArrow.svg">
+                                </div>
+                                <div id="checkboxes" class="checkboxes">
+                                </div>
+                                <div id="selCntcts" class="showSel"></div>
                             </div>
                         </div>
                         <div class="partition"></div>
                         <div class="rightSubmition">
                             <div class="dueDate">
-                                <div class="smallHead">Due Date <div class="imp">*</div>
+                                <div class="smallHead"><span>Due Date <sup>*</sup></span>
                                 </div>
                                 <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy"
                                     onfocus="(this.type='date')" required>
                             </div>
                             <div class="prio">
-                            <div class="smallHead">Prio</div>
-                            <div class="prioBtns">
-                                <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
-                                        src="../../assets/img/prioUrgent.svg"></div>
-                                <div id="btnMed" onclick="activateMedium()" class="priobtn med">Medium <img
-                                        src="../../assets/img/prioMedium.svg"></div>
-                                <div id="btnLow" onclick="activateLow()" class="priobtn low">Low <img
-                                        src="../../assets/img/prioLow.svg"></div>
+                                <div class="smallHead">Prio</div>
+                                <div class="prioBtns">
+                                    <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
+                                            src="/assets/img/prioUrgent.svg"></div>
+                                    <div id="btnMed" onclick="activateMedium()" class="priobtn med">Medium <img
+                                            src="/assets/img/prioMedium.svg"></div>
+                                    <div id="btnLow" onclick="activateLow()" class="priobtn low">Low <img
+                                            src="/assets/img/prioLow.svg"></div>
+                                </div>
                             </div>
-                        </div>
                             <div class="assign">
-                                <label for="Category">Category <div class="imp">*</div></label>
-                                <select class="assignment" id="Category" required>
-                                    <option value="">Select task category</option>
-                                    <option value="user">User Story</option>
-                                    <option value="user">Technical Task</option>
-                                </select>
+                                <label for="Category"><span>Category <sup>*</sup></span></label>
+                                <div class="assignment" id="assignHeading" onclick="showCategory()">
+                                    Select task category
+                                    <img class="arrow" id="arrowRight" src="../img/dropArrow.svg">
+                                </div>
+                                <div id="slection" class="selectItems selectHide">
+                                    <div data-value="technical" onclick="showSelection(this)">Technical Task</div>
+                                    <div data-value="userStory" onclick="showSelection(this)">User Story</div>
+                                </div>
                             </div>
-                            <div class="subtasks">
+
+                            <div id="inputSubClass" class="subtasks">
                                 <div class="smallHead">Subtasks</div>
-                                <input class="subtasksTxt" placeholder="Add  new subtask" type="text">
+                                <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
+                                        placeholder="Add new subtask" type="text">
+                                    <img class="tsksGen" src="/assets/img/subTaskIcon.svg">
+                                </div>
                             </div>
+                            <ul class="a" id="subTsksBoard"></ul>
                         </div>
                     </div>
-                    <div class="contentFeet">
-                        <div class="smallHead">
-                            <div class="imp">*</div>This field is required
-                        </div>
+                    <div class="info">
+                        <div><sup>* </sup>This field is required</div>
                         <div class="submitionButtons">
-                            <button class="secondary">
-                                <div class="smallHead">Cancel</div><img
-                                    src="../../assets/img/xPic.png">
-                            </button>
+                            <button class="secondary" type="reset" onclick="resetAll()">
+                                <span>Clear</span> </button>
                             <button class="primaryCheck">
-                                <div class="smallHead">Create Task</div><img class="primevect"
-                                    src="../../assets/img/check.svg">
+                                <span>Create Task</span><img class="primevect" src="/assets/img/check.svg">
                             </button>
                         </div>
                     </div>
@@ -113,14 +120,14 @@ function templateTaskHTML(element) {
 
 function templateTaskSmallInfo(i) {
     return `<div id="closeAreaInfo" class="popupTaskInfo">
-            <div class="infoTitle"><div><span class=" bgInfo_${array[i].color}" >${array[i].category}</span>
+            <div class="infoTitle"><div><span class=" bgInfo_${arrayLoad[i].color}" >${arrayLoad[i].category}</span>
             </div><img onclick="closePopUpTaskSmall()" src="../img/Close.png" alt=""></div>
-            <div class="popupTitleInfo">${array[i].title}</div>
-            <div class="descriptionInfo">${array[i].description}</div>
+            <div class="popupTitleInfo">${arrayLoad[i].title}</div>
+            <div class="descriptionInfo">${arrayLoad[i].description}</div>
             <div class="dateInfo"><div><span>Due date:</span></div><div id="dateAreaInfo"></div></div>
             <div class="prioInfo"><div><span>Priorty:</span></div>
-            <div class="prioInfoData"><span>${array[i].prio.charAt(0).toUpperCase() + array[i].prio.slice(1)}</span>
-            <div class="bg_${array[i].prio}"></div></div></div>
+            <div class="prioInfoData"><span>${arrayLoad[i].prio.charAt(0).toUpperCase() + arrayLoad[i].prio.slice(1)}</span>
+            <div class="bg_${arrayLoad[i].prio}"></div></div></div>
             <div class="contactInfo"><span class="contactInfoHeadline">Assigned To:</span><div id="contactAreaInfo" class="contactInfoData"></div></div>
             <div class="subtaskInfo"><span>Subtasks:</span><div  class="subtaskAreaData"><div id="subtaskArea"></div></div></div>
             <div class="editInfo"><div class="editInfoData"><div><img class="deletePic" src="../img/Delete contact.png" alt=""></div>

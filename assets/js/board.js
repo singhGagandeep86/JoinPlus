@@ -2,16 +2,14 @@ let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.ap
 let path = "";
 let data = {};
 let url = '';
-let array = [];
+let arrayLoad = [];
 let searchArray = [];
 let draggedElement;
 let mediaQuery = window.matchMedia("(max-width: 1100px)");
 let toggle = 0;
 
 async function load() {
-
     await loadData("/task");
-
 }
 
 async function loadData(path) {
@@ -19,21 +17,22 @@ async function loadData(path) {
     let responsetoJason = await response.json();
     let taskArray = Object.values(responsetoJason);
     for (let i = 0; i < taskArray.length; i++) {
-        array.push(taskArray[i]);
+        arrayLoad.push(taskArray[i]);
     }
+
     taskAdd();
 }
 
 async function taskAdd() {
-
     todo();
     inPorgess();
     awaits();
     done();
+
 }
 
 function todo() {
-    let toDo = array.filter(e => e['id'] == 'toDo');
+    let toDo = arrayLoad.filter(e => e['id'] == 'toDo');
     if (toDo.length == 0) {
         document.getElementById('toDo').innerHTML = templateTaskEmptyTodo();
     } else {
@@ -63,7 +62,7 @@ function todo() {
 }
 
 function inPorgess() {
-    let inprogress = array.filter(e => e['id'] == 'progress');
+    let inprogress = arrayLoad.filter(e => e['id'] == 'progress');
     if (inprogress.length == 0) {
         document.getElementById('progress').innerHTML = templateTaskEmptyInProegress();
     } else {
@@ -92,7 +91,7 @@ function inPorgess() {
 }
 
 function awaits() {
-    let await = array.filter(e => e['id'] == 'await');
+    let await = arrayLoad.filter(e => e['id'] == 'await');
     if (await.length == 0) {
         document.getElementById('await').innerHTML = templateTaskEmptyAwait();
     } else {
@@ -123,7 +122,7 @@ function awaits() {
 }
 
 function done() {
-    let done = array.filter(e => e['id'] == 'done');
+    let done = arrayLoad.filter(e => e['id'] == 'done');
     if (done.length == 0) {
         document.getElementById('done').innerHTML = templateTaskEmptyDone();
     } else {
@@ -161,7 +160,9 @@ function allowDrop(ev) {
 }
 
 function openPopUpTask(id) {
+    
     let taskPopUp = document.getElementById('popupTaskMain');
+    init()
     if (handleMediaChange(mediaQuery)) {
         window.location.href = 'task.html';
     } else {
@@ -183,12 +184,15 @@ function handleMediaChange(e) {
 
 
 function closePopUpTask() {
+    array = [];
+    resetAll();
     let button = document.getElementById('btnTaskPopupcloseArea');
     button.addEventListener('click', (event) => {
         event.stopPropagation()
     })
     let taskPopUp = document.getElementById('popupTaskMain');
     taskPopUp.classList.add('d_none');
+
 }
 
 function subtaskBar(element, checkedCount) {
@@ -244,7 +248,7 @@ function closePopUpTaskSmall() {
 function openPopUpTaskSwitch(element) {
     let select = document.getElementById('popupTaskSwitch' + element);
     let arrow = document.getElementById('arrowSwitch' + element);
-    let id = array[element].id;
+    let id = arrayLoad[element].id;
     if (toggle === 0) {
         select.classList.remove('d_none');
         arrow.classList.add('arrowTaskImg');
@@ -280,7 +284,7 @@ function dataSwitch(id, element) {
 async function changeIdTaskValue(value, element) {
     let arrow = document.getElementById('arrowSwitch' + element);
     await changeIdTask(value, element);
-    array = [];
+    arrayLoad = [];
     closePopUpTaskSwitch(element);
     arrow.classList.remove('arrowTaskImg');
     await loadData("/task");
@@ -297,7 +301,7 @@ async function changeIdTask(value, element) {
 
 function time(i) {
     let dateArea = document.getElementById('dateAreaInfo');
-    let times = array[i].date;
+    let times = arrayLoad[i].date;
     if (times) {
         let [year, month, day] = times.split('-');
         let formattedDate = `${day}-${month}-${year}`;
@@ -308,8 +312,8 @@ function time(i) {
 
 function addcontactInfo(i) {
     let contactArea = document.getElementById('contactAreaInfo');
-    let contactName = array[i].contact ? Object.values(array[i].contact) : null;
-    let contactscolor = array[i].contactcolor ? Object.values(array[i].contactcolor) : null;
+    let contactName = arrayLoad[i].contact ? Object.values(arrayLoad[i].contact) : null;
+    let contactscolor = arrayLoad[i].contactcolor ? Object.values(arrayLoad[i].contactcolor) : null;
     contactArea.innerHTML = '';
     if (contactName == null) {
         contactArea.innerHTML = '';
@@ -326,13 +330,13 @@ function addcontactInfo(i) {
 function addSubtaskInfo(i) {
     let subtaskInput = document.getElementById('subtaskArea');
     subtaskInput.innerHTML = '';
-    if (!array[i].subtask) {
+    if (!arrayLoad[i].subtask) {
         subtaskInput.innerHTML = ''; // 
-    } else if (Object.values(array[i].subtask).length === 0 && Object.values(array[i].checked) === 0) {
+    } else if (Object.values(arrayLoad[i].subtask).length === 0 && Object.values(arrayLoad[i].checked) === 0) {
         subtaskInput.innerHTML = '';
     } else {
-        let subtaskTitle = Object.values(array[i].subtask);
-        let subtastChecked = Object.values(array[i].checked);
+        let subtaskTitle = Object.values(arrayLoad[i].subtask);
+        let subtastChecked = Object.values(arrayLoad[i].checked);
         for (let j = 0; j < subtaskTitle.length; j++) {
             let element = subtaskTitle[j];
             subtaskInput.innerHTML += templateSubtask(element, i, j);
@@ -342,8 +346,8 @@ function addSubtaskInfo(i) {
 
 }
 function moveTo(element) {
-    array[draggedElement]['id'] = element;
-    let changeId = array[draggedElement];
+    arrayLoad[draggedElement]['id'] = element;
+    let changeId = arrayLoad[draggedElement];
     taskAdd();
     postId(element, changeId);
 
@@ -372,7 +376,7 @@ async function inputCheckBoxInfo(i, j) {
     let url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/${path}.json`;
     let upData = { [`task${j + 1}`]: checkbox.checked };
     await postDataCheck(url, upData);
-    array = [];
+    arrayLoad = [];
     load();
 }
 
@@ -395,7 +399,7 @@ function checked(subtastChecked) {
 
 function search() {
     let inputSearch = document.getElementById('search');
-    let searchArray = array.filter(item =>
+    let searchArray = arrayLoad.filter(item =>
         item['title'].toLowerCase().includes(inputSearch.value.toLowerCase()) ||
         item['description'].toLowerCase().includes(inputSearch.value.toLowerCase())
     );
@@ -407,11 +411,11 @@ function searchStart(inputSearch, searchArray) {
         document.getElementById('emptySearchOn').classList.remove('d_none');
     } else if (inputSearch.value.length < 3 && inputSearch.value == 0) {
         document.getElementById('emptySearchOn').classList.add('d_none');
-        array = [];
+        arrayLoad = [];
         load();
     } else if ((inputSearch.value.length > 2)) {
         document.getElementById('emptySearchOn').classList.add('d_none');
-        array = searchArray;
+        arrayLoad = searchArray;
         taskAdd();
     }
 }

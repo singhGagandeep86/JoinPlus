@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../styles/mediaquerryBoard.css">
     <link rel="stylesheet" href="../styles/mediaquerry.css">
     <link rel="stylesheet" href="../styles/joincolor.css">
+    <link rel="stylesheet" href="../styles/task.css">
     <title>Board</title>
 </head>
 
@@ -67,8 +68,7 @@
                                 </div>
                             </div>
                             <div id="btnTaskPopupcloseArea" onclick="openPopUpTask('toDo')" class="btnBoardTask"><button
-                                    onclick="openPopUpTask()">Add task </button><img onclick="openPopUpTask()"
-                                    src="../img/add.png" alt=""></div>
+                                    >Add task </button><img src="../img/add.png" alt=""></div>
                         </div>
                     </div>
                     <p id="emptySearchOn" class="emptySearch d_none">No task found</p>
@@ -110,11 +110,12 @@
     <div id="popupTaskMain" class="popupArea d_none" onclick="closePopUpTask() "></div>
     <div id="popupTaskInfo" class="popupArea2 d_none " onclick="closePopUpTaskSmall()"></div>
 
-
+    <script src="../js/task.js"></script>
+    <script src="../js/taskTemplate.js"></script>
     <script src="/script.js"></script>
     <script src="../js/board.js"></script>
     <script src="../js/boardTemplate.js"></script>
-    <!-- <script src="../js/task.js"></script> -->
+    
     <script src="/assets/js/submenu.js"></script>
 </body>
 
