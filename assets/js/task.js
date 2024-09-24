@@ -255,3 +255,4 @@ function resetAll() {
   document.getElementById('subTsksBoard').innerHTML = '';
   document.getElementById('selCntcts').innerHTML = '';
 }
+

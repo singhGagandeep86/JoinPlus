@@ -1,0 +1,57 @@
+
+
+@media(max-width: 1300px){
+    .overDisplay {
+        flex-direction: column-reverse;
+    }
+
+    .header span{
+        content: url("../img/logosmall.png");
+    }
+
+    .mainDesignAside{
+        position: fixed;
+        bottom: 0;
+        flex-direction: row;
+        width: 100%;
+        height: 150px;
+    }
+
+    .mainDesignAsideImg{
+        display: none;
+    }
+
+    .mainDesignAsideLinks{
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0px 34px 0px 228px;
+    }
+
+    .asideMenuArea{
+        flex-direction: row;
+        margin-top: 0px;
+       width: auto;
+    }
+
+    .legacyMenu{
+        padding-bottom: 0px;
+        gap: 10px;
+    }
+
+    .legacyMenu a{
+        padding-top: 0px;
+    }
+
+    .asideMenu{
+        width: 128px;
+    }
+
+    .active{
+        width: 128px;
+    }
+}
+
+@media(max-width: 1020px){
+    
+}
