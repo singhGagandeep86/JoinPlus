@@ -4,6 +4,7 @@
     --sideheader-active-color: #091931;
     --content-main-color: #F6F7F8;
     --sideheader-font-color: #CDCDCD;
+    --button-hover-color: #29ABE2;
 }
 
 * {
@@ -75,6 +76,11 @@ body {
     z-index: 1000;
 }
 
+.arrow-sticky:hover {
+    background-color: #eeeeee;
+    border-radius: 50%;
+}
+
 .guides {
     display: flex;
     gap: 55px;
@@ -88,4 +94,8 @@ body {
 .tophead {
     font-size: 20px;
     font-weight: 700;
+}
+
+.joinON {
+    color: var(--button-hover-color);
 }
