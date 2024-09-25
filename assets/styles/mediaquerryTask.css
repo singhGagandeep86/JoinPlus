@@ -1,7 +1,7 @@
 @media(max-width: 1300px) {
     .contentTask {
         overflow: scroll;
-        margin-bottom: 142px;
+        margin-bottom: 158px;
         height: 100%;
     }
 
@@ -9,14 +9,242 @@
         flex-direction: column-reverse;
     }
 
-    form{
+    form {
         align-items: center;
+        margin-left: 0px;
+    }
+
+    .checkboxes {
+        width: 440px;
+        height: 178px;
+    }
+
+    .selectItems {
+        width: 440px;
+    }
+
+}
+
+@media(max-width: 1020px) {
+    .formular {
+        gap: 28px;
+    }
+
+    .info {
+        width: 90%;
+        padding: 0px 20px;
         margin-left: 0px;
     }
 }
 
-@media(max-width: 1020px) {
-    .formular{
-        gap: 28px;
+@media(max-width:975px) {
+    .leftSubmition {
+        width: 340px;
+    }
+
+    .rightSubmition {
+        width: 340px;
+    }
+
+    .checkboxes {
+        width: 340px;
+    }
+
+    .selectItems {
+        width: 340px;
+    }
+
+    .tsksGen {
+        margin-left: 294px;
+    }
+
+    .tsksBtns {
+        margin-left: 282px;
+    }
+
+    .prioBtns {
+        gap: 5px;
+    }
+
+    .priobtn {
+        width: 110px;
+    }
+}
+
+@media(max-width:800px) {
+
+    .contentTask {
+        overflow: auto;
+    }
+
+    .formular {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .leftSubmition {
+        width: 440px;
+        gap: 14px;
+    }
+
+    .partition {
+        display: none;
+    }
+
+    .rightSubmition {
+        width: 440px;
+        gap: 14px;
+        margin-top: 22px;
+    }
+
+    .checkboxes {
+        width: 440px;
+    }
+
+    .prioBtns {
+        gap: 16px;
+    }
+
+    .priobtn {
+        width: 136px;
+    }
+
+    .tsksGen {
+        margin-left: 392px;
+    }
+
+    .tsksBtns {
+        margin-left: 384px;
+    }
+
+    .heading {
+        margin-top: 26px;
+        text-align: center;
+    }
+
+    form {
+        margin-top: 22px;
+    }
+}
+
+@media (max-width:718px) {
+    .info {
+        flex-direction: column;
+        padding: 0px;
+    }
+
+    .info div:nth-of-type(1) {
+        margin-right: 332px;
+    }
+}
+
+@media (max-width:620px) {
+
+    .heading {
+        text-align: start;
+    }
+
+    .info {
+        flex-direction: row;
+    }
+
+    .secondary {
+        display: none;
+    }
+
+    .submitionButtons {
+        width: auto;
+    }
+
+    .info div:nth-of-type(1) {
+        margin-right: 0px;
+    }
+
+    .primaryCheck {
+        width: 183px;
+    }
+}
+
+@media(max-width:460px) {
+
+    .leftSubmition {
+        width: 396px;
+    }
+
+    .rightSubmition {
+        width: 396px;
+    }
+
+    .info {
+        width: 98%;
+    }
+
+    .checkboxes {
+        width: 396px;
+    }
+
+    .selectItems {
+        width: 396px;
+    }
+
+    .tsksGen {
+        margin-left: 348px;
+    }
+
+    .tsksBtns {
+        margin-left: 348px;
+    }
+}
+
+@media(max-width:425px) {
+
+    .heading {
+        font-size: 47px;
+    }
+
+    .leftSubmition {
+        width: 318px;
+    }
+
+    .rightSubmition {
+        width: 318px;
+    }
+
+    .prioBtns {
+        gap: 4px;
+    }
+
+    .priobtn {
+        width: 104px;
+    }
+
+    .tsksBtns {
+        margin-left: 264px;
+    }
+
+    .info {
+        font-size: 16px;
+        justify-content: center;
+    }
+
+    .checkboxes {
+        width: 318px;
+    }
+
+    .selectItems {
+        width: 318px;
+    }
+
+    .tsksGen {
+        margin-left: 274px;
+    }
+
+    .primaryCheck {
+        font-size: 15px;
+        width: 136px;
+    }
+
+    ul.a {
+        width: 95%;
     }
 }

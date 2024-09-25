@@ -2,7 +2,7 @@ body {
     font-family: 'inter';
     margin: 0px;
     box-sizing: border-box;
-    max-width: 1440px;
+    /* max-width: 1440px; */
     max-height: 1024px;
 }
 
@@ -86,7 +86,7 @@ label {
 }
 
 .title {
-    width: 440px;
+    width: 100%;
     height: 96px;
     gap: 8px;
     display: flex;
@@ -94,7 +94,7 @@ label {
 }
 
 .titleTxt {
-    width: 440px;
+    width: 100%;
     height: 48px;
     padding: 12px 21px 12px 21px;
     border-radius: 10px;
@@ -109,13 +109,13 @@ label {
 .description {
     display: flex;
     flex-direction: column;
-    width: 440px;
+    width: 100%;
     height: 168px;
     gap: 8px;
 }
 
 .descriptionTxt {
-    width: 440px;
+    width: 100%;
     height: 120px;
     padding: 18px 6px 6px 16px;
     border-radius: 10px;
@@ -136,6 +136,7 @@ label {
 }
 
 .assignCntcts {
+    width: 100%;
     gap: 8px;
     display: flex;
     flex-direction: column;
@@ -149,7 +150,7 @@ label {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 440px;
+    width: 100%;
     height: 48px;
     background: #FFFFFF;
     padding: 6px 24px 8px 16px;
@@ -279,7 +280,7 @@ label {
 }
 
 .assign {
-    width: 440px;
+    width: 100%;
     height: 80px;
     gap: 8px;
     display: flex;
@@ -323,13 +324,13 @@ label {
 .dueDate {
     display: flex;
     flex-direction: column;
-    width: 440px;
+    width: 100%;
     height: 96px;
     gap: 8px;
 }
 
 .dueDateTxt {
-    width: 440px;
+    width: 100%;
     height: 48px;
     padding: 12px 16px 12px 16px;
     border-radius: 10px;
@@ -353,7 +354,7 @@ label {
 .prio {
     display: flex;
     flex-direction: column;
-    width: 440px;
+    width: 100%;
     height: 88px;
     margin-top: 24px;
     gap: 8px;
@@ -361,7 +362,7 @@ label {
 
 .subtasks {
     position: relative;
-    width: 440px;
+    width: 100%;
     height: 80px;
     margin-top: 24px;
     display: flex;
@@ -375,7 +376,7 @@ label {
 }
 
 .subtasksTxt {
-    width: 440px;
+    width: 100%;
     height: 48px;
     padding: 12px 16px 12px 16px;
     border-radius: 10px;
@@ -586,7 +587,6 @@ ul.a {
     overflow: auto;
     height: 98px;
     width: 97%;
-    margin-top: 4px;
     border-radius: 10px;
     list-style: none;
     padding-left: 0;
