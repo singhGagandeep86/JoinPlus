@@ -184,7 +184,6 @@ function handleMediaChange(e) {
 
 
 function closePopUpTask() {
-    array = [];
     resetAll();
     let button = document.getElementById('btnTaskPopupcloseArea');
     button.addEventListener('click', (event) => {
@@ -192,7 +191,6 @@ function closePopUpTask() {
     })
     let taskPopUp = document.getElementById('popupTaskMain');
     taskPopUp.classList.add('d_none');
-
 }
 
 function subtaskBar(element, checkedCount) {

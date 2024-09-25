@@ -118,10 +118,10 @@ function normalEffect(element) {
 }
 
 // editing added subtask
-function editsubTask(element, index) {
+function editsubTask(element) {
   let parent = element.closest('li');
   parent.innerHTML = `<div class="wrapper">
-  <input type="text" value="${index}" class="subTaskInput"></input> 
+  <input type="text" value="${element.innerText}" class="subTaskInput"></input> 
   <div class="btns subTaskIcon subTaskEdit">
   <img class="inputIcon" onclick="delsubTask(this)" src="/assets/img/SubTaskDelete.svg">
   <img class="deleteIcon" onclick="newSubTask(this)" src="/assets/img/SubTaskDone.svg">
@@ -197,12 +197,12 @@ document.addEventListener('click', function (event) {
     document.getElementById('arrow').style.transform = "rotate(0deg)";
     expanded = false;
   }
+  document.getElementById("allCntcts").addEventListener('click', function (event) {
+    event.stopPropagation();
+  });
 });
 
-// Klick innerhalb der "Assigned Contacts"-Dropdown verhindert das Schließen
-document.getElementById("allCntcts").addEventListener('click', function (event) {
-  event.stopPropagation();
-});
+
 
 // Drop down function for category
 function showCategory() {
@@ -211,7 +211,7 @@ function showCategory() {
   if (!subTaskexpanded) {
     select.classList.remove("selectHide");
     arrow.style.transform = "rotate(-180deg)";
-    subTaskexpanded = true;
+    
   } else {
     arrow.style.transform = "rotate(0deg)";
     select.classList.add("selectHide");
@@ -240,6 +240,7 @@ function showSelection(element) {
 
 // reseting all
 function resetAll() {
+  deletArray()
   resetingGlobalVariable();
   resetingLocalVariables();
   let allContacts = document.getElementById('allCntcts');
@@ -249,7 +250,14 @@ function resetAll() {
     let chkBox = label.querySelector('span');
     label.style.backgroundColor = "transparent";
     label.style.color = "black";
-    chkBox.style.content = "url(../img/CheckbuttonEmpty.png)";
+    chkBox.style.content = "url(../img/CheckbuttonEmpty.png)";    
   }
+  
 }
 
+function deletArray() {
+  names = [];
+  namesInitials = [];
+  colours = [];
+  array = [];
+}

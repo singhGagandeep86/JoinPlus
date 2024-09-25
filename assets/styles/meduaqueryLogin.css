@@ -1,0 +1,62 @@
+@media (max-width:400px) {
+    .loginarea {
+        width: 150px;
+        height: 515px;
+        padding: 0px 115px 0px 115px;
+    }
+
+    .loginarea form .custome-input input {
+        width: 300px;
+    }
+
+    .loginheadline .textline  {
+        font-size: 47px;
+        line-height: 56.4px;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .loginheadline .underlineLogin {
+        width: 100px;
+    }
+
+    .loginarea form .btns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 21px;
+        margin-bottom: 0px;
+    }
+
+    .loginarea form .btns .login {
+        width: 178px;
+    }
+
+    header {
+        top: 700px;
+        left: 70px;
+    }
+
+    .topline {
+        display: flex;
+        align-items: center;
+    }
+
+    header .topline p {
+        font-size: 20px;
+        line-height: 20px;
+        font-weight: 400;
+    }
+
+    header .topline .login {
+        width: 104px;
+        height: 49px;
+    }
+
+    header .topline .login a {
+        font-size: 16px;
+        line-height: 19.2px;
+        font-weight: 400;
+    }
+}

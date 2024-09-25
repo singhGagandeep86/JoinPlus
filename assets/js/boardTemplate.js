@@ -18,7 +18,7 @@ function templateTaskEmptyDone() {
 
 function templatePopUpTask1() {
     return `<div id="CloseArea" class="taskArea">
-        <div class="heading">Add Task <img class="closeIconTask" onclick="closePopUpTask()" src="../img/Close.png" alt=""></img></div>
+         <div class="heading">Add Task</div>
                 <form onsubmit="submition()">
                     <div class="formular">
                         <div class="leftSubmition">
@@ -38,7 +38,7 @@ function templatePopUpTask1() {
                                     Select contacts to assign
                                     <img class="arrow" id="arrow" src="../img/dropArrow.svg">
                                 </div>
-                                <div id="checkboxes" class="checkboxes">
+                                <div id="allCntcts" class="checkboxes">
                                 </div>
                                 <div id="selCntcts" class="showSel"></div>
                             </div>
@@ -87,9 +87,9 @@ function templatePopUpTask1() {
                     <div class="info">
                         <div><sup>* </sup>This field is required</div>
                         <div class="submitionButtons">
-                            <button class="secondary" type="reset" onclick="resetAll()">
-                                <span>Clear</span> </button>
-                            <button class="primaryCheck">
+                            <div class="secondary"  onclick="closePopUpTask()">
+                                <span>Cancel</span> </div>
+                            <button class="primaryCheck" onclick="addingTask()">
                                 <span>Create Task</span><img class="primevect" src="/assets/img/check.svg">
                             </button>
                         </div>

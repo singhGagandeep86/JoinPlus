@@ -33,7 +33,8 @@
     top: 39%;
     left: 11%;
     transform: translateY(-40%);
-    animation: taskAnimation taskCloseAnimation 125ms ease-in-out;
+    animation: taskAnimation 125ms ease-in-out;
+    
     z-index: 99;
 }
 
