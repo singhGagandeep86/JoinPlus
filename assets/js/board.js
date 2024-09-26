@@ -241,6 +241,7 @@ function openPopUpTaskSmall(i) {
 
 function closePopUpTaskSmall() {
     document.getElementById('popupTaskInfo').classList.add('d_none');
+    
 }
 
 function openPopUpTaskSwitch(element) {

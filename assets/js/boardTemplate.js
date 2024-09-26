@@ -131,7 +131,7 @@ function templateTaskSmallInfo(i) {
             <div class="contactInfo"><span class="contactInfoHeadline">Assigned To:</span><div id="contactAreaInfo" class="contactInfoData"></div></div>
             <div class="subtaskInfo"><span>Subtasks:</span><div  class="subtaskAreaData"><div id="subtaskArea"></div></div></div>
             <div class="editInfo"><div class="editInfoData"><div><img class="deletePic" src="../img/Delete contact.png" alt=""></div>
-                <div><img class="editPic" src="../img/edit contacts.png" alt=""></div></div></div>
+                <div><img onclick="editOpen(${i})" class="editPic" src="../img/edit contacts.png" alt=""></div></div></div>
         </div>`;
 }
 function templateRange(subtask, checkedCount) {
@@ -182,4 +182,68 @@ function moveTaskTo4(element) {
     <button value="toDo" onclick="changeIdTaskValue(this.value, ${element})">To do</button>
     <button value="progress" onclick="changeIdTaskValue(this.value, ${element})">In progress</button>
     <button value="await" onclick="changeIdTaskValue(this.value, ${element})">Await</button></div>`
+}
+
+function editTask() {
+    return` <div class="popupEdit">
+        <div id="edit" class="editArea">
+                        <div class="leftSubmition">
+                            <div class="title">
+                                <div class="smallHead"><span>Title <sup>*</sup></span>
+                                </div>
+                                <input class="titleTxt" type="text" placeholder="Enter a title" required>
+                            </div>
+                            <div class="description">
+                                <div class="smallHead">Description</div>
+                                <textarea rows="4" cols="37" placeholder="Enter a Description"
+                                    class="descriptionTxt"></textarea>
+                            </div>
+                            <div class="assignCntcts">
+                                <label for="contacts">Assigned to</label>
+                                <div class="assignment" id="assign" onclick="showCheckBoxes()">
+                                    Select contacts to assign
+                                    <img class="arrow" id="arrow" src="../img/dropArrow.svg">
+                                </div>
+                                <div id="allCntcts" class="checkboxes">
+                                </div>
+                                <div id="selCntcts" class="showSel"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="rightSubmition">
+                            <div class="dueDate">
+                                <div class="smallHead"><span>Due Date <sup>*</sup></span>
+                                </div>
+                                <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy"
+                                    onfocus="(this.type='date')" required>
+                            </div>
+                            <div class="prio">
+                                <div class="smallHead">Prio</div>
+                                <div class="prioBtns">
+                                    <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
+                                            src="/assets/img/prioUrgent.svg"></div>
+                                    <div id="btnMed" onclick="activateMedium()" class="priobtn med">Medium <img
+                                            src="/assets/img/prioMedium.svg"></div>
+                                    <div id="btnLow" onclick="activateLow()" class="priobtn low">Low <img
+                                            src="/assets/img/prioLow.svg"></div>
+                                </div>
+                            </div>
+                           
+
+                            <div id="inputSubClass" class="subtasks">
+                                <div class="smallHead">Subtasks</div>
+                                <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
+                                        placeholder="Add new subtask" type="text">
+                                    <img class="tsksGen" src="/assets/img/subTaskIcon.svg">
+                                </div>
+                            </div>
+                            <ul class="a" id="subTsksBoard"></ul>
+                        </div>
+                        <span>Create Task</span><img class="primevect" src="/assets/img/check.svg">
+                      
+                    </div>
+                    
+                    </div>
+                    </div>
+                      `
 }

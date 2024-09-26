@@ -1,3 +1,14 @@
+@media(max-width:800px){
+    .asideMenu:nth-of-type(1) {
+        padding: 0;
+        border-radius: 10px;
+        
+    }
+    .asideMenu a:nth-of-type(1) {
+        width: 75px;
+        
+    }
+}
 @media(max-width:700px) {
     .content{
         padding: 0;
