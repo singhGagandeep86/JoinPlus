@@ -120,8 +120,9 @@ function normalEffect(element) {
 // editing added subtask
 function editsubTask(element) {
   let parent = element.closest('li');
+  let currentValue = parent.querySelector('.leftPart').innerText.trim();
   parent.innerHTML = `<div class="wrapper">
-  <input type="text" value="${element.innerText}" class="subTaskInput"></input> 
+  <input type="text" value="${currentValue}" class="subTaskInput"></input> 
   <div class="btns subTaskIcon subTaskEdit">
   <img class="inputIcon" onclick="delsubTask(this)" src="/assets/img/SubTaskDelete.svg">
   <img class="deleteIcon" onclick="newSubTask(this)" src="/assets/img/SubTaskDone.svg">
