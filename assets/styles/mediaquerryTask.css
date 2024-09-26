@@ -148,9 +148,6 @@
         text-align: start;
     }
 
-    .info {
-        flex-direction: row;
-    }
 
     .secondary {
         display: none;

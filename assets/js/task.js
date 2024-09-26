@@ -203,8 +203,6 @@ document.addEventListener('click', function (event) {
   });
 });
 
-
-
 // Drop down function for category
 function showCategory() {
   const select = document.getElementById("slection");
@@ -212,8 +210,9 @@ function showCategory() {
   if (!subTaskexpanded) {
     select.classList.remove("selectHide");
     arrow.style.transform = "rotate(-180deg)";
-    
-  } else {
+    subTaskexpanded = true;
+  }
+  else {
     arrow.style.transform = "rotate(0deg)";
     select.classList.add("selectHide");
     subTaskexpanded = false;
@@ -251,9 +250,9 @@ function resetAll() {
     let chkBox = label.querySelector('span');
     label.style.backgroundColor = "transparent";
     label.style.color = "black";
-    chkBox.style.content = "url(../img/CheckbuttonEmpty.png)";    
+    chkBox.style.content = "url(../img/CheckbuttonEmpty.png)";
   }
-  
+
 }
 
 function deletArray() {
