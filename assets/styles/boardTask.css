@@ -43,6 +43,9 @@
     height:  800px;  
        
 }
+.prioBtns{
+    justify-content: center;
+}
 
 
 .editAdd{
