@@ -247,3 +247,56 @@ function editTask() {
                     </div>
                       `
 }
+
+function editTask1(){
+    return `<div class="popupEdit">
+    <div id="edit" class="editArea">
+        <div class="title">
+            <div class="smallHead"><span>Title <sup>*</sup></span>
+            </div>
+            <input class="titleTxt" type="text" placeholder="Enter a title" required>
+        </div>
+        <div class="description">
+            <div class="smallHead">Description</div>
+            <textarea rows="4" cols="37" placeholder="Enter a Description" class="descriptionTxt"></textarea>
+        </div>
+        <div class="assignCntcts">
+            <label for="contacts">Assigned to</label>
+            <div class="assignment" id="assign" onclick="showCheckBoxes()">
+                Select contacts to assign
+                <img class="arrow" id="arrow" src="../img/dropArrow.svg">
+            </div>
+            <div id="allCntcts" class="checkboxes">
+            </div>
+            <div id="selCntcts" class="showSel"></div>
+        </div>
+        <div class="dueDate">
+            <div class="smallHead"><span>Due Date <sup>*</sup></span>
+            </div>
+            <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy" onfocus="(this.type='date')" required>
+        </div>
+        <div class="prio">
+            <div class="smallHead">Prio</div>
+            <div class="prioBtns">
+                <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
+                        src="/assets/img/prioUrgent.svg"></div>
+                <div id="btnMed" onclick="activateMedium()" class="priobtn med">Medium <img
+                        src="/assets/img/prioMedium.svg"></div>
+                <div id="btnLow" onclick="activateLow()" class="priobtn low">Low <img src="/assets/img/prioLow.svg">
+                </div>
+            </div>
+        </div>
+        <div id="inputSubClass" class="subtasks">
+            <div class="smallHead">Subtasks</div>
+            <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt" placeholder="Add new subtask"
+                    type="text">
+                <img class="tsksGen" src="/assets/img/subTaskIcon.svg">
+            </div>
+            
+        </div>
+        <ul class="a" id="subTsksBoard"></ul>
+      <div class="editAdd"> <span>Ok</span><img class="primevect" src="../img/check.svg"></div> 
+    </div>
+</div>
+    `   
+}
