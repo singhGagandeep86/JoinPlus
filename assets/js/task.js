@@ -262,11 +262,19 @@ function deletArray() {
   array = [];
 }
 
-document.getElementById('myForm').addEventListener('submit', function (event) {
-  event.preventDefault();
-  addingTask();
+// event for onSubmit button
+document.addEventListener('DOMContentLoaded', function () {
+  let form = document.getElementById('myForm');
+  if (form) {
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      addingTask();
+    });
+  }
 });
 
+
+// popup show
 async function addingTask() {
   document.getElementById('taskDoneIcon').classList.add("showIcon");
   await toWaiting();
@@ -274,6 +282,7 @@ async function addingTask() {
 }
 
 function toWaiting() {
+  // console.log(document.getElementById('titleText').value);
   return new Promise(resolve => setTimeout(resolve, 700));
 }
 
