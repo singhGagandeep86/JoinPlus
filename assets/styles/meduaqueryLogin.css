@@ -1,10 +1,16 @@
 @media (max-width: 698px) {
     .loginarea {
         width: 350px;
+        height: 70vh;
     }
 
     .loginarea form .custome-input input {
         width: 300px;
+    }
+
+    footer .footercontent {
+        gap: 30px;
+        padding: 10px;
     }
 }
 
@@ -12,16 +18,21 @@
     .loginarea {
         width: 250px;
     }
+
+    footer .footercontent {
+        gap: 25px;
+        padding: 8px;
+    }
 }
 
 @media (max-width: 496px) {
     .loginarea {
         width: 150px;
-        height: 400px;
+        height: 65vh;
     }
 
     .loginheadline .textline  {
-        font-size: 47px;
+        font-size: 40px;
         line-height: 56.4px;
         text-align: center;
         font-weight: 700;
@@ -32,26 +43,16 @@
     }
 
     .loginarea form .btns {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
         gap: 21px;
-        margin-bottom: 0px;
     }
 
     .loginarea form .btns .login {
-        width: 178px;
+        width: 150px;
     }
 
     header {
         top: 85vh;
         left: 100px;
-    }
-
-    .topline {
-        display: flex;
-        align-items: center;
     }
 
     header .topline p {
@@ -70,21 +71,26 @@
         line-height: 19.2px;
         font-weight: 400;
     }
+
+    footer .footercontent {
+        gap: 10px;
+        padding: 8px;
+    }
 }
 
 @media (max-width: 430px) {
     .loginarea {
         width: 150px;
-        height: 515px;
+        height: 70vh;
         padding: 0px 80px;
     }
 
     .loginarea form .custome-input input {
-        width: 250px;
+        width: 200px;
     }
 
     .loginheadline .textline  {
-        font-size: 47px;
+        font-size: 35px;
         line-height: 56.4px;
         text-align: center;
         font-weight: 700;
@@ -108,13 +114,10 @@
     }
 
     header {
-        top: 700px;
+        /* top: 700px; */
+        margin-top: 3vh;
+        margin-bottom: 10px;
         left: 70px;
-    }
-
-    .topline {
-        display: flex;
-        align-items: center;
     }
 
     header .topline .login {
@@ -126,10 +129,25 @@
         font-size: 16px;
         line-height: 19.2px;
         font-weight: 400;
+    }
+
+    footer .footercontent {
+        gap: 15px;
+        padding: 6px;
+        margin-bottom: 15px;
     }
 }
 
 @media (max-width: 397px) {
+    .loginarea {
+        width: 200px;
+        padding: 0 40px;
+    }
+
+    header .topline {
+        margin-bottom: 20px;
+    }
+
     header .topline .login {
         width: 104px;
         height: 49px;
@@ -139,25 +157,36 @@
         font-size: 16px;
         line-height: 19.2px;
         font-weight: 400;
+    }
+
+    footer .footercontent {
+        gap: 10px;
+        padding: 6px;
+        margin-bottom: 10px;
     }
 }
 
 @media (max-width: 360px) {
     .loginarea {
         width: 200px;
-        height: 515px;
         padding: 0 40px;
     }
 
     .loginarea form .custome-input input {
         width: 200px;
     }
+
+    footer .footercontent {
+        gap: 8px;
+        padding: 4px;
+        margin-bottom: 8px;
+    }
 }
 
 @media (max-width: 320px) {
     .loginarea {
         width: 200px;
-        height: 515px;
         padding: 0 35px;
     }
 }
+

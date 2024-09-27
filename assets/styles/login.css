@@ -56,6 +56,7 @@ header .topline .login {
     font-weight: 700;
     gap: 10px;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 header .topline .login a {
@@ -81,7 +82,7 @@ header .topline .login:hover {
     background-color: white;
     animation: logoScreen 1.5s forwards;
     animation-timing-function: ease;
-    animation-delay: 2s;
+    animation-delay: 1s;
     z-index: 1000;
 }
 
@@ -94,7 +95,7 @@ header .topline .login:hover {
     animation-fill-mode: forwards;
     animation-timing-function: ease;
     animation: JoinlogoScreen 1.5s forwards;
-    animation-delay: 2s;
+    animation-delay: 1s;
 }
 
 @keyframes JoinlogoScreen {
@@ -139,7 +140,7 @@ header .topline .login:hover {
     justify-content: center;
     gap: 32px;
     width: 450px;
-    height: 515px;
+    height: 60vh;
     background-color: white;
     border-radius: 30px;
     padding: 48px 115px 48px 115px;
@@ -275,12 +276,15 @@ input::placeholder {
 footer .footercontent {
     position: absolute;
     bottom: 0;
-    left: 44%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 35px;
     margin-bottom: 20px;
+    white-space: nowrap;
 }
 
 .footercontent a {
