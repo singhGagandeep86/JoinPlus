@@ -2,7 +2,7 @@ body {
     font-family: 'inter';
     margin: 0px;
     box-sizing: border-box;
-    
+
     max-height: 1024px;
 }
 
@@ -670,4 +670,16 @@ li:hover {
     display: flex;
     height: 42px;
     gap: 8px;
+}
+
+.doneIcon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 500ms;
+}
+
+.showIcon {
+    top: 50%;
 }

@@ -261,3 +261,22 @@ function deletArray() {
   colours = [];
   array = [];
 }
+
+document.getElementById('myForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+  addingTask();
+});
+
+async function addingTask() {
+  document.getElementById('taskDoneIcon').classList.add("showIcon");
+  await toWaiting();
+  await navigateToBoard();
+}
+
+function toWaiting() {
+  return new Promise(resolve => setTimeout(resolve, 700));
+}
+
+async function navigateToBoard() {
+  window.location.href = 'board.html';
+}
