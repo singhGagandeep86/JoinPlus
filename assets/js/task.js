@@ -150,6 +150,7 @@ function activateUrgent() {
   document.getElementById('btnUrgnt').classList.add("btnUrgnt");
   document.getElementById('btnMed').classList.remove("btnMed");
   document.getElementById('btnLow').classList.remove("btnLow");
+  document.getElementById('priority').value = `urgent`;
   document.getElementById('btnUrgnt').innerHTML = `<div id="btnUrgnt" onclick="activateUrgent()"class=" btnUrgnt">Urgent <img src="/assets/img/prioUrgentUnselected.svg"></div>`;
   document.getElementById('btnMed').innerHTML = ` <div>Medium <img src="/assets/img/prioMedium.svg"></div>`;
   document.getElementById('btnLow').innerHTML = ` <div>Low <img src="/assets/img/prioLow.svg"></div>`;
@@ -160,6 +161,7 @@ function activateMedium() {
   document.getElementById('btnMed').classList.add("btnMed");
   document.getElementById('btnUrgnt').classList.remove("btnUrgnt");
   document.getElementById('btnLow').classList.remove("btnLow");
+  document.getElementById('priority').value = `medium`;
   document.getElementById('btnMed').innerHTML = `<div id="btnMed" onclick="activateMedium()"class=" btnMed">Medium <img src="/assets/img/prioMediumUnselected.svg"></div>`
   document.getElementById('btnUrgnt').innerHTML = ` <div>Urgent <img src="/assets/img/prioUrgent.svg"></div>`;
   document.getElementById('btnLow').innerHTML = ` <div>Low <img src="/assets/img/prioLow.svg"></div>`;
@@ -170,6 +172,7 @@ function activateLow() {
   document.getElementById('btnLow').classList.add("btnLow");
   document.getElementById('btnUrgnt').classList.remove("btnUrgnt");
   document.getElementById('btnMed').classList.remove("btnMed");
+  document.getElementById('priority').value = `low`;
   document.getElementById('btnLow').innerHTML = `<div id="btnLow" onclick="activateLow()"class="btnLow">Low <img src="/assets/img/prioLowUnselected.svg"></div>`
   document.getElementById('btnMed').innerHTML = ` <div>Medium <img src="/assets/img/prioMedium.svg"></div>`;
   document.getElementById('btnUrgnt').innerHTML = ` <div>Urgent <img src="/assets/img/prioUrgent.svg"></div>`;
@@ -282,8 +285,19 @@ async function addingTask() {
 }
 
 function toWaiting() {
-  // console.log(document.getElementById('titleText').value);
-  return new Promise(resolve => setTimeout(resolve, 700));
+  let titleText = document.getElementById('titleText').value;
+  let desText = document.getElementById('desText').value;
+  let actDate = document.getElementById('dateData').value;
+  let category = document.getElementById('assignHeading').innerText;
+  let priority = document.getElementById('priority').value;
+  console.log(`Titel is ${titleText}`);
+  console.log(`Dexcrtion is ${desText}`);
+  console.log(`Date is ${actDate}`);
+  console.log(`Contacts Initials are ${namesInitials}`);
+  console.log(`Category is ${category}`);
+  console.log(`Priority is ${priority}`);
+
+  return new Promise(resolve => setTimeout(resolve, 1700));
 }
 
 async function navigateToBoard() {

@@ -67,8 +67,7 @@
                             </div>
                             <div class="description">
                                 <div class="smallHead">Description</div>
-                                <textarea rows="4" cols="37" placeholder="Enter a Description"
-                                    class="descriptionTxt"></textarea>
+                                <textarea rows="4" cols="37" placeholder="Enter a Description" id="desText" class="descriptionTxt"></textarea>
                             </div>
                             <div class="assignCntcts">
                                 <label for="contacts">Assigned to</label>
@@ -86,10 +85,10 @@
                             <div class="dueDate">
                                 <div class="smallHead"><span>Due Date <sup>*</sup></span>
                                 </div>
-                                <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy"
+                                <input class="dueDateTxt" type="text" id="dateData" placeholder="dd/mm/yyyy"
                                     onfocus="(this.type='date')" required>
                             </div>
-                            <div class="prio">
+                            <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
                                 <div class="prioBtns">
                                     <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
