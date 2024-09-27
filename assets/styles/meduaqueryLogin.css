@@ -1,7 +1,7 @@
 @media (max-width: 698px) {
     .loginarea {
         width: 350px;
-        height: 70vh;
+        height: 60vh;
     }
 
     .loginarea form .custome-input input {
@@ -28,7 +28,7 @@
 @media (max-width: 496px) {
     .loginarea {
         width: 150px;
-        height: 65vh;
+        height: 60vh;
     }
 
     .loginheadline .textline  {
@@ -81,7 +81,7 @@
 @media (max-width: 430px) {
     .loginarea {
         width: 150px;
-        height: 70vh;
+        height: 60vh;
         padding: 0px 80px;
     }
 
@@ -162,6 +162,31 @@
         gap: 10px;
         padding: 6px;
         margin-bottom: 10px;
+    }
+
+    .join-logo {
+        background-color: red;
+        opacity: 0;
+    }
+
+    .final-logo {
+        background-color: blue;
+        display: block;
+    }
+
+    @keyframes FinalLogoScreen {
+            from {
+                top: 50%;
+                left: 50%;
+                width: 140px;
+                height: 200px;
+            }
+            to {
+                top: 50px;
+                left: 50px;
+                width: 140px;
+                height: 200px;
+            }
     }
 }
 

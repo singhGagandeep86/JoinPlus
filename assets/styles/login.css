@@ -69,7 +69,7 @@ header .topline .login:hover {
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* .Screen-Logo {
+.Screen-Logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,6 +95,20 @@ header .topline .login:hover {
     animation-fill-mode: forwards;
     animation-timing-function: ease;
     animation: JoinlogoScreen 1.5s forwards;
+    animation-delay: 1s;
+}
+
+.final-logo {
+    display: none;
+    position: absolute;
+    width: 140px;
+    height: 200px;
+    top: 33%;
+    left: 35%;
+    background-color: var(--sideheader-main-color);
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+    animation: FinalLogoScreen 1.5s forwards;
     animation-delay: 1s;
 }
 
@@ -131,7 +145,7 @@ header .topline .login:hover {
         opacity: 1;
         z-index: -1;
     }
-} */
+}
 
 .loginarea {
     display: flex;
