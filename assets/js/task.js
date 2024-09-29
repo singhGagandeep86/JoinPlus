@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function () {
 async function addingTask() {
   document.getElementById('taskDoneIcon').classList.add("showIcon");
   await toWaiting();
- // await navigateToBoard();
+  // await navigateToBoard();
 }
 
 function toWaiting() {
@@ -296,7 +296,7 @@ function toWaiting() {
   console.log(`Titel is ${titleText}`);
   console.log(`Dexcrtion is ${desText}`);
   console.log(`Date is ${actDate}`);
-  console.log(`Contacts Initials are ${namesInitials}`);
+  console.log(`Contacts are ${names}`);
   console.log(`Category is ${category}`);
   console.log(`Priority is ${priority}`);
   for (let i = 0; i < list.length; i++) {
@@ -304,10 +304,21 @@ function toWaiting() {
     let listText = eachList.innerText;
     console.log(listText);
   }
-  task['category'] = `${category}`;
-  task['title'] = `${titleText}`;
+  task['category'] = category;
+  task['title'] = titleText;
+  let contacts = {};
+  for (let j = 1; j < names.length; j++) {
+    const name = names[j];
+    contacts[`contact${j}`] = name;
+  }
+  task['contact'] = contacts;
+  task['contactcolor'] = colours;
+  task['date'] = actDate;
+  task['description'] = desText;
+  task['prio'] = priority;
+  task['title'] = titleText;
   console.log(task);
-  
+
   return new Promise(resolve => setTimeout(resolve, 1700));
 }
 
