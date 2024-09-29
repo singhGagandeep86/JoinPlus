@@ -164,13 +164,17 @@
         margin-bottom: 10px;
     }
 
+    .Screen-Logo {
+        background-color: #2A3647;
+    }
+
     .join-logo {
         background-color: red;
         opacity: 0;
     }
 
     .final-logo {
-        background-color: blue;
+        /* background-color: blue; */
         display: block;
     }
 
