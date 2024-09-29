@@ -201,10 +201,11 @@ document.addEventListener('click', function (event) {
     allCntcts.style.display = "none";
     document.getElementById('arrow').style.transform = "rotate(0deg)";
     expanded = false;
+    document.getElementById("allCntcts").addEventListener('click', function (event) {
+      event.stopPropagation();
+    });
   }
-  document.getElementById("allCntcts").addEventListener('click', function (event) {
-    event.stopPropagation();
-  });
+ 
 });
 
 // Drop down function for category

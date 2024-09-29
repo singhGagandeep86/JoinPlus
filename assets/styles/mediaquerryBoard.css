@@ -94,10 +94,12 @@
 
 @media (max-width:800px){
 
-    .popupArea2 {
-        position: fixed;
+    .popupArea {
+        position: fixed;      
 
     }
+
+    
 
     .overDisplay {
         display: flex;
@@ -215,8 +217,9 @@
     .emptyBoardArea {
         width: 100%;
     }
-    .popupArea2 {
+    .popupArea {
         position: fixed;
+        
     }
     .dragAndDropBoard {
         display: flex;

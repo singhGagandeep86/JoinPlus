@@ -22,56 +22,77 @@
     z-index: 99;
 }
 
-.popupEdit{  
-    width: 525px;
-    height: 800px;  
-    background-color: white;
-    border-radius: 30px;    
-    overflow:auto;
-    scrollbar-width: none;
-    padding-bottom: 10px;
-}
 
-.editArea{
-    margin-top: 30px;
-    margin-left: 10px;    
+
+.popupEdit {
+    display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    display: flex;
-    width: 95%;
-    height:  800px;  
-       
+    width: 525px;
+    height: 800px;
+    background-color: white;
+    border-radius: 30px;
+    gap: 10px;
 }
-.prioBtns{
-    justify-content: center;
+
+.editArea {
+    display: flex;
+    flex-direction: column;    
+    margin-top: 30px;
+    overflow: auto;
+    height: 100%;
+    width: 90%;
+    padding-right: 20px;
+    scroll-behavior: smooth;
+}
+.olArea{
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    color: #2A3647;
+}
+
+.editArea::-webkit-scrollbar {
+    width: 6px;
+}
+
+.editArea::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;    
+}
+
+.editArea::-webkit-scrollbar-button {
+    display: none;
 }
 
 
-.editAdd{
+
+
+.editAdd {
     display: flex;
     justify-content: center;
     align-items: center;
-    align-self:end;
-    width:89px;
+    align-self: end;
+    width: 89px;
     height: 57px;
     border-radius: 10px;
-    background-color: #2A3647; 
+    background-color: #2A3647;
     color: white;
     font-size: 21px;
-    gap: 10px;
+    gap: 4px;
     cursor: pointer;
-    transition: 125ms ease-in-out ;
-    margin-right: 30px;
-    
-    
+    transition: 125ms ease-in-out;
+    margin-right: 50px;
+
 }
-.editAdd img{
+
+.editAdd img {
     width: 24px;
     height: 24px;
 }
-.editAdd:hover{
-    background-color:#29ABE2 ;
+
+.editAdd:hover {
+    background-color: #29ABE2;
     box-shadow: 0px 3px 5px 1px #a09898;
 
 }
@@ -88,7 +109,7 @@
     left: 11%;
     transform: translateY(-40%);
     animation: taskAnimation 125ms ease-in-out;
-    
+
     z-index: 99;
 }
 
@@ -116,37 +137,22 @@
     }
 }
 
-.btnUrgnt {
-    background-color: #FF3D00;
-    color: white;
+.textAreaData{
+    width: 100%;
+    height: 120px;
+    padding: 18px 6px 6px 16px;
+    border-radius: 10px;
+    font-size: 20px;
 }
 
-.btnMed {
-    background-color: #FFA800;
-    color: white;
+.textAreaData:focus{
+    outline: none;
+    border: 1px solid #29ABE2;
+    scale: none;
 }
-
-.btnLow {
-    background-color: #7AE229;
-    color: white;
+.titleTxt:focus{
+    border: 1px solid #29ABE2;
 }
-
-.prio {
-    display: flex;
-    flex-direction: column;
-    width: 440px;
-    height: 88px;
-    gap: 8px;
-
-}
-
-.prioBtns {
-    display: flex;
-    gap: 16px;
-}
-
-
-
 
 
 .popupTaskInfo {
@@ -160,6 +166,103 @@
     padding: 48px 40px 48px 40px;
     z-index: 99;
 }
+
+.prioArea {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.prioArea span {
+    height: 20px;
+    font-size: 19px;
+    color: #42526E;
+}
+
+.prioForm {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+
+.prioBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 136px;
+    height: 56px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+
+input[type="radio"] {
+    display: none; 
+}
+
+#urgent:checked + .prioBtn {
+    background-color: #FF3D00; 
+    color: white;
+}
+
+#medium:checked + .prioBtn {
+    background-color: #FFA800;
+    color: white;
+}
+
+#low:checked + .prioBtn {
+    background-color: #7AE229; 
+    color: white;
+}
+
+#low:checked + .prioBtn img{
+    content: url("../img/priolowwhite.png");
+}
+#medium:checked + .prioBtn img{
+    content: url("../img/Priomediumwhite.png");
+}
+#urgent:checked + .prioBtn img{
+    content: url("../img/Priourgentwhite.png");
+}
+
+#urgent + .prioBtn:hover {
+    background-color: #FF3D00; 
+    color: white;
+    box-shadow: 0px 3px 5px 1px #a09898;
+}
+
+#medium + .prioBtn:hover {
+    background-color: #FFA800;
+    color: white;
+    box-shadow: 0px 3px 5px 1px #a09898;
+}
+
+#low + .prioBtn:hover {
+    background-color: #7AE229; 
+    color: white;
+    box-shadow: 0px 3px 5px 1px #a09898;
+}
+#urgent + .prioBtn:hover img {
+    content: url("../img/Priourgentwhite.png"); 
+}
+
+#medium + .prioBtn:hover img {
+    content: url("../img/Priomediumwhite.png"); 
+}
+
+#low + .prioBtn:hover img {
+    content: url("../img/priolowwhite.png"); 
+}
+
 
 .infoTitle {
     display: flex;

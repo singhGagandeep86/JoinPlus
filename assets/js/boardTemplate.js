@@ -19,18 +19,17 @@ function templateTaskEmptyDone() {
 function templatePopUpTask1() {
     return `<div id="CloseArea" class="taskArea">
          <div class="heading">Add Task</div>
-                <form onsubmit="submition()">
+                <form id="myForm">
                     <div class="formular">
                         <div class="leftSubmition">
                             <div class="title">
                                 <div class="smallHead"><span>Title <sup>*</sup></span>
                                 </div>
-                                <input class="titleTxt" type="text" placeholder="Enter a title" required>
+                                <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title" required>
                             </div>
                             <div class="description">
                                 <div class="smallHead">Description</div>
-                                <textarea rows="4" cols="37" placeholder="Enter a Description"
-                                    class="descriptionTxt"></textarea>
+                                <textarea rows="4" cols="37" placeholder="Enter a Description" id="desText" class="descriptionTxt"></textarea>
                             </div>
                             <div class="assignCntcts">
                                 <label for="contacts">Assigned to</label>
@@ -48,10 +47,10 @@ function templatePopUpTask1() {
                             <div class="dueDate">
                                 <div class="smallHead"><span>Due Date <sup>*</sup></span>
                                 </div>
-                                <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy"
+                                <input class="dueDateTxt" type="text" id="dateData" placeholder="dd/mm/yyyy"
                                     onfocus="(this.type='date')" required>
                             </div>
-                            <div class="prio">
+                            <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
                                 <div class="prioBtns">
                                     <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
@@ -87,9 +86,9 @@ function templatePopUpTask1() {
                     <div class="info">
                         <div><sup>* </sup>This field is required</div>
                         <div class="submitionButtons">
-                            <div class="secondary"  onclick="closePopUpTask()">
-                                <span>Cancel</span> </div>
-                            <button class="primaryCheck" onclick="addingTask()">
+                            <button class="secondary" type="reset" onclick="resetAll()">
+                                <span>Clear</span> </button>
+                            <button type="submit" class="primaryCheck">
                                 <span>Create Task</span><img class="primevect" src="/assets/img/check.svg">
                             </button>
                         </div>
@@ -184,119 +183,50 @@ function moveTaskTo4(element) {
     <button value="await" onclick="changeIdTaskValue(this.value, ${element})">Await</button></div>`
 }
 
-function editTask() {
-    return` <div class="popupEdit">
-        <div id="edit" class="editArea">
-                        <div class="leftSubmition">
-                            <div class="title">
-                                <div class="smallHead"><span>Title <sup>*</sup></span>
-                                </div>
-                                <input class="titleTxt" type="text" placeholder="Enter a title" required>
-                            </div>
-                            <div class="description">
-                                <div class="smallHead">Description</div>
-                                <textarea rows="4" cols="37" placeholder="Enter a Description"
-                                    class="descriptionTxt"></textarea>
-                            </div>
-                            <div class="assignCntcts">
-                                <label for="contacts">Assigned to</label>
-                                <div class="assignment" id="assign" onclick="showCheckBoxes()">
-                                    Select contacts to assign
-                                    <img class="arrow" id="arrow" src="../img/dropArrow.svg">
-                                </div>
-                                <div id="allCntcts" class="checkboxes">
-                                </div>
-                                <div id="selCntcts" class="showSel"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="rightSubmition">
-                            <div class="dueDate">
-                                <div class="smallHead"><span>Due Date <sup>*</sup></span>
-                                </div>
-                                <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy"
-                                    onfocus="(this.type='date')" required>
-                            </div>
-                            <div class="prio">
-                                <div class="smallHead">Prio</div>
-                                <div class="prioBtns">
-                                    <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
-                                            src="/assets/img/prioUrgent.svg"></div>
-                                    <div id="btnMed" onclick="activateMedium()" class="priobtn med">Medium <img
-                                            src="/assets/img/prioMedium.svg"></div>
-                                    <div id="btnLow" onclick="activateLow()" class="priobtn low">Low <img
-                                            src="/assets/img/prioLow.svg"></div>
-                                </div>
-                            </div>
-                           
 
-                            <div id="inputSubClass" class="subtasks">
-                                <div class="smallHead">Subtasks</div>
-                                <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
-                                        placeholder="Add new subtask" type="text">
-                                    <img class="tsksGen" src="/assets/img/subTaskIcon.svg">
-                                </div>
-                            </div>
-                            <ul class="a" id="subTsksBoard"></ul>
-                        </div>
-                        <span>Create Task</span><img class="primevect" src="/assets/img/check.svg">
-                      
-                    </div>
-                    
-                    </div>
-                    </div>
-                      `
-}
 
-function editTask1(){
-    return `<div class="popupEdit">
+
+function editTask(i){
+    return`<div class="popupEdit">
     <div id="edit" class="editArea">
-        <div class="title">
-            <div class="smallHead"><span>Title <sup>*</sup></span>
+     <div class="title">
+            <div class="smallHead"><span>Title</span>
             </div>
-            <input class="titleTxt" type="text" placeholder="Enter a title" required>
+            <input class="titleTxt" type="text" value="${arrayLoad[i].title}" required>
         </div>
         <div class="description">
             <div class="smallHead">Description</div>
-            <textarea rows="4" cols="37" placeholder="Enter a Description" class="descriptionTxt"></textarea>
+            <textarea  rows="4" cols="37"  class="textAreaData"></textarea>
         </div>
-        <div class="assignCntcts">
-            <label for="contacts">Assigned to</label>
-            <div class="assignment" id="assign" onclick="showCheckBoxes()">
-                Select contacts to assign
-                <img class="arrow" id="arrow" src="../img/dropArrow.svg">
+      
+     <div class="dueDate">
+            <div class="smallHead"><span>Due Date</span>
             </div>
-            <div id="allCntcts" class="checkboxes">
-            </div>
-            <div id="selCntcts" class="showSel"></div>
+            <input class="dueDateTxt" type="text" value="${arrayLoad[i].date}" onfocus="(this.type='date')" required>
         </div>
-        <div class="dueDate">
-            <div class="smallHead"><span>Due Date <sup>*</sup></span>
-            </div>
-            <input class="dueDateTxt" type="text" placeholder="dd/mm/yyyy" onfocus="(this.type='date')" required>
-        </div>
-        <div class="prio">
-            <div class="smallHead">Prio</div>
-            <div class="prioBtns">
-                <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
-                        src="/assets/img/prioUrgent.svg"></div>
-                <div id="btnMed" onclick="activateMedium()" class="priobtn med">Medium <img
-                        src="/assets/img/prioMedium.svg"></div>
-                <div id="btnLow" onclick="activateLow()" class="priobtn low">Low <img src="/assets/img/prioLow.svg">
-                </div>
-            </div>
-        </div>
-        <div id="inputSubClass" class="subtasks">
-            <div class="smallHead">Subtasks</div>
-            <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt" placeholder="Add new subtask"
-                    type="text">
-                <img class="tsksGen" src="/assets/img/subTaskIcon.svg">
-            </div>
-            
-        </div>
-        <ul class="a" id="subTsksBoard"></ul>
-      <div class="editAdd"> <span>Ok</span><img class="primevect" src="../img/check.svg"></div> 
-    </div>
+      <div class="prioArea">
+    <span>Priority</span>
+    <div class="prioForm"> 
+        <input type="radio" name="priority" value="urgent" id="urgent">
+        <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png" alt=""></label>
+
+        <input type="radio" name="priority" value="medium" id="medium">
+        <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png" alt=""></label>
+
+        <input type="radio" name="priority" value="low" id="low">
+        <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
+    </div>                     
 </div>
-    `   
+
+<div><span>Assigned to</span></div>
+    
+<div><span>Subtaskt</span></div>
+    <ul id="subTaskBoard" class="olArea" ></ul>
+    
+    
+    </div>
+    
+    <div class="editAdd"> <span>Ok</span><img class="primevect" src="../img/check.svg"></div> 
+    
+    </div>`
 }
