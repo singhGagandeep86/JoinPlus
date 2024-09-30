@@ -1,5 +1,5 @@
 
-let base_Url = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
+let base_Url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/`;
 let names = [];
 let namesInitials = [];
 let colours = [];
@@ -205,7 +205,7 @@ document.addEventListener('click', function (event) {
       event.stopPropagation();
     });
   }
- 
+
 });
 
 // Drop down function for category
@@ -283,45 +283,64 @@ document.addEventListener('DOMContentLoaded', function () {
 async function addingTask() {
   document.getElementById('taskDoneIcon').classList.add("showIcon");
   await toWaiting();
-  // await navigateToBoard();
+  await navigateToBoard();
 }
 
-function toWaiting() {
+async function toWaiting() {
   let titleText = document.getElementById('titleText').value;
   let desText = document.getElementById('desText').value;
   let actDate = document.getElementById('dateData').value;
   let category = document.getElementById('assignHeading').innerText;
   let priority = document.getElementById('priority').value;
   let list = subTsksBoard.getElementsByTagName("li");
-  console.log(`Titel is ${titleText}`);
-  console.log(`Dexcrtion is ${desText}`);
-  console.log(`Date is ${actDate}`);
-  console.log(`Contacts are ${names}`);
-  console.log(`Category is ${category}`);
-  console.log(`Priority is ${priority}`);
+  let subTasks = {};
+  let contacts = {};
+  let coloursAsObject ={};
   for (let i = 0; i < list.length; i++) {
     let eachList = list[i];
     let listText = eachList.innerText;
-    console.log(listText);
+    subTasks[`subtask${i + 1}`] = listText;
   }
-  task['category'] = category;
-  task['title'] = titleText;
-  let contacts = {};
-  for (let j = 1; j < names.length; j++) {
-    const name = names[j];
-    contacts[`contact${j}`] = name;
+  for (let j = 0; j < names.length; j++) {
+    let name = names[j];
+    contacts[`contact${j + 1}`] = name;
   }
-  task['contact'] = contacts;
-  task['contactcolor'] = colours;
-  task['date'] = actDate;
-  task['description'] = desText;
-  task['prio'] = priority;
-  task['title'] = titleText;
-  console.log(task);
-
+  for (let k = 0; k < colours.length; k++) {
+    let colour = colours[k];
+    coloursAsObject[`contactcolor${k + 1}`] = colour;
+  }
+  toFetchTask();
+  let newTaskNumber = await toFetchTask();
+  postTask(`/task/task${newTaskNumber}`, {
+    'contact': contacts,
+    'contactcolor': coloursAsObject,
+    'date': actDate,
+    'description': desText,
+    'prio': priority,
+    'title': titleText,
+    'subtasks': subTasks,
+  });
   return new Promise(resolve => setTimeout(resolve, 1700));
 }
 
 async function navigateToBoard() {
   window.location.href = 'board.html';
+}
+
+async function postTask(path = "", data = {}) {
+  let firebaseUrl = await fetch(base_Url + path + ".json", {
+    method: "PUT",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data)
+  });
+}
+
+async function toFetchTask() {
+  let URL = await fetch(base_Url + ".json");
+  let URLtoJson = await URL.json();
+  let totalTasks = URLtoJson.task;
+  let totalTaskslength = Object.values(totalTasks).length;
+  return totalTaskslength + 1;
 }
