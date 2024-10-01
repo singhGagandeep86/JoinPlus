@@ -155,28 +155,28 @@ function templateSubtask(element, i, j) {
 }
 
 function moveTaskTo1(element) {
-    return`<span class="moveTitle">Move Task To:</span>
+    return `<span class="moveTitle">Move Task To:</span>
     <div class="moveTaskBTN">
     <button value="progress" onclick="changeIdTaskValue(this.value, ${element})">In progress</button>
     <button value="await" onclick="changeIdTaskValue(this.value, ${element})">Await</button>
     <button value="done" onclick="changeIdTaskValue(this.value, ${element})">Done</button></div>`
 }
 function moveTaskTo2(element) {
-    return`<span class="moveTitle">Move Task To:</span>
+    return `<span class="moveTitle">Move Task To:</span>
     <div class="moveTaskBTN">
     <button value="toDo" onclick="changeIdTaskValue(this.value, ${element})">To do</button>
     <button value="await" onclick="changeIdTaskValue(this.value, ${element})">Await</button>
     <button value="done" onclick="changeIdTaskValue(this.value, ${element})">Done</button></div>`
 }
 function moveTaskTo3(element) {
-    return`<span class="moveTitle">Move Task To:</span>
+    return `<span class="moveTitle">Move Task To:</span>
     <div class="moveTaskBTN">
     <button value="toDo" onclick="changeIdTaskValue(this.value, ${element})">To do</button>
     <button value="progress" onclick="changeIdTaskValue(this.value, ${element})">In progress</button>
     <button value="done" onclick="changeIdTaskValue(this.value, ${element})">Done</button></div>`
 }
 function moveTaskTo4(element) {
-    return`<span class="moveTitle">Move Task To:</span>
+    return `<span class="moveTitle">Move Task To:</span>
     <div class="moveTaskBTN">
     <button value="toDo" onclick="changeIdTaskValue(this.value, ${element})">To do</button>
     <button value="progress" onclick="changeIdTaskValue(this.value, ${element})">In progress</button>
@@ -186,8 +186,8 @@ function moveTaskTo4(element) {
 
 
 
-function editTask(i){
-    return`<div class="popupEdit">
+function editTask(i) {
+    return `<div class="popupEdit">
     <div id="edit" class="editArea">
      <div class="title">
             <div class="smallHead"><span>Title</span>
@@ -237,6 +237,6 @@ function editTask(i){
 }
 
 function checkboxContactTemplate() {
-    return` <div class="subtastTitle"><label class="labelContact"><input id=""  type="checkbox" class="checkboxDesignContact" name="subtask"> <span></span><p></p></label></div>`
-    
+    return ` <div class="subtastTitle"><label class="labelContact"><input id=""  type="checkbox" class="checkboxDesignContact" name="subtask"> <span></span><p></p></label></div>`
+
 }

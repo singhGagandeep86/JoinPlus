@@ -293,32 +293,39 @@ async function toWaiting() {
   let category = document.getElementById('assignHeading').innerText;
   let priority = document.getElementById('priority').value;
   let list = subTsksBoard.getElementsByTagName("li");
-  let subTasks = {};
+  let checked  = {};
+  let subtask = {};
   let contacts = {};
-  let coloursAsObject ={};
+  let coloursAsObject = {};
   for (let i = 0; i < list.length; i++) {
     let eachList = list[i];
     let listText = eachList.innerText;
-    subTasks[`subtask${i + 1}`] = listText;
+    checked[`task${i + 1}`] = false;
+    subtask[`task${i + 1}`] = listText;
   }
   for (let j = 0; j < names.length; j++) {
-    let name = names[j];
+    let name = names[j].replace(/_/g, ' ');
     contacts[`contact${j + 1}`] = name;
   }
   for (let k = 0; k < colours.length; k++) {
     let colour = colours[k];
-    coloursAsObject[`contactcolor${k + 1}`] = colour;
+    coloursAsObject[`color${k + 1}`] = colour;
   }
   toFetchTask();
   let newTaskNumber = await toFetchTask();
   postTask(`/task/task${newTaskNumber}`, {
     'contact': contacts,
+    'number':newTaskNumber - 1,
+    'color': category.slice(0, 4),
+    'category': category,
+    'id': 'toDo',
     'contactcolor': coloursAsObject,
     'date': actDate,
     'description': desText,
     'prio': priority,
     'title': titleText,
-    'subtasks': subTasks,
+    'subtask': subtask,
+    'checked':checked
   });
   return new Promise(resolve => setTimeout(resolve, 1700));
 }
