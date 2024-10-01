@@ -62,7 +62,7 @@
     background-color: #FFBB2B;
 }
 
-.bg_user {
+.bg_User {
     background-color: #0838FF;
     width: 113px;
     height: 27px;
@@ -74,7 +74,7 @@
     align-items: center;
 }
 
-.bg_tech {
+.bg_Tech {
     display: flex;
     align-items: center;
     background-color: #1ed7c1;
@@ -88,7 +88,7 @@
     align-items: center;
 }
 
-.bgInfo_user {
+.bgInfo_User {
     background-color: #0838FF;
     width: 164px;
     height: 36px;
@@ -100,7 +100,7 @@
     align-items: center;
 }
 
-.bgInfo_tech {
+.bgInfo_Tech {
     display: flex;
     align-items: center;
     background-color: #1ed7c1;

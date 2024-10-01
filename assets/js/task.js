@@ -273,33 +273,36 @@ document.addEventListener('DOMContentLoaded', function () {
   if (form) {
     form.addEventListener('submit', function (event) {
       event.preventDefault();
-      addingTask();
+      addingTask("toDo");
     });
   }
 });
 
 
 // popup show
-async function addingTask() {
+async function addingTask(id) {
   document.getElementById('taskDoneIcon').classList.add("showIcon");
-  await toWaiting();
+  await toWaiting(id);
   await navigateToBoard();
 }
 
-async function toWaiting() {
+async function toWaiting(id) {
   let titleText = document.getElementById('titleText').value;
   let desText = document.getElementById('desText').value;
   let actDate = document.getElementById('dateData').value;
   let category = document.getElementById('assignHeading').innerText;
   let priority = document.getElementById('priority').value;
   let list = subTsksBoard.getElementsByTagName("li");
-  let subTasks = {};
+  let checked  = {};
+  let subtask = {};
   let contacts = {};
+  let coloursAsObject = {};
   let coloursAsObject = {};
   for (let i = 0; i < list.length; i++) {
     let eachList = list[i];
     let listText = eachList.innerText;
-    subTasks[`subtask${i + 1}`] = listText;
+    checked[`task${i + 1}`] = false;
+    subtask[`task${i + 1}`] = listText;
   }
   for (let j = 0; j < names.length; j++) {
     let name = names[j];
@@ -308,7 +311,7 @@ async function toWaiting() {
   }
   for (let k = 0; k < colours.length; k++) {
     let colour = colours[k];
-    coloursAsObject[`contactcolor${k + 1}`] = colour;
+    coloursAsObject[`color${k + 1}`] = colour;
   }
   toFetchTask();
   let newTaskNumber = await toFetchTask();
@@ -316,6 +319,10 @@ async function toWaiting() {
     'category': category,
     'color': "User",
     'contact': contacts,
+    'number':newTaskNumber - 1,
+    'color': category.slice(0, 4),
+    'category': category,
+    'id': id,
     'contactcolor': coloursAsObject,
     'date': actDate,
     'description': desText,

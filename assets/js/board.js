@@ -345,7 +345,7 @@ function addSubtaskInfo(i) {
 
 }
 function moveTo(element) {
-    arrayLoad[draggedElement]['id'] = element;
+    arrayLoad[draggedElement].id = element;
     let changeId = arrayLoad[draggedElement];
     taskAdd();
     postId(element, changeId);

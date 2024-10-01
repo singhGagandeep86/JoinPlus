@@ -37,7 +37,7 @@
 
 .editArea {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     margin-top: 30px;
     overflow: auto;
     height: 100%;
@@ -45,7 +45,8 @@
     padding-right: 20px;
     scroll-behavior: smooth;
 }
-.olArea{
+
+.olArea {
     width: 100%;
     height: 100px;
     background-color: white;
@@ -58,7 +59,7 @@
 
 .editArea::-webkit-scrollbar-thumb {
     background-color: #888;
-    border-radius: 10px;    
+    border-radius: 10px;
 }
 
 .editArea::-webkit-scrollbar-button {
@@ -86,6 +87,23 @@
 
 }
 
+.titleInput {
+    width: 100%;
+    height: 48px;
+    padding: 12px 21px 12px 21px;
+    border-radius: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    font-size: 20px;
+
+}
+
+.titleInput:focus {
+    outline: none;
+    border: 1px solid #29ABE2;
+    scale: none;
+}
+
 .editAdd img {
     width: 24px;
     height: 24px;
@@ -109,7 +127,6 @@
     left: 11%;
     transform: translateY(-40%);
     animation: taskAnimation 125ms ease-in-out;
-
     z-index: 99;
 }
 
@@ -125,35 +142,58 @@
     }
 }
 
-@keyframes taskCloseAnimation {
-    0% {
-        transform: translateY(-40%);
-        left: calc(10%);
-    }
-
-    100% {
-        transform: translateY(-40%);
-        left: 100%;
-    }
+.contactDrop {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    padding: 0 18px 0 18px;
+    cursor: pointer;
 }
 
-.textAreaData{
+.contactDropData {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+
+}
+
+.textAreaData {
     width: 100%;
     height: 120px;
     padding: 18px 6px 6px 16px;
     border-radius: 10px;
     font-size: 20px;
+    border: 1px solid #D1D1D1;
+
 }
 
-.textAreaData:focus{
+.textAreaData:focus {
     outline: none;
     border: 1px solid #29ABE2;
     scale: none;
 }
-.titleTxt:focus{
-    border: 1px solid #29ABE2;
+
+.DueDate {
+    width: 100%;
+    height: 48px;
+    padding: 12px 16px 12px 16px;
+    border-radius: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    font-size: 20px;
 }
 
+.DueDate:focus {
+    outline: none;
+    border: 1px solid #29ABE2;
+    scale: none;
+    font-size: 20px;
+}
 
 .popupTaskInfo {
     display: flex;
@@ -206,61 +246,64 @@
 
 
 input[type="radio"] {
-    display: none; 
+    display: none;
 }
 
-#urgent:checked + .prioBtn {
-    background-color: #FF3D00; 
+#urgent:checked+.prioBtn {
+    background-color: #FF3D00;
     color: white;
 }
 
-#medium:checked + .prioBtn {
+#medium:checked+.prioBtn {
     background-color: #FFA800;
     color: white;
 }
 
-#low:checked + .prioBtn {
-    background-color: #7AE229; 
+#low:checked+.prioBtn {
+    background-color: #7AE229;
     color: white;
 }
 
-#low:checked + .prioBtn img{
+#low:checked+.prioBtn img {
     content: url("../img/priolowwhite.png");
 }
-#medium:checked + .prioBtn img{
+
+#medium:checked+.prioBtn img {
     content: url("../img/Priomediumwhite.png");
 }
-#urgent:checked + .prioBtn img{
+
+#urgent:checked+.prioBtn img {
     content: url("../img/Priourgentwhite.png");
 }
 
-#urgent + .prioBtn:hover {
-    background-color: #FF3D00; 
+#urgent+.prioBtn:hover {
+    background-color: #FF3D00;
     color: white;
     box-shadow: 0px 3px 5px 1px #a09898;
 }
 
-#medium + .prioBtn:hover {
+#medium+.prioBtn:hover {
     background-color: #FFA800;
     color: white;
     box-shadow: 0px 3px 5px 1px #a09898;
 }
 
-#low + .prioBtn:hover {
-    background-color: #7AE229; 
+#low+.prioBtn:hover {
+    background-color: #7AE229;
     color: white;
     box-shadow: 0px 3px 5px 1px #a09898;
 }
-#urgent + .prioBtn:hover img {
-    content: url("../img/Priourgentwhite.png"); 
+
+#urgent+.prioBtn:hover img {
+    content: url("../img/Priourgentwhite.png");
 }
 
-#medium + .prioBtn:hover img {
-    content: url("../img/Priomediumwhite.png"); 
+#medium+.prioBtn:hover img {
+    content: url("../img/Priomediumwhite.png");
 }
 
-#low + .prioBtn:hover img {
-    content: url("../img/priolowwhite.png"); 
+#low+.prioBtn:hover img {
+    content: url("../img/priolowwhite.png");
 }
 
 
@@ -410,6 +453,72 @@ progress::-moz-progress-bar {
 
 }
 
+.boxinfoEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    width: 42px;
+    height: 42px;
+    color: white;
+    border-radius: 100%;
+    background-color: red;
+}
+
+.contactDropCheck {
+    width: 90%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    
+    
+}
+
+.contactDropCheck label>p {
+    margin-left: 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.checkboxDesignContact {
+    display: none;
+}
+
+.checkboxDesignContact:checked+div+.contactNameEdit {
+    background-color: #2A3647;   
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    transition: background-color 0.3s ease;
+    color: white;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.checkImg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 45px;   
+}
+
+
+
+.checkboxDesignContact+div>span {
+    content: url("../img/CheckbuttonEmpty.png");
+    cursor: pointer;
+}
+
+.checkboxDesignContact:checked+div>span {
+    content: url("../img/Checkbuttonwhite.png");      
+    cursor: pointer;
+}
+.checkboxDesignContact:checked+div{
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: #2A3647;
+}
+
 .checkboxDesign {
     display: none;
 }
@@ -490,9 +599,38 @@ progress::-moz-progress-bar {
     align-items: center;
 }
 
-.labelInfo:hover:hover {
+.labelContact {
+    width: 100%;
+    font-size: 20px;    
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+}
+
+.labelContact:nth-of-type(1) {
+    margin-top: 12px;
+}
+
+.labelInfo:hover {
     background-color: #efeeee;
     border-radius: 8px;
+}
+
+.labelContact:hover {
+    background-color: #efeeee;
+    border-radius: 8px;
+}
+
+.contactNameEdit {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
 }
 
 .emptySearch {
