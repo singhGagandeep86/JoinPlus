@@ -11,11 +11,11 @@ async function fetchContact(pathC, i) {
     let firebaseData = Object.values(firebaseUrlAsJson);
     loadContactData(firebaseData, i)
 }
+
 function loadContactData(firebaseData, i) {
     let contactArea = document.getElementById('contactDropArea');
     let contact = Object.values(arrayLoad[i]['contact']);
     let contactData = contactArray(firebaseData);
-    
     contactArea.innerHTML = '';
     for (let j = 0; j < firebaseData.length; j++) {
         let contactName = contactData[j];
@@ -23,8 +23,6 @@ function loadContactData(firebaseData, i) {
         let initials = extrahiereInitialen(contactName);
         let isChecked = contact.some(selectedContact => selectedContact === contactName) ? 'checked' : '';
         contactArea.innerHTML += checkboxContactTemplate(isChecked, contactName, initials, color);
-        
-
     }
 }
 
@@ -38,9 +36,6 @@ function initialsLoad(i) {
         let initials = extrahiereInitialen(contactName);
         initialsContact.innerHTML += initialsLoadContact(initials, colorIni);
     }
-   
-    
-    
 }
 
 function contactArray(firebaseData) {
@@ -52,7 +47,7 @@ function contactArray(firebaseData) {
 }
 
 function editOpen(i,) {
-    let edit = document.getElementById('popupTaskInfo');    
+    let edit = document.getElementById('popupTaskInfo');
     let prioCheck = arrayLoad[i].prio;
     edit.innerHTML = '';
     document.getElementById('popupTaskInfo').classList.remove('d_none');
@@ -60,7 +55,7 @@ function editOpen(i,) {
     loadContact(i);
     descriptionData(i);
     loadSubs(i);
-    priorityEditCheck(prioCheck);    
+    priorityEditCheck(prioCheck);
     initialsLoad(i)
     let area = document.getElementById('edit');
     area.addEventListener('click', (event) => {
@@ -75,7 +70,7 @@ function contactDropOpen() {
         getSelectedContacts();
         intiCheckContact();
     }
-    contactDropdown.classList.toggle('d_none');    
+    contactDropdown.classList.toggle('d_none');
     arrowContact.classList.toggle('rotate');
 }
 
@@ -111,29 +106,25 @@ function getSelectedContacts() {
     let checkboxes = document.querySelectorAll('.checkboxDesignContact');
     for (let i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
-           let contactName = checkboxes[i].closest('.contactDropCheck').querySelector('.contactNameEdit p').textContent;
-            let colorName = checkboxes[i].closest('.contactDropCheck').querySelector('.boxinfoEdit');            
+            let contactName = checkboxes[i].closest('.contactDropCheck').querySelector('.contactNameEdit p').textContent;
+            let colorName = checkboxes[i].closest('.contactDropCheck').querySelector('.boxinfoEdit');
             if (colorName) {
                 let color = colorName.classList[0].split('-')[1];
                 checkContacts.push({ name: contactName, color: color });
-            } 
+            }
         }
     }
-
     return checkContacts;
 }
 
 function intiCheckContact() {
     let initialsContact = document.getElementById('initialsArea');
-    let checkContact = getSelectedContacts();    
+    let checkContact = getSelectedContacts();
     initialsContact.innerHTML = '';
     for (let i = 0; i < checkContact.length; i++) {
         let contactName = checkContact[i].name;
         let color = checkContact[i].color;
         let initials = extrahiereInitialen(contactName);
         initialsContact.innerHTML += initialsLoadContact(initials, color);
-        
     }
-    
-    
 }
