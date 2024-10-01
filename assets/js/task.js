@@ -273,20 +273,20 @@ document.addEventListener('DOMContentLoaded', function () {
   if (form) {
     form.addEventListener('submit', function (event) {
       event.preventDefault();
-      addingTask();
+      addingTask("toDo");
     });
   }
 });
 
 
 // popup show
-async function addingTask() {
+async function addingTask(id) {
   document.getElementById('taskDoneIcon').classList.add("showIcon");
-  await toWaiting();
+  await toWaiting(id);
   await navigateToBoard();
 }
 
-async function toWaiting() {
+async function toWaiting(id) {
   let titleText = document.getElementById('titleText').value;
   let desText = document.getElementById('desText').value;
   let actDate = document.getElementById('dateData').value;
@@ -318,7 +318,7 @@ async function toWaiting() {
     'number':newTaskNumber - 1,
     'color': category.slice(0, 4),
     'category': category,
-    'id': 'toDo',
+    'id': id,
     'contactcolor': coloursAsObject,
     'date': actDate,
     'description': desText,
