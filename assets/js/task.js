@@ -295,7 +295,7 @@ async function toWaiting() {
   let list = subTsksBoard.getElementsByTagName("li");
   let subTasks = {};
   let contacts = {};
-  let coloursAsObject ={};
+  let coloursAsObject = {};
   for (let i = 0; i < list.length; i++) {
     let eachList = list[i];
     let listText = eachList.innerText;
@@ -303,7 +303,8 @@ async function toWaiting() {
   }
   for (let j = 0; j < names.length; j++) {
     let name = names[j];
-    contacts[`contact${j + 1}`] = name;
+    let sanitizedName = name.replace(/\s+/g, '_');
+    contacts[`contact${j + 1}`] = sanitizedName;
   }
   for (let k = 0; k < colours.length; k++) {
     let colour = colours[k];
@@ -312,13 +313,17 @@ async function toWaiting() {
   toFetchTask();
   let newTaskNumber = await toFetchTask();
   postTask(`/task/task${newTaskNumber}`, {
+    'category': category,
+    'color': "User",
     'contact': contacts,
     'contactcolor': coloursAsObject,
     'date': actDate,
     'description': desText,
+    'id': "toDo",
+    'number': newTaskNumber - 1,
     'prio': priority,
-    'title': titleText,
     'subtasks': subTasks,
+    'title': titleText,
   });
   return new Promise(resolve => setTimeout(resolve, 1700));
 }
