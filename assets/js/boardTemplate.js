@@ -192,7 +192,7 @@ function editTask(i){
      <div class="title">
             <div class="smallHead"><span>Title</span>
             </div>
-            <input class="titleTxt" type="text" value="${arrayLoad[i].title}" required>
+            <input class="titleInput" type="text" value="${arrayLoad[i].title}" required>
         </div>
         <div class="description">
             <div class="smallHead">Description</div>
@@ -202,7 +202,7 @@ function editTask(i){
      <div class="dueDate">
             <div class="smallHead"><span>Due Date</span>
             </div>
-            <input class="dueDateTxt" type="text" value="${arrayLoad[i].date}" onfocus="(this.type='date')" required>
+            <input class="DueDate" type="text" value="${arrayLoad[i].date}" onfocus="(this.type='date')" required>
         </div>
       <div class="prioArea">
     <span>Priority</span>
@@ -218,6 +218,11 @@ function editTask(i){
     </div>                     
 </div>
 
+<div class="contactDrop"><span>Select Contacts to assgin</span> <img src="../img/arrow_drop_runter.png" alt=""></div>
+<div id="contactDropArea" class="contactDropData">
+<div class="contactDropCheck"><label class="labelContact"><input id=""  type="checkbox" class="checkboxDesignContact" name="contact"><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>Alexander Winkler</p> <div class="boxinfoEdit"><span>AM</span></div></div> </label></div>
+</div>
+
 <div><span>Assigned to</span></div>
     
 <div><span>Subtaskt</span></div>
@@ -229,4 +234,9 @@ function editTask(i){
     <div class="editAdd"> <span>Ok</span><img class="primevect" src="../img/check.svg"></div> 
     
     </div>`
+}
+
+function checkboxContactTemplate() {
+    return` <div class="subtastTitle"><label class="labelContact"><input id=""  type="checkbox" class="checkboxDesignContact" name="subtask"> <span></span><p></p></label></div>`
+    
 }
