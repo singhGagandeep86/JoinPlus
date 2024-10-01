@@ -279,9 +279,11 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+
+
 // popup show
 async function addingTask(id) {
-  document.getElementById('taskDoneIcon').classList.add("showIcon");
+  document.getElementById('taskDoneIcon').classList.remove("d_noneImg");
   await toWaiting(id);
   await navigateToBoard();
 }
