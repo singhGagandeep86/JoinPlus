@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (form) {
     form.addEventListener('submit', function (event) {
       event.preventDefault();
-      addingTask("toDo");
+      addingTask();
     });
   }
 });
@@ -282,13 +282,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // popup show
-async function addingTask(id) {
+async function addingTask() {
   document.getElementById('taskDoneIcon').classList.remove("d_noneImg");
-  await toWaiting(id);
+  await toWaiting();
   await navigateToBoard();
 }
 
-async function toWaiting(id) {
+async function toWaiting() {
   let titleText = document.getElementById('titleText').value;
   let desText = document.getElementById('desText').value;
   let actDate = document.getElementById('dateData').value;
@@ -299,7 +299,7 @@ async function toWaiting(id) {
   let subtask = {};
   let contacts = {};
   let coloursAsObject = {};
-  let coloursAsObject = {};
+  let taskNum = {};
   for (let i = 0; i < list.length; i++) {
     let eachList = list[i];
     let listText = eachList.innerText;
@@ -308,7 +308,7 @@ async function toWaiting(id) {
   }
   for (let j = 0; j < names.length; j++) {
     let name = names[j];
-    let sanitizedName = name.replace(/\s+/g, '_');
+    let sanitizedName = name.replace(/_/g, ' ');
     contacts[`contact${j + 1}`] = sanitizedName;
   }
   for (let k = 0; k < colours.length; k++) {
@@ -316,22 +316,18 @@ async function toWaiting(id) {
     coloursAsObject[`color${k + 1}`] = colour;
   }
   toFetchTask();
-  let newTaskNumber = await toFetchTask();
+  let newTaskNumber = await toFetchTask(taskNum);
   postTask(`/task/task${newTaskNumber}`, {
     'category': category,
     'color': "User",
     'contact': contacts,
-    'number':newTaskNumber - 1,
-    'color': category.slice(0, 4),
-    'category': category,
-    'id': id,
     'contactcolor': coloursAsObject,
     'date': actDate,
     'description': desText,
     'id': "toDo",
-    'number': newTaskNumber - 1,
+    'number':newTaskNumber - 1,
     'prio': priority,
-    'subtasks': subTasks,
+    'subtasks': subtask,
     'title': titleText,
   });
   return new Promise(resolve => setTimeout(resolve, 1700));
@@ -351,7 +347,7 @@ async function postTask(path = "", data = {}) {
   });
 }
 
-async function toFetchTask() {
+async function toFetchTask(taskNum) {
   let URL = await fetch(base_Url + ".json");
   let URLtoJson = await URL.json();
   let totalTasks = URLtoJson.task;
