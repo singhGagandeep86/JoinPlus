@@ -104,8 +104,7 @@ header .topline .login:hover {
     width: 140px;
     height: 200px;
     top: 33%;
-    left: 35%;
-    background-color: var(--sideheader-main-color);
+    left: 33%;
     animation-fill-mode: forwards;
     animation-timing-function: ease;
     animation: FinalLogoScreen 1.5s forwards;
