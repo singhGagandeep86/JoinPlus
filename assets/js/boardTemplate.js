@@ -117,20 +117,21 @@ function templateTaskHTML(element) {
     </div>`;
 }
 
-function templateTaskSmallInfo(i) {
+function templateTaskSmallInfo(objDateTask) {
+    
     return `<div id="closeAreaInfo" class="popupTaskInfo">
-            <div class="infoTitle"><div><span class=" bgInfo_${arrayLoad[i].color}" >${arrayLoad[i].category}</span>
+            <div class="infoTitle"><div><span class=" bgInfo_${objDateTask.color}" >${objDateTask.category}</span>
             </div><img onclick="closePopUpTaskSmall()" src="../img/Close.png" alt=""></div>
-            <div class="popupTitleInfo">${arrayLoad[i].title}</div>
-            <div class="descriptionInfo">${arrayLoad[i].description}</div>
+            <div class="popupTitleInfo">${objDateTask.title}</div>
+            <div class="descriptionInfo">${objDateTask.description}</div>
             <div class="dateInfo"><div><span>Due date:</span></div><div id="dateAreaInfo"></div></div>
             <div class="prioInfo"><div><span>Priorty:</span></div>
-            <div class="prioInfoData"><span>${arrayLoad[i].prio.charAt(0).toUpperCase() + arrayLoad[i].prio.slice(1)}</span>
-            <div class="bg_${arrayLoad[i].prio}"></div></div></div>
+            <div class="prioInfoData"><span>${objDateTask.prio.charAt(0).toUpperCase() + objDateTask.prio.slice(1)}</span>
+            <div class="bg_${objDateTask.prio}"></div></div></div>
             <div class="contactInfo"><span class="contactInfoHeadline">Assigned To:</span><div id="contactAreaInfo" class="contactInfoData"></div></div>
             <div class="subtaskInfo"><span>Subtasks:</span><div  class="subtaskAreaData"><div id="subtaskArea"></div></div></div>
-            <div class="editInfo"><div class="editInfoData"><div><img class="deletePic" src="../img/Delete contact.png" alt=""></div>
-                <div><img onclick="editOpen(${i})" class="editPic" src="../img/edit contacts.png" alt=""></div></div></div>
+            <div class="editInfo"><div class="editInfoData"><div><img onclick="deleteData(${objDateTask.number})" class="deletePic" src="../img/Delete contact.png" alt=""></div>
+                <div><img onclick="editOpen(${objDateTask.number})" class="editPic" src="../img/edit contacts.png" alt=""></div></div></div>
         </div>`;
 }
 function templateRange(subtask, checkedCount) {
@@ -147,10 +148,10 @@ function templateContactInfo(contactscolor, initials, contactName) {
     <span>${initials}</span></div> <span class="contactName">${contactName}</span></div>`
 }
 
-function templateSubtask(element, i, j) {
-    let checkboxId = `checkbox-${i}-${j}`;
+function templateSubtask(element, objDateTask, j) {
+    let checkboxId = `checkbox-${objDateTask.number}-${j}`;
     return `
-       <div class="subtastTitle"><label class="labelInfo"><input id="${checkboxId}" oninput="inputCheckBoxInfo(${i}, ${j})" type="checkbox" class="checkboxDesign" name="subtask"> <span></span><p>${element}</p></label></div>
+       <div class="subtastTitle"><label class="labelInfo"><input id="${checkboxId}" oninput="inputCheckBoxInfo(${objDateTask.number}, ${j})" type="checkbox" class="checkboxDesign" name="subtask"> <span></span><p>${element}</p></label></div>
         `
 }
 
@@ -187,13 +188,13 @@ function moveTaskTo4(element) {
 function addSubTask(subTaskData) {
     return ` <li class="liSubTask">• ${subTaskData} </li>`
 }
-function editTask(i) {
+function editTask(objData) {
     return `<div class="popupEdit">
     <div id="edit" class="editArea">
      <div class="title">
             <div class="smallHead"><span>Title</span>
             </div>
-            <input class="titleInput" type="text" value="${arrayLoad[i].title}" required>
+            <input class="titleInput" type="text" value="${objData.title}" required>
         </div>
         <div class="description">
             <div class="smallHead">Description</div>
@@ -203,7 +204,7 @@ function editTask(i) {
      <div class="dueDate">
             <div class="smallHead"><span>Due Date</span>
             </div>
-            <input class="DueDate" type="text" value="${arrayLoad[i].date}" onfocus="(this.type='date')" required>
+            <input class="DueDate" type="text" value="${objData.date}" onfocus="(this.type='date')" required>
         </div>
       <div class="prioArea">
     <span>Priority</span>

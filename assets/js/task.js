@@ -8,7 +8,8 @@ let expanded = false;
 let subTaskexpanded = false;
 let task = {};
 
-function init() {
+async function init() {
+  await load();
   fetchUrl();
 }
 
@@ -295,7 +296,7 @@ async function toWaiting() {
   let category = document.getElementById('assignHeading').innerText;
   let priority = document.getElementById('priority').value;
   let list = subTsksBoard.getElementsByTagName("li");
-  let checked  = {};
+  let checked = {};
   let subtask = {};
   let contacts = {};
   let coloursAsObject = {};
