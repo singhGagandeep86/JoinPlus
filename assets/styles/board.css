@@ -243,7 +243,7 @@ html {
     width: 200px;
     height: 150px;
     background-color: white;
-    z-index: 3;
+    z-index: 50;
     border-radius: 8px;
     border: 1px solid black;
 }
@@ -265,7 +265,8 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;    
+    gap: 10px;  
+  
 }
 
 .moveTaskBTN button{

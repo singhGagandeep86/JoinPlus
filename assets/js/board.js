@@ -12,15 +12,33 @@ async function load() {
     await loadData("/task");
 }
 
-async function loadData(path) {
+async function loadData(path) {    
     let response = await fetch(BASE_URL + path + ".json");
-    let responsetoJason = await response.json();
-    let taskArray = Object.values(responsetoJason);
-    for (let i = 0; i < taskArray.length; i++) {
-        arrayLoad.push(taskArray[i]);
+    let responsetoJson = await response.json();   
+    if (responsetoJson === null) {        
+        await createEmptyTaskNode(path);
+    } else {       
+        let taskArray = Object.values(responsetoJson);
+        for (let i = 0; i < taskArray.length; i++) {
+            arrayLoad.push(taskArray[i]);
+        }
+        taskAdd(); 
     }
+}
 
-    taskAdd();
+async function createEmptyTaskNode(path) {
+    let task = "";
+
+    // Speichere den leeren Hauptknoten
+    await fetch(BASE_URL + path + ".json", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task)
+    });
+
+    
 }
 
 async function taskAdd() {
@@ -229,14 +247,24 @@ function extrahiereInitialen(contactName) {
 function openPopUpTaskSmall(i) {
     let info = document.getElementById('popupTaskInfo');
     document.getElementById('popupTaskInfo').classList.remove('d_none');
-    info.innerHTML = templateTaskSmallInfo(i);
-    time(i);
-    addcontactInfo(i);
-    addSubtaskInfo(i);
+    let objDateTask = createobjFromElement(i);
+    info.innerHTML = templateTaskSmallInfo(objDateTask);
+    time(objDateTask);
+    addcontactInfo(objDateTask);
+    addSubtaskInfo(objDateTask);
     let area = document.getElementById('closeAreaInfo');
     area.addEventListener('click', (event) => {
         event.stopPropagation()
     })
+}
+
+function createobjFromElement(i){
+    let objDataTasksmall = arrayLoad.filter(e => e['number'] == i);
+    let elementfromTask = '';
+    for (let i = 0; i < objDataTasksmall.length; i++) {
+        elementfromTask= objDataTasksmall[i];        
+    }
+    return elementfromTask
 }
 
 function closePopUpTaskSmall() {
@@ -247,7 +275,8 @@ function closePopUpTaskSmall() {
 function openPopUpTaskSwitch(element) {
     let select = document.getElementById('popupTaskSwitch' + element);
     let arrow = document.getElementById('arrowSwitch' + element);
-    let id = arrayLoad[element].id;
+    let objData = createobjFromElement(element);
+    let id = objData.id;
     if (toggle === 0) {
         select.classList.remove('d_none');
         arrow.classList.add('arrowTaskImg');
@@ -292,15 +321,15 @@ async function changeIdTaskValue(value, element) {
 
 }
 async function changeIdTask(value, element) {
-    let path = `/task/task${element + 1}`;
+    let path = `/task/task${element}`;
     let url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app${path}.json`;
     let idChange = { id: value };
     await postDataId(url, idChange);
 }
 
-function time(i) {
+function time(objDateTask) {
     let dateArea = document.getElementById('dateAreaInfo');
-    let times = arrayLoad[i].date;
+    let times = objDateTask.date;
     if (times) {
         let [year, month, day] = times.split('-');
         let formattedDate = `${day}-${month}-${year}`;
@@ -309,10 +338,10 @@ function time(i) {
     }
 }
 
-function addcontactInfo(i) {
+function addcontactInfo(objDateTask) {
     let contactArea = document.getElementById('contactAreaInfo');
-    let contactName = arrayLoad[i].contact ? Object.values(arrayLoad[i].contact) : null;
-    let contactscolor = arrayLoad[i].contactcolor ? Object.values(arrayLoad[i].contactcolor) : null;
+    let contactName = objDateTask.contact ? Object.values(objDateTask.contact) : null;
+    let contactscolor = objDateTask.contactcolor ? Object.values(objDateTask.contactcolor) : null;
     contactArea.innerHTML = '';
     if (contactName == null) {
         contactArea.innerHTML = '';
@@ -326,34 +355,38 @@ function addcontactInfo(i) {
 
 }
 
-function addSubtaskInfo(i) {
+function addSubtaskInfo(objDateTask) {
     let subtaskInput = document.getElementById('subtaskArea');
     subtaskInput.innerHTML = '';
-    if (!arrayLoad[i].subtask) {
+    if (!objDateTask.subtask) {
         subtaskInput.innerHTML = ''; // 
-    } else if (Object.values(arrayLoad[i].subtask).length === 0 && Object.values(arrayLoad[i].checked) === 0) {
+    } else if (Object.values(objDateTask.subtask).length === 0 && Object.values(objDateTask.checked) === 0) {
         subtaskInput.innerHTML = '';
     } else {
-        let subtaskTitle = Object.values(arrayLoad[i].subtask);
-        let subtastChecked = Object.values(arrayLoad[i].checked);
+        let subtaskTitle = Object.values(objDateTask.subtask);
+        let subtastChecked = Object.values(objDateTask.checked);
         for (let j = 0; j < subtaskTitle.length; j++) {
             let element = subtaskTitle[j];
-            subtaskInput.innerHTML += templateSubtask(element, i, j);
+            subtaskInput.innerHTML += templateSubtask(element, objDateTask, j);
             checked(subtastChecked);
         }
     }
 
 }
-function moveTo(element) {
-    arrayLoad[draggedElement].id = element;
-    let changeId = arrayLoad[draggedElement];
-    taskAdd();
-    postId(element, changeId);
-
+function moveTo(element,) {
+    let elementArray = arrayLoad.filter(e => e['number'] == draggedElement);
+    for (let i = 0; i < elementArray.length; i++) {
+        let objData = elementArray[i];
+        objData.id = element;
+        let changeId = objData;
+        taskAdd();
+        postId(element, changeId);
+    }
 }
+
 async function postId(element, changeId) {
     let number = changeId.number;
-    let path = `/task/task${number + 1}`;
+    let path = `/task/task${number}`;
     let url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app${path}.json`;
     let idChange = { id: element };
     await postDataId(url, idChange);
@@ -371,7 +404,7 @@ async function postDataId(url, data) {
 async function inputCheckBoxInfo(i, j) {
     let checkboxId = `checkbox-${i}-${j}`;
     let checkbox = document.getElementById(checkboxId);
-    let path = `/task/task${i + 1}/checked`;
+    let path = `/task/task${i}/checked`;
     let url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/${path}.json`;
     let upData = { [`task${j + 1}`]: checkbox.checked };
     await postDataCheck(url, upData);

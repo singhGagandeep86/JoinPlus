@@ -1,20 +1,20 @@
 
 let pathC = '';
 let base_UrlC = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
-function loadContact(i) {
-    fetchContact("/contact", i)
+function loadContact(objData) {
+    fetchContact("/contact", objData)
 }
 
-async function fetchContact(pathC, i) {
+async function fetchContact(pathC, objData) {
     let firebaseUrl = await fetch(base_UrlC + pathC + ".json");
     let firebaseUrlAsJson = await firebaseUrl.json();
     let firebaseData = Object.values(firebaseUrlAsJson);
-    loadContactData(firebaseData, i)
+    loadContactData(firebaseData, objData)
 }
 
-function loadContactData(firebaseData, i) {
+function loadContactData(firebaseData, objData) {
     let contactArea = document.getElementById('contactDropArea');
-    let contact = Object.values(arrayLoad[i]['contact']);
+    let contact = Object.values(objData.contact);
     let contactData = contactArray(firebaseData);
     contactArea.innerHTML = '';
     for (let j = 0; j < firebaseData.length; j++) {
@@ -26,9 +26,9 @@ function loadContactData(firebaseData, i) {
     }
 }
 
-function initialsLoad(i) {
-    let contactUser = Object.values(arrayLoad[i]['contact']);
-    let color = Object.values(arrayLoad[i].contactcolor);
+function initialsLoad(objData) {
+    let contactUser = Object.values(objData.contact);
+    let color = Object.values(objData.contactcolor);
     let initialsContact = document.getElementById('initialsArea');
     for (let k = 0; k < contactUser.length; k++) {
         let contactName = contactUser[k];
@@ -46,17 +46,18 @@ function contactArray(firebaseData) {
     return elementContact;
 }
 
-function editOpen(i,) {
+function editOpen(i) {
     let edit = document.getElementById('popupTaskInfo');
-    let prioCheck = arrayLoad[i].prio;
+    let objData =createobjFromElement(i)
+    let prioCheck = objData.prio;
     edit.innerHTML = '';
     document.getElementById('popupTaskInfo').classList.remove('d_none');
-    edit.innerHTML = editTask(i);
-    loadContact(i);
-    descriptionData(i);
-    loadSubs(i);
+    edit.innerHTML = editTask(objData);
+    loadContact(objData);
+    descriptionData(objData);
+    loadSubs(objData);
     priorityEditCheck(prioCheck);
-    initialsLoad(i)
+    initialsLoad(objData)
     let area = document.getElementById('edit');
     area.addEventListener('click', (event) => {
         event.stopPropagation()
@@ -74,9 +75,9 @@ function contactDropOpen() {
     arrowContact.classList.toggle('rotate');
 }
 
-function loadSubs(i) {
+function loadSubs(objData) {
     let subtaskArea = document.getElementById('subTaskBoard');
-    let subs = arrayLoad[i].subtask ? Object.values(arrayLoad[i].subtask) : null;
+    let subs = objData.subtask ? Object.values(objData.subtask) : null;
     if (subs == null) {
         subtaskArea.innerHTML = '';
     } else {
@@ -87,8 +88,8 @@ function loadSubs(i) {
     }
 }
 
-function descriptionData(i) {
-    document.querySelector('.textAreaData').value = arrayLoad[i].description;
+function descriptionData(objData) {
+    document.querySelector('.textAreaData').value = objData.description;
 }
 
 function priorityEditCheck(prioCheck) {
@@ -127,4 +128,13 @@ function intiCheckContact() {
         let initials = extrahiereInitialen(contactName);
         initialsContact.innerHTML += initialsLoadContact(initials, color);
     }
+}
+async function deleteData(element) {
+    let path = `/task/task${element}`;
+    let url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/${path}.json`;
+    let response = await fetch(url, {
+        method: 'DELETE',
+    });
+    arrayLoad = [];
+    load();
 }

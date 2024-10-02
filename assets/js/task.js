@@ -8,7 +8,8 @@ let expanded = false;
 let subTaskexpanded = false;
 let task = {};
 
-function init() {
+async function init() {
+  await load();
   fetchUrl();
 }
 
@@ -284,6 +285,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // popup show
 async function addingTask(id) {
   document.getElementById('taskDoneIcon').classList.remove("d_noneImg");
+  
   await toWaiting(id);
   await navigateToBoard();
 }
@@ -295,7 +297,7 @@ async function toWaiting(id) {
   let category = document.getElementById('assignHeading').innerText;
   let priority = document.getElementById('priority').value;
   let list = subTsksBoard.getElementsByTagName("li");
-  let checked  = {};
+  let checked = {};
   let subtask = {};
   let contacts = {};
   let coloursAsObject = {};
@@ -313,11 +315,11 @@ async function toWaiting(id) {
     let colour = colours[k];
     coloursAsObject[`color${k + 1}`] = colour;
   }
-  toFetchTask();
-  let newTaskNumber = await toFetchTask();
-  postTask(`/task/task${newTaskNumber}`, {
+
+  let numberTaskId = generateRandomNumber();
+  postTask(`/task/task${numberTaskId}`, {
     'contact': contacts,
-    'number':newTaskNumber - 1,
+    'number': numberTaskId,
     'color': category.slice(0, 4),
     'category': category,
     'id': id,
@@ -327,7 +329,7 @@ async function toWaiting(id) {
     'prio': priority,
     'title': titleText,
     'subtask': subtask,
-    'checked':checked
+    'checked': checked
   });
   return new Promise(resolve => setTimeout(resolve, 1700));
 }
@@ -346,10 +348,14 @@ async function postTask(path = "", data = {}) {
   });
 }
 
-async function toFetchTask() {
-  let URL = await fetch(base_Url + ".json");
-  let URLtoJson = await URL.json();
-  let totalTasks = URLtoJson.task;
-  let totalTaskslength = Object.values(totalTasks).length;
-  return totalTaskslength + 1;
+function generateRandomNumber() {
+  let number = '';
+  for (let i = 0; i < 6; i++) {
+    let digit;
+    do {
+      digit = Math.floor(Math.random() * 10);
+    } while (digit === 0);
+    number += digit;
+  }
+  return number;
 }

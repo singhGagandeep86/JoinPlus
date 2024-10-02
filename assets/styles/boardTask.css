@@ -712,3 +712,22 @@ progress::-moz-progress-bar {
     border: 1px black dashed;
     border-radius: 10px;
 }
+
+.subtaskAreaData{
+    height: 100px;
+    overflow: auto;
+}
+
+.subtaskAreaData::-webkit-scrollbar {
+    width: 6px;
+}
+
+.subtaskAreaData::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.subtaskAreaData::-webkit-scrollbar-button {
+    display: none;
+}
