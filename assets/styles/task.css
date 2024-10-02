@@ -672,14 +672,15 @@ li:hover {
     gap: 8px;
 }
 
-.doneIcon {
+.doneIcon{
     position: absolute;
-    top: 0;
+    top:45%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: 500ms;
+    z-index: 100;
+}
+.d_noneImg {
+    display: none;
 }
 
-.showIcon {
-    top: 50%;
-}

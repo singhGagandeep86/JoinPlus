@@ -160,15 +160,15 @@ function allowDrop(ev) {
 }
 
 function openPopUpTask(id) {
-    
     let taskPopUp = document.getElementById('popupTaskMain');
-    init()
+    init();
     if (handleMediaChange(mediaQuery)) {
         window.location.href = 'task.html';
     } else {
         taskPopUp.classList.remove('d_none');
         taskPopUp.innerHTML = '';
         taskPopUp.innerHTML = templatePopUpTask1();
+        onSubmit(id);
         let area = document.getElementById('CloseArea');
         area.addEventListener('click', (event) => {
             event.stopPropagation()
@@ -241,7 +241,7 @@ function openPopUpTaskSmall(i) {
 
 function closePopUpTaskSmall() {
     document.getElementById('popupTaskInfo').classList.add('d_none');
-    
+
 }
 
 function openPopUpTaskSwitch(element) {
@@ -424,4 +424,13 @@ function highlight(id) {
 }
 function removeHighlight(id) {
     document.getElementById(id).classList.remove('drag-area-highlight');
+}
+
+function onSubmit(id) {
+    let form = document.getElementById('myFormBoard');
+    form.onsubmit = function (event) {
+        event.preventDefault();
+        addingTask(id);
+    };
+
 }

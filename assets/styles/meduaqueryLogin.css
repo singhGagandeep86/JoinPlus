@@ -169,28 +169,45 @@
     }
 
     .join-logo {
-        background-color: red;
         opacity: 0;
+        z-index: 1000;
     }
 
     .final-logo {
-        /* background-color: blue; */
         display: block;
+        content: url(/assets/img/logo\ white.png);
+    }
+
+    @keyframes JoinlogoScreen {
+        0% {
+            top: 50%;
+            left: 50%;
+            width: 140px;
+            height: 200px;
+        }
+        100% {
+            top: 50px;
+            left: 50px;
+            width: 140px;
+            height: 200px;
+            opacity: 1;
+        }
     }
 
     @keyframes FinalLogoScreen {
-            from {
-                top: 50%;
-                left: 50%;
-                width: 140px;
-                height: 200px;
-            }
-            to {
-                top: 50px;
-                left: 50px;
-                width: 140px;
-                height: 200px;
-            }
+        0% {
+            top: 50%;
+            left: 50%;
+            width: 140px;
+            height: 200px;
+            opacity: 1;
+        }
+        100% {
+            top: 50px;
+            left: 50px;
+            width: 140px;
+            height: 200px;
+        }
     }
 }
 

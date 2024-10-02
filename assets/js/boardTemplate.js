@@ -19,7 +19,7 @@ function templateTaskEmptyDone() {
 function templatePopUpTask1() {
     return `<div id="CloseArea" class="taskArea">
          <div class="heading">Add Task</div>
-                <form id="myForm">
+                <form id="myFormBoard">
                     <div class="formular">
                         <div class="leftSubmition">
                             <div class="title">
@@ -184,8 +184,9 @@ function moveTaskTo4(element) {
 }
 
 
-
-
+function addSubTask(subTaskData) {
+    return ` <li class="liSubTask">• ${subTaskData} </li>`
+}
 function editTask(i) {
     return `<div class="popupEdit">
     <div id="edit" class="editArea">
@@ -217,17 +218,13 @@ function editTask(i) {
         <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
     </div>                     
 </div>
-
-<div class="contactDrop"><span>Select Contacts to assgin</span> <img src="../img/arrow_drop_runter.png" alt=""></div>
-<div id="contactDropArea" class="contactDropData">
-<div class="contactDropCheck"><label class="labelContact"><input id=""  type="checkbox" class="checkboxDesignContact" name="contact"><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>Alexander Winkler</p> <div class="boxinfoEdit"><span>AM</span></div></div> </label></div>
-</div>
-
 <div><span>Assigned to</span></div>
+<div class="contactDrop" onclick="contactDropOpen()"><span>Select Contacts to assgin</span> <img id="arrowContactDrop"  src="../img/arrow_drop_runter.png" alt=""></div>
+<div id="contactDropArea" class="contactDropData d_none"></div>
+<div id="initialsArea" class="initialsEdit"></div>
     
 <div><span>Subtaskt</span></div>
-    <ul id="subTaskBoard" class="olArea" ></ul>
-    
+    <ul id="subTaskBoard" class="ulArea" ></ul>   
     
     </div>
     
@@ -236,7 +233,11 @@ function editTask(i) {
     </div>`
 }
 
-function checkboxContactTemplate() {
-    return ` <div class="subtastTitle"><label class="labelContact"><input id=""  type="checkbox" class="checkboxDesignContact" name="subtask"> <span></span><p></p></label></div>`
+function checkboxContactTemplate(isChecked, contactName , initials, color) {
+    return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ${isChecked} ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><span>${initials}</span></div></div> </label></div>`
+}
 
+
+function initialsLoadContact(initials, colorIni) {
+    return ` <div class="b-${colorIni} boxinfo "><span>${initials}</span></div> `    
 }

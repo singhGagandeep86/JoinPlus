@@ -85,12 +85,10 @@
     padding-bottom: 64px;
 }
 
-.legacyMenu a {   
+.legacyMenu a {
     padding-top: 30px;
     color: var(--sideheader-font-color);
 }
-
-
 
 .legacyMenu a:hover {
     color: #29ABE2;
