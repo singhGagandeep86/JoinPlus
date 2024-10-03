@@ -132,7 +132,7 @@ label {
     background-size: 2px;
     background-origin: content-box;
     cursor: pointer;
-    background-image: url("http://127.0.0.1:5500/assets/img/textArea.svg");
+    background-image: url("../img/textArea.svg");
 }
 
 .assignCntcts {
@@ -344,7 +344,7 @@ label {
     text-align: left;
     background-position: 400px;
     background-repeat: no-repeat;
-    background-image: url("http://127.0.0.1:5500/assets/img/event.svg");
+    background-image: url("../img/event.svg");
 }
 
 .dueDateTxt[type="date"] {
@@ -513,14 +513,15 @@ label {
     text-align: left;
     background-repeat: no-repeat;
     background-position: 72px center;
-    background-image: url("http://127.0.0.1:5500/assets/img/SecondaryVector.png");
+    background-image: url("../img/SecondaryVector.png");
+    transition: 125ms ease-in-out;
 }
 
 .secondary:hover {
     box-shadow: 0px 4px 4px 0px #00000040;
     color: #29ABE2;
     border: 2px solid #29ABE2;
-    background-image: url("http://127.0.0.1:5500/assets/img/ScndryVectHvr.png");
+    background-image: url("../img/ScndryVectHvr.png");
 }
 
 .scndVect {
@@ -546,6 +547,7 @@ label {
     text-align: left;
     background: #2A3647;
     color: #FFFFFF;
+    transition: 125ms ease-in-out;
 }
 
 .primaryCheck:hover {

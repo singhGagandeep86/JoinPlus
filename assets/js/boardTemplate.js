@@ -18,7 +18,7 @@ function templateTaskEmptyDone() {
 
 function templatePopUpTask1() {
     return `<div id="CloseArea" class="taskArea">
-         <div class="heading">Add Task</div>
+         <div class="headingBoardAdd">Add Task <img onclick="closePopUpTask()" src="../img/Close.png" alt=""></div>
                 <form id="myFormBoard">
                     <div class="formular">
                         <div class="leftSubmition">
@@ -86,8 +86,8 @@ function templatePopUpTask1() {
                     <div class="info">
                         <div><sup>* </sup>This field is required</div>
                         <div class="submitionButtons">
-                            <button class="secondary" type="reset" onclick="resetAll()">
-                                <span>Clear</span> </button>
+                            <button class="cancelBtnAdd" type="reset" onclick="closePopUpTask()">
+                                <span>Cancel</span> </button>
                             <button type="submit" class="primaryCheck">
                                 <span>Create Task</span><img class="primevect" src="/assets/img/check.svg">
                             </button>
