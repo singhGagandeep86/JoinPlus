@@ -186,19 +186,20 @@ function moveTaskTo4(element) {
 
 function editTask(objData) {
     return `<div id="EditCloseArea" class="popupEdit">
+    <div class="closeIconEdit"><img onclick="closePopUpTaskSmall()" src="../img/Close.png" alt=""></div>
     <div id="edit" class="editArea">
      <div class="title">
-            <div class="smallHead"><span>Title</span>
+            <div class="smallHead titleStyle"><span>Title</span>
             </div>
             <input class="titleInput" type="text" value="${objData.title}" required>
         </div>
         <div class="description">
-            <div class="smallHead">Description</div>
+            <div class="smallHead descSytle">Description</div>
             <textarea  rows="4" cols="37"  class="textAreaData"></textarea>
         </div>
       
      <div class="dueDate">
-            <div class="smallHead"><span>Due Date</span>
+            <div class="smallHead dateStyle"><span>Due Date</span>
             </div>
             <input class="DueDate" type="text" value="${objData.date}" onfocus="(this.type='date')" required>
         </div>
@@ -215,11 +216,11 @@ function editTask(objData) {
         <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
     </div>                     
 </div>
-<div><span>Assigned to</span></div>
+<div class="assignedStyle"><span>Assigned to</span></div>
 <div class="contactDrop" onclick="contactDropOpen()"><span>Select Contacts to assgin</span> <img id="arrowContactDrop"  src="../img/arrow_drop_runter.png" alt=""></div>
 <div id="contactDropArea" class="contactDropData d_none"></div>
 <div id="initialsArea" class="initialsEdit"></div>    
-<div><span>Subtaskt</span></div>
+<div class="subtaskStyle"><span>Subtaskt</span></div>
   <div id="subtaskInput" class="substart"></div>
     <ul id="subTaskBoard" class="ulArea" ></ul>   
     
