@@ -12,34 +12,21 @@ async function load() {
     await loadData("/task");
 }
 
-async function loadData(path) {    
+async function loadData(path) {
     let response = await fetch(BASE_URL + path + ".json");
-    let responsetoJson = await response.json();   
-    if (responsetoJson === null) {        
+    let responsetoJson = await response.json();
+    if (responsetoJson === null) {
         await createEmptyTaskNode(path);
-    } else {       
+    } else {
         let taskArray = Object.values(responsetoJson);
         for (let i = 0; i < taskArray.length; i++) {
             arrayLoad.push(taskArray[i]);
         }
-        taskAdd(); 
-    }
+    } 
+    taskAdd();
 }
 
-async function createEmptyTaskNode(path) {
-    let task = "";
 
-    // Speichere den leeren Hauptknoten
-    await fetch(BASE_URL + path + ".json", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(task)
-    });
-
-    
-}
 
 async function taskAdd() {
     todo();
@@ -200,7 +187,6 @@ function handleMediaChange(e) {
     }
 }
 
-
 function closePopUpTask() {
     resetAll();
     let button = document.getElementById('btnTaskPopupcloseArea');
@@ -258,11 +244,11 @@ function openPopUpTaskSmall(i) {
     })
 }
 
-function createobjFromElement(i){
+function createobjFromElement(i) {
     let objDataTasksmall = arrayLoad.filter(e => e['number'] == i);
     let elementfromTask = '';
     for (let i = 0; i < objDataTasksmall.length; i++) {
-        elementfromTask= objDataTasksmall[i];        
+        elementfromTask = objDataTasksmall[i];
     }
     return elementfromTask
 }
@@ -464,6 +450,6 @@ function onSubmit(id) {
     form.onsubmit = function (event) {
         event.preventDefault();
         addingTask(id);
+        closePopUpTask();
     };
-
 }

@@ -45,18 +45,142 @@
     gap: 10px;
 }
 
+.substart {   
+    display: flex;
+    align-items: center;      
+    cursor: pointer;
+}
+
+.substart2 {
+    width: 440px;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px; 
+}
+
+.substart2 span:nth-of-type(2){
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.substart2 span:nth-of-type(2):hover{
+    background-color: #d1d1d1;
+    border-radius: 100%;
+}
+
+.subAddIn{
+    width: 440px;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #29abe2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px; 
+}
+
+.subAddIn span:nth-of-type(2):hover{
+    background-color: #d1d1d1;
+    border-radius: 100%;   
+}
+
+.subAddIn span:nth-of-type(1):hover{
+    background-color: #d1d1d1;
+    border-radius: 100%;   
+}
+
+.strich{
+    width: 1px;
+    height: 24px;
+    background-color: #d1d1d1;
+}
+
+.addDelet{
+    display: none;
+    cursor: pointer;
+}
+.addDeletInput{
+    display: flex;
+    cursor: pointer;
+}
+
+.inputSub{
+    width: 90%;
+    height: 90%;
+    border: none;
+}
+
+.inputSub:focus{
+    outline: none;
+}
+
 .ulArea {
     width: 100%;
-    height: 100px;
+    max-height: 150px;
     background-color: white;
     color: #2A3647;
-    overflow: auto;
-    overflow-x: none;
+    overflow: auto;    
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .liSubTask {
-    width: 90% !important;
+    width: 95% !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding-right: 10px;
+    padding-left: 23px;
+    transition: 125ms ease-in-out;
+    min-height: 30px;
+}
+
+.liSubTask:hover{
+    background-color: #e3e2e2;
+    border-radius:10px ;
+}
+
+.liSubTask:hover .addDelet {
+    display: flex; 
+}
+
+.liSubTask span:nth-of-type(2):hover{
+    background-color: #d1d1d1;
+    border-radius: 100%;   
+}
+
+.liSubTask span img:nth-of-type(1):hover{
+    background-color: #d1d1d1;
+    border-radius: 100%;   
+}
+
+.taskText:hover{
+    background: none;
+}
+.inputSubAdd{
+    width: 90%;
+    height: 25px;
+    padding-left: 5px;
+    margin-right: 15px;
+    border: none;
+    border-bottom: 1px solid #29abe2;
+}
+.inputSubAdd:focus{
+    outline: none;
 }
 
 .ulArea::-webkit-scrollbar {
@@ -191,7 +315,7 @@
     gap: 2px;
     width: 100%;
     height: 50px;
-    
+
 }
 
 .contactDropData::-webkit-scrollbar {
@@ -428,6 +552,7 @@ input[type="radio"] {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    
 }
 
 .contactInfo span {
@@ -439,10 +564,18 @@ input[type="radio"] {
 
 
 .contactInfoData {
+    width: 100%;
+    height: 100px;
     padding-left: 20px;
     display: flex;
     flex-direction: column;
     gap: 4px;
+    overflow: auto;
+  
+}
+
+.contactInfoData span{
+    width: 70%;
 }
 
 .contactInfoHeadline {
@@ -603,7 +736,7 @@ progress::-moz-progress-bar {
     display: flex;
     gap: 16px;
     align-items: center;
-    width: 445px;
+    width: 100%;
     height: 56px;
 }
 
@@ -713,7 +846,7 @@ progress::-moz-progress-bar {
     border-radius: 10px;
 }
 
-.subtaskAreaData{
+.subtaskAreaData {
     height: 100px;
     overflow: auto;
 }
@@ -730,4 +863,56 @@ progress::-moz-progress-bar {
 
 .subtaskAreaData::-webkit-scrollbar-button {
     display: none;
+}
+
+.headingBoardAdd {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 61px;
+    font-weight: 700;
+    max-width: 1208px;
+    margin-top: 86px;
+    margin-left: 36px;
+}
+
+.headingBoardAdd img {
+    width: 42px;
+    height: 42px;
+    margin-right: 50px;
+    cursor: pointer;
+    transition: 125ms ease-in-out;
+}
+
+.headingBoardAdd img:hover {
+    background-color: #e9e9e9;
+    cursor: pointer;
+    border-radius: 100%;
+}
+
+.cancelBtnAdd {
+    cursor: pointer;
+    width: 110px;
+    height: 56px;
+    padding-left: 8px;
+    gap: 4px;
+    border-radius: 10px;
+    background: #F6F7F8;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    background-repeat: no-repeat;
+    background-position: 72px center;
+    background-image: url("../img/SecondaryVector.png");
+    transition: 125ms ease-in-out;
+}
+
+.cancelBtnAdd:hover {
+    box-shadow: 0px 4px 4px 0px #00000040;
+    color: #29ABE2;
+    border: 2px solid #29ABE2;
+    background-image: url("../img/ScndryVectHvr.png");
 }
