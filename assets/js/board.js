@@ -452,5 +452,4 @@ function onSubmit(id) {
         addingTask(id);
         closePopUpTask();
     };
-
 }

@@ -1,4 +1,30 @@
 @media(max-width:563px) {
+    .popupEdit{
+        width: 300px;
+        height: 700px;
+    }
+    .prioForm{
+        scale: 0.7;
+    }
+    .labelContact{
+        scale: 0.9;
+    }
+    .contactNameEdit p{
+        font-size: 12px;
+    }
+    .liSubTask{
+        scale: 0.9;
+    }
+    .editAdd{
+        scale: 0.8;
+    }
+    .contactDrop{
+        font-size: 14px;
+    }
+    .substart2{
+        font-size: 14px;
+    }
+
     .popupTaskInfo {
         width: 300px;
         height: 700px;
@@ -97,9 +123,7 @@
     .popupArea {
         position: fixed;      
 
-    }
-
-    
+    }    
 
     .overDisplay {
         display: flex;
