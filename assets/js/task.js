@@ -9,6 +9,7 @@ let subTaskexpanded = false;
 let task = {};
 
 async function init() {
+  activateMedium();
   await load();
   fetchUrl();
 }
@@ -279,9 +280,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-
-
-
 // popup show
 async function addingTask() {
   document.getElementById('taskDoneIcon').classList.remove("d_noneImg");
@@ -289,6 +287,7 @@ async function addingTask() {
   await navigateToBoard();
 }
 
+//collect all Datas & added to Firebase
 async function toWaiting() {
   let titleText = document.getElementById('titleText').value;
   let desText = document.getElementById('desText').value;
@@ -316,17 +315,17 @@ async function toWaiting() {
     let colour = colours[k];
     coloursAsObject[`color${k + 1}`] = colour;
   }
-  toFetchTask();
+  //toFetchTask();
   let newTaskNumber = await toFetchTask(taskNum);
   postTask(`/task/task${newTaskNumber}`, {
     'category': category,
-    'color': "User",
+    'color': categoryColourGen(),
     'contact': contacts,
     'contactcolor': coloursAsObject,
     'date': actDate,
     'description': desText,
     'id': "toDo",
-    'number':newTaskNumber - 1,
+    'number': newTaskNumber - 1,
     'prio': priority,
     'subtasks': subtask,
     'title': titleText,
@@ -336,6 +335,11 @@ async function toWaiting() {
 
 async function navigateToBoard() {
   window.location.href = 'board.html';
+}
+
+function categoryColourGen() {
+  let category = document.getElementById('assignHeading').innerText;
+  return category.slice(0, 4);
 }
 
 async function postTask(path = "", data = {}) {
@@ -348,7 +352,7 @@ async function postTask(path = "", data = {}) {
   });
 }
 
-async function toFetchTask(taskNum) {
+async function toFetchTask() {
   let URL = await fetch(base_Url + ".json");
   let URLtoJson = await URL.json();
   let totalTasks = URLtoJson.task;
