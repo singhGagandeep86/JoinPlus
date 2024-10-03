@@ -45,18 +45,142 @@
     gap: 10px;
 }
 
+.substart {   
+    display: flex;
+    align-items: center;      
+    cursor: pointer;
+}
+
+.substart2 {
+    width: 440px;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px; 
+}
+
+.substart2 span:nth-of-type(2){
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.substart2 span:nth-of-type(2):hover{
+    background-color: #d1d1d1;
+    border-radius: 100%;
+}
+
+.subAddIn{
+    width: 440px;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #29abe2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px; 
+}
+
+.subAddIn span:nth-of-type(2):hover{
+    background-color: #d1d1d1;
+    border-radius: 100%;   
+}
+
+.subAddIn span:nth-of-type(1):hover{
+    background-color: #d1d1d1;
+    border-radius: 100%;   
+}
+
+.strich{
+    width: 1px;
+    height: 24px;
+    background-color: #d1d1d1;
+}
+
+.addDelet{
+    display: none;
+    cursor: pointer;
+}
+.addDeletInput{
+    display: flex;
+    cursor: pointer;
+}
+
+.inputSub{
+    width: 90%;
+    height: 90%;
+    border: none;
+}
+
+.inputSub:focus{
+    outline: none;
+}
+
 .ulArea {
     width: 100%;
-    height: 100px;
+    max-height: 150px;
     background-color: white;
     color: #2A3647;
-    overflow: auto;
-    overflow-x: none;
+    overflow: auto;    
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .liSubTask {
-    width: 90% !important;
+    width: 95% !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding-right: 10px;
+    padding-left: 23px;
+    transition: 125ms ease-in-out;
+    min-height: 30px;
+}
+
+.liSubTask:hover{
+    background-color: #e3e2e2;
+    border-radius:10px ;
+}
+
+.liSubTask:hover .addDelet {
+    display: flex; 
+}
+
+.liSubTask span:nth-of-type(2):hover{
+    background-color: #d1d1d1;
+    border-radius: 100%;   
+}
+
+.liSubTask span img:nth-of-type(1):hover{
+    background-color: #d1d1d1;
+    border-radius: 100%;   
+}
+
+.taskText:hover{
+    background: none;
+}
+.inputSubAdd{
+    width: 90%;
+    height: 25px;
+    padding-left: 5px;
+    margin-right: 15px;
+    border: none;
+    border-bottom: 1px solid #29abe2;
+}
+.inputSubAdd:focus{
+    outline: none;
 }
 
 .ulArea::-webkit-scrollbar {

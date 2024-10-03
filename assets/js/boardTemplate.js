@@ -184,12 +184,8 @@ function moveTaskTo4(element) {
     <button value="await" onclick="changeIdTaskValue(this.value, ${element})">Await</button></div>`
 }
 
-
-function addSubTask(subTaskData) {
-    return ` <li class="liSubTask">• ${subTaskData} </li>`
-}
 function editTask(objData) {
-    return `<div class="popupEdit">
+    return `<div id="EditCloseArea" class="popupEdit">
     <div id="edit" class="editArea">
      <div class="title">
             <div class="smallHead"><span>Title</span>
@@ -222,14 +218,14 @@ function editTask(objData) {
 <div><span>Assigned to</span></div>
 <div class="contactDrop" onclick="contactDropOpen()"><span>Select Contacts to assgin</span> <img id="arrowContactDrop"  src="../img/arrow_drop_runter.png" alt=""></div>
 <div id="contactDropArea" class="contactDropData d_none"></div>
-<div id="initialsArea" class="initialsEdit"></div>
-    
+<div id="initialsArea" class="initialsEdit"></div>    
 <div><span>Subtaskt</span></div>
+  <div id="subtaskInput" class="substart"></div>
     <ul id="subTaskBoard" class="ulArea" ></ul>   
     
     </div>
     
-    <div class="editAdd"> <span>Ok</span><img class="primevect" src="../img/check.svg"></div> 
+    <div onclick="readEditData(${objData.number})" class="editAdd"> <span>Ok</span><img class="primevect" src="../img/check.svg"></div> 
     
     </div>`
 }
@@ -238,7 +234,80 @@ function checkboxContactTemplate(isChecked, contactName , initials, color) {
     return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ${isChecked} ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><span>${initials}</span></div></div> </label></div>`
 }
 
-
 function initialsLoadContact(initials, colorIni) {
     return ` <div class="b-${colorIni} boxinfo "><span>${initials}</span></div> `    
+}
+function subtaskstart() {
+    return `<div onclick="subtastAdd()" class="substart2">
+                <span>Add new subtask</span> 
+                <span>+</span>
+            </div>`;
+}
+
+function subtaskAdd() {
+    return `<div class="subAddIn">
+                <input id="subInput" class="inputSub" type="text">
+                <div class="addDeletInput">
+                    <span><img onclick="deletInput()" src="../img/Property 1=delete.png" alt=""></span>
+                    <div class="strich"></div>
+                    <span><img onclick="addInputSubtastk()" src="../img/Property 1=check.png" alt=""></span>
+                </div>
+            </div>`;
+}
+
+function addSubTask(inputValue) {
+    return `
+    <li class="liSubTask" ondblclick="editSubTask(this)">
+        <span class="taskText">• ${inputValue}</span>
+        <div class="addDelet">            
+            <div class="strich"></div>
+            <span>
+                <img onclick="deleteTask(event)" src="../img/Property 1=delete.png" alt="Delete">
+            </span>
+            <div class="strich"></div>
+            <span>
+                <img onclick="toggleEditTask(event, this)" src="../img/Property 1=check.png" alt="Save">
+            </span>
+        </div>
+        <input class="inputSubAdd hidden" type="text" value="${inputValue}" style="display:none">
+    </li>`;
+}
+
+function templateSub1(currentText) {
+    return `
+    <input class="inputSubAdd" type="text" value="${currentText}">
+    <div class="addDelet">
+        <span><img onclick="deleteTask(event)" src="../img/Property 1=delete.png" alt="Delete"></span>
+        <div class="strich"></div>
+        <span><img onclick="saveTask(event, this)" src="../img/Property 1=check.png" alt="Save"></span>
+    </div>`;
+}
+
+function templateSub2(newValue) {
+    return `<span class="taskText">• ${newValue}</span>
+            <div class="addDelet">
+                <span><img onclick="deleteTask(event)" src="../img/Property 1=delete.png" alt="Delete"></span>
+                <div class="strich"></div>
+                <span><img onclick="toggleEditTask(event, this)" src="../img/Property 1=check.png" alt="Save"></span>
+            </div>`;
+}
+
+function templateSub3(newValue) {
+    return`  <span class="taskText">• ${newValue}</span>
+            <div class="addDelet">
+                <span><img onclick="deleteTask(event)" src="../img/Property 1=delete.png" alt="Delete"></span>
+                <div class="strich"></div>
+                <span><img onclick="toggleEditTask(event, this)" src="../img/Property 1=check.png" alt="Edit/Save"></span>
+            </div>`
+    
+}
+
+function templateSub4(currentText) {
+    return`
+        <input class="inputSubAdd" type="text" value="${currentText}">
+        <div class="addDelet">
+            <span><img onclick="deleteTask(event)" src="../img/Property 1=delete.png" alt="Delete"></span>
+            <div class="strich"></div>
+            <span><img onclick="toggleEditTask(event, this)" src="../img/Property 1=check.png" alt="Edit/Save"></span>
+        </div>`   
 }

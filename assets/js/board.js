@@ -187,7 +187,6 @@ function handleMediaChange(e) {
     }
 }
 
-
 function closePopUpTask() {
     resetAll();
     let button = document.getElementById('btnTaskPopupcloseArea');
@@ -451,6 +450,7 @@ function onSubmit(id) {
     form.onsubmit = function (event) {
         event.preventDefault();
         addingTask(id);
+        closePopUpTask();
     };
 
 }
