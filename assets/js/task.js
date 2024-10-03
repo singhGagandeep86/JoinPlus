@@ -273,23 +273,20 @@ document.addEventListener('DOMContentLoaded', function () {
   if (form) {
     form.addEventListener('submit', function (event) {
       event.preventDefault();
-      addingTask("toDo");
+      addingTask();
     });
   }
 });
 
-
-
-
 // popup show
-async function addingTask(id) {
+async function addingTask() {
   document.getElementById('taskDoneIcon').classList.remove("d_noneImg");
-  
-  await toWaiting(id);
+  await toWaiting();
   await navigateToBoard();
 }
 
-async function toWaiting(id) {
+//collect all Datas & added to Firebase
+async function toWaiting() {
   let titleText = document.getElementById('titleText').value;
   let desText = document.getElementById('desText').value;
   let actDate = document.getElementById('dateData').value;
@@ -300,6 +297,7 @@ async function toWaiting(id) {
   let subtask = {};
   let contacts = {};
   let coloursAsObject = {};
+  let taskNum = {};
   for (let i = 0; i < list.length; i++) {
     let eachList = list[i];
     let listText = eachList.innerText;
@@ -307,34 +305,39 @@ async function toWaiting(id) {
     subtask[`task${i + 1}`] = listText;
   }
   for (let j = 0; j < names.length; j++) {
-    let name = names[j].replace(/_/g, ' ');
-    contacts[`contact${j + 1}`] = name;
+    let name = names[j];
+    let sanitizedName = name.replace(/_/g, ' ');
+    contacts[`contact${j + 1}`] = sanitizedName;
   }
   for (let k = 0; k < colours.length; k++) {
     let colour = colours[k];
     coloursAsObject[`color${k + 1}`] = colour;
   }
-
-  let numberTaskId = generateRandomNumber();
-  postTask(`/task/task${numberTaskId}`, {
-    'contact': contacts,
-    'number': numberTaskId,
-    'color': category.slice(0, 4),
+  //toFetchTask();
+  let newTaskNumber = await toFetchTask(taskNum);
+  postTask(`/task/task${newTaskNumber}`, {
     'category': category,
-    'id': id,
+    'color': categoryColourGen(),
+    'contact': contacts,
     'contactcolor': coloursAsObject,
     'date': actDate,
     'description': desText,
+    'id': "toDo",
+    'number': newTaskNumber - 1,
     'prio': priority,
+    'subtasks': subtask,
     'title': titleText,
-    'subtask': subtask,
-    'checked': checked
   });
   return new Promise(resolve => setTimeout(resolve, 1700));
 }
 
 async function navigateToBoard() {
   window.location.href = 'board.html';
+}
+
+function categoryColourGen() {
+  let category = document.getElementById('assignHeading').innerText;
+  return category.slice(0, 4);
 }
 
 async function postTask(path = "", data = {}) {
@@ -347,14 +350,10 @@ async function postTask(path = "", data = {}) {
   });
 }
 
-function generateRandomNumber() {
-  let number = '';
-  for (let i = 0; i < 6; i++) {
-    let digit;
-    do {
-      digit = Math.floor(Math.random() * 10);
-    } while (digit === 0);
-    number += digit;
-  }
-  return number;
+async function toFetchTask() {
+  let URL = await fetch(base_Url + ".json");
+  let URLtoJson = await URL.json();
+  let totalTasks = URLtoJson.task;
+  let totalTaskslength = Object.values(totalTasks).length;
+  return totalTaskslength + 1;
 }
