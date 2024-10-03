@@ -135,6 +135,17 @@ async function deleteData(element) {
     let response = await fetch(url, {
         method: 'DELETE',
     });
+    closePopUpTaskSmall();
     arrayLoad = [];
-    load();
+    loadData("/task");
+}
+async function createEmptyTaskNode(path) {
+    let task = "";   
+    await fetch(BASE_URL + path + ".json", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task)
+    });    
 }

@@ -8,8 +8,7 @@ let expanded = false;
 let subTaskexpanded = false;
 let task = {};
 
-async function init() {
-  await load();
+async function init() { 
   fetchUrl();
 }
 
