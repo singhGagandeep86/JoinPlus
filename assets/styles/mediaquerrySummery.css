@@ -1,3 +1,10 @@
+@media (max-width:1000px){
+    .greating{
+        display: none;
+    }
+
+
+}
 @media(max-width:800px){
     .asideMenu:nth-of-type(1) {
         padding: 0;

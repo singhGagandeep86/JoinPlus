@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/assets/img/Join logo white.png">
+    <link rel="icon" type="image/x-icon" href="../../assets/img/Join logo white.png">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="../styles/summary.css">
     <link rel="stylesheet" href="../styles/fonts.css">
@@ -13,7 +13,7 @@
     <title>Summary</title>
 </head>
 
-<body>
+<body onload="init()">
     <div class="overDisplay">
         <aside class="mainDesignAside">
             <img class="mainDesignAsideImg" src="../img/Join logo white.png" alt="">
@@ -43,8 +43,8 @@
                     </div>
                 </div>
                 <div class="legacyMenu">
-                    <a href="/assets/html/privacy.html">Privacy Policy</a>
-                    <a href="/assets/html/legecy.html">Legal Notice</a>
+                    <a href="../../assets/html/privacy.html">Privacy Policy</a>
+                    <a href="../../assets/html/legecy.html">Legal Notice</a>
                 </div>
             </div>
         </aside>
@@ -58,82 +58,84 @@
                         <div class="burger-content">
                             <h2>Legal Notice</h2>
                             <h2>Privacy Policy</h2>
-                            <a href="/assets/html/login.html">
+                            <a href="../../assets/html/login.html">
                                 <h2>Log Out</h2>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="content summaryContent">
-                <div class="contact-container-right" id="contact-container-right">
-                    <div class="contact-text">
-                        <h1 id="h1Head">Join 360</h1>
-                        <div id="divHead"></div>
-                        <p id="textHead">Key Metrics at a Glance</p>
-                    </div>
-                </div>
-                <div class="block-main">
-                    <div class="pen-section-1">
-                        <div class="pen-img">
-                            <img src="/assets/img/pencil bg.png">
-                        </div>
-                        <div class="pen-text">
-                            <h1>1</h1>
-                            <p>To-Do</p>
+            <div class="content summaryContent">               
+                    <div class="contact-container-right" id="contact-container-right">
+                        <div class="contact-text">
+                            <h1  id="h1Head">Join 360</h1>
+                            <div id="divHead"></div>
+                            <p id="textHead">Key Metrics at a Glance</p>
                         </div>
                     </div>
-                    <div class="pen-section-1">
-                        <div class="pen-img">
-                            <img src="/assets/img/check bg.png">
-                        </div>
-                        <div class="pen-text">
-                            <h1>1</h1>
-                            <p>Done</p>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="block-mid">
-                    <div class="pen-section-2">
-                        <div class="left-section">
-                            <img class="pen-img" src="/assets/img/arrowtop red bg.png" alt="Icon">
-                            <div class="ontake2">
-                                <h1>1</h1>
-                                <p>Urgent</p>
+                    <div class="block-main">
+                        <div onclick="goToBoard()" class="pen-section-1">
+                            <div class="pen-img">
+                                <img src="../../assets/img/pencil bg.png">
+                            </div>
+                            <div class="pen-text">
+                                <h1 id="todo"></h1>
+                                <p>To-Do</p>
                             </div>
                         </div>
-                        <img class="vector-img" src="/assets/img/mid vector summary.png" alt="Vector Strich">
-                        <div class="right-section">
-                            <h2>October 16, 2022</h2>
-                            <p class="psmall">Upcoming Deadline</p>
+                        <div onclick="goToBoard()" class="pen-section-1">
+                            <div class="pen-img">
+                                <img src="../../assets/img/check bg.png">
+                            </div>
+                            <div class="pen-text">
+                                <h1 id="done"></h1>
+                                <p>Done</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-    
-                <div class="block-end">
-                    <div class="pen-section-3">
-                        <div class="pen-3">
-                            <h1>5</h1>
-                            <p>Tasks in<br> Board</p>
+
+                    <div  class="block-mid">
+                        <div onclick="goToBoard()" class="pen-section-2">
+                            <div class="left-section">
+                                <img class="pen-img" src="../../assets/img/arrowtop red bg.png" alt="Icon">
+                                <div class="ontake2">
+                                    <h1 id="urgent"></h1>
+                                    <p>Urgent</p>
+                                </div>
+                            </div>
+                            <img class="vector-img" src="../../assets/img/mid vector summary.png" alt="Vector Strich">
+                            <div class="right-section">
+                                <h2 id="date">October 16, 2022</h2>
+                                <p class="psmall">Upcoming Deadline</p>
+                            </div>
+                        </div>
+                        <div id="greatingDay" class="greating"></div>
+                    </div>
+
+                    <div onclick="goToBoard()" class="block-end">
+                        <div class="pen-section-3">
+                            <div class="pen-3">
+                                <h1 id="taskAll"></h1>
+                                <p>Tasks in<br> Board</p>
+                            </div>
+                        </div>
+                        <div class="pen-section-3">
+                            <div class="pen-3">
+                                <h1 id="progress"></h1>
+                                <p>Tasks in<br> Progess</p>
+                            </div>
+                        </div>
+                        <div class="pen-section-3">
+                            <div class="pen-3">
+                                <h1 id="await"></h1>
+                                <p>Awaiting Feedback</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="pen-section-3">
-                        <div class="pen-3">
-                            <h1>2</h1>
-                            <p>Tasks in<br> Progess</p>
-                        </div>
-                    </div>
-                    <div class="pen-section-3">
-                        <div class="pen-3">
-                            <h1>2</h1>
-                            <p>Awaiting Feedback</p>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
-            </div>
-            
+        </div>
+
     </div>
     <script src="../../assets/js/submenu.js"></script>
     <script src="../../assets/js/summary.js"></script>
