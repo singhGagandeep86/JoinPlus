@@ -202,6 +202,9 @@
     .heading {
         font-size: 47px;
     }
+    .prioForm{
+        scale: 0.9;
+    }
 
     .leftSubmition {
         width: 318px;

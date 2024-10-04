@@ -19,7 +19,7 @@ function templateTaskEmptyDone() {
 function templatePopUpTask1() {
     return `<div id="CloseArea" class="taskArea">
          <div class="headingBoardAdd">Add Task <img onclick="closePopUpTask()" src="../img/Close.png" alt=""></div>
-                <form id="myFormBoard">
+             <form id="myForm">
                     <div class="formular">
                         <div class="leftSubmition">
                             <div class="title">
@@ -29,7 +29,8 @@ function templatePopUpTask1() {
                             </div>
                             <div class="description">
                                 <div class="smallHead">Description</div>
-                                <textarea rows="4" cols="37" placeholder="Enter a Description" id="desText" class="descriptionTxt"></textarea>
+                                <textarea rows="4" cols="37" placeholder="Enter a Description" id="desText"
+                                    class="descriptionTxt"></textarea>
                             </div>
                             <div class="assignCntcts">
                                 <label for="contacts">Assigned to</label>
@@ -52,14 +53,16 @@ function templatePopUpTask1() {
                             </div>
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
-                                <div class="prioBtns">
-                                    <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
-                                            src="/assets/img/prioUrgent.svg"></div>
-                                    <div id="btnMed" onclick="activateMedium()" class="priobtn med">Medium <img
-                                            src="/assets/img/prioMedium.svg"></div>
-                                    <div id="btnLow" onclick="activateLow()" class="priobtn low">Low <img
-                                            src="/assets/img/prioLow.svg"></div>
-                                </div>
+                                <div class="prioForm"> 
+                                    <input type="radio" name="priority" value="urgent" id="urgent">
+                                    <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png" alt=""></label>
+                            
+                                    <input type="radio" name="priority" value="medium" id="medium" checked>
+                                    <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png" alt=""></label>
+                            
+                                    <input type="radio" name="priority" value="low" id="low">
+                                    <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
+                                </div>  
                             </div>
                             <div class="assign">
                                 <label for="Category"><span>Category <sup>*</sup></span></label>
@@ -86,8 +89,8 @@ function templatePopUpTask1() {
                     <div class="info">
                         <div><sup>* </sup>This field is required</div>
                         <div class="submitionButtons">
-                            <button class="cancelBtnAdd" type="reset" onclick="closePopUpTask()">
-                                <span>Cancel</span> </button>
+                            <button class="secondary" type="reset" onclick="resetAll()">
+                                <span>Clear</span> </button>
                             <button type="submit" class="primaryCheck">
                                 <span>Create Task</span><img class="primevect" src="/assets/img/check.svg">
                             </button>

@@ -446,7 +446,7 @@ function removeHighlight(id) {
 }
 
 function onSubmit(id) {
-    let form = document.getElementById('myFormBoard');
+    let form = document.getElementById('myForm');
     form.onsubmit = function (event) {
         event.preventDefault();
         addingTask(id);

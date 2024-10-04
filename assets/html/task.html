@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../styles/joincolor.css">
     <link rel="stylesheet" href="../styles/mediaquerry.css">
     <link rel="stylesheet" href="../styles/mediaquerryTask.css">
+    <link rel="stylesheet" href="../styles/boardTask.css">
     <title>addTask</title>
 
 </head>
@@ -91,14 +92,16 @@
                             </div>
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
-                                <div class="prioBtns">
-                                    <div id="btnUrgnt" onclick="activateUrgent()" class="priobtn urgnt">Urgent <img
-                                            src="/assets/img/prioUrgent.svg"></div>
-                                    <div id="btnMed" onclick="activateMedium()" class="priobtn med">Medium <img
-                                            src="/assets/img/prioMedium.svg"></div>
-                                    <div id="btnLow" onclick="activateLow()" class="priobtn low">Low <img
-                                            src="/assets/img/prioLow.svg"></div>
-                                </div>
+                                <div class="prioForm"> 
+                                    <input type="radio" name="priority" value="urgent" id="urgent">
+                                    <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png" alt=""></label>
+                            
+                                    <input type="radio" name="priority" value="medium" id="medium" checked>
+                                    <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png" alt=""></label>
+                            
+                                    <input type="radio" name="priority" value="low" id="low">
+                                    <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
+                                </div>  
                             </div>
                             <div class="assign">
                                 <label for="Category"><span>Category <sup>*</sup></span></label>

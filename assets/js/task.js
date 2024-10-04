@@ -8,8 +8,7 @@ let expanded = false;
 let subTaskexpanded = false;
 let task = {};
 
-async function init() { 
-  activateMedium();
+async function init() {
   fetchUrl();
 }
 
@@ -147,39 +146,6 @@ function newSubTask(element) {
 </div>`;
 }
 
-// activating urgent Button
-function activateUrgent() {
-  document.getElementById('btnUrgnt').classList.add("btnUrgnt");
-  document.getElementById('btnMed').classList.remove("btnMed");
-  document.getElementById('btnLow').classList.remove("btnLow");
-  document.getElementById('priority').value = `urgent`;
-  document.getElementById('btnUrgnt').innerHTML = `<div id="btnUrgnt" onclick="activateUrgent()"class=" btnUrgnt">Urgent <img src="/assets/img/prioUrgentUnselected.svg"></div>`;
-  document.getElementById('btnMed').innerHTML = ` <div>Medium <img src="/assets/img/prioMedium.svg"></div>`;
-  document.getElementById('btnLow').innerHTML = ` <div>Low <img src="/assets/img/prioLow.svg"></div>`;
-}
-
-// activating Medium Button
-function activateMedium() {
-  document.getElementById('btnMed').classList.add("btnMed");
-  document.getElementById('btnUrgnt').classList.remove("btnUrgnt");
-  document.getElementById('btnLow').classList.remove("btnLow");
-  document.getElementById('priority').value = `medium`;
-  document.getElementById('btnMed').innerHTML = `<div id="btnMed" onclick="activateMedium()"class=" btnMed">Medium <img src="/assets/img/prioMediumUnselected.svg"></div>`
-  document.getElementById('btnUrgnt').innerHTML = ` <div>Urgent <img src="/assets/img/prioUrgent.svg"></div>`;
-  document.getElementById('btnLow').innerHTML = ` <div>Low <img src="/assets/img/prioLow.svg"></div>`;
-}
-
-// activating Low Button
-function activateLow() {
-  document.getElementById('btnLow').classList.add("btnLow");
-  document.getElementById('btnUrgnt').classList.remove("btnUrgnt");
-  document.getElementById('btnMed').classList.remove("btnMed");
-  document.getElementById('priority').value = `low`;
-  document.getElementById('btnLow').innerHTML = `<div id="btnLow" onclick="activateLow()"class="btnLow">Low <img src="/assets/img/prioLowUnselected.svg"></div>`
-  document.getElementById('btnMed').innerHTML = ` <div>Medium <img src="/assets/img/prioMedium.svg"></div>`;
-  document.getElementById('btnUrgnt').innerHTML = ` <div>Urgent <img src="/assets/img/prioUrgent.svg"></div>`;
-}
-
 // Drop down function for Assigned Contacts
 function showCheckBoxes() {
   const allCntcts = document.getElementById("allCntcts");
@@ -274,61 +240,34 @@ document.addEventListener('DOMContentLoaded', function () {
   if (form) {
     form.addEventListener('submit', function (event) {
       event.preventDefault();
-      addingTask();
+      addingTask('toDo');
     });
   }
 });
 
 // popup show
-async function addingTask() {
+async function addingTask(id) {
   document.getElementById('taskDoneIcon').classList.remove("d_noneImg");
-  await toWaiting();
+  await toWaiting(id);
   await navigateToBoard();
 }
 
+// dies ist der breich für add der Task in Firebase
+
 //collect all Datas & added to Firebase
-async function toWaiting() {
+async function toWaiting(id) {
   let titleText = document.getElementById('titleText').value;
   let desText = document.getElementById('desText').value;
   let actDate = document.getElementById('dateData').value;
   let category = document.getElementById('assignHeading').innerText;
-  let priority = document.getElementById('priority').value;
+  let priority = document.querySelector('input[name="priority"]:checked').value;
   let list = subTsksBoard.getElementsByTagName("li");
-  let checked = {};
-  let subtask = {};
-  let contacts = {};
-  let coloursAsObject = {};
-  let taskNum = {};
-  for (let i = 0; i < list.length; i++) {
-    let eachList = list[i];
-    let listText = eachList.innerText;
-    checked[`task${i + 1}`] = false;
-    subtask[`task${i + 1}`] = listText;
-  }
-  for (let j = 0; j < names.length; j++) {
-    let name = names[j];
-    let sanitizedName = name.replace(/_/g, ' ');
-    contacts[`contact${j + 1}`] = sanitizedName;
-  }
-  for (let k = 0; k < colours.length; k++) {
-    let colour = colours[k];
-    coloursAsObject[`color${k + 1}`] = colour;
-  }
-  //toFetchTask();
-  let newTaskNumber = await toFetchTask(taskNum);
-  postTask(`/task/task${newTaskNumber}`, {
-    'category': category,
-    'color': categoryColourGen(),
-    'contact': contacts,
-    'contactcolor': coloursAsObject,
-    'date': actDate,
-    'description': desText,
-    'id': "toDo",
-    'number': newTaskNumber - 1,
-    'prio': priority,
-    'subtasks': subtask,
-    'title': titleText,
-  });
+  let newTaskNumber = generateRandomNumber();
+  let name = createContactFire();
+  let checked = checkedCreate(list);
+  let subtask = subtastCreate(list);
+  let color = colorFirebase();
+  pushFirebaseData(titleText, desText, actDate, category, newTaskNumber, name, checked, priority, color, subtask, id);
   return new Promise(resolve => setTimeout(resolve, 1700));
 }
 
@@ -351,10 +290,67 @@ async function postTask(path = "", data = {}) {
   });
 }
 
-async function toFetchTask() {
-  let URL = await fetch(base_Url + ".json");
-  let URLtoJson = await URL.json();
-  let totalTasks = URLtoJson.task;
-  let totalTaskslength = Object.values(totalTasks).length;
-  return totalTaskslength + 1;
+function pushFirebaseData(titleText, desText, actDate, category, newTaskNumber, name, checked, priority, color, subtask, id) {
+  postTask(`/task/task${newTaskNumber}`, {
+    'category': category,
+    'color': categoryColourGen(),
+    'contact': name,
+    'contactcolor': color,
+    'date': actDate,
+    'description': desText,
+    'id': id,
+    'number': newTaskNumber,
+    'prio': priority,
+    'subtask': subtask,
+    'title': titleText,
+    'checked': checked
+  });
+
+}
+function subtastCreate(list) {
+  let subtask = {};
+  for (let i = 0; i < list.length; i++) {
+    let eachList = list[i];
+    let listText = eachList.innerText;
+    subtask[`task${i + 1}`] = listText;
+  }
+  return subtask
+}
+
+function checkedCreate(list) {
+  let checked = {};
+  for (let i = 0; i < list.length; i++) {
+    checked[`task${i + 1}`] = false;
+  }
+
+  return checked;
+}
+function createContactFire() {
+  let contacts = {};
+  for (let j = 0; j < names.length; j++) {
+    let name = names[j];
+    let sanitizedName = name.replace(/_/g, ' ');
+    contacts[`contact${j + 1}`] = sanitizedName;
+  }
+  return contacts;
+}
+function colorFirebase() {
+  let coloursAsObject = {};
+  for (let k = 0; k < colours.length; k++) {
+    let colour = colours[k];
+    coloursAsObject[`color${k + 1}`] = colour;
+  }
+  return coloursAsObject;
+}
+
+function generateRandomNumber() {
+  let number = '';
+  for (let i = 0; i < 6; i++) {
+    let digit;
+    do {
+      digit = Math.floor(Math.random() * 10);
+    } while (digit === 0);
+    number += digit;
+  }
+  return number;
 }
