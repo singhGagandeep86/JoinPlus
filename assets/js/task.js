@@ -9,6 +9,7 @@ let subTaskexpanded = false;
 let task = {};
 
 async function init() { 
+  activateMedium();
   fetchUrl();
 }
 
