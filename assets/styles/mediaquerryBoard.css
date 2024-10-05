@@ -65,6 +65,7 @@
     .contactInfo {
         width: 200px;
     }
+    
 
     .contactInfo span {
         font-size: 18px;
@@ -74,10 +75,24 @@
 
     .contactInfoData {
         width: 200px;
-        overflow: auto;
-        scrollbar-width: thin;
+        overflow: auto;        
         padding: 0;
+        flex-shrink: 0;
     }
+    .contactInfoData::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    .contactInfoData::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 10px;
+        min-height: 20px;
+    }
+    
+    .contactInfoData::-webkit-scrollbar-button {
+        display: none;
+    }
+    
 
     .contactArea {
         width: 180px;
@@ -86,17 +101,22 @@
 
     .subtaskInfo {
         width: 220px;
-        min-height: 100px;
+        height: 200px;
         gap: 0;
+        margin-bottom: 100px;
+        margin-top: 100px;
     }
 
     .subtaskAreaData {
         width: 220px;
-        height: 60px;
+        height: 100px;
         overflow: auto;
-        margin-top: 10px;
-        scrollbar-width: thin;
+        margin-top: 10px;       
         scroll-behavior: smooth;
+        flex-shrink: 0;
+    }
+    .subtaskTitle{
+        height: 35px;
     }
 
     .subtaskAreaData span {

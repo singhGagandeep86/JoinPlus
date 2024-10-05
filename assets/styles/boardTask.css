@@ -577,6 +577,20 @@ input[type="radio"] {
     overflow: auto;
   
 }
+.contactInfoData::-webkit-scrollbar {
+    width: 6px;
+
+}
+
+.contactInfoData::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+
+}
+
+.contactInfoData::-webkit-scrollbar-button {
+    display: none;
+}
 
 .contactInfoData span{
     width: 70%;
