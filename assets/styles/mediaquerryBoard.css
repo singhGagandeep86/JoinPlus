@@ -1,4 +1,7 @@
 @media(max-width:563px) {
+    .content {
+        height: 190vh;
+    }
     .popupEdit{
         width: 300px;
         height: 700px;
