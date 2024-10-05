@@ -175,7 +175,7 @@
 
     .final-logo {
         display: block;
-        content: url(../img/logo\ white.png);
+        content: url("../img/logowhite.png");
     }
 
     @keyframes JoinlogoScreen {
