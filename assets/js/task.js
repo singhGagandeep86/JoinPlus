@@ -1,5 +1,6 @@
 
 let base_Url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/`;
+let token = sessionStorage.getItem('authToken');
 let names = [];
 let namesInitials = [];
 let colours = [];
@@ -8,13 +9,18 @@ let expanded = false;
 let subTaskexpanded = false;
 let task = {};
 
+
 async function init() {
   fetchUrl();
 }
 
+function getDatabaseUrl(path) {  
+  return `${base_Url}${path}.json?auth=${token}`; // URL für die Datenbank zurückgeben
+}
+
 // fetch basicData from firebase
-async function fetchUrl() {
-  let firebaseUrl = await fetch(base_Url + ".json");
+async function fetchUrl() {  
+  let firebaseUrl = await fetch(base_Url + ".json?auth=" + token);
   let firebaseUrlAsJson = await firebaseUrl.json();
   let firebaseData = Object.values(firebaseUrlAsJson);
   contactsData(firebaseData[0]);
@@ -281,7 +287,7 @@ function categoryColourGen() {
 }
 
 async function postTask(path = "", data = {}) {
-  let firebaseUrl = await fetch(base_Url + path + ".json", {
+  let firebaseUrl = await fetch(getDatabaseUrl(path), {
     method: "PUT",
     header: {
       "Content-Type": "application/json",

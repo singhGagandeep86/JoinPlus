@@ -1,4 +1,5 @@
 let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
+
 let path = "";
 let data = {};
 let url = '';
@@ -8,12 +9,17 @@ let draggedElement;
 let mediaQuery = window.matchMedia("(max-width: 1100px)");
 let toggle = 0;
 
+
 async function load() {
     await loadData("/task");
 }
+function getDatabaseUrl(path) {
+    const token = sessionStorage.getItem('authToken'); // Aktuellen Token abrufen
+    return `${BASE_URL}${path}.json?auth=${token}`; // URL für die Datenbank zurückgeben
+}
 
-async function loadData(path) {
-    let response = await fetch(BASE_URL + path + ".json");
+async function loadData(path) {    
+    let response = await fetch(BASE_URL + path + ".json?auth=" + token);
     let responsetoJson = await response.json();
     if (responsetoJson === null) {
         await createEmptyTaskNode(path);
@@ -308,7 +314,7 @@ async function changeIdTaskValue(value, element) {
 }
 async function changeIdTask(value, element) {
     let path = `/task/task${element}`;
-    let url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app${path}.json`;
+    let url = getDatabaseUrl(path);
     let idChange = { id: value };
     await postDataId(url, idChange);
 }
@@ -373,7 +379,7 @@ function moveTo(element,) {
 async function postId(element, changeId) {
     let number = changeId.number;
     let path = `/task/task${number}`;
-    let url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app${path}.json`;
+    let url = getDatabaseUrl(path);
     let idChange = { id: element };
     await postDataId(url, idChange);
 }
@@ -391,7 +397,7 @@ async function inputCheckBoxInfo(i, j) {
     let checkboxId = `checkbox-${i}-${j}`;
     let checkbox = document.getElementById(checkboxId);
     let path = `/task/task${i}/checked`;
-    let url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/${path}.json`;
+    let url = getDatabaseUrl(path);
     let upData = { [`task${j + 1}`]: checkbox.checked };
     await postDataCheck(url, upData);
     arrayLoad = [];

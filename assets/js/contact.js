@@ -3,6 +3,7 @@ let path = '';
 let array = [];
 
 
+
 async function load() {
     await loadData("/contact");
     sortContactsByName();
@@ -10,7 +11,8 @@ async function load() {
 }
 
 async function loadData(path){
-    let response = await fetch(BASE_URL + path + ".json");
+    let token = sessionStorage.getItem('authToken');
+    let response = await fetch(BASE_URL + path + ".json?auth=" + token);
     let responsetoJson = await response.json();
     if (responsetoJson) {
         let contactsArray = Object.values(responsetoJson);

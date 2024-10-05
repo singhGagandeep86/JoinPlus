@@ -1,24 +1,31 @@
 let summeryArray = [];
 let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
 
+
 async function init() {
     await loadData("/task");
     loadAllData()
 }
 
 async function loadData(path) {
-    let response = await fetch(BASE_URL + path + ".json");
+    // Token aus dem sessionStorage holen
+    let token = sessionStorage.getItem('authToken');
+    if (!token) {
+        console.error("Kein Token gefunden. Zugriff verweigert.");
+        return;
+    }
+
+    let response = await fetch(BASE_URL + path + ".json?auth=" + token); // Token in die URL einfügen
     let responsetoJson = await response.json();
     if (responsetoJson === null) {
-        await createEmptyTaskNode(path);
+        await createEmptyTaskNode(path); // Funktion zum Erstellen eines leeren Knotens
     } else {
         let taskArray = Object.values(responsetoJson);
         for (let i = 0; i < taskArray.length; i++) {
-            summeryArray.push(taskArray[i]);
+            summeryArray.push(taskArray[i]); // Aufgaben zu summeryArray hinzufügen
         }
     }
 }
-
 function loadAllData() {
     loadTodo();
     loadProgress();
@@ -28,9 +35,8 @@ function loadAllData() {
     loadPrio();
     dateDeadline();
     addGreating();
-
-
 }
+
 function loadTodo() {
     let todo = document.getElementById('todo');
     todo.innerHTML = '';
@@ -120,7 +126,6 @@ function formatDate(date) {
 function goToBoard() {
     window.location.href = 'board.html';
 }
-
 
 function loadGreeting() {
     let options = { timeZone: 'Europe/Berlin', hour: 'numeric', minute: 'numeric' };

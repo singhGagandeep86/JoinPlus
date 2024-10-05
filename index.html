@@ -7,6 +7,7 @@
     <title>Log In</title>
     <link rel="stylesheet" href="/assets/styles/login.css">
     <link rel="stylesheet" href="/assets/styles/fonts.css">
+    <link rel="stylesheet" href="/assets/styles/meduaqueryLogin.css">
 </head>
 <body>
     <header>
@@ -18,6 +19,7 @@
 
     <div class="Screen-Logo">
         <img id="logoscreen" class="join-logo" src="/assets/img/Capa2.svg">
+        <img class="final-logo" src="../img/logo white.png">
     </div>
 
     <div class="loginarea">
@@ -26,7 +28,7 @@
             <img class="underlineLogin" src="/assets/img/unterstrich vector.png">
         </div>
 
-        <form>
+        <form id="loginForm" onsubmit="return handleLogin(event)">
             <div class="custome-input">
                 <input type="email" name="email" placeholder="Email">
                 <img class="socialicons" src="/assets/img/mail.png" alt="">
@@ -41,7 +43,7 @@
             </div>
             <div class="btns">
                 <button class="login">Log in</button>
-                <button class="guestlogin"><a href="/assets/html/summary.html">Guest Log in</a></button>
+                <button onclick="gastLogin()" class="guestlogin">Guest Log in</button>
             </div>
         </form>
     </div>
@@ -56,5 +58,6 @@
             </a>
         </div>
     </footer>
+    <script src="../../script.js"></script>
 </body>
 </html>

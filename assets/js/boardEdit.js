@@ -1,12 +1,13 @@
 
 let pathC = '';
 let base_UrlC = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
+
 function loadContact(objData) {
     fetchContact("/contact", objData)
 }
 
 async function fetchContact(pathC, objData) {
-    let firebaseUrl = await fetch(base_UrlC + pathC + ".json");
+    let firebaseUrl = await fetch(base_UrlC + pathC + ".json?auth=" + token);
     let firebaseUrlAsJson = await firebaseUrl.json();
     let firebaseData = Object.values(firebaseUrlAsJson);
     loadContactData(firebaseData, objData)
@@ -136,7 +137,7 @@ function intiCheckContact() {
 }
 async function deleteData(element) {
     let path = `/task/task${element}`;
-    let url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/${path}.json`;
+    let url = getDatabaseUrl(path);
     let response = await fetch(url, {
         method: 'DELETE',
     });
@@ -146,7 +147,7 @@ async function deleteData(element) {
 }
 async function createEmptyTaskNode(path) {
     let task = "";
-    await fetch(BASE_URL + path + ".json", {
+    await fetch(getDatabaseUrl(path), {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -314,7 +315,7 @@ function pushDataEdit(title, description, dueDate, subtaskobj, checked, contactN
 }
 
 async function postEditData(path = "", data = {}) {
-    let firebaseUrl = await fetch(base_UrlC + path + ".json", {
+    let firebaseUrl = await fetch(getDatabaseUrl(path), {
       method: "PATCH",
       header: {
         "Content-Type": "application/json",
