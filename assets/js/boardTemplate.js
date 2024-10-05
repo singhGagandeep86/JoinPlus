@@ -80,7 +80,7 @@ function templatePopUpTask1() {
                                 <div class="smallHead">Subtasks</div>
                                 <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
                                         placeholder="Add new subtask" type="text">
-                                    <img class="tsksGen" src="/assets/img/subTaskIcon.svg">
+                                    <img class="tsksGen" src="../img/subTaskIcon.svg">
                                 </div>
                             </div>
                             <ul class="a" id="subTsksBoard"></ul>
@@ -92,7 +92,7 @@ function templatePopUpTask1() {
                             <button class="secondary" type="reset" onclick="resetAll()">
                                 <span>Clear</span> </button>
                             <button type="submit" class="primaryCheck">
-                                <span>Create Task</span><img class="primevect" src="/assets/img/check.svg">
+                                <span>Create Task</span><img class="primevect" src="../img/check.svg">
                             </button>
                         </div>
                     </div>
@@ -133,8 +133,8 @@ function templateTaskSmallInfo(objDateTask) {
             <div class="bg_${objDateTask.prio}"></div></div></div>
             <div class="contactInfo"><span class="contactInfoHeadline">Assigned To:</span><div id="contactAreaInfo" class="contactInfoData"></div></div>
             <div class="subtaskInfo"><span>Subtasks:</span><div  class="subtaskAreaData"><div id="subtaskArea"></div></div></div>
-            <div class="editInfo"><div class="editInfoData"><div><img onclick="deleteData(${objDateTask.number})" class="deletePic" src="../img/Delete contact.png" alt=""></div>
-                <div><img onclick="editOpen(${objDateTask.number})" class="editPic" src="../img/edit contacts.png" alt=""></div></div></div>
+            <div class="editInfo"><div class="editInfoData"><div><img onclick="deleteData(${objDateTask.number})" class="deletePic" src="../img/Deletecontact.png" alt=""></div>
+                <div><img onclick="editOpen(${objDateTask.number})" class="editPic" src="../img/editcontacts.png" alt=""></div></div></div>
         </div>`;
 }
 function templateRange(subtask, checkedCount) {
@@ -252,9 +252,9 @@ function subtaskAdd() {
     return `<div class="subAddIn">
                 <input id="subInput" class="inputSub" type="text">
                 <div class="addDeletInput">
-                    <span><img onclick="deletInput()" src="../img/Property 1=delete.png" alt=""></span>
+                    <span><img onclick="deletInput()" src="../img/Propertydelete.png" alt=""></span>
                     <div class="strich"></div>
-                    <span><img onclick="addInputSubtastk()" src="../img/Property 1=check.png" alt=""></span>
+                    <span><img onclick="addInputSubtastk()" src="../img/Propertycheck.png" alt=""></span>
                 </div>
             </div>`;
 }
@@ -266,11 +266,11 @@ function addSubTask(inputValue) {
         <div class="addDelet">            
             <div class="strich"></div>
             <span>
-                <img onclick="deleteTask(event)" src="../img/Property 1=delete.png" alt="Delete">
+                <img onclick="deleteTask(event)" src="../img/Propertydelete.png" alt="Delete">
             </span>
             <div class="strich"></div>
             <span>
-                <img onclick="toggleEditTask(event, this)" src="../img/Property 1=check.png" alt="Save">
+                <img onclick="toggleEditTask(event, this)" src="../img/Propertycheck.png" alt="Save">
             </span>
         </div>
         <input class="inputSubAdd hidden" type="text" value="${inputValue}" style="display:none">
@@ -281,27 +281,27 @@ function templateSub1(currentText) {
     return `
     <input class="inputSubAdd" type="text" value="${currentText}">
     <div class="addDelet">
-        <span><img onclick="deleteTask(event)" src="../img/Property 1=delete.png" alt="Delete"></span>
+        <span><img onclick="deleteTask(event)" src="../img/Propertydelete.png" alt="Delete"></span>
         <div class="strich"></div>
-        <span><img onclick="saveTask(event, this)" src="../img/Property 1=check.png" alt="Save"></span>
+        <span><img onclick="saveTask(event, this)" src="../img/Propertycheck.png" alt="Save"></span>
     </div>`;
 }
 
 function templateSub2(newValue) {
     return `<span class="taskText">• ${newValue}</span>
             <div class="addDelet">
-                <span><img onclick="deleteTask(event)" src="../img/Property 1=delete.png" alt="Delete"></span>
+                <span><img onclick="deleteTask(event)" src="../img/Propertydelete.png" alt="Delete"></span>
                 <div class="strich"></div>
-                <span><img onclick="toggleEditTask(event, this)" src="../img/Property 1=check.png" alt="Save"></span>
+                <span><img onclick="toggleEditTask(event, this)" src="../img/Propertycheck.png" alt="Save"></span>
             </div>`;
 }
 
 function templateSub3(newValue) {
     return`  <span class="taskText">• ${newValue}</span>
             <div class="addDelet">
-                <span><img onclick="deleteTask(event)" src="../img/Property 1=delete.png" alt="Delete"></span>
+                <span><img onclick="deleteTask(event)" src="../img/Propertydelete.png" alt="Delete"></span>
                 <div class="strich"></div>
-                <span><img onclick="toggleEditTask(event, this)" src="../img/Property 1=check.png" alt="Edit/Save"></span>
+                <span><img onclick="toggleEditTask(event, this)" src="../img/Propertycheck.png" alt="Edit/Save"></span>
             </div>`
     
 }
@@ -310,8 +310,8 @@ function templateSub4(currentText) {
     return`
         <input class="inputSubAdd" type="text" value="${currentText}">
         <div class="addDelet">
-            <span><img onclick="deleteTask(event)" src="../img/Property 1=delete.png" alt="Delete"></span>
+            <span><img onclick="deleteTask(event)" src="../img/Propertydelete.png" alt="Delete"></span>
             <div class="strich"></div>
-            <span><img onclick="toggleEditTask(event, this)" src="../img/Property 1=check.png" alt="Edit/Save"></span>
+            <span><img onclick="toggleEditTask(event, this)" src="../img/Propertycheck.png" alt="Edit/Save"></span>
         </div>`   
 }

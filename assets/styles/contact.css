@@ -217,11 +217,11 @@
 }
 
 .editimages:hover {
-    content: url(/assets/img/Property\ 1=Variant2.png);
+    content: url(../img/Property\ 1=Variant2.png);
 }
 
 .editimages2:hover {
-    content: url(/assets/img/Property\ 1=Variant1.png);
+    content: url(../img/Property\ 1=Variant1.png);
 }
 
 .contact-slide-in {
@@ -387,7 +387,7 @@ input::placeholder {
     transform: translateY(-50%);
     width: 24px;
     height: 24px;
-    background-image: url('/assets/img/person.png');
+    background-image: url('../img/person.png');
     background-repeat: no-repeat;
 }
 
@@ -399,7 +399,7 @@ input::placeholder {
     transform: translateY(-50%);
     width: 24px;
     height: 24px;
-    background-image: url('/assets/img/mail.png');
+    background-image: url('../img/mail.png');
     background-repeat: no-repeat;
 }
 
@@ -411,7 +411,7 @@ input::placeholder {
     transform: translateY(-50%);
     width: 24px;
     height: 24px;
-    background-image: url('/assets/img/call.png');
+    background-image: url('../img/call.png');
     background-repeat: no-repeat;
 }
 
@@ -440,7 +440,7 @@ input::placeholder {
     gap: 4px;
     width: 24px;
     height: 24px;
-    background-image: url('/assets/img/SecondaryVector.png');
+    background-image: url('../img/SecondaryVector.png');
     background-repeat: no-repeat;
     display: inline-block;
 }
@@ -452,7 +452,7 @@ input::placeholder {
 }
 
 .cancelbutton:hover .cancel-icon {
-    background-image: url('/assets/img/ScndryVectHvr.png');
+    background-image: url('../img/ScndryVectHvr.png');
 }
 
 .popup-actions .createbuttoncontact {

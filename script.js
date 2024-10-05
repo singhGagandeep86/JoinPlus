@@ -39,7 +39,7 @@ function gastLogin() {
     loginAlsGast().then((token) => {      
         if (token) {
             sessionStorage.setItem('authToken', token); 
-            window.location.href = "../../assets/html/summary.html"; 
+            window.location.href = "../html/summary.html"; 
         } else {
             console.error("Gastzugang fehlgeschlagen: Kein Token erhalten");
         }
@@ -48,5 +48,5 @@ function gastLogin() {
 
 function logout() {
     sessionStorage.removeItem('authToken');    
-    window.location.href = "../../assets/html/login.html"; 
+    window.location.href = "../html/login.html"; 
 }

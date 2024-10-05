@@ -161,7 +161,7 @@ body {
 }
 
 .picSm:hover {
-    content: url(/assets/img/sm\ hover.png);
+    content: url(../img/sm\ hover.png);
 }
 
 .active {

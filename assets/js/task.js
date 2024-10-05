@@ -131,8 +131,8 @@ function editsubTask(element) {
   parent.innerHTML = `<div class="wrapper">
   <input type="text" value="${currentValue}" class="subTaskInput"></input> 
   <div class="btns subTaskIcon subTaskEdit">
-  <img class="inputIcon" onclick="delsubTask(this)" src="/assets/img/SubTaskDelete.svg">
-  <img class="deleteIcon" onclick="newSubTask(this)" src="/assets/img/SubTaskDone.svg">
+  <img class="inputIcon" onclick="delsubTask(this)" src="../img/SubTaskDelete.svg">
+  <img class="deleteIcon" onclick="newSubTask(this)" src="../img/SubTaskDone.svg">
 </div></div>`;
 }
 
@@ -147,8 +147,8 @@ function newSubTask(element) {
   let newValue = parent.querySelector('.subTaskInput').value;
   parent.innerHTML = ` <div class="leftPart"><span class="bullet"></span>${newValue}</div>
  <div class="btns subTaskIcon">
- <img onclick="editsubTask(this, '${newValue}')" class="inputIcon" src="/assets/img/SubtasksEdit.svg">
- <img onclick="delsubTask(this)" class="deleteIcon" src="/assets/img/SubtasksDel.svg">
+ <img onclick="editsubTask(this, '${newValue}')" class="inputIcon" src="../img/SubtasksEdit.svg">
+ <img onclick="delsubTask(this)" class="deleteIcon" src="../img/SubtasksDel.svg">
 </div>`;
 }
 

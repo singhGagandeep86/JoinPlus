@@ -109,11 +109,11 @@
 }
 
 .block-main .pen-section-1:hover .pen-img img {
-    content: url("/assets/img/Frame\ 59.png");
+    content: url("../img/Frame59.png");
 }
 
 .block-main .pen-section-1:nth-child(2):hover .pen-img img {
-    content: url("/assets/img/Frame\ 599.png"); /* Hier das neue Bild für das zweite Element */
+    content: url("../img/Frame599.png");
 }
 
 .ontake2 {

@@ -99,8 +99,8 @@ function showContactDetails(i, initials) {
             <div class="contact-mini">
                 <h1>${array[i].name}</h1>
                 <div class="editimage">
-                    <img class="editimages" src="/assets/img/edit contacts.png">
-                    <img class="editimages2" src="/assets/img/Delete contact.png">
+                    <img class="editimages" src="../img/editcontacts.png">
+                    <img class="editimages2" src="../img/Deletecontact.png">
                 </div>
             </div>
         </div>
