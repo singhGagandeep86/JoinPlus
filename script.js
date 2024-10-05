@@ -1,11 +1,8 @@
 function handleLogin(event) {
-    event.preventDefault(); // Verhindert das Neuladen der Seite beim Absenden des Formulars
+    event.preventDefault(); 
     let email = event.target.email.value;
     let password = event.target.password.value;
-
-    // Hier kannst du die Logik für die normale Anmeldung einfügen
-    console.log("E-Mail:", email);
-    console.log("Passwort:", password);
+   
 }
 
 function loginAlsGast() {
@@ -15,21 +12,20 @@ function loginAlsGast() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            returnSecureToken: true  // Fordert ein Token vom Server an
+            returnSecureToken: true 
         })
     })
     .then(response => {
-        // Überprüfen, ob die Antwort erfolgreich war
+       
         if (!response.ok) {
             throw new Error(`Fehler: ${response.status} ${response.statusText}`);
         }
         return response.json();
     })
-    .then(data => {
-        // Überprüfen, ob der Token vorhanden ist
+    .then(data => {        
         if (data.idToken) {
             console.log("Gastzugang erfolgreich:", data);
-            return data.idToken;  // Das Token zurückgeben
+            return data.idToken; 
         } else {
             throw new Error("Fehler bei der anonymen Authentifizierung: kein Token erhalten");
         }
@@ -40,11 +36,10 @@ function loginAlsGast() {
 }
 
 function gastLogin() {
-    loginAlsGast().then((token) => {
-        // Überprüfen, ob das Token erfolgreich erhalten wurde
+    loginAlsGast().then((token) => {      
         if (token) {
-            sessionStorage.setItem('authToken', token); // Token speichern
-            window.location.href = "../../assets/html/summary.html";    // Weiterleitung zur Gastseite
+            sessionStorage.setItem('authToken', token); 
+            window.location.href = "../../assets/html/summary.html"; 
         } else {
             console.error("Gastzugang fehlgeschlagen: Kein Token erhalten");
         }
@@ -52,9 +47,6 @@ function gastLogin() {
 }
 
 function logout() {
-    // Löschen des Authentifizierungs-Tokens
-    sessionStorage.removeItem('authToken');
-    
-    // Optional: Umleitung zur Login-Seite oder zum Startbildschirm
-    window.location.href = "./assets/html/login.html"; // Oder eine andere geeignete Seite
+    sessionStorage.removeItem('authToken');    
+    window.location.href = "../../assets/html/login.html"; 
 }
