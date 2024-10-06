@@ -91,6 +91,10 @@
         padding-right: 8px;
     }
 
+    .selectItems {
+        width: 440px;
+    }
+
     .partition {
         display: none;
     }

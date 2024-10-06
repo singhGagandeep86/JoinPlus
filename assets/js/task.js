@@ -14,12 +14,12 @@ async function init() {
   fetchUrl();
 }
 
-function getDatabaseUrl(path) {  
+function getDatabaseUrl(path) {
   return `${base_Url}${path}.json?auth=${token}`; // URL für die Datenbank zurückgeben
 }
 
 // fetch basicData from firebase
-async function fetchUrl() {  
+async function fetchUrl() {
   let firebaseUrl = await fetch(base_Url + ".json?auth=" + token);
   let firebaseUrlAsJson = await firebaseUrl.json();
   let firebaseData = Object.values(firebaseUrlAsJson);
@@ -170,7 +170,7 @@ function showCheckBoxes() {
 document.addEventListener('click', function (event) {
   const assign = document.getElementById("assign");
   const allCntcts = document.getElementById("allCntcts");
-  if (expanded && !assign.contains(event.target)) {
+  if (expanded && !assign.contains(event.target) && !allCntcts.contains(event.target)) {
     allCntcts.style.display = "none";
     document.getElementById('arrow').style.transform = "rotate(0deg)";
     expanded = false;
