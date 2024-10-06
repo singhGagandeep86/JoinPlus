@@ -1,6 +1,6 @@
 @media(max-width:563px) {
     .content {
-        height: 210vh;
+      min-height: 240vh;
     }
     .popupEdit{
         width: 300px;
@@ -247,7 +247,7 @@
         padding-right: 10px;
     }
     html{
-        height: 190vh;
+        max-height: 100%;
     }
 }
 
