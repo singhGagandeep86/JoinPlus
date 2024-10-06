@@ -8,6 +8,7 @@
     }
     .prioForm{
         scale: 0.7;
+        gap: 2px;
     }
     .labelContact{
         scale: 0.9;
