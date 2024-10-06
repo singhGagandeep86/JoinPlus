@@ -1,6 +1,6 @@
 @media(max-width:563px) {
     .content {
-        height: 190vh;
+        height: 210vh;
     }
     .popupEdit{
         width: 300px;
@@ -87,6 +87,7 @@
         background-color: #888;
         border-radius: 10px;
         min-height: 20px;
+        cursor: pointer;
     }
     
     .contactInfoData::-webkit-scrollbar-button {
@@ -244,6 +245,9 @@
 
     .inputImgArea {
         padding-right: 10px;
+    }
+    html{
+        height: 190vh;
     }
 }
 

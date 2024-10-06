@@ -113,7 +113,7 @@ function templateTaskHTML(element) {
             <span>${element['description']}</span>
         </div>
         <div id="${rangeId}"></div>
-    <div class="contactAndPrioArea"><div id="${contactpic}" class="contact"></div>   
+    <div id="contactAreaPic-${element['number']}" class="contactAndPrioArea" onmouseover="checkForOverflow(${element['number']})" ondragstart="preventDrag(${element['number']}, event)"><div id="${contactpic}" class="contact" ></div>   
     <div class="bg_${element['prio']}"></div> </div>
     <div id="popupTaskSwitch${element['number']}" class="taskSwitchArea d_none" ></div>
     </div>
@@ -143,7 +143,7 @@ function templateRange(subtask, checkedCount) {
 }
 
 function templateContact(colors, initials, i) {
-    return ` <div class="b-${colors} box${i}"> <span>${initials}</span></div>`
+    return ` <div class="b-${colors} box0"> <span>${initials}</span></div>`
 }
 
 function templateContactInfo(contactscolor, initials, contactName) {

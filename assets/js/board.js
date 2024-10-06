@@ -18,7 +18,7 @@ function getDatabaseUrl(path) {
     return `${BASE_URL}${path}.json?auth=${token}`; // URL für die Datenbank zurückgeben
 }
 
-async function loadData(path) {    
+async function loadData(path) {
     let response = await fetch(BASE_URL + path + ".json?auth=" + token);
     let responsetoJson = await response.json();
     if (responsetoJson === null) {
@@ -28,7 +28,7 @@ async function loadData(path) {
         for (let i = 0; i < taskArray.length; i++) {
             arrayLoad.push(taskArray[i]);
         }
-    } 
+    }
     taskAdd();
 }
 
@@ -222,6 +222,16 @@ function loadContactTask(element, contacts, contactName) {
             let initials = extrahiereInitialen(contactName[i]);
             taskContact.innerHTML += templateContact(colors, initials, i);
         }
+    }
+}
+function checkForOverflow(taskNumber) {
+    let contactArea = document.getElementById(`contactAreaPic-${taskNumber}`);
+    if (contactArea.scrollHeight > contactArea.clientHeight || contactArea.scrollWidth > contactArea.clientWidth) {
+        contactArea.onclick = function (event) {
+            event.stopPropagation();
+        };
+    } else {
+        contactArea.onclick = null;
     }
 }
 
