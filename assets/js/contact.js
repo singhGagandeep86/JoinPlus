@@ -18,8 +18,8 @@ async function load() {
     loadContact();
 }
 function getDatabaseUrl(path) {
-    const token = sessionStorage.getItem('authToken'); // Aktuellen Token abrufen
-    return `${BASE_URL}${path}.json?auth=${token}`; // URL für die Datenbank zurückgeben
+    const token = sessionStorage.getItem('authToken');
+    return `${BASE_URL}${path}.json?auth=${token}`;
 }
 async function loadData(path) {
     let response = await fetch(getDatabaseUrl(path));
@@ -54,8 +54,6 @@ function sortContactsByName() {
         return 0;
     });
 }
-
-
 
 function loadContact() {
     let contactSpace = document.getElementById('contactArea');
@@ -127,13 +125,10 @@ function showContactDetails(i, initials) {
     `;
 }
 
-
-
 function addContactData() {
     if (!isEventListenerRegistered) {
         document.getElementById('contactForm').addEventListener('submit', async function (event) {
             event.preventDefault();
-            
             console.log('Form submit triggered');
 
             let name = document.getElementById('name').value.trim();
@@ -143,25 +138,14 @@ function addContactData() {
             let firstNameInitial = extrahiereInitialen2(name);
             let color = farbGenerator().toLowerCase();
 
-            // Überprüfen, ob die Felder leer sind
             if (!name || !email || !phone) {
-                console.error("Alle Felder müssen ausgefüllt sein!");
-                return; // Wenn Felder leer sind, Abbruch
+                return;
             }
-
-            
-
-            // Füge einen Debug-Log hinzu, um zu sehen, wann die Daten erstellt werden
-            console.log("Daten werden erstellt für:", { name, email, phone, number, firstNameInitial, color });
-
-            // Warte, bis der Kontakt hinzugefügt wurde, bevor das Formular geleert wird
             await createContactData(name, email, phone, number, firstNameInitial, color);
 
-            // Eingabefelder leeren und Overlay ausblenden
             reloadAdd();
         });
 
-        // Setze die Flag, um sicherzustellen, dass der Listener nur einmal registriert wird
         isEventListenerRegistered = true;
     }
 }
@@ -174,9 +158,7 @@ function reloadAdd() {
 }
 
 async function createContactData(name, email, phone, number, firstNameInitial, color) {
-    // Debug-Log für Daten, die in Firebase gespeichert werden sollen
-    console.log("Speichern der Kontaktdaten in Firebase:", { name, email, phone, number, firstNameInitial, color });
-    
+    { name, email, phone, number, firstNameInitial, color };
     await postCreateData(`/contact/contact${number}`, {
         'name': name,
         'color': color,
@@ -196,19 +178,11 @@ async function postCreateData(path = "", data = {}) {
             },
             body: JSON.stringify(data)
         });
-
-        // Debug-Log, um zu überprüfen, ob die Anfrage erfolgreich war
-        console.log("Anfrage erfolgreich gesendet an Firebase:", firebaseUrl);
-
-        // Lade Kontakte neu oder mache weitere Aktionen
         array = [];
         load();
     } catch (error) {
-        console.error("Fehler beim Senden der Daten:", error);
     }
 }
-
-
 
 function extrahiereInitialen(contactName) {
     let nameParts = contactName.split(' ');
@@ -218,6 +192,7 @@ function extrahiereInitialen(contactName) {
     }
     return initials;
 }
+
 function extrahiereInitialen2(contactName) {
     let nameParts = contactName.split(' ');
     let initials = '';
@@ -226,6 +201,7 @@ function extrahiereInitialen2(contactName) {
     }
     return initials;
 }
+
 function farbGenerator() {
     let zufaelligeFarbe = farben[Math.floor(Math.random() * farben.length)];
 
@@ -254,5 +230,4 @@ async function deleteContact(number) {
     contactDetails.innerHTML = '';
     array = [];
     load();
-   
 }
