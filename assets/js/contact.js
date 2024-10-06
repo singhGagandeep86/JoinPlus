@@ -1,6 +1,14 @@
 let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
 let path = '';
 let array = [];
+let data = {};
+let isEventListenerRegistered = false;
+
+const farben = [
+    "Purple", "Hellpurple", "Gelb", "Turkis", "Rosa", "Hellblau",
+    "Rotorange", "Hellorange", "Dunkelgelb", "Blau", "Rot",
+    "Rot2", "Neongelb", "Neongrün", "Neonorange"
+];
 
 
 
@@ -9,10 +17,12 @@ async function load() {
     sortContactsByName();
     loadContact();
 }
-
-async function loadData(path){
-    let token = sessionStorage.getItem('authToken');
-    let response = await fetch(BASE_URL + path + ".json?auth=" + token);
+function getDatabaseUrl(path) {
+    const token = sessionStorage.getItem('authToken'); // Aktuellen Token abrufen
+    return `${BASE_URL}${path}.json?auth=${token}`; // URL für die Datenbank zurückgeben
+}
+async function loadData(path) {
+    let response = await fetch(getDatabaseUrl(path));
     let responsetoJson = await response.json();
     if (responsetoJson) {
         let contactsArray = Object.values(responsetoJson);
@@ -20,6 +30,15 @@ async function loadData(path){
             array.push(contactsArray[i]);
         }
     }
+}
+async function postData(path, data) {
+    let response = await fetch(getDatabaseUrl(path), {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
 }
 
 function sortContactsByName() {
@@ -36,15 +55,7 @@ function sortContactsByName() {
     });
 }
 
-async function postData(path, data) {
-    let response = await fetch(BASE_URL + path + ".json", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
-}
+
 
 function loadContact() {
     let contactSpace = document.getElementById('contactArea');
@@ -61,7 +72,8 @@ function loadContact() {
             currentLetter = firstLetter;
         }
         contactSpace.innerHTML += loadContactData(i, initials);
-    }}
+    }
+}
 
 function loadContactData(i, initials) {
     return `<div class="contact-group">
@@ -78,6 +90,7 @@ function loadContactData(i, initials) {
 function showContactDetails(i, initials) {
     let contactDetails = document.getElementById('contactDetails');
     let allContacts = document.querySelectorAll('.contact-item');
+    let number = array[i].number;
 
     if (allContacts[i].classList.contains('active-contact')) {
 
@@ -100,7 +113,7 @@ function showContactDetails(i, initials) {
                 <h1>${array[i].name}</h1>
                 <div class="editimage">
                     <img class="editimages" src="../img/editcontacts.png">
-                    <img class="editimages2" src="../img/Deletecontact.png">
+                    <img onclick="deleteContact(${number})" class="editimages2" src="../img/Deletecontact.png">
                 </div>
             </div>
         </div>
@@ -114,6 +127,89 @@ function showContactDetails(i, initials) {
     `;
 }
 
+
+
+function addContactData() {
+    if (!isEventListenerRegistered) {
+        document.getElementById('contactForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            
+            console.log('Form submit triggered');
+
+            let name = document.getElementById('name').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let phone = document.getElementById('phone').value.trim();
+            let number = generateRandomNumber();
+            let firstNameInitial = extrahiereInitialen2(name);
+            let color = farbGenerator().toLowerCase();
+
+            // Überprüfen, ob die Felder leer sind
+            if (!name || !email || !phone) {
+                console.error("Alle Felder müssen ausgefüllt sein!");
+                return; // Wenn Felder leer sind, Abbruch
+            }
+
+            
+
+            // Füge einen Debug-Log hinzu, um zu sehen, wann die Daten erstellt werden
+            console.log("Daten werden erstellt für:", { name, email, phone, number, firstNameInitial, color });
+
+            // Warte, bis der Kontakt hinzugefügt wurde, bevor das Formular geleert wird
+            await createContactData(name, email, phone, number, firstNameInitial, color);
+
+            // Eingabefelder leeren und Overlay ausblenden
+            reloadAdd();
+        });
+
+        // Setze die Flag, um sicherzustellen, dass der Listener nur einmal registriert wird
+        isEventListenerRegistered = true;
+    }
+}
+
+function reloadAdd() {
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('overlay').classList.remove('show');
+}
+
+async function createContactData(name, email, phone, number, firstNameInitial, color) {
+    // Debug-Log für Daten, die in Firebase gespeichert werden sollen
+    console.log("Speichern der Kontaktdaten in Firebase:", { name, email, phone, number, firstNameInitial, color });
+    
+    await postCreateData(`/contact/contact${number}`, {
+        'name': name,
+        'color': color,
+        'email': email,
+        'rufnummer': phone,
+        'cat': firstNameInitial,
+        'number': number
+    });
+}
+
+async function postCreateData(path = "", data = {}) {
+    try {
+        let firebaseUrl = await fetch(getDatabaseUrl(path), {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        });
+
+        // Debug-Log, um zu überprüfen, ob die Anfrage erfolgreich war
+        console.log("Anfrage erfolgreich gesendet an Firebase:", firebaseUrl);
+
+        // Lade Kontakte neu oder mache weitere Aktionen
+        array = [];
+        load();
+    } catch (error) {
+        console.error("Fehler beim Senden der Daten:", error);
+    }
+}
+
+
+
 function extrahiereInitialen(contactName) {
     let nameParts = contactName.split(' ');
     let initials = '';
@@ -121,4 +217,42 @@ function extrahiereInitialen(contactName) {
         initials += nameParts[i].charAt(0).toUpperCase();
     }
     return initials;
+}
+function extrahiereInitialen2(contactName) {
+    let nameParts = contactName.split(' ');
+    let initials = '';
+    for (let i = 0; i < 1; i++) {
+        initials += nameParts[i].charAt(0).toUpperCase();
+    }
+    return initials;
+}
+function farbGenerator() {
+    let zufaelligeFarbe = farben[Math.floor(Math.random() * farben.length)];
+
+    return zufaelligeFarbe;
+}
+
+function generateRandomNumber() {
+    let number = '';
+    for (let i = 0; i < 6; i++) {
+        let digit;
+        do {
+            digit = Math.floor(Math.random() * 10);
+        } while (digit === 0);
+        number += digit;
+    }
+    return number;
+}
+
+async function deleteContact(number) {
+    let contactDetails = document.getElementById('contactDetails');
+    let path = `/contact/contact${number}`;
+    let url = getDatabaseUrl(path);
+    let response = await fetch(url, {
+        method: 'DELETE',
+    });
+    contactDetails.innerHTML = '';
+    array = [];
+    load();
+   
 }

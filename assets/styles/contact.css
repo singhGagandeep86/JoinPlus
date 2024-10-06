@@ -213,15 +213,16 @@
 .editimage {
     display: flex;
     align-items: center;
-    gap: 13px;
+    gap: 13px;   
+    cursor: pointer;
 }
 
 .editimages:hover {
-    content: url(../img/Property\ 1=Variant2.png);
+    content: url("../img/edithovertask.png");
 }
 
 .editimages2:hover {
-    content: url(../img/Property\ 1=Variant1.png);
+    content: url("../img/delethovertask.png");
 }
 
 .contact-slide-in {
