@@ -121,27 +121,46 @@ function logout() {
 
 async function loadInitailUser() {
     let userId = sessionStorage.getItem('uid');
+    let nameGreeting = document.getElementById('greetingName');
     let userObject = userData.filter(e => e['uid'] === userId);
     if (userObject == '') {
+        nameGreeting.innerText = 'Guest User';
         let guest = 'GS'
         createUser(guest, userObject);
+
     } else {
         for (let i = 0; i < userObject.length; i++) {
             let element = userObject[i].name;
             let userInitial = extrahiereInitialen(element)
+            let replaceElement = capitalizeName(element)
             createUser(userInitial);
+            writeGreetin(replaceElement);
+
         }
+    }
+}
+
+function capitalizeName(name) {
+    return name.split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+}
+
+function writeGreetin(replaceElement) {
+    let nameGreeting = document.getElementById('greetingName');
+    if (nameGreeting !== null) {
+        nameGreeting.innerHTML = replaceElement;
     }
 }
 
 function createUser(userInitial, guest, userObject) {
     let userInitials = document.getElementById('userIni');
-    if (userObject == ''){
+    if (userObject == '') {
         userInitials.innerText = guest;
-    }else{
+    } else {
         userInitials.innerText = `${userInitial}`;
     }
-       
+
 
 }
 

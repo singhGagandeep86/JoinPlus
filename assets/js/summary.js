@@ -22,7 +22,7 @@ async function loadData(path) {
         }
     }
 }
-function loadAllData() {
+async function loadAllData() {
     loadTodo();
     loadProgress();
     loadDone();
@@ -30,7 +30,7 @@ function loadAllData() {
     loadTask();
     loadPrio();
     dateDeadline();
-    addGreating();
+   await addGreating();
     
 }
 
@@ -140,10 +140,11 @@ function loadGreeting() {
 }
 
 function addGreating() {
+    
     let greatingArea = document.getElementById('greatingDay');
     let greeting = loadGreeting();
     greatingArea.innerHTML = ''
-    greatingArea.innerHTML = `<span>${greeting}</span>, <span>Alexander Winkler</span>`;
+    greatingArea.innerHTML = `<span>${greeting}</span>, <span id="greetingName"></span>`;
     
 }
 
