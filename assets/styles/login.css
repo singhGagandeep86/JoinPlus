@@ -40,11 +40,11 @@ header .topline p {
     line-height: 24px;
 }
 
-header .topline .login {
+.login{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 16px 15px 16px;
+    text-decoration: none;
     width: 95px;
     height: 49px;
     border-radius: 8px;
@@ -54,20 +54,15 @@ header .topline .login {
     font-size: 16px;
     line-height: 19.2px;
     font-weight: 700;
-    gap: 10px;
     cursor: pointer;
     white-space: nowrap;
+    transition: 125ms ease-in-out;
 }
 
-header .topline .login a {
-    text-decoration: none;
-    color: white;
-}
-
-header .topline .login:hover {
+ .login:hover {
     background-color: var(--button-hover-color);
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
-}
+} 
 
 .Screen-Logo {
     display: flex;
@@ -197,7 +192,7 @@ header .topline .login:hover {
 }
 
 .loginarea form .custome-input input:focus{
-    border-color: #D1D1D1;
+    border-color: #29ABE2;
 }
 
 .loginarea form .custome-input .socialicons {

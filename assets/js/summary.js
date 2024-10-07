@@ -6,6 +6,24 @@ async function init() {
     await loadData("/task");
     loadAllData()
 }
+function fetchUserUID() {
+    let token = sessionStorage.getItem('authToken');
+    fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            idToken: token
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        let uid = data.users[0].localId; // UID des Benutzers
+        console.log("UID:", uid);
+        // Hier kannst du mit dem UID weiterarbeiten
+    });
+}
 
 async function loadData(path) {
     // Token aus dem sessionStorage holen
