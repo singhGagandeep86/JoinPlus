@@ -1,13 +1,13 @@
 
 let pathC = '';
-let base_UrlC = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
+
 
 function loadContact(objData) {
     fetchContact("/contact", objData)
 }
 
 async function fetchContact(pathC, objData) {
-    let firebaseUrl = await fetch(base_UrlC + pathC + ".json?auth=" + token);
+    let firebaseUrl = await fetch(BASE_URL + pathC + ".json?auth=" + token);
     let firebaseUrlAsJson = await firebaseUrl.json();
     let firebaseData = Object.values(firebaseUrlAsJson);
     loadContactData(firebaseData, objData)

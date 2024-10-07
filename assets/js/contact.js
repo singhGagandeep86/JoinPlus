@@ -1,4 +1,4 @@
-let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
+
 let path = '';
 let array = [];
 let data = {};
@@ -16,6 +16,7 @@ async function load() {
     await loadData("/contact");
     sortContactsByName();
     loadContact();
+    fetchUserData('/user');
 }
 function getDatabaseUrl(path) {
     const token = sessionStorage.getItem('authToken');

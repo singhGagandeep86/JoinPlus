@@ -1,4 +1,4 @@
-let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
+
 
 let path = "";
 let data = {};
@@ -12,6 +12,8 @@ let toggle = 0;
 
 async function load() {
     await loadData("/task");
+    fetchUserData('/user');
+    
 }
 function getDatabaseUrl(path) {
     const token = sessionStorage.getItem('authToken'); // Aktuellen Token abrufen

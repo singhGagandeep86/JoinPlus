@@ -1,5 +1,5 @@
 
-let base_Url = `https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/`;
+
 let token = sessionStorage.getItem('authToken');
 let names = [];
 let namesInitials = [];
@@ -12,15 +12,16 @@ let task = {};
 
 async function init() {
   fetchUrl();
+  fetchUserData('/user');
 }
 
 function getDatabaseUrl(path) {
-  return `${base_Url}${path}.json?auth=${token}`; // URL für die Datenbank zurückgeben
+  return `${BASE_URL}${path}.json?auth=${token}`; // URL für die Datenbank zurückgeben
 }
 
 // fetch basicData from firebase
 async function fetchUrl() {
-  let firebaseUrl = await fetch(base_Url + ".json?auth=" + token);
+  let firebaseUrl = await fetch(BASE_URL + ".json?auth=" + token);
   let firebaseUrlAsJson = await firebaseUrl.json();
   let firebaseData = Object.values(firebaseUrlAsJson);
   contactsData(firebaseData[0]);

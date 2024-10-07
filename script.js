@@ -1,9 +1,10 @@
+let userData = [];
+let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
+
 function handleLogin(event) {
     event.preventDefault(); // Verhindert das Standard-Formularverhalten
-
     let email = event.target.email.value;
     let password = event.target.password.value;
-
     // Überprüfen, ob E-Mail und Passwort eingegeben wurden
     if (!email || !password) {
         console.error("Bitte E-Mail und Passwort eingeben");
@@ -22,24 +23,24 @@ function handleLogin(event) {
             returnSecureToken: true
         })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Fehler: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        if (data.idToken) {
-            
-            sessionStorage.setItem('authToken', data.idToken); // Speichere den Token in sessionStorage
-            window.location.href = "assets/html/summary.html"; // Weiterleitung zur summary.html
-        } else {
-            throw new Error("Anmeldung fehlgeschlagen: Kein Token erhalten");
-        }
-    })
-    .catch(error => {
-        console.error("Fehler bei der Anmeldung:", error.message);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Fehler: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.idToken) {
+
+                sessionStorage.setItem('authToken', data.idToken); // Speichere den Token in sessionStorage
+                window.location.href = "assets/html/summary.html"; // Weiterleitung zur summary.html
+            } else {
+                throw new Error("Anmeldung fehlgeschlagen: Kein Token erhalten");
+            }
+        })
+        .catch(error => {
+            console.error("Fehler bei der Anmeldung:", error.message);
+        });
 }
 
 function loginAlsGast() {
@@ -49,48 +50,49 @@ function loginAlsGast() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            returnSecureToken: true 
+            returnSecureToken: true
         })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Fehler: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-    })
-    .then(data => {        
-        if (data.idToken) {
-            console.log("Gastzugang erfolgreich:", data);
-            let guestId = data.localId; // Gast-ID aus den Daten
-            let guestRef = `/guests/${guestId}`; // Pfad zur Speicherung der Gastdaten
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Fehler: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.idToken) {
+                console.log("Gastzugang erfolgreich:", data);
+                let guestId = data.localId; // Gast-ID aus den Daten
+                let guestRef = `/guests/${guestId}`; // Pfad zur Speicherung der Gastdaten
 
-            // Hier kannst du zusätzliche Daten für den Gast speichern, z.B. einen anonymen Benutzernamen
-            fetch(`https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app${guestRef}.json`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: "Gast User", // Anonymen Namen setzen
-                    
-                })
-            });
+                // Hier kannst du zusätzliche Daten für den Gast speichern, z.B. einen anonymen Benutzernamen
+                fetch(`https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app${guestRef}.json`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: "Gast User", // Anonymen Namen setzen
 
-            return data.idToken; 
-        } else {
-            throw new Error("Fehler bei der anonymen Authentifizierung: kein Token erhalten");
-        }
-    })
-    .catch(error => {
-        console.error("Fehler:", error);
-    });
+                    })
+                });
+
+                return data.idToken;
+            } else {
+                throw new Error("Fehler bei der anonymen Authentifizierung: kein Token erhalten");
+            }
+        })
+        .catch(error => {
+            console.error("Fehler:", error);
+        });
 }
 
 function gastLogin() {
-    loginAlsGast().then((token) => {      
+    loginAlsGast().then((token) => {
         if (token) {
-            sessionStorage.setItem('authToken', token); 
-            window.location.href = "assets/html/summary.html"; 
+            sessionStorage.setItem('authToken', token);
+            fetchAndStoreUID();
+            window.location.href = "assets/html/summary.html";
         } else {
             console.error("Gastzugang fehlgeschlagen: Kein Token erhalten");
         }
@@ -98,27 +100,93 @@ function gastLogin() {
 }
 
 function gastLogin() {
-    loginAlsGast().then((token) => {      
+    loginAlsGast().then((token) => {
         if (token) {
-            sessionStorage.setItem('authToken', token); 
-            window.location.href = "assets/html/summary.html"; 
-            
+            sessionStorage.setItem('authToken', token);
+            window.location.href = "assets/html/summary.html";
+
         } else {
             console.error("Gastzugang fehlgeschlagen: Kein Token erhalten");
         }
     });
 }
+
 
 function logout() {
     sessionStorage.removeItem('authToken');
     sessionStorage.removeItem('uid');
-    window.location.href = "../../index.html"; 
+    userData = [];
+    window.location.href = "../../index.html";
 }
 
-function loadInitailUser() {
-    let id = sessionStorage.getItem('uid' );
-    
-    
-    
+async function loadInitailUser() {
+    let userId = sessionStorage.getItem('uid');
+    let userObject = userData.filter(e => e['uid'] === userId);
+    if (userObject == '') {
+        let guest = 'GS'
+        createUser(guest, userObject);
+    } else {
+        for (let i = 0; i < userObject.length; i++) {
+            let element = userObject[i].name;
+            let userInitial = extrahiereInitialen(element)
+            createUser(userInitial);
+        }
+    }
 }
 
+function createUser(userInitial, guest, userObject) {
+    let userInitials = document.getElementById('userIni');
+    if (userObject == ''){
+        userInitials.innerText = guest;
+    }else{
+        userInitials.innerText = `${userInitial}`;
+    }
+       
+
+}
+
+function extrahiereInitialen(element) {
+    for (let i = 0; i < element.length; i++) {
+        let nameParts = element.split(' ');
+        let initials = '';
+        for (let j = 0; j < nameParts.length; j++) {
+            initials += nameParts[j].charAt(0).toUpperCase();
+        }
+        return initials;
+    }
+}
+
+
+async function fetchUserData(path) {
+    let response = await fetch(getDatabaseUrl(path));
+    let responsetoJson = await response.json();
+    let taskArray = Object.values(responsetoJson);
+    for (let i = 0; i < taskArray.length; i++) {
+        userData.push(taskArray[i]);
+    }
+    loadInitailUser();
+}
+
+
+function getDatabaseUrl(path) {
+    let token = sessionStorage.getItem('authToken');
+    return `${BASE_URL}${path}.json?auth=${token}`;
+}
+
+async function fetchAndStoreUID() {
+    let token = sessionStorage.getItem('authToken');
+    if (!sessionStorage.getItem('uid')) {
+        let response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                idToken: token
+            })
+        });
+        let data = await response.json();
+        let uid = data.users[0].localId;
+        sessionStorage.setItem('uid', uid);
+    }
+}

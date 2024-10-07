@@ -1,23 +1,20 @@
 let summeryArray = [];
-let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
+
 
 async function init() {
-    await loadData("/task");
-    loadAllData()
-    fetchAndStoreUID();
+    await loadData("/task");    
+    await fetchAndStoreUID(); 
+    loadAllData();
+    await fetchUserData('/user');
 }
 
 
 async function loadData(path) {
     let token = sessionStorage.getItem('authToken');
-    if (!token) {
-        console.error("Kein Token gefunden. Zugriff verweigert.");
-        return;
-    }
     let response = await fetch(BASE_URL + path + ".json?auth=" + token);
     let responsetoJson = await response.json();
     if (responsetoJson === null) {
-        await createEmptyTaskNode(path); 
+        await createEmptyTaskNode(path);
     } else {
         let taskArray = Object.values(responsetoJson);
         for (let i = 0; i < taskArray.length; i++) {
@@ -34,6 +31,7 @@ function loadAllData() {
     loadPrio();
     dateDeadline();
     addGreating();
+    
 }
 
 function loadTodo() {
@@ -144,14 +142,13 @@ function loadGreeting() {
 function addGreating() {
     let greatingArea = document.getElementById('greatingDay');
     let greeting = loadGreeting();
-    greatingArea.innerHTML=''
-    greatingArea.innerHTML= `<span>${greeting}</span>, <span>Alexander Winkler</span>`;
-
+    greatingArea.innerHTML = ''
+    greatingArea.innerHTML = `<span>${greeting}</span>, <span>Alexander Winkler</span>`;
+    
 }
 
 function fetchAndStoreUID() {
     let token = sessionStorage.getItem('authToken');
-
     if (!sessionStorage.getItem('uid')) {
         fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM`, {
             method: 'POST',
@@ -162,11 +159,11 @@ function fetchAndStoreUID() {
                 idToken: token
             })
         })
-        .then(response => response.json())
-        .then(data => {
-            const uid = data.users[0].localId; // UID des Benutzers
-            sessionStorage.setItem('uid', uid); // UID in sessionStorage speichern
-        });
+            .then(response => response.json())
+            .then(data => {
+                let uid = data.users[0].localId;
+                sessionStorage.setItem('uid', uid);
+            });
     }
 }
 
