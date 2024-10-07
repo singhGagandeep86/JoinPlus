@@ -30,7 +30,7 @@ function handleLogin(event) {
     })
     .then(data => {
         if (data.idToken) {
-            console.log("Anmeldung erfolgreich:", data);
+            
             sessionStorage.setItem('authToken', data.idToken); // Speichere den Token in sessionStorage
             window.location.href = "assets/html/summary.html"; // Weiterleitung zur summary.html
         } else {
@@ -102,6 +102,7 @@ function gastLogin() {
         if (token) {
             sessionStorage.setItem('authToken', token); 
             window.location.href = "assets/html/summary.html"; 
+            
         } else {
             console.error("Gastzugang fehlgeschlagen: Kein Token erhalten");
         }
@@ -109,7 +110,15 @@ function gastLogin() {
 }
 
 function logout() {
-    sessionStorage.removeItem('authToken');    
+    sessionStorage.removeItem('authToken');
+    sessionStorage.removeItem('uid');
     window.location.href = "../../index.html"; 
+}
+
+function loadInitailUser() {
+    let id = sessionStorage.getItem('uid' );
+    
+    
+    
 }
 

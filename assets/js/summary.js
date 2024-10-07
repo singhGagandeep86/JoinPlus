@@ -1,46 +1,27 @@
 let summeryArray = [];
 let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
 
-
 async function init() {
     await loadData("/task");
     loadAllData()
-}
-function fetchUserUID() {
-    let token = sessionStorage.getItem('authToken');
-    fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            idToken: token
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        let uid = data.users[0].localId; // UID des Benutzers
-        console.log("UID:", uid);
-        // Hier kannst du mit dem UID weiterarbeiten
-    });
+    fetchAndStoreUID();
 }
 
+
 async function loadData(path) {
-    // Token aus dem sessionStorage holen
     let token = sessionStorage.getItem('authToken');
     if (!token) {
         console.error("Kein Token gefunden. Zugriff verweigert.");
         return;
     }
-
-    let response = await fetch(BASE_URL + path + ".json?auth=" + token); // Token in die URL einfügen
+    let response = await fetch(BASE_URL + path + ".json?auth=" + token);
     let responsetoJson = await response.json();
     if (responsetoJson === null) {
-        await createEmptyTaskNode(path); // Funktion zum Erstellen eines leeren Knotens
+        await createEmptyTaskNode(path); 
     } else {
         let taskArray = Object.values(responsetoJson);
         for (let i = 0; i < taskArray.length; i++) {
-            summeryArray.push(taskArray[i]); // Aufgaben zu summeryArray hinzufügen
+            summeryArray.push(taskArray[i]);
         }
     }
 }
@@ -167,3 +148,25 @@ function addGreating() {
     greatingArea.innerHTML= `<span>${greeting}</span>, <span>Alexander Winkler</span>`;
 
 }
+
+function fetchAndStoreUID() {
+    let token = sessionStorage.getItem('authToken');
+
+    if (!sessionStorage.getItem('uid')) {
+        fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                idToken: token
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const uid = data.users[0].localId; // UID des Benutzers
+            sessionStorage.setItem('uid', uid); // UID in sessionStorage speichern
+        });
+    }
+}
+

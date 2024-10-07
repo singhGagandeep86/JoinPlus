@@ -122,6 +122,16 @@ input::placeholder {
     justify-content: center;
 }
 
+.checkLabel{
+    display: flex;
+    gap: 10px;
+}
+
+.checkLabel a {
+    text-decoration: none;
+}
+
+
 .loginarea form .check-container p {
     font-size: 16px;
     font-weight: 400;
@@ -133,6 +143,7 @@ input::placeholder {
     font-size: 16px;
     font-weight: 400;
     line-height: 19.2px;
+    cursor: pointer;
 }
 
 .loginarea form .btns {
