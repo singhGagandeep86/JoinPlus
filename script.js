@@ -124,7 +124,7 @@ async function loadInitailUser() {
     let nameGreeting = document.getElementById('greetingName');
     let userObject = userData.filter(e => e['uid'] === userId);
     if (userObject == '') {
-        nameGreeting.innerText = 'Guest User';
+        nameGreeting.innerHTML = 'Guest User';
         let guest = 'GS'
         createUser(guest, userObject);
 
