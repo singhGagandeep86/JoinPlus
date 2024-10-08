@@ -121,21 +121,18 @@ function logout() {
 
 async function loadInitailUser() {
     let userId = sessionStorage.getItem('uid');
-    let nameGreeting = document.getElementById('greetingName');
     let userObject = userData.filter(e => e['uid'] === userId);
     if (userObject == '') {
-        nameGreeting.innerText = 'Guest User';
         let guest = 'GS'
         createUser(guest, userObject);
-
+        writeGreetinGuest(userObject)
     } else {
         for (let i = 0; i < userObject.length; i++) {
             let element = userObject[i].name;
             let userInitial = extrahiereInitialen(element)
             let replaceElement = capitalizeName(element)
             createUser(userInitial);
-            writeGreetin(replaceElement);
-
+            writeGreetin(replaceElement, userObject);
         }
     }
 }
@@ -146,11 +143,24 @@ function capitalizeName(name) {
         .join(' ');
 }
 
-function writeGreetin(replaceElement) {
+function writeGreetin(replaceElement, userObject) {
     let nameGreeting = document.getElementById('greetingName');
-    if (nameGreeting !== null) {
+    
+    if(nameGreeting == null){
+
+    }else{
         nameGreeting.innerHTML = replaceElement;
     }
+}
+
+function writeGreetinGuest() {
+    let nameGreeting = document.getElementById('greetingName');
+    if(nameGreeting == null){
+
+    }else{
+        nameGreeting.innerHTML = 'Guest User'
+    }
+    
 }
 
 function createUser(userInitial, guest, userObject) {

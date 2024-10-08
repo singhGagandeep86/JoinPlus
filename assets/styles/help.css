@@ -20,7 +20,7 @@ body {
 }
 
 .content {
-    overflow-y: scroll;
+    
     height: calc(98vh - 10%);
     display: flex;
     justify-content: center;
