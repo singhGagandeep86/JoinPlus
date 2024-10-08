@@ -31,10 +31,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: row-reverse;
     max-width: 1440px;
 }
 
-.text-arrow img {
+.text-arrow img  {
+    
     object-fit: cover;
     width: 37px;
     height: 37px;
@@ -73,7 +75,7 @@ body {
 .arrow-sticky {
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 2;
 }
 
 .arrow-sticky:hover {
@@ -98,4 +100,18 @@ body {
 
 .joinON {
     color: var(--button-hover-color);
+}
+
+
+
+@media(max-width:1300px) {
+    .content{
+        padding: 0;
+        height: 350vh;
+    }
+
+    html{
+        width: 100%;
+    }
+   
 }

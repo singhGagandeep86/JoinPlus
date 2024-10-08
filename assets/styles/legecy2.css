@@ -142,15 +142,6 @@ body {
     align-items: center;
 }
 
-.picHelp {
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-}
-
-.picSm:hover {
-    content: url(../img/sm\ hover.png);
-}
 
 .active {
     background-color: #091931;
@@ -265,13 +256,7 @@ body {
     }
 
     .mainDesignAside {
-        position: fixed;
-        bottom: 0;
-        display: flex;
-        width: 100%;
-        height: 150px;
-        align-items: center;
-        z-index: 99;
+       display: none;
     }
 
     .asideMenuArea {
@@ -321,19 +306,14 @@ body {
         padding-right: 0px;
         height: 160vh
     }
+    
 
     .mainDesign {
         height: 100%;
     }
 
     .mainDesignAside {
-        position: fixed;
-        bottom: 0;
-        display: flex;
-        width: 100%;
-        height: 80px;
-        align-items: center;
-        z-index: 99;
+        display: none;
     }
 
     .asideMenuArea {
@@ -392,6 +372,10 @@ body {
         padding: 0;
         border-radius: 10px;
     }
+
+    .text-arrow h1{
+        font-size: 40px;
+    }
 }
 
 @media(max-width:380px) {
@@ -406,5 +390,8 @@ body {
 
     .asideMenu:nth-of-type(3) {
         margin-left: 5px;
+    }
+    .mainDesignAsideImg {
+        display: none;
     }
 }
