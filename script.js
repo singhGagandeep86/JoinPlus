@@ -32,14 +32,15 @@ function handleLogin(event) {
         .then(data => {
             if (data.idToken) {
 
-                sessionStorage.setItem('authToken', data.idToken); // Speichere den Token in sessionStorage
-                window.location.href = "assets/html/summary.html"; // Weiterleitung zur summary.html
+                sessionStorage.setItem('authToken', data.idToken); 
+                window.location.href = "assets/html/summary.html"; 
             } else {
                 throw new Error("Anmeldung fehlgeschlagen: Kein Token erhalten");
             }
         })
         .catch(error => {
-            console.error("Fehler bei der Anmeldung:", error.message);
+            // console.error("Fehler bei der Anmeldung:", error.message);
+            errorLogin();
         });
 }
 
@@ -61,7 +62,7 @@ function loginAlsGast() {
         })
         .then(data => {
             if (data.idToken) {
-                console.log("Gastzugang erfolgreich:", data);
+                
                 let guestId = data.localId; // Gast-ID aus den Daten
                 let guestRef = `/guests/${guestId}`; // Pfad zur Speicherung der Gastdaten
 
@@ -83,7 +84,7 @@ function loginAlsGast() {
             }
         })
         .catch(error => {
-            console.error("Fehler:", error);
+            
         });
 }
 
@@ -218,4 +219,21 @@ async function fetchAndStoreUID() {
         let uid = data.users[0].localId;
         sessionStorage.setItem('uid', uid);
     }
+}
+
+function errorLogin(){    
+     document.getElementById('emailInput').classList.add('falseEnter');
+     document.getElementById('passwordInput').classList.add('falseEnter');
+     document.getElementById('fail').classList.remove('d_none');
+     document.getElementById('passwordInput').value = '';
+     
+}
+
+function returnInput() {
+    if(document.getElementById('emailInput').value== ''){
+        document.getElementById('emailInput').classList.remove('falseEnter');
+        document.getElementById('passwordInput').classList.remove('falseEnter');
+        document.getElementById('fail').classList.add('d_none');
+     }
+    
 }
