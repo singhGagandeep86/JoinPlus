@@ -10,7 +10,8 @@
     .burger-menu {
         height: 158px;
     }
-    .mainDesign{
+
+    .mainDesign {
         width: 100%;
     }
 }
@@ -36,8 +37,18 @@
     .burger-menu {
         height: 158px;
     }
-    .mainDesign{
+
+    .mainDesign {
         width: 100%;
+    }
+    .asideMenu{
+        width:160px;
+    }
+    .asideMenu:hover{
+        width:160px;
+    }
+    .active{
+        width:160px
     }
 }
 
@@ -50,7 +61,10 @@
 
     .mainDesign {
         height: 100%;
+        width: 100%;
+
     }
+    
 
     .mainDesignAside {
         position: fixed;
@@ -61,6 +75,10 @@
         align-items: center;
         z-index: 99;
     }
+    .asideMenu{
+        width:160px ;
+    }
+    
 
     .asideMenuArea {
         width: 100%;
@@ -116,6 +134,7 @@
 
     .mainDesign {
         height: 100%;
+        width: 100%;
     }
 
     .mainDesignAside {
@@ -130,6 +149,7 @@
 
     .asideMenuArea {
         gap: 10px;
+
     }
 
     #summary {
@@ -166,6 +186,7 @@
     .asideMenu {
         height: 76px;
     }
+    
 
     .asideMenu img {
         margin: 0;

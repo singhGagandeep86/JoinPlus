@@ -13,6 +13,9 @@
     .asideMenu a:nth-of-type(1) {
         width: 75px;
     }
+    .mainDesign{
+        width: 100%;        
+    }
 }
 
 @media(max-width:700px) {
@@ -59,19 +62,26 @@
     .block-end{
         margin-left: 10px;
     }
+    .mainDesign{
+        width: 100%;        
+    }
 }
 
 @media(max-width:590px) {
     .block-main{
-        width:400px;
+        width:390px;
     }
 
     .block-mid{
-        width:400px;
+        width:390px;
     }
 
     .block-end{
-        width:400px;
+        width:390px;
+    }
+    .mainDesign {
+        height: 100%;
+        width: 100%;
     }
 }
 
@@ -87,6 +97,10 @@
     .block-end{
         scale: 0.9;
     }
+    .mainDesign {
+        height: 100%;
+        width: 100%;
+    }
 }
 
 @media(max-width:400px){
@@ -98,6 +112,10 @@
     }
     .block-end{
         transform: scale(0.8) translateX(-60px);
+    }
+    .mainDesign {
+        height: 100%;
+        width: 100%;
     }
 }
 
