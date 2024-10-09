@@ -24,9 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     password.addEventListener('input', validateForm);
     confirmPassword.addEventListener('input', validateForm);
     privacyPolicy.addEventListener('change', validateForm);
-
     document.getElementById('registrationForm').addEventListener('submit', handleRegistration);
-
     async function handleRegistration(event) {
         event.preventDefault();
         let name = userName.value;
@@ -44,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     returnSecureToken: true
                 })
             });
-
             if (!response.ok) {
                 throw new Error(`Fehler: ${response.status} ${response.statusText}`);
             }
@@ -59,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error("Registrierung fehlgeschlagen: Kein Token oder UID erhalten");
             }
         } catch (error) {
-            console.error("Fehler bei der Registrierung:", error.message);
+           
         }
     }
 });
@@ -79,14 +76,12 @@ async function createDataFb(name, emailValue, token, uid) {
                 uid: uid
             })
         });
-
         if (!response.ok) {
             throw new Error(`Fehler beim Speichern der Daten: ${response.status} ${response.statusText}`);
         }
         let data = await response.json();
-        console.log("Erfolgreich in der Realtime Database gespeichert:", data);
-    } catch (error) {
-        console.error("Fehler bei der Speicherung in der Realtime Database:", error.message);
+        
+    } catch (error) {        
     }
 }
 

@@ -1,5 +1,3 @@
-
-
 let path = "";
 let data = {};
 let url = '';
@@ -9,7 +7,6 @@ let draggedElement;
 let mediaQuery = window.matchMedia("(max-width: 1100px)");
 let toggle = 0;
 
-
 async function load() {
     await loadData("/task");
     fetchUserData('/user');
@@ -17,7 +14,7 @@ async function load() {
 
 function getDatabaseUrl(path) {
     let token = sessionStorage.getItem('authToken');
-    return `${BASE_URL}${path}.json?auth=${token}`; 
+    return `${BASE_URL}${path}.json?auth=${token}`;
 }
 
 async function loadData(path) {
@@ -60,7 +57,6 @@ function todo() {
                 document.getElementById('toDo').innerHTML += templateTaskHTML(element);
                 subtaskBar(element, checkedCount);
                 loadContactTask(element, contacts, contactName);
-
             } else {
                 let checkedCount = checkBoxObject.filter(e => e === true).length;
                 document.getElementById('toDo').innerHTML += templateTaskHTML(element);
@@ -124,7 +120,9 @@ function awaits() {
                 document.getElementById('await').innerHTML += templateTaskHTML(element);
                 subtaskBar(element, checkedCount);
                 loadContactTask(element, contacts, contactName);
-            }}}
+            }
+        }
+    }
 }
 
 function done() {
@@ -151,7 +149,9 @@ function done() {
                 document.getElementById('done').innerHTML += templateTaskHTML(element);
                 subtaskBar(element, checkedCount);
                 loadContactTask(element, contacts, contactName);
-            }}}
+            }
+        }
+    }
 }
 
 function startDragging(number, element) {
@@ -344,7 +344,8 @@ function addcontactInfo(objDateTask) {
 
             let initials = extrahiereInitialen(contactName[i])
             contactArea.innerHTML += templateContactInfo(contactscolor[i], initials, contactName[i]);
-        }}
+        }
+    }
 }
 
 function addSubtaskInfo(objDateTask) {
@@ -361,7 +362,8 @@ function addSubtaskInfo(objDateTask) {
             let element = subtaskTitle[j];
             subtaskInput.innerHTML += templateSubtask(element, objDateTask, j);
             checked(subtastChecked);
-        }}
+        }
+    }
 }
 
 function moveTo(element,) {

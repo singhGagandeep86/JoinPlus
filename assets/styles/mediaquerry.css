@@ -2,13 +2,14 @@
     .content {
         padding: 0 64px 0 64px;
     }
-    .helpOff{
+
+    .helpOff {
         display: none;
     }
-    .burger-menu{
+
+    .burger-menu {
         height: 158px;
     }
-
 }
 
 @media(min-width:1301px) and (max-width:1439px) {
@@ -24,10 +25,12 @@
     .mainDesignAside {
         width: 160px;
     }
-    .helpOff{
+
+    .helpOff {
         display: none;
     }
-    .burger-menu{
+
+    .burger-menu {
         height: 158px;
     }
 }
@@ -85,13 +88,14 @@
         margin-top: 0;
     }
 
-    .changeMedia{
+    .changeMedia {
         content: url("../img/logosmall.png");
     }
 
     .asideMenu a {
         width: 200px;
     }
+
     .picHelp {
         display: none;
     }

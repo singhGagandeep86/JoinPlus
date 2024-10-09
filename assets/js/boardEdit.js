@@ -1,6 +1,4 @@
-
 let pathC = '';
-
 
 function loadContact(objData) {
     fetchContact("/contact", objData)
@@ -302,10 +300,10 @@ function colorObj(contact) {
     return color
 }
 
-function pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority){
+function pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority) {
     postEditData(`/task/task${numberEditElement}`, {
         'contact': contactName,
-        'contactcolor':  color,
+        'contactcolor': color,
         'date': dueDate,
         'description': description,
         'prio': priority,
@@ -317,11 +315,11 @@ function pushDataEdit(title, description, dueDate, subtaskobj, checked, contactN
 
 async function postEditData(path = "", data = {}) {
     let firebaseUrl = await fetch(getDatabaseUrl(path), {
-      method: "PATCH",
-      header: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data)
+        method: "PATCH",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
     });
     loadnewTaskEdit();
 }

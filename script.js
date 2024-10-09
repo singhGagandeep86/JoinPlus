@@ -5,12 +5,10 @@ function handleLogin(event) {
     event.preventDefault();
     let email = event.target.email.value;
     let password = event.target.password.value;
-
     if (!email || !password) {
-        console.error("Bitte E-Mail und Passwort eingeben");
+        errorLogin();
         return;
     }
-
     fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
         method: 'POST',
         headers: {
@@ -43,7 +41,7 @@ function handleLogin(event) {
         });
 }
 
-function loginAlsGast() {
+async function loginAlsGast() {
     return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
         method: 'POST',
         headers: {
@@ -74,20 +72,6 @@ function gastLogin() {
             sessionStorage.setItem('authToken', token);
             fetchAndStoreUID();
             window.location.href = "assets/html/summary.html";
-        } else {
-            console.error("Gastzugang fehlgeschlagen: Kein Token erhalten");
-        }
-    });
-}
-
-function gastLogin() {
-    loginAlsGast().then((token) => {
-        if (token) {
-            sessionStorage.setItem('authToken', token);
-            window.location.href = "assets/html/summary.html";
-
-        } else {
-            console.error("Gastzugang fehlgeschlagen: Kein Token erhalten");
         }
     });
 }

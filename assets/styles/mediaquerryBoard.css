@@ -1,39 +1,39 @@
 @media(max-width:563px) {
     .content {
-      min-height: 240vh;
+        min-height: 240vh;
     }
 
-    .popupEdit{
+    .popupEdit {
         width: 300px;
         height: 700px;
     }
 
-    .prioForm{
+    .prioForm {
         scale: 0.7;
         gap: 2px;
     }
 
-    .labelContact{
+    .labelContact {
         scale: 0.9;
     }
 
-    .contactNameEdit p{
+    .contactNameEdit p {
         font-size: 12px;
     }
 
-    .liSubTask{
+    .liSubTask {
         scale: 0.9;
     }
 
-    .editAdd{
+    .editAdd {
         scale: 0.8;
     }
 
-    .contactDrop{
+    .contactDrop {
         font-size: 14px;
     }
 
-    .substart2{
+    .substart2 {
         font-size: 14px;
     }
 
@@ -87,6 +87,7 @@
         padding: 0;
         flex-shrink: 0;
     }
+
     .contactInfoData::-webkit-scrollbar {
         width: 5px;
     }
@@ -124,7 +125,7 @@
         flex-shrink: 0;
     }
 
-    .subtaskTitle{
+    .subtaskTitle {
         height: 35px;
     }
 
@@ -150,7 +151,7 @@
     }
 }
 
-@media (max-width:800px){
+@media (max-width:800px) {
 
     .popupArea {
         position: fixed;
@@ -166,14 +167,17 @@
         width: 100%;
         padding-right: 10px;
     }
+
     .emptySearch {
         justify-content: start;
         top: 12px;
         padding: 20px;
     }
+
     .emptyBoardArea {
         width: 100%;
     }
+
     .dragAndDropBoard {
         display: flex;
         flex-direction: column;
@@ -255,13 +259,14 @@
     .inputImgArea {
         padding-right: 10px;
     }
-    html{
+
+    html {
         max-height: 100%;
     }
 }
 
-@media(min-width: 801px) and (max-width:1300px){
-    .taskArea{
+@media(min-width: 801px) and (max-width:1300px) {
+    .taskArea {
         position: absolute;
         top: 39%;
         left: 2%;
@@ -345,7 +350,7 @@
     }
 }
 
-@media(min-width:1301px) and (max-width:1439px){
+@media(min-width:1301px) and (max-width:1439px) {
 
     .emptySearch {
         padding-left: 90px;
