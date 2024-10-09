@@ -4,6 +4,15 @@
     }
 }
 
+@media (max-width: 799px) {
+    .test-logo {
+        display: block;
+
+        background-color: aqua;
+        z-index: 1000;
+    }
+}
+
 @media (max-width: 698px) {
     .loginarea {
         width: 350px;
