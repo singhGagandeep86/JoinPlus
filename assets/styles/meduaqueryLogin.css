@@ -1,7 +1,49 @@
 @media (max-width: 800px) {
     .Screen-Logo {
+        background-color: #2A3647;
         display: block;
-        background-color: aqua;
+    }
+
+    .join-logo {
+        opacity: 0;
+        z-index: 1000;
+    }
+
+    .final-logo {
+        display: block;
+        content: url("../img/logowhite.png");
+    }
+
+    @keyframes JoinlogoScreen {
+        0% {
+            top: 50%;
+            left: 50%;
+            width: 140px;
+            height: 200px;
+        }
+        100% {
+            top: 50px;
+            left: 50px;
+            width: 140px;
+            height: 200px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes FinalLogoScreen {
+        0% {
+            top: 50%;
+            left: 50%;
+            width: 140px;
+            height: 200px;
+            opacity: 1;
+        }
+        100% {
+            top: 50px;
+            left: 50px;
+            width: 140px;
+            height: 200px;
+        }
     }
 }
 
@@ -182,53 +224,6 @@
         gap: 10px;
         padding: 6px;
         margin-bottom: 10px;
-    }
-
-    .Screen-Logo {
-        background-color: #2A3647;
-        display: block;
-    }
-
-    .join-logo {
-        opacity: 0;
-        z-index: 1000;
-    }
-
-    .final-logo {
-        display: block;
-        content: url("../img/logowhite.png");
-    }
-
-    @keyframes JoinlogoScreen {
-        0% {
-            top: 50%;
-            left: 50%;
-            width: 140px;
-            height: 200px;
-        }
-        100% {
-            top: 50px;
-            left: 50px;
-            width: 140px;
-            height: 200px;
-            opacity: 1;
-        }
-    }
-
-    @keyframes FinalLogoScreen {
-        0% {
-            top: 50%;
-            left: 50%;
-            width: 140px;
-            height: 200px;
-            opacity: 1;
-        }
-        100% {
-            top: 50px;
-            left: 50px;
-            width: 140px;
-            height: 200px;
-        }
     }
 }
 
