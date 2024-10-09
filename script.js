@@ -41,7 +41,7 @@ function handleLogin(event) {
         });
 }
 
-async function loginAlsGast() {
+function loginAlsGast() {
     return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
         method: 'POST',
         headers: {

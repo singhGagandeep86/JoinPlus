@@ -10,6 +10,9 @@
     .burger-menu {
         height: 158px;
     }
+    .mainDesign{
+        width: 100%;
+    }
 }
 
 @media(min-width:1301px) and (max-width:1439px) {
@@ -32,6 +35,9 @@
 
     .burger-menu {
         height: 158px;
+    }
+    .mainDesign{
+        width: 100%;
     }
 }
 
