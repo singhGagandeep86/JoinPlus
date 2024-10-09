@@ -11,6 +11,13 @@ html {
     padding-top: 64px;
 }
 
+.mainDesign {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--content-main-color);
+    overflow: auto;
+}
+
 .content {
     padding: 0 64px 0 64px;
     max-width: 1208px;

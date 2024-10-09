@@ -192,7 +192,7 @@ input::placeholder {
     cursor: pointer;
 }
 .btnOff {
-    background-color: var(--sideheader-main-color);
+    background-color:#D1D1D1;
     display: flex;
     align-items: center;
     justify-content: center;

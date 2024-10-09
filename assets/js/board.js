@@ -16,8 +16,8 @@ async function load() {
 }
 
 function getDatabaseUrl(path) {
-    const token = sessionStorage.getItem('authToken'); // Aktuellen Token abrufen
-    return `${BASE_URL}${path}.json?auth=${token}`; // URL für die Datenbank zurückgeben
+    let token = sessionStorage.getItem('authToken');
+    return `${BASE_URL}${path}.json?auth=${token}`; 
 }
 
 async function loadData(path) {
@@ -384,7 +384,7 @@ async function postId(element, changeId) {
 }
 
 async function postDataId(url, data) {
-    const response = await fetch(url, {
+    let response = await fetch(url, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
