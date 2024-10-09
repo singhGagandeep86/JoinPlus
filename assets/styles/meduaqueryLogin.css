@@ -1,15 +1,7 @@
 @media (max-width: 800px) {
     .Screen-Logo {
-        display: none;
-    }
-}
-
-@media (max-width: 799px) {
-    .test-logo {
         display: block;
-
         background-color: aqua;
-        z-index: 1000;
     }
 }
 
@@ -37,6 +29,9 @@
     footer .footercontent {
         gap: 25px;
         padding: 8px;
+    }
+    .failEnter p{
+        font-size: 14px;
     }
 }
 
@@ -90,6 +85,9 @@
     footer .footercontent {
         gap: 10px;
         padding: 8px;
+    }
+    .failEnter p{
+        font-size: 12px;
     }
 }
 
@@ -150,12 +148,19 @@
         padding: 6px;
         margin-bottom: 15px;
     }
+    .failEnter p{
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 397px) {
     .loginarea {
         width: 200px;
         padding: 0 40px;
+    }
+
+    .failEnter p{
+        font-size: 12px;
     }
 
     header .topline {
