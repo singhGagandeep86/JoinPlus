@@ -1,5 +1,3 @@
-
-
 function contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart) {
     return `<label>
     <input type="checkbox"class="checkboxDesign" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}')">
@@ -31,18 +29,16 @@ function emptyField() {
     <img class="tsksGen" src="../img/subTaskIcon.svg"></div>`;
 }
 
-// reseting Global Variables
 function resetingGlobalVariable() {
     expanded = false;
     names = [];
     namesInitials = [];
   }
-  
-  // reseting Local Variables
-  function resetingLocalVariables() {    
+
+function resetingLocalVariables() {
     document.getElementById('assignHeading').innerHTML = `Select task category <img class="arrow" id="arrowRight" src="../img/dropArrow.svg" style="transform: rotate(0deg)">`;
     document.getElementById('allCntcts').style.display = "none";
     document.getElementById('arrow').style.transform = "rotate(0deg)";
     document.getElementById('subTsksBoard').innerHTML = '';
     document.getElementById('selCntcts').innerHTML = '';
-  }
+}

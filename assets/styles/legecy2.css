@@ -142,7 +142,6 @@ body {
     align-items: center;
 }
 
-
 .active {
     background-color: #091931;
     width: 232px;
@@ -306,7 +305,6 @@ body {
         padding-right: 0px;
         height: 160vh
     }
-    
 
     .mainDesign {
         height: 100%;

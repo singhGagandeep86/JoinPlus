@@ -66,7 +66,6 @@ function loginAlsGast() {
                 throw new Error("Fehler bei der anonymen Authentifizierung: kein Token erhalten");
             }
         })
-       
 }
 
 function gastLogin() {
@@ -92,7 +91,6 @@ function gastLogin() {
         }
     });
 }
-
 
 function logout() {
     sessionStorage.removeItem('authToken');
@@ -142,7 +140,6 @@ function writeGreetinGuest() {
     } else {
         nameGreeting.innerHTML = 'Guest User'
     }
-
 }
 
 function createUser(userInitial, guest, userObject) {
@@ -152,8 +149,6 @@ function createUser(userInitial, guest, userObject) {
     } else {
         userInitials.innerText = `${userInitial}`;
     }
-
-
 }
 
 function extrahiereInitialen(element) {
@@ -167,7 +162,6 @@ function extrahiereInitialen(element) {
     }
 }
 
-
 async function fetchUserData(path) {
     let response = await fetch(getDatabaseUrl(path));
     let responsetoJson = await response.json();
@@ -177,7 +171,6 @@ async function fetchUserData(path) {
     }
     loadInitailUser();
 }
-
 
 function getDatabaseUrl(path) {
     let token = sessionStorage.getItem('authToken');
@@ -216,5 +209,4 @@ function returnInput() {
         document.getElementById('passwordInput').classList.remove('falseEnter');
         document.getElementById('fail').classList.add('d_none');
     }
-
 }

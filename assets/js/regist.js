@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     password.addEventListener('input', validateForm);
     confirmPassword.addEventListener('input', validateForm);
     privacyPolicy.addEventListener('change', validateForm);
-    
+
     document.getElementById('registrationForm').addEventListener('submit', handleRegistration);
 
     async function handleRegistration(event) {

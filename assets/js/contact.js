@@ -10,18 +10,18 @@ const farben = [
     "Rot2", "Neongelb", "Neongrün", "Neonorange"
 ];
 
-
-
 async function load() {
     await loadData("/contact");
     sortContactsByName();
     loadContact();
     fetchUserData('/user');
 }
+
 function getDatabaseUrl(path) {
     const token = sessionStorage.getItem('authToken');
     return `${BASE_URL}${path}.json?auth=${token}`;
 }
+
 async function loadData(path) {
     let response = await fetch(getDatabaseUrl(path));
     let responsetoJson = await response.json();
@@ -32,6 +32,7 @@ async function loadData(path) {
         }
     }
 }
+
 async function postData(path, data) {
     let response = await fetch(getDatabaseUrl(path), {
         method: "POST",

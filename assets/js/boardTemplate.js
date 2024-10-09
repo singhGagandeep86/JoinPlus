@@ -53,16 +53,14 @@ function templatePopUpTask1() {
                             </div>
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
-                                <div class="prioForm"> 
+                                <div class="prioForm">
                                     <input type="radio" name="priority" value="urgent" id="urgent">
                                     <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png" alt=""></label>
-                            
                                     <input type="radio" name="priority" value="medium" id="medium" checked>
                                     <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png" alt=""></label>
-                            
                                     <input type="radio" name="priority" value="low" id="low">
                                     <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
-                                </div>  
+                                </div>
                             </div>
                             <div class="assign">
                                 <label for="Category"><span>Category <sup>*</sup></span></label>
@@ -99,21 +97,22 @@ function templatePopUpTask1() {
                 </form>
         </div>`
 }
+
 function templateTaskHTML(element) {
     let rangeId = `subtaskRange-${element['number']}`;
     let contactpic = `contact-${element['number']}`;
     return `<div id="taskAll" onclick="openPopUpTaskSmall(${element['number']})" class="task" draggable="true" ondragstart="startDragging(${element['number']}, this) ">
-    <div class="taskInfo">     
+    <div class="taskInfo">
         <div id="taskSwitch" class="taskName">
         <span class="bg_${element['color']}">${element['category']}</span>
-        <span  onclick="openPopUpTaskSwitch(${element['number']});event.stopPropagation();"><img class="arrowImg" id="arrowSwitch${element['number']}" src="../img/arrow_drop_downaa.svg" alt=""></span>       
+        <span  onclick="openPopUpTaskSwitch(${element['number']});event.stopPropagation();"><img class="arrowImg" id="arrowSwitch${element['number']}" src="../img/arrow_drop_downaa.svg" alt=""></span>
         </div>
         <div class="taskTitle">
             <span>${element['title']}</span>
             <span>${element['description']}</span>
         </div>
         <div id="${rangeId}"></div>
-    <div id="contactAreaPic-${element['number']}" class="contactAndPrioArea" onmouseover="checkForOverflow(${element['number']})" ondragstart="preventDrag(${element['number']}, event)"><div id="${contactpic}" class="contact" ></div>   
+    <div id="contactAreaPic-${element['number']}" class="contactAndPrioArea" onmouseover="checkForOverflow(${element['number']})" ondragstart="preventDrag(${element['number']}, event)"><div id="${contactpic}" class="contact" ></div>
     <div class="bg_${element['prio']}"></div> </div>
     <div id="popupTaskSwitch${element['number']}" class="taskSwitchArea d_none" ></div>
     </div>
@@ -121,7 +120,7 @@ function templateTaskHTML(element) {
 }
 
 function templateTaskSmallInfo(objDateTask) {
-    
+
     return `<div id="closeAreaInfo" class="popupTaskInfo">
             <div class="infoTitle"><div><span class=" bgInfo_${objDateTask.color}" >${objDateTask.category}</span>
             </div><img onclick="closePopUpTaskSmall()" src="../img/Close.png" alt=""></div>
@@ -137,6 +136,7 @@ function templateTaskSmallInfo(objDateTask) {
                 <div><img onclick="editOpen(${objDateTask.number})" class="editPic" src="../img/editcontacts.png" alt=""></div></div></div>
         </div>`;
 }
+
 function templateRange(subtask, checkedCount) {
     return ` <div class="range"><progress id="subTaskRange" max="${subtask}" value="${checkedCount}"></progress>
     <span>${checkedCount}/${subtask} Subtasks</span></div>`
@@ -165,6 +165,7 @@ function moveTaskTo1(element) {
     <button value="await" onclick="changeIdTaskValue(this.value, ${element})">Await</button>
     <button value="done" onclick="changeIdTaskValue(this.value, ${element})">Done</button></div>`
 }
+
 function moveTaskTo2(element) {
     return `<span class="moveTitle">Move Task To:</span>
     <div class="moveTaskBTN">
@@ -172,6 +173,7 @@ function moveTaskTo2(element) {
     <button value="await" onclick="changeIdTaskValue(this.value, ${element})">Await</button>
     <button value="done" onclick="changeIdTaskValue(this.value, ${element})">Done</button></div>`
 }
+
 function moveTaskTo3(element) {
     return `<span class="moveTitle">Move Task To:</span>
     <div class="moveTaskBTN">
@@ -179,6 +181,7 @@ function moveTaskTo3(element) {
     <button value="progress" onclick="changeIdTaskValue(this.value, ${element})">In progress</button>
     <button value="done" onclick="changeIdTaskValue(this.value, ${element})">Done</button></div>`
 }
+
 function moveTaskTo4(element) {
     return `<span class="moveTitle">Move Task To:</span>
     <div class="moveTaskBTN">
@@ -200,7 +203,7 @@ function editTask(objData) {
             <div class="smallHead descSytle">Description</div>
             <textarea  rows="4" cols="37"  class="textAreaData"></textarea>
         </div>
-      
+
      <div class="dueDate">
             <div class="smallHead dateStyle"><span>Due Date</span>
             </div>
@@ -208,7 +211,7 @@ function editTask(objData) {
         </div>
       <div class="prioArea">
     <span>Priority</span>
-    <div class="prioForm"> 
+    <div class="prioForm">
         <input type="radio" name="priority" value="urgent" id="urgent">
         <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png" alt=""></label>
 
@@ -217,20 +220,18 @@ function editTask(objData) {
 
         <input type="radio" name="priority" value="low" id="low">
         <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
-    </div>                     
+    </div>
 </div>
 <div class="assignedStyle"><span>Assigned to</span></div>
 <div class="contactDrop" onclick="contactDropOpen()"><span>Select Contacts to assgin</span> <img id="arrowContactDrop"  src="../img/arrow_drop_runter.png" alt=""></div>
 <div id="contactDropArea" class="contactDropData d_none"></div>
-<div id="initialsArea" class="initialsEdit"></div>    
+<div id="initialsArea" class="initialsEdit"></div>
 <div class="subtaskStyle"><span>Subtaskt</span></div>
   <div id="subtaskInput" class="substart"></div>
-    <ul id="subTaskBoard" class="ulArea" ></ul>   
-    
+    <ul id="subTaskBoard" class="ulArea" ></ul>
     </div>
-    
-    <div onclick="readEditData(${objData.number})" class="editAdd"> <span>Ok</span><img class="primevect" src="../img/check.svg"></div> 
-    
+
+    <div onclick="readEditData(${objData.number})" class="editAdd"> <span>Ok</span><img class="primevect" src="../img/check.svg"></div>
     </div>`
 }
 
@@ -239,11 +240,12 @@ function checkboxContactTemplate(isChecked, contactName , initials, color) {
 }
 
 function initialsLoadContact(initials, colorIni) {
-    return ` <div class="b-${colorIni} boxinfo "><span>${initials}</span></div> `    
+    return ` <div class="b-${colorIni} boxinfo "><span>${initials}</span></div> `
 }
+
 function subtaskstart() {
     return `<div onclick="subtastAdd()" class="substart2">
-                <span>Add new subtask</span> 
+                <span>Add new subtask</span>
                 <span>+</span>
             </div>`;
 }
@@ -263,7 +265,7 @@ function addSubTask(inputValue) {
     return `
     <li class="liSubTask" ondblclick="editSubTask(this)">
         <span class="taskText">• ${inputValue}</span>
-        <div class="addDelet">            
+        <div class="addDelet">
             <div class="strich"></div>
             <span>
                 <img onclick="deleteTask(event)" src="../img/Propertydelete.png" alt="Delete">
@@ -303,7 +305,6 @@ function templateSub3(newValue) {
                 <div class="strich"></div>
                 <span><img onclick="toggleEditTask(event, this)" src="../img/Propertycheck.png" alt="Edit/Save"></span>
             </div>`
-    
 }
 
 function templateSub4(currentText) {
@@ -313,5 +314,5 @@ function templateSub4(currentText) {
             <span><img onclick="deleteTask(event)" src="../img/Propertydelete.png" alt="Delete"></span>
             <div class="strich"></div>
             <span><img onclick="toggleEditTask(event, this)" src="../img/Propertycheck.png" alt="Edit/Save"></span>
-        </div>`   
+        </div>`
 }
