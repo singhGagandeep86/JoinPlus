@@ -1,3 +1,9 @@
+@media (max-width: 800px) {
+    .Screen-Logo {
+        display: none;
+    }
+}
+
 @media (max-width: 698px) {
     .loginarea {
         width: 350px;
@@ -166,6 +172,7 @@
 
     .Screen-Logo {
         background-color: #2A3647;
+        display: block;
     }
 
     .join-logo {
