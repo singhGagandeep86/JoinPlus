@@ -29,6 +29,9 @@
         gap: 25px;
         padding: 8px;
     }
+    .failEnter p{
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 496px) {
@@ -81,6 +84,9 @@
     footer .footercontent {
         gap: 10px;
         padding: 8px;
+    }
+    .failEnter p{
+        font-size: 12px;
     }
 }
 
@@ -141,12 +147,18 @@
         padding: 6px;
         margin-bottom: 15px;
     }
+    .failEnter p{
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 397px) {
     .loginarea {
         width: 200px;
         padding: 0 40px;
+    }
+    .failEnter p{
+        font-size: 12px;
     }
 
     header .topline {
