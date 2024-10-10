@@ -23,7 +23,7 @@ document.getElementById('overlay2').addEventListener('click', function(event) {
 
 
 function overlay2(i) {
-    return ` 
+    return `
                      <div class="popup">
                          <div class="popup-left">
                              <div class="logo">
@@ -53,13 +53,9 @@ function overlay2(i) {
                                  </div>
                              </form>
                          </div>
-                     </div>
-                 
-                 `
-     
- }
+</div>`}
 
- function loadContactDetails(i, initials, number) {
+function loadContactDetails(i, initials, number) {
     return `
         <div class="contact-ellipse">
         <img onclick="showContactList(${i})" class="arrowContact" src="../img/arrow-left-line.png">
@@ -85,16 +81,14 @@ function overlay2(i) {
                 </button>
         <div id="editImage2" class="d_none">
 
-         <div  class="editimage2 ">
+<div  class="editimage2 ">
                     <img onclick="editContact(${i})" class="editimages" src="../img/editcontacts.png">
                     <img onclick="deleteContact(${number})" class="editimages2" src="../img/Deletecontact.png">
                 </div>
                 </div>
-    `
-    
- }
+`}
 
- function loadContactData(i, initials) {
+function loadContactData(i, initials) {
     return `<div class="contact-group">
                 <div class="contact-item active2" onclick="showContactDetails(${i}, '${initials}')">
                     <div class="avatar"><span class="b-${array[i].color}">${initials}</span></div>

@@ -91,11 +91,12 @@
         width: 100%;
     }
 
-    .contactArea{
+    .contactArea {
         display: flex;
         justify-content: center;
         flex-direction: column;
     }
+
     .contact-container-right {
         display: none;
     }
@@ -107,35 +108,37 @@
     .contact-container-right.OnDetails {
         display: block;
     }
-    .contact-text{
+
+    .contact-text {
         flex-direction: column;
         align-items: start;
         gap: 10px;
-
     }
 
-    .contact-text img{
+    .contact-text img {
         content: url("../img/unterstrichvector.png");
         order: 3;
     }
+
     .editimage{
         display: none;
     }
-    .popup{
+
+    .popup {
         flex-direction: column;
         width: 467px;
     }
 
-    .contact-ellipse{
+    .contact-ellipse {
         scale: 0.7;
         transform: translate(-150px);
     }
 
-    .contact-info{
+    .contact-info {
         padding-left: 0;
     }
 
-    .arrowContact{
+    .arrowContact {
         position: fixed;
         top: -220px;
         right: -200px;
@@ -151,7 +154,7 @@
         overflow: auto;
     }
 
-    .contact-slide-in{
+    .contact-slide-in {
         height: 300vh;
     }
 

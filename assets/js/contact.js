@@ -80,7 +80,7 @@ function loadContact() {
 function showContactDetails(i, initials) {
     let number = array[i].number;
     let contactDetails = document.getElementById('contactDetails');
-    let allContacts = document.querySelectorAll('.contact-item');   
+    let allContacts = document.querySelectorAll('.contact-item');
     if (allContacts[i].classList.contains('active-contact')) {
         allContacts[i].classList.remove('active-contact');
         contactDetails.innerHTML = '';
@@ -88,14 +88,14 @@ function showContactDetails(i, initials) {
     }
     for (let i = 0; i < allContacts.length; i++) {
         allContacts[i].classList.remove('active-contact');
-    }  
+    }
     allContacts[i].classList.add('active-contact');
     contactDetails.classList.add('contact-slide-in');
     if (window.innerWidth <= 800) {
         document.querySelector('.container').classList.add('hidden');
         document.querySelector('.contact-container-right').classList.add('OnDetails');
     }
-    activeContact(i,number,initials);   
+    activeContact(i,number,initials);
 }
 
 function activeContact(i,number,initials) {
@@ -201,7 +201,6 @@ async function createContactData(name, email, phone, number, firstNameInitial, c
         'cat': firstNameInitial,
         'number': number
     });
-
 }
 
 async function postCreateData(path = "", data = {}) {
@@ -240,7 +239,6 @@ function extrahiereInitialen2(contactName) {
 
 function farbGenerator() {
     let zufaelligeFarbe = farben[Math.floor(Math.random() * farben.length)];
-
     return zufaelligeFarbe;
 }
 
