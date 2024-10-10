@@ -90,6 +90,7 @@ function showContactDetails(i, initials) {
     let contactDetails = document.getElementById('contactDetails');
     let allContacts = document.querySelectorAll('.contact-item');
     let number = array[i].number;
+    let element = array[i];
 
     if (allContacts[i].classList.contains('active-contact')) {
         allContacts[i].classList.remove('active-contact');
@@ -102,23 +103,7 @@ function showContactDetails(i, initials) {
     }
 
     allContacts[i].classList.add('active-contact');
-    contactDetails.classList.add('contact-slide-in')
-
-        let meinOverlay  = document.getElementById('leftOverlay');
-        meinOverlay .style.display = 'flex';
-
-        meinOverlay .innerHTML = `
-            <div class="contact-text" id="contact-text">
-                    <h1>Contacts</h1>
-                    <img src="../img/arrow-left-line.png">
-                    <img src="../img/unterstrichvector.png">
-                    <p>Better with a team</p>
-                </div>
-            <h2>${array[i].name}</h2>
-            <p>Email: ${array[i].email}</p>
-            <p>Phone: ${array[i].rufnummer || ''}</p>
-            <div class="underline-img"></div>
-        `;
+    contactDetails.classList.add('contact-slide-in')    
 
     contactDetails.innerHTML = `
         <div class="contact-ellipse">
@@ -126,7 +111,7 @@ function showContactDetails(i, initials) {
             <div class="contact-mini">
                 <h1>${array[i].name}</h1>
                 <div class="editimage">
-                    <img class="editimages" src="../img/editcontacts.png">
+                    <img onclick="editContact(${element})" class="editimages" src="../img/editcontacts.png">
                     <img onclick="deleteContact(${number})" class="editimages2" src="../img/Deletecontact.png">
                 </div>
             </div>
@@ -138,6 +123,15 @@ function showContactDetails(i, initials) {
             <p><b>Phone</b></p>
             ${array[i].rufnummer || ''}
         </div>
+
+        <button class="mini-add-contact">
+                    <img src="../img/person_add.png">
+                </button>
+
+         <div class="editimage2">
+                    <img onclick="editContact(${element})" class="editimages" src="../img/editcontacts.png">
+                    <img onclick="deleteContact(${number})" class="editimages2" src="../img/Deletecontact.png">
+                </div>
     `;
 }
 

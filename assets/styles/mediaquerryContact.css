@@ -27,11 +27,11 @@
     }
 }
 
-@media (max-width: 977px) {
+/* @media (max-width: 977px) {
     .contact-text {
         display: none;
     }
-}
+} */
 
 @media(max-width: 800px) {
     .asideMenu:nth-of-type(4) {
