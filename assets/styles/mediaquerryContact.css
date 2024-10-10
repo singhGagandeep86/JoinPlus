@@ -2,20 +2,21 @@
     .content {
         padding: 0;
     }
+
     .mini-add-contact{
         display: none;
     }
+
     .mainDesign{
         width: 100%;
     }
-    .arrowContact{
+
+    .arrowContact {
         display: none;
     }
-    .contact-text img{
+    .contact-text img {
         content: url("../img/Vectorstrich.png");
-              
     }
-    
 }
 
 
@@ -49,7 +50,6 @@
     }
     .contact-text img{
         content: url("../img/Vectorstrich.png");
-              
     }
 }
 
@@ -89,7 +89,7 @@
     .container {
         overflow: auto;
         width: 100%;
-    }    
+    }
 
     .contactArea{
         display: flex;
@@ -116,7 +116,7 @@
 
     .contact-text img{
         content: url("../img/unterstrichvector.png");
-        order: 3;       
+        order: 3;
     }
     .editimage{
         display: none;
@@ -124,17 +124,17 @@
     .popup{
         flex-direction: column;
         width: 467px;
-       
     }
-   
+
     .contact-ellipse{
         scale: 0.7;
         transform: translate(-150px);
-       
     }
+
     .contact-info{
         padding-left: 0;
     }
+
     .arrowContact{
         position: fixed;
         top: -220px;
@@ -143,22 +143,19 @@
         height: 50px;
         cursor: pointer;
     }
-  
 }
-
-
 
 @media(max-width: 390px) {
     .container {
         width: 100%;
         overflow: auto;
     }
+
     .contact-slide-in{
         height: 300vh;
-        
     }
-    .content{
-        
+
+    .content {
         height: 300vh;
         overflow: auto;
     }
@@ -166,6 +163,7 @@
     .contact-text {
         display: block;
     }
+
     .contact-container-right{
         padding-left: 10px;
         margin-left: 0;
@@ -175,7 +173,8 @@
     .contact-text h1 {
         font-size: 35px;
     }
-    .arrowContact{
+
+    .arrowContact {
         position: fixed;
         top: -220px;
         right: -100px;
@@ -183,10 +182,10 @@
         height: 50px;
         cursor: pointer;
     }
-    .contact-ellipse{
+
+    .contact-ellipse {
         scale: 0.6;
         transform: translate(-100px);
-       
     }
 }
 
@@ -197,10 +196,6 @@
 
     .btn-image {
         display: none;
-    }
-
-    .mini-add-contact {
-        display: block;
     }
 
     .contact-text {
