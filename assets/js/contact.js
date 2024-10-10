@@ -93,7 +93,6 @@ function showContactDetails(i, initials) {
     let number = array[i].number;
 
     if (allContacts[i].classList.contains('active-contact')) {
-
         allContacts[i].classList.remove('active-contact');
         contactDetails.innerHTML = '';
         return;
@@ -105,6 +104,19 @@ function showContactDetails(i, initials) {
 
     allContacts[i].classList.add('active-contact');
     contactDetails.classList.add('contact-slide-in')
+
+        let meinOverlay  = document.getElementById('leftOverlay');
+        meinOverlay .style.display = 'flex';
+
+        meinOverlay .innerHTML = `
+            <div class="logo">
+                <img src="../img/Joinlogowhite.png" alt="Logo">
+            </div>
+            <h2>${array[i].name}</h2>
+            <p>Email: ${array[i].email}</p>
+            <p>Phone: ${array[i].rufnummer || ''}</p>
+            <div class="underline-img"></div>
+        `;
 
     contactDetails.innerHTML = `
         <div class="contact-ellipse">

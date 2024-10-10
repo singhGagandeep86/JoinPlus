@@ -60,8 +60,6 @@
     }
 
     .container {
-
-       
         overflow: auto;
         width: 100%;
     }
@@ -76,7 +74,6 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
-        
     }
 }
 
@@ -90,5 +87,9 @@
 @media(max-width:320px){
     .btn-image{
         width: 95%;
+    }
+
+    .popup-test {
+        display: flex;
     }
 }
