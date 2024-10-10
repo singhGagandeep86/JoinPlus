@@ -1,10 +1,21 @@
-@media (min-width: 1439px) {
+@media (min-width: 1301px) {
     .content {
         padding: 0;
     }
+    .mini-add-contact{
+        display: none;
+    }
+    .mainDesign{
+        width: 100%;
+    }
+    .arrowContact{
+        display: none;
+    }
+    
 }
 
-@media (max-width: 1300px) {
+
+@media(min-width: 801px) and (max-width:1300px){
     .content {
         padding: 0;
     }
@@ -25,13 +36,14 @@
     .picHelp {
         display: none;
     }
-}
 
-/* @media (max-width: 977px) {
-    .contact-text {
+    .mini-add-contact{
         display: none;
     }
-} */
+    .arrowContact{
+        display: none;
+    }
+}
 
 @media(max-width: 800px) {
     .asideMenu:nth-of-type(4) {
@@ -69,22 +81,28 @@
     .container {
         overflow: auto;
         width: 100%;
-    }
-
-    .contact-text {
-        display: none;
-    }
-
-    .contact-container-right{
-        display: none;
-    }
+    }    
 
     .contactArea{
         display: flex;
         justify-content: center;
         flex-direction: column;
     }
+    .contact-container-right {
+        display: none; /* Nur die Kontaktliste anzeigen */
+    }
+
+    .container.hidden {
+        display: none; /* Kontaktliste ausblenden, wenn sie die Klasse 'hidden' hat */
+    }
+
+    .contact-container-right.OnDetails {
+        display: block; /* Kontakt-Details einblenden, wenn aktiv */
+    }
+    
 }
+
+
 
 @media(max-width: 390px) {
     .container {
