@@ -288,6 +288,21 @@ html, body {
     }
 }
 
+/* .maintestpopup {
+    position: absolute;
+    left: 20px;
+}
+
+.popup-test {
+    background-color: #2A3647;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 66px 48px 66px 48px;
+    height: 50vh;
+} */
+
 .popup-left {
     background-color: #2A3647;
     color: white;
