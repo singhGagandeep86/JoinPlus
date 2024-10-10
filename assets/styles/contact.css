@@ -568,11 +568,3 @@ input::placeholder {
     content: url("../img/IconsContact.png");
 }
 
-.arrowContact{
-    position: fixed;
-    top: 180px;
-    right: 60px;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-}

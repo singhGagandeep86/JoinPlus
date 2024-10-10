@@ -11,6 +11,10 @@
     .arrowContact{
         display: none;
     }
+    .contact-text img{
+        content: url("../img/Vectorstrich.png");
+              
+    }
     
 }
 
@@ -42,6 +46,10 @@
     }
     .arrowContact{
         display: none;
+    }
+    .contact-text img{
+        content: url("../img/Vectorstrich.png");
+              
     }
 }
 
@@ -99,7 +107,38 @@
     .contact-container-right.OnDetails {
         display: block; /* Kontakt-Details einblenden, wenn aktiv */
     }
-    
+    .contact-text{
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+
+    }
+
+    .contact-text img{
+        content: url("../img/unterstrichvector.png");
+        order: 3;       
+    }
+
+    .editimage{
+        display: none;
+    }
+    .contact-ellipse{
+        scale: 0.7;
+        transform: translate(-150px);
+       
+    }
+    .contact-info{
+        padding-left: 0;
+    }
+    .arrowContact{
+        position: fixed;
+        top: -220px;
+        right: -200px;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+    }
+  
 }
 
 
@@ -109,6 +148,15 @@
         width: 100%;
         overflow: auto;
     }
+    .contact-slide-in{
+        height: 300vh;
+        width: 100%;
+    }
+    .content{
+        width: 100%;
+        height: 300vh;
+        overflow: auto;
+    }
 
     .contact-text {
         display: block;
@@ -116,6 +164,14 @@
 
     .contact-text h1 {
         font-size: 35px;
+    }
+    .arrowContact{
+        position: fixed;
+        top: -220px;
+        right: -100px;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
     }
 }
 
