@@ -108,9 +108,12 @@ function showContactDetails(i, initials) {
         meinOverlay .style.display = 'flex';
 
         meinOverlay .innerHTML = `
-            <div class="logo">
-                <img src="../img/Joinlogowhite.png" alt="Logo">
-            </div>
+            <div class="contact-text" id="contact-text">
+                    <h1>Contacts</h1>
+                    <img src="../img/arrow-left-line.png">
+                    <img src="../img/unterstrichvector.png">
+                    <p>Better with a team</p>
+                </div>
             <h2>${array[i].name}</h2>
             <p>Email: ${array[i].email}</p>
             <p>Phone: ${array[i].rufnummer || ''}</p>
