@@ -1,4 +1,3 @@
-
 let path = '';
 let array = [];
 let data = {};

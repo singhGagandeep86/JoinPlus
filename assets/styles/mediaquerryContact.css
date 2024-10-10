@@ -92,4 +92,12 @@
     .popup-test {
         display: flex;
     }
+
+    .btn-image {
+        display: none;
+    }
+
+    .mini-add-contact {
+        display: block;
+    }
 }
