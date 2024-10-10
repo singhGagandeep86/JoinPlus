@@ -97,6 +97,7 @@ function showContactDetails(i, initials) {
     }
     activeContact(i,number,initials);   
 }
+
 function activeContact(i,number,initials) {
     let contactDetails = document.getElementById('contactDetails');
     contactDetails.innerHTML = loadContactDetails(i, initials, number);
@@ -119,12 +120,13 @@ function showContactList(i) {
 
 function editContact(i) {
     let popUpEdit = document.getElementById('overlay2');
-    document.getElementById('overlay2').classList.add('show');
+    document.getElementById('overlay2').classList.remove('d_none');
     popUpEdit.innerHTML = '';
     popUpEdit.innerHTML = overlay2(i);
     document.getElementById("name2").value = array[i].name;
     document.getElementById("email2").value = array[i].email;
     document.getElementById("phone2").value = array[i].rufnummer;
+    document.querySelector('.contact-container-right').classList.add('hidden');
 }
 
 function initializeEditButton(i) {
@@ -154,7 +156,7 @@ function closeEditImage() {
 }
 
 function editContactOff() {
-    document.getElementById('overlay2').classList.remove('show');
+    document.getElementById('overlay2').classList.add('d_none');
 
 }
 

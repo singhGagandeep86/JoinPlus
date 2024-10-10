@@ -97,15 +97,15 @@
         flex-direction: column;
     }
     .contact-container-right {
-        display: none; /* Nur die Kontaktliste anzeigen */
+        display: none;
     }
 
     .container.hidden {
-        display: none; /* Kontaktliste ausblenden, wenn sie die Klasse 'hidden' hat */
+        display: none;
     }
 
     .contact-container-right.OnDetails {
-        display: block; /* Kontakt-Details einblenden, wenn aktiv */
+        display: block;
     }
     .contact-text{
         flex-direction: column;
@@ -118,10 +118,15 @@
         content: url("../img/unterstrichvector.png");
         order: 3;       
     }
-
     .editimage{
         display: none;
     }
+    .popup{
+        flex-direction: column;
+        width: 467px;
+       
+    }
+   
     .contact-ellipse{
         scale: 0.7;
         transform: translate(-150px);
@@ -150,16 +155,21 @@
     }
     .contact-slide-in{
         height: 300vh;
-        width: 100%;
+        
     }
     .content{
-        width: 100%;
+        
         height: 300vh;
         overflow: auto;
     }
 
     .contact-text {
         display: block;
+    }
+    .contact-container-right{
+        padding-left: 10px;
+        margin-left: 0;
+        margin-top: 50px;
     }
 
     .contact-text h1 {
@@ -172,6 +182,11 @@
         width: 50px;
         height: 50px;
         cursor: pointer;
+    }
+    .contact-ellipse{
+        scale: 0.6;
+        transform: translate(-100px);
+       
     }
 }
 

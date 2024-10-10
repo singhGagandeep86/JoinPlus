@@ -17,7 +17,7 @@ document.getElementById('overlay').addEventListener('click', function(event) {
 });
 document.getElementById('overlay2').addEventListener('click', function(event) {
     if (event.target === document.getElementById('overlay2')) {
-        document.getElementById('overlay2').classList.remove('show');
+        document.getElementById('overlay2').classList.remove('d_none');
     }
 });
 
