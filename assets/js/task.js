@@ -31,18 +31,37 @@ async function fetchUrl() {
 function contactsData(firebase) {
   let contactsLength = Object.values(firebase);
   let objLngth = contactsLength.length;
-  let contact = document.getElementById("allCntcts");
   for (let i = 0; i < objLngth; i++) {
     const eachName = contactsLength[i].name;
     array.push(contactsLength[i]);
-    let colour = array[i].color;
-    const sanitizedEachName = eachName.replace(/\s+/g, '_');
-    const firstName = array[i].name.split(' ')[0].toUpperCase();
-    const lastName = array[i].name.split(' ')[1].toUpperCase();
-    const firstNameStart = firstName[0];
-    const lastNameStart = lastName[0];
-    contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart);
+    if (array[i].name.split(' ')[1]) {
+      wthScndName(i, eachName);
+    }
+    else { wthoutScndName(i, eachName); }
   }
+}
+
+// if both first Name & Second Name are present
+function wthScndName(i, eachName) {
+  let colour = array[i].color;
+  let sanitizedEachName = eachName.replace(/\s+/g, '_');
+  let firstName = array[i].name.split(' ')[0].toUpperCase();
+  let contact = document.getElementById("allCntcts");
+  let lastName = array[i].name.split(' ')[1].toUpperCase();
+  let firstNameStart = firstName[0];
+  let lastNameStart = lastName[0];
+  contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart);
+}
+
+// if only one Name is Present
+function wthoutScndName(i, eachName) {
+  let colour = array[i].color;
+  let sanitizedEachName = eachName.replace(/\s+/g, '_');
+  let firstName = array[i].name.split(' ')[0].toUpperCase();
+  let contact = document.getElementById("allCntcts");
+  let firstNameStart = firstName[0];
+  let lastNameStart = '';
+  contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart);
 }
 
 // updating arrays
@@ -71,9 +90,25 @@ function pushSelection(currenID, name, colour) {
   names.push(name);
   const nameArray = name.split('_');
   const firstName = nameArray[0].toUpperCase();
+  if (nameArray[1]) {
+    clrWthTwoNames(nameArray, firstName, colour);
+  }
+  else {
+    clrWthOneName(firstName, colour);
+  }
+}
+
+function clrWthTwoNames(nameArray, firstName, colour) {
   const lastName = nameArray[1].toUpperCase();
   let firstNameStart = firstName[0];
   let lastNameStart = lastName[0];
+  namesInitials.push(firstNameStart + lastNameStart);
+  colours.push(colour);
+}
+
+function clrWthOneName(firstName, colour) {
+  let firstNameStart = firstName[0];
+  let lastNameStart = '';
   namesInitials.push(firstNameStart + lastNameStart);
   colours.push(colour);
 }
@@ -187,26 +222,47 @@ function showCategory() {
   const select = document.getElementById("slection");
   let arrow = document.getElementById('arrowRight');
   if (!subTaskexpanded) {
-    select.classList.remove("selectHide");
     arrow.style.transform = "rotate(-180deg)";
     subTaskexpanded = true;
   }
   else {
     arrow.style.transform = "rotate(0deg)";
-    select.classList.add("selectHide");
     subTaskexpanded = false;
   }
 }
 
-// Event-Listener für Klick außerhalb der "Category"-Dropdown
+let dropdownOpen = false;
+
+// To open and close DropDown function
+function toggleDropdown() {
+  const dropdown = document.getElementById('dropdown');
+  const arrow = document.getElementById('arrowRight');
+
+  if (!dropdownOpen) {
+    dropdown.classList.remove('selectHide');
+    dropdownOpen = true;
+  } else {
+    dropdown.classList.add('selectHide');
+    dropdownOpen = false;
+  }
+}
+
+// function to select one Option
+function selectOption(element) {
+  const customSelect = document.getElementById('customSelect');
+  const hiddenSelect = document.getElementById('hiddenSelect');
+  customSelect.textContent = element.textContent;
+  hiddenSelect.value = element.getAttribute('data-value');
+  toggleDropdown();
+  customSelect.classList.remove('invalid');
+}
+
+// Event Listner to close when click outside
 document.addEventListener('click', function (rightEvent) {
-  const assignHeading = document.getElementById('assignHeading');
-  const selection = document.getElementById('slection');
-  const arrowRight = document.getElementById("arrowRight");
-  if (subTaskexpanded && !assignHeading.contains(rightEvent.target) && !arrowRight.contains(rightEvent.target)) {
-    selection.classList.add("selectHide");
-    arrowRight.style.transform = "rotate(0deg)";
-    subTaskexpanded = false;
+  const assignHeading = document.getElementById('customSelect');
+  const selection = document.getElementById('dropdown');
+  if (dropdownOpen && !assignHeading.contains(rightEvent.target)) {
+    toggleDropdown();
   }
 });
 
@@ -266,7 +322,7 @@ async function toWaiting(id) {
   let titleText = document.getElementById('titleText').value;
   let desText = document.getElementById('desText').value;
   let actDate = document.getElementById('dateData').value;
-  let category = document.getElementById('assignHeading').innerText;
+  let category = document.getElementById('customSelect').innerText;
   let priority = document.querySelector('input[name="priority"]:checked').value;
   let list = subTsksBoard.getElementsByTagName("li");
   let newTaskNumber = generateRandomNumber();
@@ -283,7 +339,7 @@ async function navigateToBoard() {
 }
 
 function categoryColourGen() {
-  let category = document.getElementById('assignHeading').innerText;
+  let category = document.getElementById('customSelect').innerText;
   return category.slice(0, 4);
 }
 

@@ -2,16 +2,15 @@ let userData = [];
 let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
 
 function handleLogin(event) {
-    event.preventDefault(); // Verhindert das Standard-Formularverhalten
+    event.preventDefault();
     let email = event.target.email.value;
     let password = event.target.password.value;
-    // Überprüfen, ob E-Mail und Passwort eingegeben wurden
+
     if (!email || !password) {
         console.error("Bitte E-Mail und Passwort eingeben");
         return;
     }
 
-    // Firebase REST API für die E-Mail- und Passwort-Authentifizierung
     fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
         method: 'POST',
         headers: {
@@ -32,14 +31,15 @@ function handleLogin(event) {
         .then(data => {
             if (data.idToken) {
 
-                sessionStorage.setItem('authToken', data.idToken); // Speichere den Token in sessionStorage
-                window.location.href = "assets/html/summary.html"; // Weiterleitung zur summary.html
+                sessionStorage.setItem('authToken', data.idToken);
+                window.location.href = "assets/html/summary.html";
             } else {
                 throw new Error("Anmeldung fehlgeschlagen: Kein Token erhalten");
             }
         })
         .catch(error => {
-            console.error("Fehler bei der Anmeldung:", error.message);
+
+            errorLogin();
         });
 }
 
@@ -61,30 +61,12 @@ function loginAlsGast() {
         })
         .then(data => {
             if (data.idToken) {
-                console.log("Gastzugang erfolgreich:", data);
-                let guestId = data.localId; // Gast-ID aus den Daten
-                let guestRef = `/guests/${guestId}`; // Pfad zur Speicherung der Gastdaten
-
-                // Hier kannst du zusätzliche Daten für den Gast speichern, z.B. einen anonymen Benutzernamen
-                fetch(`https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app${guestRef}.json`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: "Gast User", // Anonymen Namen setzen
-
-                    })
-                });
-
                 return data.idToken;
             } else {
                 throw new Error("Fehler bei der anonymen Authentifizierung: kein Token erhalten");
             }
         })
-        .catch(error => {
-            console.error("Fehler:", error);
-        });
+       
 }
 
 function gastLogin() {
@@ -121,21 +103,18 @@ function logout() {
 
 async function loadInitailUser() {
     let userId = sessionStorage.getItem('uid');
-    let nameGreeting = document.getElementById('greetingName');
     let userObject = userData.filter(e => e['uid'] === userId);
     if (userObject == '') {
-        nameGreeting.innerHTML = 'Guest User';
         let guest = 'GS'
         createUser(guest, userObject);
-
+        writeGreetinGuest(userObject)
     } else {
         for (let i = 0; i < userObject.length; i++) {
             let element = userObject[i].name;
             let userInitial = extrahiereInitialen(element)
             let replaceElement = capitalizeName(element)
             createUser(userInitial);
-            writeGreetin(replaceElement);
-
+            writeGreetin(replaceElement, userObject);
         }
     }
 }
@@ -146,11 +125,24 @@ function capitalizeName(name) {
         .join(' ');
 }
 
-function writeGreetin(replaceElement) {
+function writeGreetin(replaceElement, userObject) {
     let nameGreeting = document.getElementById('greetingName');
-    if (nameGreeting !== null) {
+
+    if (nameGreeting == null) {
+
+    } else {
         nameGreeting.innerHTML = replaceElement;
     }
+}
+
+function writeGreetinGuest() {
+    let nameGreeting = document.getElementById('greetingName');
+    if (nameGreeting == null) {
+
+    } else {
+        nameGreeting.innerHTML = 'Guest User'
+    }
+
 }
 
 function createUser(userInitial, guest, userObject) {
@@ -208,4 +200,21 @@ async function fetchAndStoreUID() {
         let uid = data.users[0].localId;
         sessionStorage.setItem('uid', uid);
     }
+}
+
+function errorLogin() {
+    document.getElementById('emailInput').classList.add('falseEnter');
+    document.getElementById('passwordInput').classList.add('falseEnter');
+    document.getElementById('fail').classList.remove('d_none');
+    document.getElementById('passwordInput').value = '';
+
+}
+
+function returnInput() {
+    if (document.getElementById('emailInput').value == '') {
+        document.getElementById('emailInput').classList.remove('falseEnter');
+        document.getElementById('passwordInput').classList.remove('falseEnter');
+        document.getElementById('fail').classList.add('d_none');
+    }
+
 }

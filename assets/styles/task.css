@@ -143,6 +143,7 @@ label {
     line-height: 24px;
 }
 
+
 .assignment {
     position: relative;
     color: #080808;
@@ -165,6 +166,7 @@ label {
 
 .arrow {
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 .arrow:hover {
@@ -292,7 +294,33 @@ label {
     margin-top: 24px;
 }
 
-/*style items (options):*/
+.assignments {
+    position: relative;
+    color: #080808;
+    cursor: pointer;
+    width: 100%;
+    height: 48px;
+    background: #FFFFFF;
+    padding: 6px 24px 8px 16px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+    background-image: url("../img/dropArrow.svg");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) center;
+}
+
+.assign select {
+    appearance: none;
+    margin-top: -10px;
+    height: 1px;
+    color: transparent;
+    border: none;
+    background-color: transparent;
+}
+
+
 .selectItems {
     position: absolute;
     margin-top: 80px;
@@ -675,15 +703,15 @@ li:hover {
     gap: 8px;
 }
 
-.doneIcon{
+.doneIcon {
     position: absolute;
-    top:45%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: 500ms;
     z-index: 100;
 }
+
 .d_noneImg {
     display: none;
 }
-

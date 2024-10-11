@@ -2,6 +2,13 @@
     .content {
         padding: 0 64px 0 64px;
     }
+    .helpOff{
+        display: none;
+    }
+    .burger-menu{
+        height: 158px;
+    }
+
 }
 
 @media(min-width:1301px) and (max-width:1439px) {
@@ -16,6 +23,12 @@
 
     .mainDesignAside {
         width: 160px;
+    }
+    .helpOff{
+        display: none;
+    }
+    .burger-menu{
+        height: 158px;
     }
 }
 
@@ -72,12 +85,15 @@
         margin-top: 0;
     }
 
-    .header span {
+    .changeMedia{
         content: url("../img/logosmall.png");
     }
 
     .asideMenu a {
         width: 200px;
+    }
+    .picHelp {
+        display: none;
     }
 }
 
@@ -133,7 +149,7 @@
         margin-top: 0;
     }
 
-    .header span {
+    .changeMedia {
         content: url("../img/logosmall.png");
     }
 
@@ -152,6 +168,10 @@
         justify-content: center;
         width: 80px;
         height: 76px;
+    }
+
+    .picHelp {
+        display: none;
     }
 
     .asideMenu:nth-of-type(3) {

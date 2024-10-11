@@ -41,17 +41,18 @@
         </aside>
 
         <div class="mainDesign">
-            <div class="header"><span>Kanban Projekt Management Tool</span>
+            <div class="header"><span class="changeMedia">Kanban Projekt Management Tool</span>
                 <div class="headerContentRightSide">
                     <a href="../html/help.html">
                         <img class="picHelp" src="../img/help.png">
                     </a>
-                    <div class="picSm" id="burgerToggle" ><span id="userIni"></span></div>  
+                    <div class="picSm" id="burgerToggle"><span id="userIni"></span></div>
                     <div class="burger-menu" id="burgerMenu">
                         <div class="burger-content">
-                            <h2>Legal Notice</h2>
-                            <h2>Privacy Policy</h2>                            
-                            <h2 onclick="logout()">Log Out</h2>                            
+                            <h2 class="helpOff"><a href="../html/help.html">Help</a></h2>
+                            <h2><a href="../html/legecy.html">Legal Notice</a></h2>
+                            <h2><a href="../html/privacy.html">Privacy Policy</a></h2>
+                            <h2 onclick="logout()">Log Out</h2>
                         </div>
                     </div>
                 </div>
@@ -92,26 +93,32 @@
                             </div>
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
-                                <div class="prioForm"> 
+                                <div class="prioForm">
                                     <input type="radio" name="priority" value="urgent" id="urgent">
-                                    <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png" alt=""></label>
-                            
+                                    <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png"
+                                            alt=""></label>
                                     <input type="radio" name="priority" value="medium" id="medium" checked>
-                                    <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png" alt=""></label>
-                            
+                                    <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png"
+                                            alt=""></label>
                                     <input type="radio" name="priority" value="low" id="low">
-                                    <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
-                                </div>  
-                            </div>
-                            <div class="assign">
-                                <label for="Category"><span>Category <sup>*</sup></span></label>
-                                <div class="assignment" id="assignHeading" onclick="showCategory()">
-                                    Select task category
-                                    <img class="arrow" id="arrowRight" src="../img/dropArrow.svg">
+                                    <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png"
+                                            alt=""></label>
                                 </div>
-                                <div id="slection" class="selectItems selectHide" required>
-                                    <div data-value="technical" onclick="showSelection(this)">Technical Task</div>
-                                    <div data-value="userStory" onclick="showSelection(this)">User Story</div>
+                            </div>
+
+                            <div class="assign">
+                                <label for="hiddenSelect"><span>Category <sup>*</sup></span></label>
+                                <div class="assignments" id="customSelect" onclick="toggleDropdown()">
+                                    Select task category
+                                </div>
+                                <select id="hiddenSelect" required>
+                                    <option value="" disabled selected>Select task category</option>
+                                    <option value="technical">Technical Task</option>
+                                    <option value="userStory">User Story</option>
+                                </select>
+                                 <div id="dropdown" class="selectItems selectHide">
+                                    <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
+                                    <div data-value="userStory" onclick="selectOption(this)">User Story</div>
                                 </div>
                             </div>
 
@@ -143,7 +150,7 @@
     <script src="../../script.js"></script>
     <script src="../js/task.js"></script>
     <script src="../js/taskTemplate.js"></script>
-    <script src="../js/submenu.js"></script>    
+    <script src="../js/submenu.js"></script>
 </body>
 
 </html>

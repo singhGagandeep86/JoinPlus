@@ -96,3 +96,15 @@
         transform: scale(0.8) translateX(-60px);  
     }
 }
+
+@media(max-width:340px){
+    .block-main{
+        transform: scale(0.8) translateX(-80px);                      
+    }
+    .block-mid{
+        transform: scale(0.77) translateX(-85px);  
+    }
+    .block-end{
+        transform: scale(0.8) translateX(-80px);  
+    }
+}
