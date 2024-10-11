@@ -2,7 +2,7 @@ let path = '';
 let array = [];
 let data = {};
 let isEventListenerRegistered = false;
-let mediaQueryContact = window.matchMedia("(max-width: 800px)");
+
 
 let farben = [
     "Purple", "Hellpurple", "Gelb", "Turkis", "Rosa", "Hellblau",
@@ -281,24 +281,36 @@ async function deleteContact(number) {
     load();
 }
 
-function deleteEdit(i) {
-    let contactDetail = document.getElementById('contactDetails');
+function deleteEdit(i) {    
     let number = array[i].number;
     deleteContact(number);
-    document.getElementById('overlayEdit').classList.add('d_none');
-    contactDetail.innerHTML = '';
+    saveEditDisplayOff();
+    
 }
 
 async function editContactData(event, i) {
     event.preventDefault();
-    let number = array[i].number;
-    let contactDetail = document.getElementById('contactDetails');
+    let number = array[i].number;    
     let name = document.getElementById('name2').value;
     let email = document.getElementById('email2').value;
     let phone = document.getElementById('phone2').value;
     await editContactFB(name, email, phone, number)
-    document.getElementById('overlayEdit').classList.add('d_none');
-    contactDetail.innerHTML = '';
+    saveEditDisplayOff();
+}
+
+function saveEditDisplayOff() {
+    let contactDetail = document.getElementById('contactDetails');
+    if (window.innerWidth <= 800) {
+        document.querySelector('.container').classList.remove('hidden');
+        document.querySelector('.container').classList.add('OnDetails');
+        document.querySelector('.contact-container-right').classList.remove('OnDetails');
+        document.querySelector('.contact-container-right').classList.add('hidden');
+        document.getElementById('overlayEdit').classList.add('d_none');
+        contactDetail.innerHTML = '';
+    }else{
+        document.getElementById('overlayEdit').classList.add('d_none');
+        contactDetail.innerHTML = '';
+    }   
 }
 
 async function editContactFB(name, email, phone, number) {
