@@ -82,6 +82,10 @@
     .contact-text img{
         content: url("../img/Vectorstrich.png");
     }
+    .asideMenu:nth-of-type(4) {
+        padding: 0;
+        border-radius: 10px;        
+    }
     
 }
 
@@ -121,12 +125,6 @@
     .container {
         overflow: auto;
         width: 100%;
-    }
-
-    .contactArea {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
     }
 
     .contact-container-right {
@@ -188,7 +186,7 @@
 
     .popup-right .close-btn {
         top: -170px;
-        content: url(../img/Closewhite.png);
+        content: url("../img/Closewhite.png");
     }
 
     .popup-actions {
@@ -213,6 +211,8 @@
         cursor: pointer;
     }
 }
+    
+    
 
 @media(max-width: 390px) {
     .container {

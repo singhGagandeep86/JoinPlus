@@ -2,6 +2,10 @@
     .greating{
         display: none;
     }
+    .asideMenu:nth-of-type(1) {
+        padding: 0;
+        border-radius: 10px;
+    }
 }
 
 @media(max-width:800px) {
