@@ -1,57 +1,52 @@
-document.getElementById('add-contact-btn').addEventListener('click', function() {
+document.getElementById('add-contact-btn').addEventListener('click', function () {
     document.getElementById('overlay').classList.add('show');
 });
 
-document.getElementById('cancel-icon').addEventListener('click', function() {
+document.getElementById('cancel-icon').addEventListener('click', function () {
     document.getElementById('overlay').classList.remove('show');
 });
 
-document.getElementById('close-btn').addEventListener('click', function() {
+document.getElementById('close-btn').addEventListener('click', function () {
     document.getElementById('overlay').classList.remove('show');
 });
 
-document.getElementById('overlay').addEventListener('click', function(event) {
+document.getElementById('overlay').addEventListener('click', function (event) {
     if (event.target === document.getElementById('overlay')) {
         document.getElementById('overlay').classList.remove('show');
     }
 });
-document.getElementById('overlay2').addEventListener('click', function(event) {
-    if (event.target === document.getElementById('overlay2')) {
-        document.getElementById('overlay2').classList.remove('d_none');
-    }
-});
 
 
-function overlay2(i) {
+function overlay2(i, initials) {
     return `
-                     <div class="popup">
-                         <div class="popup-left">
-                             <div class="logo">
+                     <div id="EditAreaStop" class="popupEdit">
+                         <div class="popupEditLeft">
+                             <div class="logoEdit">
                                  <img src="../img/Joinlogowhite.png" alt="Logo">
                              </div>
                              <h2>Edit contact</h2>
-                             <p>Tasks are better with a team!</p>
-                             <div class="underline-img"></div>
+                             
+                             <img class="strichEdit" src="../img/unterstrichvector.png">
                          </div>
-                         <div class="popup-right">
-                             <div class="elipse">
-                                 <img src="../img/kreisigrau.png">
+                         <div class="popupEditRight">
+                             <div >
+                                <span class="contact-ellipse2 b-${array[i].color}">${initials}</span>
                              </div>
-                                 <div onclick="editContactOff()" class="close-btn" id="close-btn2">
-                                     <img src="../img/Close.png">
-                                 </div>
+                                 
                              <form id="contactFormEdit">
-                                 <div class="form-group">
+                                 <div class="EditInput">
                                      <div class="input-container"><input id="name2" type="text" placeholder="Name" required></div>
                                      <div class="input-container"><input id="email2" type="email" placeholder="Email" required></div>
                                      <div class="input-container"><input id="phone2" type="tel" placeholder="Phone"></div>
                                  </div>
                                  <div class="popup-actions">
-                                     <button onclick="deleteEdit(${i})" type="button" id="cancel-icon" class="cancelbutton">Delete <span class="cancel-icon"></span>
-                                     </button>
+                                     <button onclick="deleteEdit(${i})" type="button" id="cancel-icon" class="cancelbutton">Delete</button>
                                      <button onclick="editContactData(event, ${i})" class="createbuttoncontact" type="submit">Save <img src="../img/checkaddcontact.png"></button>
                                  </div>
                              </form>
+                             <div onclick="editContactOff()" class="closeBtnEdit">
+                                     <img src="../img/Close.png">
+                                 </div>
                          </div>
 </div>`}
 

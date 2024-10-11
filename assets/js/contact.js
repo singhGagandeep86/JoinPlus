@@ -95,10 +95,10 @@ function showContactDetails(i, initials) {
         document.querySelector('.container').classList.add('hidden');
         document.querySelector('.contact-container-right').classList.add('OnDetails');
     }
-    activeContact(i,number,initials);
+    activeContact(i, number, initials);
 }
 
-function activeContact(i,number,initials) {
+function activeContact(i, number, initials) {
     let contactDetails = document.getElementById('contactDetails');
     contactDetails.innerHTML = loadContactDetails(i, initials, number);
     initializeEditButton(i);
@@ -119,14 +119,29 @@ function showContactList(i) {
 }
 
 function editContact(i) {
-    let popUpEdit = document.getElementById('overlay2');
-    document.getElementById('overlay2').classList.remove('d_none');
+    let contactName = array[i].name;
+    let initials = extrahiereInitialen(contactName);
+    let popUpEdit = document.getElementById('overlayEdit');
+    document.getElementById('overlayEdit').classList.remove('d_none');
     popUpEdit.innerHTML = '';
-    popUpEdit.innerHTML = overlay2(i);
+    popUpEdit.innerHTML = overlay2(i, initials);
+    loadInputEdit(i)
+    document.querySelector('.contact-container-right').classList.add('hidden');
+    stopEditArea();
+}
+
+function stopEditArea() {
+    let area = document.getElementById('EditAreaStop');
+    area.addEventListener('click', (event) => {
+        event.stopPropagation()
+    })
+
+}
+
+function loadInputEdit(i) {
     document.getElementById("name2").value = array[i].name;
     document.getElementById("email2").value = array[i].email;
     document.getElementById("phone2").value = array[i].rufnummer;
-    document.querySelector('.contact-container-right').classList.add('hidden');
 }
 
 function initializeEditButton(i) {
@@ -156,7 +171,7 @@ function closeEditImage() {
 }
 
 function editContactOff() {
-    document.getElementById('overlay2').classList.add('d_none');
+    document.getElementById('overlayEdit').classList.add('d_none');
 
 }
 
@@ -270,7 +285,7 @@ function deleteEdit(i) {
     let contactDetail = document.getElementById('contactDetails');
     let number = array[i].number;
     deleteContact(number);
-    document.getElementById('overlay2').classList.remove('show');
+    document.getElementById('overlayEdit').classList.add('d_none');
     contactDetail.innerHTML = '';
 }
 
@@ -282,7 +297,7 @@ async function editContactData(event, i) {
     let email = document.getElementById('email2').value;
     let phone = document.getElementById('phone2').value;
     await editContactFB(name, email, phone, number)
-    document.getElementById('overlay2').classList.remove('show');
+    document.getElementById('overlayEdit').classList.add('d_none');
     contactDetail.innerHTML = '';
 }
 

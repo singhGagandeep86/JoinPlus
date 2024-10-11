@@ -16,6 +16,7 @@
 
 <body onload="load()">
     <div class="overDisplay">
+
         <aside class="mainDesignAside">
             <img class="mainDesignAsideImg" src="../img/Joinlogowhite.png" alt="">
             <div class="mainDesignAsideLinks">
@@ -63,7 +64,6 @@
                     <button class="mini-personadd-contact">
                         <img src="../img/miniaddperson.png">
                     </button>
-
                     <div id="contactArea" class="contactArea"></div>
                 </div>
                 <div class="contact-container-right" id="contact-container-right">
@@ -93,7 +93,8 @@
                             </div>
                             <form id="contactForm">
                                 <div class="form-group">
-                                    <div class="input-container"><input id="name" type="text" placeholder="Name" required>
+                                    <div class="input-container"><input id="name" type="text" placeholder="Name"
+                                            required>
                                     </div>
                                     <div class="input-container"><input id="email" type="email" placeholder="Email"
                                             required></div>
@@ -113,10 +114,9 @@
                     </div>
                 </div>
             </div>
-           
-            <div class="overlay2 d_none" id="overlay2"></div>
         </div>
     </div>
+    <div onclick="editContactOff()" class="ContactEdit d_none" id="overlayEdit"></div>
     <script src="../../script.js"></script>
     <script src="../js/contacttemplate.js"></script>
     <script src="../js/submenu.js"></script>
