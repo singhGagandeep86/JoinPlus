@@ -245,4 +245,10 @@
     .contact-text h1 {
         font-size: 35px;
     }
+
+    .mini-personadd-contact {
+        display: flex;
+        position: absolute;
+        bottom: 70px;
+    }
 }

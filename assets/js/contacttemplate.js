@@ -78,10 +78,10 @@ function loadContactDetails(i, initials, number) {
 
         <button id="editBtn" onclick="editMenuOn()" class="mini-add-contact">
                     <img  src="../img/MenuContactoptions.png">
-                </button>
-        <div id="editImage2" class="d_none">
+        </button>
 
-<div  class="editimage2 ">
+        <div id="editImage2" class="d_none">
+        <div  class="editimage2 ">
                     <img onclick="editContact(${i})" class="editimages" src="../img/editcontacts.png">
                     <img onclick="deleteContact(${number})" class="editimages2" src="../img/Deletecontact.png">
                 </div>
