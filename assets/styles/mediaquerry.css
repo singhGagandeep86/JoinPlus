@@ -41,12 +41,15 @@
     .mainDesign {
         width: 100%;
     }
+
     .asideMenu{
         width:160px;
     }
+
     .asideMenu:hover{
         width:160px;
     }
+
     .active{
         width:160px
     }
@@ -62,9 +65,7 @@
     .mainDesign {
         height: 100%;
         width: 100%;
-
     }
-    
 
     .mainDesignAside {
         position: fixed;
@@ -78,7 +79,6 @@
     .asideMenu{
         width:160px ;
     }
-    
 
     .asideMenuArea {
         width: 100%;

@@ -31,6 +31,12 @@
         justify-content: center;
         width: 100%;
     }
+
+    .overlay2 {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
 }
 
 
@@ -155,8 +161,29 @@
 
     .popup {
         flex-direction: column;
-        width: 467px;
-        height: 800px;
+        width: 380px;
+        height: 650px;
+    }
+
+    .overlay2 {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    .popup-left {
+        .logo {
+            display: none;
+        }
+
+        h2 {
+            font-size: 47px;
+            line-height: 56.4px;
+        }
+
+        p {
+            display: none;
+        }
     }
 
     .popup-right {
@@ -164,6 +191,15 @@
         align-items: center;
         justify-content: center;
         width: 100%;
+    }
+
+    .popup-right .close-btn {
+        top: -170px;
+        content: url(../img/Closewhite.png);
+    }
+
+    .popup-actions {
+        justify-content: center;
     }
 
     .contact-ellipse {
@@ -226,6 +262,17 @@
     .contact-ellipse {
         scale: 0.6;
         transform: translate(-100px);
+    }
+
+    .popup {
+        width: 350px;
+        height: 680px;
+    }
+
+    .overlay2 {
+        justify-content: center;
+        align-items: center;
+        display: flex;
     }
 }
 
