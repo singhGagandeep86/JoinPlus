@@ -14,8 +14,22 @@
     .arrowContact {
         display: none;
     }
+
     .contact-text img {
         content: url("../img/Vectorstrich.png");
+    }
+
+    .popup {
+        flex-direction: column;
+        width: 467px;
+        height: 800px;
+    }
+
+    .popup-right {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
     }
 }
 
@@ -38,6 +52,19 @@
         width: 34px;
     }
 
+    .popup {
+        flex-direction: column;
+        width: 467px;
+        height: 800px;
+    }
+
+    .popup-right {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
     .picHelp {
         display: none;
     }
@@ -45,9 +72,11 @@
     .mini-add-contact{
         display: none;
     }
+
     .arrowContact{
         display: none;
     }
+
     .contact-text img{
         content: url("../img/Vectorstrich.png");
     }
@@ -127,6 +156,14 @@
     .popup {
         flex-direction: column;
         width: 467px;
+        height: 800px;
+    }
+
+    .popup-right {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
     }
 
     .contact-ellipse {
