@@ -20,10 +20,14 @@
             <img class="mainDesignAsideImg" src="../img/Joinlogowhite.png" alt="">
             <div class="mainDesignAsideLinks">
                 <div class="asideMenuArea">
-                    <div id="summary" class="asideMenu"><a href="../html/summary.html"><img src="../img/Summary.png" alt="">Summary</a></div>
-                    <div id="task" class="asideMenu"><a href="../html/task.html"><img src="../img/Add task.png" alt="">Add Task</a></div>
-                    <div id="board" class="asideMenu "><a href="../html/board.html"> <img src="../img/Board.png" alt="">Board</a></div>
-                    <div id="contact" class="asideMenu active"><a href="#"><img class="activeContact" src="../img/Contacts.png" alt="">Contacts</a></div>
+                    <div id="summary" class="asideMenu"><a href="../html/summary.html"><img src="../img/Summary.png"
+                                alt="">Summary</a></div>
+                    <div id="task" class="asideMenu"><a href="../html/task.html"><img src="../img/Add task.png"
+                                alt="">Add Task</a></div>
+                    <div id="board" class="asideMenu "><a href="../html/board.html"> <img src="../img/Board.png"
+                                alt="">Board</a></div>
+                    <div id="contact" class="asideMenu active"><a href="#"><img class="activeContact"
+                                src="../img/Contacts.png" alt="">Contacts</a></div>
                 </div>
                 <div class="legacyMenu">
                     <a href="../html/privacy.html">Privacy Policy</a>
@@ -39,26 +43,37 @@
                     <a href="../html/help.html">
                         <img class="picHelp" src="../img/help.png">
                     </a>
-                    <div class="picSm" id="burgerToggle" ><span id="userIni"></span></div>  
+                    <div class="picSm" id="burgerToggle"><span id="userIni"></span></div>
                     <div class="burger-menu" id="burgerMenu">
                         <div class="burger-content">
-                            <h2><a href="../html/help.html">Help</a></h2>
+                            <h2 class="helpOff"><a href="../html/help.html">Help</a></h2>
                             <h2><a href="../html/legecy.html">Legal Notice</a></h2>
-                            <h2><a href="../html/privacy.html">Privacy Policy</a></h2>                           
-                            <h2 onclick="logout()">Log Out</h2>                       
+                            <h2><a href="../html/privacy.html">Privacy Policy</a></h2>
+                            <h2 onclick="logout()">Log Out</h2>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="content">
-                <div class="container">
+                <div id="changeContactList" class="container">
                     <div class="btn-image" id="add-contact-btn">
                         <button>Add new contact</button>
                         <img src="../img/person_add.png">
                     </div>
-            <div id="contactArea" class="contactArea"></div>
+                    <button class="mini-personadd-contact">
+                        <img src="../img/miniaddperson.png">
+                    </button>
 
+                    <div id="contactArea" class="contactArea"></div>
+                </div>
+                <div class="contact-container-right" id="contact-container-right">
+                    <div class="contact-text" id="contact-text">
+                        <h1>Contacts</h1>
+                        <img src="../img/Vectorstrich.png">
+                        <p>Better with a team</p>
+                    </div>
+                    <div id="contactDetails"></div>
+                </div>
                 <div class="overlay testshow" id="overlay">
                     <div class="popup">
                         <div class="popup-left">
@@ -71,43 +86,41 @@
                         </div>
                         <div class="popup-right">
                             <div class="elipse">
-                                <img src="../img/kreisi grau.png">
+                                <img src="../img/kreisigrau.png">
                             </div>
-                                <div class="close-btn" id="close-btn">
-                                    <img src="../img/Close.png">
-                                </div>
+                            <div class="close-btn" id="close-btn">
+                                <img src="../img/Close.png">
+                            </div>
                             <form id="contactForm">
                                 <div class="form-group">
-                                    <div class="input-container"><input id="name" type="text" placeholder="Name" required></div>
-                                    <div class="input-container"><input id="email" type="email" placeholder="Email" required></div>
-                                    <div class="input-container"><input id="phone" type="tel" placeholder="Phone"></div>
+                                    <div class="input-container"><input id="name" type="text" placeholder="Name" required>
+                                    </div>
+                                    <div class="input-container"><input id="email" type="email" placeholder="Email"
+                                            required></div>
+                                    <div class="input-container"><input id="phone" type="tel" placeholder="Phone">
+                                    </div>
                                 </div>
                                 <div class="popup-actions">
-                                    <button type="button" id="cancel-icon" class="cancelbutton">Cancel <span class="cancel-icon">
-                                    </span>
+                                    <button type="button" id="cancel-icon" class="cancelbutton">Cancel <span
+                                            class="cancel-icon">
+                                        </span>
                                     </button>
-                                    <button onclick="addContactData()" class="createbuttoncontact" type="submit">Create contact <img src="../img/checkaddcontact.png"></button>
+                                    <button onclick="addContactData()" class="createbuttoncontact" type="submit">Create
+                                        contact <img src="../img/checkaddcontact.png"></button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="contact-container-right" id="contact-container-right">
-                <div class="contact-text" id="contact-text">
-                    <h1>Contacts</h1>
-                    <img src="../img/Vector strich.png">
-                    <p>Better with a team</p>
-                </div>
-                <div id="contactDetails"></div>
-            </div>
+           
+            <div class="overlay2 d_none" id="overlay2"></div>
         </div>
-    </div>
     </div>
     <script src="../../script.js"></script>
     <script src="../js/contacttemplate.js"></script>
     <script src="../js/submenu.js"></script>
     <script src="../js/contact.js"></script>
 </body>
-</html>
 
+</html>

@@ -53,6 +53,8 @@
                             <h2><a href="../html/legecy.html">Legal Notice</a></h2>
                             <h2><a href="../html/privacy.html">Privacy Policy</a></h2>
                             <h2 onclick="logout()">Log Out</h2>
+                            <h2><a href="../html/privacy.html">Privacy Policy</a></h2>
+                            <h2 onclick="logout()">Log Out</h2>
                         </div>
                     </div>
                 </div>
@@ -94,42 +96,44 @@
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
                                 <div class="prioForm">
-                                    <input type="radio" name="priority" value="urgent" id="urgent">
-                                    <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png"
-                                            alt=""></label>
-                                    <input type="radio" name="priority" value="medium" id="medium" checked>
-                                    <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png"
-                                            alt=""></label>
-                                    <input type="radio" name="priority" value="low" id="low">
-                                    <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png"
-                                            alt=""></label>
+                                    <div class="prioForm">
+                                        <input type="radio" name="priority" value="urgent" id="urgent">
+                                        <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png"
+                                                alt=""></label>
+                                        <input type="radio" name="priority" value="medium" id="medium" checked>
+                                        <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png"
+                                                alt=""></label>
+                                        <input type="radio" name="priority" value="low" id="low">
+                                        <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png"
+                                                alt=""></label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="assign">
-                                <label for="hiddenSelect"><span>Category <sup>*</sup></span></label>
-                                <div class="assignments" id="customSelect" onclick="toggleDropdown()">
-                                    Select task category
+                                <div class="assign">
+                                    <label for="hiddenSelect"><span>Category <sup>*</sup></span></label>
+                                    <div class="assignments" id="customSelect" onclick="toggleDropdown()">
+                                        Select task category
+                                    </div>
+                                    <select id="hiddenSelect" required>
+                                        <option value="" disabled selected>Select task category</option>
+                                        <option value="technical">Technical Task</option>
+                                        <option value="userStory">User Story</option>
+                                    </select>
+                                    <div id="dropdown" class="selectItems selectHide">
+                                        <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
+                                        <div data-value="userStory" onclick="selectOption(this)">User Story</div>
+                                    </div>
                                 </div>
-                                <select id="hiddenSelect" required>
-                                    <option value="" disabled selected>Select task category</option>
-                                    <option value="technical">Technical Task</option>
-                                    <option value="userStory">User Story</option>
-                                </select>
-                                 <div id="dropdown" class="selectItems selectHide">
-                                    <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
-                                    <div data-value="userStory" onclick="selectOption(this)">User Story</div>
-                                </div>
-                            </div>
 
-                            <div id="inputSubClass" class="subtasks">
-                                <div class="smallHead">Subtasks</div>
-                                <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
-                                        placeholder="Add new subtask" type="text">
-                                    <img class="tsksGen" src="../img/subTaskIcon.svg">
+                                <div id="inputSubClass" class="subtasks">
+                                    <div class="smallHead">Subtasks</div>
+                                    <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
+                                            placeholder="Add new subtask" type="text">
+                                        <img class="tsksGen" src="../img/subTaskIcon.svg">
+                                    </div>
                                 </div>
+                                <ul class="a" id="subTsksBoard"></ul>
                             </div>
-                            <ul class="a" id="subTsksBoard"></ul>
                         </div>
                     </div>
                     <div class="info">
@@ -150,6 +154,7 @@
     <script src="../../script.js"></script>
     <script src="../js/task.js"></script>
     <script src="../js/taskTemplate.js"></script>
+    <script src="../js/submenu.js"></script>
     <script src="../js/submenu.js"></script>
 </body>
 

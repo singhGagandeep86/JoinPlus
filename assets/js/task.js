@@ -1,5 +1,3 @@
-
-
 let token = sessionStorage.getItem('authToken');
 let names = [];
 let namesInitials = [];
@@ -16,10 +14,9 @@ async function init() {
 }
 
 function getDatabaseUrl(path) {
-  return `${BASE_URL}${path}.json?auth=${token}`; // URL für die Datenbank zurückgeben
+  return `${BASE_URL}${path}.json?auth=${token}`;
 }
 
-// fetch basicData from firebase
 async function fetchUrl() {
   let firebaseUrl = await fetch(BASE_URL + ".json?auth=" + token);
   let firebaseUrlAsJson = await firebaseUrl.json();
@@ -27,7 +24,6 @@ async function fetchUrl() {
   contactsData(firebaseData[0]);
 }
 
-// processing contacts after fetch
 function contactsData(firebase) {
   let contactsLength = Object.values(firebase);
   let objLngth = contactsLength.length;
@@ -82,7 +78,6 @@ function selectionContact(name, colour) {
   }
 }
 
-// pushing selections into arrays
 function pushSelection(currenID, name, colour) {
   currenID.parentElement.style.backgroundColor = "#2A3647";
   currenID.parentElement.style.color = "white";
@@ -124,7 +119,6 @@ function spliceSelection(currenID, name) {
   colours.splice(currentName, 1);
 }
 
-// initialising subTasks
 function renderSubTask() {
   if (!document.getElementById('inputField')) {
     document.getElementById('inputSubClass').innerHTML = subTaskTemp();
@@ -132,13 +126,11 @@ function renderSubTask() {
   }
 }
 
-// reseting input when nothing is entered
 function resetInput() {
   document.getElementById('inputField').value = '';
   document.getElementById('inputSubClass').innerHTML = emptyField();
 }
 
-// adding input value into lists
 function addList() {
   let subTaskInput = document.getElementById('inputField').value;
   let subTaskBoard = document.getElementById('subTsksBoard');
@@ -148,19 +140,16 @@ function addList() {
   document.getElementById('inputSubClass').innerHTML = emptyField();
 }
 
-// revealing buttons when hovered
 function hoverEffect(element) {
   let buttons = element.querySelector('.btns');
   buttons.classList.remove('subTaskIcon');
 }
 
-// hiding effects when away
 function normalEffect(element) {
   let buttons = element.querySelector('.btns');
   buttons.classList.add('subTaskIcon');
 }
 
-// editing added subtask
 function editsubTask(element) {
   let parent = element.closest('li');
   let currentValue = parent.querySelector('.leftPart').innerText.trim();
@@ -172,12 +161,10 @@ function editsubTask(element) {
 </div></div>`;
 }
 
-// removing subtask
 function delsubTask(element) {
   element.closest('li').remove();
 }
 
-// subtask renewing 
 function newSubTask(element) {
   let parent = element.closest('li');
   let newValue = parent.querySelector('.subTaskInput').value;
@@ -188,7 +175,6 @@ function newSubTask(element) {
 </div>`;
 }
 
-// Drop down function for Assigned Contacts
 function showCheckBoxes() {
   const allCntcts = document.getElementById("allCntcts");
   if (!expanded) {
@@ -202,7 +188,6 @@ function showCheckBoxes() {
   }
 }
 
-// Event-Listener für Klick außerhalb der "Assigned Contacts"-Dropdown
 document.addEventListener('click', function (event) {
   const assign = document.getElementById("assign");
   const allCntcts = document.getElementById("allCntcts");
@@ -214,10 +199,8 @@ document.addEventListener('click', function (event) {
       event.stopPropagation();
     });
   }
-
 });
 
-// Drop down function for category
 function showCategory() {
   const select = document.getElementById("slection");
   let arrow = document.getElementById('arrowRight');
@@ -266,14 +249,12 @@ document.addEventListener('click', function (rightEvent) {
   }
 });
 
-// showing selected Subtask
 function showSelection(element) {
   const select = element.innerHTML;
   document.getElementById('assignHeading').innerHTML = `${select}<img class="arrow" id="arrowRight" src="../img/dropArrow.svg">`;
   document.getElementById("slection").classList.add("selectHide");
 }
 
-// reseting all
 function resetAll() {
   deletArray()
   resetingGlobalVariable();
@@ -287,7 +268,6 @@ function resetAll() {
     label.style.color = "black";
     chkBox.style.content = "url(../img/CheckbuttonEmpty.png)";
   }
-
 }
 
 function deletArray() {
@@ -297,7 +277,6 @@ function deletArray() {
   array = [];
 }
 
-// event for onSubmit button
 document.addEventListener('DOMContentLoaded', function () {
   let form = document.getElementById('myForm');
   if (form) {
@@ -308,16 +287,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// popup show
 async function addingTask(id) {
   document.getElementById('taskDoneIcon').classList.remove("d_noneImg");
   await toWaiting(id);
   await navigateToBoard();
 }
 
-// dies ist der breich für add der Task in Firebase
-
-//collect all Datas & added to Firebase
 async function toWaiting(id) {
   let titleText = document.getElementById('titleText').value;
   let desText = document.getElementById('desText').value;

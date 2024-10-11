@@ -1,49 +1,23 @@
+@media (max-width: 1040px) {
+    .logo {
+        top: 30px;
+        left: 50px;
+    }
+
+    .logo img {
+        width: 80px;
+        height: 100px;
+    }
+
+    .loginarea {
+        padding: 20px 115px;
+        width: 400px;
+    }
+}
+
 @media (max-width: 800px) {
     .Screen-Logo {
-        background-color: #2A3647;
-        display: block;
-    }
-
-    .join-logo {
-        opacity: 0;
-        z-index: 1000;
-    }
-
-    .final-logo {
-        display: block;
-        content: url("../img/logowhite.png");
-    }
-
-    @keyframes JoinlogoScreen {
-        0% {
-            top: 50%;
-            left: 50%;
-            width: 140px;
-            height: 200px;
-        }
-        100% {
-            top: 50px;
-            left: 50px;
-            width: 140px;
-            height: 200px;
-            opacity: 1;
-        }
-    }
-
-    @keyframes FinalLogoScreen {
-        0% {
-            top: 50%;
-            left: 50%;
-            width: 140px;
-            height: 200px;
-            opacity: 1;
-        }
-        100% {
-            top: 50px;
-            left: 50px;
-            width: 140px;
-            height: 200px;
-        }
+        display: none;
     }
 }
 
@@ -51,6 +25,7 @@
     .loginarea {
         width: 350px;
         height: 60vh;
+        padding: 20px 115px;
     }
 
     .loginarea form .custome-input input {
@@ -59,7 +34,7 @@
 
     footer .footercontent {
         gap: 30px;
-        padding: 10px;
+        width: 100%;
     }
 }
 
@@ -70,10 +45,11 @@
 
     footer .footercontent {
         gap: 25px;
-        padding: 8px;
+        width: 100%;
     }
-    .failEnter p{
-        font-size: 14px;
+
+    .arrowleft {
+        left: -63px;
     }
 }
 
@@ -83,7 +59,7 @@
         height: 60vh;
     }
 
-    .loginheadline .textline  {
+    .loginheadline .textline {
         font-size: 40px;
         line-height: 56.4px;
         text-align: center;
@@ -126,10 +102,7 @@
 
     footer .footercontent {
         gap: 10px;
-        padding: 8px;
-    }
-    .failEnter p{
-        font-size: 12px;
+
     }
 }
 
@@ -144,7 +117,7 @@
         width: 200px;
     }
 
-    .loginheadline .textline  {
+    .loginheadline .textline {
         font-size: 35px;
         line-height: 56.4px;
         text-align: center;
@@ -187,11 +160,7 @@
 
     footer .footercontent {
         gap: 15px;
-        padding: 6px;
         margin-bottom: 15px;
-    }
-    .failEnter p{
-        font-size: 12px;
     }
 }
 
@@ -199,10 +168,6 @@
     .loginarea {
         width: 200px;
         padding: 0 40px;
-    }
-
-    .failEnter p{
-        font-size: 12px;
     }
 
     header .topline {
@@ -221,9 +186,57 @@
     }
 
     footer .footercontent {
-        gap: 10px;
-        padding: 6px;
+        gap: 10px;       
         margin-bottom: 10px;
+    }
+
+    .Screen-Logo {
+        background-color: #2A3647;
+        display: block;
+    }
+
+    .join-logo {
+        opacity: 0;
+        z-index: 1000;
+    }
+
+    .final-logo {
+        display: block;
+        content: url("../img/logowhite.png");
+    }
+
+    @keyframes JoinlogoScreen {
+        0% {
+            top: 50%;
+            left: 50%;
+            width: 140px;
+            height: 200px;
+        }
+
+        100% {
+            top: 50px;
+            left: 50px;
+            width: 140px;
+            height: 200px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes FinalLogoScreen {
+        0% {
+            top: 50%;
+            left: 50%;
+            width: 140px;
+            height: 200px;
+            opacity: 1;
+        }
+
+        100% {
+            top: 50px;
+            left: 50px;
+            width: 140px;
+            height: 200px;
+        }
     }
 }
 
@@ -238,8 +251,7 @@
     }
 
     footer .footercontent {
-        gap: 8px;
-        padding: 4px;
+        gap: 8px;        
         margin-bottom: 8px;
     }
 }
@@ -250,4 +262,3 @@
         padding: 0 35px;
     }
 }
-

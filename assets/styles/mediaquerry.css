@@ -2,16 +2,21 @@
     .content {
         padding: 0 64px 0 64px;
     }
-    .helpOff{
+
+    .helpOff {
         display: none;
     }
-    .burger-menu{
+
+    .burger-menu {
         height: 158px;
     }
 
+    .mainDesign {
+        width: 100%;
+    }
 }
 
-@media(min-width:1301px) and (max-width:1439px) {
+@media(min-width:1301px) and (max-width:1400px) {
     .content {
         padding-left: 10px;
         padding-right: 0px;
@@ -24,11 +29,29 @@
     .mainDesignAside {
         width: 160px;
     }
-    .helpOff{
+
+    .helpOff {
         display: none;
     }
-    .burger-menu{
+
+    .burger-menu {
         height: 158px;
+    }
+
+    .mainDesign {
+        width: 100%;
+    }
+
+    .asideMenu{
+        width:160px;
+    }
+
+    .asideMenu:hover{
+        width:160px;
+    }
+
+    .active{
+        width:160px
     }
 }
 
@@ -41,6 +64,7 @@
 
     .mainDesign {
         height: 100%;
+        width: 100%;
     }
 
     .mainDesignAside {
@@ -51,6 +75,9 @@
         height: 150px;
         align-items: center;
         z-index: 99;
+    }
+    .asideMenu{
+        width:160px ;
     }
 
     .asideMenuArea {
@@ -85,13 +112,14 @@
         margin-top: 0;
     }
 
-    .changeMedia{
+    .changeMedia {
         content: url("../img/logosmall.png");
     }
 
     .asideMenu a {
         width: 200px;
     }
+
     .picHelp {
         display: none;
     }
@@ -106,6 +134,7 @@
 
     .mainDesign {
         height: 100%;
+        width: 100%;
     }
 
     .mainDesignAside {
@@ -120,6 +149,7 @@
 
     .asideMenuArea {
         gap: 10px;
+
     }
 
     #summary {

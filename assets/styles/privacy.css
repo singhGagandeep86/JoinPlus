@@ -51,15 +51,12 @@ body {
 }
 
 @media(max-width:480px) {
-    
     .text-arrow h1{
         font-size:40px;
     }
 }
 
-
 @media(max-width:1300px) {
-    
     .headerContentRightSide{
         display: none;
     }

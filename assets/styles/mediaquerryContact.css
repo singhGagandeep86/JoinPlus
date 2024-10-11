@@ -1,10 +1,42 @@
-@media (min-width: 1439px) {
+@media (min-width: 1301px) {
     .content {
         padding: 0;
     }
+
+    .mini-add-contact{
+        display: none;
+    }
+
+    .mainDesign{
+        width: 100%;
+    }
+
+    .arrowContact {
+        display: none;
+    }
+
+    .contact-text img {
+        content: url("../img/Vectorstrich.png");
+    }
+
+    .popup {
+        flex-direction: column;
+        width: 467px;
+        height: 800px;
+    }
+
+    .popup-right {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    
 }
 
-@media (max-width: 1300px) {
+
+@media(min-width: 801px) and (max-width:1300px){
     .content {
         padding: 0;
     }
@@ -22,9 +54,35 @@
         width: 34px;
     }
 
+    .popup {
+        flex-direction: column;
+        width: 467px;
+        height: 800px;
+    }
+
+    .popup-right {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
     .picHelp {
         display: none;
     }
+
+    .mini-add-contact{
+        display: none;
+    }
+
+    .arrowContact{
+        display: none;
+    }
+
+    .contact-text img{
+        content: url("../img/Vectorstrich.png");
+    }
+    
 }
 
 @media(max-width: 800px) {
@@ -38,12 +96,22 @@
         padding: 10px;
     }
 
+    .mainDesign {
+        height: 100%;
+        width: 100%;
+    }
+
+    .contact-group{
+        width: 60%;
+    }
+
     .header span {
         width: 34px;
     }
 
     .content {
         padding: 0;
+        width: 100%;
     }
 
     .picHelp {
@@ -51,18 +119,172 @@
     }
 
     .container {
-        justify-content: initial;
+        overflow: auto;
+        width: 100%;
+    }
+
+    .contactArea {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .contact-container-right {
+        display: none;
+    }
+
+    .container.hidden {
+        display: none;
+    }
+
+    .contact-container-right.OnDetails {
+        display: block;
     }
 
     .contact-text {
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+    }
+
+    .contact-text img {
+        content: url("../img/unterstrichvector.png");
+        order: 3;
+    }
+
+    .editimage{
         display: none;
+    }
+
+    .popup {
+        flex-direction: column;
+        width: 380px;
+        height: 650px;
+    }
+
+    
+
+    .popup-left {
+        .logo {
+            display: none;
+        }
+
+        h2 {
+            font-size: 47px;
+            line-height: 56.4px;
+        }
+
+        p {
+            display: none;
+        }
+    }
+
+    .popup-right {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .popup-right .close-btn {
+        top: -170px;
+        content: url(../img/Closewhite.png);
+    }
+
+    .popup-actions {
+        justify-content: center;
+    }
+
+    .contact-ellipse {
+        scale: 0.7;
+        transform: translate(-150px);
+    }
+
+    .contact-info {
+        padding-left: 0;
+    }
+
+    .arrowContact {
+        position: fixed;
+        top: -220px;
+        right: -200px;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
     }
 }
 
-@media(max-width: 320px) {
+@media(max-width: 390px) {
     .container {
+        width: 100%;
+        overflow: auto;
+    }
+
+    .contact-slide-in {
+        height: 300vh;
+    }
+
+    .content {
+        height: 300vh;
+        overflow: auto;
+    }
+
+    .contact-text {
+        display: block;
+    }
+
+    .contact-container-right{
         padding-left: 10px;
+        margin-left: 0;
+        margin-top: 50px;
+    }
+
+    .contact-text h1 {
+        font-size: 35px;
+    }
+
+    .arrowContact {
+        position: fixed;
+        top: -220px;
+        right: -100px;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+    }
+
+    .contact-ellipse {
+        scale: 0.6;
+        transform: translate(-100px);
+    }
+
+    .popup {
+        width: 350px;
+        height: 680px;
+    }
+
+    
+}
+
+@media(max-width: 320px) {
+    .popup-test {
+        display: block;
+    }
+
+    .btn-image {
+        display: none;
+    }
+
+    .contact-text {
+        display: block;
+    }
+
+    .contact-text h1 {
+        font-size: 35px;
+    }
+
+    .mini-personadd-contact {
         display: flex;
-        justify-content: flex-start;
+        position: absolute;
+        bottom: 70px;
     }
 }

@@ -2,8 +2,8 @@ let summeryArray = [];
 
 
 async function init() {
-    await loadData("/task");    
-    await fetchAndStoreUID(); 
+    await loadData("/task");
+    await fetchAndStoreUID();
     loadAllData();
     await fetchUserData('/user');
 }
@@ -22,6 +22,7 @@ async function loadData(path) {
         }
     }
 }
+
 async function loadAllData() {
     loadTodo();
     loadProgress();
@@ -31,7 +32,6 @@ async function loadAllData() {
     loadPrio();
     dateDeadline();
    await addGreating();
-    
 }
 
 function loadTodo() {
@@ -140,12 +140,10 @@ function loadGreeting() {
 }
 
 function addGreating() {
-    
     let greatingArea = document.getElementById('greatingDay');
     let greeting = loadGreeting();
     greatingArea.innerHTML = ''
     greatingArea.innerHTML = `<span>${greeting}</span>, <span id="greetingName"></span>`;
-    
 }
 
 function fetchAndStoreUID() {

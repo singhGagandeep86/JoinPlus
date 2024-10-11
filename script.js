@@ -5,12 +5,10 @@ function handleLogin(event) {
     event.preventDefault();
     let email = event.target.email.value;
     let password = event.target.password.value;
-
     if (!email || !password) {
-        console.error("Bitte E-Mail und Passwort eingeben");
+        errorLogin();
         return;
     }
-
     fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
         method: 'POST',
         headers: {
@@ -66,7 +64,6 @@ function loginAlsGast() {
                 throw new Error("Fehler bei der anonymen Authentifizierung: kein Token erhalten");
             }
         })
-       
 }
 
 function gastLogin() {
@@ -75,24 +72,9 @@ function gastLogin() {
             sessionStorage.setItem('authToken', token);
             fetchAndStoreUID();
             window.location.href = "assets/html/summary.html";
-        } else {
-            console.error("Gastzugang fehlgeschlagen: Kein Token erhalten");
         }
     });
 }
-
-function gastLogin() {
-    loginAlsGast().then((token) => {
-        if (token) {
-            sessionStorage.setItem('authToken', token);
-            window.location.href = "assets/html/summary.html";
-
-        } else {
-            console.error("Gastzugang fehlgeschlagen: Kein Token erhalten");
-        }
-    });
-}
-
 
 function logout() {
     sessionStorage.removeItem('authToken');
@@ -142,7 +124,6 @@ function writeGreetinGuest() {
     } else {
         nameGreeting.innerHTML = 'Guest User'
     }
-
 }
 
 function createUser(userInitial, guest, userObject) {
@@ -152,8 +133,6 @@ function createUser(userInitial, guest, userObject) {
     } else {
         userInitials.innerText = `${userInitial}`;
     }
-
-
 }
 
 function extrahiereInitialen(element) {
@@ -167,7 +146,6 @@ function extrahiereInitialen(element) {
     }
 }
 
-
 async function fetchUserData(path) {
     let response = await fetch(getDatabaseUrl(path));
     let responsetoJson = await response.json();
@@ -177,7 +155,6 @@ async function fetchUserData(path) {
     }
     loadInitailUser();
 }
-
 
 function getDatabaseUrl(path) {
     let token = sessionStorage.getItem('authToken');
@@ -216,5 +193,4 @@ function returnInput() {
         document.getElementById('passwordInput').classList.remove('falseEnter');
         document.getElementById('fail').classList.add('d_none');
     }
-
 }

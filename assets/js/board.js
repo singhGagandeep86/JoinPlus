@@ -1,5 +1,3 @@
-
-
 let path = "";
 let data = {};
 let url = '';
@@ -9,15 +7,14 @@ let draggedElement;
 let mediaQuery = window.matchMedia("(max-width: 1100px)");
 let toggle = 0;
 
-
 async function load() {
     await loadData("/task");
     fetchUserData('/user');
-    
 }
+
 function getDatabaseUrl(path) {
-    const token = sessionStorage.getItem('authToken'); // Aktuellen Token abrufen
-    return `${BASE_URL}${path}.json?auth=${token}`; // URL für die Datenbank zurückgeben
+    let token = sessionStorage.getItem('authToken');
+    return `${BASE_URL}${path}.json?auth=${token}`;
 }
 
 async function loadData(path) {
@@ -34,14 +31,11 @@ async function loadData(path) {
     taskAdd();
 }
 
-
-
 async function taskAdd() {
     todo();
     inPorgess();
     awaits();
     done();
-
 }
 
 function todo() {
@@ -63,7 +57,6 @@ function todo() {
                 document.getElementById('toDo').innerHTML += templateTaskHTML(element);
                 subtaskBar(element, checkedCount);
                 loadContactTask(element, contacts, contactName);
-
             } else {
                 let checkedCount = checkBoxObject.filter(e => e === true).length;
                 document.getElementById('toDo').innerHTML += templateTaskHTML(element);
@@ -128,8 +121,6 @@ function awaits() {
                 subtaskBar(element, checkedCount);
                 loadContactTask(element, contacts, contactName);
             }
-
-
         }
     }
 }
@@ -187,8 +178,8 @@ function openPopUpTask(id) {
             event.stopPropagation()
         })
     }
-
 }
+
 function handleMediaChange(e) {
     if (e.matches) {
         window.location.href = 'task.html';
@@ -210,8 +201,8 @@ function subtaskBar(element, checkedCount) {
     let range = document.getElementById(rangeId);
     let subtaskCount = Object.keys(element.subtask).length
     range.innerHTML = templateRange(subtaskCount, checkedCount);
-
 }
+
 function loadContactTask(element, contacts, contactName) {
     let contactpic = `contact-${element['number']}`
     let taskContact = document.getElementById(contactpic);
@@ -226,6 +217,7 @@ function loadContactTask(element, contacts, contactName) {
         }
     }
 }
+
 function checkForOverflow(taskNumber) {
     let contactArea = document.getElementById(`contactAreaPic-${taskNumber}`);
     if (contactArea.scrollHeight > contactArea.clientHeight || contactArea.scrollWidth > contactArea.clientWidth) {
@@ -273,7 +265,6 @@ function createobjFromElement(i) {
 
 function closePopUpTaskSmall() {
     document.getElementById('popupTaskInfo').classList.add('d_none');
-
 }
 
 function openPopUpTaskSwitch(element) {
@@ -301,6 +292,7 @@ function closePopUpTaskSwitch(element) {
     let select = document.getElementById('popupTaskSwitch' + element);
     select.classList.add('d_none');
 }
+
 function dataSwitch(id, element) {
     if ('toDo' == id) {
         return moveTaskTo1(element);
@@ -320,10 +312,8 @@ async function changeIdTaskValue(value, element) {
     closePopUpTaskSwitch(element);
     arrow.classList.remove('arrowTaskImg');
     await loadData("/task");
-
-
-
 }
+
 async function changeIdTask(value, element) {
     let path = `/task/task${element}`;
     let url = getDatabaseUrl(path);
@@ -356,7 +346,6 @@ function addcontactInfo(objDateTask) {
             contactArea.innerHTML += templateContactInfo(contactscolor[i], initials, contactName[i]);
         }
     }
-
 }
 
 function addSubtaskInfo(objDateTask) {
@@ -375,8 +364,8 @@ function addSubtaskInfo(objDateTask) {
             checked(subtastChecked);
         }
     }
-
 }
+
 function moveTo(element,) {
     let elementArray = arrayLoad.filter(e => e['number'] == draggedElement);
     for (let i = 0; i < elementArray.length; i++) {
@@ -397,7 +386,7 @@ async function postId(element, changeId) {
 }
 
 async function postDataId(url, data) {
-    const response = await fetch(url, {
+    let response = await fetch(url, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -405,6 +394,7 @@ async function postDataId(url, data) {
         body: JSON.stringify(data)
     });
 }
+
 async function inputCheckBoxInfo(i, j) {
     let checkboxId = `checkbox-${i}-${j}`;
     let checkbox = document.getElementById(checkboxId);
@@ -455,10 +445,11 @@ function searchStart(inputSearch, searchArray) {
         taskAdd();
     }
 }
+
 function highlight(id) {
     document.getElementById(id).classList.add('drag-area-highlight');
-
 }
+
 function removeHighlight(id) {
     document.getElementById(id).classList.remove('drag-area-highlight');
 }
