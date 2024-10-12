@@ -639,6 +639,28 @@ input::placeholder {
     cursor: pointer;
 }
 
+.deleteBtnEditContact{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--sideheader-main-color);
+    background: none;
+    border-radius: 10px;
+    width: 126px;
+    height: 56px;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    color: var(--sideheader-main-color);
+    cursor: pointer;
+}
+
+.deleteBtnEditContact:hover{
+    border: 1px solid var(--button-hover-color);
+    color: var(--button-hover-color);
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+}
+
 .cancel-icon {
     display: flex;
     gap: 4px;

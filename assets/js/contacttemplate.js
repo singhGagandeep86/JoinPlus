@@ -44,7 +44,7 @@ function overlay2(i, initials) {
                                      <div class="input-container"><input id="phone2" type="tel" placeholder="Phone"></div>
                                  </div>
                                  <div class="popup-actions">
-                                     <button onclick="deleteEdit(${i})" type="button" id="cancel-icon" class="cancelbutton">Delete</button>
+                                     <button onclick="deleteEdit(${i})" type="button" id="cancel-icon" class="deleteBtnEditContact">Delete</button>
                                      <button onclick="editContactData(event, ${i})" class="createbuttoncontact" type="submit">Save <img src="../img/checkaddcontact.png"></button>
                                  </div>
                              </form>

@@ -309,6 +309,9 @@
     .cancelbutton {
         display: none;
     }
+    .contact-mini{
+        width: 50%;
+    }
 }
 
 @media(max-width: 390px) {
@@ -408,6 +411,7 @@
         width: 300px;
         flex-direction: column;
         height: 500px;
+        left: 3%;
     }
 
     .closeBtnEdit {

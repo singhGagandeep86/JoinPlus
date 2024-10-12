@@ -178,9 +178,7 @@ function editContactOff() {
 function addContactData() {
     if (!isEventListenerRegistered) {
         document.getElementById('contactForm').addEventListener('submit', async function (event) {
-            event.preventDefault();
-            console.log('Form submit triggered');
-
+            event.preventDefault();          
             let name = document.getElementById('name').value.trim();
             let email = document.getElementById('email').value.trim();
             let phone = document.getElementById('phone').value.trim();
@@ -276,9 +274,11 @@ async function deleteContact(number) {
     let response = await fetch(url, {
         method: 'DELETE',
     });
-    contactDetails.innerHTML = '';
+    saveEditDisplayOff();
+    
     array = [];
     load();
+
 }
 
 function deleteEdit(i) {    

@@ -17,6 +17,9 @@ body {
     width: 100%;
     height: 100%;
 }
+.mainDesign{
+    background-color: #F6F7F8;
+}
 
 .content {
     padding: 4rem 4rem 0 4rem;
