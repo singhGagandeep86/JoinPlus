@@ -4,7 +4,7 @@ let namesInitials = [];
 let colours = [];
 let array = [];
 let expanded = false;
-let subTaskexpanded = false;
+let dropdownOpen = false;
 let task = {};
 
 
@@ -201,26 +201,9 @@ document.addEventListener('click', function (event) {
   }
 });
 
-function showCategory() {
-  const select = document.getElementById("slection");
-  let arrow = document.getElementById('arrowRight');
-  if (!subTaskexpanded) {
-    arrow.style.transform = "rotate(-180deg)";
-    subTaskexpanded = true;
-  }
-  else {
-    arrow.style.transform = "rotate(0deg)";
-    subTaskexpanded = false;
-  }
-}
-
-let dropdownOpen = false;
-
 // To open and close DropDown function
 function toggleDropdown() {
   const dropdown = document.getElementById('dropdown');
-  const arrow = document.getElementById('arrowRight');
-
   if (!dropdownOpen) {
     dropdown.classList.remove('selectHide');
     dropdownOpen = true;
@@ -243,7 +226,6 @@ function selectOption(element) {
 // Event Listner to close when click outside
 document.addEventListener('click', function (rightEvent) {
   const assignHeading = document.getElementById('customSelect');
-  const selection = document.getElementById('dropdown');
   if (dropdownOpen && !assignHeading.contains(rightEvent.target)) {
     toggleDropdown();
   }
@@ -251,7 +233,7 @@ document.addEventListener('click', function (rightEvent) {
 
 function showSelection(element) {
   const select = element.innerHTML;
-  document.getElementById('assignHeading').innerHTML = `${select}<img class="arrow" id="arrowRight" src="../img/dropArrow.svg">`;
+  document.getElementById('assignHeading').innerHTML = select;
   document.getElementById("slection").classList.add("selectHide");
 }
 
