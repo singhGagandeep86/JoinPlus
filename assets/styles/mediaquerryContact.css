@@ -120,6 +120,9 @@
     .contact-container-right {
         margin-left: 20px;
     }
+    .contact-mini{
+        width: 70%;
+    }
 
 }
 
