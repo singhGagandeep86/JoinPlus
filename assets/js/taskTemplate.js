@@ -36,7 +36,7 @@ function resetingGlobalVariable() {
   }
 
 function resetingLocalVariables() {
-    document.getElementById('assignHeading').innerHTML = `Select task category <img class="arrow" id="arrowRight" src="../img/dropArrow.svg" style="transform: rotate(0deg)">`;
+    document.getElementById('customSelect').innerHTML = `Select task category`;
     document.getElementById('allCntcts').style.display = "none";
     document.getElementById('arrow').style.transform = "rotate(0deg)";
     document.getElementById('subTsksBoard').innerHTML = '';
