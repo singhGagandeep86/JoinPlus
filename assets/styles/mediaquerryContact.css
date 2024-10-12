@@ -31,8 +31,6 @@
         justify-content: center;
         width: 100%;
     }
-
-
 }
 
 @media(min-width: 801px) and (max-width:1114px) {
@@ -53,7 +51,6 @@
         height: 90px;
         font-size: 30px;
     }
-
 }
 
 @media(min-width: 1114px) and (max-width:1350px) {
@@ -230,7 +227,7 @@
 
     .contact-ellipse {
         scale: 0.7;
-        transform: translate(-150px);
+        transform: translate(-100px);
     }
 
     .contact-info {
@@ -251,7 +248,6 @@
         width: 396px;
         flex-direction: column;
         height: 760px;
-
     }
 
     .logoEdit {
@@ -309,9 +305,11 @@
     .closeBtnEdit img {
         content: url("../img/Closewhite.png");
     }
+
+    .cancelbutton {
+        display: none;
+    }
 }
-
-
 
 @media(max-width: 390px) {
     .container {
@@ -357,11 +355,27 @@
     }
 
     .popup {
-        width: 350px;
+        width: 300px;
         height: 680px;
     }
 
+    .form-group {
+        width: 250px;
+    }
 
+    .cancelbutton {
+        display: none;
+    }
+
+    .popup-left h2 {
+        font-size: 30px;
+    }
+
+    .contact-ellipse2 {
+        width: 100px;
+        height: 100px;
+        font-size: 30px;
+    }
 }
 
 @media(max-width: 320px) {
@@ -395,6 +409,7 @@
         flex-direction: column;
         height: 500px;
     }
+
     .closeBtnEdit {
         top: -530px;
         right: -110px;
@@ -410,18 +425,20 @@
     .popupEditLeft h2{
         font-size: 35px;
     }
+
     .EditInput{
         width: 90%;
         gap: 2px;
         scale: 0.9;
         transform: translate(0,-30px);
     }
+
     #contactFormEdit{
         width:100%;
         margin: 0;
         padding-left: 20px;
     }
-   
+
     #contactFormEdit .popup-actions{
         scale: 0.7;
         transform: translate(-70px,-60px);

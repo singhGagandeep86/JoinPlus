@@ -2,6 +2,10 @@ document.getElementById('add-contact-btn').addEventListener('click', function ()
     document.getElementById('overlay').classList.add('show');
 });
 
+document.getElementById('mini-personadd-contact').addEventListener('click', function () {
+    document.getElementById('overlay').classList.add('show');
+});
+
 document.getElementById('cancel-icon').addEventListener('click', function () {
     document.getElementById('overlay').classList.remove('show');
 });

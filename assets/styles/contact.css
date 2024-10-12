@@ -27,11 +27,10 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     width: 352px;
-    height: 180vh;    
+    height: 180vh;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 32px 24px 32px 24px;
-    
 }
 
 .btn-image {
@@ -73,12 +72,11 @@ body {
     cursor: pointer;
 }
 
-.contactArea{
+.contactArea {
     overflow: auto;
     width: 100%;
     height: 80vh;
     flex-shrink: 0;
-    
 }
 .contactArea::-webkit-scrollbar {
     width: 6px;
@@ -262,7 +260,6 @@ body {
     opacity: 0;
     transform: translateX(-100%);
     animation: slideIn 0.5s  forwards ease;
-    
 }
 
 @keyframes slideIn {
@@ -280,11 +277,11 @@ body {
 @keyframes slideInMobile {
     0% {
         transform: translateY(100%);
-      }
-      100% {
-        transform: translateY(-5%); 
-      }
     }
+    100% {
+        transform: translateY(-5%);
+    }
+}
 
 
 .changemycolor {
@@ -304,7 +301,7 @@ body {
     z-index: 1000;
 }
 
-.ContactEdit{
+.ContactEdit {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
@@ -312,10 +309,9 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    
 }
 
-.popupEdit{
+.popupEdit {
     position: relative;
     top: 25%;
     left: 10%;
@@ -327,7 +323,7 @@ body {
     animation: slideIn 0.5s forwards ease;
 }
 
-.popupEditLeft{
+.popupEditLeft {
     width: 40%;
     height: 100%;
     background-color: #2A3647;
@@ -339,31 +335,30 @@ body {
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
 }
+
 .logoEdit img{
     width: 54px;
     height: 67px;
 }
-.popupEditLeft h2{
+
+.popupEditLeft h2 {
     color: white;
     font-size: 61px;
 }
 
-.popupEditRight{
+.popupEditRight {
     display: flex;
     width: 60%;
     height: 100%;
     align-items: center;
     justify-content: center;
-          
 }
 
-#contactFormEdit{
+#contactFormEdit {
     margin-top: 50px;
     width: 422px;
     margin-left: 50px;
 }
-
-
 
 .closeBtnEdit{
     position: relative;
@@ -378,7 +373,7 @@ body {
     width:90px;
 }
 
-.closeBtnEdit:hover{
+.closeBtnEdit:hover {
     background-color: #CDCDCD;
     border-radius: 100%;
 }
@@ -391,7 +386,7 @@ body {
 
 }
 
-.EditInput input:focus{
+.EditInput input:focus {
     border: 1px solid #29ABE2;
 }
 
@@ -402,7 +397,6 @@ body {
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    
     animation: ShowPopupAni 0.1s forwards ease;
 }
 
