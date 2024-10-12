@@ -22,7 +22,7 @@ function templateTaskEmptyDone() {
 function templatePopUpTask1() {
     return `<div id="CloseArea" class="taskArea">
          <div class="headingBoardAdd">Add Task <img onclick="closePopUpTask()" src="../img/Close.png" alt=""></div>
-             <form id="myForm">
+            <form id="myForm">
                     <div class="formular">
                         <div class="leftSubmition">
                             <div class="title">
@@ -57,36 +57,45 @@ function templatePopUpTask1() {
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
                                 <div class="prioForm">
-                                    <input type="radio" name="priority" value="urgent" id="urgent">
-                                    <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png" alt=""></label>
-                                    <input type="radio" name="priority" value="medium" id="medium" checked>
-                                    <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png" alt=""></label>
-                                    <input type="radio" name="priority" value="low" id="low">
-                                    <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
+                                    <div class="prioForm">
+                                        <input type="radio" name="priority" value="urgent" id="urgent">
+                                        <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png"
+                                                alt=""></label>
+                                        <input type="radio" name="priority" value="medium" id="medium" checked>
+                                        <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png"
+                                                alt=""></label>
+                                        <input type="radio" name="priority" value="low" id="low">
+                                        <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png"
+                                                alt=""></label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="assign">
-                                <label for="Category"><span>Category <sup>*</sup></span></label>
-                                <div class="assignment" id="assignHeading" onclick="showCategory()">
-                                    Select task category
-                                    <img class="arrow" id="arrowRight" src="../img/dropArrow.svg">
+                                <div class="assign">
+                                    <label for="hiddenSelect"><span>Category <sup>*</sup></span></label>
+                                    <div class="assignments" id="customSelect" onclick="toggleDropdown()">
+                                        Select task category
+                                    </div>
+                                    <select id="hiddenSelect" required>
+                                        <option value="" disabled selected>Select task category</option>
+                                        <option value="technical">Technical Task</option>
+                                        <option value="userStory">User Story</option>
+                                    </select>
+                                    <div id="dropdown" class="selectItems selectHide">
+                                        <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
+                                        <div data-value="userStory" onclick="selectOption(this)">User Story</div>
+                                    </div>
                                 </div>
-                                <div id="slection" class="selectItems selectHide">
-                                    <div data-value="technical" onclick="showSelection(this)">Technical Task</div>
-                                    <div data-value="userStory" onclick="showSelection(this)">User Story</div>
-                                </div>
-                            </div>
 
-                            <div id="inputSubClass" class="subtasks">
-                                <div class="smallHead">Subtasks</div>
-                                <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
-                                        placeholder="Add new subtask" type="text">
-                                    <img class="tsksGen" src="../img/subTaskIcon.svg">
+                                <div id="inputSubClass" class="subtasks">
+                                    <div class="smallHead">Subtasks</div>
+                                    <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
+                                            placeholder="Add new subtask" type="text">
+                                        <img class="tsksGen" src="../img/subTaskIcon.svg">
+                                    </div>
                                 </div>
+                                <ul class="a" id="subTsksBoard"></ul>
                             </div>
-                            <ul class="a" id="subTsksBoard"></ul>
                         </div>
-                    </div>
                     <div class="info">
                         <div><sup>* </sup>This field is required</div>
                         <div class="submitionButtons">
@@ -97,7 +106,7 @@ function templatePopUpTask1() {
                             </button>
                         </div>
                     </div>
-                </form>
+                </form>      
         </div>`
 }
 
