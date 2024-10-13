@@ -20,16 +20,9 @@
     }
 
     .popup {
-        flex-direction: column;
-        width: 467px;
-        height: 800px;
-    }
-
-    .popup-right {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
+        width: 1220px;
+        height: 592px;
+        animation: slideIn 0.5s forwards ease;
     }
 }
 
@@ -84,9 +77,9 @@
     }
 
     .popup {
-        flex-direction: column;
-        width: 467px;
-        height: 800px;
+        width: 1000px;
+        height: 592px;
+        animation: slideIn 0.5s forwards ease;
     }
 
     .popup-right {
@@ -363,6 +356,8 @@
     .popup {
         width: 300px;
         height: 680px;
+        animation: slideInMobile 0.5s forwards ease;
+        margin-right: 22px;
     }
 
     .form-group {

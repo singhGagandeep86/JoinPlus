@@ -20,7 +20,7 @@ function generatedList(subTaskInput) {
     <div class="btns subTaskIcon">
     <img onclick="editsubTask(this, '${subTaskInput}')" class="inputIcon" src="../img/SubtasksEdit.svg">
     <img onclick="delsubTask(this)" class="deleteIcon" src="../img/SubtasksDel.svg">
-  </div></li>`;
+</div></li>`;
 }
 
 function emptyField() {
@@ -33,7 +33,7 @@ function resetingGlobalVariable() {
     expanded = false;
     names = [];
     namesInitials = [];
-  }
+}
 
 function resetingLocalVariables() {
     document.getElementById('customSelect').innerHTML = `Select task category`;

@@ -37,7 +37,6 @@ function contactsData(firebase) {
   }
 }
 
-// if both first Name & Second Name are present
 function wthScndName(i, eachName) {
   let colour = array[i].color;
   let sanitizedEachName = eachName.replace(/\s+/g, '_');
@@ -49,7 +48,6 @@ function wthScndName(i, eachName) {
   contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart);
 }
 
-// if only one Name is Present
 function wthoutScndName(i, eachName) {
   let colour = array[i].color;
   let sanitizedEachName = eachName.replace(/\s+/g, '_');
@@ -60,7 +58,6 @@ function wthoutScndName(i, eachName) {
   contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart);
 }
 
-// updating arrays
 function selectionContact(name, colour) {
   const currenID = document.getElementById(name);
   if (currenID.checked == true) {
@@ -108,7 +105,6 @@ function clrWthOneName(firstName, colour) {
   colours.push(colour);
 }
 
-// removing selectins from arrays
 function spliceSelection(currenID, name) {
   currenID.parentElement.style.backgroundColor = "transparent";
   currenID.parentElement.style.color = "black";
@@ -201,7 +197,6 @@ document.addEventListener('click', function (event) {
   }
 });
 
-// To open and close DropDown function
 function toggleDropdown() {
   const dropdown = document.getElementById('dropdown');
   if (!dropdownOpen) {
@@ -213,7 +208,6 @@ function toggleDropdown() {
   }
 }
 
-// function to select one Option
 function selectOption(element) {
   const customSelect = document.getElementById('customSelect');
   const hiddenSelect = document.getElementById('hiddenSelect');
@@ -223,7 +217,7 @@ function selectOption(element) {
   customSelect.classList.remove('invalid');
 }
 
-// Event Listner to close when click outside
+
 document.addEventListener('click', function (rightEvent) {
   const assignHeading = document.getElementById('customSelect');
   if (dropdownOpen && !assignHeading.contains(rightEvent.target)) {
