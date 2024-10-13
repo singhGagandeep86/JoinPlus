@@ -457,12 +457,13 @@
         bottom: 90px;
         height: 64px;
         left: 320px;
+        cursor: pointer;
     }
 
     .btn-image {
         display: none;
     }
-    
+
     .mini-add-contact {
         border: none;
         background: none;
@@ -473,6 +474,4 @@
         top: 400px;
         left: 0;
     }
-
 }
-
