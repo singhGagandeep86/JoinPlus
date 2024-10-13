@@ -661,6 +661,10 @@ input::placeholder {
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
 }
 
+#addContactSmall{
+    cursor: pointer;
+}
+
 .cancel-icon {
     display: flex;
     gap: 4px;

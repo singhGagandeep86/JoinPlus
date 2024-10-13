@@ -318,6 +318,7 @@
     .container {
         width: 100%;
         overflow: auto;
+        padding: 0;
     }
 
     .contact-slide-in {
@@ -450,18 +451,18 @@
     }
 
     .mini-personadd-contact {
+        width: 64px;
         display: flex;
         position: absolute;
         bottom: 90px;
+        height: 64px;
+        left: 320px;
     }
 
     .btn-image {
         display: none;
     }
-    .content {
-        overflow: auto;
-    }
-
+    
     .mini-add-contact {
         border: none;
         background: none;
