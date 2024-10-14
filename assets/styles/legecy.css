@@ -97,6 +97,7 @@ body {
 .legacyMenu a {
     color: var(--sideheader-font-color);
 }
+
 .legacyMenu a:nth-of-type(1){
     text-align: center;
 }
@@ -177,7 +178,7 @@ body {
 
 .burger-menu {
     position: absolute;
-    top: 82px;
+    top: 91px;
     right: 0;
     width: 175px;
     height: 158px;

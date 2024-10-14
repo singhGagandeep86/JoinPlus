@@ -95,13 +95,6 @@
     transform: scale(1.03);
 }
 
-/* .mainDesign {
-    width: 100%;
-    height: 100vh;
-    background-color: var(--content-main-color);
-    overflow: auto;
-} */
-
 .mainDesignAsideImg {
     padding: 64px 0px 64px 0px;
     cursor: pointer;
@@ -154,6 +147,7 @@
     border-radius: 100%;
     color: #29ABE2;
 }
+
 .picSm:hover{
     background-color: #CDCDCD;
     color: #29ABE2;
@@ -177,7 +171,7 @@
 
 .burger-menu {
     position: absolute;
-    top: 82px;
+    top: 71px;
     right: 0;
     width: 175px;
     height: 210px;
