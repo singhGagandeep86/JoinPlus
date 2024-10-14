@@ -175,27 +175,68 @@ function editContactOff() {
 
 }
 
-function addContactData() {
-    if (!isEventListenerRegistered) {
-        document.getElementById('contactForm').addEventListener('submit', async function (event) {
-            event.preventDefault();          
-            let name = document.getElementById('name').value.trim();
-            let email = document.getElementById('email').value.trim();
-            let phone = document.getElementById('phone').value.trim();
-            let number = generateRandomNumber();
-            let firstNameInitial = extrahiereInitialen2(name);
-            let color = farbGenerator().toLowerCase();
-
-            if (!name || !email || !phone) {
-                return;
-            }
-            await createContactData(name, email, phone, number, firstNameInitial, color);
-
-            reloadAdd();
-        });
-
-        isEventListenerRegistered = true;
+async function addContactData() {
+    let name = document.getElementById('name').value.trim();
+    let email = document.getElementById('email').value.trim();
+    let phone = document.getElementById('phone').value.trim();
+    if (valiAdd(name, email, phone)) {
+        let number = generateRandomNumber();
+        let firstNameInitial = extrahiereInitialen2(name);
+        let color = farbGenerator().toLowerCase();
+        await createContactData(name, email, phone, number, firstNameInitial, color);
+        reloadAdd();
     }
+}
+
+
+function valiAdd(name, email, phone) {
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    let phoneRegex = /^[0-9]+$/;
+    if (!name || !email || !phone) {
+        failAllAdd();
+        return false;
+    }
+    if (!emailRegex.test(email)) {
+        alert("Bitte eine gültige E-Mail-Adresse eingeben.");
+        return false;
+    }
+    if (!phoneRegex.test(phone)) {
+        alert("Das Passwort darf nur Zahlen enthalten und keine Leerzeichen oder Sonderzeichen.");
+        return false;
+    }
+    return true;
+}
+
+function valiEdit(name, email, phone) {
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    let phoneRegex = /^[0-9]+$/;
+    if (!name || !email || !phone) {
+        failAllEdit()
+        return false;
+    }
+    if (!emailRegex.test(email)) {
+        alert("Bitte eine gültige E-Mail-Adresse eingeben.");
+        return false;
+    }
+    if (!phoneRegex.test(phone)) {
+        alert("Das Passwort darf nur Zahlen enthalten und keine Leerzeichen oder Sonderzeichen.");
+        return false;
+    }
+    return true;
+}
+
+function failAllAdd() {
+    document.getElementById('name').classList.add('failinput');
+    document.getElementById('email').classList.add('failinput');
+    document.getElementById('phone').classList.add('failinput');
+    document.getElementById('failAll').classList.remove('d_none');
+}
+
+function failAllEdit() {
+    document.getElementById('name2').classList.add('failinput');
+    document.getElementById('email2').classList.add('failinput');
+    document.getElementById('phone2').classList.add('failinput');
+    document.getElementById('failAllEdit').classList.remove('d_none');
 }
 
 function reloadAdd() {
@@ -275,27 +316,28 @@ async function deleteContact(number) {
         method: 'DELETE',
     });
     saveEditDisplayOff();
-    
+
     array = [];
     load();
 
 }
 
-function deleteEdit(i) {    
+function deleteEdit(i) {
     let number = array[i].number;
     deleteContact(number);
     saveEditDisplayOff();
-    
+
 }
 
-async function editContactData(event, i) {
-    event.preventDefault();
-    let number = array[i].number;    
+async function editContactData(i) {
+    let number = array[i].number;
     let name = document.getElementById('name2').value;
     let email = document.getElementById('email2').value;
     let phone = document.getElementById('phone2').value;
-    await editContactFB(name, email, phone, number)
-    saveEditDisplayOff();
+    if (valiEdit(name, email, phone)) {
+        await editContactFB(name, email, phone, number)
+        saveEditDisplayOff();
+    }
 }
 
 function saveEditDisplayOff() {
@@ -307,10 +349,10 @@ function saveEditDisplayOff() {
         document.querySelector('.contact-container-right').classList.add('hidden');
         document.getElementById('overlayEdit').classList.add('d_none');
         contactDetail.innerHTML = '';
-    }else{
+    } else {
         document.getElementById('overlayEdit').classList.add('d_none');
         contactDetail.innerHTML = '';
-    }   
+    }
 }
 
 async function editContactFB(name, email, phone, number) {

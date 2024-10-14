@@ -228,6 +228,9 @@ body {
     width: 37px;
     height: 37px;
 }
+.text-2{
+    max-width: calc(1440px - 360px );
+}
 
 .text-2 h1 {
     font-size: 3.813rem;
