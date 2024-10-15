@@ -40,7 +40,7 @@ body {
 }
 
 .text-2{
-   max-width: calc(1440px - 360px );
+    max-width: calc(1440px - 360px);
 }
 
 .text-2 h1 {
@@ -60,10 +60,10 @@ body {
 
 .burger-menu {
     position: absolute;
-    top: 91px;
+    top: 90px;
     right: 19px;
     width: 175px;
-    height: 158px;
+    height: 210px;
     background-color: var(--sideheader-main-color);
     border-radius: 20px 0px 20px 20px;
     padding: 10px;
