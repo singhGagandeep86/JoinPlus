@@ -48,7 +48,7 @@ function overlay2(i, initials) {
                                  </div>
                                  <div class="popup-actions">
                                      <button onclick="deleteEdit(${i})" type="button" id="cancel-icon" class="deleteBtnEditContact">Delete</button>
-                                     <button type="button" onclick="editContactData(${i})" class="createbuttoncontact" type="submit">Save <img src="../img/checkaddcontact.png"></button>
+                                     <button type="button" onclick="editContactData(${i})" class="createbuttoncontact">Save <img src="../img/checkaddcontact.png"></button>
                                  </div>
                              </form>
                              <div onclick="editContactOff()" class="closeBtnEdit">

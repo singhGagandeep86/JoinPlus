@@ -194,3 +194,16 @@ function returnInput() {
         document.getElementById('fail').classList.add('d_none');
     }
 }
+
+function loginVali() {
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!email || !password) {
+        errorLogin();
+        return false;
+    }
+
+    if (!emailRegex.test(email)) {
+        failEmailEdit();
+        return false;
+    }
+}
