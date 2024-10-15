@@ -30,8 +30,9 @@
 
         <form id="loginForm" onsubmit="return handleLogin(event)">
             <div  class="custome-input ">
-                <input id="emailInput" class="input" type="email" name="email" placeholder="Email" oninput="returnInput()">
+                <input id="emailInput" class="input"  name="email" placeholder="Email" oninput="returnInput()">
                 <img class="socialicons" src="assets/img/mail.png" alt="">
+                <div id="emailFail" class="emailFails d_none"><span>Please check your email, example alex@test.de</span></div>
             </div>
             <div  class="custome-input ">
                 <input id="passwordInput" class="input" type="password" name="password" placeholder="Password" >
