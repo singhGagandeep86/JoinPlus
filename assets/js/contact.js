@@ -197,32 +197,45 @@ function valiAdd(name, email, phone) {
         return false;
     }
     if (!emailRegex.test(email)) {
-        alert("Bitte eine gültige E-Mail-Adresse eingeben.");
+        failEmailAdd();
         return false;
     }
     if (!phoneRegex.test(phone)) {
-        alert("Das Passwort darf nur Zahlen enthalten und keine Leerzeichen oder Sonderzeichen.");
+        failPhoneAdd();
         return false;
     }
     return true;
 }
 
-function valiEdit(name, email, phone) {
+function valiEdit() {
+    let name = document.getElementById('name2').value;
+    let email = document.getElementById('email2').value;
+    let phone = document.getElementById('phone2').value;
     let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     let phoneRegex = /^[0-9]+$/;
     if (!name || !email || !phone) {
-        failAllEdit()
+        failAllEdit();
         return false;
     }
     if (!emailRegex.test(email)) {
-        alert("Bitte eine gültige E-Mail-Adresse eingeben.");
+        failEmailEdit();
         return false;
     }
     if (!phoneRegex.test(phone)) {
-        alert("Das Passwort darf nur Zahlen enthalten und keine Leerzeichen oder Sonderzeichen.");
+        failPhoneEdit();
         return false;
     }
     return true;
+}
+
+function failPhoneAdd() {
+    document.getElementById('phone').classList.add('failinput');
+    document.getElementById('failPhone').classList.remove('d_none');    
+}
+
+function failEmailAdd() {
+    document.getElementById('email').classList.add('failinput');
+    document.getElementById('failEmail').classList.remove('d_none');
 }
 
 function failAllAdd() {
@@ -239,10 +252,27 @@ function failAllEdit() {
     document.getElementById('failAllEdit').classList.remove('d_none');
 }
 
+function failPhoneEdit() {
+    document.getElementById('phone2').classList.add('failinput');
+    document.getElementById('failPhoneEdit').classList.remove('d_none');
+    
+}
+
+function failEmailEdit() {
+    document.getElementById('email2').classList.add('failinput');
+    document.getElementById('failEmailEdit').classList.remove('d_none');
+}
+
 function reloadAdd() {
     document.getElementById('name').value = '';
     document.getElementById('email').value = '';
     document.getElementById('phone').value = '';
+    document.getElementById('name').classList.remove('failinput');
+    document.getElementById('email').classList.remove('failinput');
+    document.getElementById('phone').classList.remove('failinput');
+    document.getElementById('failEmail').classList.add('d_none');
+    document.getElementById('failPhone').classList.add('d_none');
+    document.getElementById('failAll').classList.add('d_none');
     document.getElementById('overlay').classList.remove('show');
 }
 
@@ -334,7 +364,7 @@ async function editContactData(i) {
     let name = document.getElementById('name2').value;
     let email = document.getElementById('email2').value;
     let phone = document.getElementById('phone2').value;
-    if (valiEdit(name, email, phone)) {
+    if (valiEdit()){
         await editContactFB(name, email, phone, number)
         saveEditDisplayOff();
     }

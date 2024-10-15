@@ -11,12 +11,12 @@ document.getElementById('cancel-icon').addEventListener('click', function () {
 });
 
 document.getElementById('close-btn').addEventListener('click', function () {
-    document.getElementById('overlay').classList.remove('show');
+    reloadAdd();
 });
 
 document.getElementById('overlay').addEventListener('click', function (event) {
     if (event.target === document.getElementById('overlay')) {
-        document.getElementById('overlay').classList.remove('show');
+        reloadAdd();
     }
 });
 

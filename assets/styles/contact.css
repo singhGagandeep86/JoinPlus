@@ -621,7 +621,7 @@ input::placeholder {
     background-repeat: no-repeat;
 }
 
-.input-container:nth-child(3)::before {
+.input-container:nth-child(4)::before {
     content: '';
     position: absolute;
     top: 50%;
