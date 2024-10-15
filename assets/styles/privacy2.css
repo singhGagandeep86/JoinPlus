@@ -168,7 +168,7 @@ body {
     background-color: #091931;
 }
 
-.burger-menu {
+/* .burger-menu {
     position: absolute;
     top: 82px;
     right: 0;
@@ -207,7 +207,7 @@ body {
 .burger-menu .burger-content h2:hover {
     background-color: #2a3d59;
     color: #CDCDCD;
-}
+} */
 
 .text-arrow {
     display: flex;
