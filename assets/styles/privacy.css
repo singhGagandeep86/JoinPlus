@@ -61,7 +61,7 @@ body {
 .burger-menu {
     position: absolute;
     top: 91px;
-    right: 0;
+    right: 19px;
     width: 175px;
     height: 158px;
     background-color: var(--sideheader-main-color);

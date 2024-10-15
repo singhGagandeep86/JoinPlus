@@ -172,7 +172,7 @@
 .burger-menu {
     position: absolute;
     top: 71px;
-    right: 0;
+    right: 19px;
     width: 175px;
     height: 210px;
     background-color: var(--sideheader-main-color);
@@ -190,7 +190,7 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    padding: 8px 8px;
+    padding-left: 8px;
     gap: 15px;
     cursor: pointer;
 }

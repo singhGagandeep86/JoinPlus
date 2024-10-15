@@ -179,7 +179,7 @@ body {
 .burger-menu {
     position: absolute;
     top: 91px;
-    right: 0;
+    right: 19px;
     width: 175px;
     height: 158px;
     background-color: var(--sideheader-main-color);
@@ -326,6 +326,7 @@ body {
     .mainDesign {
         height: 100%;
     }
+
     .text-arrow h1{
         font-size:40px;
     }
@@ -411,6 +412,7 @@ body {
     .asideMenu:nth-of-type(3) {
         margin-left: 5px;
     }
+
     .text-arrow h1{
         font-size:30px;
     }
