@@ -383,7 +383,6 @@ body {
     flex-direction: column;
     gap:32px;
     margin-bottom: 50px;
-
 }
 
 .EditInput input:focus {
@@ -399,9 +398,6 @@ body {
     animation: slideIn 0.5s forwards ease-in-out;
     width: 1212px;
     height: 592px;
-    /* position: absolute;
-    top: 25%;
-    left: 10%; */
 }
 
 .maintestpopup{
