@@ -11,6 +11,7 @@ let task = {};
 async function init() {
   fetchUrl();
   fetchUserData('/user');
+  dateCheck();
 }
 
 function getDatabaseUrl(path) {
@@ -281,8 +282,10 @@ async function toWaiting(id) {
   let checked = checkedCreate(list);
   let subtask = subtastCreate(list);
   let color = colorFirebase();
+  if (dateCheck() == true){
   pushFirebaseData(titleText, desText, actDate, category, newTaskNumber, name, checked, priority, color, subtask, id);
   return new Promise(resolve => setTimeout(resolve, 1700));
+  }
 }
 
 async function navigateToBoard() {
@@ -367,4 +370,37 @@ function generateRandomNumber() {
     number += digit;
   }
   return number;
+}
+
+// to Check Date not earlier
+function dateCheck() {
+  let errorDiv = document.getElementById('warning').innerHTML;
+  let catchedDate = new Date();
+  let year = catchedDate.getFullYear();
+  let month = catchedDate.getMonth() + 1;
+  let day = catchedDate.getDate();
+  let enteredDate = document.getElementById('dateData').value;
+  let splittedDate = enteredDate.split("-");
+  let inputYear = splittedDate[0];
+  let inputMonth = splittedDate[1];
+  let inputDate = splittedDate[2];
+  if (enteredDate) {
+    if (inputYear > year) {
+     return true;
+    }
+    else {
+      if (inputYear == year & inputMonth > month) {
+        return true;
+      }
+      else {
+        if (inputYear == year & inputMonth == month & inputDate >= day) {
+         return true;
+        }
+        else {
+          errorDiv = `error`;
+          return false;
+        }
+      }
+    }
+  }
 }

@@ -708,6 +708,8 @@ li:hover {
 .showSel {
     position: static;
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     height: 42px;
     gap: 8px;
 }
