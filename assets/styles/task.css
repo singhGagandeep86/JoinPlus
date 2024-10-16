@@ -708,10 +708,10 @@ li:hover {
 .showSel {
     position: static;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     height: 42px;
     gap: 8px;
+    width: 60%;
 }
 
 .doneIcon {
@@ -726,4 +726,8 @@ li:hover {
 
 .d_noneImg {
     display: none;
+}
+
+.failedinput {
+    border: 1px solid red;
 }

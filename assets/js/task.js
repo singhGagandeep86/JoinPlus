@@ -11,7 +11,6 @@ let task = {};
 async function init() {
   fetchUrl();
   fetchUserData('/user');
-  dateCheck();
 }
 
 function getDatabaseUrl(path) {
@@ -236,6 +235,7 @@ function resetAll() {
   deletArray()
   resetingGlobalVariable();
   resetingLocalVariables();
+  resetError();
   let allContacts = document.getElementById('allCntcts');
   let allLabels = allContacts.getElementsByTagName('label');
   for (i = 0; i < allLabels.length; i++) {
@@ -265,9 +265,11 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 async function addingTask(id) {
-  document.getElementById('taskDoneIcon').classList.remove("d_noneImg");
-  await toWaiting(id);
-  await navigateToBoard();
+  if (checkValidation()) {
+    document.getElementById('taskDoneIcon').classList.remove("d_noneImg");
+    await toWaiting(id);
+    await navigateToBoard();
+  }
 }
 
 async function toWaiting(id) {
@@ -282,10 +284,8 @@ async function toWaiting(id) {
   let checked = checkedCreate(list);
   let subtask = subtastCreate(list);
   let color = colorFirebase();
-  if (dateCheck() == true){
   pushFirebaseData(titleText, desText, actDate, category, newTaskNumber, name, checked, priority, color, subtask, id);
   return new Promise(resolve => setTimeout(resolve, 1700));
-  }
 }
 
 async function navigateToBoard() {
@@ -372,9 +372,34 @@ function generateRandomNumber() {
   return number;
 }
 
+function checkValidation() {
+  let task = document.getElementById('titleText').value;
+  let enteredDate = document.getElementById('dateData');
+  let category = document.getElementById('customSelect').innerText;
+  let taskReg = /^[a-zA-Z]+( [a-zA-Z&]+)*$/;
+  let dateReg = dateCheck();
+  if (!task && dateReg == false && category === `Select task category`) {
+    failAll();
+    return false;
+  }
+  if (!taskReg.test(task)) {
+    failTask();
+    return false;
+  }
+  if (dateReg == false) {
+    failDate();
+    return false;
+  }
+  if (category === `Select task category`) {
+    failCategory();
+    return false;
+  }
+  return true;
+}
+
+
 // to Check Date not earlier
 function dateCheck() {
-  let errorDiv = document.getElementById('warning').innerHTML;
   let catchedDate = new Date();
   let year = catchedDate.getFullYear();
   let month = catchedDate.getMonth() + 1;
@@ -385,8 +410,8 @@ function dateCheck() {
   let inputMonth = splittedDate[1];
   let inputDate = splittedDate[2];
   if (enteredDate) {
-    if (inputYear > year) {
-     return true;
+    if (inputYear > year && inputYear < 10000) {
+      return true;
     }
     else {
       if (inputYear == year & inputMonth > month) {
@@ -394,13 +419,39 @@ function dateCheck() {
       }
       else {
         if (inputYear == year & inputMonth == month & inputDate >= day) {
-         return true;
+          return true;
         }
         else {
-          errorDiv = `error`;
           return false;
         }
       }
     }
   }
+  else {
+    return false;
+  }
+}
+
+function failTask() {
+  document.getElementById('failName').classList.remove("d_none");
+  document.getElementById('titleText').classList.add("failedinput");
+}
+
+function failDate() {
+  document.getElementById('failDueDate').classList.remove("d_none");
+  document.getElementById('dateData').classList.add("failedinput");
+}
+
+function failCategory() {
+  document.getElementById('failCategory').classList.remove("d_none");
+  document.getElementById('customSelect').classList.add("failedinput");
+}
+
+function failAll() {
+  document.getElementById('failName').classList.remove("d_none");
+  document.getElementById('failDueDate').classList.remove("d_none");
+  document.getElementById('failCategory').classList.remove("d_none");
+  document.getElementById('titleText').classList.add("failedinput");
+  document.getElementById('dateData').classList.add("failedinput");
+  document.getElementById('customSelect').classList.add("failedinput");
 }

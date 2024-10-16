@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../styles/mediaquerry.css">
     <link rel="stylesheet" href="../styles/mediaquerryTask.css">
     <link rel="stylesheet" href="../styles/boardTask.css">
+    <link rel="stylesheet" href="../styles/contact.css">
     <title>addTask</title>
 
 </head>
@@ -45,7 +46,7 @@
                     <a href="../html/help.html">
                         <img class="picHelp" src="../img/help.png">
                     </a>
-                    <div class="picSm" id="burgerToggle" ><span id="userIni"></span></div>
+                    <div class="picSm" id="burgerToggle"><span id="userIni"></span></div>
                     <div class="burger-menu" id="burgerMenu">
                         <div class="burger-content">
                             <h2 class="helpOff"><a href="../html/help.html">Help</a></h2>
@@ -64,7 +65,8 @@
                             <div class="title">
                                 <div class="smallHead"><span>Title <sup>*</sup></span>
                                 </div>
-                                <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title" required>
+                                <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title">
+                                <div id="failName" class="fail d_none"><span>Please enter a correct Task in text Format.</span></div>
                             </div>
                             <div class="description">
                                 <div class="smallHead">Description</div>
@@ -87,9 +89,9 @@
                             <div class="dueDate">
                                 <div class="smallHead"><span>Due Date <sup>*</sup></span>
                                 </div>
-                                <input class="dueDateTxt" type="text" id="dateData" placeholder="dd/mm/yyyy"
-                                    onfocus="(this.type='date')" required>
-                                    <div id="warning"></div>
+                                <input class="dueDateTxt" type="text" id="dateData" placeholder="dd/mm/yyyy" 
+                                    onfocus="(type='date')">
+                                    <div id="failDueDate" class="fail d_none"><span>Please select a correct Due Date.</span></div>
                             </div>
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
@@ -107,32 +109,33 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="assign">
-                                    <label for="hiddenSelect"><span>Category <sup>*</sup></span></label>
-                                    <div class="assignments" id="customSelect" onclick="toggleDropdown()">
-                                        Select task category
-                                    </div>
-                                    <select id="hiddenSelect" required>
-                                        <option value="" disabled selected>Select task category</option>
-                                        <option value="technical">Technical Task</option>
-                                        <option value="userStory">User Story</option>
-                                    </select>
-                                    <div id="dropdown" class="selectItems selectHide">
-                                        <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
-                                        <div data-value="userStory" onclick="selectOption(this)">User Story</div>
-                                    </div>
+                            <div class="assign">
+                                <label for="hiddenSelect"><span>Category <sup>*</sup></span></label>
+                                <div class="assignments" id="customSelect" onclick="toggleDropdown()">
+                                    Select task category
                                 </div>
-
-                                <div id="inputSubClass" class="subtasks">
-                                    <div class="smallHead">Subtasks</div>
-                                    <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
-                                            placeholder="Add new subtask" type="text">
-                                        <img class="tsksGen" src="../img/subTaskIcon.svg">
-                                    </div>
+                                <select id="hiddenSelect">
+                                    <option value="" disabled selected>Select task category</option>
+                                    <option value="technical">Technical Task</option>
+                                    <option value="userStory">User Story</option>
+                                </select>
+                                <div id="dropdown" class="selectItems selectHide">
+                                    <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
+                                    <div data-value="userStory" onclick="selectOption(this)">User Story</div>
                                 </div>
-                                <ul class="a" id="subTsksBoard"></ul>
+                                <div id="failCategory" class="fail d_none"><span>Please select a Category for Task.</span></div>
                             </div>
+
+                            <div id="inputSubClass" class="subtasks">
+                                <div class="smallHead">Subtasks</div>
+                                <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
+                                        placeholder="Add new subtask" type="text">
+                                    <img class="tsksGen" src="../img/subTaskIcon.svg">
+                                </div>
+                            </div>
+                            <ul class="a" id="subTsksBoard"></ul>
                         </div>
+                    </div>
                     <div class="info">
                         <div><sup>* </sup>This field is required</div>
                         <div class="submitionButtons">

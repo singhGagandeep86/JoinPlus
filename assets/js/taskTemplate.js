@@ -42,3 +42,12 @@ function resetingLocalVariables() {
     document.getElementById('subTsksBoard').innerHTML = '';
     document.getElementById('selCntcts').innerHTML = '';
 }
+
+function resetError() {
+    document.getElementById('failName').classList.add("d_none");
+    document.getElementById('failDueDate').classList.add("d_none");
+    document.getElementById('failCategory').classList.add("d_none");
+    document.getElementById('titleText').classList.remove("failedinput");
+    document.getElementById('dateData').classList.remove("failedinput");
+    document.getElementById('customSelect').classList.remove("failedinput");
+}
