@@ -17,6 +17,7 @@ body {
     width: 100%;
     height: 100%;
 }
+
 .mainDesign{
     background-color: #F6F7F8;
 }
@@ -38,6 +39,10 @@ body {
     height: 37px;
 }
 
+.text-2{
+    max-width: calc(1440px - 360px);
+}
+
 .text-2 h1 {
     font-size: 3.813rem;
     margin-bottom: 1rem;
@@ -51,6 +56,19 @@ body {
 
 .text-2 a {
     color: black;
+}
+
+.burger-menu {
+    position: absolute;
+    top: 90px;
+    right: 19px;
+    width: 175px;
+    height: 210px;
+    background-color: var(--sideheader-main-color);
+    border-radius: 20px 0px 20px 20px;
+    padding: 10px;
+    display: none;
+    z-index: 999;
 }
 
 @media(max-width:480px) {

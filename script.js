@@ -5,10 +5,7 @@ function handleLogin(event) {
     event.preventDefault();
     let email = event.target.email.value;
     let password = event.target.password.value;
-    if (!email || !password) {
-        errorLogin();
-        return;
-    }
+    if(loginVali(email, password)){
     fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
         method: 'POST',
         headers: {
@@ -39,6 +36,7 @@ function handleLogin(event) {
 
             errorLogin();
         });
+    }
 }
 
 function loginAlsGast() {
@@ -187,10 +185,32 @@ function errorLogin() {
 
 }
 
+function valiEmail() {
+    document.getElementById('emailInput').classList.add('falseEnter');
+    document.getElementById('emailFail').classList.remove('d_none');
+    document.getElementById('passwordInput').value = '';
+}
+
 function returnInput() {
-    if (document.getElementById('emailInput').value == '') {
+    if (document.getElementById('emailInput').length != 0 || document.getElementById('emailInput').value == '') {
         document.getElementById('emailInput').classList.remove('falseEnter');
         document.getElementById('passwordInput').classList.remove('falseEnter');
         document.getElementById('fail').classList.add('d_none');
+        document.getElementById('emailFail').classList.add('d_none');
+
     }
+}
+
+function loginVali(email, password) {
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/; 
+    if (!email || !password) {
+        errorLogin();
+        return false;
+    } 
+    if (!emailRegex.test(email)) {
+        valiEmail();
+        return false;
+    }  
+
+    return true;
 }

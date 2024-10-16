@@ -1,6 +1,6 @@
 @media(min-width:1400px) {
     .content {
-        padding: 0 64px 0 64px;
+        padding: 64px 64px 0 64px;
     }
 
     .helpOff {
@@ -131,17 +131,19 @@
         display: none;
     }
     .asideMenu {
-        height: 76px;      
-        
+        height: 76px;
     }
+
     .asideMenu:nth-of-type(3){
        padding: 0;
        border-radius: 10px;
     }
+
     .asideMenu:nth-of-type(1) {
         padding: 0;
         border-radius: 10px;
     }
+
     .asideMenu:nth-of-type(2) {
         padding: 0;
         border-radius: 10px;
@@ -239,7 +241,7 @@
     }
 
     .asideMenu a {
-        width: 70px;
+        /* width: 70px; */
         text-align: center;
     }
 

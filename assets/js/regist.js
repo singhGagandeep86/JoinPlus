@@ -1,64 +1,83 @@
-document.addEventListener('DOMContentLoaded', () => {
+function validateForm() {
     let userName = document.getElementById('name');
     let email = document.getElementById('email');
     let password = document.getElementById('password');
     let confirmPassword = document.getElementById('confirmPassword');
     let privacyPolicy = document.getElementById('privacyPolicy');
-    let submitButton = document.getElementById('submitButton');
+    let submitButton = document.getElementById('submitButton');    
+    let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
+    let nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
 
-    function validateForm() {
-        if (
-            password.value &&
-            confirmPassword.value &&
-            password.value === confirmPassword.value &&
-            privacyPolicy.checked &&
-            userName.value.trim() !== ''
-        ) {
-            submitButton.disabled = false;
-            document.getElementById('submitButton').classList.add('login');
+    if (!nameRegex.test(userName.value)) {
+        submitButton.disabled = true;
+        document.getElementById('submitButton').classList.remove('login');
+        return false;
+    }
+
+    if (!emailRegex.test(email.value)) {
+        submitButton.disabled = true;
+        document.getElementById('submitButton').classList.remove('login');
+        return false;
+    }
+
+    if (
+        password.value &&
+        confirmPassword.value &&
+        password.value === confirmPassword.value &&
+        privacyPolicy.checked &&
+        userName.value.trim() !== ''
+    ) {
+        submitButton.disabled = false;
+        document.getElementById('submitButton').classList.add('login');
+    } else {
+        submitButton.disabled = true;
+        document.getElementById('submitButton').classList.remove('login');
+    }
+}
+
+async function handleRegistration(event) {
+    event.preventDefault();
+    let userName = document.getElementById('name').value;
+    let emailValue = document.getElementById('email').value;
+    let passwordValue = document.getElementById('password').value;
+    try {
+        let response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: emailValue,
+                password: passwordValue,
+                returnSecureToken: true
+            })
+        });
+        if (!response.ok) {
+            throw new Error(`Fehler: ${response.status} ${response.statusText}`);
+        }
+
+        let data = await response.json();
+        if (data.idToken && data.localId) {
+            let token = data.idToken;
+            let uid = data.localId;
+            await createDataFb(userName, emailValue, token, uid);
+            sessionStorage.setItem('authToken', token);
+            window.location.href = "../html/summary.html";
         } else {
-            submitButton.disabled = true;
+            throw new Error("Registrierung fehlgeschlagen: Kein Token oder UID erhalten");
         }
+    } catch (error) {
+        console.error(error);
     }
+}
 
-    password.addEventListener('input', validateForm);
-    confirmPassword.addEventListener('input', validateForm);
-    privacyPolicy.addEventListener('change', validateForm);
+document.addEventListener('DOMContentLoaded', () => {    
+    document.getElementById('password').addEventListener('input', validateForm);
+    document.getElementById('confirmPassword').addEventListener('input', validateForm);
+    document.getElementById('email').addEventListener('input', validateForm);
+    document.getElementById('privacyPolicy').addEventListener('change', validateForm);
+    document.getElementById('name').addEventListener('input', validateForm);    
     document.getElementById('registrationForm').addEventListener('submit', handleRegistration);
-    async function handleRegistration(event) {
-        event.preventDefault();
-        let name = userName.value;
-        let emailValue = email.value;
-        let passwordValue = password.value;
-        try {
-            let response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: emailValue,
-                    password: passwordValue,
-                    returnSecureToken: true
-                })
-            });
-            if (!response.ok) {
-                throw new Error(`Fehler: ${response.status} ${response.statusText}`);
-            }
-            let data = await response.json();
-            if (data.idToken && data.localId) {
-                let token = data.idToken;
-                let uid = data.localId;
-                await createDataFb(name, emailValue, token, uid);
-                sessionStorage.setItem('authToken', token);
-                window.location.href = "../html/summary.html";
-            } else {
-                throw new Error("Registrierung fehlgeschlagen: Kein Token oder UID erhalten");
-            }
-        } catch (error) {
-           
-        }
-    }
 });
 
 async function createDataFb(name, emailValue, token, uid) {

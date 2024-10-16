@@ -19,11 +19,7 @@
         content: url("../img/Vectorstrich.png");
     }
 
-    .popup {
-        width: 1220px;
-        height: 592px;
-        animation: slideIn 0.5s forwards ease;
-    }
+   
 }
 
 @media(min-width: 801px) and (max-width:1114px) {
@@ -205,6 +201,9 @@
         p {
             display: none;
         }
+
+        border-bottom-left-radius:0 ;
+        border-top-right-radius: 30px;
     }
 
     .popup-right {

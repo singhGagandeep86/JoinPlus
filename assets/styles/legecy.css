@@ -97,6 +97,7 @@ body {
 .legacyMenu a {
     color: var(--sideheader-font-color);
 }
+
 .legacyMenu a:nth-of-type(1){
     text-align: center;
 }
@@ -177,8 +178,8 @@ body {
 
 .burger-menu {
     position: absolute;
-    top: 82px;
-    right: 0;
+    top: 91px;
+    right: 19px;
     width: 175px;
     height: 158px;
     background-color: var(--sideheader-main-color);
@@ -226,6 +227,9 @@ body {
     object-fit: cover;
     width: 37px;
     height: 37px;
+}
+.text-2{
+    max-width: calc(1440px - 360px );
 }
 
 .text-2 h1 {
@@ -322,6 +326,7 @@ body {
     .mainDesign {
         height: 100%;
     }
+
     .text-arrow h1{
         font-size:40px;
     }
@@ -407,6 +412,7 @@ body {
     .asideMenu:nth-of-type(3) {
         margin-left: 5px;
     }
+
     .text-arrow h1{
         font-size:30px;
     }

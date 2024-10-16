@@ -175,35 +175,152 @@ function editContactOff() {
 
 }
 
-function addContactData() {
-    if (!isEventListenerRegistered) {
-        document.getElementById('contactForm').addEventListener('submit', async function (event) {
-            event.preventDefault();          
-            let name = document.getElementById('name').value.trim();
-            let email = document.getElementById('email').value.trim();
-            let phone = document.getElementById('phone').value.trim();
-            let number = generateRandomNumber();
-            let firstNameInitial = extrahiereInitialen2(name);
-            let color = farbGenerator().toLowerCase();
-
-            if (!name || !email || !phone) {
-                return;
-            }
-            await createContactData(name, email, phone, number, firstNameInitial, color);
-
-            reloadAdd();
-        });
-
-        isEventListenerRegistered = true;
+async function addContactData() {
+    let name = document.getElementById('name').value.trim();
+    let email = document.getElementById('email').value.trim();
+    let phone = document.getElementById('phone').value.trim();
+    if (valiAdd(name, email, phone)) {
+        let number = generateRandomNumber();
+        let firstNameInitial = extrahiereInitialen2(name);
+        let color = farbGenerator().toLowerCase();
+        await createContactData(name, email, phone, number, firstNameInitial, color);
+        reloadAdd();
     }
+}
+
+function valiAdd(name, email, phone) {
+    let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
+    let phoneRegex = /^[0-9]+$/;
+    let nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
+    if (!name || !email || !phone) {
+        failAllAdd();
+        return false;
+    }
+    if (!nameRegex.test(name)) {
+        failName();
+        return false;
+    }
+
+    if (!emailRegex.test(email)) {
+        failEmailAdd();
+        return false;
+    }
+    if (!phoneRegex.test(phone)) {
+        failPhoneAdd();
+        return false;
+    }
+    return true;
+}
+
+function valiEdit() {
+    let name = document.getElementById('name2').value.trim();
+    let email = document.getElementById('email2').value.trim();
+    let phone = document.getElementById('phone2').value.trim();
+    let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
+    let phoneRegex = /^[0-9]+$/;
+    let nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
+    if (!name || !email || !phone) {
+        failAllEdit();
+        return false;
+    }
+    if (!nameRegex.test(name)) {
+        failNameEdit();
+        return false;
+    }   
+    if (!emailRegex.test(email)) {
+        failEmailEdit();
+        return false;
+    }
+    if (!phoneRegex.test(phone)) {
+        failPhoneEdit();
+        return false;
+    }
+    return true;
+}
+
+function failName() {
+    document.getElementById('name').classList.add('failinput');
+    document.getElementById('failName').classList.remove('d_none');
+}
+
+function failPhoneAdd() {
+    document.getElementById('phone').classList.add('failinput');
+    document.getElementById('failPhone').classList.remove('d_none');
+}
+
+function failEmailAdd() {
+    document.getElementById('email').classList.add('failinput');
+    document.getElementById('failEmail').classList.remove('d_none');
+}
+
+function failAllAdd() {
+    document.getElementById('name').classList.add('failinput');
+    document.getElementById('email').classList.add('failinput');
+    document.getElementById('phone').classList.add('failinput');
+    document.getElementById('failAll').classList.remove('d_none');
+}
+
+function failAllEdit() {
+    document.getElementById('name2').classList.add('failinput');
+    document.getElementById('email2').classList.add('failinput');
+    document.getElementById('phone2').classList.add('failinput');
+    document.getElementById('failAllEdit').classList.remove('d_none');
+}
+
+function failPhoneEdit() {
+    document.getElementById('phone2').classList.add('failinput');
+    document.getElementById('failPhoneEdit').classList.remove('d_none');
+}
+
+function failEmailEdit() {
+    document.getElementById('email2').classList.add('failinput');
+    document.getElementById('failEmailEdit').classList.remove('d_none');
+}
+function failNameEdit() {
+    document.getElementById('name2').classList.add('failinput');
+    document.getElementById('failNameEdit').classList.remove('d_none');
 }
 
 function reloadAdd() {
     document.getElementById('name').value = '';
     document.getElementById('email').value = '';
     document.getElementById('phone').value = '';
+    document.getElementById('name').classList.remove('failinput');
+    document.getElementById('email').classList.remove('failinput');
+    document.getElementById('phone').classList.remove('failinput');
+    document.getElementById('failEmail').classList.add('d_none');
+    document.getElementById('failPhone').classList.add('d_none');
+    document.getElementById('failName').classList.add('d_none');
+    document.getElementById('failAll').classList.add('d_none');
     document.getElementById('overlay').classList.remove('show');
 }
+
+function clearFailAdd(inputId, errorId) {
+    let inputValue = document.getElementById(inputId).value.trim();
+    if (inputValue !== '') {
+        document.getElementById(errorId).classList.add('d_none');
+        document.getElementById(inputId).classList.remove('failinput');
+    }
+    if (document.getElementById('name').value.trim() !== '' &&
+        document.getElementById('email').value.trim() !== '' &&
+        document.getElementById('phone').value.trim() !== '') {
+        document.getElementById('failAll').classList.add('d_none');
+    }
+}
+
+function clearFailEdit(inputId, errorId) {
+    let inputValue = document.getElementById(inputId).value.trim();
+    if (inputValue !== '') {
+        document.getElementById(errorId).classList.add('d_none');
+        document.getElementById(inputId).classList.remove('failinput');
+    }
+    if (document.getElementById('name2').value.trim() !== '' &&
+        document.getElementById('email2').value.trim() !== '' &&
+        document.getElementById('phone2').value.trim() !== '') {
+        document.getElementById('failAllEdit').classList.add('d_none');
+    }
+}
+
 
 async function createContactData(name, email, phone, number, firstNameInitial, color) {
     await postCreateData(`/contact/contact${number}`, {
@@ -275,27 +392,28 @@ async function deleteContact(number) {
         method: 'DELETE',
     });
     saveEditDisplayOff();
-    
+
     array = [];
     load();
 
 }
 
-function deleteEdit(i) {    
+function deleteEdit(i) {
     let number = array[i].number;
     deleteContact(number);
     saveEditDisplayOff();
-    
+
 }
 
-async function editContactData(event, i) {
-    event.preventDefault();
-    let number = array[i].number;    
+async function editContactData(i) {
+    let number = array[i].number;
     let name = document.getElementById('name2').value;
     let email = document.getElementById('email2').value;
     let phone = document.getElementById('phone2').value;
-    await editContactFB(name, email, phone, number)
-    saveEditDisplayOff();
+    if (valiEdit()) {
+        await editContactFB(name, email, phone, number)
+        saveEditDisplayOff();
+    }
 }
 
 function saveEditDisplayOff() {
@@ -307,10 +425,10 @@ function saveEditDisplayOff() {
         document.querySelector('.contact-container-right').classList.add('hidden');
         document.getElementById('overlayEdit').classList.add('d_none');
         contactDetail.innerHTML = '';
-    }else{
+    } else {
         document.getElementById('overlayEdit').classList.add('d_none');
         contactDetail.innerHTML = '';
-    }   
+    }
 }
 
 async function editContactFB(name, email, phone, number) {

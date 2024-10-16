@@ -11,12 +11,12 @@ document.getElementById('cancel-icon').addEventListener('click', function () {
 });
 
 document.getElementById('close-btn').addEventListener('click', function () {
-    document.getElementById('overlay').classList.remove('show');
+    reloadAdd();
 });
 
 document.getElementById('overlay').addEventListener('click', function (event) {
     if (event.target === document.getElementById('overlay')) {
-        document.getElementById('overlay').classList.remove('show');
+        reloadAdd();
     }
 });
 
@@ -39,13 +39,25 @@ function overlay2(i, initials) {
                                  
                              <form id="contactFormEdit">
                                  <div class="EditInput">
-                                     <div class="input-container"><input id="name2" type="text" placeholder="Name" required></div>
-                                     <div class="input-container"><input id="email2" type="email" placeholder="Email" required></div>
-                                     <div class="input-container"><input id="phone2" type="tel" placeholder="Phone"></div>
+                                     <div class="input-container"><input id="name2" class="input" type="text" placeholder="Name" 
+                                     oninput="clearFailEdit('name2', 'failNameEdit')">
+                                     <div id="failNameEdit" class="fail d_none "><span>Please enter a correct name</span>
+                                        </div>
+                                     </div>
+                                     <div class="input-container"><input id="email2" class="input" type="email" placeholder="Email" 
+                                     oninput="clearFailEdit('email2', 'failEmailEdit')">
+                                     <div id="failEmailEdit" class="fail d_none "><span>Please enter a correct email, example alex@test.de</span></div>
+                                     </div>                                     
+                                     <div class="input-container"><input id="phone2" class="input" type="tel" placeholder="Phone"
+                                     oninput="clearFailEdit('phone2', 'failPhoneEdit')">
+                                     <div id="failPhoneEdit" class="fail d_none "><span>Please enter a correct number, just a number.</span></div>
+                                     </div>
+                                     
+                                    <div id="failAllEdit" class="fail d_none"><span>Please enter a name, email and phone number.</span></div>
                                  </div>
                                  <div class="popup-actions">
                                      <button onclick="deleteEdit(${i})" type="button" id="cancel-icon" class="deleteBtnEditContact">Delete</button>
-                                     <button onclick="editContactData(event, ${i})" class="createbuttoncontact" type="submit">Save <img src="../img/checkaddcontact.png"></button>
+                                     <button type="button" onclick="editContactData(${i})" class="createbuttoncontact">Save <img src="../img/checkaddcontact.png"></button>
                                  </div>
                              </form>
                              <div onclick="editContactOff()" class="closeBtnEdit">
