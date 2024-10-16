@@ -201,6 +201,9 @@
         p {
             display: none;
         }
+
+        border-bottom-left-radius:0 ;
+        border-top-right-radius: 30px;
     }
 
     .popup-right {
