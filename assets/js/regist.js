@@ -5,7 +5,14 @@ function validateForm() {
     let confirmPassword = document.getElementById('confirmPassword');
     let privacyPolicy = document.getElementById('privacyPolicy');
     let submitButton = document.getElementById('submitButton');    
-    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
+    let nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
+
+    if (!nameRegex.test(userName.value)) {
+        submitButton.disabled = true;
+        document.getElementById('submitButton').classList.remove('login');
+        return false;
+    }
 
     if (!emailRegex.test(email.value)) {
         submitButton.disabled = true;

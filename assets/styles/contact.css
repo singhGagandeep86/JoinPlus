@@ -309,12 +309,12 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.popupEdit {
-    position: absolute;
-    top: 25%;
-    left: 10%;
+.popupEdit {    
     width: 1212px;
     height: 592px;
     background-color: white;
@@ -614,7 +614,7 @@ input::placeholder {
     background-repeat: no-repeat;
 }
 
-.input-container:nth-child(4)::before {
+.input-container:nth-child(3)::before {
     content: '';
     position: absolute;
     top: 50%;

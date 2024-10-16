@@ -188,14 +188,19 @@ async function addContactData() {
     }
 }
 
-
 function valiAdd(name, email, phone) {
-    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
     let phoneRegex = /^[0-9]+$/;
+    let nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
     if (!name || !email || !phone) {
         failAllAdd();
         return false;
     }
+    if (!nameRegex.test(name)) {
+        failName();
+        return false;
+    }
+
     if (!emailRegex.test(email)) {
         failEmailAdd();
         return false;
@@ -208,15 +213,20 @@ function valiAdd(name, email, phone) {
 }
 
 function valiEdit() {
-    let name = document.getElementById('name2').value;
-    let email = document.getElementById('email2').value;
-    let phone = document.getElementById('phone2').value;
-    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    let name = document.getElementById('name2').value.trim();
+    let email = document.getElementById('email2').value.trim();
+    let phone = document.getElementById('phone2').value.trim();
+    let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
     let phoneRegex = /^[0-9]+$/;
+    let nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
     if (!name || !email || !phone) {
         failAllEdit();
         return false;
     }
+    if (!nameRegex.test(name)) {
+        failNameEdit();
+        return false;
+    }   
     if (!emailRegex.test(email)) {
         failEmailEdit();
         return false;
@@ -228,9 +238,14 @@ function valiEdit() {
     return true;
 }
 
+function failName() {
+    document.getElementById('name').classList.add('failinput');
+    document.getElementById('failName').classList.remove('d_none');
+}
+
 function failPhoneAdd() {
     document.getElementById('phone').classList.add('failinput');
-    document.getElementById('failPhone').classList.remove('d_none');    
+    document.getElementById('failPhone').classList.remove('d_none');
 }
 
 function failEmailAdd() {
@@ -255,12 +270,15 @@ function failAllEdit() {
 function failPhoneEdit() {
     document.getElementById('phone2').classList.add('failinput');
     document.getElementById('failPhoneEdit').classList.remove('d_none');
-    
 }
 
 function failEmailEdit() {
     document.getElementById('email2').classList.add('failinput');
     document.getElementById('failEmailEdit').classList.remove('d_none');
+}
+function failNameEdit() {
+    document.getElementById('name2').classList.add('failinput');
+    document.getElementById('failNameEdit').classList.remove('d_none');
 }
 
 function reloadAdd() {
@@ -272,9 +290,37 @@ function reloadAdd() {
     document.getElementById('phone').classList.remove('failinput');
     document.getElementById('failEmail').classList.add('d_none');
     document.getElementById('failPhone').classList.add('d_none');
+    document.getElementById('failName').classList.add('d_none');
     document.getElementById('failAll').classList.add('d_none');
     document.getElementById('overlay').classList.remove('show');
 }
+
+function clearFailAdd(inputId, errorId) {
+    let inputValue = document.getElementById(inputId).value.trim();
+    if (inputValue !== '') {
+        document.getElementById(errorId).classList.add('d_none');
+        document.getElementById(inputId).classList.remove('failinput');
+    }
+    if (document.getElementById('name').value.trim() !== '' &&
+        document.getElementById('email').value.trim() !== '' &&
+        document.getElementById('phone').value.trim() !== '') {
+        document.getElementById('failAll').classList.add('d_none');
+    }
+}
+
+function clearFailEdit(inputId, errorId) {
+    let inputValue = document.getElementById(inputId).value.trim();
+    if (inputValue !== '') {
+        document.getElementById(errorId).classList.add('d_none');
+        document.getElementById(inputId).classList.remove('failinput');
+    }
+    if (document.getElementById('name2').value.trim() !== '' &&
+        document.getElementById('email2').value.trim() !== '' &&
+        document.getElementById('phone2').value.trim() !== '') {
+        document.getElementById('failAllEdit').classList.add('d_none');
+    }
+}
+
 
 async function createContactData(name, email, phone, number, firstNameInitial, color) {
     await postCreateData(`/contact/contact${number}`, {
@@ -364,7 +410,7 @@ async function editContactData(i) {
     let name = document.getElementById('name2').value;
     let email = document.getElementById('email2').value;
     let phone = document.getElementById('phone2').value;
-    if (valiEdit()){
+    if (valiEdit()) {
         await editContactFB(name, email, phone, number)
         saveEditDisplayOff();
     }

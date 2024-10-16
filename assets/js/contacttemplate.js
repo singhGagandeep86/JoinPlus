@@ -39,11 +39,20 @@ function overlay2(i, initials) {
                                  
                              <form id="contactFormEdit">
                                  <div class="EditInput">
-                                     <div class="input-container"><input id="name2" class="input" type="text" placeholder="Name" ></div>
-                                     <div class="input-container"><input id="email2" class="input" type="email" placeholder="Email" ></div>
+                                     <div class="input-container"><input id="name2" class="input" type="text" placeholder="Name" 
+                                     oninput="clearFailEdit('name2', 'failNameEdit')">
+                                     <div id="failNameEdit" class="fail d_none "><span>Please enter a correct name</span>
+                                        </div>
+                                     </div>
+                                     <div class="input-container"><input id="email2" class="input" type="email" placeholder="Email" 
+                                     oninput="clearFailEdit('email2', 'failEmailEdit')">
                                      <div id="failEmailEdit" class="fail d_none "><span>Please enter a correct email, example alex@test.de</span></div>
-                                     <div class="input-container"><input id="phone2" class="input" type="tel" placeholder="Phone"></div>
+                                     </div>                                     
+                                     <div class="input-container"><input id="phone2" class="input" type="tel" placeholder="Phone"
+                                     oninput="clearFailEdit('phone2', 'failPhoneEdit')">
                                      <div id="failPhoneEdit" class="fail d_none "><span>Please enter a correct number, just a number.</span></div>
+                                     </div>
+                                     
                                     <div id="failAllEdit" class="fail d_none"><span>Please enter a name, email and phone number.</span></div>
                                  </div>
                                  <div class="popup-actions">
