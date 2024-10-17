@@ -18,8 +18,6 @@
     .contact-text img {
         content: url("../img/Vectorstrich.png");
     }
-
-   
 }
 
 @media(min-width: 801px) and (max-width:1114px) {
@@ -51,7 +49,6 @@
         right: 20px;
     }
 }
-
 
 @media(min-width: 801px) and (max-width:1300px) {
     .content {
