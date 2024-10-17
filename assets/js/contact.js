@@ -122,7 +122,7 @@ function editContact(i) {
     let contactName = array[i].name;
     let initials = extrahiereInitialen(contactName);
     let popUpEdit = document.getElementById('overlayEdit');
-    document.getElementById('overlayEdit').classList.remove('selectHide');
+    document.getElementById('overlayEdit').classList.remove('d_none');
     popUpEdit.innerHTML = '';
     popUpEdit.innerHTML = overlay2(i, initials);
     loadInputEdit(i)
@@ -158,8 +158,8 @@ function initializeEditButton(i) {
 
 function toggleEditImage() {
     let editImage2 = document.getElementById('editImage2');
-    if (editImage2.classList.contains('selectHide')) {
-        editImage2.classList.remove('selectHide');
+    if (editImage2.classList.contains('d_none')) {
+        editImage2.classList.remove('d_none');
     } else {
         closeEditImage();
     }
@@ -167,11 +167,11 @@ function toggleEditImage() {
 
 function closeEditImage() {
     let editImage2 = document.getElementById('editImage2');
-    editImage2.classList.add('selectHide');
+    editImage2.classList.add('d_none');
 }
 
 function editContactOff() {
-    document.getElementById('overlayEdit').classList.add('selectHide');
+    document.getElementById('overlayEdit').classList.add('d_none');
 
 }
 
@@ -240,45 +240,45 @@ function valiEdit() {
 
 function failName() {
     document.getElementById('name').classList.add('failinput');
-    document.getElementById('failName').classList.remove('selectHide');
+    document.getElementById('failName').classList.remove('d_none');
 }
 
 function failPhoneAdd() {
     document.getElementById('phone').classList.add('failinput');
-    document.getElementById('failPhone').classList.remove('selectHide');
+    document.getElementById('failPhone').classList.remove('d_none');
 }
 
 function failEmailAdd() {
     document.getElementById('email').classList.add('failinput');
-    document.getElementById('failEmail').classList.remove('selectHide');
+    document.getElementById('failEmail').classList.remove('d_none');
 }
 
 function failAllAdd() {
     document.getElementById('name').classList.add('failinput');
     document.getElementById('email').classList.add('failinput');
     document.getElementById('phone').classList.add('failinput');
-    document.getElementById('failAll').classList.remove('selectHide');
+    document.getElementById('failAll').classList.remove('d_none');
 }
 
 function failAllEdit() {
     document.getElementById('name2').classList.add('failinput');
     document.getElementById('email2').classList.add('failinput');
     document.getElementById('phone2').classList.add('failinput');
-    document.getElementById('failAllEdit').classList.remove('selectHide');
+    document.getElementById('failAllEdit').classList.remove('d_none');
 }
 
 function failPhoneEdit() {
     document.getElementById('phone2').classList.add('failinput');
-    document.getElementById('failPhoneEdit').classList.remove('selectHide');
+    document.getElementById('failPhoneEdit').classList.remove('d_none');
 }
 
 function failEmailEdit() {
     document.getElementById('email2').classList.add('failinput');
-    document.getElementById('failEmailEdit').classList.remove('selectHide');
+    document.getElementById('failEmailEdit').classList.remove('d_none');
 }
 function failNameEdit() {
     document.getElementById('name2').classList.add('failinput');
-    document.getElementById('failNameEdit').classList.remove('selectHide');
+    document.getElementById('failNameEdit').classList.remove('d_none');
 }
 
 function reloadAdd() {
@@ -288,36 +288,36 @@ function reloadAdd() {
     document.getElementById('name').classList.remove('failinput');
     document.getElementById('email').classList.remove('failinput');
     document.getElementById('phone').classList.remove('failinput');
-    document.getElementById('failEmail').classList.add('selectHide');
-    document.getElementById('failPhone').classList.add('selectHide');
-    document.getElementById('failName').classList.add('selectHide');
-    document.getElementById('failAll').classList.add('selectHide');
+    document.getElementById('failEmail').classList.add('d_none');
+    document.getElementById('failPhone').classList.add('d_none');
+    document.getElementById('failName').classList.add('d_none');
+    document.getElementById('failAll').classList.add('d_none');
     document.getElementById('overlay').classList.remove('show');
 }
 
 function clearFailAdd(inputId, errorId) {
     let inputValue = document.getElementById(inputId).value.trim();
     if (inputValue !== '') {
-        document.getElementById(errorId).classList.add('selectHide');
+        document.getElementById(errorId).classList.add('d_none');
         document.getElementById(inputId).classList.remove('failinput');
     }
     if (document.getElementById('name').value.trim() !== '' &&
         document.getElementById('email').value.trim() !== '' &&
         document.getElementById('phone').value.trim() !== '') {
-        document.getElementById('failAll').classList.add('selectHide');
+        document.getElementById('failAll').classList.add('d_none');
     }
 }
 
 function clearFailEdit(inputId, errorId) {
     let inputValue = document.getElementById(inputId).value.trim();
     if (inputValue !== '') {
-        document.getElementById(errorId).classList.add('selectHide');
+        document.getElementById(errorId).classList.add('d_none');
         document.getElementById(inputId).classList.remove('failinput');
     }
     if (document.getElementById('name2').value.trim() !== '' &&
         document.getElementById('email2').value.trim() !== '' &&
         document.getElementById('phone2').value.trim() !== '') {
-        document.getElementById('failAllEdit').classList.add('selectHide');
+        document.getElementById('failAllEdit').classList.add('d_none');
     }
 }
 
@@ -423,10 +423,10 @@ function saveEditDisplayOff() {
         document.querySelector('.container').classList.add('OnDetails');
         document.querySelector('.contact-container-right').classList.remove('OnDetails');
         document.querySelector('.contact-container-right').classList.add('hidden');
-        document.getElementById('overlayEdit').classList.add('selectHide');
+        document.getElementById('overlayEdit').classList.add('d_none');
         contactDetail.innerHTML = '';
     } else {
-        document.getElementById('overlayEdit').classList.add('selectHide');
+        document.getElementById('overlayEdit').classList.add('d_none');
         contactDetail.innerHTML = '';
     }
 }

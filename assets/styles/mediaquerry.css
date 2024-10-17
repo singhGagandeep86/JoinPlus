@@ -148,6 +148,10 @@
         padding: 0;
         border-radius: 10px;
     }
+
+    .asideMenu img{
+        margin: 0;
+    }
 }
 
 @media (max-width:800px) {
