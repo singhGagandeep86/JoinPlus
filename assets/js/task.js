@@ -342,6 +342,7 @@ function checkedCreate(list) {
 
   return checked;
 }
+
 function createContactFire() {
   let contacts = {};
   for (let j = 0; j < names.length; j++) {
@@ -351,6 +352,7 @@ function createContactFire() {
   }
   return contacts;
 }
+
 function colorFirebase() {
   let coloursAsObject = {};
   for (let k = 0; k < colours.length; k++) {
@@ -374,29 +376,48 @@ function generateRandomNumber() {
 
 function checkValidation() {
   let task = document.getElementById('titleText').value;
-  let enteredDate = document.getElementById('dateData');
   let category = document.getElementById('customSelect').innerText;
   let taskReg = /^[a-zA-Z]+( [a-zA-Z&]+)*$/;
   let dateReg = dateCheck();
+  let chkAllFnc = checkAll(task, dateReg, category);
+  let chkTskFnc = checkTask(taskReg, task);
+  let chkDteFnc = checkDate(dateReg);
+  let chkCatFnc = checkCategory(category);
+  if (chkAllFnc == false || chkTskFnc == false || chkDteFnc == false || chkCatFnc == false) {
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
+function checkAll(task, dateReg, category) {
   if (!task && dateReg == false && category === `Select task category`) {
     failAll();
     return false;
   }
+}
+
+function checkTask(taskReg, task) {
   if (!taskReg.test(task)) {
     failTask();
     return false;
   }
+}
+
+function checkDate(dateReg) {
   if (dateReg == false) {
     failDate();
     return false;
   }
+}
+
+function checkCategory(category) {
   if (category === `Select task category`) {
     failCategory();
     return false;
   }
-  return true;
 }
-
 
 // to Check Date not earlier
 function dateCheck() {
@@ -410,27 +431,29 @@ function dateCheck() {
   let inputMonth = splittedDate[1];
   let inputDate = splittedDate[2];
   if (enteredDate) {
-    if (inputYear > year && inputYear < 10000) {
-      return true;
-    }
-    else {
-      if (inputYear == year & inputMonth > month) {
-        return true;
-      }
-      else {
-        if (inputYear == year & inputMonth == month & inputDate >= day) {
-          return true;
-        }
-        else {
-          return false;
-        }
-      }
-    }
+    compareDate(year, month, day, inputYear, inputMonth, inputDate);
   }
   else {
     return false;
   }
 }
+
+function compareDate(year, month, day, inputYear, inputMonth, inputDate) {
+  if (inputYear > year && inputYear < 10000) {
+    return true;
+  }
+  else {
+    if (inputYear == year & inputMonth > month) {
+      return true;
+    }
+    else {
+      if (inputYear == year & inputMonth == month & inputDate >= day) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }}}
 
 function failTask() {
   document.getElementById('failName').classList.remove("selectHide");
