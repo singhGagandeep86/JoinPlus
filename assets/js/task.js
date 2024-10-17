@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function addingTask(id) {
   if (checkValidation()) {
-    document.getElementById('taskDoneIcon').classList.remove("d_noneImg");
+    document.getElementById('taskDoneIcon').classList.remove("selectHideImg");
     await toWaiting(id);
     await navigateToBoard();
   }
@@ -433,24 +433,24 @@ function dateCheck() {
 }
 
 function failTask() {
-  document.getElementById('failName').classList.remove("d_none");
+  document.getElementById('failName').classList.remove("selectHide");
   document.getElementById('titleText').classList.add("failedinput");
 }
 
 function failDate() {
-  document.getElementById('failDueDate').classList.remove("d_none");
+  document.getElementById('failDueDate').classList.remove("selectHide");
   document.getElementById('dateData').classList.add("failedinput");
 }
 
 function failCategory() {
-  document.getElementById('failCategory').classList.remove("d_none");
+  document.getElementById('failCategory').classList.remove("selectHide");
   document.getElementById('customSelect').classList.add("failedinput");
 }
 
 function failAll() {
-  document.getElementById('failName').classList.remove("d_none");
-  document.getElementById('failDueDate').classList.remove("d_none");
-  document.getElementById('failCategory').classList.remove("d_none");
+  document.getElementById('failName').classList.remove("selectHide");
+  document.getElementById('failDueDate').classList.remove("selectHide");
+  document.getElementById('failCategory').classList.remove("selectHide");
   document.getElementById('titleText').classList.add("failedinput");
   document.getElementById('dateData').classList.add("failedinput");
   document.getElementById('customSelect').classList.add("failedinput");

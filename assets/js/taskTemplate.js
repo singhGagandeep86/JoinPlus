@@ -44,9 +44,9 @@ function resetingLocalVariables() {
 }
 
 function resetError() {
-    document.getElementById('failName').classList.add("d_none");
-    document.getElementById('failDueDate').classList.add("d_none");
-    document.getElementById('failCategory').classList.add("d_none");
+    document.getElementById('failName').classList.add("selectHide");
+    document.getElementById('failDueDate').classList.add("selectHide");
+    document.getElementById('failCategory').classList.add("selectHide");
     document.getElementById('titleText').classList.remove("failedinput");
     document.getElementById('dateData').classList.remove("failedinput");
     document.getElementById('customSelect').classList.remove("failedinput");

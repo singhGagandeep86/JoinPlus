@@ -2,7 +2,6 @@ body {
     font-family: 'inter';
     margin: 0px;
     box-sizing: border-box;
-
     max-height: 1024px;
 }
 
@@ -30,6 +29,7 @@ form {
 .formular {
     display: flex;
     gap: 48.5px;
+    height: 554px;
 }
 
 .heading {
@@ -328,14 +328,14 @@ label {
     background-color: transparent;
 }
 
-.assign select:focus{
+.assign select:focus {
     margin-inline: 120px;
 }
 
 
 .selectItems {
-    position: absolute;
-    margin-top: 80px;
+    /* position: absolute; */
+    /* margin-top: 80px; */
     width: 440px;
     background-color: #FFFFFF;
     z-index: 99;
@@ -515,7 +515,6 @@ label {
     gap: 16px;
 }
 
-
 .info {
     font-size: 20px;
     font-weight: 400;
@@ -636,6 +635,7 @@ ul.a {
     scrollbar-width: none;
     /* -ms-overflow-style: none; */
 }
+
 /* 
 ul.a::-webkit-scrollbar {
     display: none;
@@ -726,6 +726,13 @@ li:hover {
 
 .d_noneImg {
     display: none;
+}
+
+.fail {
+    width: 100%;
+    height: 18px;
+    font-size: 16px;
+    color: rgba(249, 25, 25, 0.5);
 }
 
 .failedinput {

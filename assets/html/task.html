@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../styles/mediaquerry.css">
     <link rel="stylesheet" href="../styles/mediaquerryTask.css">
     <link rel="stylesheet" href="../styles/boardTask.css">
-    <link rel="stylesheet" href="../styles/contact.css">
     <title>addTask</title>
 
 </head>
@@ -66,7 +65,7 @@
                                 <div class="smallHead"><span>Title <sup>*</sup></span>
                                 </div>
                                 <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title">
-                                <div id="failName" class="fail d_none"><span>Please enter a correct Task in text Format.</span></div>
+                                <div id="failName" class="fail selectHide"><span>Please enter a correct Task in text Format.</span></div>
                             </div>
                             <div class="description">
                                 <div class="smallHead">Description</div>
@@ -91,7 +90,7 @@
                                 </div>
                                 <input class="dueDateTxt" type="text" id="dateData" placeholder="dd/mm/yyyy" 
                                     onfocus="(type='date')">
-                                    <div id="failDueDate" class="fail d_none"><span>Please select a correct Due Date.</span></div>
+                                    <div id="failDueDate" class="fail selectHide"><span>Please select a correct Due Date.</span></div>
                             </div>
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
@@ -123,7 +122,7 @@
                                     <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
                                     <div data-value="userStory" onclick="selectOption(this)">User Story</div>
                                 </div>
-                                <div id="failCategory" class="fail d_none"><span>Please select a Category for Task.</span></div>
+                                <div id="failCategory" class="fail selectHide"><span>Please select a Category for Task.</span></div>
                             </div>
 
                             <div id="inputSubClass" class="subtasks">
