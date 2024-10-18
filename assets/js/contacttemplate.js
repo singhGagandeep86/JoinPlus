@@ -39,15 +39,15 @@ function overlay2(i, initials) {
                                  
                              <form id="contactFormEdit">
                                  <div class="EditInput">
-                                     <div class="input-container"><input id="name2" class="input" type="text" placeholder="Name" 
+                                     <div class="input-container"><input id="name2" class="input" type="text" placeholder="Name"
                                      oninput="clearFailEdit('name2', 'failNameEdit')">
                                      <div id="failNameEdit" class="fail d_none "><span>Please enter a correct name</span>
                                         </div>
                                      </div>
-                                     <div class="input-container"><input id="email2" class="input" type="email" placeholder="Email" 
+                                     <div class="input-container"><input id="email2" class="input" type="email" placeholder="Email"
                                      oninput="clearFailEdit('email2', 'failEmailEdit')">
                                      <div id="failEmailEdit" class="fail d_none "><span>Please enter a correct email, example alex@test.de</span></div>
-                                     </div>                                     
+                                     </div>
                                      <div class="input-container"><input id="phone2" class="input" type="tel" placeholder="Phone"
                                      oninput="clearFailEdit('phone2', 'failPhoneEdit')">
                                      <div id="failPhoneEdit" class="fail d_none "><span>Please enter a correct number, just a number.</span></div>

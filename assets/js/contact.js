@@ -74,8 +74,7 @@ function loadContact() {
             currentLetter = firstLetter;
         }
         contactSpace.innerHTML += loadContactData(i, initials);
-    }
-}
+    }}
 
 function showContactDetails(i, initials) {
     let number = array[i].number;
@@ -109,6 +108,7 @@ function activeContact(i, number, initials) {
         }
     };
 }
+
 function showContactList(i) {
     let allContacts = document.querySelectorAll('.contact-item');
     document.querySelector('.container').classList.remove('hidden');
@@ -135,7 +135,6 @@ function stopEditArea() {
     area.addEventListener('click', (event) => {
         event.stopPropagation()
     })
-
 }
 
 function loadInputEdit(i) {
@@ -172,7 +171,6 @@ function closeEditImage() {
 
 function editContactOff() {
     document.getElementById('overlayEdit').classList.add('d_none');
-
 }
 
 async function addContactData() {
@@ -195,17 +193,13 @@ function valiAdd(name, email, phone) {
     if (!name || !email || !phone) {
         failAllAdd();
         return false;
-    }
-    if (!nameRegex.test(name)) {
+    } if (!nameRegex.test(name)) {
         failName();
         return false;
-    }
-
-    if (!emailRegex.test(email)) {
+    } if (!emailRegex.test(email)) {
         failEmailAdd();
         return false;
-    }
-    if (!phoneRegex.test(phone)) {
+    } if (!phoneRegex.test(phone)) {
         failPhoneAdd();
         return false;
     }
@@ -222,16 +216,13 @@ function valiEdit() {
     if (!name || !email || !phone) {
         failAllEdit();
         return false;
-    }
-    if (!nameRegex.test(name)) {
+    } if (!nameRegex.test(name)) {
         failNameEdit();
         return false;
-    }   
-    if (!emailRegex.test(email)) {
+    } if (!emailRegex.test(email)) {
         failEmailEdit();
         return false;
-    }
-    if (!phoneRegex.test(phone)) {
+    } if (!phoneRegex.test(phone)) {
         failPhoneEdit();
         return false;
     }
@@ -276,6 +267,7 @@ function failEmailEdit() {
     document.getElementById('email2').classList.add('failinput');
     document.getElementById('failEmailEdit').classList.remove('d_none');
 }
+
 function failNameEdit() {
     document.getElementById('name2').classList.add('failinput');
     document.getElementById('failNameEdit').classList.remove('d_none');
@@ -320,7 +312,6 @@ function clearFailEdit(inputId, errorId) {
         document.getElementById('failAllEdit').classList.add('d_none');
     }
 }
-
 
 async function createContactData(name, email, phone, number, firstNameInitial, color) {
     await postCreateData(`/contact/contact${number}`, {
@@ -395,14 +386,12 @@ async function deleteContact(number) {
 
     array = [];
     load();
-
 }
 
 function deleteEdit(i) {
     let number = array[i].number;
     deleteContact(number);
     saveEditDisplayOff();
-
 }
 
 async function editContactData(i) {
@@ -437,7 +426,6 @@ async function editContactFB(name, email, phone, number) {
         'name': name,
         'email': email,
         'rufnummer': phone,
-
     });
 }
 
@@ -452,7 +440,6 @@ async function postEditData(path, data) {
         });
         array = [];
         load();
-
     } catch (error) {
     }
 }
