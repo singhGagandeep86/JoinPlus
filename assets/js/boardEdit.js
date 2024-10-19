@@ -13,27 +13,55 @@ async function fetchContact(pathC, objData) {
 
 function loadContactData(firebaseData, objData) {
     let contactArea = document.getElementById('contactDropArea');
-    let contact = Object.values(objData.contact);
+    let contact = objData.contact === undefined
+        ? null
+        : Object.values(objData.contact).every(name => name === null)
+            ? null
+            : Object.values(objData.contact);
     let contactData = contactArray(firebaseData);
     contactArea.innerHTML = '';
+    if (contact == null) {
+        loadContactEmpty(contactData, firebaseData)
+    } else {
+        for (let j = 0; j < firebaseData.length; j++) {
+            let contactName = contactData[j];
+            let color = firebaseData[j].color;
+            let initials = extrahiereInitialen(contactName);
+            let isChecked = contact.some(selectedContact => selectedContact === contactName) ? 'checked' : '';
+            contactArea.innerHTML += checkboxContactTemplate(isChecked, contactName, initials, color);
+        }
+    }
+}
+
+function loadContactEmpty(contactData, firebaseData) {
+    let contactArea = document.getElementById('contactDropArea');
     for (let j = 0; j < firebaseData.length; j++) {
         let contactName = contactData[j];
         let color = firebaseData[j].color;
         let initials = extrahiereInitialen(contactName);
-        let isChecked = contact.some(selectedContact => selectedContact === contactName) ? 'checked' : '';
-        contactArea.innerHTML += checkboxContactTemplate(isChecked, contactName, initials, color);
+        contactArea.innerHTML += checkboxContactTemplateEmpty(contactName, initials, color);
     }
 }
 
 function initialsLoad(objData) {
-    let contactUser = Object.values(objData.contact);
-    let color = Object.values(objData.contactcolor);
+    let contactUser = objData.contact === undefined
+        ? null
+        : Object.values(objData.contact).every(name => name === null)
+            ? null
+            : Object.values(objData.contact);
+    let color = objData.contactcolor === undefined
+        ? null
+        : Object.values(objData.contactcolor);
     let initialsContact = document.getElementById('initialsArea');
-    for (let k = 0; k < contactUser.length; k++) {
-        let contactName = contactUser[k];
-        let colorIni = color[k];
-        let initials = extrahiereInitialen(contactName);
-        initialsContact.innerHTML += initialsLoadContact(initials, colorIni);
+    if (contactUser == null) {
+        initialsContact.innerHTML = '';
+    } else {
+        for (let k = 0; k < contactUser.length; k++) {
+            let contactName = contactUser[k];
+            let colorIni = color[k];
+            let initials = extrahiereInitialen(contactName);
+            initialsContact.innerHTML += initialsLoadContact(initials, colorIni);
+        }
     }
 }
 
@@ -59,6 +87,11 @@ function editOpen(i) {
     })
 }
 
+function dateVali() {
+    let today = new Date().toISOString().split('T')[0];
+    document.getElementById('dateEditEnter').setAttribute('min', today);
+}
+
 function loadEditData(objData, prioCheck) {
     loadContact(objData);
     descriptionData(objData);
@@ -66,6 +99,7 @@ function loadEditData(objData, prioCheck) {
     loadSubs(objData);
     priorityEditCheck(prioCheck);
     initialsLoad(objData)
+    dateVali();
 }
 
 function contactDropOpen() {
@@ -251,7 +285,7 @@ function readPrio() {
 
 function readEditData(number) {
     let numberEditElement = number;
-    let title = document.querySelector('.titleInput').value;
+    let title = document.querySelector('.titleInput').value.trim();
     let description = document.querySelector('.textAreaData').value;
     let dueDate = document.querySelector('.DueDate').value;
     let priority = readPrio();
@@ -261,7 +295,29 @@ function readEditData(number) {
     let checked = checkedObj(subtask);
     let contactName = nameObj(contact);
     let color = colorObj(contact);
-    pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority);
+    nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority);
+}
+
+function nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority) {
+    if (title === '') {
+        failNameEditBoard();
+        return false;
+    } else {
+        pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority);
+    }
+}
+function clearFailAdd() {
+    let title = document.querySelector('.titleInput').value.trim();
+    if (title !== '') {
+        document.getElementById('failTitleEditBoard').classList.add('d_none');
+        document.getElementById('titleEditFail').classList.remove('titleInputFail');
+    }
+}
+
+function failNameEditBoard() {
+    document.getElementById('titleEditFail').classList.add('titleInputFail');
+    document.getElementById('failTitleEditBoard').classList.remove('d_none');
+
 }
 
 function subtaskObj(subtask) {

@@ -209,7 +209,8 @@ function editTask(objData) {
      <div class="title">
             <div class="smallHead titleStyle"><span>Title</span>
             </div>
-            <input class="titleInput" type="text" value="${objData.title}" required>
+            <input id="titleEditFail" class="titleInput " type="text" value="${objData.title}" oninput="clearFailAdd()">
+            <div id="failTitleEditBoard" class="fail d_none "><span>Please enter a title</span></div>
         </div>
         <div class="description">
             <div class="smallHead descSytle">Description</div>
@@ -219,7 +220,7 @@ function editTask(objData) {
      <div class="dueDate">
             <div class="smallHead dateStyle"><span>Due Date</span>
             </div>
-            <input class="DueDate" type="text" value="${objData.date}" onfocus="(this.type='date')" required>
+            <input id="dateEditEnter"  class="DueDate" type="text" value="${objData.date}" onfocus="(this.type='date')">
         </div>
       <div class="prioArea">
     <span>Priority</span>
@@ -249,6 +250,10 @@ function editTask(objData) {
 
 function checkboxContactTemplate(isChecked, contactName , initials, color) {
     return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ${isChecked} ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><span>${initials}</span></div></div> </label></div>`
+}
+
+function checkboxContactTemplateEmpty( contactName , initials, color) {
+    return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><span>${initials}</span></div></div> </label></div>`
 }
 
 function initialsLoadContact(initials, colorIni) {
