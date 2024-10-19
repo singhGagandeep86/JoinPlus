@@ -217,7 +217,6 @@ function selectOption(element) {
   customSelect.classList.remove('invalid');
 }
 
-
 document.addEventListener('click', function (rightEvent) {
   const assignHeading = document.getElementById('customSelect');
   if (dropdownOpen && !assignHeading.contains(rightEvent.target)) {
@@ -420,7 +419,6 @@ function checkCategory(category) {
   }
 }
 
-// to Check Date not earlier
 function dateCheck() {
   let catchedDate = new Date();
   let year = catchedDate.getFullYear();
@@ -480,4 +478,9 @@ function failAll() {
   document.getElementById('titleText').classList.add("failedinput");
   document.getElementById('dateData').classList.add("failedinput");
   document.getElementById('customSelect').classList.add("failedinput");
+}
+
+function dateAutoChange() {
+  let today = new Date().toISOString().split('T')[0];
+  document.getElementById('dateData').setAttribute('min', today);
 }
