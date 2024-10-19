@@ -266,7 +266,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function addingTask(id) {
   if (checkValidation()) {
-    document.getElementById('taskDoneIcon').classList.remove("selectHideImg");
+    document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");
+    document.getElementById('imgTest').style.transform = "translate(0%, -550%)";
     await toWaiting(id);
     await navigateToBoard();
   }
@@ -431,7 +432,7 @@ function dateCheck() {
   let inputMonth = splittedDate[1];
   let inputDate = splittedDate[2];
   if (enteredDate) {
-    compareDate(year, month, day, inputYear, inputMonth, inputDate);
+    return compareDate(year, month, day, inputYear, inputMonth, inputDate);
   }
   else {
     return false;
@@ -453,7 +454,9 @@ function compareDate(year, month, day, inputYear, inputMonth, inputDate) {
       else {
         return false;
       }
-    }}}
+    }
+  }
+}
 
 function failTask() {
   document.getElementById('failName').classList.remove("selectHide");
