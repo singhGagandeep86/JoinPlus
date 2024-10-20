@@ -726,15 +726,27 @@ li:hover {
 }
 
 .doneIcon {
-
     /* animation: slideIn 1000ms forwards ease; */
     position: absolute;
-    bottom: 0%;
-    left: 30%;
+    bottom: -100%;
+    /* Starte außerhalb des sichtbaren Bereichs */
+    left: 50%;
+    transform: translateX(-50%);
+    /* Zentriere horizontal */
+    transition: bottom 600ms ease-out;
+    /* Animationsübergang */
+    z-index: 100;
+    /* bottom: 0%; */
+    /* left: 30%; */
     /* animation: slideIn 1000ms forwards ease; */
     /* transform: translate(0%, -550%); */
-    transition: 600ms;
-    z-index: 100;
+    /* transition: 600ms; */
+    /* z-index: 100; */
+}
+
+.animate {
+    bottom: 45%;
+    /* Position in der Mitte nach oben */
 }
 
 .d_noneImg {

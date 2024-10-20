@@ -267,7 +267,9 @@ document.addEventListener('DOMContentLoaded', function () {
 async function addingTask(id) {
   if (checkValidation()) {
     document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");
-    document.getElementById('imgTest').style.transform = "translate(0%, -550%)";
+    setTimeout(() => {
+      icon.classList.remove("animate");
+    }, 2000);
     await toWaiting(id);
     await navigateToBoard();
   }
@@ -323,8 +325,8 @@ function pushFirebaseData(titleText, desText, actDate, category, newTaskNumber, 
     'title': titleText,
     'checked': checked
   });
-
 }
+
 function subtastCreate(list) {
   let subtask = {};
   for (let i = 0; i < list.length; i++) {
