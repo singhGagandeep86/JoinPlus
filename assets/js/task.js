@@ -266,8 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function addingTask(id) {
   if (checkValidation()) {
-    document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");
-    document.getElementById('imgTest').style.transform = "translate(0%, -550%)";
+    document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");    
     await toWaiting(id);
     await navigateToBoard();
   }

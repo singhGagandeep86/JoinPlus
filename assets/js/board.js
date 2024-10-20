@@ -171,7 +171,7 @@ function openPopUpTask(id) {
     } else {
         taskPopUp.classList.remove('d_none');
         taskPopUp.innerHTML = '';
-        taskPopUp.innerHTML = templatePopUpTask1();
+        taskPopUp.innerHTML = templatePopUpTask1(id);
         stopAddTaskBoardArea();
     }
 }
@@ -461,9 +461,10 @@ function removeHighlight(id) {
     document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
-async function addTaskboard(id) {
+async function addTaskboard(id) {    
 
-    checkValidation()
-    console.log(checkValidation());
-
+   if(checkValidation()){
+    
+   } 
+    
 }

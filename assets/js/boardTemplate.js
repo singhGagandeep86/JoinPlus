@@ -19,7 +19,7 @@ function templateTaskEmptyDone() {
     <div id="dragEmpty" class="dragEmptyBody d_none "></div>`
 }
 
-function templatePopUpTask1() {
+function templatePopUpTask1(id) {
     return `<div id="CloseArea" class="taskArea">
          <div class="headingBoardAdd">Add Task <img onclick="closePopUpTask()" src="../img/Close.png" alt=""></div>
             <form id="myForm">
@@ -103,7 +103,7 @@ function templatePopUpTask1() {
                         <div class="submitionButtons">
                             <button class="secondary" type="reset" onclick="resetAll()">
                                 <span>Clear</span> </button>
-                            <button id="btnAddTaskBoard" type="button" class="primaryCheck" onclick="addTaskboard('toDo')">
+                            <button id="btnAddTaskBoard" type="button" class="primaryCheck" onclick="addTaskboard(${id})">
                                 <span>Create Task</span><img class="primevect" src="../img/check.svg">
                             </button>
                         </div>

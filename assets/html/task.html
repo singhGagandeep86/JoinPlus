@@ -64,8 +64,10 @@
                             <div class="title">
                                 <div class="smallHead"><span>Title <sup>*</sup></span>
                                 </div>
-                                <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title" oninput="clearFailAddTask('titleText', 'failName')">
-                                <div id="failName" class="fail selectHide"><span>Please enter a correct Task in text Format.</span></div>
+                                <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title"
+                                    oninput="clearFailAddTask('titleText', 'failName')">
+                                <div id="failName" class="fail selectHide"><span>Please enter a correct Task in text
+                                        Format.</span></div>
                             </div>
                             <div class="description">
                                 <div class="smallHead">Description</div>
@@ -88,8 +90,10 @@
                             <div class="dueDate">
                                 <div class="smallHead"><span>Due Date <sup>*</sup></span>
                                 </div>
-                                <input class="dueDateTxt" type="date" id="dateData" placeholder="dd/mm/yyyy" onclick="dateAutoChange()" oninput="clearFailAddTask('dateData', 'failDueDate')">
-                                    <div id="failDueDate" class="fail selectHide"><span>Please select a correct Due Date.</span></div>
+                                <input class="dueDateTxt" type="date" id="dateData" placeholder="dd/mm/yyyy"
+                                    onclick="dateAutoChange()" oninput="clearFailAddTask('dateData', 'failDueDate')">
+                                <div id="failDueDate" class="fail selectHide"><span>Please select a correct Due
+                                        Date.</span></div>
                             </div>
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
@@ -112,7 +116,7 @@
                                 <div class="assignments" id="customSelect" onclick="toggleDropdown()">
                                     Select task category
                                 </div>
-                                <select id="hiddenSelect" >
+                                <select id="hiddenSelect">
                                     <option value="" disabled selected>Select task category</option>
                                     <option value="technical">Technical Task</option>
                                     <option value="userStory">User Story</option>
@@ -121,7 +125,8 @@
                                     <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
                                     <div data-value="userStory" onclick="selectOption(this)">User Story</div>
                                 </div>
-                                <div id="failCategory" class="fail selectHide"><span>Please select a Category for Task.</span></div>
+                                <div id="failCategory" class="fail selectHide"><span>Please select a Category for
+                                        Task.</span></div>
                             </div>
 
                             <div id="inputSubClass" class="subtasks">
@@ -148,7 +153,9 @@
             </div>
         </div>
     </div>
-    <div id="taskDoneIcon" class="doneDiv subTaskIcon"><img id="imgTest" class="doneIcon" src="../img/addedTask.png"></div>
+    <div id="taskDoneIcon" class="subTaskIcon">
+        <div class="doneDiv "><img id="imgTest" class="doneIcon " src="../img/addedTask.png"></div>
+    </div>
     <script src="../../script.js"></script>
     <script src="../js/task.js"></script>
     <script src="../js/taskTemplate.js"></script>
