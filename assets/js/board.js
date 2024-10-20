@@ -194,7 +194,7 @@ function handleMediaChange(e) {
 }
 
 function closePopUpTask() {
-    resetAll();
+    resetAll();    
     let button = document.getElementById('btnTaskPopupcloseArea');
     button.addEventListener('click', (event) => {
         event.stopPropagation()
@@ -461,10 +461,15 @@ function removeHighlight(id) {
     document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
-async function addTaskboard(id) {    
-
+async function addTaskboard(id) {
+    let idAdd = id.id;
    if(checkValidation()){
-    
-   } 
-    
+    document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");    
+    await toWaiting(idAdd);
+    arrayLoad = [];
+    closePopUpTask();
+    load();
+    document.getElementById('taskDoneIcon').classList.add("subTaskIcon");      
+   }
+   
 }
