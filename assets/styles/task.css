@@ -714,39 +714,39 @@ li:hover {
 }
 
 .doneDiv {
-    position: fixed;
+    position: absolute;
     top: 0;
-    left: 0;
+    left: 0;    
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
+    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 100;
 }
 
-.doneIcon {
-    /* animation: slideIn 1000ms forwards ease; */
-    position: absolute;
-    bottom: -100%;
-    /* Starte außerhalb des sichtbaren Bereichs */
-    left: 50%;
-    transform: translateX(-50%);
-    /* Zentriere horizontal */
-    transition: bottom 600ms ease-out;
-    /* Animationsübergang */
+.doneIcon {      
+   animation:slideIn 125ms ease-in-out ;
     z-index: 100;
-    /* bottom: 0%; */
-    /* left: 30%; */
-    /* animation: slideIn 1000ms forwards ease; */
-    /* transform: translate(0%, -550%); */
-    /* transition: 600ms; */
-    /* z-index: 100; */
+}
+@keyframes slideIn {
+    0% {       
+        transform: translateX(100%);
+    }
+
+    100% {        
+        transform: translateX(0);
+    }
 }
 
-.animate {
-    bottom: 45%;
-    /* Position in der Mitte nach oben */
+@keyframes slideInMobile {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-5%);
+    }
 }
 
 .d_noneImg {

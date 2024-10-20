@@ -64,7 +64,8 @@
                             <div class="title">
                                 <div class="smallHead"><span>Title <sup>*</sup></span>
                                 </div>
-                                <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title">
+                                <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title"
+                                    oninput="clearFailAddTask('titleText', 'failName')">
                                 <div id="failName" class="fail selectHide"><span>Please enter a correct Task in text
                                         Format.</span></div>
                             </div>
@@ -89,10 +90,9 @@
                             <div class="dueDate">
                                 <div class="smallHead"><span>Due Date <sup>*</sup></span>
                                 </div>
-                                <input class="dueDateTxt" type="text" id="dateData" placeholder="dd/mm/yyyy"
+                                <input class="dueDateTxt" type="text" id="dateData" placeholder="dd/mm/yyyy" 
                                     onfocus="(type='date')">
-                                <div id="failDueDate" class="fail selectHide"><span>Please select a correct Due
-                                        Date.</span></div>
+                                    <div id="failDueDate" class="fail selectHide"><span>Please select a correct Due Date.</span></div>
                             </div>
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
@@ -148,11 +148,12 @@
                             </button>
                         </div>
                     </div>
+                </form>
             </div>
         </div>
     </div>
     <div id="taskDoneIcon" class="subTaskIcon">
-        <div class="doneDiv"><img id="imgTest" class="doneIcon" src="../img/addedTask.png"></div>
+        <div class="doneDiv "><img id="imgTest" class="doneIcon " src="../img/addedTask.png"></div>
     </div>
     <script src="../../script.js"></script>
     <script src="../js/task.js"></script>

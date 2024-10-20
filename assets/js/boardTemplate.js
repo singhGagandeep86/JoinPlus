@@ -19,7 +19,7 @@ function templateTaskEmptyDone() {
     <div id="dragEmpty" class="dragEmptyBody d_none "></div>`
 }
 
-function templatePopUpTask1() {
+function templatePopUpTask1(id) {
     return `<div id="CloseArea" class="taskArea">
          <div class="headingBoardAdd">Add Task <img onclick="closePopUpTask()" src="../img/Close.png" alt=""></div>
             <form id="myForm">
@@ -28,7 +28,8 @@ function templatePopUpTask1() {
                             <div class="title">
                                 <div class="smallHead"><span>Title <sup>*</sup></span>
                                 </div>
-                                <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title" required>
+                                <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title" oninput="clearFailAddTask('titleText', 'failName')">
+                                <div id="failName" class="fail selectHide"><span>Please enter a correct Task in text Format.</span></div>
                             </div>
                             <div class="description">
                                 <div class="smallHead">Description</div>
@@ -51,8 +52,8 @@ function templatePopUpTask1() {
                             <div class="dueDate">
                                 <div class="smallHead"><span>Due Date <sup>*</sup></span>
                                 </div>
-                                <input class="dueDateTxt" type="text" id="dateData" placeholder="dd/mm/yyyy"
-                                    onfocus="(this.type='date')" required>
+                                <input class="dueDateTxt" type="date" id="dateData" placeholder="dd/mm/yyyy" onclick="dateAutoChange()" oninput="clearFailAddTask('dateData', 'failDueDate')">
+                                    <div id="failDueDate" class="fail selectHide"><span>Please select a correct Due Date.</span></div>
                             </div>
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
@@ -70,43 +71,44 @@ function templatePopUpTask1() {
                                     </div>
                                 </div>
                             </div>
-                                <div class="assign">
-                                    <label for="hiddenSelect"><span>Category <sup>*</sup></span></label>
-                                    <div class="assignments" id="customSelect" onclick="toggleDropdown()">
-                                        Select task category
-                                    </div>
-                                    <select id="hiddenSelect" required>
-                                        <option value="" disabled selected>Select task category</option>
-                                        <option value="technical">Technical Task</option>
-                                        <option value="userStory">User Story</option>
-                                    </select>
-                                    <div id="dropdown" class="selectItems selectHide">
-                                        <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
-                                        <div data-value="userStory" onclick="selectOption(this)">User Story</div>
-                                    </div>
+                            <div class="assign">
+                                <label for="hiddenSelect"><span>Category <sup>*</sup></span></label>
+                                <div class="assignments" id="customSelect" onclick="toggleDropdown()">
+                                    Select task category
                                 </div>
-
-                                <div id="inputSubClass" class="subtasks">
-                                    <div class="smallHead">Subtasks</div>
-                                    <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
-                                            placeholder="Add new subtask" type="text">
-                                        <img class="tsksGen" src="../img/subTaskIcon.svg">
-                                    </div>
+                                <select id="hiddenSelect" >
+                                    <option value="" disabled selected>Select task category</option>
+                                    <option value="technical">Technical Task</option>
+                                    <option value="userStory">User Story</option>
+                                </select>
+                                <div id="dropdown" class="selectItems selectHide">
+                                    <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
+                                    <div data-value="userStory" onclick="selectOption(this)">User Story</div>
                                 </div>
-                                <ul class="a" id="subTsksBoard"></ul>
+                                <div id="failCategory" class="fail selectHide"><span>Please select a Category for Task.</span></div>
                             </div>
+
+                            <div id="inputSubClass" class="subtasks">
+                                <div class="smallHead">Subtasks</div>
+                                <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
+                                        placeholder="Add new subtask" type="text">
+                                    <img class="tsksGen" src="../img/subTaskIcon.svg">
+                                </div>
+                            </div>
+                            <ul class="a" id="subTsksBoard"></ul>
                         </div>
+                    </div>
                     <div class="info">
                         <div><sup>* </sup>This field is required</div>
                         <div class="submitionButtons">
                             <button class="secondary" type="reset" onclick="resetAll()">
                                 <span>Clear</span> </button>
-                            <button type="submit" class="primaryCheck">
+                            <button id="btnAddTaskBoard" type="button" class="primaryCheck" onclick="addTaskboard(${id})">
                                 <span>Create Task</span><img class="primevect" src="../img/check.svg">
                             </button>
                         </div>
                     </div>
-                </form>      
+                </form>     
         </div>`
 }
 
@@ -209,7 +211,8 @@ function editTask(objData) {
      <div class="title">
             <div class="smallHead titleStyle"><span>Title</span>
             </div>
-            <input class="titleInput" type="text" value="${objData.title}" required>
+            <input id="titleEditFail" class="titleInput " type="text" value="${objData.title}" oninput="clearFailAdd()">
+            <div id="failTitleEditBoard" class="fail d_none "><span>Please enter a title</span></div>
         </div>
         <div class="description">
             <div class="smallHead descSytle">Description</div>
@@ -219,7 +222,7 @@ function editTask(objData) {
      <div class="dueDate">
             <div class="smallHead dateStyle"><span>Due Date</span>
             </div>
-            <input class="DueDate" type="text" value="${objData.date}" onfocus="(this.type='date')" required>
+            <input id="dateEditEnter"  class="DueDate" type="text" value="${objData.date}" onfocus="(this.type='date')">
         </div>
       <div class="prioArea">
     <span>Priority</span>
@@ -249,6 +252,10 @@ function editTask(objData) {
 
 function checkboxContactTemplate(isChecked, contactName , initials, color) {
     return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ${isChecked} ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><span>${initials}</span></div></div> </label></div>`
+}
+
+function checkboxContactTemplateEmpty( contactName , initials, color) {
+    return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><span>${initials}</span></div></div> </label></div>`
 }
 
 function initialsLoadContact(initials, colorIni) {

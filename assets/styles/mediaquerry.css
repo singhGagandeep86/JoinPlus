@@ -64,7 +64,6 @@
     }
 
     .mainDesign {
-        height: 100%;
         width: 100%;
     }
 
@@ -134,9 +133,8 @@
         height: 76px;
     }
 
-    .asideMenu:nth-of-type(3){
-       padding: 0;
-       border-radius: 10px;
+    .asideMenu:nth-of-type(3){padding: 0;
+        border-radius: 10px;
     }
 
     .asideMenu:nth-of-type(1) {
@@ -236,6 +234,9 @@
     .asideMenu:nth-of-type(3) {
         padding: 0;
         border-radius: 10px;
+    }
+    .doneIcon{
+        animation: slideInMobile 125ms ease-in-out;
     }
 }
 

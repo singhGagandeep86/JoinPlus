@@ -171,13 +171,20 @@ function openPopUpTask(id) {
     } else {
         taskPopUp.classList.remove('d_none');
         taskPopUp.innerHTML = '';
-        taskPopUp.innerHTML = templatePopUpTask1();
-        onSubmit(id);
-        let area = document.getElementById('CloseArea');
+        taskPopUp.innerHTML = templatePopUpTask1(id);
+        stopAddTaskBoardArea();
+    }
+}
+
+function stopAddTaskBoardArea() {
+    let area = document.getElementById('CloseArea');
         area.addEventListener('click', (event) => {
             event.stopPropagation()
         })
-    }
+        let button = document.getElementById('btnAddTaskBoard');
+        button.addEventListener('click', (event) => {
+            event.stopPropagation()
+        })
 }
 
 function handleMediaChange(e) {
@@ -454,11 +461,10 @@ function removeHighlight(id) {
     document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
-function onSubmit(id) {
-    let form = document.getElementById('myForm');
-    form.onsubmit = function (event) {
-        event.preventDefault();
-        addingTask(id);
-        closePopUpTask();
-    };
+async function addTaskboard(id) {    
+
+   if(checkValidation()){
+    
+   } 
+    
 }

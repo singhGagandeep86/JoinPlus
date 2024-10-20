@@ -201,6 +201,7 @@ function toggleDropdown() {
   const dropdown = document.getElementById('dropdown');
   if (!dropdownOpen) {
     dropdown.classList.remove('selectHide');
+    clearFailAddCat();
     dropdownOpen = true;
   } else {
     dropdown.classList.add('selectHide');
@@ -216,7 +217,6 @@ function selectOption(element) {
   toggleDropdown();
   customSelect.classList.remove('invalid');
 }
-
 
 document.addEventListener('click', function (rightEvent) {
   const assignHeading = document.getElementById('customSelect');
@@ -267,9 +267,6 @@ document.addEventListener('DOMContentLoaded', function () {
 async function addingTask(id) {
   if (checkValidation()) {
     document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");
-    setTimeout(() => {
-      icon.classList.remove("animate");
-    }, 2000);
     await toWaiting(id);
     await navigateToBoard();
   }
@@ -388,10 +385,9 @@ function checkValidation() {
   let chkCatFnc = checkCategory(category);
   if (chkAllFnc == false || chkTskFnc == false || chkDteFnc == false || chkCatFnc == false) {
     return false;
-  }
-  else {
-    return true;
-  }
+  }  
+
+  return true;
 }
 
 function checkAll(task, dateReg, category) {
@@ -422,7 +418,6 @@ function checkCategory(category) {
   }
 }
 
-// to Check Date not earlier
 function dateCheck() {
   let catchedDate = new Date();
   let year = catchedDate.getFullYear();
@@ -482,4 +477,23 @@ function failAll() {
   document.getElementById('titleText').classList.add("failedinput");
   document.getElementById('dateData').classList.add("failedinput");
   document.getElementById('customSelect').classList.add("failedinput");
+}
+
+function dateAutoChange() {
+  let today = new Date().toISOString().split('T')[0];
+  document.getElementById('dateData').setAttribute('min', today);
+}
+
+function clearFailAddTask(inputId, errorId) {
+  let inputValue = document.getElementById(inputId).value.trim();
+  if (inputValue !== '') {
+      document.getElementById(errorId).classList.add('selectHide');
+      document.getElementById(inputId).classList.remove('failedinput');
+  }  
+}
+
+function clearFailAddCat() { 
+      document.getElementById('failCategory').classList.add('selectHide');  // Versteckt die Fehlermeldung
+      document.getElementById('customSelect').classList.remove('failedinput');  // Entfernt das Fehlerstyling
+ 
 }
