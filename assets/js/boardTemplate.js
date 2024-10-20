@@ -28,7 +28,8 @@ function templatePopUpTask1() {
                             <div class="title">
                                 <div class="smallHead"><span>Title <sup>*</sup></span>
                                 </div>
-                                <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title" required>
+                                <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title" oninput="clearFailAddTask('titleText', 'failName')">
+                                <div id="failName" class="fail selectHide"><span>Please enter a correct Task in text Format.</span></div>
                             </div>
                             <div class="description">
                                 <div class="smallHead">Description</div>
@@ -51,8 +52,8 @@ function templatePopUpTask1() {
                             <div class="dueDate">
                                 <div class="smallHead"><span>Due Date <sup>*</sup></span>
                                 </div>
-                                <input class="dueDateTxt" type="text" id="dateData" placeholder="dd/mm/yyyy"
-                                    onfocus="(this.type='date')" required>
+                                <input class="dueDateTxt" type="date" id="dateData" placeholder="dd/mm/yyyy" onclick="dateAutoChange()" oninput="clearFailAddTask('dateData', 'failDueDate')">
+                                    <div id="failDueDate" class="fail selectHide"><span>Please select a correct Due Date.</span></div>
                             </div>
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
@@ -70,43 +71,44 @@ function templatePopUpTask1() {
                                     </div>
                                 </div>
                             </div>
-                                <div class="assign">
-                                    <label for="hiddenSelect"><span>Category <sup>*</sup></span></label>
-                                    <div class="assignments" id="customSelect" onclick="toggleDropdown()">
-                                        Select task category
-                                    </div>
-                                    <select id="hiddenSelect" required>
-                                        <option value="" disabled selected>Select task category</option>
-                                        <option value="technical">Technical Task</option>
-                                        <option value="userStory">User Story</option>
-                                    </select>
-                                    <div id="dropdown" class="selectItems selectHide">
-                                        <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
-                                        <div data-value="userStory" onclick="selectOption(this)">User Story</div>
-                                    </div>
+                            <div class="assign">
+                                <label for="hiddenSelect"><span>Category <sup>*</sup></span></label>
+                                <div class="assignments" id="customSelect" onclick="toggleDropdown()">
+                                    Select task category
                                 </div>
-
-                                <div id="inputSubClass" class="subtasks">
-                                    <div class="smallHead">Subtasks</div>
-                                    <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
-                                            placeholder="Add new subtask" type="text">
-                                        <img class="tsksGen" src="../img/subTaskIcon.svg">
-                                    </div>
+                                <select id="hiddenSelect" >
+                                    <option value="" disabled selected>Select task category</option>
+                                    <option value="technical">Technical Task</option>
+                                    <option value="userStory">User Story</option>
+                                </select>
+                                <div id="dropdown" class="selectItems selectHide">
+                                    <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
+                                    <div data-value="userStory" onclick="selectOption(this)">User Story</div>
                                 </div>
-                                <ul class="a" id="subTsksBoard"></ul>
+                                <div id="failCategory" class="fail selectHide"><span>Please select a Category for Task.</span></div>
                             </div>
+
+                            <div id="inputSubClass" class="subtasks">
+                                <div class="smallHead">Subtasks</div>
+                                <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
+                                        placeholder="Add new subtask" type="text">
+                                    <img class="tsksGen" src="../img/subTaskIcon.svg">
+                                </div>
+                            </div>
+                            <ul class="a" id="subTsksBoard"></ul>
                         </div>
+                    </div>
                     <div class="info">
                         <div><sup>* </sup>This field is required</div>
                         <div class="submitionButtons">
                             <button class="secondary" type="reset" onclick="resetAll()">
                                 <span>Clear</span> </button>
-                            <button type="submit" class="primaryCheck">
+                            <button id="btnAddTaskBoard" type="button" class="primaryCheck" onclick="addTaskboard('toDo')">
                                 <span>Create Task</span><img class="primevect" src="../img/check.svg">
                             </button>
                         </div>
                     </div>
-                </form>      
+                </form>     
         </div>`
 }
 
