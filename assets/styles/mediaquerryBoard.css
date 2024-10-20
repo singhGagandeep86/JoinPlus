@@ -268,11 +268,7 @@
 
 @media(min-width: 801px) and (max-width:1300px) {
     .taskArea {
-        position: absolute;
-        top: 39%;
-        left: 2%;
         width: 1050px;
-
     }
 
     .overDisplay {

@@ -274,24 +274,20 @@
     background-color: white;
     border-radius: 30px;
     display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 39%;
-    left: 11%;
-    transform: translateY(-40%);
-    animation: taskAnimation 125ms ease-in-out;
+    flex-direction: column;    
+    animation: slideIn 125ms ease-in-out;
     z-index: 99;
 }
 
-@keyframes taskAnimation {
+@keyframes slideIn {
     0% {
-        transform: translateY(-40%);
-        left: 100%;
+        opacity: 0;
+        transform: translateX(100%);
     }
 
     100% {
-        transform: translateY(-40%);
-        left: calc(10%);
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
