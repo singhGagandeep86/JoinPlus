@@ -37,16 +37,14 @@
         font-size: 14px;
     }
 
-    .popupTaskInfo {
-        width: 300px;
-        height: 700px;
-        gap: 15px;
-    }
+    /* .popupTaskInfo {
+        width: 490px;
+        height: 500px;
+        gap: 24px;
+    } */
 
     .infoTitle {
-        width: 300px;
-        justify-content: start;
-
+        width: 100%;
     }
 
     .infoTitle img {
@@ -68,22 +66,21 @@
     }
 
     .boxinfo {
-        width: 30px;
-        height: 30px;
+        width: 42px;
+        height: 42px;
     }
 
     .contactInfo {
-        width: 200px;
+        width: 100%
     }
 
     .contactInfo span {
         font-size: 18px;
         width: 180px;
-        height: auto;
     }
 
     .contactInfoData {
-        width: 200px;
+        width: 400px;
         overflow: auto;
         padding: 0;
         flex-shrink: 0;
@@ -110,12 +107,12 @@
     }
 
     .subtaskInfo {
-        width: 220px;
-        height: 200px;
+        width: 100%;        
         gap: 0;
-        margin-bottom: 100px;
-        margin-top: 100px;
+        padding-left: 0;
+        margin-bottom: 20px;
     }
+   
 
     .subtaskAreaData {
         width: 220px;
@@ -137,13 +134,10 @@
         height: 24px;
     }
 
-    .subtastTitle {
-        min-height: 50px;
-    }
-
+    
     .editInfo {
         justify-content: end;
-        width: 220px;
+        width: 100%;
     }
 
     .bgInfo_user {
@@ -154,9 +148,99 @@
 
 @media (max-width:800px) {
 
+    .infoTitle {
+        width: 100%;
+    }
+
     .popupArea {
         position: fixed;
+    }
+    .subtaskAreaData {
+        width: 220px;
+        height: 100px;
+        overflow: auto;
+        margin-top: 10px;
+        scroll-behavior: smooth;
+        flex-shrink: 0;
+    }
 
+    .popupTaskInfo {
+        width: 90%;
+        height: 500px;
+        gap: 24px;
+        overflow: auto;
+        padding: 48px 40px 48px 40px;        
+    }
+    .popupTaskInfo::-webkit-scrollbar {
+        width: 5px;       
+    }
+
+    .popupTaskInfo::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 10px;        
+        cursor: pointer;
+    }
+
+    .popupTaskInfo::-webkit-scrollbar-button {
+        display: none;
+    }
+   
+
+    .contactInfoData {
+        width: 100%;
+    }
+
+    .popupTitleInfo {
+        width: 100%;
+        font-size: 36px;
+        min-height: 50px;
+        flex-shrink: 0;
+    }
+
+    .descriptionInfo {
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .dateInfo {
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .prioInfo {
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .prioInfoData {
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .contactInfo span {
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .contactInfo {
+        width: 100%;
+        flex-shrink: 0;
+    }
+    .subtaskInfo {
+        width: 100%;
+        
+        gap: 0;
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+
+    .contactInfoData{
+        padding: 0;
+    }
+
+    .subtaskInfo span:nth-of-type(1) {
+        font-size: 16px;
+        width: 100%;        
     }
 
     .overDisplay {
@@ -231,6 +315,13 @@
 
     .headlinbar {
         flex-wrap: wrap;
+        margin-bottom: 50px;
+        gap: 30px;
+    }
+
+    .headlinbar span {
+        font-size: 46px;
+
     }
 
     .btnBoardTask {
@@ -308,6 +399,10 @@
         min-height: 48px;
         scrollbar-width: none;
     }
+    .popupTaskInfo{
+        display: flex;
+        justify-content: center;
+    }
 
     .dragAndDropBoardArea::-webkit-scrollbar {
         width: 0;
@@ -379,6 +474,11 @@
         display: none;
     }
 
+    .popupTaskInfo {
+        display: flex;
+        justify-content: center;
+    }
+
     .dragAndDropBoard {
         width: 100%;
         gap: 8px;
@@ -417,5 +517,9 @@
     .content {
         padding: 0 64px 0 64px;
         max-width: 1208px;
+    }
+    .popupTaskInfo {
+        display: flex;
+        justify-content: center;
     }
 }

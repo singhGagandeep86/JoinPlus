@@ -63,7 +63,7 @@
     padding-right: 20px;
 }
 
-.substart2 span:nth-of-type(2){
+.substart2 span:nth-of-type(2) {
     width: 24px;
     height: 24px;
     font-size: 24px;
@@ -74,12 +74,12 @@
     cursor: pointer;
 }
 
-.substart2 span:nth-of-type(2):hover{
+.substart2 span:nth-of-type(2):hover {
     background-color: #d1d1d1;
     border-radius: 100%;
 }
 
-.subAddIn{
+.subAddIn {
     width: 440px;
     height: 48px;
     border-radius: 10px;
@@ -91,38 +91,39 @@
     padding-right: 20px;
 }
 
-.subAddIn span:nth-of-type(2):hover{
+.subAddIn span:nth-of-type(2):hover {
     background-color: #d1d1d1;
     border-radius: 100%;
 }
 
-.subAddIn span:nth-of-type(1):hover{
+.subAddIn span:nth-of-type(1):hover {
     background-color: #d1d1d1;
     border-radius: 100%;
 }
 
-.strich{
+.strich {
     width: 1px;
     height: 24px;
     background-color: #d1d1d1;
 }
 
-.addDelet{
+.addDelet {
     display: none;
     cursor: pointer;
 }
-.addDeletInput{
+
+.addDeletInput {
     display: flex;
     cursor: pointer;
 }
 
-.inputSub{
+.inputSub {
     width: 90%;
     height: 90%;
     border: none;
 }
 
-.inputSub:focus{
+.inputSub:focus {
     outline: none;
 }
 
@@ -149,30 +150,30 @@
     min-height: 30px;
 }
 
-.liSubTask:hover{
+.liSubTask:hover {
     background-color: #e3e2e2;
-    border-radius:10px ;
+    border-radius: 10px;
 }
 
 .liSubTask:hover .addDelet {
     display: flex;
 }
 
-.liSubTask span:nth-of-type(2):hover{
+.liSubTask span:nth-of-type(2):hover {
     background-color: #d1d1d1;
     border-radius: 100%;
 }
 
-.liSubTask span img:nth-of-type(1):hover{
+.liSubTask span img:nth-of-type(1):hover {
     background-color: #d1d1d1;
     border-radius: 100%;
 }
 
-.taskText:hover{
+.taskText:hover {
     background: none;
 }
 
-.inputSubAdd{
+.inputSubAdd {
     width: 90%;
     height: 25px;
     padding-left: 5px;
@@ -181,7 +182,7 @@
     border-bottom: 1px solid #29abe2;
 }
 
-.inputSubAdd:focus{
+.inputSubAdd:focus {
     outline: none;
 }
 
@@ -242,7 +243,7 @@
     font-size: 20px;
 }
 
-.titleInputFail{
+.titleInputFail {
     width: 100%;
     height: 48px;
     padding: 12px 21px 12px 21px;
@@ -274,7 +275,7 @@
     background-color: white;
     border-radius: 30px;
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     animation: slideIn 125ms ease-in-out;
     z-index: 99;
 }
@@ -385,16 +386,24 @@
     font-size: 20px;
 }
 
-.popupTaskInfo {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+.popupTaskInfo {    
     width: 525px;
-    min-height: 700px;
+    max-height: 931px;
     border-radius: 30px;
     background-color: white;
     padding: 48px 40px 48px 40px;
     z-index: 99;
+    flex-shrink: 0;
+    animation: slideIn 125ms ease-in-out;
+}
+
+.smallTaskData {
+    width: 90%;
+    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
 }
 
 .prioArea {
@@ -591,6 +600,7 @@ input[type="radio"] {
     gap: 4px;
     overflow: auto;
 }
+
 .contactInfoData::-webkit-scrollbar {
     width: 6px;
 }
@@ -605,7 +615,7 @@ input[type="radio"] {
     display: none;
 }
 
-.contactInfoData span{
+.contactInfoData span {
     width: 70%;
 }
 
@@ -777,7 +787,7 @@ progress::-moz-progress-bar {
     align-items: center;
     width: 159px;
     height: 24px;
-    gap: 8px;
+    gap: 10px;
 }
 
 .editInfoData div {
@@ -785,11 +795,23 @@ progress::-moz-progress-bar {
     align-items: center;
     height: 24px;
     cursor: pointer;
+
+}
+
+.deletePic {
+    width: 84px;
+    height: 24px;
     transition: 125ms ease-in-out;
 }
 
 .deletePic:hover {
     content: url("../img/delethovertask.png");
+}
+
+.editPic {
+    width: 64px;
+    height: 24px;
+    transition: 125ms ease-in-out;
 }
 
 .editPic:hover {
@@ -940,7 +962,7 @@ progress::-moz-progress-bar {
     background-image: url("../img/ScndryVectHvr.png");
 }
 
-.closeIconEdit{
+.closeIconEdit {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -951,29 +973,29 @@ progress::-moz-progress-bar {
     cursor: pointer;
 }
 
-.closeIconEdit img:hover{
+.closeIconEdit img:hover {
     border-radius: 100%;
     background-color: #e3e2e2;
 }
 
-.titleStyle span{
+.titleStyle span {
     color: #2A3647;
 }
 
-.descSytle{
+.descSytle {
     color: #2A3647;
 }
 
-.dateStyle{
+.dateStyle {
     color: #2A3647;
 }
 
-.assignedStyle{
+.assignedStyle {
     font-size: 20px;
     color: #2A3647;
 }
 
-.subtaskStyle{
+.subtaskStyle {
     font-size: 20px;
     color: #2A3647;
 }

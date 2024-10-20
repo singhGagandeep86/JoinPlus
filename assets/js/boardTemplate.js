@@ -136,6 +136,7 @@ function templateTaskHTML(element) {
 function templateTaskSmallInfo(objDateTask) {
 
     return `<div id="closeAreaInfo" class="popupTaskInfo">
+    <div class="smallTaskData">
             <div class="infoTitle"><div><span class=" bgInfo_${objDateTask.color}" >${objDateTask.category}</span>
             </div><img onclick="closePopUpTaskSmall()" src="../img/Close.png" alt=""></div>
             <div class="popupTitleInfo">${objDateTask.title}</div>
@@ -148,6 +149,7 @@ function templateTaskSmallInfo(objDateTask) {
             <div class="subtaskInfo"><span>Subtasks:</span><div  class="subtaskAreaData"><div id="subtaskArea"></div></div></div>
             <div class="editInfo"><div class="editInfoData"><div><img onclick="deleteData(${objDateTask.number})" class="deletePic" src="../img/Deletecontact.png" alt=""></div>
                 <div><img onclick="editOpen(${objDateTask.number})" class="editPic" src="../img/editcontacts.png" alt=""></div></div></div>
+        </div>
         </div>`;
 }
 

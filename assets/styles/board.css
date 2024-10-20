@@ -221,7 +221,14 @@ html {
 .taskName span:nth-of-type(2) {
     display: flex;
     align-items: center;
+    width: 40px;
+    height: 40px;
 }
+
+.arrowImg{
+    width: 40px;
+    height: 40px;
+} 
 
 .taskName span:nth-of-type(2):hover {
     background-color: #CDCDCD;
@@ -353,8 +360,7 @@ html {
     cursor: pointer;
 }
 
-.contact:hover::-webkit-scrollbar-thumb {
-    background-color: #e21d1d;
+.contact:hover::-webkit-scrollbar-thumb {    
     border-radius: 10px;
     cursor: pointer;
 }
@@ -389,4 +395,5 @@ html {
     font-size: 12px;
     width: 42px;
     height: 42px;
+    flex-shrink: 0;
 }
