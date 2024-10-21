@@ -101,8 +101,7 @@
 }
 
 .bgInfo_Tech {
-    display: flex;
-    align-items: center;
+    display: flex;    
     background-color: #1ed7c1;
     width: 208px;
     height: 36px;

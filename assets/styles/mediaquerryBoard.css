@@ -1,17 +1,33 @@
+@media(max-width: 345px) {}
+
 @media(max-width:563px) {
     .content {
         min-height: 240vh;
     }
 
+    .infoTitle span {
+        font-size: 16px;
+        width: 150px
+    }
+
     .popupEdit {
-        width: 300px;
-        height: 700px;
+        width: 90%;
+        height: 500px;
     }
 
     .prioForm {
-        scale: 0.7;
-        gap: 2px;
+        width: 100%;
+        gap: 0px;
     }
+
+    .prioBtn {
+        width: 60%;
+        height: 40px;
+        font-size: 12px;
+        gap: 5px;
+    }
+
+
 
     .labelContact {
         scale: 0.9;
@@ -36,12 +52,6 @@
     .substart2 {
         font-size: 14px;
     }
-
-    /* .popupTaskInfo {
-        width: 490px;
-        height: 500px;
-        gap: 24px;
-    } */
 
     .infoTitle {
         width: 100%;
@@ -107,12 +117,12 @@
     }
 
     .subtaskInfo {
-        width: 100%;        
+        width: 100%;
         gap: 0;
         padding-left: 0;
         margin-bottom: 20px;
     }
-   
+
 
     .subtaskAreaData {
         width: 220px;
@@ -134,7 +144,7 @@
         height: 24px;
     }
 
-    
+
     .editInfo {
         justify-content: end;
         width: 100%;
@@ -155,6 +165,7 @@
     .popupArea {
         position: fixed;
     }
+
     .subtaskAreaData {
         width: 220px;
         height: 100px;
@@ -169,22 +180,33 @@
         height: 500px;
         gap: 24px;
         overflow: auto;
-        padding: 48px 40px 48px 40px;        
+        padding: 48px 40px 48px 40px;
     }
+
     .popupTaskInfo::-webkit-scrollbar {
-        width: 5px;       
+        width: 5px;
     }
 
     .popupTaskInfo::-webkit-scrollbar-thumb {
         background-color: #888;
-        border-radius: 10px;        
+        border-radius: 10px;
         cursor: pointer;
     }
 
     .popupTaskInfo::-webkit-scrollbar-button {
         display: none;
     }
-   
+
+    .popupEdit {
+        width: 90%;
+        height: 500px;
+    }
+
+    .prioForm {
+        width: 100%;
+        gap: 0;
+        justify-content: space-between;
+    }
 
     .contactInfoData {
         width: 100%;
@@ -226,21 +248,22 @@
         width: 100%;
         flex-shrink: 0;
     }
+
     .subtaskInfo {
         width: 100%;
-        
+
         gap: 0;
         padding-left: 0;
         margin-bottom: 20px;
     }
 
-    .contactInfoData{
+    .contactInfoData {
         padding: 0;
     }
 
     .subtaskInfo span:nth-of-type(1) {
         font-size: 16px;
-        width: 100%;        
+        width: 100%;
     }
 
     .overDisplay {
@@ -399,7 +422,8 @@
         min-height: 48px;
         scrollbar-width: none;
     }
-    .popupTaskInfo{
+
+    .popupTaskInfo {
         display: flex;
         justify-content: center;
     }
@@ -518,6 +542,7 @@
         padding: 0 64px 0 64px;
         max-width: 1208px;
     }
+
     .popupTaskInfo {
         display: flex;
         justify-content: center;
