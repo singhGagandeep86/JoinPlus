@@ -83,8 +83,8 @@ header .topline p {
 
 .join-logo {
     position: absolute;
-    width: 274px;
-    height: 334px;
+    width: 140px;
+    height: 200px;
     top: 33%;
     left: 42%;
     animation-fill-mode: forwards;
@@ -97,7 +97,7 @@ header .topline p {
     display: none;
     position: absolute;
     width: 140px;
-    height: 200px;
+    height: 190px;
     top: 33%;
     left: 33%;
     animation-fill-mode: forwards;
