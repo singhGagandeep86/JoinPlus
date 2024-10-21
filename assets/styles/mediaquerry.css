@@ -1,4 +1,4 @@
-@media(min-width:1400px) {
+@media(min-width: 1400px) {
     .content {
         padding: 64px 64px 0 64px;
     }
@@ -17,7 +17,7 @@
 }
 
 
-@media(min-width:1301px) and (max-width:1400px) {
+@media(min-width: 1301px) and (max-width: 1400px) {
     .content {
         padding-left: 10px;
         padding-right: 0px;
@@ -56,11 +56,11 @@
     }
 }
 
-@media(min-width: 801px) and (max-width:1300px) {
+@media(min-width: 801px) and (max-width: 1300px) {
     .content {
         padding-left: 64px;
         padding-right: 0px;
-        height: 160vh
+        height: 100vh;
     }
 
     .mainDesign {
@@ -152,11 +152,11 @@
     }
 }
 
-@media (max-width:800px) {
+@media (max-width: 800px) {
     .content {
         padding-left: 10px;
         padding-right: 0px;
-        height: 160vh
+        height: 115vh;
     }
 
     .mainDesign {
@@ -176,7 +176,6 @@
 
     .asideMenuArea {
         gap: 10px;
-
     }
 
     #summary {
@@ -240,13 +239,22 @@
     }
 }
 
-@media(max-width:380px) {
+@media (max-width: 535px) {
+    .content {
+        height: 130vh;
+    }
+}
+
+@media(max-width: 380px) {
+    .content {
+        height: 150vh;
+    }
+
     .asideMenuArea {
         gap: 0;
     }
 
     .asideMenu a {
-        /* width: 70px; */
         text-align: center;
     }
 
