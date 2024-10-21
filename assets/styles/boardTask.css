@@ -147,12 +147,13 @@
     padding-right: 10px;
     padding-left: 23px;
     transition: 125ms ease-in-out;
-    min-height: 30px;
+    
 }
 
 .liSubTask:hover {
     background-color: #e3e2e2;
     border-radius: 10px;
+    
 }
 
 .liSubTask:hover .addDelet {
@@ -171,6 +172,7 @@
 
 .taskText:hover {
     background: none;
+   
 }
 
 .inputSubAdd {
@@ -594,7 +596,7 @@ input[type="radio"] {
 
 .contactInfoData {
     width: 100%;
-    height: 100px;
+    height: 150px;
     padding-left: 20px;
     display: flex;
     flex-direction: column;
@@ -666,7 +668,7 @@ progress::-moz-progress-bar {
 
 .subtastTitle {
     min-width: 100px;
-    height: 32px;
+    min-height: 32px;
     display: flex;
     align-items: center;
     padding-left: 16px;

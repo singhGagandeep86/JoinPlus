@@ -207,7 +207,7 @@ function moveTaskTo4(element) {
 }
 
 function editTask(objData) {
-    return `<div id="EditCloseArea" class="popupEdit">
+    return `<div id="EditCloseArea" class="popupEdit" onclick="closeDropDownContact()">
     <div class="closeIconEdit"><img onclick="closePopUpTaskSmall()" src="../img/Close.png" alt=""></div>
     <div id="edit" class="editArea">
      <div class="title">
@@ -240,8 +240,8 @@ function editTask(objData) {
     </div>
 </div>
 <div class="assignedStyle"><span>Assigned to</span></div>
-<div class="contactDrop" onclick="contactDropOpen()"><span>Select Contacts to assgin</span> <img id="arrowContactDrop"  src="../img/arrow_drop_runter.png" alt=""></div>
-<div id="contactDropArea" class="contactDropData d_none"></div>
+<div id="contactDropStart" class="contactDrop" onclick="contactDropOpen(event)"><span>Select Contacts to assgin</span> <img id="arrowContactDrop"  src="../img/arrow_drop_runter.png" alt=""></div>
+<div id="contactDropArea" class="contactDropData d_none" onclick="event.stopPropagation()"></div>
 <div id="initialsArea" class="initialsEdit"></div>
 <div class="subtaskStyle"><span>Subtaskt</span></div>
   <div id="subtaskInput" class="substart"></div>

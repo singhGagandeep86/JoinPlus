@@ -102,17 +102,37 @@ function loadEditData(objData, prioCheck) {
     dateVali();
 }
 
-function contactDropOpen() {
+function contactDropOpen(event) {
+    event.stopPropagation();    
     let contactDropdown = document.getElementById('contactDropArea');
-    let arrowContact = document.getElementById('arrowContactDrop');
+    let arrowContact = document.getElementById('arrowContactDrop');   
+    
     if (!contactDropdown.classList.contains('d_none')) {
         getSelectedContacts();
         intiCheckContact();
     }
+
+    
     contactDropdown.classList.toggle('d_none');
     arrowContact.classList.toggle('rotate');
+        if (!contactDropdown.classList.contains('d_none')) {
+        document.addEventListener('click', closeDropDownContact);
+    } else {
+        document.removeEventListener('click', closeDropDownContact);
+    }
 }
 
+function closeDropDownContact(event) {
+    let contactDropdown = document.getElementById('contactDropArea');
+    let arrowContact = document.getElementById('arrowContactDrop');    
+    if (!contactDropdown.contains(event)) {
+        getSelectedContacts();
+        intiCheckContact();
+        contactDropdown.classList.add('d_none');
+        arrowContact.classList.remove('rotate'); 
+        document.removeEventListener('click', closeDropDownContact);
+    }
+}
 function loadSubs(objData) {
     let subtaskArea = document.getElementById('subTaskBoard');
     let subs = objData.subtask ? Object.values(objData.subtask) : null;
