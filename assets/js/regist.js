@@ -4,7 +4,7 @@ function validateForm() {
     let password = document.getElementById('password');
     let confirmPassword = document.getElementById('confirmPassword');
     let privacyPolicy = document.getElementById('privacyPolicy');
-    let submitButton = document.getElementById('submitButton');    
+    let submitButton = document.getElementById('submitButton');
     let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
     let nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
 
@@ -71,12 +71,12 @@ async function handleRegistration(event) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {    
+document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('password').addEventListener('input', validateForm);
     document.getElementById('confirmPassword').addEventListener('input', validateForm);
     document.getElementById('email').addEventListener('input', validateForm);
     document.getElementById('privacyPolicy').addEventListener('change', validateForm);
-    document.getElementById('name').addEventListener('input', validateForm);    
+    document.getElementById('name').addEventListener('input', validateForm);
     document.getElementById('registrationForm').addEventListener('submit', handleRegistration);
 });
 
@@ -99,8 +99,8 @@ async function createDataFb(name, emailValue, token, uid) {
             throw new Error(`Fehler beim Speichern der Daten: ${response.status} ${response.statusText}`);
         }
         let data = await response.json();
-        
-    } catch (error) {        
+
+    } catch (error) {
     }
 }
 
@@ -119,4 +119,48 @@ function generateRandomNumber() {
 function getDatabaseUrl(path, token) {
     let base_Url = 'https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app';
     return `${base_Url}${path}.json?auth=${token}`;
+}
+
+function nameInputVali() {
+    let name = document.getElementById('name');
+    let failtext = document.getElementById('failName');
+    let nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
+    if (name.value.trim() != '') {
+        name.classList.remove('failinput');
+        failtext.classList.add('d_none')
+    }
+    if (!nameRegex.test(name.value.trim())) {
+        name.classList.add('failinput');
+        failtext.classList.remove('d_none')
+    }
+}
+
+function emailInputVali() {
+    let email = document.getElementById('email');
+    let failtext = document.getElementById('failEmail');
+    let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
+    if (email.value.trim() != '') {
+        email.classList.remove('failinput');
+        failtext.classList.add('d_none')
+    }
+    if (!emailRegex.test(email.value.trim())) {
+        email.classList.add('failinput');
+        failtext.classList.remove('d_none')
+    }
+}
+
+function passwordInputVali() {
+    let password = document.getElementById('password');
+    let confirmPassword = document.getElementById('confirmPassword');
+    let failtext = document.getElementById('failPassword');
+   
+  
+    if (password.value.trim() === confirmPassword.value.trim() ) {
+        confirmPassword.classList.remove('failinput');
+        failtext.classList.add('d_none')
+    }else{
+        confirmPassword.classList.add('failinput');
+        failtext.classList.remove('d_none')
+    }
+
 }

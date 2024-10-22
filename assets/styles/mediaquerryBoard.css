@@ -1,10 +1,6 @@
-@media(max-width: 345px) {}
 
 @media(max-width:563px) {
-    .content {
-        min-height: 240vh;
-    }
-
+    
     .infoTitle span {
         font-size: 16px;
         width: 150px
@@ -166,7 +162,9 @@
         position: fixed;
     }
 
-    
+    .content{
+        min-height: 170vh !important; 
+    }
 
     .subtaskAreaData {
         width: 100%;
@@ -386,6 +384,10 @@
 @media(min-width: 801px) and (max-width:1300px) {
     .taskArea {
         width: 1050px;
+    }
+    
+    .content{
+        min-height: 170vh !important; 
     }
 
     .overDisplay {
