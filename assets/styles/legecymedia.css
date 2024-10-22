@@ -60,7 +60,6 @@
     .content {
         padding-left: 64px;
         padding-right: 0px;
-        height: 100vh;
     }
 
     .mainDesign {
@@ -129,7 +128,6 @@
     .picHelp {
         display: none;
     }
-
     .asideMenu {
         height: 76px;
     }
@@ -157,7 +155,11 @@
     .content {
         padding-left: 10px;
         padding-right: 0px;
-        height: 115vh;
+        height: 130vh;
+    }
+
+    body, html {
+        overflow: auto;
     }
 
     .mainDesign {
