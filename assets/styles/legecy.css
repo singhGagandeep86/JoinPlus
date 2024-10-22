@@ -15,10 +15,13 @@
 
 body, html {
     width: 100%;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .content {
     padding: 4rem 4rem 0 4rem;
+    overflow: hidden;
 }
 
 .overDisplay {
@@ -242,7 +245,7 @@ body, html {
     font-size: 1rem;
 }
 
-@media(min-width:1301px) and (max-width:1439px) {
+@media (max-width: 1439px) {
     .mainDesignAside {
         width: 200px;
     }
@@ -252,9 +255,17 @@ body, html {
     }
 }
 
-@media(min-width: 801px) and (max-width:1300px) {
+@media(min-width: 801px) and (max-width: 1300px) {
     .headerContentRightSide {
         display: none;
+    }
+
+    body, html {
+        overflow: auto;
+    }
+
+    .content {
+        height: 120vh;
     }
 
     .mainDesign {
@@ -312,12 +323,13 @@ body, html {
     }
 }
 
-@media (max-width:800px) {
+@media (max-width: 800px) {
     .content {
         padding-left: 10px;
         padding-right: 0px;
-        height: 160vh
+        height: 126vh
     }
+
     .headerContentRightSide {
         display: none;
     }
@@ -398,7 +410,11 @@ body, html {
     }
 }
 
-@media(max-width:380px) {
+@media(max-width: 380px) {
+    .content {
+        height: 215vh;
+    }
+
     .asideMenuArea {
         gap: 0;
     }
@@ -414,5 +430,11 @@ body, html {
 
     .text-arrow h1{
         font-size:30px;
+    }
+}
+
+@media(max-width: 320px) {
+    .content {
+        height: 245vh;
     }
 }
