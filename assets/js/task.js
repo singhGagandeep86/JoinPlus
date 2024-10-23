@@ -60,6 +60,15 @@ function wthoutScndName(i, eachName) {
 
 function selectionContact(name, colour) {
   const currenID = document.getElementById(name);
+  ifelseLogics(currenID, name, colour);
+  let SelectedContactsBoard = document.getElementById('selCntcts');
+  SelectedContactsBoard.innerHTML = '';
+  for (let i = 0; i < namesInitials.length; i++) {
+    loopForCntcts(i, SelectedContactsBoard);
+  }
+}
+
+function ifelseLogics(currenID, name, colour) {
   if (currenID.checked == true) {
     pushSelection(currenID, name, colour);
   }
@@ -70,11 +79,6 @@ function selectionContact(name, colour) {
     document.getElementById('moreIcon').classList.remove("d_noneImg");
   } else {
     document.getElementById('moreIcon').classList.add("d_noneImg");
-  }
-  let SelectedContactsBoard = document.getElementById('selCntcts');
-  SelectedContactsBoard.innerHTML = '';
-  for (let i = 0; i < namesInitials.length; i++) {
-    loopForCntcts(i, SelectedContactsBoard);
   }
 }
 
