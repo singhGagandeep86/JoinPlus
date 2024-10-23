@@ -66,18 +66,22 @@ function selectionContact(name, colour) {
   else {
     spliceSelection(currenID, name);
   }
-  if (namesInitials.length > 4){
+  if (namesInitials.length > 4) {
     document.getElementById('moreIcon').classList.remove("d_noneImg");
-  }else{
+  } else {
     document.getElementById('moreIcon').classList.add("d_noneImg");
   }
   let SelectedContactsBoard = document.getElementById('selCntcts');
   SelectedContactsBoard.innerHTML = '';
   for (let i = 0; i < namesInitials.length; i++) {
-    const namesInitial = namesInitials[i];
-    const color = colours[i];
-    SelectedContactsBoard.innerHTML += `<div class="namesInitials b-${color}">${namesInitial}</div>`;
+    loopForCntcts(i, SelectedContactsBoard);
   }
+}
+
+function loopForCntcts(i, SelectedContactsBoard) {
+  const namesInitial = namesInitials[i];
+  const color = colours[i];
+  SelectedContactsBoard.innerHTML += `<div class="namesInitials b-${color}">${namesInitial}</div>`;
 }
 
 function pushSelection(currenID, name, colour) {
@@ -161,7 +165,6 @@ function editsubTask(element) {
   <img class="deleteIcon" onclick="newSubTask(this)" src="../img/SubTaskDone.svg">
 </div></div>`;
 }
-
 function delsubTask(element) {
   element.closest('li').remove();
 }
@@ -390,7 +393,7 @@ function checkValidation() {
   let chkCatFnc = checkCategory(category);
   if (chkAllFnc == false || chkTskFnc == false || chkDteFnc == false || chkCatFnc == false) {
     return false;
-  }  
+  }
 
   return true;
 }
@@ -492,17 +495,17 @@ function dateAutoChange() {
 function clearFailAddTask(inputId, errorId) {
   let inputValue = document.getElementById(inputId).value.trim();
   if (inputValue !== '') {
-      document.getElementById(errorId).classList.add('selectHide');
-      document.getElementById(inputId).classList.remove('failedinput');
-  }  
+    document.getElementById(errorId).classList.add('selectHide');
+    document.getElementById(inputId).classList.remove('failedinput');
+  }
 }
 
-function clearFailAddCat() { 
-      document.getElementById('failCategory').classList.add('selectHide'); 
-      document.getElementById('customSelect').classList.remove('failedinput');  
+function clearFailAddCat() {
+  document.getElementById('failCategory').classList.add('selectHide');
+  document.getElementById('customSelect').classList.remove('failedinput');
 }
 
-function scrollOn(){
+function scrollOn() {
   console.log(`test`);
   let scrollDiv = document.getElementById('selCntcts');
   scrollDiv.scrollLeft = scrollDiv.scrollWidth;
