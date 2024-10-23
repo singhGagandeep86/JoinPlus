@@ -41,6 +41,7 @@ function resetingLocalVariables() {
     document.getElementById('arrow').style.transform = "rotate(0deg)";
     document.getElementById('subTsksBoard').innerHTML = '';
     document.getElementById('selCntcts').innerHTML = '';
+    document.getElementById('moreIcon').classList.add("d_noneImg");
 }
 
 function resetError() {

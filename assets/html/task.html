@@ -82,7 +82,10 @@
                                 </div>
                                 <div id="allCntcts" class="checkboxes">
                                 </div>
-                                <div id="selCntcts" class="showSel"></div>
+                                <div class="selCntctsDiv">
+                                    <div id="selCntcts" class="showSel"></div>
+                                    <div id="moreIcon" class="moreBtn d_noneImg" onclick="scrollOn()"><img class="moreImg" src="../img/arrow.png"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="partition"></div>
@@ -90,24 +93,22 @@
                             <div class="dueDate">
                                 <div class="smallHead"><span>Due Date <sup>*</sup></span>
                                 </div>
-                                <input class="dueDateTxt" type="text" id="dateData" placeholder="dd/mm/yyyy" 
+                                <input class="dueDateTxt" type="text" id="dateData" placeholder="dd/mm/yyyy"
                                     onfocus="(type='date')">
-                                    <div id="failDueDate" class="fail selectHide"><span>Please select a correct Due Date.</span></div>
+                                <div id="failDueDate" class="fail selectHide"><span>Please select a correct Due
+                                        Date.</span></div>
                             </div>
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
                                 <div class="prioForm">
-                                    <div class="prioForm">
-                                        <input type="radio" name="priority" value="urgent" id="urgent">
-                                        <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png"
-                                                alt=""></label>
-                                        <input type="radio" name="priority" value="medium" id="medium" checked>
-                                        <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png"
-                                                alt=""></label>
-                                        <input type="radio" name="priority" value="low" id="low">
-                                        <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png"
-                                                alt=""></label>
-                                    </div>
+                                    <input type="radio" name="priority" value="urgent" id="urgent">
+                                    <label class="prioBtn" for="urgent">Urgent <img
+                                            src="../img/Priorityhigh.png"></label>
+                                    <input type="radio" name="priority" value="medium" id="medium" checked>
+                                    <label class="prioBtn" for="medium">Medium <img
+                                            src="../img/Prioritymiddel.png"></label>
+                                    <input type="radio" name="priority" value="low" id="low">
+                                    <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png"></label>
                                 </div>
                             </div>
                             <div class="assign">

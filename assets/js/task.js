@@ -66,6 +66,11 @@ function selectionContact(name, colour) {
   else {
     spliceSelection(currenID, name);
   }
+  if (namesInitials.length > 4){
+    document.getElementById('moreIcon').classList.remove("d_noneImg");
+  }else{
+    document.getElementById('moreIcon').classList.add("d_noneImg");
+  }
   let SelectedContactsBoard = document.getElementById('selCntcts');
   SelectedContactsBoard.innerHTML = '';
   for (let i = 0; i < namesInitials.length; i++) {
@@ -493,7 +498,12 @@ function clearFailAddTask(inputId, errorId) {
 }
 
 function clearFailAddCat() { 
-      document.getElementById('failCategory').classList.add('selectHide');  // Versteckt die Fehlermeldung
-      document.getElementById('customSelect').classList.remove('failedinput');  // Entfernt das Fehlerstyling
- 
+      document.getElementById('failCategory').classList.add('selectHide'); 
+      document.getElementById('customSelect').classList.remove('failedinput');  
+}
+
+function scrollOn(){
+  console.log(`test`);
+  let scrollDiv = document.getElementById('selCntcts');
+  scrollDiv.scrollLeft = scrollDiv.scrollWidth;
 }

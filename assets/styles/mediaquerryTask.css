@@ -63,11 +63,12 @@
     }
 
     .prioBtns {
-        gap: 5px;
+        gap: 5px !important;
     }
 
     .prioBtn {
-        width: 110px;
+        width: 110px !important;
+        gap: 6px !important;
     }
 }
 
@@ -110,11 +111,11 @@
     }
 
     .prioBtns {
-        gap: 16px;
+        gap: 16px !important;
     }
 
     .prioBtn {
-        width: 136px;
+        width: 136px !important;
     }
 
     .tsksGen {
@@ -212,8 +213,9 @@
     }
 
     .prioForm {
-        scale: 0.9;
-        gap: 2px;
+        scale: 1;
+        gap: 10px !important;
+        padding: 0px 2px;
     }
 
     .leftSubmition {
@@ -225,11 +227,13 @@
     }
 
     .prioBtns {
-        gap: 4px;
+        gap: 4px !important;
     }
 
     .prioBtn {
-        width: 104px;
+        width: 104px !important;
+        font-size: 18px !important;
+        gap: 2px !important;
     }
 
     .tsksBtns {
@@ -270,6 +274,10 @@
 
     .rightSubmition {
         width: 304px;
+    }
+
+    .prioForm {
+        gap: 4px;
     }
 
     .checkboxes {
