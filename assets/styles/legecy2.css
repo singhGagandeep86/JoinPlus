@@ -13,6 +13,15 @@
     font-family: 'Inter';
 }
 
+html::-webkit-scrollbar {
+    width: 10px;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
 
 .content {
@@ -59,8 +68,8 @@
     transition: 125ms ease-in-out;
 }
 
-.asideMenu:hover{
-    background-color:#2A3D59 ;
+.asideMenu:hover {
+    background-color: #2A3D59;
 }
 
 .asideMenu a {
@@ -225,7 +234,8 @@
     font-weight: 700;
 }
 
-.text-2 p, span {
+.text-2 p,
+span {
     font-size: 1rem;
 }
 
@@ -250,7 +260,12 @@
     .content {
         padding-left: 64px;
         padding-right: 0px;
-        height: 160vh
+        height: 160vh;
+        overflow: visible;
+    }
+
+    html{
+        overflow: auto;
     }
 
     .mainDesign {
@@ -306,7 +321,18 @@
     .content {
         padding-left: 10px;
         padding-right: 0px;
-        height: 130vh
+        height: 130vh;
+    }
+
+
+    .content::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .content::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 10px;
+        cursor: pointer;
     }
 
     .mainDesign {
@@ -374,7 +400,7 @@
         border-radius: 10px;
     }
 
-    .text-arrow h1{
+    .text-arrow h1 {
         font-size: 40px;
     }
 }
@@ -383,6 +409,7 @@
     .content {
         height: 160vh;
     }
+
     .asideMenuArea {
         gap: 0;
     }
