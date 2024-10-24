@@ -379,6 +379,9 @@ body {
 }
 
 @media(max-width: 380px) {
+    .content {
+        height: 240vh;
+    }
     .asideMenuArea {
         gap: 0;
     }
