@@ -232,16 +232,11 @@ body {
     font-size: 1rem;
 }
 
-@media(min-width:1439px) {
-    .content {
-        padding: 0 64px 0 64px;
-    }
-}
-
-@media(min-width:1301px) and (max-width:1439px) {
+@media(max-width: 1301px) {
     .content {
         padding-left: 10px;
         padding-right: 0px;
+        height: 90vh;
     }
 
     .mainDesignAside {
@@ -253,7 +248,7 @@ body {
     }
 }
 
-@media(min-width: 801px) and (max-width:1300px) {
+@media(max-width: 801px) {
     .content {
         padding-left: 64px;
         padding-right: 0px;
@@ -265,7 +260,7 @@ body {
     }
 
     .mainDesignAside {
-       display: none;
+        display: none;
     }
 
     .asideMenuArea {
@@ -309,11 +304,11 @@ body {
     }
 }
 
-@media (max-width:800px) {
+@media (max-width: 800px) {
     .content {
         padding-left: 10px;
         padding-right: 0px;
-        height: 160vh
+        height: 130vh
     }
 
     .mainDesign {
@@ -386,7 +381,10 @@ body {
     }
 }
 
-@media(max-width:380px) {
+@media(max-width: 380px) {
+    .content {
+        height: 140vh;
+    }
     .asideMenuArea {
         gap: 0;
     }
