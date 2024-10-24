@@ -116,7 +116,7 @@
 @media(max-width:1300px) {
     .content{
         padding: 0;
-        height: 350vh;
+        height: 200vh;
     }
 
     html{

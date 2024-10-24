@@ -13,11 +13,6 @@
     font-family: 'Inter';
 }
 
-body, html {
-    width: 100%;
-    height: 100vh;
-}
-
 .content {
     padding: 4rem 4rem 0 4rem;
 }
@@ -256,14 +251,10 @@ body, html {
 @media(min-width: 801px) and (max-width: 1300px) {
     .headerContentRightSide {
         display: none;
-    }
-
-    body, html {
-        overflow: auto;
-    }
+    }    
 
     .content {
-        height: 120vh;
+        height: 180vh;
     }
 
     .mainDesign {

@@ -81,4 +81,15 @@ body {
     .headerContentRightSide{
         display: none;
     }
+    @media (max-width: 535px) {
+    .content {
+        height: 133vh;
+    }
+}
+}
+
+@media (max-width: 535px) {
+    .content {
+        height: 133vh !important;
+    }
 }
