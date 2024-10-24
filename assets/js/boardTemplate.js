@@ -19,17 +19,19 @@ function templateTaskEmptyDone() {
     <div id="dragEmpty" class="dragEmptyBody d_none "></div>`
 }
 
-function templatePopUpTask1(id) {
+function templatePopUpTask(id) {
     return `<div id="CloseArea" class="taskArea">
          <div class="headingBoardAdd">Add Task <img onclick="closePopUpTask()" src="../img/Close.png" alt=""></div>
-            <form id="myForm">
+           <form id="myForm">
                     <div class="formular">
                         <div class="leftSubmition">
                             <div class="title">
                                 <div class="smallHead"><span>Title <sup>*</sup></span>
                                 </div>
-                                <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title" oninput="clearFailAddTask('titleText', 'failName')">
-                                <div id="failName" class="fail selectHide"><span>Please enter a correct Task in text Format.</span></div>
+                                <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title"
+                                    oninput="clearFailAddTask('titleText', 'failName')">
+                                <div id="failName" class="fail selectHide"><span>Please enter a correct Task in text
+                                        Format.</span></div>
                             </div>
                             <div class="description">
                                 <div class="smallHead">Description</div>
@@ -44,7 +46,10 @@ function templatePopUpTask1(id) {
                                 </div>
                                 <div id="allCntcts" class="checkboxes">
                                 </div>
-                                <div id="selCntcts" class="showSel"></div>
+                                <div class="selCntctsDiv">
+                                    <div id="selCntcts" class="showSel"></div>
+                                    <div id="moreIcon" class="moreBtn d_noneImg" onclick="scrollOn()"><img class="moreImg" src="../img/arrow.png"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="partition"></div>
@@ -52,31 +57,30 @@ function templatePopUpTask1(id) {
                             <div class="dueDate">
                                 <div class="smallHead"><span>Due Date <sup>*</sup></span>
                                 </div>
-                                <input class="dueDateTxt" type="date" id="dateData" placeholder="dd/mm/yyyy" onclick="dateAutoChange()" oninput="clearFailAddTask('dateData', 'failDueDate')">
-                                    <div id="failDueDate" class="fail selectHide"><span>Please select a correct Due Date.</span></div>
+                                <input class="dueDateTxt" type="text" id="dateData" placeholder="dd/mm/yyyy"
+                                    onfocus="(type='date')">
+                                <div id="failDueDate" class="fail selectHide"><span>Please select a correct Due
+                                        Date.</span></div>
                             </div>
                             <div id="priority" class="prio">
                                 <div class="smallHead">Prio</div>
                                 <div class="prioForm">
-                                    <div class="prioForm">
-                                        <input type="radio" name="priority" value="urgent" id="urgent">
-                                        <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png"
-                                                alt=""></label>
-                                        <input type="radio" name="priority" value="medium" id="medium" checked>
-                                        <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png"
-                                                alt=""></label>
-                                        <input type="radio" name="priority" value="low" id="low">
-                                        <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png"
-                                                alt=""></label>
-                                    </div>
+                                    <input type="radio" name="priority" value="urgent" id="urgent">
+                                    <label class="prioBtn" for="urgent">Urgent <img
+                                            src="../img/Priorityhigh.png"></label>
+                                    <input type="radio" name="priority" value="medium" id="medium" checked>
+                                    <label class="prioBtn" for="medium">Medium <img
+                                            src="../img/Prioritymiddel.png"></label>
+                                    <input type="radio" name="priority" value="low" id="low">
+                                    <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png"></label>
                                 </div>
                             </div>
                             <div class="assign">
-                                <label for="hiddenSelect"><span>Category <sup>*</sup></span></label>
+                                <label for="hiddenSelect"><span>Category<sup>*</sup></span></label>
                                 <div class="assignments" id="customSelect" onclick="toggleDropdown()">
                                     Select task category
                                 </div>
-                                <select id="hiddenSelect" >
+                                <select id="hiddenSelect">
                                     <option value="" disabled selected>Select task category</option>
                                     <option value="technical">Technical Task</option>
                                     <option value="userStory">User Story</option>
@@ -85,7 +89,8 @@ function templatePopUpTask1(id) {
                                     <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
                                     <div data-value="userStory" onclick="selectOption(this)">User Story</div>
                                 </div>
-                                <div id="failCategory" class="fail selectHide"><span>Please select a Category for Task.</span></div>
+                                <div id="failCategory" class="fail selectHide"><span>Please select a Category for
+                                        Task.</span></div>
                             </div>
 
                             <div id="inputSubClass" class="subtasks">
@@ -104,11 +109,11 @@ function templatePopUpTask1(id) {
                             <button class="secondary" type="reset" onclick="resetAll()">
                                 <span>Clear</span> </button>
                             <button id="btnAddTaskBoard" type="button" class="primaryCheck" onclick="addTaskboard(${id})">
-                                <span>Create Task</span><img class="primevect" src="../img/check.svg">
+                            <span>Create Task</span><img class="primevect" src="../img/check.svg">
                             </button>
                         </div>
                     </div>
-                </form>     
+                </form>  
         </div>`
 }
 
@@ -146,7 +151,7 @@ function templateTaskSmallInfo(objDateTask) {
             <div class="prioInfoData"><span>${objDateTask.prio.charAt(0).toUpperCase() + objDateTask.prio.slice(1)}</span>
             <div class="bg_${objDateTask.prio}"></div></div></div>
             <div class="contactInfo"><span class="contactInfoHeadline">Assigned To:</span><div id="contactAreaInfo" class="contactInfoData"></div></div>
-            <div class="subtaskInfo"><span>Subtasks:</span><div  class="subtaskAreaData"><div id="subtaskArea"></div></div></div>
+            <div class="subtaskInfo"><span>Subtasks:</span><div id="subtaskEmtpy"  class="subtaskAreaData"><div id="subtaskArea"></div></div></div>
             <div class="editInfo"><div class="editInfoData"><div><img onclick="deleteData(${objDateTask.number})" class="deletePic" src="../img/Deletecontact.png" alt=""></div>
                 <div><img onclick="editOpen(${objDateTask.number})" class="editPic" src="../img/editcontacts.png" alt=""></div></div></div>
         </div>

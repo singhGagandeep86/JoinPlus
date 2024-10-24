@@ -19,7 +19,7 @@
     .prioBtn {
         width: 60%;
         height: 40px;
-        font-size: 12px;
+        font-size: 12px !important;
         gap: 5px;
     }
 
@@ -59,7 +59,7 @@
 
     .popupTitleInfo {
         width: 220px;
-        font-size: 20px;
+        font-size: 20px !important;
         min-height: 50px;
     }
 
@@ -158,14 +158,18 @@
         width: 100%;
     }
 
+    .substart2{
+        width: 100%;
+    }
+
+    .subAddIn{
+        width: 100%;
+    }
+
     .popupArea {
         position: fixed;
     }
-
-    .content{
-        min-height: 170vh !important; 
-    }
-
+   
     .subtaskAreaData {
         width: 100%;
         height: 100px;
@@ -385,6 +389,15 @@
     .taskArea {
         width: 1050px;
     }
+
+    .popupTitleInfo{
+        font-size: 50px;
+        min-height: 100px;
+    }
+
+    .taskName span:nth-of-type(2){
+        display: none;
+    }
     
     .content{
         min-height: 170vh !important; 
@@ -477,6 +490,10 @@
         padding-left: 90px;
     }
 
+    .taskName span:nth-of-type(2){
+        display: none;
+    }
+
     .dragAndDropBoard {
         width: calc(1208px - 128px);
         gap: 8px;
@@ -522,6 +539,10 @@
     .content {
         padding: 0 64px 0 64px;
         max-width: 1208px;
+    }
+
+    .taskName span:nth-of-type(2){
+        display: none;
     }
 
     .dragAndDropBoardArea {

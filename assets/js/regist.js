@@ -8,22 +8,22 @@ function validateForm() {
     let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
     let nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
 
-    if (!nameRegex.test(userName.value)) {
+    if (!nameRegex.test(userName.value.trim())) {
         submitButton.disabled = true;
         document.getElementById('submitButton').classList.remove('login');
         return false;
     }
 
-    if (!emailRegex.test(email.value)) {
+    if (!emailRegex.test(email.value.trim())) {
         submitButton.disabled = true;
         document.getElementById('submitButton').classList.remove('login');
         return false;
     }
 
     if (
-        password.value &&
-        confirmPassword.value &&
-        password.value === confirmPassword.value &&
+        password.value.trim() &&
+        confirmPassword.value.trim() &&
+        password.value.trim() === confirmPassword.value.trim() &&
         privacyPolicy.checked &&
         userName.value.trim() !== ''
     ) {

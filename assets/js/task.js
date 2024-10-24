@@ -387,7 +387,7 @@ function generateRandomNumber() {
 }
 
 function checkValidation() {
-  let task = document.getElementById('titleText').value;
+  let task = document.getElementById('titleText').value.trim();
   let category = document.getElementById('customSelect').innerText;
   let taskReg = /^[a-zA-Z]+( [a-zA-Z&]+)*$/;
   let dateReg = dateCheck();

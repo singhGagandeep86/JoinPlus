@@ -44,17 +44,14 @@ function loadContactEmpty(contactData, firebaseData) {
 }
 
 function initialsLoad(objData) {
-    let contactUser = objData.contact === undefined
-        ? null
-        : Object.values(objData.contact).every(name => name === null)
+    let contactUser = objData.contact === undefined ? null : Object.values(objData.contact).every(name => name === null)
             ? null
             : Object.values(objData.contact);
-    let color = objData.contactcolor === undefined
-        ? null
-        : Object.values(objData.contactcolor);
+    let color = objData.contactcolor === undefined ? null : Object.values(objData.contactcolor);
     let initialsContact = document.getElementById('initialsArea');
     if (contactUser == null) {
         initialsContact.innerHTML = '';
+        initialsContact.classList.add('d_none');
     } else {
         for (let k = 0; k < contactUser.length; k++) {
             let contactName = contactUser[k];
@@ -103,19 +100,16 @@ function loadEditData(objData, prioCheck) {
 }
 
 function contactDropOpen(event) {
-    event.stopPropagation();    
+    event.stopPropagation();
     let contactDropdown = document.getElementById('contactDropArea');
-    let arrowContact = document.getElementById('arrowContactDrop');   
-    
+    let arrowContact = document.getElementById('arrowContactDrop');
     if (!contactDropdown.classList.contains('d_none')) {
         getSelectedContacts();
         intiCheckContact();
     }
-
-    
     contactDropdown.classList.toggle('d_none');
     arrowContact.classList.toggle('rotate');
-        if (!contactDropdown.classList.contains('d_none')) {
+    if (!contactDropdown.classList.contains('d_none')) {
         document.addEventListener('click', closeDropDownContact);
     } else {
         document.removeEventListener('click', closeDropDownContact);
@@ -124,12 +118,12 @@ function contactDropOpen(event) {
 
 function closeDropDownContact(event) {
     let contactDropdown = document.getElementById('contactDropArea');
-    let arrowContact = document.getElementById('arrowContactDrop');    
+    let arrowContact = document.getElementById('arrowContactDrop');
     if (!contactDropdown.contains(event)) {
         getSelectedContacts();
         intiCheckContact();
         contactDropdown.classList.add('d_none');
-        arrowContact.classList.remove('rotate'); 
+        arrowContact.classList.remove('rotate');
         document.removeEventListener('click', closeDropDownContact);
     }
 }
@@ -180,12 +174,15 @@ function intiCheckContact() {
     let initialsContact = document.getElementById('initialsArea');
     let checkContact = getSelectedContacts();
     initialsContact.innerHTML = '';
-    for (let i = 0; i < checkContact.length; i++) {
-        let contactName = checkContact[i].name;
-        let color = checkContact[i].color;
-        let initials = extrahiereInitialen(contactName);
-        initialsContact.innerHTML += initialsLoadContact(initials, color);
-    }
+    if(checkContact != []){       
+            initialsContact.classList.remove('d_none');
+        for (let i = 0; i < checkContact.length; i++) {
+            let contactName = checkContact[i].name;
+            let color = checkContact[i].color;
+            let initials = extrahiereInitialen(contactName);
+            initialsContact.innerHTML += initialsLoadContact(initials, color);
+        }
+    }   
 }
 
 async function deleteData(element) {
@@ -401,7 +398,6 @@ async function postEditData(path = "", data = {}) {
 }
 
 function loadnewTaskEdit() {
-
     arrayLoad = [];
     load();
     closePopUpTaskSmall();

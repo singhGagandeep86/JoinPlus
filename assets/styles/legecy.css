@@ -355,11 +355,11 @@ body, html {
     }
 
     #summary {
-        order: -3;
+        order: 0;
     }
 
     #task {
-        order: -1;
+        order: 2;
     }
 
     #board {

@@ -157,7 +157,7 @@
     .content {
         padding-left: 10px;
         padding-right: 0px;
-        height: 115vh;
+        height: 190vh;
     }
 
     .mainDesign {
@@ -242,13 +242,13 @@
 
 @media (max-width: 535px) {
     .content {
-        height: 130vh;
+        height: 210vh;
     }
 }
 
 @media(max-width: 380px) {
     .content {
-        height: 150vh;
+        height: 270vh;
     }
 
     .asideMenuArea {

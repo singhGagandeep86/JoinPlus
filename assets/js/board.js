@@ -171,20 +171,20 @@ function openPopUpTask(id) {
     } else {
         taskPopUp.classList.remove('d_none');
         taskPopUp.innerHTML = '';
-        taskPopUp.innerHTML = templatePopUpTask1(id);
+        taskPopUp.innerHTML = templatePopUpTask(id);
         stopAddTaskBoardArea();
     }
 }
 
 function stopAddTaskBoardArea() {
     let area = document.getElementById('CloseArea');
-        area.addEventListener('click', (event) => {
-            event.stopPropagation()
-        })
-        let button = document.getElementById('btnAddTaskBoard');
-        button.addEventListener('click', (event) => {
-            event.stopPropagation()
-        })
+    area.addEventListener('click', (event) => {
+        event.stopPropagation()
+    })
+    let button = document.getElementById('btnAddTaskBoard');
+    button.addEventListener('click', (event) => {
+        event.stopPropagation()
+    })
 }
 
 function handleMediaChange(e) {
@@ -194,7 +194,7 @@ function handleMediaChange(e) {
 }
 
 function closePopUpTask() {
-    resetAll();    
+    resetAll();
     let button = document.getElementById('btnTaskPopupcloseArea');
     button.addEventListener('click', (event) => {
         event.stopPropagation()
@@ -346,6 +346,7 @@ function addcontactInfo(objDateTask) {
     contactArea.innerHTML = '';
     if (contactName == null) {
         contactArea.innerHTML = '';
+        contactArea.classList.add('d_none')
     } else {
         for (let i = 0; i < contactName.length; i++) {
 
@@ -357,9 +358,11 @@ function addcontactInfo(objDateTask) {
 
 function addSubtaskInfo(objDateTask) {
     let subtaskInput = document.getElementById('subtaskArea');
+    let subtaskEmpty = document.getElementById('subtaskEmtpy');
     subtaskInput.innerHTML = '';
     if (!objDateTask.subtask) {
-        subtaskInput.innerHTML = ''; // 
+        subtaskInput.innerHTML = '';
+        subtaskEmpty.classList.add('d_none')
     } else if (Object.values(objDateTask.subtask).length === 0 && Object.values(objDateTask.checked) === 0) {
         subtaskInput.innerHTML = '';
     } else {
@@ -463,13 +466,13 @@ function removeHighlight(id) {
 
 async function addTaskboard(id) {
     let idAdd = id.id;
-   if(checkValidation()){
-    document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");    
-    await toWaiting(idAdd);
-    arrayLoad = [];
-    closePopUpTask();
-    load();
-    document.getElementById('taskDoneIcon').classList.add("subTaskIcon");      
-   }
-   
+    if (checkValidation()) {
+        document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");
+        await toWaiting(idAdd);
+        arrayLoad = [];
+        closePopUpTask();
+        load();
+        document.getElementById('taskDoneIcon').classList.add("subTaskIcon");
+    }
+
 }
