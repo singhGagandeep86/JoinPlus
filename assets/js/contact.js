@@ -189,7 +189,7 @@ async function addContactData() {
 function valiAdd(name, email, phone) {
     let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
     let phoneRegex = /^[0-9]+$/;
-    let nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
+    let nameRegex = /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/;
     if (!name || !email || !phone) {
         failAllAdd();
         return false;

@@ -6,8 +6,7 @@ function validateForm() {
     let privacyPolicy = document.getElementById('privacyPolicy');
     let submitButton = document.getElementById('submitButton');
     let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
-    let nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
-
+    let nameRegex = /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/;
     if (!nameRegex.test(userName.value.trim())) {
         submitButton.disabled = true;
         document.getElementById('submitButton').classList.remove('login');
@@ -124,7 +123,7 @@ function getDatabaseUrl(path, token) {
 function nameInputVali() {
     let name = document.getElementById('name');
     let failtext = document.getElementById('failName');
-    let nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
+    let nameRegex = /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/;
     if (name.value.trim() != '') {
         name.classList.remove('failinput');
         failtext.classList.add('d_none')

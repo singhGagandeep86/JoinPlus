@@ -39,7 +39,7 @@ function handleLogin(event) {
     }
 }
 
-function loginAlsGast() {
+function loginGuest() {
     return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
         method: 'POST',
         headers: {
@@ -64,8 +64,8 @@ function loginAlsGast() {
         })
 }
 
-function gastLogin() {
-    loginAlsGast().then((token) => {
+function guestLogin() {
+    loginGuest().then((token) => {
         if (token) {
             sessionStorage.setItem('authToken', token);
             fetchAndStoreUID();
