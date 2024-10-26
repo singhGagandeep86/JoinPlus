@@ -162,12 +162,7 @@ function normalEffect(element) {
 function editsubTask(element) {
   let parent = element.closest('li');
   let currentValue = parent.querySelector('.leftPart').innerText.trim();
-  parent.innerHTML = `<div class="wrapper">
-  <input type="text" value="${currentValue}" class="subTaskInput"></input> 
-  <div class="btns subTaskIcon subTaskEdit">
-  <img class="inputIcon" onclick="delsubTask(this)" src="../img/SubTaskDelete.svg">
-  <img class="deleteIcon" onclick="newSubTask(this)" src="../img/SubTaskDone.svg">
-</div></div>`;
+  parent.innerHTML = editTempelate(currentValue);
 }
 function delsubTask(element) {
   element.closest('li').remove();
@@ -176,11 +171,7 @@ function delsubTask(element) {
 function newSubTask(element) {
   let parent = element.closest('li');
   let newValue = parent.querySelector('.subTaskInput').value;
-  parent.innerHTML = ` <div class="leftPart"><span class="bullet"></span>${newValue}</div>
- <div class="btns subTaskIcon">
- <img onclick="editsubTask(this, '${newValue}')" class="inputIcon" src="../img/SubtasksEdit.svg">
- <img onclick="delsubTask(this)" class="deleteIcon" src="../img/SubtasksDel.svg">
-</div>`;
+  parent.innerHTML = newSubTemp(newValue);
 }
 
 function showCheckBoxes() {
@@ -513,4 +504,29 @@ function scrollOn() {
   console.log(`test`);
   let scrollDiv = document.getElementById('selCntcts');
   scrollDiv.scrollLeft = scrollDiv.scrollWidth;
+}
+
+
+function resetingGlobalVariable() {
+  expanded = false;
+  names = [];
+  namesInitials = [];
+}
+
+function resetingLocalVariables() {
+  document.getElementById('customSelect').innerHTML = `Select task category`;
+  document.getElementById('allCntcts').style.display = "none";
+  document.getElementById('arrow').style.transform = "rotate(0deg)";
+  document.getElementById('subTsksBoard').innerHTML = '';
+  document.getElementById('selCntcts').innerHTML = '';
+  document.getElementById('moreIcon').classList.add("d_noneImg");
+}
+
+function resetError() {
+  document.getElementById('failName').classList.add("selectHide");
+  document.getElementById('failDueDate').classList.add("selectHide");
+  document.getElementById('failCategory').classList.add("selectHide");
+  document.getElementById('titleText').classList.remove("failedinput");
+  document.getElementById('dateData').classList.remove("failedinput");
+  document.getElementById('customSelect').classList.remove("failedinput");
 }
