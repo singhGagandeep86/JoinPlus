@@ -55,7 +55,6 @@
         padding: 0;
     }
 
-
     .container {
         justify-content: initial;
     }
@@ -73,6 +72,7 @@
         width: 1000px;
         height: 592px;
         animation: slideIn 0.5s forwards ease;
+        margin: 0 20px;
     }
 
     .popup-right {
@@ -356,7 +356,6 @@
     .popup {
         width: 300px;
         animation: slideInMobile 0.5s forwards ease;
-        margin: 50px 22px 0 0;
     }
 
     .form-group {
@@ -468,7 +467,7 @@
         position: absolute;
         bottom: 90px;
         height: 64px;
-        left: 320px;
+        right: 0px;
         cursor: pointer;
     }
 
