@@ -7,16 +7,18 @@ let expanded = false;
 let dropdownOpen = false;
 let task = {};
 
-
+// initialise
 async function init() {
   fetchUrl();
   fetchUserData('/user');
 }
 
+// get Data when authorise
 function getDatabaseUrl(path) {
   return `${BASE_URL}${path}.json?auth=${token}`;
 }
 
+// getting Firebase Data
 async function fetchUrl() {
   let firebaseUrl = await fetch(BASE_URL + ".json?auth=" + token);
   let firebaseUrlAsJson = await firebaseUrl.json();
@@ -24,6 +26,7 @@ async function fetchUrl() {
   contactsData(firebaseData[0]);
 }
 
+// getting contacts from firebase
 function contactsData(firebase) {
   let contactsLength = Object.values(firebase);
   let objLngth = contactsLength.length;
@@ -37,6 +40,7 @@ function contactsData(firebase) {
   }
 }
 
+// handling Contacts having two parts
 function wthScndName(i, eachName) {
   let colour = array[i].color;
   let sanitizedEachName = eachName.replace(/\s+/g, '_');
@@ -48,6 +52,7 @@ function wthScndName(i, eachName) {
   contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart);
 }
 
+// handling Contacts having only one part
 function wthoutScndName(i, eachName) {
   let colour = array[i].color;
   let sanitizedEachName = eachName.replace(/\s+/g, '_');
@@ -58,16 +63,20 @@ function wthoutScndName(i, eachName) {
   contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart);
 }
 
+// adding Selected Contacts in extra div
 function selectionContact(name, colour) {
   const currenID = document.getElementById(name);
   ifelseLogics(currenID, name, colour);
   let SelectedContactsBoard = document.getElementById('selCntcts');
   SelectedContactsBoard.innerHTML = '';
   for (let i = 0; i < namesInitials.length; i++) {
-    loopForCntcts(i, SelectedContactsBoard);
+    const namesInitial = namesInitials[i];
+    const color = colours[i];
+    SelectedContactsBoard.innerHTML += `<div class="namesInitials b-${color}">${namesInitial}</div>`;
   }
 }
 
+// handling extra Div for selected Contacts that it show only four and if more Contacts are selected then navigator button will be displayed 
 function ifelseLogics(currenID, name, colour) {
   if (currenID.checked == true) {
     pushSelection(currenID, name, colour);
@@ -82,12 +91,7 @@ function ifelseLogics(currenID, name, colour) {
   }
 }
 
-function loopForCntcts(i, SelectedContactsBoard) {
-  const namesInitial = namesInitials[i];
-  const color = colours[i];
-  SelectedContactsBoard.innerHTML += `<div class="namesInitials b-${color}">${namesInitial}</div>`;
-}
-
+// Working to adding or removing Arrays for contacts
 function pushSelection(currenID, name, colour) {
   currenID.parentElement.style.backgroundColor = "#2A3647";
   currenID.parentElement.style.color = "white";
@@ -103,6 +107,7 @@ function pushSelection(currenID, name, colour) {
   }
 }
 
+// pushing to Arrays for Contacts with Names in two Parts
 function clrWthTwoNames(nameArray, firstName, colour) {
   const lastName = nameArray[1].toUpperCase();
   let firstNameStart = firstName[0];
@@ -111,6 +116,7 @@ function clrWthTwoNames(nameArray, firstName, colour) {
   colours.push(colour);
 }
 
+// pushing to Arrays for Contacts with Names in one Part
 function clrWthOneName(firstName, colour) {
   let firstNameStart = firstName[0];
   let lastNameStart = '';
@@ -118,6 +124,7 @@ function clrWthOneName(firstName, colour) {
   colours.push(colour);
 }
 
+// removing from Arrays
 function spliceSelection(currenID, name) {
   currenID.parentElement.style.backgroundColor = "transparent";
   currenID.parentElement.style.color = "black";
@@ -128,6 +135,7 @@ function spliceSelection(currenID, name) {
   colours.splice(currentName, 1);
 }
 
+// getting Button for working on SubTask
 function renderSubTask() {
   if (!document.getElementById('inputField')) {
     document.getElementById('inputSubClass').innerHTML = subTaskTemp();
@@ -135,11 +143,13 @@ function renderSubTask() {
   }
 }
 
+// clearing the Input in SubTask
 function resetInput() {
   document.getElementById('inputField').value = '';
   document.getElementById('inputSubClass').innerHTML = emptyField();
 }
 
+// adding SubTasks
 function addList() {
   let subTaskInput = document.getElementById('inputField').value;
   let subTaskBoard = document.getElementById('subTsksBoard');
@@ -149,31 +159,38 @@ function addList() {
   document.getElementById('inputSubClass').innerHTML = emptyField();
 }
 
+// Hover Effects for SubTasks Icon
 function hoverEffect(element) {
   let buttons = element.querySelector('.btns');
   buttons.classList.remove('subTaskIcon');
 }
 
+// Removing Hovereffect
 function normalEffect(element) {
   let buttons = element.querySelector('.btns');
   buttons.classList.add('subTaskIcon');
 }
 
+// Editing Entered SubTask
 function editsubTask(element) {
   let parent = element.closest('li');
   let currentValue = parent.querySelector('.leftPart').innerText.trim();
   parent.innerHTML = editTempelate(currentValue);
 }
+
+// Deleting Entered Sub Task
 function delsubTask(element) {
   element.closest('li').remove();
 }
 
+// Adding New SubTask
 function newSubTask(element) {
   let parent = element.closest('li');
   let newValue = parent.querySelector('.subTaskInput').value;
   parent.innerHTML = newSubTemp(newValue);
 }
 
+// Function to Toggle DropDown for Contacts
 function showCheckBoxes() {
   const allCntcts = document.getElementById("allCntcts");
   if (!expanded) {
@@ -187,6 +204,7 @@ function showCheckBoxes() {
   }
 }
 
+// EventListner to close Contacts Dropdown Div when clicked outside
 document.addEventListener('click', function (event) {
   const assign = document.getElementById("assign");
   const allCntcts = document.getElementById("allCntcts");
@@ -200,6 +218,7 @@ document.addEventListener('click', function (event) {
   }
 });
 
+// Function to Toggle DropDown for Task Category
 function toggleDropdown() {
   const dropdown = document.getElementById('dropdown');
   if (!dropdownOpen) {
@@ -212,6 +231,7 @@ function toggleDropdown() {
   }
 }
 
+// Selecting Task Category
 function selectOption(element) {
   const customSelect = document.getElementById('customSelect');
   const hiddenSelect = document.getElementById('hiddenSelect');
@@ -221,6 +241,7 @@ function selectOption(element) {
   customSelect.classList.remove('invalid');
 }
 
+// EventListner to close Task Category Dropdown Div when clicked outside
 document.addEventListener('click', function (rightEvent) {
   const assignHeading = document.getElementById('customSelect');
   if (dropdownOpen && !assignHeading.contains(rightEvent.target)) {
@@ -228,12 +249,7 @@ document.addEventListener('click', function (rightEvent) {
   }
 });
 
-function showSelection(element) {
-  const select = element.innerHTML;
-  document.getElementById('assignHeading').innerHTML = select;
-  document.getElementById("slection").classList.add("selectHide");
-}
-
+// Reseting when clicked reset Button
 function resetAll() {
   deletArray()
   resetingGlobalVariable();
@@ -250,6 +266,7 @@ function resetAll() {
   }
 }
 
+// Empty all Arrays
 function deletArray() {
   names = [];
   namesInitials = [];

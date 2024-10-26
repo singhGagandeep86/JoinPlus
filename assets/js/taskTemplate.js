@@ -34,8 +34,8 @@ function editTempelate(currentValue) {
     return `<div class="wrapper">
   <input type="text" value="${currentValue}" class="subTaskInput"></input> 
   <div class="btns subTaskIcon subTaskEdit">
-  <img class="inputIcon" onclick="delsubTask(this)" src="../img/SubTaskDelete.svg">
-  <img class="deleteIcon" onclick="newSubTask(this)" src="../img/SubTaskDone.svg">
+  <img class="inputIcon" onclick="delsubTask(this)" src="../img/subTaskDelete.svg">
+  <img class="deleteIcon" onclick="newSubTask(this)" src="../img/subTaskDone.svg">
 </div></div>`;
 }
 

@@ -473,6 +473,18 @@ label {
     padding: 0.01px;
 }
 
+
+.deleteIcon {
+    height: 22px;
+    cursor: pointer;
+}
+
+.deleteIcon:hover {
+    background-color: #d1d1d1;
+    border-radius: 50%;
+    padding: 0.01px;
+}
+
 .inputIcon2 {
     height: 22px;
     cursor: pointer;
