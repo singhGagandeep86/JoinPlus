@@ -18,8 +18,8 @@ function generatedList(subTaskInput) {
     return `<li onmouseover="hoverEffect(this)" onmouseleave="normalEffect(this)" ondblclick="editsubTask(this)">
     <div class="leftPart"><span class="bullet"></span>${subTaskInput}</div>
     <div class="btns subTaskIcon">
-    <img onclick="editsubTask(this, '${subTaskInput}')" class="inputIcon" src="../img/SubtasksEdit.svg">
-    <img onclick="delsubTask(this)" class="deleteIcon" src="../img/SubtasksDel.svg">
+    <img onclick="editsubTask(this, '${subTaskInput}')" class="inputIcon" src="../img/SubtasksEdit.png">
+    <img onclick="delsubTask(this)" class="deleteIcon" src="../img/SubtasksDel.png">
 </div></li>`;
 }
 
@@ -42,7 +42,7 @@ function editTempelate(currentValue) {
 function newSubTemp(newValue) {
     return ` <div class="leftPart"><span class="bullet"></span>${newValue}</div>
  <div class="btns subTaskIcon">
- <img onclick="editsubTask(this, '${newValue}')" class="inputIcon" src="../img/SubtasksEdit.svg">
- <img onclick="delsubTask(this)" class="deleteIcon" src="../img/SubtasksDel.svg">
+ <img onclick="editsubTask(this, '${newValue}')" class="inputIcon" src="../img/SubtasksEdit.png">
+ <img onclick="delsubTask(this)" class="deleteIcon" src="../img/SubtasksDel.png">
 </div>`;
 }
