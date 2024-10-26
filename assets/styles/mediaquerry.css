@@ -60,6 +60,7 @@
     .content {
         padding-left: 64px;
         padding-right: 0px;
+        padding-bottom: 100px;
     }
 
     .mainDesign {
@@ -239,15 +240,10 @@
     }
 }
 
-@media (max-width: 535px) {
-    .content {
-        height: 210vh;
-    }
-}
-
 @media(max-width: 380px) {
     .content {
-        height: 270vh;
+        /* height: 270vh; */
+        padding-bottom: 170px;
     }
 
     .asideMenuArea {

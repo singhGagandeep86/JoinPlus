@@ -243,8 +243,6 @@ span {
     .content {
         padding-left: 10px;
         padding-right: 0px;
-        height: 90vh;
-        overflow: auto;
     }
 
     .mainDesignAside {
@@ -260,8 +258,7 @@ span {
     .content {
         padding-left: 64px;
         padding-right: 0px;
-        height: 160vh;
-        overflow: visible;
+        padding-bottom: 100px;
     }
 
     html{
@@ -321,7 +318,6 @@ span {
     .content {
         padding-left: 10px;
         padding-right: 0px;
-        height: 130vh;
     }
 
 
@@ -406,10 +402,6 @@ span {
 }
 
 @media(max-width: 380px) {
-    .content {
-        height: 160vh;
-    }
-
     .asideMenuArea {
         gap: 0;
     }

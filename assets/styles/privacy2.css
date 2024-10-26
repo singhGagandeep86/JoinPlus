@@ -263,7 +263,6 @@ html{
     .content {
         padding-left: 10px;
         padding-right: 0px;
-        height: 90vh;
     }
 
     .mainDesignAside {
@@ -279,7 +278,7 @@ html{
     .content {
         padding-left: 64px;
         padding-right: 0px;
-        height: 160vh
+        padding-bottom: 100px;
     }
 
     .mainDesign {
@@ -335,7 +334,7 @@ html{
     .content {
         padding-left: 10px;
         padding-right: 0px;
-        height: 89vh
+        padding-bottom: 100px;
     }
 
     .mainDesign {
@@ -410,8 +409,9 @@ html{
 
 @media(max-width: 380px) {
     .content {
-        height: 160vh;
+        padding-bottom: 100px;
     }
+
     .asideMenuArea {
         gap: 0;
     }

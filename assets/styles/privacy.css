@@ -71,25 +71,14 @@ body {
     z-index: 999;
 }
 
-@media(max-width:480px) {
+@media(max-width: 480px) {
     .text-arrow h1{
         font-size:40px;
     }
 }
 
-@media(max-width:1300px) {
-    .headerContentRightSide{
+@media(max-width: 1300px) {
+    .headerContentRightSide {
         display: none;
-    }
-    @media (max-width: 535px) {
-    .content {
-        height: 133vh;
-    }
-}
-}
-
-@media (max-width: 535px) {
-    .content {
-        height: 133vh !important;
     }
 }
