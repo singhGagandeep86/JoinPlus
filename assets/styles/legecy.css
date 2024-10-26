@@ -223,6 +223,7 @@
     width: 37px;
     height: 37px;
 }
+
 .text-2{
     max-width: calc(1440px - 360px );
 }
@@ -239,6 +240,7 @@
 }
 
 @media (max-width: 1439px) {
+
     .mainDesignAside {
         width: 200px;
     }
@@ -251,10 +253,10 @@
 @media(min-width: 801px) and (max-width: 1300px) {
     .headerContentRightSide {
         display: none;
-    }    
+    }
 
     .content {
-        height: 180vh;
+        padding-bottom: 170px;
     }
 
     .mainDesign {
@@ -316,7 +318,7 @@
     .content {
         padding-left: 10px;
         padding-right: 0px;
-        height: 190vh
+        padding-bottom: 100px;
     }
 
     .headerContentRightSide {
@@ -400,10 +402,6 @@
 }
 
 @media(max-width: 380px) {
-    .content {
-        height: 215vh;
-    }
-
     .asideMenuArea {
         gap: 0;
     }
