@@ -10,14 +10,18 @@ let farben = [
     "Rot2", "Neongelb", "Neongrün", "Neonorange"
 ];
 
+/**
+ * Lädt die erforderlichen Daten und initialisiert die Kontaktansicht.
+ *
+ * Diese asynchrone Funktion führt mehrere Aufgaben aus, um die Kontaktdaten zu laden,
+ * die Daten zu sortieren und anzuzeigen sowie zusätzliche Benutzerdaten abzurufen.
+ */
 async function load() {
     await loadData("/contact");
     sortContactsByName();
     loadContact();
     fetchUserData('/user');
 }
-
-
 
 function getDatabaseUrl(path) {
     let token = sessionStorage.getItem('authToken');
