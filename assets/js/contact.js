@@ -4,7 +4,7 @@ let data = {};
 let isEventListenerRegistered = false;
 
 
-let farben = [
+let colorGen = [
     "Purple", "Hellpurple", "Gelb", "Turkis", "Rosa", "Hellblau",
     "Rotorange", "Hellorange", "Dunkelgelb", "Blau", "Rot",
     "Rot2", "Neongelb", "Neongrün", "Neonorange"
@@ -363,7 +363,7 @@ function extrahiereInitialen2(contactName) {
 }
 
 function farbGenerator() {
-    let zufaelligeFarbe = farben[Math.floor(Math.random() * farben.length)];
+    let zufaelligeFarbe = colorGen[Math.floor(Math.random() * colorGen.length)];
     return zufaelligeFarbe;
 }
 

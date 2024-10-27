@@ -242,8 +242,7 @@
 
 @media(max-width: 380px) {
     .content {
-        /* height: 270vh; */
-        padding-bottom: 170px;
+       padding-bottom: 170px;
     }
 
     .asideMenuArea {
