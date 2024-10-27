@@ -1,6 +1,18 @@
 let userData = [];
 let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
 
+/**
+ * Handles the login event.
+ *
+ * This function prevents the default event behavior, extracts the email and password from the form,
+ * validates the inputs, and sends a request to the authentication API.
+ * On successful login, it stores the token in sessionStorage and redirects the user to the summary page.
+ *
+ * @param {Event} event - The event object from the login form.
+ * @returns {void}
+ *
+ * @throws {Error} If the login request fails or no token is returned.
+ */
 function handleLogin(event) {
     event.preventDefault();
     let email = event.target.email.value;
@@ -40,13 +52,14 @@ function handleLogin(event) {
 }
 
 /**
- * Handles the login process for the user by preventing the default form submission,
- * validating the email and password, and then making a request to the authentication API.
- * If successful, it stores the authentication token and redirects to the summary page.
+ * Logs in a guest user by creating a new anonymous account.
  *
- * @function handleLogin
- * @param {Event} event - The event object representing the form submission event.
- * @throws {Error} Throws an error if the login validation fails or if the API request fails.
+ * This function sends a request to the authentication API to sign up
+ * a guest user and returns the ID token if the request is successful.
+ *
+ * @returns {Promise<string>} A promise that resolves to the ID token of the guest user.
+ *
+ * @throws {Error} If the signup request fails or no token is received.
  */
 function loginGuest() {
     return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
