@@ -36,6 +36,7 @@ async function fetchUrl() {
 function contactsData(firebase) {
   let contactsLength = Object.values(firebase);
   let objLngth = contactsLength.length;
+  setDateDisable();
   for (let i = 0; i < objLngth; i++) {
     const eachName = contactsLength[i].name;
     array.push(contactsLength[i]);

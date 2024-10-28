@@ -32,12 +32,12 @@ document.addEventListener('click', function (event) {
     }
 });
 
-// Sets the minimum date attribute of an input element with ID 'dateData' to today's date until the DOM is fully loaded.
-document.addEventListener('DOMContentLoaded', function () {
+// Sets the minimum date attribute of an input element with ID 'dateData' to today's date.
+function setDateDisable() {
     let catchedDate = new Date().toISOString().split('T')[0];
     let inputDate = document.getElementById('dateData');
     inputDate.setAttribute('min', catchedDate);
-});
+}
 
 //Event listener to close the task category dropdown when clicking outside of it.
 document.addEventListener('click', function (rightEvent) {
