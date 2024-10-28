@@ -45,7 +45,7 @@ async function loadData(path) {
  */
 async function taskAdd() {
     todo();
-    inPorgess();
+    inProgress();
     awaits();
     done();
 }
@@ -54,132 +54,205 @@ async function taskAdd() {
  * Renders tasks in the "To-Do" category within the UI.
  */
 function todo() {
-    let toDo = arrayLoad.filter(e => e['id'] == 'toDo');
-    if (toDo.length == 0) {
-        document.getElementById('toDo').innerHTML = templateTaskEmptyTodo();
+    let toDoItems = filterToDoItems();
+    if (toDoItems.length === 0) {
+        displayEmptyTaskMessage();
     } else {
-        document.getElementById('toDo').innerHTML = '';
-        for (let index = 0; index < toDo.length; index++) {
-            let element = toDo[index];
-            let contacts = element.contactcolor ? Object.values(toDo[index].contactcolor) : null;
-            let contactName = element.contact ? Object.values(toDo[index].contact) : null;
-            let checkBoxObject = element.checked ? Object.values(element.checked) : null;
-            if (element.subtask == null) {
-                document.getElementById('toDo').innerHTML += templateTaskHTML(element);
-                loadContactTask(element, contacts, contactName);
-            } else if (checkBoxObject == null && contacts == null) {
-                let checkedCount = 0;
-                document.getElementById('toDo').innerHTML += templateTaskHTML(element);
-                subtaskBar(element, checkedCount);
-                loadContactTask(element, contacts, contactName);
-            } else {
-                let checkedCount = checkBoxObject.filter(e => e === true).length;
-                document.getElementById('toDo').innerHTML += templateTaskHTML(element);
-                subtaskBar(element, checkedCount);
-                loadContactTask(element, contacts, contactName);
-            }
-        }
+        renderTasks(toDoItems);
     }
 }
 
-function taskTodoSelect(params) {
-    
+/**Function for filtering “toDo” tasks */
+function filterToDoItems() {
+    return arrayLoad.filter(e => e['id'] === 'toDo');
+}
+
+/**Function to display a message when there are no "toDo" tasks */
+function displayEmptyTaskMessage() {
+    document.getElementById('toDo').innerHTML = templateTaskEmptyTodo();
+}
+
+/**Function to render the "toDo" tasks */
+function renderTasks(toDoItems) {
+    document.getElementById('toDo').innerHTML = '';
+    toDoItems.forEach((element) => {
+        renderTask(element);
+    });
+}
+
+/**Function to view a single "toDo" task and add contacts and subtasks if necessary */
+function renderTask(element) {
+    let contacts = element.contactcolor ? Object.values(element.contactcolor) : null;
+    let contactName = element.contact ? Object.values(element.contact) : null;
+    let checkBoxObject = element.checked ? Object.values(element.checked) : null;
+    document.getElementById('toDo').innerHTML += templateTaskHTML(element);
+    if (element.subtask === null) {
+        loadContactTask(element, contacts, contactName);
+    } else {
+        processSubtasks(element, contacts, contactName, checkBoxObject);
+    }
+}
+
+/**Function for processing subtasks and contacts for "ToDo" tasks */
+function processSubtasks(element, contacts, contactName, checkBoxObject) {
+    let checkedCount = checkBoxObject ? checkBoxObject.filter(e => e === true).length : 0;
+    subtaskBar(element, checkedCount);
+    loadContactTask(element, contacts, contactName);
 }
 
 /**
  * Renders tasks in the "In-Progress" category within the UI.
  */
-function inPorgess() {
-    let inprogress = arrayLoad.filter(e => e['id'] == 'progress');
-    if (inprogress.length == 0) {
-        document.getElementById('progress').innerHTML = templateTaskEmptyInProegress();
+function inProgress() {
+    let inProgressItems = filterInProgressItems();
+    if (inProgressItems.length === 0) {
+        displayEmptyProgressMessage();
     } else {
-        document.getElementById('progress').innerHTML = '';
-        for (let index = 0; index < inprogress.length; index++) {
-            let element = inprogress[index];
-            let contacts = element.contactcolor ? Object.values(inprogress[index].contactcolor) : null;
-            let contactName = element.contact ? Object.values(inprogress[index].contact) : null;
-            let checkBoxObject = element.checked ? Object.values(element.checked) : null;
-            if (element.subtask == null) {
-                document.getElementById('progress').innerHTML += templateTaskHTML(element);
-                loadContactTask(element, contacts, contactName);
-            } else if (checkBoxObject == null && contacts == null) {
-                let checkedCount = 0;
-                document.getElementById('progress').innerHTML += templateTaskHTML(element);
-                subtaskBar(element, checkedCount);
-                loadContactTask(element, contacts, contactName);
-            } else {
-                let checkedCount = checkBoxObject.filter(e => e === true).length;
-                document.getElementById('progress').innerHTML += templateTaskHTML(element);
-                subtaskBar(element, checkedCount);
-                loadContactTask(element, contacts, contactName);
-            }
-        }
+        renderInProgressTasks(inProgressItems);
     }
 }
+
+/**Function for filtering “in progress” tasks */
+function filterInProgressItems() {
+    return arrayLoad.filter(e => e['id'] === 'progress');
+}
+
+/**Function to display a message when there are no "in progress" tasks */
+function displayEmptyProgressMessage() {
+    document.getElementById('progress').innerHTML = templateTaskEmptyInProegress();
+}
+
+/**Function to render the "in progress" tasks */
+function renderInProgressTasks(inProgressItems) {
+    document.getElementById('progress').innerHTML = '';
+    inProgressItems.forEach((element) => {
+        renderInProgressTask(element);
+    });
+}
+
+/**Function to view a single "in progress" task and add contacts and subtasks if necessary */
+function renderInProgressTask(element) {
+    let contacts = element.contactcolor ? Object.values(element.contactcolor) : null;
+    let contactName = element.contact ? Object.values(element.contact) : null;
+    let checkBoxObject = element.checked ? Object.values(element.checked) : null;
+
+    document.getElementById('progress').innerHTML += templateTaskHTML(element);
+
+    if (element.subtask === null) {
+        loadContactTask(element, contacts, contactName);
+    } else {
+        processProgressSubtasks(element, contacts, contactName, checkBoxObject);
+    }
+}
+
+/**Function for processing subtasks and contacts for "in Progress" tasks */
+function processProgressSubtasks(element, contacts, contactName, checkBoxObject) {
+    let checkedCount = checkBoxObject ? checkBoxObject.filter(e => e === true).length : 0;
+    subtaskBar(element, checkedCount);
+    loadContactTask(element, contacts, contactName);
+}
+
 
 /**
  * Renders tasks in the "Awaiting" category within the UI.
  */
 function awaits() {
-    let await = arrayLoad.filter(e => e['id'] == 'await');
-    if (await.length == 0) {
-        document.getElementById('await').innerHTML = templateTaskEmptyAwait();
+    let awaitItems = filterAwaitItems();
+    if (awaitItems.length === 0) {
+        displayEmptyAwaitMessage();
     } else {
-        document.getElementById('await').innerHTML = '';
-        for (let index = 0; index < await.length; index++) {
-            let element = await[index];
-            let contacts = element.contactcolor ? Object.values(await[index].contactcolor) : null;
-            let contactName = element.contact ? Object.values(await[index].contact) : null;
-            let checkBoxObject = element.checked ? Object.values(element.checked) : null;
-            if (element.subtask == null) {
-                document.getElementById('await').innerHTML += templateTaskHTML(element);
-                loadContactTask(element, contacts, contactName);
-            } else if (checkBoxObject == null && contacts == null) {
-                let checkedCount = 0;
-                document.getElementById('await').innerHTML += templateTaskHTML(element);
-                subtaskBar(element, checkedCount);
-                loadContactTask(element, contacts, contactName);
-            } else {
-                let checkedCount = checkBoxObject.filter(e => e === true).length;
-                document.getElementById('await').innerHTML += templateTaskHTML(element);
-                subtaskBar(element, checkedCount);
-                loadContactTask(element, contacts, contactName);
-            }
-        }
+        renderAwaitTasks(awaitItems);
     }
+}
+
+/**Function for filtering “await” tasks */
+function filterAwaitItems() {
+    return arrayLoad.filter(e => e['id'] === 'await');
+}
+
+/**Function to display a message when there are no "await" tasks */
+function displayEmptyAwaitMessage() {
+    document.getElementById('await').innerHTML = templateTaskEmptyAwait();
+}
+
+/**Function to render the "await" tasks */
+function renderAwaitTasks(awaitItems) {
+    document.getElementById('await').innerHTML = '';
+    awaitItems.forEach((element) => {
+        renderAwaitTask(element);
+    });
+}
+
+/**Function to view a single "await" task and add contacts and subtasks if necessary */
+function renderAwaitTask(element) {
+    let contacts = element.contactcolor ? Object.values(element.contactcolor) : null;
+    let contactName = element.contact ? Object.values(element.contact) : null;
+    let checkBoxObject = element.checked ? Object.values(element.checked) : null;
+
+    document.getElementById('await').innerHTML += templateTaskHTML(element);
+
+    if (element.subtask === null) {
+        loadContactTask(element, contacts, contactName);
+    } else {
+        processAwaitSubtasks(element, contacts, contactName, checkBoxObject);
+    }
+}
+
+/**Function for processing subtasks and contacts for "await" tasks */
+function processAwaitSubtasks(element, contacts, contactName, checkBoxObject) {
+    let checkedCount = checkBoxObject ? checkBoxObject.filter(e => e === true).length : 0;
+    subtaskBar(element, checkedCount);
+    loadContactTask(element, contacts, contactName);
 }
 
 /**
  * Renders tasks in the "Done" category within the UI.
  */
 function done() {
-    let done = arrayLoad.filter(e => e['id'] == 'done');
-    if (done.length == 0) {
-        document.getElementById('done').innerHTML = templateTaskEmptyDone();
+    let doneItems = filterDoneItems();
+    if (doneItems.length === 0) {
+        displayEmptyDoneMessage();
     } else {
-        document.getElementById('done').innerHTML = '';
-        for (let index = 0; index < done.length; index++) {
-            let element = done[index];
-            let contacts = element.contactcolor ? Object.values(done[index].contactcolor) : null;
-            let contactName = element.contact ? Object.values(done[index].contact) : null;
-            let checkBoxObject = element.checked ? Object.values(element.checked) : null;
-            if (element.subtask == null) {
-                document.getElementById('done').innerHTML += templateTaskHTML(element);
-                loadContactTask(element, contacts, contactName);
-            } else if (checkBoxObject == null && contacts == null) {
-                let checkedCount = 0;
-                document.getElementById('done').innerHTML += templateTaskHTML(element);
-                subtaskBar(element, checkedCount);
-                loadContactTask(element, contacts, contactName);
-            } else {
-                let checkedCount = checkBoxObject.filter(e => e === true).length;
-                document.getElementById('done').innerHTML += templateTaskHTML(element);
-                subtaskBar(element, checkedCount);
-                loadContactTask(element, contacts, contactName);
-            }
-        }
+        renderDoneTasks(doneItems);
     }
+}
+
+/**Function for filtering “done” tasks */
+function filterDoneItems() {
+    return arrayLoad.filter(e => e['id'] === 'done');
+}
+
+/**Function to display a message when there are no "done" tasks */
+function displayEmptyDoneMessage() {
+    document.getElementById('done').innerHTML = templateTaskEmptyDone();
+}
+
+/**Function to render the "done" tasks */
+function renderDoneTasks(doneItems) {
+    document.getElementById('done').innerHTML = '';
+    doneItems.forEach((element) => {
+        renderDoneTask(element);
+    });
+}
+
+/**Function to view a single "done" task and add contacts and subtasks if necessary */
+function renderDoneTask(element) {
+    let contacts = element.contactcolor ? Object.values(element.contactcolor) : null;
+    let contactName = element.contact ? Object.values(element.contact) : null;
+    let checkBoxObject = element.checked ? Object.values(element.checked) : null;
+    document.getElementById('done').innerHTML += templateTaskHTML(element);
+    if (element.subtask === null) {
+        loadContactTask(element, contacts, contactName);
+    } else {
+        processDoneSubtasks(element, contacts, contactName, checkBoxObject);
+    }
+}
+
+/**Function for processing subtasks and contacts for "done" tasks */
+function processDoneSubtasks(element, contacts, contactName, checkBoxObject) {
+    let checkedCount = checkBoxObject ? checkBoxObject.filter(e => e === true).length : 0;
+    subtaskBar(element, checkedCount);
+    loadContactTask(element, contacts, contactName);
 }
 
 /**
