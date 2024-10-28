@@ -1,5 +1,14 @@
+/**
+ * Array to store summary data.
+ * @type {Array}
+ */
+
 let summeryArray = [];
 
+/**
+ * Initializes the application by loading and processing necessary data.
+ * @returns {Promise<void>}
+ */
 
 async function init() {
     await loadData("/task");
@@ -8,6 +17,11 @@ async function init() {
     await fetchUserData('/user');
 }
 
+/**
+ * Loads data from the specified path and adds it to the summary array.
+ * @param {string} path - The path to the resource.
+ * @returns {Promise<void>}
+ */
 
 async function loadData(path) {
     let token = sessionStorage.getItem('authToken');
@@ -23,6 +37,11 @@ async function loadData(path) {
     }
 }
 
+/**
+ * Loads various task data views and updates the greeting.
+ * @returns {Promise<void>}
+ */
+
 async function loadAllData() {
     loadTodo();
     loadProgress();
@@ -31,8 +50,12 @@ async function loadAllData() {
     loadTask();
     loadPrio();
     dateDeadline();
-   await addGreating();
+    await addGreating();
 }
+
+/**
+ * Loads and displays the count of 'To-Do' tasks.
+ */
 
 function loadTodo() {
     let todo = document.getElementById('todo');
@@ -45,6 +68,10 @@ function loadTodo() {
     }
 }
 
+/**
+ * Loads and displays the count of tasks in progress.
+ */
+
 function loadProgress() {
     let progress = document.getElementById('progress');
     progress.innerHTML = '';
@@ -55,6 +82,10 @@ function loadProgress() {
         progress.innerHTML = inprogress.length;
     }
 }
+
+/**
+ * Loads and displays the count of completed tasks.
+ */
 
 function loadDone() {
     let dones = document.getElementById('done');
@@ -67,6 +98,10 @@ function loadDone() {
     }
 }
 
+/**
+ * Loads and displays the count of 'Awaiting' tasks.
+ */
+
 function loadAwait() {
     let awaits = document.getElementById('await');
     awaits.innerHTML = '';
@@ -78,6 +113,10 @@ function loadAwait() {
     }
 }
 
+/**
+ * Loads and displays the total count of tasks.
+ */
+
 function loadTask() {
     let tasks = document.getElementById('taskAll');
     tasks.innerHTML = '';
@@ -87,6 +126,10 @@ function loadTask() {
         tasks.innerHTML = summeryArray.length;
     }
 }
+
+/**
+ * Loads and displays the count of tasks with high priority.
+ */
 
 function loadPrio() {
     let prio = document.getElementById('urgent');
@@ -99,6 +142,10 @@ function loadPrio() {
     }
 }
 
+/**
+ * Loads and displays the latest task deadline date.
+ */
+
 function dateDeadline() {
     let date = document.getElementById('date');
     let dateData = summeryArray.map(e => new Date(e.date));
@@ -107,6 +154,12 @@ function dateDeadline() {
     date.innerHTML = '';
     date.innerHTML = latesDateChange;
 }
+
+/**
+ * Formats a date object into a readable string.
+ * @param {Date} date - The date to format.
+ * @returns {string} - Formatted date string.
+ */
 
 function formatDate(date) {
     let months = [
@@ -120,9 +173,18 @@ function formatDate(date) {
     return `${month} ${day}, ${year}`;
 }
 
+/**
+ * Redirects the user to the 'board' page.
+ */
+
 function goToBoard() {
     window.location.href = 'board.html';
 }
+
+/**
+ * Determines the greeting based on the current time of day.
+ * @returns {string} - The appropriate greeting.
+ */
 
 function loadGreeting() {
     let options = { timeZone: 'Europe/Berlin', hour: 'numeric', minute: 'numeric' };
@@ -139,12 +201,20 @@ function loadGreeting() {
     return greeting;
 }
 
+/**
+ * Adds a greeting message to the page.
+ */
+
 function addGreating() {
     let greatingArea = document.getElementById('greatingDay');
     let greeting = loadGreeting();
     greatingArea.innerHTML = ''
     greatingArea.innerHTML = `<span>${greeting}</span>, <span id="greetingName"></span>`;
 }
+
+/**
+ * Fetches and stores the user's UID in session storage if not already present.
+ */
 
 function fetchAndStoreUID() {
     let token = sessionStorage.getItem('authToken');

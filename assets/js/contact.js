@@ -11,10 +11,10 @@ let colorGen = [
 ];
 
 /**
- * Lädt die erforderlichen Daten und initialisiert die Kontaktansicht.
- *
- * Diese asynchrone Funktion führt mehrere Aufgaben aus, um die Kontaktdaten zu laden,
- * die Daten zu sortieren und anzuzeigen sowie zusätzliche Benutzerdaten abzurufen.
+ * Loads contact data, sorts it, displays the contact, and fetches user data.
+ * This asynchronous function performs multiple tasks to load contact data,
+ * sort it alphabetically, display it, and retrieve additional user data.
+ * @returns {Promise<void>}
  */
 async function load() {
     await loadData("/contact");
@@ -23,10 +23,22 @@ async function load() {
     fetchUserData('/user');
 }
 
+/**
+ * Generates the URL for the database path with an authentication token.
+ * @param {string} path - The path to the resource.
+ * @returns {string} - The complete URL to the resource.
+ */
+
 function getDatabaseUrl(path) {
     let token = sessionStorage.getItem('authToken');
     return `${BASE_URL}${path}.json?auth=${token}`;
 }
+
+/**
+ * Loads data from the specified URL and adds it to an array.
+ * @param {string} path - The path to the resource.
+ * @returns {Promise<void>}
+ */
 
 async function loadData(path) {
     let response = await fetch(getDatabaseUrl(path));
@@ -39,6 +51,13 @@ async function loadData(path) {
     }
 }
 
+/**
+ * Sends data via a POST request to the specified URL.
+ * @param {string} path - The path to the resource.
+ * @param {Object} data - The data to send.
+ * @returns {Promise<void>}
+ */
+
 async function postData(path, data) {
     let response = await fetch(getDatabaseUrl(path), {
         method: "POST",
@@ -48,6 +67,10 @@ async function postData(path, data) {
         body: JSON.stringify(data)
     });
 }
+
+/**
+ * Sorts the contacts alphabetically by name.
+ */
 
 function sortContactsByName() {
     array.sort((a, b) => {
@@ -62,6 +85,10 @@ function sortContactsByName() {
         return 0;
     });
 }
+
+/**
+ * Loads contacts into the display.
+ */
 
 function loadContact() {
     let contactSpace = document.getElementById('contactArea');
@@ -79,6 +106,12 @@ function loadContact() {
         }
         contactSpace.innerHTML += loadContactData(i, initials);
     }}
+
+    /**
+ * Displays the details of a selected contact.
+ * @param {number} i - The index of the contact in the array.
+ * @param {string} initials - The initials of the contact.
+ */
 
 function showContactDetails(i, initials) {
     let number = array[i].number;
@@ -101,6 +134,13 @@ function showContactDetails(i, initials) {
     activeContact(i, number, initials);
 }
 
+/**
+ * Activates the contact and displays its details.
+ * @param {number} i - The index of the contact.
+ * @param {string} number - The phone number of the contact.
+ * @param {string} initials - The initials of the contact.
+ */
+
 function activeContact(i, number, initials) {
     let contactDetails = document.getElementById('contactDetails');
     contactDetails.innerHTML = loadContactDetails(i, initials, number);
@@ -113,6 +153,11 @@ function activeContact(i, number, initials) {
     };
 }
 
+/**
+ * Shows the contact list.
+ * @param {number} i - The index of the contact.
+ */
+
 function showContactList(i) {
     let allContacts = document.querySelectorAll('.contact-item');
     document.querySelector('.container').classList.remove('hidden');
@@ -121,6 +166,11 @@ function showContactList(i) {
     document.querySelector('.contact-container-right').classList.add('hidden');
     allContacts[i].classList.remove('active-contact');
 }
+
+/**
+ * Opens the edit window for a contact.
+ * @param {number} i - The index of the contact.
+ */
 
 function editContact(i) {
     let contactName = array[i].name;
@@ -134,6 +184,10 @@ function editContact(i) {
     stopEditArea();
 }
 
+/**
+ * Stops the edit event.
+ */
+
 function stopEditArea() {
     let area = document.getElementById('EditAreaStop');
     area.addEventListener('click', (event) => {
@@ -141,11 +195,21 @@ function stopEditArea() {
     })
 }
 
+/**
+ * Loads the input fields for editing the contact.
+ * @param {number} i - The index of the contact.
+ */
+
 function loadInputEdit(i) {
     document.getElementById("name2").value = array[i].name;
     document.getElementById("email2").value = array[i].email;
     document.getElementById("phone2").value = array[i].rufnummer;
 }
+
+/**
+ * Initializes the edit button.
+ * @param {number} i - The index of the contact.
+ */
 
 function initializeEditButton(i) {
     let editBtn = document.getElementById('editBtn');
@@ -159,6 +223,10 @@ function initializeEditButton(i) {
     };
 }
 
+/**
+ * Toggles the edit view.
+ */
+
 function toggleEditImage() {
     let editImage2 = document.getElementById('editImage2');
     if (editImage2.classList.contains('d_none')) {
@@ -168,14 +236,27 @@ function toggleEditImage() {
     }
 }
 
+/**
+ * Closes the edit view.
+ */
+
 function closeEditImage() {
     let editImage2 = document.getElementById('editImage2');
     editImage2.classList.add('d_none');
 }
 
+/**
+ * Closes the edit view for the contact.
+ */
+
 function editContactOff() {
     document.getElementById('overlayEdit').classList.add('d_none');
 }
+
+/**
+ * Adds new contact data.
+ * @returns {Promise<void>}
+ */
 
 async function addContactData() {
     let name = document.getElementById('name').value.trim();
@@ -189,6 +270,14 @@ async function addContactData() {
         reloadAdd();
     }
 }
+
+/**
+ * Validates the input data for a new contact.
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @returns {boolean} - Returns whether the data is valid.
+ */
 
 function valiAdd(name, email, phone) {
     let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
@@ -209,6 +298,11 @@ function valiAdd(name, email, phone) {
     }
     return true;
 }
+
+/**
+ * Validates the input data for editing a contact.
+ * @returns {boolean} - Returns whether the data is valid.
+ */
 
 function valiEdit() {
     let name = document.getElementById('name2').value.trim();
@@ -233,20 +327,36 @@ function valiEdit() {
     return true;
 }
 
+/**
+ * Marks the name field in case of incorrect input.
+ */
+
 function failName() {
     document.getElementById('name').classList.add('failinput');
     document.getElementById('failName').classList.remove('d_none');
 }
+
+/**
+ * Marks the phone number field in case of incorrect input.
+ */
 
 function failPhoneAdd() {
     document.getElementById('phone').classList.add('failinput');
     document.getElementById('failPhone').classList.remove('d_none');
 }
 
+/**
+ * Marks the email field in case of incorrect input.
+ */
+
 function failEmailAdd() {
     document.getElementById('email').classList.add('failinput');
     document.getElementById('failEmail').classList.remove('d_none');
 }
+
+/**
+ * Marks all fields in case of missing input.
+ */
 
 function failAllAdd() {
     document.getElementById('name').classList.add('failinput');
@@ -255,6 +365,10 @@ function failAllAdd() {
     document.getElementById('failAll').classList.remove('d_none');
 }
 
+/**
+ * Marks all fields in case of missing input during editing.
+ */
+
 function failAllEdit() {
     document.getElementById('name2').classList.add('failinput');
     document.getElementById('email2').classList.add('failinput');
@@ -262,20 +376,36 @@ function failAllEdit() {
     document.getElementById('failAllEdit').classList.remove('d_none');
 }
 
+/**
+ * Marks the phone number field in case of incorrect input during editing.
+ */
+
 function failPhoneEdit() {
     document.getElementById('phone2').classList.add('failinput');
     document.getElementById('failPhoneEdit').classList.remove('d_none');
 }
+
+/**
+ * Marks the email field in case of incorrect input during editing.
+ */
 
 function failEmailEdit() {
     document.getElementById('email2').classList.add('failinput');
     document.getElementById('failEmailEdit').classList.remove('d_none');
 }
 
+/**
+ * Marks the name field in case of incorrect input during editing.
+ */
+
 function failNameEdit() {
     document.getElementById('name2').classList.add('failinput');
     document.getElementById('failNameEdit').classList.remove('d_none');
 }
+
+/**
+ * Resets the input fields for a new contact.
+ */
 
 function reloadAdd() {
     document.getElementById('name').value = '';
@@ -291,6 +421,12 @@ function reloadAdd() {
     document.getElementById('overlay').classList.remove('show');
 }
 
+/**
+ * Clears the error markings in the input fields.
+ * @param {string} inputId - The ID of the input field.
+ * @param {string} errorId - The ID of the error message.
+ */
+
 function clearFailAdd(inputId, errorId) {
     let inputValue = document.getElementById(inputId).value.trim();
     if (inputValue !== '') {
@@ -303,6 +439,12 @@ function clearFailAdd(inputId, errorId) {
         document.getElementById('failAll').classList.add('d_none');
     }
 }
+
+/**
+ * Clears the error markings in the edit input fields.
+ * @param {string} inputId - The ID of the input field.
+ * @param {string} errorId - The ID of the error message.
+ */
 
 function clearFailEdit(inputId, errorId) {
     let inputValue = document.getElementById(inputId).value.trim();
@@ -317,6 +459,17 @@ function clearFailEdit(inputId, errorId) {
     }
 }
 
+/**
+ * Creates new contact data.
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @param {string} number - The contact number.
+ * @param {string} firstNameInitial - The initials of the first name.
+ * @param {string} color - The color for the contact.
+ * @returns {Promise<void>}
+ */
+
 async function createContactData(name, email, phone, number, firstNameInitial, color) {
     await postCreateData(`/contact/contact${number}`, {
         'name': name,
@@ -327,6 +480,13 @@ async function createContactData(name, email, phone, number, firstNameInitial, c
         'number': number
     });
 }
+
+/**
+ * Sends data for creating a contact via POST.
+ * @param {string} path - The path to the resource.
+ * @param {Object} data - The data to send.
+ * @returns {Promise<void>}
+ */
 
 async function postCreateData(path = "", data = {}) {
     try {
@@ -344,6 +504,12 @@ async function postCreateData(path = "", data = {}) {
     }
 }
 
+/**
+ * Extracts the initials of a contact name.
+ * @param {string} contactName - The name of the contact.
+ * @returns {string} - The initials of the name.
+ */
+
 function extrahiereInitialen(contactName) {
     let nameParts = contactName.split(' ');
     let initials = '';
@@ -352,6 +518,12 @@ function extrahiereInitialen(contactName) {
     }
     return initials;
 }
+
+/**
+ * Extracts the first letter of the contact name.
+ * @param {string} contactName - The name of the contact.
+ * @returns {string} - The first letter of the name.
+ */
 
 function extrahiereInitialen2(contactName) {
     let nameParts = contactName.split(' ');
@@ -362,10 +534,20 @@ function extrahiereInitialen2(contactName) {
     return initials;
 }
 
+/**
+ * Generates a random color.
+ * @returns {string} - A random color.
+ */
+
 function farbGenerator() {
     let zufaelligeFarbe = colorGen[Math.floor(Math.random() * colorGen.length)];
     return zufaelligeFarbe;
 }
+
+/**
+ * Generates a random six-digit number.
+ * @returns {string} - A random six-digit number.
+ */
 
 function generateRandomNumber() {
     let number = '';
@@ -378,6 +560,12 @@ function generateRandomNumber() {
     }
     return number;
 }
+
+/**
+ * Deletes a contact based on the contact number.
+ * @param {string} number - The contact number.
+ * @returns {Promise<void>}
+ */
 
 async function deleteContact(number) {
     let contactDetails = document.getElementById('contactDetails');
@@ -392,11 +580,22 @@ async function deleteContact(number) {
     load();
 }
 
+/**
+ * Deletes the edited contact.
+ * @param {number} i - The index of the contact.
+ */
+
 function deleteEdit(i) {
     let number = array[i].number;
     deleteContact(number);
     saveEditDisplayOff();
 }
+
+/**
+ * Updates the contact data.
+ * @param {number} i - The index of the contact.
+ * @returns {Promise<void>}
+ */
 
 async function editContactData(i) {
     let number = array[i].number;
@@ -408,6 +607,10 @@ async function editContactData(i) {
         saveEditDisplayOff();
     }
 }
+
+/**
+ * Hides the edit display.
+ */
 
 function saveEditDisplayOff() {
     let contactDetail = document.getElementById('contactDetails');
@@ -424,6 +627,15 @@ function saveEditDisplayOff() {
     }
 }
 
+/**
+ * Updates the contact data in the database.
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @param {string} number - The contact number.
+ * @returns {Promise<void>}
+ */
+
 async function editContactFB(name, email, phone, number) {
     let path = `/contact/contact${number}`
     await postEditData(path, {
@@ -432,6 +644,13 @@ async function editContactFB(name, email, phone, number) {
         'rufnummer': phone,
     });
 }
+
+/**
+ * Sends updated contact data via POST.
+ * @param {string} path - The path to the resource.
+ * @param {Object} data - The data to send.
+ * @returns {Promise<void>}
+ */
 
 async function postEditData(path, data) {
     try {
