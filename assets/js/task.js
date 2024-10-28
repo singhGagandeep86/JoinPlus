@@ -35,6 +35,7 @@ async function fetchUrl() {
 function contactsData(firebase) {
   let contactsLength = Object.values(firebase);
   let objLngth = contactsLength.length;
+  setDateDisable();
   for (let i = 0; i < objLngth; i++) {
     const eachName = contactsLength[i].name;
     array.push(contactsLength[i]);
@@ -543,11 +544,12 @@ function checkCategory(category) {
 }
 
 // Sets the minimum date attribute of an input element with ID 'dateData' to today's date until the DOM is fully loaded.
-document.addEventListener('DOMContentLoaded', function () {
+function setDateDisable() {
   let catchedDate = new Date().toISOString().split('T')[0];
   let inputDate = document.getElementById('dateData');
   inputDate.setAttribute('min', catchedDate);
-});
+}
+
 
 /**
  * Checks the validity of the entered date against the current date.
@@ -566,9 +568,10 @@ function dateCheck() {
   let inputDate = splittedDate[2];
   if (enteredDate) {
     return compareDate(year, month, day, inputYear, inputMonth, inputDate);
-  }else {
+  } else {
     return false;
-  }}
+  }
+}
 
 //Compares the entered date with the current date.
 function compareDate(year, month, day, inputYear, inputMonth, inputDate) {
