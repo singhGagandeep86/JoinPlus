@@ -93,8 +93,6 @@ function overlay2(i, initials) {
 /**
  * Generates the HTML for displaying detailed contact information.
  * @param {number} i - The index of the contact.
- * @param {string} initials - The initials of the contact.
- * @param {string} number - The contact number.
  * @returns {string} - The HTML string for the contact details.
  */
 
@@ -133,8 +131,6 @@ function loadContactDetails(i, initials, number) {
 
 /**
  * Generates the HTML for displaying a contact item in the contact list.
- * @param {number} i - The index of the contact.
- * @param {string} initials - The initials of the contact.
  * @returns {string} - The HTML string for a contact item.
  */
 
