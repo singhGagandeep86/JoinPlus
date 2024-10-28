@@ -1,13 +1,4 @@
-/**
- * Generates an HTML template for displaying a contact item with a checkbox.
- *
- * @param {string} sanitizedEachName - The sanitized name for the contact, used for the checkbox ID.
- * @param {string} colour - The color associated with the contact.
- * @param {string} eachName - The full name of the contact to display.
- * @param {string} firstNameStart - The first letter of the contact's first name.
- * @param {string} lastNameStart - The first letter of the contact's last name, or an empty string if none.
- * @returns {string} - The HTML string template for the contact item, including a checkbox and initials.
- */
+//Generates an HTML template for displaying a contact item with a checkbox.
 function contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart) {
     return `<label>
     <input type="checkbox"class="checkboxDesign" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}')">
@@ -16,11 +7,7 @@ function contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastN
     </label>`;
 }
 
-/**
- * Generates an HTML template for a subtask input field with accompanying buttons for adding or canceling the subtask.
- *
- * @returns {string} - The HTML string for the subtask input area, including an input field and action buttons.
- */
+//Generates an HTML template for a subtask input field with accompanying buttons for adding or canceling the subtask.
 function subTaskTemp() {
     return `<div class="smallHead">Subtasks</div>
     <div class="inputWrapper">
@@ -29,12 +16,7 @@ function subTaskTemp() {
 </div>`;
 }
 
-/**
- * Generates an HTML list item template for displaying a subtask with edit and delete options.
- *
- * @param {string} subTaskInput - The text of the subtask.
- * @returns {string} - The HTML string for a list item containing the subtask, with edit and delete buttons.
- */
+//Generates an HTML list item template for displaying a subtask with edit and delete options.
 function generatedList(subTaskInput) {
     return `<li onmouseover="hoverEffect(this)" onmouseleave="normalEffect(this)" ondblclick="editsubTask(this)">
     <div class="leftPart"><span class="bullet"></span>${subTaskInput}</div>
@@ -44,23 +26,14 @@ function generatedList(subTaskInput) {
 </div></li>`;
 }
 
-/**
- * Generates an HTML template for an empty subtask field.
- *
- * @returns {string} - The HTML string template for an empty subtask input area, including a placeholder and an icon.
- */
+//Generates an HTML template for an empty subtask field.
 function emptyField() {
     return `<div class="smallHead">Subtasks</div>
     <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt" placeholder="Add new subtask" type="text">
     <img class="tsksGen" src="../img/subTaskIcon.svg"></div>`;
 }
 
-/**
- * Generates an HTML template for editing a subtask, with an input field prefilled with the current subtask value.
- *
- * @param {string} currentValue - The current text of the subtask to be edited.
- * @returns {string} - The HTML string template for the editable subtask, including save and delete buttons.
- */
+//Generates an HTML template for editing a subtask, with an input field prefilled with the current subtask value.
 function editTempelate(currentValue) {
     return `<div class="wrapper">
   <input type="text" value="${currentValue}" class="subTaskInput"></input> 
@@ -70,12 +43,7 @@ function editTempelate(currentValue) {
 </div></div>`;
 }
 
-/**
- * Generates an HTML template for displaying a newly added subtask.
- *
- * @param {string} newValue - The text content of the newly added subtask.
- * @returns {string} - The HTML string template for the added subtask, including edit and delete buttons.
- */
+//Generates an HTML template for displaying a newly added subtask.
 function newSubTemp(newValue) {
     return ` <div class="leftPart"><span class="bullet"></span>${newValue}</div>
  <div class="btns subTaskIcon">

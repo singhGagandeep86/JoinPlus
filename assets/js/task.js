@@ -7,44 +7,19 @@ let expanded = false;
 let dropdownOpen = false;
 let task = {};
 
-/**
- * Initializes data fetching and loads necessary information.
- *
- * Calls `fetchUrl` to retrieve a URL and `fetchUserData` to load user information
- * from a specific API endpoint (`/user`).
- *
- * @async
- * @function init
- * @returns {Promise<void>} A promise that resolves when all data has been loaded.
- */
+// Calls `fetchUrl` to retrieve a URL and `fetchUserData` to load user information from a specific API endpoint (`/user`).
 async function init() {
   fetchUrl();
   fetchUserData('/user');
 }
 
-/**
- * Constructs a full URL for accessing a database resource.
- *
- * Combines the base URL with the provided path and attaches an authentication token.
- *
- * @function getDatabaseUrl
- * @param {string} path - The specific path to the database resource.
- * @returns {string} The complete URL for accessing the database resource.
- */
+// Combines the base URL with the provided path and attaches an authentication token.
+
 function getDatabaseUrl(path) {
   return `${BASE_URL}${path}.json?auth=${token}`;
 }
 
-/**
- * Fetches data from Firebase and initializes contact data processing.
- *
- * Retrieves data from Firebase by constructing a URL with authentication, 
- * then parses the response and sends the first item to `contactsData`.
- *
- * @async
- * @function fetchUrl
- * @returns {Promise<void>} A promise that resolves when the data is successfully fetched and processed.
- */
+//Fetches data from Firebase and initializes contact data processing.
 async function fetchUrl() {
   let firebaseUrl = await fetch(BASE_URL + ".json?auth=" + token);
   let firebaseUrlAsJson = await firebaseUrl.json();
@@ -54,12 +29,8 @@ async function fetchUrl() {
 
 /**
  * Processes contact data from Firebase.
- *
  * Iterates through the provided contact data to extract names and pass each contact to either
  * `wthScndName` or `wthoutScndName`, based on whether they have one or two name parts.
- *
- * @function contactsData
- * @param {Object} firebase - The Firebase data object containing contacts.
  */
 function contactsData(firebase) {
   let contactsLength = Object.values(firebase);
@@ -75,12 +46,8 @@ function contactsData(firebase) {
 }
 
 /**
- * Renders contacts with a first and last name.
- *
- * Extracts the color, sanitized name, and initials for each contact, 
+ * Extracts the color, sanitized name, and initials for each contact with a first and last name, 
  * and appends them to the contacts list with both first and last initials.
- *
- * @function wthScndName
  * @param {number} i - Index of the contact in the array.
  * @param {string} eachName - The full name of the contact.
  */
@@ -96,12 +63,8 @@ function wthScndName(i, eachName) {
 }
 
 /**
- * Renders contacts with only a single name part.
- *
- * Extracts the color, sanitized name, and first initial for each contact,
+ * Extracts the color, sanitized name, and first initial for each contact with only a single name part,
  * appending them to the contacts list with only the first initial.
- *
- * @function wthoutScndName
  * @param {number} i - Index of the contact in the array.
  * @param {string} eachName - The full name of the contact.
  */
@@ -117,10 +80,7 @@ function wthoutScndName(i, eachName) {
 
 /**
  * Adds selected contacts to a separate display area.
- *
  * Updates the `selCntcts` container with selected contact initials and colors.
- *
- * @function selectionContact
  * @param {string} name - The name of the selected contact.
  * @param {string} colour - The color associated with the selected contact.
  */
@@ -138,10 +98,7 @@ function selectionContact(name, colour) {
 
 /**
  * Manages the display of the selection div for contacts.
- *
  * Shows up to four selected contacts in the UI and displays a "more" button if additional contacts are selected.
- *
- * @function ifelseLogics
  * @param {HTMLElement} currenID - The current checkbox element for the contact.
  * @param {string} name - The name of the contact.
  * @param {string} colour - The color associated with the contact.
@@ -162,10 +119,7 @@ function ifelseLogics(currenID, name, colour) {
 
 /**
  * Adds a contact to the selection list and updates its UI representation.
- *
  * Sets styling for the selected contact and updates arrays based on name structure (single or two-part names).
- *
- * @function pushSelection
  * @param {HTMLElement} currenID - The current checkbox element for the contact.
  * @param {string} name - The name of the contact.
  * @param {string} colour - The color associated with the contact.
@@ -187,10 +141,7 @@ function pushSelection(currenID, name, colour) {
 
 /**
  * Adds contacts with two-part names to initials and colors arrays.
- *
  * Extracts initials from a two-part name and pushes them, along with the color, to the relevant arrays.
- *
- * @function clrWthTwoNames
  * @param {string[]} nameArray - Array of name parts.
  * @param {string} firstName - The first name in uppercase.
  * @param {string} colour - The color associated with the contact.
@@ -203,13 +154,9 @@ function clrWthTwoNames(nameArray, firstName, colour) {
   colours.push(colour);
 }
 
-
 /**
  * Adds contacts with single-part names to initials and colors arrays.
- *
  * Extracts the first initial and pushes it, along with the color, to the relevant arrays.
- *
- * @function clrWthOneName
  * @param {string} firstName - The first name in uppercase.
  * @param {string} colour - The color associated with the contact.
  */
@@ -222,10 +169,7 @@ function clrWthOneName(firstName, colour) {
 
 /**
  * Removes a contact from the selection list and updates its UI representation.
- *
  * Resets styling for the deselected contact and removes the contact from selection arrays.
- *
- * @function spliceSelection
  * @param {HTMLElement} currenID - The current checkbox element for the contact.
  * @param {string} name - The name of the contact.
  */
@@ -239,13 +183,7 @@ function spliceSelection(currenID, name) {
   colours.splice(currentName, 1);
 }
 
-/**
- * Renders the subtask input field if it doesn't exist.
- *
- * Initializes the subtask input field by inserting its template into the DOM.
- *
- * @function renderSubTask
- */
+//Renders the subtask input field if it doesn't exist.
 function renderSubTask() {
   if (!document.getElementById('inputField')) {
     document.getElementById('inputSubClass').innerHTML = subTaskTemp();
@@ -253,13 +191,7 @@ function renderSubTask() {
   }
 }
 
-/**
- * Clears the subtask input field.
- *
- * Resets the subtask input field's value and updates the inner HTML.
- *
- * @function resetInput
- */
+//Clears the subtask input field.
 function resetInput() {
   document.getElementById('inputField').value = '';
   document.getElementById('inputSubClass').innerHTML = emptyField();
@@ -267,10 +199,7 @@ function resetInput() {
 
 /**
  * Adds a new subtask to the subtask board.
- *
  * Appends a new subtask item to the subtask board if the input field has a value, then clears the input field.
- *
- * @function addList
  */
 function addList() {
   let subTaskInput = document.getElementById('inputField').value;
@@ -281,65 +210,33 @@ function addList() {
   document.getElementById('inputSubClass').innerHTML = emptyField();
 }
 
-/**
- * Applies a hover effect to a subtask icon.
- *
- * Shows the subtask action buttons when the icon is hovered over.
- *
- * @function hoverEffect
- * @param {HTMLElement} element - The element containing the subtask icon.
- */
+// Applies a hover effect to a subtask icon.
 function hoverEffect(element) {
   let buttons = element.querySelector('.btns');
   buttons.classList.remove('subTaskIcon');
 }
 
-/**
- * Removes the hover effect from a subtask icon.
- *
- * Hides the subtask action buttons when the icon is no longer hovered over.
- *
- * @function normalEffect
- * @param {HTMLElement} element - The element containing the subtask icon.
- */
+//Removes the hover effect from a subtask icon.
 function normalEffect(element) {
   let buttons = element.querySelector('.btns');
   buttons.classList.add('subTaskIcon');
 }
 
-/**
- * Enables editing mode for a subtask.
- *
- * Replaces the subtask display with an editable input field containing the current value.
- *
- * @function editsubTask
- * @param {HTMLElement} element - The element representing the edit action for the subtask.
- */
+//Enables editing mode for a subtask.
 function editsubTask(element) {
   let parent = element.closest('li');
   let currentValue = parent.querySelector('.leftPart').innerText.trim();
   parent.innerHTML = editTempelate(currentValue);
 }
 
-/**
- * Deletes a subtask from the list.
- *
- * Removes the subtask item from the DOM.
- *
- * @function delsubTask
- * @param {HTMLElement} element - The element representing the delete action for the subtask.
- */
+//Deletes a subtask from the list.
 function delsubTask(element) {
   element.closest('li').remove();
 }
 
 /**
  * Saves a new or edited subtask to the list.
- *
  * Replaces the editable input field with the updated subtask display.
- *
- * @function newSubTask
- * @param {HTMLElement} element - The element representing the save action for the subtask.
  */
 function newSubTask(element) {
   let parent = element.closest('li');
@@ -367,7 +264,6 @@ function showCheckBoxes() {
 /**
  * Event listener to close the contacts dropdown when clicking outside of it.
  * Checks if the click target is not within the dropdown or its triggering element.
- * 
  * @param {MouseEvent} event - The click event to check.
  */
 document.addEventListener('click', function (event) {
@@ -401,7 +297,6 @@ function toggleDropdown() {
 
 /**
  * Selects an option from the dropdown and updates the displayed value.
- * 
  * @param {HTMLElement} element - The selected dropdown option element.
  */
 function selectOption(element) {
@@ -413,11 +308,7 @@ function selectOption(element) {
   customSelect.classList.remove('invalid');
 }
 
-/**
- * Event listener to close the task category dropdown when clicking outside of it.
- * 
- * @param {MouseEvent} rightEvent - The click event to check.
- */
+//Event listener to close the task category dropdown when clicking outside of it.
 document.addEventListener('click', function (rightEvent) {
   const assignHeading = document.getElementById('customSelect');
   if (dropdownOpen && !assignHeading.contains(rightEvent.target)) {
@@ -425,9 +316,7 @@ document.addEventListener('click', function (rightEvent) {
   }
 });
 
-/**
- * Resets the form and its associated variables when the reset button is clicked.
- */
+//Resets the form and its associated variables when the reset button is clicked.
 function resetAll() {
   deletArray()
   resetingGlobalVariable();
@@ -444,9 +333,7 @@ function resetAll() {
   }
 }
 
-/**
- * Clears all arrays used for storing task-related data.
- */
+//Clears all arrays used for storing task-related data.
 function deletArray() {
   names = [];
   namesInitials = [];
@@ -468,11 +355,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-/**
- * Adds a new task if validation passes, then navigates to the task board.
- * 
- * @param {string} id - The ID of the task to be added.
- */
+// Adds a new task if validation passes, then navigates to the task board.
 async function addingTask(id) {
   if (checkValidation()) {
     document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");
@@ -504,28 +387,18 @@ async function toWaiting(id) {
   return new Promise(resolve => setTimeout(resolve, 1700));
 }
 
-/**
- * Navigates the user to the task board page.
- */
+//Navigates the user to the task board page.
 async function navigateToBoard() {
   window.location.href = 'board.html';
 }
 
-/**
- * Generates a string representing the color associated with the task category.
- * 
- * @returns {string} - The first four characters of the category name.
- */
+//Generates a string representing the color associated with the task category.
 function categoryColourGen() {
   let category = document.getElementById('customSelect').innerText;
   return category.slice(0, 4);
 }
 
-/**
- * Generates a string representing the color associated with the task category.
- * 
- * @returns {string} - The first four characters of the category name.
- */
+//Generates a string representing the color associated with the task category.
 async function postTask(path = "", data = {}) {
   await fetch(getDatabaseUrl(path), {
     method: "PUT",
@@ -556,12 +429,7 @@ function pushFirebaseData(titleText, desText, actDate, category, newTaskNumber, 
   });
 }
 
-/**
- * Creates a subtask object from the list of subtasks.
- * 
- * @param {HTMLCollection} list - The list of subtasks to process.
- * @returns {Object} - An object containing subtasks indexed by task number.
- */
+//Creates a subtask object from the list of subtasks.
 function subtastCreate(list) {
   let subtask = {};
   for (let i = 0; i < list.length; i++) {
@@ -572,12 +440,7 @@ function subtastCreate(list) {
   return subtask
 }
 
-/**
- * Creates a checked state object for each subtask.
- * 
- * @param {HTMLCollection} list - The list of subtasks.
- * @returns {Object} - An object indicating the checked state for each subtask.
- */
+//Creates a checked state object for each subtask.
 function checkedCreate(list) {
   let checked = {};
   for (let i = 0; i < list.length; i++) {
@@ -587,11 +450,7 @@ function checkedCreate(list) {
   return checked;
 }
 
-/**
- * Creates a contact object from the names array.
- * 
- * @returns {Object} - An object mapping contacts to their names.
- */
+//Creates a contact object from the names array.
 function createContactFire() {
   let contacts = {};
   for (let j = 0; j < names.length; j++) {
@@ -602,11 +461,7 @@ function createContactFire() {
   return contacts;
 }
 
-/**
- * Generates a color object from the colours array.
- * 
- * @returns {Object} - An object mapping colors to their identifiers.
- */
+//Generates a color object from the colours array.
 function colorFirebase() {
   let coloursAsObject = {};
   for (let k = 0; k < colours.length; k++) {
@@ -616,11 +471,7 @@ function colorFirebase() {
   return coloursAsObject;
 }
 
-/**
- * Generates a random 6-digit number.
- * 
- * @returns {string} - A string representing a 6-digit random number.
- */
+//Generates a random 6-digit number.
 function generateRandomNumber() {
   let number = '';
   for (let i = 0; i < 6; i++) {
@@ -654,14 +505,7 @@ function checkValidation() {
   return true;
 }
 
-/**
- * Checks all validation criteria for task input.
- * 
- * @param {string} task - The task title.
- * @param {boolean} dateReg - The result of the date validation.
- * @param {string} category - The selected task category.
- * @returns {boolean} - False if validation fails, otherwise true.
- */
+// Checks all validation criteria for task input.
 function checkAll(task, dateReg, category) {
   if (!task && dateReg == false && category === `Select task category`) {
     failAll();
@@ -669,13 +513,7 @@ function checkAll(task, dateReg, category) {
   }
 }
 
-/**
- * Validates the task title against the defined regular expression.
- * 
- * @param {RegExp} taskReg - The regular expression to validate the task title.
- * @param {string} task - The task title to validate.
- * @returns {boolean} - False if validation fails, otherwise true.
- */
+//Validates the task title against the defined regular expression.
 function checkTask(taskReg, task) {
   if (!taskReg.test(task)) {
     failTask();
@@ -683,21 +521,7 @@ function checkTask(taskReg, task) {
   }
 }
 
-/**
- * Validates the provided date and updates the UI to show or hide error messages.
- *
- * @param {boolean} dateReg - Result of the date validation check; should be `true` for valid dates and `false` for invalid dates.
- * @returns {boolean} - Returns `true` if the date is valid, `false` otherwise.
- *
- * If `dateReg` is `false`, this function:
- * - Calls `failDate()` to display the date error message.
- * - Returns `false` to indicate an invalid date.
- * 
- * If `dateReg` is `true`, this function:
- * - Hides any date-related error messages.
- * - Removes error styling from the date input field.
- * - Returns `true` to indicate a valid date.
- */
+//Validates the provided date and updates the UI to show or hide error messages.
 function checkDate(dateReg) {
   if (dateReg == false) {
     failDate();
@@ -710,18 +534,20 @@ function checkDate(dateReg) {
   }
 }
 
-/**
- * Validates the selected task category.
- * 
- * @param {string} category - The selected task category.
- * @returns {boolean} - False if validation fails, otherwise true.
- */
+//Validates the selected task category.
 function checkCategory(category) {
   if (category === `Select task category`) {
     failCategory();
     return false;
   }
 }
+
+// Sets the minimum date attribute of an input element with ID 'dateData' to today's date until the DOM is fully loaded.
+document.addEventListener('DOMContentLoaded', function () {
+  let catchedDate = new Date().toISOString().split('T')[0];
+  let inputDate = document.getElementById('dateData');
+  inputDate.setAttribute('min', catchedDate);
+});
 
 /**
  * Checks the validity of the entered date against the current date.
@@ -740,23 +566,11 @@ function dateCheck() {
   let inputDate = splittedDate[2];
   if (enteredDate) {
     return compareDate(year, month, day, inputYear, inputMonth, inputDate);
-  }
-  else {
+  }else {
     return false;
-  }
-}
+  }}
 
-/**
- * Compares the entered date with the current date.
- * 
- * @param {number} year - The current year.
- * @param {number} month - The current month.
- * @param {number} day - The current day.
- * @param {number} inputYear - The entered year.
- * @param {number} inputMonth - The entered month.
- * @param {number} inputDate - The entered date.
- * @returns {boolean} - True if the entered date is valid; otherwise, false.
- */
+//Compares the entered date with the current date.
 function compareDate(year, month, day, inputYear, inputMonth, inputDate) {
   if (inputYear > year && inputYear < 10000) {
     return true;
@@ -776,33 +590,25 @@ function compareDate(year, month, day, inputYear, inputMonth, inputDate) {
   }
 }
 
-/**
- * Displays an error message for invalid task input.
- */
+// Displays an error message for invalid task input.
 function failTask() {
   document.getElementById('failName').classList.remove("selectHide");
   document.getElementById('titleText').classList.add("failedinput");
 }
 
-/**
- * Displays an error message for invalid date input.
- */
+//Displays an error message for invalid date input.
 function failDate() {
   document.getElementById('failDueDate').classList.remove("selectHide");
   document.getElementById('dateData').classList.add("failedinput");
 }
 
-/**
- * Displays an error message for invalid category selection.
- */
+//Displays an error message for invalid category selection.
 function failCategory() {
   document.getElementById('failCategory').classList.remove("selectHide");
   document.getElementById('customSelect').classList.add("failedinput");
 }
 
-/**
- * Displays error messages for all invalid inputs.
- */
+//Displays error messages for all invalid inputs.
 function failAll() {
   document.getElementById('failName').classList.remove("selectHide");
   document.getElementById('failDueDate').classList.remove("selectHide");
@@ -826,34 +632,26 @@ function clearFailAddTask(inputId, errorId) {
   }
 }
 
-/**
- * Clears the error message for the task category selection.
- */
+//Clears the error message for the task category selection.
 function clearFailAddCat() {
   document.getElementById('failCategory').classList.add('selectHide');
   document.getElementById('customSelect').classList.remove('failedinput');
 }
 
-/**
- * Scrolls the contact selection area to the right.
- */
+//Scrolls the contact selection area to the right.
 function scrollOn() {
   let scrollDiv = document.getElementById('selCntcts');
   scrollDiv.scrollLeft = scrollDiv.scrollWidth;
 }
 
-/**
- * Resets global variables related to contacts and their states.
- */
+//Resets global variables related to contacts and their states.
 function resetingGlobalVariable() {
   expanded = false;
   names = [];
   namesInitials = [];
 }
 
-/**
- * Resets local variables and UI elements to their initial states.
- */
+//Resets local variables and UI elements to their initial states.
 function resetingLocalVariables() {
   document.getElementById('customSelect').innerHTML = `Select task category`;
   document.getElementById('allCntcts').style.display = "none";
@@ -863,9 +661,7 @@ function resetingLocalVariables() {
   document.getElementById('moreIcon').classList.add("d_noneImg");
 }
 
-/**
- * Resets error messages and UI styles for input validation.
- */
+//Resets error messages and UI styles for input validation.
 function resetError() {
   document.getElementById('failName').classList.add("selectHide");
   document.getElementById('failDueDate').classList.add("selectHide");
