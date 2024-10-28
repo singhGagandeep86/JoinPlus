@@ -135,9 +135,7 @@ function renderInProgressTask(element) {
     let contacts = element.contactcolor ? Object.values(element.contactcolor) : null;
     let contactName = element.contact ? Object.values(element.contact) : null;
     let checkBoxObject = element.checked ? Object.values(element.checked) : null;
-
     document.getElementById('progress').innerHTML += templateTaskHTML(element);
-
     if (element.subtask === null) {
         loadContactTask(element, contacts, contactName);
     } else {
@@ -188,9 +186,7 @@ function renderAwaitTask(element) {
     let contacts = element.contactcolor ? Object.values(element.contactcolor) : null;
     let contactName = element.contact ? Object.values(element.contact) : null;
     let checkBoxObject = element.checked ? Object.values(element.checked) : null;
-
     document.getElementById('await').innerHTML += templateTaskHTML(element);
-
     if (element.subtask === null) {
         loadContactTask(element, contacts, contactName);
     } else {
@@ -575,15 +571,12 @@ function addSubtaskInfo(objDateTask) {
         subtaskEmpty.classList.add('d_none')
     } else if (Object.values(objDateTask.subtask).length === 0 && Object.values(objDateTask.checked) === 0) {
         subtaskInput.innerHTML = '';
-    } else {
-        let subtaskTitle = Object.values(objDateTask.subtask);
+    } else { let subtaskTitle = Object.values(objDateTask.subtask);
         let subtastChecked = Object.values(objDateTask.checked);
         for (let j = 0; j < subtaskTitle.length; j++) {
             let element = subtaskTitle[j];
             subtaskInput.innerHTML += templateSubtask(element, objDateTask, j);
-            checked(subtastChecked);
-        }
-    }
+            checked(subtastChecked);}}
 }
 
 /**
