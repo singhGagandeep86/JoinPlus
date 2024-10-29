@@ -182,7 +182,6 @@ function addcontactInfo(objDateTask) {
         contactArea.classList.add('d_none')
     } else {
         for (let i = 0; i < contactName.length; i++) {
-
             let initials = extrahiereInitialen(contactName[i])
             contactArea.innerHTML += templateContactInfo(contactscolor[i], initials, contactName[i]);
         }}
@@ -196,6 +195,13 @@ function addSubtaskInfo(objDateTask) {
     let subtaskInput = document.getElementById('subtaskArea');
     let subtaskEmpty = document.getElementById('subtaskEmtpy');
     subtaskInput.innerHTML = '';
+    addSubtaskInfoIf(subtaskInput, subtaskEmpty, objDateTask);
+}
+
+/**
+ * Displays subtask information if available, updating the subtask input area.
+ */
+function addSubtaskInfoIf(subtaskInput, subtaskEmpty, objDateTask) {
     if (!objDateTask.subtask) {
         subtaskInput.innerHTML = '';
         subtaskEmpty.classList.add('d_none')

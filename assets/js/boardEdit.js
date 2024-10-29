@@ -3,13 +3,21 @@ let pathC = '';
 /** Loads and displays contact data in the contact drop area.*/
 function loadContactData(firebaseData, objData) {
     let contactArea = document.getElementById('contactDropArea');
-    let contact = objData.contact === undefined
+    let contact = objData.contact === undefined ? null : Object.values(objData.contact).every(name => name === null)
         ? null
-        : Object.values(objData.contact).every(name => name === null)
-            ? null
-            : Object.values(objData.contact);
+        : Object.values(objData.contact);
     let contactData = contactArray(firebaseData);
     contactArea.innerHTML = '';
+    loadContactDataIf(contact, contactData, firebaseData, contactArea);
+}
+
+/**
+ * Loads and displays contact data in the specified contact area.
+ * If no contacts are provided, an empty state is loaded.
+ * When contacts are provided, each contact's details, including name, initials, color, 
+ * and checkbox status, are dynamically generated and displayed within the contact area.
+ */
+function loadContactDataIf(contact, contactData, firebaseData, contactArea) {
     if (contact == null) {
         loadContactEmpty(contactData, firebaseData)
     } else {
@@ -37,10 +45,18 @@ function loadContactEmpty(contactData, firebaseData) {
 /** Loads and displays the initials of the contacts associated with a given task.*/
 function initialsLoad(objData) {
     let contactUser = objData.contact === undefined ? null : Object.values(objData.contact).every(name => name === null)
-            ? null
-            : Object.values(objData.contact);
+        ? null
+        : Object.values(objData.contact);
     let color = objData.contactcolor === undefined ? null : Object.values(objData.contactcolor);
     let initialsContact = document.getElementById('initialsArea');
+    initialsLoadIf(contactUser, color, initialsContact) 
+}
+
+/**
+ * Loads and displays initials for each user in the provided contact list.
+ * If no contact data is provided, it clears the initials display area and hides it.
+ */
+function initialsLoadIf(contactUser, color, initialsContact) {
     if (contactUser == null) {
         initialsContact.innerHTML = '';
         initialsContact.classList.add('d_none');
@@ -100,6 +116,13 @@ function contactDropOpen(event) {
     event.stopPropagation();
     let contactDropdown = document.getElementById('contactDropArea');
     let arrowContact = document.getElementById('arrowContactDrop');
+    contactDropOpenIf(contactDropdown, arrowContact);
+}
+
+/**
+ * Toggles the visibility of a contact dropdown menu and manages dropdown-related behaviors.
+ * If the dropdown is opened, an event listener is added to close it when clicking outside;*/
+function contactDropOpenIf(contactDropdown, arrowContact) {
     if (!contactDropdown.classList.contains('d_none')) {
         getSelectedContacts();
         intiCheckContact();
@@ -178,15 +201,15 @@ function intiCheckContact() {
     let initialsContact = document.getElementById('initialsArea');
     let checkContact = getSelectedContacts();
     initialsContact.innerHTML = '';
-    if(checkContact != []){       
-            initialsContact.classList.remove('d_none');
+    if (checkContact != []) {
+        initialsContact.classList.remove('d_none');
         for (let i = 0; i < checkContact.length; i++) {
             let contactName = checkContact[i].name;
             let color = checkContact[i].color;
             let initials = extrahiereInitialen(contactName);
             initialsContact.innerHTML += initialsLoadContact(initials, color);
         }
-    }   
+    }
 }
 
 /** Initializes the subtask input area by clearing its current content*/
@@ -255,6 +278,15 @@ function toggleEditTask(event, checkElement) {
     event.stopPropagation();
     let liElement = checkElement.closest('li');
     let inputField = liElement.querySelector('input.inputSubAdd');
+    toggleEditTaskIf(liElement, inputField);
+}
+
+/**
+ * Toggles the edit mode for a task list item element.
+ * When the item is in editing mode, it saves the updated task text if the input is not empty,
+ * applies the appropriate template for displaying the saved task, and exits editing mode.
+ */
+function toggleEditTaskIf(liElement, inputField) {
     if (liElement.classList.contains('editing')) {
         let newValue = inputField.value.trim();
         if (newValue !== '') {
@@ -267,6 +299,7 @@ function toggleEditTask(event, checkElement) {
         liElement.classList.add('editing');
     }
 }
+
 
 /** Retrieves all subtask values from the subtask list.*/
 function getAllSubTasks() {
@@ -310,9 +343,7 @@ function readEditData(number) {
 
 /** Validates the title of the task during the edit process.
  * This function checks if the title is empty. If it is, it calls the
- * `failNameEditBoard` function to handle the failure case. If the title
- * is valid (not empty), it proceeds to push the edited task data
- * using the `pushDataEdit` function.*/
+ */
 function nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority) {
     if (title === '') {
         failNameEditBoard();

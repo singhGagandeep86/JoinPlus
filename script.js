@@ -1,17 +1,21 @@
 let userData = [];
 let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
 
-/**
- * Handles the login event. 
- * This function prevents the default event behavior, extracts the email and password from the form,
- * validates the inputs, and sends a request to the authentication API.
- */
-function handleLogin(event) {
-    event.preventDefault();
-    let email = event.target.email.value;
-    let password = event.target.password.value;
-    if(loginVali(email, password)){
-    fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
+// Funktion zum Abrufen der E-Mail und Passwort-Eingaben
+function getEmailAndPassword(event) {
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    return { email, password };
+}
+
+// Funktion zur Validierung der Anmeldeinformationen
+function validateCredentials(email, password) {
+    return loginVali(email, password);
+}
+
+// Funktion zur Authentifizierungsanfrage bei Firebase
+function fetchAuthToken(email, password) {
+    return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -21,34 +25,53 @@ function handleLogin(event) {
             password: password,
             returnSecureToken: true
         })
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Fehler: ${response.status} ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.idToken) {
+    });
+}
 
-                sessionStorage.setItem('authToken', data.idToken);
-                window.location.href = "assets/html/summary.html";
-            } else {
-                throw new Error("Anmeldung fehlgeschlagen: Kein Token erhalten");
-            }
-        })
-        .catch(error => {
+// Funktion zur Antwortverarbeitung
+function processResponse(response) {
+    if (!response.ok) {
+        throw new Error(`Fehler: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+}
 
-            errorLogin();
-        });
+// Funktion zur Überprüfung des Tokens und zur Weiterleitung
+function handleSuccessfulLogin(data) {
+    if (data.idToken) {
+        sessionStorage.setItem('authToken', data.idToken);
+        window.location.href = "assets/html/summary.html";
+    } else {
+        
     }
 }
+
+// Funktion zur Fehlerbehandlung
+function handleLoginError() {
+    errorLogin();
+}
+
+// Haupt-Login-Funktion
+function handleLogin(event) {
+    event.preventDefault();
+    let { email, password } = getEmailAndPassword(event);
+    if (validateCredentials(email, password)) {
+        fetchAuthToken(email, password)
+            .then(processResponse)    // Verarbeitung der Antwort
+            .then(handleSuccessfulLogin) // Überprüfung des Tokens und Weiterleitung
+            .catch(handleLoginError);  // Fehlerbehandlung
+    } else {
+        handleLoginError();
+    }
+}
+
 
 /**
  * Logs in a guest user by creating a new anonymous account.
  */
-function loginGuest() {
-    return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
+// Funktion zum Erstellen der Anfragekonfiguration für die Gastanmeldung
+function getGuestAuthConfig() {
+    return {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -56,21 +79,38 @@ function loginGuest() {
         body: JSON.stringify({
             returnSecureToken: true
         })
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Fehler: ${response.status} ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.idToken) {
-                return data.idToken;
-            } else {
-                throw new Error("Fehler bei der anonymen Authentifizierung: kein Token erhalten");
-            }
-        })
+    };
 }
+
+// Funktion zur Durchführung der Gastauthentifizierungsanfrage
+function fetchGuestAuthToken() {
+    return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', getGuestAuthConfig());
+}
+
+// Funktion zur Verarbeitung der Antwort
+function processGuestResponse(response) {
+    if (!response.ok) {
+        throw new Error(`Fehler: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+}
+
+// Funktion zum Extrahieren des Tokens
+function extractGuestToken(data) {
+    if (data.idToken) {
+        return data.idToken;
+    } else {
+        throw new Error("Fehler bei der anonymen Authentifizierung: kein Token erhalten");
+    }
+}
+
+// Hauptfunktion zur Gastanmeldung
+function loginGuest() {
+    return fetchGuestAuthToken()
+        .then(processGuestResponse) // Antwortverarbeitung
+        .then(extractGuestToken);   // Token-Extraktion
+}
+
 
 /**
  * Handles guest login by calling the loginGuest function to obtain a token.
@@ -107,6 +147,10 @@ function logout() {
 async function loadInitailUser() {
     let userId = sessionStorage.getItem('uid');
     let userObject = userData.filter(e => e['uid'] === userId);
+    loadInitailUserIf(userId, userObject);
+}
+
+function loadInitailUserIf(userId, userObject) {
     if (userObject == '') {
         let guest = 'GS'
         createUser(guest, userObject);
@@ -137,9 +181,7 @@ function capitalizeName(name) {
  */
 function writeGreetin(replaceElement, userObject) {
     let nameGreeting = document.getElementById('greetingName');
-
     if (nameGreeting == null) {
-
     } else {
         nameGreeting.innerHTML = replaceElement;
     }
