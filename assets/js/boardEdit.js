@@ -1,8 +1,6 @@
 let pathC = '';
 
-/**
- * Loads and displays contact data in the contact drop area.
- */
+/** Loads and displays contact data in the contact drop area.*/
 function loadContactData(firebaseData, objData) {
     let contactArea = document.getElementById('contactDropArea');
     let contact = objData.contact === undefined
@@ -25,9 +23,7 @@ function loadContactData(firebaseData, objData) {
     }
 }
 
-/**
- * Loads and displays an empty state for contact data in the contact drop area.
- */
+/** Loads and displays an empty state for contact data in the contact drop area.*/
 function loadContactEmpty(contactData, firebaseData) {
     let contactArea = document.getElementById('contactDropArea');
     for (let j = 0; j < firebaseData.length; j++) {
@@ -38,9 +34,7 @@ function loadContactEmpty(contactData, firebaseData) {
     }
 }
 
-/**
- * Loads and displays the initials of the contacts associated with a given task.
- */
+/** Loads and displays the initials of the contacts associated with a given task.*/
 function initialsLoad(objData) {
     let contactUser = objData.contact === undefined ? null : Object.values(objData.contact).every(name => name === null)
             ? null
@@ -60,9 +54,7 @@ function initialsLoad(objData) {
     }
 }
 
-/**
- * Extracts and returns an array of contact names from the given Firebase data.
- */
+/** Extracts and returns an array of contact names from the given Firebase data.*/
 function contactArray(firebaseData) {
     let elementContact = [];
     for (let i = 0; i < firebaseData.length; i++) {
@@ -71,9 +63,7 @@ function contactArray(firebaseData) {
     return elementContact;
 }
 
-/**
- * Opens the edit popup for a specific task and populates it with the task's details.
- */
+/** Opens the edit popup for a specific task and populates it with the task's details.*/
 function editOpen(i) {
     let edit = document.getElementById('popupTaskInfo');
     let objData = createobjFromElement(i)
@@ -88,17 +78,13 @@ function editOpen(i) {
     })
 }
 
-/**
- * Sets the minimum allowable date for the date input field to today's date.
- */
+/** Sets the minimum allowable date for the date input field to today's date.*/
 function dateVali() {
     let today = new Date().toISOString().split('T')[0];
     document.getElementById('dateEditEnter').setAttribute('min', today);
 }
 
-/**
- * Loads the necessary data for editing a task and initializes the UI components.
- */
+/** Loads the necessary data for editing a task and initializes the UI components.*/
 function loadEditData(objData, prioCheck) {
     loadContact(objData);
     descriptionData(objData);
@@ -109,9 +95,7 @@ function loadEditData(objData, prioCheck) {
     dateVali();
 }
 
-/**
- * Toggles the visibility of the contact dropdown menu and handles contact selection.
- */
+/** Toggles the visibility of the contact dropdown menu and handles contact selection.*/
 function contactDropOpen(event) {
     event.stopPropagation();
     let contactDropdown = document.getElementById('contactDropArea');
@@ -129,9 +113,7 @@ function contactDropOpen(event) {
     }
 }
 
-/**
- * Closes the contact dropdown menu when clicking outside of it.
- */
+/** Closes the contact dropdown menu when clicking outside of it.*/
 function closeDropDownContact(event) {
     let contactDropdown = document.getElementById('contactDropArea');
     let arrowContact = document.getElementById('arrowContactDrop');
@@ -144,9 +126,7 @@ function closeDropDownContact(event) {
     }
 }
 
-/**
- * Loads and displays subtasks in the specified subtask area.
- */
+/** Loads and displays subtasks in the specified subtask area.*/
 function loadSubs(objData) {
     let subtaskArea = document.getElementById('subTaskBoard');
     let subs = objData.subtask ? Object.values(objData.subtask) : null;
@@ -160,16 +140,12 @@ function loadSubs(objData) {
     }
 }
 
-/**
- * Sets the value of the description textarea to the provided task description.
- */
+/** Sets the value of the description textarea to the provided task description.*/
 function descriptionData(objData) {
     document.querySelector('.textAreaData').value = objData.description;
 }
 
-/**
- * Sets the checked state of the priority radio buttons based on the provided priority value.
- */
+/** Sets the checked state of the priority radio buttons based on the provided priority value.*/
 function priorityEditCheck(prioCheck) {
     let prio = document.getElementsByName('priority');
     for (let i = 0; i < prio.length; i++) {
@@ -180,9 +156,7 @@ function priorityEditCheck(prioCheck) {
     }
 }
 
-/**
- * Retrieves the selected contacts from the contact dropdown.
- */
+/** Retrieves the selected contacts from the contact dropdown.*/
 function getSelectedContacts() {
     let checkContacts = [];
     let checkboxes = document.querySelectorAll('.checkboxDesignContact');
@@ -199,9 +173,7 @@ function getSelectedContacts() {
     return checkContacts;
 }
 
-/**
- * Initializes and displays the selected contacts' initials in the initials area.
- */
+/** Initializes and displays the selected contacts' initials in the initials area.*/
 function intiCheckContact() {
     let initialsContact = document.getElementById('initialsArea');
     let checkContact = getSelectedContacts();
@@ -217,35 +189,26 @@ function intiCheckContact() {
     }   
 }
 
-/**
- * Initializes the subtask input area by clearing its current content
- */
+/** Initializes the subtask input area by clearing its current content*/
 function substartDiv() {
     let startSubInput = document.getElementById('subtaskInput');
     startSubInput.innerHTML = '';
     startSubInput.innerHTML = subtaskstart();
 }
 
-/**
- * Clears the current content of the subtask input area and populates it
- * with a new subtask template.
- */
+/** Clears the current content of the subtask input area and populates it with a new subtask template.*/
 function subtastAdd() {
     let startSubInput = document.getElementById('subtaskInput');
     startSubInput.innerHTML = '';
     startSubInput.innerHTML = subtaskAdd();
 }
 
-/**
- * Resets the subtask input area by invoking the substartDiv function.
- */
+/** Resets the subtask input area by invoking the substartDiv function.*/
 function deletInput() {
     substartDiv();
 }
 
-/**
- * Adds a new subtask based on the value entered in the subtask input field.
- */
+/** Adds a new subtask based on the value entered in the subtask input field.*/
 function addInputSubtastk() {
     let input = document.getElementById('subInput');
     let inputValue = input.value.trim();
@@ -255,34 +218,26 @@ function addInputSubtastk() {
     }
 }
 
-/**
- * Loads a new subtask into the subtask area of the task board.
- */
+/** Loads a new subtask into the subtask area of the task board.*/
 function loadSubtaskLi(inputValue) {
     let subtaskArea = document.getElementById('subTaskBoard');
     subtaskArea.innerHTML += addSubTask(inputValue);
 }
 
-/**
- * Edits a subtask by replacing its current content with an editable template.
- */
+/** Edits a subtask by replacing its current content with an editable template.*/
 function editSubTask(liElement) {
     let currentText = liElement.querySelector('.taskText').textContent.trim().substring(2);
     liElement.innerHTML = templateSub1(currentText);
 }
 
-/**
- * Deletes a task from the list when the delete event is triggered.
- */
+/** Deletes a task from the list when the delete event is triggered.*/
 function deleteTask(event) {
     event.stopPropagation();
     let liElement = event.target.closest('li');
     liElement.remove();
 }
 
-/**
- * Saves the updated value of a subtask when triggered by an event.
- */
+/** Saves the updated value of a subtask when triggered by an event.*/
 function saveTask(event, checkElement) {
     event.stopPropagation();
     let liElement = checkElement.closest('li');
@@ -295,9 +250,7 @@ function saveTask(event, checkElement) {
     }
 }
 
-/**
- * Toggles the edit mode for a subtask when triggered by an event.
- */
+/** Toggles the edit mode for a subtask when triggered by an event.*/
 function toggleEditTask(event, checkElement) {
     event.stopPropagation();
     let liElement = checkElement.closest('li');
@@ -315,9 +268,7 @@ function toggleEditTask(event, checkElement) {
     }
 }
 
-/**
- * Retrieves all subtask values from the subtask list.
- */
+/** Retrieves all subtask values from the subtask list.*/
 function getAllSubTasks() {
     let subTaskElements = document.querySelectorAll('#subTaskBoard .liSubTask');
     let subTaskValues = [];
@@ -328,9 +279,7 @@ function getAllSubTasks() {
     return subTaskValues;
 }
 
-/**
- * Reads the selected priority value from a group of radio buttons.
- */
+/** Reads the selected priority value from a group of radio buttons.*/
 function readPrio() {
     let priorityElements = document.querySelectorAll('input[name="priority"]');
     let priority;
@@ -343,9 +292,7 @@ function readPrio() {
     return priority;
 }
 
-/**
- * Reads and collects data from the edit task form.
- */
+/** Reads and collects data from the edit task form.*/
 function readEditData(number) {
     let numberEditElement = number;
     let title = document.querySelector('.titleInput').value.trim();
@@ -361,13 +308,11 @@ function readEditData(number) {
     nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority);
 }
 
-/**
- * Validates the title of the task during the edit process.
+/** Validates the title of the task during the edit process.
  * This function checks if the title is empty. If it is, it calls the
  * `failNameEditBoard` function to handle the failure case. If the title
  * is valid (not empty), it proceeds to push the edited task data
- * using the `pushDataEdit` function.
- */
+ * using the `pushDataEdit` function.*/
 function nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority) {
     if (title === '') {
         failNameEditBoard();
@@ -377,9 +322,7 @@ function nameValiEdit(title, description, dueDate, subtaskobj, checked, contactN
     }
 }
 
-/**
- * Clears the failure message for the task title input during the edit process.
- */
+/** Clears the failure message for the task title input during the edit process.*/
 function clearFailAdd() {
     let title = document.querySelector('.titleInput').value.trim();
     if (title !== '') {
@@ -388,17 +331,13 @@ function clearFailAdd() {
     }
 }
 
-/**
- * Adds an error message for the title editing.
- */
+/** Adds an error message for the title editing.*/
 function failNameEditBoard() {
     document.getElementById('titleEditFail').classList.add('titleInputFail');
     document.getElementById('failTitleEditBoard').classList.remove('d_none');
 }
 
-/**
- * Converts an array of subtasks into an object with numbered keys.
- */
+/** Converts an array of subtasks into an object with numbered keys.*/
 function subtaskObj(subtask) {
     let subtaskobj = {};
     for (let i = 0; i < subtask.length; i++) {
@@ -408,9 +347,7 @@ function subtaskObj(subtask) {
     return subtaskobj
 }
 
-/**
- * Creates an object representing the checked status of subtasks.
- */
+/** Creates an object representing the checked status of subtasks.*/
 function checkedObj(subtask) {
     let checked = {};
     for (let i = 0; i < subtask.length; i++) {
@@ -420,9 +357,7 @@ function checkedObj(subtask) {
     return checked
 }
 
-/**
- * Creates an object mapping contact names to numbered keys.
- */
+/** Creates an object mapping contact names to numbered keys.*/
 function nameObj(contact) {
     let contactName = {};
     for (let i = 0; i < contact.length; i++) {
@@ -432,9 +367,7 @@ function nameObj(contact) {
     return contactName
 }
 
-/**
- * Creates an object mapping contact colors to numbered keys.
- */
+/** Creates an object mapping contact colors to numbered keys.*/
 function colorObj(contact) {
     let color = {};
     for (let i = 0; i < contact.length; i++) {
@@ -444,9 +377,7 @@ function colorObj(contact) {
     return color
 }
 
-/**
- * Loads new task data and refreshes the display.
- */
+/** Loads new task data and refreshes the display.*/
 function loadnewTaskEdit() {
     arrayLoad = [];
     load();
