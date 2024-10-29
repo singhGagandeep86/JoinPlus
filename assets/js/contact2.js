@@ -1,4 +1,13 @@
 /**
+ * Marks the name field in case of incorrect input during editing.
+ */
+
+function failNameEdit() {
+    document.getElementById('name2').classList.add('failinput');
+    document.getElementById('failNameEdit').classList.remove('d_none');
+}
+
+/**
  * Resets the input fields for a new contact.
  */
 

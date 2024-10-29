@@ -15,6 +15,7 @@ let colorGen = [
  * This asynchronous function performs multiple tasks to load contact data,
  * sort it alphabetically, display it, and retrieve additional user data.
  */
+
 async function load() {
     await loadData("/contact");
     sortContactsByName();
@@ -102,31 +103,54 @@ function loadContact() {
         contactSpace.innerHTML += loadContactData(i, initials);
     }}
 
-    /**
- * Displays the details of a selected contact.
- * @param {number} i - The index of the contact in the array.
+/**
+ * Removes the active class from all contacts and clears the content of the contact details section.
  */
 
-function showContactDetails(i, initials) {
-    let number = array[i].number;
-    let contactDetails = document.getElementById('contactDetails');
-    let allContacts = document.querySelectorAll('.contact-item');
-    if (allContacts[i].classList.contains('active-contact')) {
-        allContacts[i].classList.remove('active-contact');
-        contactDetails.innerHTML = '';
-        return;
+    function clearActiveContact() {
+        let allContacts = document.querySelectorAll('.contact-item');
+        for (let j = 0; j < allContacts.length; j++) {
+            allContacts[j].classList.remove('active-contact');
+        }
+        document.getElementById('contactDetails').innerHTML = '';
     }
-    for (let i = 0; i < allContacts.length; i++) {
-        allContacts[i].classList.remove('active-contact');
+
+    /**
+ * Activates the specified contact and displays the associated details.
+ * If the screen width is 800px or less, additional adjustments for mobile view are applied.
+ */
+
+    function setActiveContact(i, number, initials) {
+        let allContacts = document.querySelectorAll('.contact-item');
+        let contactDetails = document.getElementById('contactDetails');
+
+        allContacts[i].classList.add('active-contact');
+        contactDetails.classList.add('contact-slide-in');
+
+        if (window.innerWidth <= 800) {
+            document.querySelector('.container').classList.add('hidden');
+            document.querySelector('.contact-container-right').classList.add('OnDetails');
+        }
+        activeContact(i, number, initials);
     }
-    allContacts[i].classList.add('active-contact');
-    contactDetails.classList.add('contact-slide-in');
-    if (window.innerWidth <= 800) {
-        document.querySelector('.container').classList.add('hidden');
-        document.querySelector('.contact-container-right').classList.add('OnDetails');
+
+    /**
+ * Main function to show contact details.
+ * Checks if the specified contact is already active. If it is, clears the active contact.
+ * Otherwise, clears any active contact and sets the specified contact as active.
+ */
+
+    function showContactDetails(i, initials) {
+        let number = array[i].number;
+        let allContacts = document.querySelectorAll('.contact-item');
+
+        if (allContacts[i].classList.contains('active-contact')) {
+            clearActiveContact();
+        } else {
+            clearActiveContact();
+            setActiveContact(i, number, initials);
+        }
     }
-    activeContact(i, number, initials);
-}
 
 /**
  * Activates the contact and displays its details.
@@ -262,57 +286,49 @@ async function addContactData() {
         let color = farbGenerator().toLowerCase();
         await createContactData(name, email, phone, number, firstNameInitial, color);
         reloadAdd();
-    }
-}
+    }}
 
 /**
- * Validates the input data for a new contact.
+ * Checks if a given input matches the specified regular expression pattern.
+ * @param {string} input - The input string to be validated.*/
+
+function isValid(input, regex) { return regex.test(input); }
+
+/**
+ * Validates name, email, and phone inputs for a form submission.
+ * @returns {boolean} - Returns true if all fields are valid; otherwise, false.
  */
 
 function valiAdd(name, email, phone) {
-    let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
-    let phoneRegex = /^[0-9]+$/;
-    let nameRegex = /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/;
-    if (!name || !email || !phone) {
-        failAllAdd();
-        return false;
-    } if (!nameRegex.test(name)) {
-        failName();
-        return false;
-    } if (!emailRegex.test(email)) {
-        failEmailAdd();
-        return false;
-    } if (!phoneRegex.test(phone)) {
-        failPhoneAdd();
-        return false;
-    }
+    if (!name || !email || !phone) return failAllAdd() && false;
+    if (!isValid(name, /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/)) return failName() && false;
+    if (!isValid(email, /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/))
+        return failEmailAdd() && false;
+    if (!isValid(phone, /^[0-9]+$/)) return failPhoneAdd() && false;
     return true;
 }
 
 /**
- * Validates the input data for editing a contact.
+ * @returns {boolean} - Returns true if the input matches the regex; otherwise, false.
+ */
+
+function isValid(input, regex) { return regex.test(input); }
+
+/**
+ * Validates the 'name', 'email', and 'phone' inputs for editing form data.
+ * @returns {boolean} - Returns true if all fields are valid; otherwise, false.
  */
 
 function valiEdit() {
-    let name = document.getElementById('name2').value.trim();
-    let email = document.getElementById('email2').value.trim();
-    let phone = document.getElementById('phone2').value.trim();
-    let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
-    let phoneRegex = /^[0-9]+$/;
-    let nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
-    if (!name || !email || !phone) {
-        failAllEdit();
-        return false;
-    } if (!nameRegex.test(name)) {
-        failNameEdit();
-        return false;
-    } if (!emailRegex.test(email)) {
-        failEmailEdit();
-        return false;
-    } if (!phoneRegex.test(phone)) {
-        failPhoneEdit();
-        return false;
-    }
+    let name = document.getElementById('name2').value.trim(),
+        email = document.getElementById('email2').value.trim(),
+        phone = document.getElementById('phone2').value.trim();
+
+    if (!name || !email || !phone) return failAllEdit() && false;
+    if (!isValid(name, /^[a-zA-Z]+( [a-zA-Z]+)*$/)) return failNameEdit() && false;
+    if (!isValid(email, /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/)) 
+        return failEmailEdit() && false;
+    if (!isValid(phone, /^[0-9]+$/)) return failPhoneEdit() && false;
     return true;
 }
 
@@ -381,13 +397,4 @@ function failPhoneEdit() {
 function failEmailEdit() {
     document.getElementById('email2').classList.add('failinput');
     document.getElementById('failEmailEdit').classList.remove('d_none');
-}
-
-/**
- * Marks the name field in case of incorrect input during editing.
- */
-
-function failNameEdit() {
-    document.getElementById('name2').classList.add('failinput');
-    document.getElementById('failNameEdit').classList.remove('d_none');
 }

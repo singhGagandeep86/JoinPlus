@@ -1,15 +1,4 @@
-/**
- * Toggle button element for the burger menu.
- * @type {HTMLElement}
- */
-
 let toggleButton = document.getElementById('burgerToggle');
-
-/**
- * Menu element for the burger menu.
- * @type {HTMLElement}
- */
-
 let menu = document.getElementById('burgerMenu');
 
 /**

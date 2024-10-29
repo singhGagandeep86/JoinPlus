@@ -185,8 +185,7 @@ function addcontactInfo(objDateTask) {
 
             let initials = extrahiereInitialen(contactName[i])
             contactArea.innerHTML += templateContactInfo(contactscolor[i], initials, contactName[i]);
-        }
-    }
+        }}
 }
 
 /**
