@@ -342,8 +342,6 @@ function subtaskBar(element, checkedCount) {
 /**
  * Loads and displays contact information for a given task element. 
  * @param {Object} element - The task object containing the task details.
- * @param {Array|null} contacts - An array of contact color identifiers or null.
- * @param {Array|null} contactName - An array of contact names or null.
  */
 function loadContactTask(element, contacts, contactName) {
     let contactpic = `contact-${element['number']}`
@@ -517,8 +515,6 @@ async function changeIdTask(value, element) {
 
 /**
  * This function retrieves the date from a task object, formats it from "YYYY-MM-DD" 
- * @param {Object} objDateTask - The task object containing the date information.
- * @param {string} objDateTask.date - The date of the task in the format "YYYY-MM-DD".
  */
 function time(objDateTask) {
     let dateArea = document.getElementById('dateAreaInfo');
@@ -535,9 +531,7 @@ function time(objDateTask) {
  * Adds contact information to the contact area for a given task.
  * This function retrieves contact names and their corresponding colors from the 
  * @param {Object} objDateTask - The task object containing contact information.
- * @param {Array<string>} [objDateTask.contact] - An array of contact names.
- * @param {Array<string>} [objDateTask.contactcolor] - An array of corresponding colors for the contacts.
-  */
+*/
 function addcontactInfo(objDateTask) {
     let contactArea = document.getElementById('contactAreaInfo');
     let contactName = objDateTask.contact ? Object.values(objDateTask.contact) : null;
@@ -559,8 +553,6 @@ function addcontactInfo(objDateTask) {
  * Adds subtask information to the subtask area for a given task.
  * This function populates the subtask area with subtasks from the provided task object.
  * @param {Object} objDateTask - The task object containing subtask information.
- * @param {Object} [objDateTask.subtask] - An object representing subtasks associated with the task.
- * @param {Array<boolean>} [objDateTask.checked] - An array indicating whether each subtask is checked.
  */
 function addSubtaskInfo(objDateTask) {
     let subtaskInput = document.getElementById('subtaskArea');
@@ -601,7 +593,6 @@ function moveTo(element,) {
  * then sends a POST request to update the task's ID to the specified element.
  * @param {string} element - The new ID to assign to the task.
  * @param {Object} changeId - The object representing the task that is being updated.
- * @param {number} changeId.number - The unique number identifying the task.
  */
 async function postId(element, changeId) {
     let number = changeId.number;
@@ -614,8 +605,6 @@ async function postId(element, changeId) {
 /**
  * This function takes a URL and a data object, then sends the data to the specified URL
  * using the PATCH method to update the task's information in the database.
- * @param {string} url - The URL of the task to be updated in the database.
- * @param {Object} data - The data to be sent in the request body.
  */
 async function postDataId(url, data) {
     let response = await fetch(url, {
@@ -647,8 +636,6 @@ async function inputCheckBoxInfo(i, j) {
 /**
  * Sends a PATCH request to update data in the database. 
  * This function takes a URL and a data object, converts the data object to a JSON string,
- * @param {string} url - The URL endpoint for the PATCH request, typically pointing to a specific resource in the database.
- * @param {Object} data - The data to be updated in the database.
  */
 async function postDataCheck(url, data) {
     let response = await fetch(url, {
@@ -671,7 +658,7 @@ function checked(subtastChecked) {
     }
 }
 
-
+/** searche zue task from title and description */
 function search() {
     let inputSearch = document.getElementById('search');
     let searchArray = arrayLoad.filter(item =>
@@ -684,8 +671,6 @@ function search() {
 /**
  * Initiates a search based on the input value and updates the task list accordingly.
  * This function checks the length of the input search value and determines 
- * @param {HTMLInputElement} inputSearch - The input element containing the search value.
- * @param {Array} searchArray - An array of tasks or items to search through. 
  */
 function searchStart(inputSearch, searchArray) {
     if (searchArray == '') {
