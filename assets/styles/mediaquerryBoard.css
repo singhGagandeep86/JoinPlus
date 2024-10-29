@@ -394,10 +394,6 @@
         font-size: 50px;
         min-height: 100px;
     }
-
-    .taskName span:nth-of-type(2){
-        display: none;
-    }
     
     .content{
         min-height: 170vh !important; 

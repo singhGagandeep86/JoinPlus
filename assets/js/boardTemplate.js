@@ -1,62 +1,28 @@
-/**
- * Generates an HTML template for an empty task board.
- * This template displays a message indicating that there are no tasks to do.
- *
- * @function templateTaskEmptyTodo
- * @returns {string} The HTML string for the empty task board.
- */
+/** Generates an HTML template for an empty task board.*/
 function templateTaskEmptyTodo() {
     return `<div class="emptyBoardArea"><span>No tasks To do</span></div>
     `
 }
 
-/**
- * Generates an HTML template for an empty "In Progress" task board.
- * This template displays a message indicating that there are no tasks in progress.
- *
- * @function templateTaskEmptyInProgress
- * @returns {string} The HTML string for the empty "In Progress" task board.
- */
+/** Generates an HTML template for an empty "In Progress" task board. */
 function templateTaskEmptyInProegress() {
     return `<div class="emptyBoardArea"><span>No tasks to in progress</span></div>
     `
 }
 
-/**
- * Generates an HTML template for an empty "Awaiting Feedback" task board.
- * This template displays a message indicating that there are no tasks awaiting feedback
- * and includes a placeholder for drag-and-drop functionality.
- *
- * @function templateTaskEmptyAwait
- * @returns {string} The HTML string for the empty "Awaiting Feedback" task board.
- */
+/** Generates an HTML template for an empty "Awaiting Feedback" task board. */
 function templateTaskEmptyAwait() {
     return `<div class="emptyBoardArea"><span>No tasks to await feedback</span></div>
     <div id="dragEmpty" class="dragEmptyBody d_none"></div>`
 }
 
-/**
- * Generates an HTML template for an empty "Done" task board.
- * This template displays a message indicating that there are no tasks marked as done
- * and includes a placeholder for drag-and-drop functionality.
- *
- * @function templateTaskEmptyDone
- * @returns {string} The HTML string for the empty "Done" task board.
- */
+/** Generates an HTML template for an empty "Done" task board.*/
 function templateTaskEmptyDone() {
     return `<div class="emptyBoardArea"><span>No tasks to done</span></div>
     <div id="dragEmpty" class="dragEmptyBody d_none "></div>`
 }
 
-/**
- * Generates an HTML template for a task creation popup.
- * This template includes fields for the task title, description, due date,
- * priority, category, assigned contacts, and subtasks.
- *
- * @function templatePopUpTask
- * @param {number} id - The ID associated with the task being created.
- * @returns {string} The HTML string for the task creation popup.
- */
+/** Generates an HTML template for a task creation popup.*/
 function templatePopUpTask(id) {
     return `<div id="CloseArea" class="taskArea">
          <div class="headingBoardAdd">Add Task <img onclick="closePopUpTask()" src="../img/Close.png" alt=""></div>
@@ -155,21 +121,7 @@ function templatePopUpTask(id) {
         </div>`
 }
 
-/**
- * Generates an HTML template for a task element.
- * This template includes task information such as category, title, description,
- * priority, and allows for drag-and-drop functionality.
- *
- * @function templateTaskHTML
- * @param {Object} element - The task data object.
- * @param {number} element.number - The unique identifier for the task.
- * @param {string} element.color - The color associated with the task category.
- * @param {string} element.category - The category of the task.
- * @param {string} element.title - The title of the task.
- * @param {string} element.description - The description of the task.
- * @param {string} element.prio - The priority level of the task.
- * @returns {string} The HTML string representing the task element.
- */
+/** Generates an HTML template for a task element.*/
 function templateTaskHTML(element) {
     let rangeId = `subtaskRange-${element['number']}`;
     let contactpic = `contact-${element['number']}`;
@@ -191,21 +143,7 @@ function templateTaskHTML(element) {
     </div>`;
 }
 
-/**
- * Generates an HTML template for displaying detailed information about a task.
- * This template includes the task's category, title, description, due date, priority,
- * assigned contacts, and subtasks, along with options to edit or delete the task.
- *
- * @function templateTaskSmallInfo
- * @param {Object} objDateTask - The task data object.
- * @param {number} objDateTask.number - The unique identifier for the task.
- * @param {string} objDateTask.color - The color associated with the task category.
- * @param {string} objDateTask.category - The category of the task.
- * @param {string} objDateTask.title - The title of the task.
- * @param {string} objDateTask.description - The description of the task.
- * @param {string} objDateTask.prio - The priority level of the task.
- * @returns {string} The HTML string representing the task detail popup.
- */
+/** Generates an HTML template for displaying detailed information about a task. */
 function templateTaskSmallInfo(objDateTask) {
 
     return `<div id="closeAreaInfo" class="popupTaskInfo">
@@ -226,61 +164,24 @@ function templateTaskSmallInfo(objDateTask) {
         </div>`;
 }
 
-/**
- * Generates an HTML template for a progress bar displaying the completion status of subtasks.
- * This template includes a progress element and a label showing the count of checked subtasks
- * against the total number of subtasks.
- *
- * @function templateRange
- * @param {number} subtask - The total number of subtasks.
- * @param {number} checkedCount - The number of completed subtasks.
- * @returns {string} The HTML string representing the progress bar for subtasks.
- */
+/** Generates an HTML template for a progress bar displaying the completion status of subtasks. */
 function templateRange(subtask, checkedCount) {
     return ` <div class="range"><progress id="subTaskRange" max="${subtask}" value="${checkedCount}"></progress>
     <span>${checkedCount}/${subtask} Subtasks</span></div>`
 }
 
-/**
- * Generates an HTML template for a contact display box.
- * This template includes a colored box with the contact's initials.
- *
- * @function templateContact
- * @param {string} colors - The color class to apply to the contact box.
- * @param {string} initials - The initials of the contact to display.
- * @param {number} i - The index or identifier for the contact (not used in the template).
- * @returns {string} The HTML string representing the contact box.
- */
+/** Generates an HTML template for a contact display box.*/
 function templateContact(colors, initials, i) {
     return ` <div class="b-${colors} box0"> <span>${initials}</span></div>`
 }
 
-/**
- * Generates an HTML template for displaying contact information.
- * This template includes a colored box with the contact's initials and the full contact name.
- *
- * @function templateContactInfo
- * @param {string} contactscolor - The color class to apply to the contact box.
- * @param {string} initials - The initials of the contact to display.
- * @param {string} contactName - The full name of the contact.
- * @returns {string} The HTML string representing the contact information display.
- */
+/** Generates an HTML template for displaying contact information.*/
 function templateContactInfo(contactscolor, initials, contactName) {
     return `<div class="contactArea"><div class="b-${contactscolor} boxinfo">
     <span>${initials}</span></div> <span class="contactName">${contactName}</span></div>`
 }
 
-/**
- * Generates an HTML template for a subtask with a checkbox.
- * This template includes a checkbox input for the subtask and its title.
- *
- * @function templateSubtask
- * @param {string} element - The title of the subtask.
- * @param {Object} objDateTask - The task data object.
- * @param {number} objDateTask.number - The unique identifier for the task.
- * @param {number} j - The index of the subtask.
- * @returns {string} The HTML string representing the subtask with a checkbox.
- */
+/** Generates an HTML template for a subtask with a checkbox.*/
 function templateSubtask(element, objDateTask, j) {
     let checkboxId = `checkbox-${objDateTask.number}-${j}`;
     return `
@@ -288,14 +189,7 @@ function templateSubtask(element, objDateTask, j) {
         `
 }
 
-/**
- * Generates an HTML template for a task movement interface.
- * This template includes buttons to move a task to different statuses: "In Progress", "Await", and "Done".
- *
- * @function moveTaskTo1
- * @param {number} element - The unique identifier for the task.
- * @returns {string} The HTML string representing the task movement options.
- */
+/** Generates an HTML template for a task movement interface.*/
 function moveTaskTo1(element) {
     return `<span class="moveTitle">Move Task To:</span>
     <div class="moveTaskBTN">
@@ -304,14 +198,7 @@ function moveTaskTo1(element) {
     <button value="done" onclick="changeIdTaskValue(this.value, ${element})">Done</button></div>`
 }
 
-/**
- * Generates an HTML template for a task movement interface.
- * This template includes buttons to move a task to different statuses: "To Do", "Await", and "Done".
- *
- * @function moveTaskTo2
- * @param {number} element - The unique identifier for the task.
- * @returns {string} The HTML string representing the task movement options.
- */
+/** Generates an HTML template for a task movement interface.*/
 function moveTaskTo2(element) {
     return `<span class="moveTitle">Move Task To:</span>
     <div class="moveTaskBTN">
@@ -320,14 +207,7 @@ function moveTaskTo2(element) {
     <button value="done" onclick="changeIdTaskValue(this.value, ${element})">Done</button></div>`
 }
 
-/**
- * Generates an HTML template for a task movement interface.
- * This template includes buttons to move a task to different statuses: "To Do", "In Progress", and "Done".
- *
- * @function moveTaskTo3
- * @param {number} element - The unique identifier for the task.
- * @returns {string} The HTML string representing the task movement options.
- */
+/** Generates an HTML template for a task movement interface.*/
 function moveTaskTo3(element) {
     return `<span class="moveTitle">Move Task To:</span>
     <div class="moveTaskBTN">
@@ -336,14 +216,7 @@ function moveTaskTo3(element) {
     <button value="done" onclick="changeIdTaskValue(this.value, ${element})">Done</button></div>`
 }
 
-/**
- * Generates an HTML template for a task movement interface.
- * This template includes buttons to move a task to different statuses: "To Do", "In Progress", and "Await".
- *
- * @function moveTaskTo4
- * @param {number} element - The unique identifier for the task.
- * @returns {string} The HTML string representing the task movement options.
- */
+/** Generates an HTML template for a task movement interface. */
 function moveTaskTo4(element) {
     return `<span class="moveTitle">Move Task To:</span>
     <div class="moveTaskBTN">
@@ -352,18 +225,7 @@ function moveTaskTo4(element) {
     <button value="await" onclick="changeIdTaskValue(this.value, ${element})">Await</button></div>`
 }
 
-/**
- * Generates an HTML template for editing a task.
- * This template includes fields for the task's title, description, due date, priority,
- * assigned contacts, and subtasks. It also provides a button to confirm the edits.
- *
- * @function editTask
- * @param {Object} objData - The data object representing the task to be edited.
- * @param {string} objData.title - The current title of the task.
- * @param {string} objData.date - The current due date of the task.
- * @param {number} objData.number - The unique identifier for the task.
- * @returns {string} The HTML string representing the edit task interface.
- */
+/** Generates an HTML template for editing a task.*/
 function editTask(objData) {
     return `<div id="EditCloseArea" class="popupEdit" onclick="closeDropDownContact()">
     <div class="closeIconEdit"><img onclick="closePopUpTaskSmall()" src="../img/Close.png" alt=""></div>
@@ -410,56 +272,22 @@ function editTask(objData) {
     </div>`
 }
 
-/**
- * Generates an HTML template for a checkbox contact item.
- * This template includes a checkbox for selecting a contact, along with the contact's name,
- * initials, and color representation.
- *
- * @function checkboxContactTemplate
- * @param {string} isChecked - A string representing whether the checkbox is checked (`'checked'` or an empty string).
- * @param {string} contactName - The name of the contact.
- * @param {string} initials - The initials of the contact.
- * @param {string} color - The color associated with the contact, used for styling.
- * @returns {string} The HTML string representing the checkbox contact item.
- */
+/** Generates an HTML template for a checkbox contact item. */
 function checkboxContactTemplate(isChecked, contactName , initials, color) {
     return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ${isChecked} ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><span>${initials}</span></div></div> </label></div>`
 }
 
-/**
- * Generates an HTML template for a checkbox contact item without a checked state.
- * This template includes a checkbox for selecting a contact, along with the contact's name,
- * initials, and color representation.
- *
- * @function checkboxContactTemplateEmpty
- * @param {string} contactName - The name of the contact.
- * @param {string} initials - The initials of the contact.
- * @param {string} color - The color associated with the contact, used for styling.
- * @returns {string} The HTML string representing the checkbox contact item without a checked state.
- */
+/** Generates an HTML template for a checkbox contact item without a checked state.  */
 function checkboxContactTemplateEmpty( contactName , initials, color) {
     return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><span>${initials}</span></div></div> </label></div>`
 }
 
-/**
- * Generates an HTML template for displaying contact initials with a specified background color.
- * 
- * @function initialsLoadContact
- * @param {string} initials - The initials of the contact to be displayed.
- * @param {string} colorIni - The background color associated with the initials.
- * @returns {string} The HTML string representing the contact initials with styling.
- */
+/** Generates an HTML template for displaying contact initials with a specified background color. */
 function initialsLoadContact(initials, colorIni) {
     return ` <div class="b-${colorIni} boxinfo "><span>${initials}</span></div> `
 }
 
-/**
- * Generates an HTML template for a button to add a new subtask.
- * The button displays a prompt to add a subtask and includes a plus icon.
- * 
- * @function subtaskstart
- * @returns {string} The HTML string representing the button to add a new subtask.
- */
+/** Generates an HTML template for a button to add a new subtask. */
 function subtaskstart() {
     return `<div onclick="subtastAdd()" class="substart2">
                 <span>Add new subtask</span>
@@ -467,13 +295,7 @@ function subtaskstart() {
             </div>`;
 }
 
-/**
- * Generates an HTML template for a subtask input field with options to add or delete the subtask.
- * This template includes an input field for the subtask name and buttons for adding or deleting the input.
- * 
- * @function subtaskAdd
- * @returns {string} The HTML string representing the subtask input area with action buttons.
- */
+/** Generates an HTML template for a subtask input field with options to add or delete the subtask.*/
 function subtaskAdd() {
     return `<div class="subAddIn">
                 <input id="subInput" class="inputSub" type="text">
@@ -484,7 +306,7 @@ function subtaskAdd() {
                 </div>
             </div>`;
 }
-
+/** Generates an HTML template for a subtask list item.*/
 function addSubTask(inputValue) {
     return `
     <li class="liSubTask" ondblclick="editSubTask(this)">
@@ -503,14 +325,7 @@ function addSubTask(inputValue) {
     </li>`;
 }
 
-/**
- * Generates an HTML template for a subtask list item.
- * The template includes the subtask text, options to delete the subtask, and an edit option.
- * 
- * @function addSubTask
- * @param {string} inputValue - The text value of the subtask to be displayed.
- * @returns {string} The HTML string representing a subtask list item with actions for editing and deleting.
- */
+/** Generates an HTML template for a subtask list item.*/
 function templateSub1(currentText) {
     return `
     <input class="inputSubAdd" type="text" value="${currentText}">
@@ -521,14 +336,7 @@ function templateSub1(currentText) {
     </div>`;
 }
 
-/**
- * Generates an HTML template for a subtask element with options to delete or save the subtask.
- * The template includes the subtask text and action icons for deletion and saving.
- * 
- * @function templateSub2
- * @param {string} newValue - The text value of the subtask to be displayed.
- * @returns {string} The HTML string representing a subtask with action buttons.
- */
+/** Generates an HTML template for a subtask element with options to delete or save the subtask. */
 function templateSub2(newValue) {
     return `<span class="taskText">• ${newValue}</span>
             <div class="addDelet">
@@ -538,14 +346,7 @@ function templateSub2(newValue) {
             </div>`;
 }
 
-/**
- * Generates an HTML template for a subtask element, providing options to delete or edit/save the subtask.
- * The template includes the subtask text and action icons for deletion and toggling between edit and save.
- * 
- * @function templateSub3
- * @param {string} newValue - The text value of the subtask to be displayed.
- * @returns {string} The HTML string representing a subtask with action buttons for deletion and editing.
- */
+/** Generates an HTML template for a subtask element, providing options to delete or edit/save the subtask.*/
 function templateSub3(newValue) {
     return`  <span class="taskText">• ${newValue}</span>
             <div class="addDelet">
@@ -555,14 +356,7 @@ function templateSub3(newValue) {
             </div>`
 }
 
-/**
- * Generates an HTML template for an editable subtask input field.
- * The template includes an input field for the subtask text and action icons for deleting or editing/saving the subtask.
- * 
- * @function templateSub4
- * @param {string} currentText - The current text value of the subtask to be displayed in the input field.
- * @returns {string} The HTML string representing an editable subtask with action buttons.
- */
+/**  Generates an HTML template for an editable subtask input field. */
 function templateSub4(currentText) {
     return`
         <input class="inputSubAdd" type="text" value="${currentText}">

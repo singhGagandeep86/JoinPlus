@@ -286,15 +286,17 @@ function closePopUpTask() {
 
 /**
  * Updates the subtask progress bar for a given task element.
- * @param {Object} element - The task object containing subtask information.
- * @param {number} checkedCount - The count of completed subtasks.
 
  */
 function subtaskBar(element, checkedCount) {
     let rangeId = `subtaskRange-${element['number']}`;
     let range = document.getElementById(rangeId);
-    let subtaskCount = Object.keys(element.subtask).length
-    range.innerHTML = templateRange(subtaskCount, checkedCount);
+    let subtaskCount = element.subtask ? Object.keys(element.subtask).length : 0;
+    if(subtaskCount === 0){
+        range.innerHTML = '';
+    }else{
+        range.innerHTML = templateRange(subtaskCount, checkedCount);
+    }   
 }
 
 /**

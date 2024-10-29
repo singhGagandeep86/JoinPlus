@@ -42,7 +42,6 @@ async function loadData(path) {
 
 /**
  * Opens a small popup to display task information.
- * @param {number} i - The index of the task whose information is to be displayed.
  */
 function openPopUpTaskSmall(i) {
     let info = document.getElementById('popupTaskInfo');
@@ -61,7 +60,6 @@ function openPopUpTaskSmall(i) {
 /**
  * This function filters the global array `arrayLoad` to find a task
  * matching the specified index. It returns the corresponding task
- * @param {number} i - The index of the task to retrieve.
  */
 function createobjFromElement(i) {
     let objDataTasksmall = arrayLoad.filter(e => e['number'] == i);
@@ -82,7 +80,6 @@ function closePopUpTaskSmall() {
 /**
  * Toggles the visibility of the task switch popup.
  * It updates the arrow icon to indicate the current state of the popup.
- * @param {number|string} element - The identifier of the task element for which the switch popup is opened.
  */
 function openPopUpTaskSwitch(element) {
     let select = document.getElementById('popupTaskSwitch' + element);
@@ -111,7 +108,6 @@ function toggleOpenTaskSwitch(select, arrow, element, id ) {
 }
 /**
  * This function hides the popup that allows switching task options based on the provided element ID.
- * @param {number|string} element - The identifier of the task element for which the switch popup is closed.
  */
 function closePopUpTaskSwitch(element) {
     let select = document.getElementById('popupTaskSwitch' + element);
@@ -121,8 +117,6 @@ function closePopUpTaskSwitch(element) {
 /**
  * Switches the task to a new status based on the provided task ID.
  * This function determines the target status of a task (e.g., 'toDo', 'progress', 'await', or 'done')
- * @param {string} id - The current status ID of the task.
- * @param {number|string} element - The identifier of the task element to be moved.
  */
 function dataSwitch(id, element) {
     if ('toDo' == id) {
@@ -139,8 +133,6 @@ function dataSwitch(id, element) {
 /**
  * Changes the ID of a task and reloads the task data.
  * updates the UI by removing the arrow indicator, and reloads the task data from the server.
- * @param {string} value - The new ID value to assign to the task.
- * @param {number|string} element - The identifier of the task element to be updated.
  */
 async function changeIdTaskValue(value, element) {
     let arrow = document.getElementById('arrowSwitch' + element);
@@ -154,8 +146,6 @@ async function changeIdTaskValue(value, element) {
 /**
  * This asynchronous function sends a request to update the ID of a task identified by its element number.
  * It constructs the appropriate database URL, prepares the data for the update, and sends the update request.
- * @param {string} value - The new ID value to assign to the task.
- * @param {number|string} element - The identifier of the task element whose ID is to be changed.
  */
 async function changeIdTask(value, element) {
     let path = `/task/task${element}`;
@@ -181,7 +171,6 @@ function time(objDateTask) {
 /**
  * Adds contact information to the contact area for a given task.
  * This function retrieves contact names and their corresponding colors from the 
- * @param {Object} objDateTask - The task object containing contact information.
 */
 function addcontactInfo(objDateTask) {
     let contactArea = document.getElementById('contactAreaInfo');
@@ -203,7 +192,6 @@ function addcontactInfo(objDateTask) {
 /**
  * Adds subtask information to the subtask area for a given task.
  * This function populates the subtask area with subtasks from the provided task object.
- * @param {Object} objDateTask - The task object containing subtask information.
  */
 function addSubtaskInfo(objDateTask) {
     let subtaskInput = document.getElementById('subtaskArea');
@@ -242,8 +230,6 @@ function moveTo(element,) {
 /**
  * This function constructs the URL for the specific task based on its number,
  * then sends a POST request to update the task's ID to the specified element.
- * @param {string} element - The new ID to assign to the task.
- * @param {Object} changeId - The object representing the task that is being updated.
  */
 async function postId(element, changeId) {
     let number = changeId.number;
@@ -270,8 +256,6 @@ async function postDataId(url, data) {
 /**
  * This function retrieves the checked state of a specific checkbox, constructs the
  * corresponding URL to update the task's subtask status in the database, and then
- * @param {number} i - The index of the main task in the array.
- * @param {number} j - The index of the subtask in the array.
  */
 async function inputCheckBoxInfo(i, j) {
     let checkboxId = `checkbox-${i}-${j}`;
