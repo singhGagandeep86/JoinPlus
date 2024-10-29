@@ -1,19 +1,22 @@
 let userData = [];
 let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
 
-// Funktion zum Abrufen der E-Mail und Passwort-Eingaben
+// Function to retrieve email and password inputs
+
 function getEmailAndPassword(event) {
     const email = event.target.email.value;
     const password = event.target.password.value;
     return { email, password };
 }
 
-// Funktion zur Validierung der Anmeldeinformationen
+// Function to validate credentials
+
 function validateCredentials(email, password) {
     return loginVali(email, password);
 }
 
-// Funktion zur Authentifizierungsanfrage bei Firebase
+// Function for authentication request with Firebase
+
 function fetchAuthToken(email, password) {
     return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
         method: 'POST',
@@ -28,7 +31,8 @@ function fetchAuthToken(email, password) {
     });
 }
 
-// Funktion zur Antwortverarbeitung
+// Function for response processing
+
 function processResponse(response) {
     if (!response.ok) {
         throw new Error(`Fehler: ${response.status} ${response.statusText}`);
@@ -36,22 +40,23 @@ function processResponse(response) {
     return response.json();
 }
 
-// Funktion zur Überprüfung des Tokens und zur Weiterleitung
+// Function to verify the token and redirect
 function handleSuccessfulLogin(data) {
     if (data.idToken) {
         sessionStorage.setItem('authToken', data.idToken);
         window.location.href = "assets/html/summary.html";
     } else {
-        
     }
 }
 
-// Funktion zur Fehlerbehandlung
+// Function for error handling
+
 function handleLoginError() {
     errorLogin();
 }
 
-// Haupt-Login-Funktion
+// Main login function
+
 function handleLogin(event) {
     event.preventDefault();
     let { email, password } = getEmailAndPassword(event);
@@ -65,11 +70,10 @@ function handleLogin(event) {
     }
 }
 
-
 /**
- * Logs in a guest user by creating a new anonymous account.
+ * Logs in a guest user by creating a new guest account.
  */
-// Funktion zum Erstellen der Anfragekonfiguration für die Gastanmeldung
+
 function getGuestAuthConfig() {
     return {
         method: 'POST',
@@ -87,7 +91,8 @@ function fetchGuestAuthToken() {
     return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', getGuestAuthConfig());
 }
 
-// Funktion zur Verarbeitung der Antwort
+// Function to process the response
+
 function processGuestResponse(response) {
     if (!response.ok) {
         throw new Error(`Fehler: ${response.status} ${response.statusText}`);
@@ -95,7 +100,8 @@ function processGuestResponse(response) {
     return response.json();
 }
 
-// Funktion zum Extrahieren des Tokens
+// Function to extract the token
+
 function extractGuestToken(data) {
     if (data.idToken) {
         return data.idToken;
@@ -104,7 +110,8 @@ function extractGuestToken(data) {
     }
 }
 
-// Hauptfunktion zur Gastanmeldung
+// Main function for guest registration
+
 function loginGuest() {
     return fetchGuestAuthToken()
         .then(processGuestResponse) // Antwortverarbeitung
@@ -249,23 +256,32 @@ function getDatabaseUrl(path) {
 }
 
 /**
- * Fetches the user ID (UID) associated with the current authentication token 
- * and stores it in session storage if it is not already present.
+ * Fetches the user ID (UID) from the Firebase authentication API.
+ * @returns {Promise<string>} The user's UID if the request is successful.
+ */
+
+async function fetchUID() {
+    let token = sessionStorage.getItem('authToken');
+    let response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            idToken: token
+        })
+    });
+    let data = await response.json();
+    return data.users[0].localId;
+}
+
+/**
+ * Checks if the user ID (UID) is already stored in sessionStorage.
+ * @returns {Promise<void>} Resolves when the UID is successfully stored or already present.
  */
 async function fetchAndStoreUID() {
-    let token = sessionStorage.getItem('authToken');
     if (!sessionStorage.getItem('uid')) {
-        let response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                idToken: token
-            })
-        });
-        let data = await response.json();
-        let uid = data.users[0].localId;
+        let uid = await fetchUID();
         sessionStorage.setItem('uid', uid);
     }
 }
