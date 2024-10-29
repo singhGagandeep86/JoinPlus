@@ -12,11 +12,8 @@ function loadContactData(firebaseData, objData) {
 }
 
 /**
- * Loads and displays contact data in the specified contact area.
- * If no contacts are provided, an empty state is loaded.
- * When contacts are provided, each contact's details, including name, initials, color, 
- * and checkbox status, are dynamically generated and displayed within the contact area.
- */
+ * When contacts are provided, each contact's details, including name, initials, color,
+ * and checkbox status, are dynamically generated and displayed within the contact area. */
 function loadContactDataIf(contact, contactData, firebaseData, contactArea) {
     if (contact == null) {
         loadContactEmpty(contactData, firebaseData)
@@ -27,8 +24,7 @@ function loadContactDataIf(contact, contactData, firebaseData, contactArea) {
             let initials = extrahiereInitialen(contactName);
             let isChecked = contact.some(selectedContact => selectedContact === contactName) ? 'checked' : '';
             contactArea.innerHTML += checkboxContactTemplate(isChecked, contactName, initials, color);
-        }
-    }
+        }}
 }
 
 /** Loads and displays an empty state for contact data in the contact drop area.*/
@@ -49,13 +45,11 @@ function initialsLoad(objData) {
         : Object.values(objData.contact);
     let color = objData.contactcolor === undefined ? null : Object.values(objData.contactcolor);
     let initialsContact = document.getElementById('initialsArea');
-    initialsLoadIf(contactUser, color, initialsContact) 
+    initialsLoadIf(contactUser, color, initialsContact)
 }
 
 /**
- * Loads and displays initials for each user in the provided contact list.
- * If no contact data is provided, it clears the initials display area and hides it.
- */
+ * Loads and displays initials for each user in the provided contact list.*/
 function initialsLoadIf(contactUser, color, initialsContact) {
     if (contactUser == null) {
         initialsContact.innerHTML = '';
@@ -175,8 +169,7 @@ function priorityEditCheck(prioCheck) {
         if (prio[i].value === prioCheck) {
             prio[i].checked = true;
             break;
-        }
-    }
+        }}
 }
 
 /** Retrieves the selected contacts from the contact dropdown.*/
@@ -190,9 +183,7 @@ function getSelectedContacts() {
             if (colorName) {
                 let color = colorName.classList[0].split('-')[1];
                 checkContacts.push({ name: contactName, color: color });
-            }
-        }
-    }
+            }}}
     return checkContacts;
 }
 
@@ -208,8 +199,7 @@ function intiCheckContact() {
             let color = checkContact[i].color;
             let initials = extrahiereInitialen(contactName);
             initialsContact.innerHTML += initialsLoadContact(initials, color);
-        }
-    }
+        }}
 }
 
 /** Initializes the subtask input area by clearing its current content*/
@@ -269,8 +259,7 @@ function saveTask(event, checkElement) {
         let newValue = inputField.value.trim();
         if (newValue !== '') {
             liElement.innerHTML = templateSub2(newValue);
-        }
-    }
+        }}
 }
 
 /** Toggles the edit mode for a subtask when triggered by an event.*/
@@ -281,11 +270,7 @@ function toggleEditTask(event, checkElement) {
     toggleEditTaskIf(liElement, inputField);
 }
 
-/**
- * Toggles the edit mode for a task list item element.
- * When the item is in editing mode, it saves the updated task text if the input is not empty,
- * applies the appropriate template for displaying the saved task, and exits editing mode.
- */
+/* When the item is in editing mode, it saves the updated task text if the input is not empty, */
 function toggleEditTaskIf(liElement, inputField) {
     if (liElement.classList.contains('editing')) {
         let newValue = inputField.value.trim();
@@ -299,7 +284,6 @@ function toggleEditTaskIf(liElement, inputField) {
         liElement.classList.add('editing');
     }
 }
-
 
 /** Retrieves all subtask values from the subtask list.*/
 function getAllSubTasks() {
@@ -320,8 +304,7 @@ function readPrio() {
         if (priorityElements[i].checked) {
             priority = priorityElements[i].value;
             break;
-        }
-    }
+        }}
     return priority;
 }
 
@@ -341,9 +324,7 @@ function readEditData(number) {
     nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority);
 }
 
-/** Validates the title of the task during the edit process.
- * This function checks if the title is empty. If it is, it calls the
- */
+/** Validates the title of the task during the edit process.*/
 function nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority) {
     if (title === '') {
         failNameEditBoard();

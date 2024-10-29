@@ -62,10 +62,9 @@ function handleLogin(event) {
     let { email, password } = getEmailAndPassword(event);
     if (validateCredentials(email, password)) {
         fetchAuthToken(email, password)
-            .then(processResponse)    // Verarbeitung der Antwort
-            .then(handleSuccessfulLogin) // Überprüfung des Tokens und Weiterleitung
-            .catch(handleLoginError);  // Fehlerbehandlung
-    } else {
+            .then(processResponse)
+            .then(handleSuccessfulLogin)
+            .catch(handleLoginError);
         handleLoginError();
     }
 }
@@ -147,10 +146,7 @@ function logout() {
 
 /**
  * Loads the initial user based on the user ID stored in session storage.
- * If no user is found, it creates a guest user and writes a greeting.
- * If a user is found, it extracts the user's initials, capitalizes the name,
- * and writes a personalized greeting.
- */
+ * If no user is found, it creates a guest user and writes a greeting. */
 async function loadInitailUser() {
     let userId = sessionStorage.getItem('uid');
     let userObject = userData.filter(e => e['uid'] === userId);
@@ -169,8 +165,7 @@ function loadInitailUserIf(userId, userObject) {
             let replaceElement = capitalizeName(element)
             createUser(userInitial);
             writeGreetin(replaceElement, userObject);
-        }
-    }
+        }}
 }
 
 /**
@@ -321,14 +316,14 @@ function returnInput() {
  * Validates the email and password for login.
  */
 function loginVali(email, password) {
-    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/; 
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (!email || !password) {
         errorLogin();
         return false;
-    } 
+    }
     if (!emailRegex.test(email)) {
         valiEmail();
         return false;
-    }  
+    }
     return true;
 }
