@@ -64,7 +64,6 @@ async function postData(path, data) {
     });
 }
 
-
 /**
  * Sorts the array of contacts by their names in ascending order.
  * @returns {undefined}
@@ -82,7 +81,6 @@ function sortContactsByName() {
         return 0;
     });
 }
-
 
 /**
  * Loads contact data into the contact area.
@@ -105,8 +103,6 @@ function loadContact() {
         }
         contactSpace.innerHTML += loadContactData(i, initials);
     }}
-
-
 
 /**
  * Clears the currently active contact by removing the 'active-contact' class from all contact items
@@ -259,7 +255,6 @@ function toggleEditImage() {
     }
 }
 
-
 /**
  * Hides the edit image element again.
  */
@@ -294,7 +289,6 @@ async function addContactData() {
 
 /**
  * @param {string} input - The input string to be validated.*/
-
 function isValid(input, regex) { return regex.test(input); }
 
 /**

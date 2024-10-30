@@ -32,7 +32,6 @@ function reloadAdd() {
 /**
  * Clears the error markings in the input fields.
  */
-
 function clearFailAdd(inputId, errorId) {
     let inputValue = document.getElementById(inputId).value.trim();
     if (inputValue !== '') {
@@ -45,7 +44,6 @@ function clearFailAdd(inputId, errorId) {
         document.getElementById('failAll').classList.add('d_none');
     }
 }
-
 
 /**
  * If all input fields have valid values, the error message for missing input is also removed.
@@ -69,7 +67,6 @@ function clearFailEdit(inputId, errorId) {
  * Creates new contact data.
  * @returns {Promise<void>}
  */
-
 async function createContactData(name, email, phone, number, firstNameInitial, color) {
     await postCreateData(`/contact/contact${number}`, {
         'name': name,
@@ -104,7 +101,6 @@ async function postCreateData(path = "", data = {}) {
     } catch (error) {
     }
 }
-
 
 /**
  * Extracts the initials from a given contact name.
@@ -179,7 +175,6 @@ async function deleteContact(number) {
     load();
 }
 
-
 /**
  * Deletes the contact at the given index and clears the edit view.
  * @param {number} i - The index of the contact to be deleted.
@@ -205,7 +200,6 @@ async function editContactData(i) {
         saveEditDisplayOff();
     }
 }
-
 
 /**
  * Hides the edit overlay and adjusts the display of contact details and container elements
@@ -239,7 +233,6 @@ async function editContactFB(name, email, phone, number) {
         'rufnummer': phone,
     });
 }
-
 
 /**
  * Sends a PATCH request to update data at the specified path.
