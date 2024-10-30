@@ -10,12 +10,12 @@ let colorGen = [
     "Rot2", "Neongelb", "Neongrün", "Neonorange"
 ];
 
-/**
- * Loads contact data, sorts it, displays the contact, and fetches user data.
- * This asynchronous function performs multiple tasks to load contact data,
- * sort it alphabetically, display it, and retrieve additional user data.
- */
 
+/**
+ * Loads contact data and user information asynchronously.
+ * This function performs the following tasks:
+ * @returns {Promise<void>}
+ */
 async function load() {
     await loadData("/contact");
     sortContactsByName();
@@ -64,10 +64,11 @@ async function postData(path, data) {
     });
 }
 
-/**
- * Sorts the contacts alphabetically by name.
- */
 
+/**
+ * Sorts the array of contacts by their names in ascending order.
+ * @returns {undefined}
+ */
 function sortContactsByName() {
     array.sort((a, b) => {
         let nameA = a.name.toUpperCase();
@@ -82,10 +83,12 @@ function sortContactsByName() {
     });
 }
 
-/**
- * Loads contacts into the display.
- */
 
+/**
+ * Loads contact data into the contact area.
+ * Iterates through the contact array and populates the contact area with HTML for each contact.
+ * @returns {undefined}
+ */
 function loadContact() {
     let contactSpace = document.getElementById('contactArea');
     contactSpace.innerHTML = '';
@@ -103,10 +106,13 @@ function loadContact() {
         contactSpace.innerHTML += loadContactData(i, initials);
     }}
 
-/**
- * Removes the active class from all contacts and clears the content of the contact details section.
- */
 
+
+/**
+ * Clears the currently active contact by removing the 'active-contact' class from all contact items
+ * and clearing the contact details area.
+ * @returns {undefined}
+ */
     function clearActiveContact() {
         let allContacts = document.querySelectorAll('.contact-item');
         for (let j = 0; j < allContacts.length; j++) {
@@ -115,11 +121,13 @@ function loadContact() {
         document.getElementById('contactDetails').innerHTML = '';
     }
 
-    /**
- * Activates the specified contact and displays the associated details.
- * If the screen width is 800px or less, additional adjustments for mobile view are applied.
- */
 
+/**
+ * Sets a contact as active, loading its details and adding a class of 'active-contact' to the associated contact item.
+ * @param {number} i - The index of the contact to set as active.
+ * @param {string} number - The phone number of the active contact.
+ * @param {string} initials - The initials of the active contact.
+ */
     function setActiveContact(i, number, initials) {
         let allContacts = document.querySelectorAll('.contact-item');
         let contactDetails = document.getElementById('contactDetails');
@@ -134,12 +142,11 @@ function loadContact() {
         activeContact(i, number, initials);
     }
 
-    /**
- * Main function to show contact details.
- * Checks if the specified contact is already active. If it is, clears the active contact.
- * Otherwise, clears any active contact and sets the specified contact as active.
+/**
+ * Toggles the active state of a contact and displays its details when clicked.
+ * @param {number} i - The index of the contact to toggle.
+ * @param {string} initials - The initials of the contact to toggle.
  */
-
     function showContactDetails(i, initials) {
         let number = array[i].number;
         let allContacts = document.querySelectorAll('.contact-item');
@@ -171,11 +178,11 @@ function activeContact(i, number, initials) {
     };
 }
 
-/**
- * Shows the contact list.
- * @param {number} i - The index of the contact.
- */
 
+/**
+ * Displays the contact list by toggling visibility of related UI components.
+ * @param {number} i - The index of the contact to be deactivated.
+ */
 function showContactList(i) {
     let allContacts = document.querySelectorAll('.contact-item');
     document.querySelector('.container').classList.remove('hidden');
@@ -189,7 +196,6 @@ function showContactList(i) {
  * Opens the edit window for a contact.
  * @param {number} i - The index of the contact.
  */
-
 function editContact(i) {
     let contactName = array[i].name;
     let initials = extrahiereInitialen(contactName);
@@ -202,10 +208,11 @@ function editContact(i) {
     stopEditArea();
 }
 
-/**
- * Stops the edit event.
- */
 
+/**
+ * Prevents the event from bubbling up from the EditAreaStop element, thus preventing the click event from
+ * triggering the closing of the edit window when the area is clicked.
+ */
 function stopEditArea() {
     let area = document.getElementById('EditAreaStop');
     area.addEventListener('click', (event) => {
@@ -217,7 +224,6 @@ function stopEditArea() {
  * Loads the input fields for editing the contact.
  * @param {number} i - The index of the contact.
  */
-
 function loadInputEdit(i) {
     document.getElementById("name2").value = array[i].name;
     document.getElementById("email2").value = array[i].email;
@@ -228,7 +234,6 @@ function loadInputEdit(i) {
  * Initializes the edit button.
  * @param {number} i - The index of the contact.
  */
-
 function initializeEditButton(i) {
     let editBtn = document.getElementById('editBtn');
     editBtn.onclick = function (event) {
@@ -242,9 +247,9 @@ function initializeEditButton(i) {
 }
 
 /**
- * Toggles the edit view.
+ * Toggles the visibility of the edit image element. If the element is currently hidden,
+ * it will be shown; otherwise, it will call the function to close the edit view.
  */
-
 function toggleEditImage() {
     let editImage2 = document.getElementById('editImage2');
     if (editImage2.classList.contains('d_none')) {
@@ -254,19 +259,19 @@ function toggleEditImage() {
     }
 }
 
-/**
- * Closes the edit view.
- */
 
+/**
+ * Hides the edit image element again.
+ */
 function closeEditImage() {
     let editImage2 = document.getElementById('editImage2');
     editImage2.classList.add('d_none');
 }
 
-/**
- * Closes the edit view for the contact.
- */
 
+/**
+ * Hides the edit contact overlay.
+ */
 function editContactOff() {
     document.getElementById('overlayEdit').classList.add('d_none');
 }
@@ -275,7 +280,6 @@ function editContactOff() {
  * Adds new contact data.
  * @returns {Promise<void>}
  */
-
 async function addContactData() {
     let name = document.getElementById('name').value.trim();
     let email = document.getElementById('email').value.trim();
@@ -283,13 +287,12 @@ async function addContactData() {
     if (valiAdd(name, email, phone)) {
         let number = generateRandomNumber();
         let firstNameInitial = extrahiereInitialen2(name);
-        let color = farbGenerator().toLowerCase();
+        let color = coloGenerator().toLowerCase();
         await createContactData(name, email, phone, number, firstNameInitial, color);
         reloadAdd();
     }}
 
 /**
- * Checks if a given input matches the specified regular expression pattern.
  * @param {string} input - The input string to be validated.*/
 
 function isValid(input, regex) { return regex.test(input); }
@@ -298,7 +301,6 @@ function isValid(input, regex) { return regex.test(input); }
  * Validates name, email, and phone inputs for a form submission.
  * @returns {boolean} - Returns true if all fields are valid; otherwise, false.
  */
-
 function valiAdd(name, email, phone) {
     if (!name || !email || !phone) return failAllAdd() && false;
     if (!isValid(name, /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/)) return failName() && false;
@@ -311,14 +313,12 @@ function valiAdd(name, email, phone) {
 /**
  * @returns {boolean} - Returns true if the input matches the regex; otherwise, false.
  */
-
 function isValid(input, regex) { return regex.test(input); }
 
 /**
  * Validates the 'name', 'email', and 'phone' inputs for editing form data.
  * @returns {boolean} - Returns true if all fields are valid; otherwise, false.
  */
-
 function valiEdit() {
     let name = document.getElementById('name2').value.trim(),
         email = document.getElementById('email2').value.trim(),
@@ -333,36 +333,36 @@ function valiEdit() {
 }
 
 /**
- * Marks the name field in case of incorrect input.
+ * Marks the name field as invalid by adding a 'failinput' class and
+ * displays an error message by removing the 'd_none' class.
  */
-
 function failName() {
     document.getElementById('name').classList.add('failinput');
     document.getElementById('failName').classList.remove('d_none');
 }
 
 /**
- * Marks the phone number field in case of incorrect input.
+ * Marks the phone field as invalid by adding a 'failinput' class and
+ * displays an error message by removing the 'd_none' class.
  */
-
 function failPhoneAdd() {
     document.getElementById('phone').classList.add('failinput');
     document.getElementById('failPhone').classList.remove('d_none');
 }
 
 /**
- * Marks the email field in case of incorrect input.
+ * Marks the email field as invalid by adding a 'failinput' class and
+ * displays an error message by removing the 'd_none' class.
  */
-
 function failEmailAdd() {
     document.getElementById('email').classList.add('failinput');
     document.getElementById('failEmail').classList.remove('d_none');
 }
 
 /**
- * Marks all fields in case of missing input.
+ * Marks all fields in the add contact form as invalid by adding a 'failinput' class to each element
+ * and displays an error message by removing the 'd_none' class from the 'failAll' element.
  */
-
 function failAllAdd() {
     document.getElementById('name').classList.add('failinput');
     document.getElementById('email').classList.add('failinput');
@@ -371,9 +371,9 @@ function failAllAdd() {
 }
 
 /**
- * Marks all fields in case of missing input during editing.
+ * Marks all fields in the edit contact form as invalid by adding a 'failinput' class to each element
+ * and displays an error message by removing the 'd_none' class from the 'failAllEdit' element.
  */
-
 function failAllEdit() {
     document.getElementById('name2').classList.add('failinput');
     document.getElementById('email2').classList.add('failinput');
@@ -382,18 +382,16 @@ function failAllEdit() {
 }
 
 /**
- * Marks the phone number field in case of incorrect input during editing.
+ * Adds a red border to the phone input field and makes the error message visible in the edit contact form.
  */
-
 function failPhoneEdit() {
     document.getElementById('phone2').classList.add('failinput');
     document.getElementById('failPhoneEdit').classList.remove('d_none');
 }
 
 /**
- * Marks the email field in case of incorrect input during editing.
+ * Adds a red border to the email input field and makes the error message visible in the edit contact form.
  */
-
 function failEmailEdit() {
     document.getElementById('email2').classList.add('failinput');
     document.getElementById('failEmailEdit').classList.remove('d_none');

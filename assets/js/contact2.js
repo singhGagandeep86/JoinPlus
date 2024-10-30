@@ -1,16 +1,20 @@
-/**
- * Marks the name field in case of incorrect input during editing.
- */
 
+
+/**
+ * Marks the name field with an error style and displays the error message
+ * when the input for the name is invalid during the editing process.
+ */
 function failNameEdit() {
     document.getElementById('name2').classList.add('failinput');
     document.getElementById('failNameEdit').classList.remove('d_none');
 }
 
-/**
- * Resets the input fields for a new contact.
- */
 
+/**
+ * Resets the contact form by removing all input values and
+ * clearing the validation messages and error styles. Also
+ * hides the overlay.
+ */
 function reloadAdd() {
     document.getElementById('name').value = '';
     document.getElementById('email').value = '';
@@ -42,10 +46,12 @@ function clearFailAdd(inputId, errorId) {
     }
 }
 
-/**
- * Clears the error markings in the edit input fields.
- */
 
+/**
+ * If all input fields have valid values, the error message for missing input is also removed.
+ * @param {string} inputId - The ID of the input element to check.
+ * @param {string} errorId - The ID of the error element to hide.
+ */
 function clearFailEdit(inputId, errorId) {
     let inputValue = document.getElementById(inputId).value.trim();
     if (inputValue !== '') {
@@ -75,11 +81,14 @@ async function createContactData(name, email, phone, number, firstNameInitial, c
     });
 }
 
+
 /**
- * Sends data for creating a contact via POST.
+ * Sends a PATCH request to the specified path with the provided data.
+ * Resets the array and reloads the data upon completion.
+ * @param {string} path - The database path where data will be patched.
+ * @param {Object} data - The data object to be sent in the request body.
  * @returns {Promise<void>}
  */
-
 async function postCreateData(path = "", data = {}) {
     try {
         let firebaseUrl = await fetch(getDatabaseUrl(path), {
@@ -96,10 +105,12 @@ async function postCreateData(path = "", data = {}) {
     }
 }
 
-/**
- * Extracts the initials of a contact name.
- */
 
+/**
+ * Extracts the initials from a given contact name.
+ * @param {string} contactName - The full name of the contact from which to extract initials.
+ * @returns {string} - The extracted initials.
+ */
 function extrahiereInitialen(contactName) {
     let nameParts = contactName.split(' ');
     let initials = '';
@@ -109,10 +120,12 @@ function extrahiereInitialen(contactName) {
     return initials;
 }
 
-/**
- * Extracts the first letter of the contact name.
- */
 
+/**
+ * Extracts the first initial from a given contact name.
+ * @param {string} contactName - The full name of the contact from which to extract the first initial.
+ * @returns {string} - The extracted first initial.
+ */
 function extrahiereInitialen2(contactName) {
     let nameParts = contactName.split(' ');
     let initials = '';
@@ -127,16 +140,16 @@ function extrahiereInitialen2(contactName) {
  * @returns {string} - A random color.
  */
 
-function farbGenerator() {
+function coloGenerator() {
     let zufaelligeFarbe = colorGen[Math.floor(Math.random() * colorGen.length)];
     return zufaelligeFarbe;
 }
 
-/**
- * Generates a random six-digit number.
- * @returns {string} - A random six-digit number.
- */
 
+/**
+ * Generates a random 6-digit number ensuring no digit is zero.
+ * @returns {string} - A string representing the generated 6-digit number.
+ */
 function generateRandomNumber() {
     let number = '';
     for (let i = 0; i < 6; i++) {
@@ -153,7 +166,6 @@ function generateRandomNumber() {
  * Deletes a contact based on the contact number.
  * @returns {Promise<void>}
  */
-
 async function deleteContact(number) {
     let contactDetails = document.getElementById('contactDetails');
     let path = `/contact/contact${number}`;
@@ -167,10 +179,12 @@ async function deleteContact(number) {
     load();
 }
 
-/**
- * Deletes the edited contact.
- */
 
+/**
+ * Deletes the contact at the given index and clears the edit view.
+ * @param {number} i - The index of the contact to be deleted.
+ * @returns {Promise<void>}
+ */
 function deleteEdit(i) {
     let number = array[i].number;
     deleteContact(number);
@@ -181,7 +195,6 @@ function deleteEdit(i) {
  * Updates the contact data.
  * @returns {Promise<void>}
  */
-
 async function editContactData(i) {
     let number = array[i].number;
     let name = document.getElementById('name2').value;
@@ -193,10 +206,11 @@ async function editContactData(i) {
     }
 }
 
-/**
- * Hides the edit display.
- */
 
+/**
+ * Hides the edit overlay and adjusts the display of contact details and container elements
+ * based on the window width. Clears the content of the contact details section.
+ */
 function saveEditDisplayOff() {
     let contactDetail = document.getElementById('contactDetails');
     if (window.innerWidth <= 800) {
@@ -217,7 +231,6 @@ function saveEditDisplayOff() {
  * @param {string} name - The name of the contact.
  * @returns {Promise<void>}
  */
-
 async function editContactFB(name, email, phone, number) {
     let path = `/contact/contact${number}`
     await postEditData(path, {
@@ -227,11 +240,13 @@ async function editContactFB(name, email, phone, number) {
     });
 }
 
+
 /**
- * Sends updated contact data via POST.
+ * Sends a PATCH request to update data at the specified path.
+ * Clears the array and reloads data upon completion.
+ * @param {string} path - The database path where data will be patched.
  * @returns {Promise<void>}
  */
-
 async function postEditData(path, data) {
     try {
         let firebaseUrl = await fetch(getDatabaseUrl(path), {
