@@ -1,22 +1,34 @@
 let userData = [];
 let BASE_URL = "https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app/";
 
-// Function to retrieve email and password inputs
 
+/**
+ * Retrieves the email and password from the event target.
+ * @param {Event} event - The event whose target contains the email and password input fields.
+ * @returns {Object} - An object with properties "email" and "password".
+ */
 function getEmailAndPassword(event) {
     const email = event.target.email.value;
     const password = event.target.password.value;
     return { email, password };
 }
 
-// Function to validate credentials
 
+/**
+ * Validates user credentials (email and password) before sending an authentication request.
+ * @param {string} email - The user's email address.
+ * @param {string} password - The user's password.
+ * @returns {boolean} - Whether the credentials are valid.
+ */
 function validateCredentials(email, password) {
     return loginVali(email, password);
 }
 
-// Function for authentication request with Firebase
 
+/**
+ * Sends an authentication request to the Firebase Authentication API with the specified email and password.
+ * @returns {Promise<Response>} - The response object from the API after sending the request.
+ */
 function fetchAuthToken(email, password) {
     return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
         method: 'POST',
@@ -31,8 +43,12 @@ function fetchAuthToken(email, password) {
     });
 }
 
-// Function for response processing
 
+/**
+ * Processes the response from an API request.
+ * @param {Response} response - The response object to process.
+ * @returns {Promise<Object>} - The parsed JSON object from the response body.
+ */
 function processResponse(response) {
     if (!response.ok) {
         throw new Error(`Fehler: ${response.status} ${response.statusText}`);
@@ -40,7 +56,12 @@ function processResponse(response) {
     return response.json();
 }
 
-// Function to verify the token and redirect
+
+/**
+ * Handles a successful login response from the API.
+ * @param {Object} data - The response object from the API containing the authentication token.
+ * @returns {void}
+ */
 function handleSuccessfulLogin(data) {
     if (data.idToken) {
         sessionStorage.setItem('authToken', data.idToken);
@@ -49,14 +70,22 @@ function handleSuccessfulLogin(data) {
     }
 }
 
-// Function for error handling
 
+/**
+ * Handles an error response from the login API by calling the errorLogin function.
+ * @returns {void}
+ */
 function handleLoginError() {
     errorLogin();
 }
 
-// Main login function
 
+/**
+ * Handles the login form submission by retrieving the user's email and password, validating the
+ * credentials, and sending an authentication request to the Firebase Authentication API.
+ * @param {Event} event - The event object from the form submission.
+ * @returns {void}
+ */
 function handleLogin(event) {
     event.preventDefault();
     let { email, password } = getEmailAndPassword(event);
@@ -69,10 +98,11 @@ function handleLogin(event) {
     }
 }
 
-/**
- * Logs in a guest user by creating a new guest account.
- */
 
+/**
+ * Returns the configuration object for the guest login request to the Firebase Authentication API.
+ * @returns {Object} - The configuration object.
+ */
 function getGuestAuthConfig() {
     return {
         method: 'POST',
@@ -85,13 +115,23 @@ function getGuestAuthConfig() {
     };
 }
 
-// Funktion zur Durchführung der Gastauthentifizierungsanfrage
+
+/**
+ * Fetches an authentication token for a guest user by sending a sign-up request
+ * to the Firebase Authentication API. Utilizes the configuration from
+ * `getGuestAuthConfig` to ensure the request is properly formatted.
+ * @returns {Promise<Response>} - A promise that resolves to the response of the fetch request.
+ */
 function fetchGuestAuthToken() {
     return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', getGuestAuthConfig());
 }
 
-// Function to process the response
 
+/**
+ * Processes the response from a guest login request to the Firebase Authentication API.
+ * @param {Response} response - The response object from the API.
+ * @returns {Promise<Object>} - The parsed JSON object from the response body.
+ */
 function processGuestResponse(response) {
     if (!response.ok) {
         throw new Error(`Fehler: ${response.status} ${response.statusText}`);
@@ -99,8 +139,12 @@ function processGuestResponse(response) {
     return response.json();
 }
 
-// Function to extract the token
 
+/**
+ * Extracts the authentication token from the response of a guest login request to the
+ * @param {Object} data - The parsed JSON object from the response body.
+ * @returns {string} - The authentication token.
+ */
 function extractGuestToken(data) {
     if (data.idToken) {
         return data.idToken;
@@ -109,8 +153,11 @@ function extractGuestToken(data) {
     }
 }
 
-// Main function for guest registration
 
+/**
+ * Initiates the guest login process by fetching an authentication token from the Firebase Authentication API.
+ * @returns {Promise<string>} - A promise that resolves to the extracted authentication token.
+ */
 function loginGuest() {
     return fetchGuestAuthToken()
         .then(processGuestResponse) // Antwortverarbeitung
@@ -118,10 +165,10 @@ function loginGuest() {
 }
 
 
+
 /**
- * Handles guest login by calling the loginGuest function to obtain a token.
- * If a token is received, it stores the token in session storage,
- * fetches and stores the user ID, and then redirects the user to the summary page.
+ * Initiates a guest login by fetching an authentication token from the Firebase Authentication API and storing it
+ * in session storage. If the token is valid, it redirects to the summary page.
  */
 function guestLogin() {
     loginGuest().then((token) => {
@@ -133,9 +180,10 @@ function guestLogin() {
     });
 }
 
+
 /**
- * Logs out the user by removing authentication and user data from session storage.
- * It then redirects the user to the homepage.
+ * Logs the user out by removing the authentication token and user ID from session storage, and resets the user data array.
+ * Redirects to the login page.
  */
 function logout() {
     sessionStorage.removeItem('authToken');
@@ -144,15 +192,22 @@ function logout() {
     window.location.href = "../../index.html";
 }
 
+
 /**
- * Loads the initial user based on the user ID stored in session storage.
- * If no user is found, it creates a guest user and writes a greeting. */
+ * Loads and initializes the user data from session storage.
+ * @returns {Promise<void>}
+ */
 async function loadInitailUser() {
     let userId = sessionStorage.getItem('uid');
     let userObject = userData.filter(e => e['uid'] === userId);
     loadInitailUserIf(userId, userObject);
 }
 
+/**
+ * Checks if the user data is empty and creates a guest user if so.
+ * @param {string} userId - The user ID from session storage.
+ * @param {Array} userObject - The user data array from session storage.
+ */
 function loadInitailUserIf(userId, userObject) {
     if (userObject == '') {
         let guest = 'GS'
@@ -168,8 +223,11 @@ function loadInitailUserIf(userId, userObject) {
         }}
 }
 
+
 /**
- * Capitalizes the first letter of each word in a given name and converts the rest to lowercase.
+ * Capitalizes the first letter of each word in a string and
+ * @param {string} name - The string to capitalize.
+ * @returns {string} The capitalized string.
  */
 function capitalizeName(name) {
     return name.split(' ')
@@ -189,8 +247,9 @@ function writeGreetin(replaceElement, userObject) {
     }
 }
 
+
 /**
- * Updates the inner HTML of the greeting element to display "Guest User".
+ * Updates the inner HTML of the greeting element with 'Guest User' if the user is a guest.
  */
 function writeGreetinGuest() {
     let nameGreeting = document.getElementById('greetingName');
@@ -215,8 +274,11 @@ function createUser(userInitial, guest, userObject) {
     }
 }
 
+
 /**
- * Extracts the initials from a given name string.
+ * Extracts the initials from a given name.
+ * @param {string} element - The full name from which to extract initials.
+ * @returns {string} - The extracted initials, with each initial capitalized.
  */
 function extrahiereInitialen(element) {
     for (let i = 0; i < element.length; i++) {
@@ -229,8 +291,11 @@ function extrahiereInitialen(element) {
     }
 }
 
+
 /**
- * Fetches user data from the specified path in the database and loads the initial user information.
+ * Fetches the user data from the specified path and loads the user's data into the user data array.
+ * @param {string} path - The database path from which to fetch the user data.
+ * @returns {Promise<void>}
  */
 async function fetchUserData(path) {
     let response = await fetch(getDatabaseUrl(path));
@@ -242,8 +307,11 @@ async function fetchUserData(path) {
     loadInitailUser();
 }
 
+
 /**
- * Constructs a URL for accessing the database with the provided path and the current authentication token.
+ * Constructs the full URL for accessing the database using the given path.
+ * @param {string} path - The specific path to the database resource.
+ * @returns {string} The complete URL with the authentication token.
  */
 function getDatabaseUrl(path) {
     let token = sessionStorage.getItem('authToken');
@@ -254,7 +322,6 @@ function getDatabaseUrl(path) {
  * Fetches the user ID (UID) from the Firebase authentication API.
  * @returns {Promise<string>} The user's UID if the request is successful.
  */
-
 async function fetchUID() {
     let token = sessionStorage.getItem('authToken');
     let response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM`, {
@@ -281,8 +348,10 @@ async function fetchAndStoreUID() {
     }
 }
 
+
 /**
  * Handles login errors by providing visual feedback to the user.
+ * Resets the password input field to empty.
  */
 function errorLogin() {
     document.getElementById('emailInput').classList.add('falseEnter');
@@ -291,8 +360,10 @@ function errorLogin() {
     document.getElementById('passwordInput').value = '';
 }
 
+
 /**
- * Handles email validation errors by providing visual feedback to the user.
+ * Adds a red border to the email input field and makes the error message visible.
+ * Resets the password input field to empty.
  */
 function valiEmail() {
     document.getElementById('emailInput').classList.add('falseEnter');
@@ -300,8 +371,9 @@ function valiEmail() {
     document.getElementById('passwordInput').value = '';
 }
 
+
 /**
- * Resets validation feedback for email and password input fields.
+ * Resets the error visual feedback after a successful login.
  */
 function returnInput() {
     if (document.getElementById('emailInput').length != 0 || document.getElementById('emailInput').value == '') {
@@ -312,8 +384,11 @@ function returnInput() {
     }
 }
 
+
 /**
- * Validates the email and password for login.
+ * @param {string} email the email input by the user
+ * @param {string} password the password input by the user
+ * @returns {bool} true if the inputs are valid, false otherwise
  */
 function loginVali(email, password) {
     let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
