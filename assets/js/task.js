@@ -8,19 +8,24 @@ let expanded = false;
 let dropdownOpen = false;
 let task = {};
 
-// Calls `fetchUrl` to retrieve a URL and `fetchUserData` to load user information from a specific API endpoint (`/user`).
+/**
+ *Calls `fetchUrl` to retrieve a URL and `fetchUserData` to load user information from a specific API endpoint (`/user`).
+ */
 async function init() {
   fetchUrl();
   fetchUserData('/user');
 }
 
-// Combines the base URL with the provided path and attaches an authentication token.
-
+/**
+ * Combines the base URL with the provided path and attaches an authentication token.
+*/
 function getDatabaseUrl(path) {
   return `${BASE_URL}${path}.json?auth=${token}`;
 }
 
-//Fetches data from Firebase and initializes contact data processing.
+/**
+ * Fetches data from Firebase and initializes contact data processing.
+*/
 async function fetchUrl() {
   let firebaseUrl = await fetch(BASE_URL + ".json?auth=" + token);
   let firebaseUrlAsJson = await firebaseUrl.json();
@@ -185,7 +190,9 @@ function spliceSelection(currenID, name) {
   colours.splice(currentName, 1);
 }
 
-//Renders the subtask input field if it doesn't exist.
+/**
+ * Renders the subtask input field if it doesn't exist.
+*/
 function renderSubTask() {
   if (!document.getElementById('inputField')) {
     document.getElementById('inputSubClass').innerHTML = subTaskTemp();
@@ -193,7 +200,9 @@ function renderSubTask() {
   }
 }
 
-//Clears the subtask input field.
+/**
+ * Clears the subtask input field.
+*/
 function resetInput() {
   document.getElementById('inputField').value = '';
   document.getElementById('inputSubClass').innerHTML = emptyField();
@@ -212,26 +221,34 @@ function addList() {
   document.getElementById('inputSubClass').innerHTML = emptyField();
 }
 
-// Applies a hover effect to a subtask icon.
+/**
+ * Applies a hover effect to a subtask icon.
+*/
 function hoverEffect(element) {
   let buttons = element.querySelector('.btns');
   buttons.classList.remove('subTaskIcon');
 }
 
-//Removes the hover effect from a subtask icon.
+/**
+ * Removes the hover effect from a subtask icon.
+*/
 function normalEffect(element) {
   let buttons = element.querySelector('.btns');
   buttons.classList.add('subTaskIcon');
 }
 
-//Enables editing mode for a subtask.
+/**
+ * Enables editing mode for a subtask.
+*/
 function editsubTask(element) {
   let parent = element.closest('li');
   let currentValue = parent.querySelector('.leftPart').innerText.trim();
   parent.innerHTML = editTempelate(currentValue);
 }
 
-//Deletes a subtask from the list.
+/**
+ * Deletes a subtask from the list.
+*/
 function delsubTask(element) {
   element.closest('li').remove();
 }
@@ -292,7 +309,9 @@ function selectOption(element) {
   customSelect.classList.remove('invalid');
 }
 
-//Resets the form and its associated variables when the reset button is clicked.
+/**
+ * Resets the form and its associated variables when the reset button is clicked.
+*/
 function resetAll() {
   deletArray()
   resetingGlobalVariable();
@@ -309,7 +328,9 @@ function resetAll() {
   }
 }
 
-//Clears all arrays used for storing task-related data.
+/**
+ * Clears all arrays used for storing task-related data.
+*/
 function deletArray() {
   names = [];
   namesInitials = [];
@@ -317,13 +338,17 @@ function deletArray() {
   array = [];
 }
 
-//Generates a string representing the color associated with the task category.
+/**
+ * Generates a string representing the color associated with the task category.
+*/
 function categoryColourGen() {
   let category = document.getElementById('customSelect').innerText;
   return category.slice(0, 4);
 }
 
-//Creates a subtask object from the list of subtasks.
+/**
+ * Creates a subtask object from the list of subtasks.
+*/
 function subtastCreate(list) {
   let subtask = {};
   for (let i = 0; i < list.length; i++) {
@@ -334,7 +359,9 @@ function subtastCreate(list) {
   return subtask
 }
 
-//Creates a checked state object for each subtask.
+/**
+ * Creates a checked state object for each subtask.
+*/
 function checkedCreate(list) {
   let checked = {};
   for (let i = 0; i < list.length; i++) {
@@ -344,7 +371,9 @@ function checkedCreate(list) {
   return checked;
 }
 
-//Creates a contact object from the names array.
+/**
+ * Creates a contact object from the names array.
+*/
 function createContactFire() {
   let contacts = {};
   for (let j = 0; j < names.length; j++) {
@@ -355,7 +384,9 @@ function createContactFire() {
   return contacts;
 }
 
-//Generates a color object from the colours array.
+/**
+ * Generates a color object from the colours array.
+*/
 function colorFirebase() {
   let coloursAsObject = {};
   for (let k = 0; k < colours.length; k++) {
@@ -365,13 +396,17 @@ function colorFirebase() {
   return coloursAsObject;
 }
 
-//Scrolls the contact selection area to the right.
+/**
+ * Scrolls the contact selection area to the right.
+*/
 function scrollOn() {
   let scrollDiv = document.getElementById('selCntcts');
   scrollDiv.scrollLeft = scrollDiv.scrollWidth;
 }
 
-//Resets global variables related to contacts and their states.
+/**
+ * Resets global variables related to contacts and their states.
+*/
 function resetingGlobalVariable() {
   expanded = false;
   names = [];

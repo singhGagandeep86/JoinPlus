@@ -32,14 +32,18 @@ document.addEventListener('click', function (event) {
     }
 });
 
-// Sets the minimum date attribute of an input element with ID 'dateData' to today's date.
+/**
+ *  Sets the minimum date attribute of an input element with ID 'dateData' to today's date.
+*/
 function setDateDisable() {
     let catchedDate = new Date().toISOString().split('T')[0];
     let inputDate = document.getElementById('dateData');
     inputDate.setAttribute('min', catchedDate);
 }
 
-//Event listener to close the task category dropdown when clicking outside of it.
+/**
+ * Event listener to close the task category dropdown when clicking outside of it.
+*/
 document.addEventListener('click', function (rightEvent) {
     const assignHeading = document.getElementById('customSelect');
     if (dropdownOpen && !assignHeading.contains(rightEvent.target)) {
@@ -47,7 +51,9 @@ document.addEventListener('click', function (rightEvent) {
     }
 });
 
-//Resets local variables and UI elements to their initial states.
+/**
+ * Resets local variables and UI elements to their initial states.
+*/
 function resetingLocalVariables() {
     document.getElementById('customSelect').innerHTML = `Select task category`;
     document.getElementById('allCntcts').style.display = "none";
@@ -57,7 +63,9 @@ function resetingLocalVariables() {
     document.getElementById('moreIcon').classList.add("d_noneImg");
 }
 
-//Resets error messages and UI styles for input validation.
+/**
+ * Resets error messages and UI styles for input validation.
+*/
 function resetError() {
     document.getElementById('failName').classList.add("selectHide");
     document.getElementById('failDueDate').classList.add("selectHide");
@@ -81,32 +89,42 @@ function clearFailAddTask(inputId, errorId) {
     }
 }
 
-//Clears the error message for the task category selection.
+/**
+ * Clears the error message for the task category selection.
+*/
 function clearFailAddCat() {
     document.getElementById('failCategory').classList.add('selectHide');
     document.getElementById('customSelect').classList.remove('failedinput');
 }
 
 
-// Displays an error message for invalid task input.
+/**
+ *  Displays an error message for invalid task input.
+*/
 function failTask() {
     document.getElementById('failName').classList.remove("selectHide");
     document.getElementById('titleText').classList.add("failedinput");
 }
 
-//Displays an error message for invalid date input.
+/**
+ * Displays an error message for invalid date input.
+*/
 function failDate() {
     document.getElementById('failDueDate').classList.remove("selectHide");
     document.getElementById('dateData').classList.add("failedinput");
 }
 
-//Displays an error message for invalid category selection.
+/**
+ * Displays an error message for invalid category selection.
+*/
 function failCategory() {
     document.getElementById('failCategory').classList.remove("selectHide");
     document.getElementById('customSelect').classList.add("failedinput");
 }
 
-//Displays error messages for all invalid inputs.
+/**
+ * Displays error messages for all invalid inputs.
+*/
 function failAll() {
     document.getElementById('failName').classList.remove("selectHide");
     document.getElementById('failDueDate').classList.remove("selectHide");
@@ -116,7 +134,9 @@ function failAll() {
     document.getElementById('customSelect').classList.add("failedinput");
 }
 
-// Adds a new task if validation passes, then navigates to the task board.
+/**
+ *  Adds a new task if validation passes, then navigates to the task board.
+*/
 async function addingTask(id) {
     if (checkValidation()) {
         document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");
@@ -148,12 +168,16 @@ async function toWaiting(id) {
     return new Promise(resolve => setTimeout(resolve, 1700));
 }
 
-//Navigates the user to the task board page.
+/**
+ * Navigates the user to the task board page.
+*/
 async function navigateToBoard() {
     window.location.href = 'board.html';
 }
 
-//Generates a string representing the color associated with the task category.
+/**
+ * Generates a string representing the color associated with the task category.
+*/
 async function postTask(path = "", data = {}) {
     await fetch(getDatabaseUrl(path), {
         method: "PUT",
@@ -184,7 +208,9 @@ function pushFirebaseData(titleText, desText, actDate, category, newTaskNumber, 
     });
 }
 
-//Generates a random 6-digit number.
+/**
+ * Generates a random 6-digit number.
+*/
 function generateRandomNumber() {
     let number = '';
     for (let i = 0; i < 6; i++) {
@@ -217,7 +243,9 @@ function checkValidation() {
     return true;
 }
 
-// Checks all validation criteria for task input.
+/**
+ *  Checks all validation criteria for task input.
+*/
 function checkAll(task, dateReg, category) {
     if (!task && dateReg == false && category === `Select task category`) {
         failAll();
@@ -225,7 +253,9 @@ function checkAll(task, dateReg, category) {
     }
 }
 
-//Validates the task title against the defined regular expression.
+/**
+ * Validates the task title against the defined regular expression.
+*/
 function checkTask(taskReg, task) {
     if (!taskReg.test(task)) {
         failTask();
@@ -233,7 +263,9 @@ function checkTask(taskReg, task) {
     }
 }
 
-//Validates the provided date and updates the UI to show or hide error messages.
+/**
+ * Validates the provided date and updates the UI to show or hide error messages.
+*/
 function checkDate(dateReg) {
     if (dateReg == false) {
         failDate();
@@ -246,7 +278,9 @@ function checkDate(dateReg) {
     }
 }
 
-//Validates the selected task category.
+/**
+ * Validates the selected task category.
+*/
 function checkCategory(category) {
     if (category === `Select task category`) {
         failCategory();
@@ -276,7 +310,9 @@ function dateCheck() {
     }
 }
 
-//Compares the entered date with the current date.
+/**
+ * Compares the entered date with the current date.
+*/
 function compareDate(year, month, day, inputYear, inputMonth, inputDate) {
     if (inputYear > year && inputYear < 10000) {
         return true;
