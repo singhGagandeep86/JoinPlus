@@ -66,8 +66,7 @@ function handleLogin(event) {
         fetchAuthToken(email, password)
             .then(processResponse)
             .then(handleSuccessfulLogin)
-            .catch(handleLoginError);
-        handleLoginError();
+            .catch(handleLoginError);        
     }
 }
 
