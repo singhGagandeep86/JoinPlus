@@ -2,7 +2,6 @@ let summeryArray = [];
 
 /**
  * Initializes the application by loading and processing necessary data.
- * @returns {Promise<void>}
  */
 async function init() {
     await loadData("/task");
@@ -13,8 +12,6 @@ async function init() {
 
 /**
  * Loads data from the specified path and adds it to the summary array.
- * @param {string} path - The path to the resource.
- * @returns {Promise<void>}
  */
 async function loadData(path) {
     let token = sessionStorage.getItem('authToken');
@@ -32,7 +29,6 @@ async function loadData(path) {
 
 /**
  * Loads various task data views and updates the greeting.
- * @returns {Promise<void>}
  */
 async function loadAllData() {
     loadTodo();
@@ -48,7 +44,6 @@ async function loadAllData() {
 
 /**
  * Loads and displays the count of tasks in the "To-Do" state.
- * @function
  */
 function loadTodo() {
     let todo = document.getElementById('todo');
@@ -64,7 +59,6 @@ function loadTodo() {
 
 /**
  * Loads and displays the count of tasks in the "In-Progress" state.
- * @function
  */
 function loadProgress() {
     let progress = document.getElementById('progress');
@@ -80,7 +74,6 @@ function loadProgress() {
 
 /**
  * Loads and displays the count of tasks in the "Done" state.
- * @function
  */
 function loadDone() {
     let dones = document.getElementById('done');
@@ -156,8 +149,6 @@ function dateDeadline() {
 
 /**
  * Formats a date object into a readable string.
- * @param {Date} date - The date to format.
- * @returns {string} - Formatted date string.
  */
 function formatDate(date) {
     let months = [
@@ -180,7 +171,6 @@ function goToBoard() {
 
 /**
  * Determines the greeting based on the current time of day.
- * @returns {string} - The appropriate greeting.
  */
 function loadGreeting() {
     let options = { timeZone: 'Europe/Berlin', hour: 'numeric', minute: 'numeric' };
