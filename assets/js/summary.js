@@ -1,15 +1,9 @@
-/**
- * Array to store summary data.
- * @type {Array}
- */
-
 let summeryArray = [];
 
 /**
  * Initializes the application by loading and processing necessary data.
  * @returns {Promise<void>}
  */
-
 async function init() {
     await loadData("/task");
     await fetchAndStoreUID();
@@ -22,7 +16,6 @@ async function init() {
  * @param {string} path - The path to the resource.
  * @returns {Promise<void>}
  */
-
 async function loadData(path) {
     let token = sessionStorage.getItem('authToken');
     let response = await fetch(BASE_URL + path + ".json?auth=" + token);
@@ -41,7 +34,6 @@ async function loadData(path) {
  * Loads various task data views and updates the greeting.
  * @returns {Promise<void>}
  */
-
 async function loadAllData() {
     loadTodo();
     loadProgress();
@@ -53,10 +45,11 @@ async function loadAllData() {
     await addGreating();
 }
 
-/**
- * Loads and displays the count of 'To-Do' tasks.
- */
 
+/**
+ * Loads and displays the count of tasks in the "To-Do" state.
+ * @function
+ */
 function loadTodo() {
     let todo = document.getElementById('todo');
     todo.innerHTML = '';
@@ -68,10 +61,11 @@ function loadTodo() {
     }
 }
 
-/**
- * Loads and displays the count of tasks in progress.
- */
 
+/**
+ * Loads and displays the count of tasks in the "In-Progress" state.
+ * @function
+ */
 function loadProgress() {
     let progress = document.getElementById('progress');
     progress.innerHTML = '';
@@ -83,10 +77,11 @@ function loadProgress() {
     }
 }
 
-/**
- * Loads and displays the count of completed tasks.
- */
 
+/**
+ * Loads and displays the count of tasks in the "Done" state.
+ * @function
+ */
 function loadDone() {
     let dones = document.getElementById('done');
     dones.innerHTML = '';
@@ -98,10 +93,12 @@ function loadDone() {
     }
 }
 
-/**
- * Loads and displays the count of 'Awaiting' tasks.
- */
 
+/**
+ * Loads and displays the count of tasks in the "Awaiting Feedback" state.
+ * tasks currently awaiting feedback. If there are no tasks in this state,
+ * it displays 0.
+ */
 function loadAwait() {
     let awaits = document.getElementById('await');
     awaits.innerHTML = '';
@@ -113,10 +110,10 @@ function loadAwait() {
     }
 }
 
-/**
- * Loads and displays the total count of tasks.
- */
 
+/**
+ * Loads and displays the total count of all tasks, including those in the "toDo", "In-Progress", "Awaiting Feedback", and "Done" states.
+ */
 function loadTask() {
     let tasks = document.getElementById('taskAll');
     tasks.innerHTML = '';
@@ -127,10 +124,11 @@ function loadTask() {
     }
 }
 
-/**
- * Loads and displays the count of tasks with high priority.
- */
 
+/**
+ * Loads and displays the count of tasks with the "urgent" priority in the summary bar.
+ * If there are no tasks with this priority, it displays 0.
+ */
 function loadPrio() {
     let prio = document.getElementById('urgent');
     prio.innerHTML = '';
@@ -142,10 +140,11 @@ function loadPrio() {
     }
 }
 
-/**
- * Loads and displays the latest task deadline date.
- */
 
+/**
+ * Updates the displayed deadline date in the summary bar.
+ * It takes the latest deadline date from the summeryArray and displays it in the "date" element.
+ */
 function dateDeadline() {
     let date = document.getElementById('date');
     let dateData = summeryArray.map(e => new Date(e.date));
@@ -160,7 +159,6 @@ function dateDeadline() {
  * @param {Date} date - The date to format.
  * @returns {string} - Formatted date string.
  */
-
 function formatDate(date) {
     let months = [
         "Januar", "Februar", "März", "April", "Mai", "Juni",
@@ -176,7 +174,6 @@ function formatDate(date) {
 /**
  * Redirects the user to the 'board' page.
  */
-
 function goToBoard() {
     window.location.href = 'board.html';
 }
@@ -185,7 +182,6 @@ function goToBoard() {
  * Determines the greeting based on the current time of day.
  * @returns {string} - The appropriate greeting.
  */
-
 function loadGreeting() {
     let options = { timeZone: 'Europe/Berlin', hour: 'numeric', minute: 'numeric' };
     let currentTime = new Intl.DateTimeFormat('de-DE', options).format(new Date());
@@ -204,7 +200,6 @@ function loadGreeting() {
 /**
  * Adds a greeting message to the page.
  */
-
 function addGreating() {
     let greatingArea = document.getElementById('greatingDay');
     let greeting = loadGreeting();
@@ -215,7 +210,6 @@ function addGreating() {
 /**
  * Fetches and stores the user's UID in session storage if not already present.
  */
-
 function fetchAndStoreUID() {
     let token = sessionStorage.getItem('authToken');
     if (!sessionStorage.getItem('uid')) {
