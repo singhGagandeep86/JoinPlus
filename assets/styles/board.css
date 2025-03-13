@@ -295,12 +295,16 @@ html {
     width: 220px;
     min-height: 30px;
     gap: 8px;
+    
 }
 
 .taskTitle span:nth-of-type(1) {
     font-size: 16px;
     font-weight: 700;
     min-height: 19px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .taskTitle span:nth-of-type(2) {
