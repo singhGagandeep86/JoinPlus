@@ -533,18 +533,14 @@ input[type="radio"] {
 .popupTitleInfo {
     width: 445px;
     min-height: 150px;
-    max-height: 250px;
     font-size: 61px;
     font-weight: 700;
-    overflow-wrap: break-word;
-    overflow: auto;
 }
 
 .descriptionInfo {
     width: 445px;
     min-height: 24px;
     font-size: 20px;
-    overflow-wrap: break-word;
 }
 
 .dateInfo {

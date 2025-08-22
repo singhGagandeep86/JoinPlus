@@ -1,4 +1,8 @@
-/** Validates the user input from the form.*/
+/**
+ * Validates the user input from the form.
+ * Checks the validity of the name, email, passwords, and privacy policy agreement.
+ * If all validations pass, the submit button is enabled; otherwise, it is disabled.
+ */
 function validateForm() {
     let userName = document.getElementById('name');
     let email = document.getElementById('email');
@@ -17,30 +21,43 @@ function validateForm() {
     }
 }
 
-/** Validates a given name against a specific regex pattern.*/
+/**
+ * Validates a given name against a specific regex pattern.
+ * The name must consist of alphabetic characters (including German umlauts) 
+ * and may include spaces between words.
+ */
 function validateName(name) {
     let nameRegex = /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/;
     return nameRegex.test(name);
 }
 
-/** The email must follow standard formatting rules and end with a valid domain.*/
+/**
+ * Validates a given email address against a specific regex pattern.
+ * The email must follow standard formatting rules and end with a valid domain.
+ */
 function validateEmail(email) {
     let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
     return emailRegex.test(email);
 }
 
-/** Validates if the provided passwords match and are not empty.*/
+/**
+ * Validates if the provided passwords match and are not empty.
+ */
 function validatePasswords(password, confirmPassword) {
     return password && confirmPassword && password === confirmPassword;
 }
 
-/** Enables the specified submit button and adds a 'login' class to it.*/
+/**
+ * Enables the specified submit button and adds a 'login' class to it.
+ */
 function enableSubmitButton(button) {
     button.disabled = false;
     button.classList.add('login');
 }
 
-/** Disables the specified submit button and removes the 'login' class from it*/
+/**
+ * Disables the specified submit button and removes the 'login' class from it.
+ */
 function disableSubmitButton(button) {
     button.disabled = true;
     button.classList.remove('login');
@@ -59,7 +76,7 @@ async function handleRegistration(event) {
     let emailValue = document.getElementById('email').value;
     let passwordValue = document.getElementById('password').value;
     try {
-        let response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB28SxWSMdl9k7GYO9zeiap6u3DauBUhgM', {
+        let response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBUvClF-GJEiTg298gzQneyv8i5Rg9KgQs', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -73,27 +90,25 @@ async function handleRegistration(event) {
         if (!response.ok) {
             throw new Error(`Fehler: ${response.status} ${response.statusText}`);
         }
+
         let data = await response.json();
-        creatUserDataSignUp(data, userName, emailValue,)
+        if (data.idToken && data.localId) {
+            let token = data.idToken;
+            let uid = data.localId;
+            await createDataFb(userName, emailValue, token, uid);
+            sessionStorage.setItem('authToken', token);
+            window.location.href = "../html/summary.html";
+        } else {
+            throw new Error("Registrierung fehlgeschlagen: Kein Token oder UID erhalten");
+        }
     } catch (error) {
         console.error(error);
     }
 }
 
-/** Handles the user registration process by creating user data and storing authentication credentials.*/
-async function creatUserDataSignUp(data, userName, emailValue,) {
-    if (data.idToken && data.localId) {
-        let token = data.idToken;
-        let uid = data.localId;
-        await createDataFb(userName, emailValue, token, uid);
-        sessionStorage.setItem('authToken', token);
-        window.location.href = "../html/summary.html";
-    } else {
-        throw new Error("Registrierung fehlgeschlagen: Kein Token oder UID erhalten");
-    }
-}
-
-/** Initializes event listeners for the registration form.*/
+/**
+ * Initializes event listeners for the registration form.
+ */
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('password').addEventListener('input', validateForm);
     document.getElementById('confirmPassword').addEventListener('input', validateForm);
@@ -103,7 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('registrationForm').addEventListener('submit', handleRegistration);
 });
 
-/** Creates a new user entry in the Firebase database.*/
+/**
+ * Creates a new user entry in the Firebase database.
+ */
 async function createDataFb(name, emailValue, token, uid) {
     let number = generateRandomNumber();
     let path = `/user/task${number}`;
@@ -128,7 +145,9 @@ async function createDataFb(name, emailValue, token, uid) {
     }
 }
 
-/** Generates a random 6-digit number.*/
+/**
+ * Generates a random 6-digit number.
+ */
 function generateRandomNumber() {
     let number = '';
     for (let i = 0; i < 6; i++) {
@@ -141,13 +160,17 @@ function generateRandomNumber() {
     return number;
 }
 
-/** Constructs the full URL for accessing the Firebase Realtime Database.*/
+/**
+ * Constructs the full URL for accessing the Firebase Realtime Database.
+ */
 function getDatabaseUrl(path, token) {
-    let base_Url = 'https://join-3edee-default-rtdb.europe-west1.firebasedatabase.app';
+     let base_Url = 'https://join-e54a3-default-rtdb.europe-west1.firebasedatabase.app';
     return `${base_Url}${path}.json?auth=${token}`;
 }
 
-/** Validates the input for the name field.*/
+/**
+ * Validates the input for the name field.
+ */
 function nameInputVali() {
     let name = document.getElementById('name');
     let failtext = document.getElementById('failName');
@@ -162,7 +185,9 @@ function nameInputVali() {
     }
 }
 
-/** Validates the input for the email field.*/
+/**
+ * Validates the input for the email field.
+ */
 function emailInputVali() {
     let email = document.getElementById('email');
     let failtext = document.getElementById('failEmail');
@@ -177,7 +202,9 @@ function emailInputVali() {
     }
 }
 
-/** Validates the input for the password and confirm password fields.*/
+/**
+ * Validates the input for the password and confirm password fields.
+ */
 function passwordInputVali() {
     let password = document.getElementById('password');
     let confirmPassword = document.getElementById('confirmPassword');

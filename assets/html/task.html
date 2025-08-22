@@ -74,22 +74,6 @@
                                 <textarea rows="4" cols="37" placeholder="Enter a Description" id="desText"
                                     class="descriptionTxt"></textarea>
                             </div>
-                            <div class="assignCntcts">
-                                <label for="contacts">Assigned to</label>
-                                <div class="assignment" id="assign" onclick="showCheckBoxes()">
-                                    Select contacts to assign
-                                    <img class="arrow" id="arrow" src="../img/dropArrow.svg">
-                                </div>
-                                <div id="allCntcts" class="checkboxes">
-                                </div>
-                                <div class="selCntctsDiv">
-                                    <div id="selCntcts" class="showSel"></div>
-                                    <div id="moreIcon" class="moreBtn d_noneImg" onclick="scrollOn()"><img class="moreImg" src="../img/arrow.png"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="partition"></div>
-                        <div class="rightSubmition">
                             <div class="dueDate">
                                 <div class="smallHead"><span>Due Date <sup>*</sup></span>
                                 </div>
@@ -128,7 +112,27 @@
                                 <div id="failCategory" class="fail selectHide"><span>Please select a Category for
                                         Task.</span></div>
                             </div>
-
+                        </div>
+                        <div class="partition"></div>
+                        <div class="rightSubmition">
+                            <div class="attachment">
+                                <span>Attachments</span>
+                                <div class="attachment-info">
+                                <p>Allowed file types are JPEG and PNG</p>
+                                <div id="removeAll" class="remove-file selectHide" onclick="removeAllFiles()">
+                                    <img src="../img/delete.png">
+                                    <span>Delete all</span>
+                                </div>
+                                </div>
+                                <input id="filePicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
+                                <div class="file-picker" onclick="filePicker.click()">
+                                    <span>Drag a file or browse</span>
+                                    <img src="../img/plus.png">
+                                </div>
+                                <div class="file-list" id="fileList">
+                                    
+                                </div>
+                            </div>
                             <div id="inputSubClass" class="subtasks">
                                 <div class="smallHead">Subtasks</div>
                                 <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
@@ -137,6 +141,20 @@
                                 </div>
                             </div>
                             <ul class="a" id="subTsksBoard"></ul>
+                            <div class="assignCntcts">
+                                <label for="contacts">Assigned to</label>
+                                <div class="assignment" id="assign" onclick="showCheckBoxes()">
+                                    Select contacts to assign
+                                    <img class="arrow" id="arrow" src="../img/dropArrow.svg">
+                                </div>
+                                <div id="allCntcts" class="checkboxes">
+                                </div>
+                                <div class="selCntctsDiv">
+                                    <div id="selCntcts" class="showSel"></div>
+                                    <div id="moreIcon" class="moreBtn d_noneImg" onclick="scrollOn()"><img
+                                            class="moreImg" src="../img/arrow.png"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="info">

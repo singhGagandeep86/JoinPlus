@@ -1,4 +1,6 @@
-/** Organizes tasks into designated categories and updates the UI accordingly.*/
+/**
+ * Organizes tasks into designated categories and updates the UI accordingly.
+ */
 async function taskAdd() {
     todo();
     inProgress();
@@ -6,7 +8,9 @@ async function taskAdd() {
     done();
 }
 
-/** Renders tasks in the "To-Do" category within the UI.*/
+/**
+ * Renders tasks in the "To-Do" category within the UI.
+ */
 function todo() {
     let toDoItems = filterToDoItems();
     if (toDoItems.length === 0) {
@@ -54,7 +58,9 @@ function processSubtasks(element, contacts, contactName, checkBoxObject) {
     loadContactTask(element, contacts, contactName);
 }
 
-/** Renders tasks in the "In-Progress" category within the UI.*/
+/**
+ * Renders tasks in the "In-Progress" category within the UI.
+ */
 function inProgress() {
     let inProgressItems = filterInProgressItems();
     if (inProgressItems.length === 0) {
@@ -103,7 +109,9 @@ function processProgressSubtasks(element, contacts, contactName, checkBoxObject)
 }
 
 
-/** Renders tasks in the "Awaiting" category within the UI.*/
+/**
+ * Renders tasks in the "Awaiting" category within the UI.
+ */
 function awaits() {
     let awaitItems = filterAwaitItems();
     if (awaitItems.length === 0) {
@@ -151,7 +159,9 @@ function processAwaitSubtasks(element, contacts, contactName, checkBoxObject) {
     loadContactTask(element, contacts, contactName);
 }
 
-/** Renders tasks in the "Done" category within the UI.*/
+/**
+ * Renders tasks in the "Done" category within the UI.
+ */
 function done() {
     let doneItems = filterDoneItems();
     if (doneItems.length === 0) {
@@ -199,19 +209,28 @@ function processDoneSubtasks(element, contacts, contactName, checkBoxObject) {
     loadContactTask(element, contacts, contactName);
 }
 
-/** Initiates the dragging of a specified element.*/
+/**
+ * Initiates the dragging of a specified element.
+ * @param {number} number - The index of the element being dragged.
+ * @param {HTMLElement} element - The DOM element that is being dragged.
+ */
 function startDragging(number, element) {
     draggedElement = number;
     element.classList.add('drag');
 }
 
-/** Enables an element to be a valid drop target.
- * @param {DragEvent} ev - The drag event that triggered this function. */
+/**
+ * Enables an element to be a valid drop target.
+ * @param {DragEvent} ev - The drag event that triggered this function. 
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
-/** Opens a popup to display a task based on its ID.*/
+/**
+ * Opens a popup to display a task based on its ID.
+ * @param {string} id - The unique identifier of the task to display in the popup.
+ */
 function openPopUpTask(id) {
     let taskPopUp = document.getElementById('popupTaskMain');
     init();
@@ -226,8 +245,10 @@ function openPopUpTask(id) {
     }
 }
 
-/** Prevents click events from propagating when interacting with 
- * the task board's close area and the add task button.*/
+/**
+ * Prevents click events from propagating when interacting with 
+ * the task board's close area and the add task button.
+ */
 function stopAddTaskBoardArea() {
     let area = document.getElementById('CloseArea');
     area.addEventListener('click', (event) => {
@@ -239,16 +260,20 @@ function stopAddTaskBoardArea() {
     })
 }
 
-/** Handles media query changes and redirects to the task page if 
+/**
+ * Handles media query changes and redirects to the task page if 
  * @param {MediaQueryListEvent} e - The event object containing information
- * about the media query change.*/
+ * about the media query change.
+ */
 function handleMediaChange(e) {
     if (e.matches) {
         window.location.href = 'task.html';
     }
 }
 
-/** Closes the task popup and resets the necessary states.*/
+/**
+ * Closes the task popup and resets the necessary states.
+ */
 function closePopUpTask() {
     resetAll();
     let button = document.getElementById('btnTaskPopupcloseArea');
@@ -259,7 +284,10 @@ function closePopUpTask() {
     taskPopUp.classList.add('d_none');
 }
 
-/** Updates the subtask progress bar for a given task element.*/
+/**
+ * Updates the subtask progress bar for a given task element.
+
+ */
 function subtaskBar(element, checkedCount) {
     let rangeId = `subtaskRange-${element['number']}`;
     let range = document.getElementById(rangeId);
@@ -271,7 +299,10 @@ function subtaskBar(element, checkedCount) {
     }   
 }
 
-/** Loads and displays contact information for a given task element. */
+/**
+ * Loads and displays contact information for a given task element. 
+ * @param {Object} element - The task object containing the task details.
+ */
 function loadContactTask(element, contacts, contactName) {
     let contactpic = `contact-${element['number']}`
     let taskContact = document.getElementById(contactpic);
@@ -287,8 +318,11 @@ function loadContactTask(element, contacts, contactName) {
     }
 }
 
-/** Checks for overflow in the contact area of a task and sets an onclick event.
- * This function examines the dimensions of the contact area for a given */
+/**
+ * Checks for overflow in the contact area of a task and sets an onclick event.
+ * This function examines the dimensions of the contact area for a given 
+ * @param {number} taskNumber - The unique identifier for the task to check.
+ */
 function checkForOverflow(taskNumber) {
     let contactArea = document.getElementById(`contactAreaPic-${taskNumber}`);
     if (contactArea.scrollHeight > contactArea.clientHeight || contactArea.scrollWidth > contactArea.clientWidth) {
@@ -300,7 +334,10 @@ function checkForOverflow(taskNumber) {
     }
 }
 
-/** Extracts initials from a given contact name.*/
+/**
+ * Extracts initials from a given contact name.
+ * @param {string} contactName - The full name of the contact from which to extract initials.
+ */
 function extrahiereInitialen(contactName) {
     for (let i = 0; i < contactName.length; i++) {
         let nameParts = contactName.split(' ');

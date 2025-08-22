@@ -7,6 +7,7 @@ let array = [];
 let expanded = false;
 let dropdownOpen = false;
 let task = {};
+let attachments = [];
 
 /**
  *Calls `fetchUrl` to retrieve a URL and `fetchUserData` to load user information from a specific API endpoint (`/user`).
@@ -14,6 +15,7 @@ let task = {};
 async function init() {
   fetchUrl();
   fetchUserData('/user');
+  loadAttachments();
 }
 
 /**
@@ -55,6 +57,8 @@ function contactsData(firebase) {
 /**
  * Extracts the color, sanitized name, and initials for each contact with a first and last name, 
  * and appends them to the contacts list with both first and last initials.
+ * @param {number} i - Index of the contact in the array.
+ * @param {string} eachName - The full name of the contact.
  */
 function wthScndName(i, eachName) {
   let colour = array[i].color;
@@ -70,6 +74,8 @@ function wthScndName(i, eachName) {
 /**
  * Extracts the color, sanitized name, and first initial for each contact with only a single name part,
  * appending them to the contacts list with only the first initial.
+ * @param {number} i - Index of the contact in the array.
+ * @param {string} eachName - The full name of the contact.
  */
 function wthoutScndName(i, eachName) {
   let colour = array[i].color;
@@ -84,6 +90,8 @@ function wthoutScndName(i, eachName) {
 /**
  * Adds selected contacts to a separate display area.
  * Updates the `selCntcts` container with selected contact initials and colors.
+ * @param {string} name - The name of the selected contact.
+ * @param {string} colour - The color associated with the selected contact.
  */
 function selectionContact(name, colour) {
   const currenID = document.getElementById(name);
@@ -100,6 +108,9 @@ function selectionContact(name, colour) {
 /**
  * Manages the display of the selection div for contacts.
  * Shows up to four selected contacts in the UI and displays a "more" button if additional contacts are selected.
+ * @param {HTMLElement} currenID - The current checkbox element for the contact.
+ * @param {string} name - The name of the contact.
+ * @param {string} colour - The color associated with the contact.
  */
 function ifelseLogics(currenID, name, colour) {
   if (currenID.checked == true) {
@@ -118,6 +129,9 @@ function ifelseLogics(currenID, name, colour) {
 /**
  * Adds a contact to the selection list and updates its UI representation.
  * Sets styling for the selected contact and updates arrays based on name structure (single or two-part names).
+ * @param {HTMLElement} currenID - The current checkbox element for the contact.
+ * @param {string} name - The name of the contact.
+ * @param {string} colour - The color associated with the contact.
  */
 function pushSelection(currenID, name, colour) {
   currenID.parentElement.style.backgroundColor = "#2A3647";
@@ -137,6 +151,9 @@ function pushSelection(currenID, name, colour) {
 /**
  * Adds contacts with two-part names to initials and colors arrays.
  * Extracts initials from a two-part name and pushes them, along with the color, to the relevant arrays.
+ * @param {string[]} nameArray - Array of name parts.
+ * @param {string} firstName - The first name in uppercase.
+ * @param {string} colour - The color associated with the contact.
  */
 function clrWthTwoNames(nameArray, firstName, colour) {
   const lastName = nameArray[1].toUpperCase();
@@ -149,6 +166,8 @@ function clrWthTwoNames(nameArray, firstName, colour) {
 /**
  * Adds contacts with single-part names to initials and colors arrays.
  * Extracts the first initial and pushes it, along with the color, to the relevant arrays.
+ * @param {string} firstName - The first name in uppercase.
+ * @param {string} colour - The color associated with the contact.
  */
 function clrWthOneName(firstName, colour) {
   let firstNameStart = firstName[0];
@@ -160,6 +179,8 @@ function clrWthOneName(firstName, colour) {
 /**
  * Removes a contact from the selection list and updates its UI representation.
  * Resets styling for the deselected contact and removes the contact from selection arrays.
+ * @param {HTMLElement} currenID - The current checkbox element for the contact.
+ * @param {string} name - The name of the contact.
  */
 function spliceSelection(currenID, name) {
   currenID.parentElement.style.backgroundColor = "transparent";
@@ -279,6 +300,7 @@ function toggleDropdown() {
 
 /**
  * Selects an option from the dropdown and updates the displayed value.
+ * @param {HTMLElement} element - The selected dropdown option element.
  */
 function selectOption(element) {
   const customSelect = document.getElementById('customSelect');
@@ -391,4 +413,39 @@ function resetingGlobalVariable() {
   expanded = false;
   names = [];
   namesInitials = [];
+}
+
+function blobToBase64(blob) {
+  return new Promise((resolve, _) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(blob);
+  });
+}
+
+function saveAttachments() {
+  localStorage.setItem('attachments', JSON.stringify(attachments));
+  fileList.innerHTML = "";
+  loadAttachments();
+}
+
+function loadAttachments() {
+  const storedAttachments = localStorage.getItem('attachments');
+  if (storedAttachments) {
+    attachments = JSON.parse(storedAttachments);
+    removeAll.classList.remove('selectHide');
+    for (let i = 0; i < attachments.length; i++) {
+      const attachment = attachments[i];
+      const name = attachment.name;
+      const base64 = attachment.data;
+      fileList.innerHTML += filesTemplate(base64, name);
+    }
+  }
+}
+
+function removeAllFiles() {
+  localStorage.clear();
+  attachments = [];
+  fileList.innerHTML = "";
+  removeAll.classList.add("selectHide");
 }

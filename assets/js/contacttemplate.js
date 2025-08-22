@@ -32,6 +32,7 @@ document.getElementById('close-btn').addEventListener('click', function () {
 
 /**
  * Adds an event listener to the overlay to close it when clicked outside of the form.
+ * @param {Event} event - The click event.
  */
 
 document.getElementById('overlay').addEventListener('click', function (event) {
@@ -42,6 +43,9 @@ document.getElementById('overlay').addEventListener('click', function (event) {
 
 /**
  * Generates the HTML structure for the edit contact overlay.
+ * @param {number} i - The index of the contact.
+ * @param {string} initials - The initials of the contact.
+ * @returns {string} - The HTML string for the edit overlay.
  */
 
 function overlay2(i, initials) {
@@ -88,6 +92,8 @@ function overlay2(i, initials) {
 
 /**
  * Generates the HTML for displaying detailed contact information.
+ * @param {number} i - The index of the contact.
+ * @returns {string} - The HTML string for the contact details.
  */
 
 function loadContactDetails(i, initials, number) {
@@ -125,7 +131,9 @@ function loadContactDetails(i, initials, number) {
 
 /**
  * Generates the HTML for displaying a contact item in the contact list.
+ * @returns {string} - The HTML string for a contact item.
  */
+
 function loadContactData(i, initials) {
     return `<div class="contact-group">
                 <div class="contact-item active2" onclick="showContactDetails(${i}, '${initials}')">

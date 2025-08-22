@@ -7,19 +7,25 @@ let draggedElement;
 let mediaQuery = window.matchMedia("(max-width: 1100px)");
 let toggle = 0;
 
-/** Loads initial task data and user data asynchronously.*/
+/**
+ * Loads initial task data and user data asynchronously.
+ */
 async function load() {
     await loadData("/task");
     fetchUserData('/user');
 }
 
-/** Constructs a full URL for accessing the database with the provided path and authentication token.*/
+/**
+ * Constructs a full URL for accessing the database with the provided path and authentication token.
+ */
 function getDatabaseUrl(path) {
     let token = sessionStorage.getItem('authToken');
     return `${BASE_URL}${path}.json?auth=${token}`;
 }
 
-/** Fetches task data from the database at the specified path, initializes with empty data if none exists,*/
+/**
+ * Fetches task data from the database at the specified path, initializes with empty data if none exists,
+ */
 async function loadData(path) {
     let response = await fetch(BASE_URL + path + ".json?auth=" + token);
     let responsetoJson = await response.json();
@@ -34,7 +40,9 @@ async function loadData(path) {
     taskAdd();
 }
 
-/** Opens a small popup to display task information.*/
+/**
+ * Opens a small popup to display task information.
+ */
 function openPopUpTaskSmall(i) {
     let info = document.getElementById('popupTaskInfo');
     document.getElementById('popupTaskInfo').classList.remove('d_none');
@@ -49,8 +57,10 @@ function openPopUpTaskSmall(i) {
     })
 }
 
-/** This function filters the global array `arrayLoad` to find a task
- * matching the specified index. It returns the corresponding task*/
+/**
+ * This function filters the global array `arrayLoad` to find a task
+ * matching the specified index. It returns the corresponding task
+ */
 function createobjFromElement(i) {
     let objDataTasksmall = arrayLoad.filter(e => e['number'] == i);
     let elementfromTask = '';
@@ -60,13 +70,17 @@ function createobjFromElement(i) {
     return elementfromTask
 }
 
-/** Closes the small task popup by adding a 'd_none' class to the popup element.*/
+/**
+ * Closes the small task popup by adding a 'd_none' class to the popup element.
+ */
 function closePopUpTaskSmall() {
     document.getElementById('popupTaskInfo').classList.add('d_none');
 }
 
-/** Toggles the visibility of the task switch popup.
- * It updates the arrow icon to indicate the current state of the popup.*/
+/**
+ * Toggles the visibility of the task switch popup.
+ * It updates the arrow icon to indicate the current state of the popup.
+ */
 function openPopUpTaskSwitch(element) {
     let select = document.getElementById('popupTaskSwitch' + element);
     let arrow = document.getElementById('arrowSwitch' + element);
@@ -92,14 +106,18 @@ function toggleOpenTaskSwitch(select, arrow, element, id ) {
         toggle = 0;
     }
 }
-/** This function hides the popup that allows switching task options based on the provided element ID.*/
+/**
+ * This function hides the popup that allows switching task options based on the provided element ID.
+ */
 function closePopUpTaskSwitch(element) {
     let select = document.getElementById('popupTaskSwitch' + element);
     select.classList.add('d_none');
 }
 
-/** Switches the task to a new status based on the provided task ID.
- * This function determines the target status of a task (e.g., 'toDo', 'progress', 'await', or 'done')*/
+/**
+ * Switches the task to a new status based on the provided task ID.
+ * This function determines the target status of a task (e.g., 'toDo', 'progress', 'await', or 'done')
+ */
 function dataSwitch(id, element) {
     if ('toDo' == id) {
         return moveTaskTo1(element);
@@ -112,8 +130,10 @@ function dataSwitch(id, element) {
     }
 }
 
-/** Changes the ID of a task and reloads the task data.
- * updates the UI by removing the arrow indicator, and reloads the task data from the server.*/
+/**
+ * Changes the ID of a task and reloads the task data.
+ * updates the UI by removing the arrow indicator, and reloads the task data from the server.
+ */
 async function changeIdTaskValue(value, element) {
     let arrow = document.getElementById('arrowSwitch' + element);
     await changeIdTask(value, element);
@@ -123,8 +143,10 @@ async function changeIdTaskValue(value, element) {
     await loadData("/task");
 }
 
-/** This asynchronous function sends a request to update the ID of a task identified by its element number.
- * It constructs the appropriate database URL, prepares the data for the update, and sends the update request.*/
+/**
+ * This asynchronous function sends a request to update the ID of a task identified by its element number.
+ * It constructs the appropriate database URL, prepares the data for the update, and sends the update request.
+ */
 async function changeIdTask(value, element) {
     let path = `/task/task${element}`;
     let url = getDatabaseUrl(path);
@@ -132,7 +154,9 @@ async function changeIdTask(value, element) {
     await postDataId(url, idChange);
 }
 
-/** This function retrieves the date from a task object, formats it from "YYYY-MM-DD" */
+/**
+ * This function retrieves the date from a task object, formats it from "YYYY-MM-DD" 
+ */
 function time(objDateTask) {
     let dateArea = document.getElementById('dateAreaInfo');
     let times = objDateTask.date;
@@ -144,7 +168,10 @@ function time(objDateTask) {
     }
 }
 
-/** Adds contact information to the contact area for a given task*/
+/**
+ * Adds contact information to the contact area for a given task.
+ * This function retrieves contact names and their corresponding colors from the 
+*/
 function addcontactInfo(objDateTask) {
     let contactArea = document.getElementById('contactAreaInfo');
     let contactName = objDateTask.contact ? Object.values(objDateTask.contact) : null;
@@ -160,8 +187,10 @@ function addcontactInfo(objDateTask) {
         }}
 }
 
-/** Adds subtask information to the subtask area for a given task.
- * This function populates the subtask area with subtasks from the provided task object.*/
+/**
+ * Adds subtask information to the subtask area for a given task.
+ * This function populates the subtask area with subtasks from the provided task object.
+ */
 function addSubtaskInfo(objDateTask) {
     let subtaskInput = document.getElementById('subtaskArea');
     let subtaskEmpty = document.getElementById('subtaskEmtpy');
@@ -169,7 +198,9 @@ function addSubtaskInfo(objDateTask) {
     addSubtaskInfoIf(subtaskInput, subtaskEmpty, objDateTask);
 }
 
-/** Displays subtask information if available, updating the subtask input area.*/
+/**
+ * Displays subtask information if available, updating the subtask input area.
+ */
 function addSubtaskInfoIf(subtaskInput, subtaskEmpty, objDateTask) {
     if (!objDateTask.subtask) {
         subtaskInput.innerHTML = '';
@@ -184,8 +215,12 @@ function addSubtaskInfoIf(subtaskInput, subtaskEmpty, objDateTask) {
             checked(subtastChecked);}}
 }
 
-/** This function updates the ID of a task based on the provided element, which represents
- * the target category. It also posts the updated task data and refreshes the displayed tasks.*/
+/**
+ * This function updates the ID of a task based on the provided element, which represents
+ * the target category. It also posts the updated task data and refreshes the displayed tasks.
+ * @param {string} element - The new category ID to which the task will be moved. 
+ *                           This can be 'toDo', 'progress', 'await', or 'done'.
+ */
 function moveTo(element,) {
     let elementArray = arrayLoad.filter(e => e['number'] == draggedElement);
     for (let i = 0; i < elementArray.length; i++) {
@@ -197,8 +232,10 @@ function moveTo(element,) {
     }
 }
 
-/** This function constructs the URL for the specific task based on its number,
- * then sends a POST request to update the task's ID to the specified element.*/
+/**
+ * This function constructs the URL for the specific task based on its number,
+ * then sends a POST request to update the task's ID to the specified element.
+ */
 async function postId(element, changeId) {
     let number = changeId.number;
     let path = `/task/task${number}`;
@@ -207,8 +244,10 @@ async function postId(element, changeId) {
     await postDataId(url, idChange);
 }
 
-/** This function takes a URL and a data object, then sends the data to the specified URL
- * using the PATCH method to update the task's information in the database.*/
+/**
+ * This function takes a URL and a data object, then sends the data to the specified URL
+ * using the PATCH method to update the task's information in the database.
+ */
 async function postDataId(url, data) {
     let response = await fetch(url, {
         method: 'PATCH',
@@ -219,8 +258,10 @@ async function postDataId(url, data) {
     });
 }
 
-/** This function retrieves the checked state of a specific checkbox, constructs the
- * corresponding URL to update the task's subtask status in the database, and then*/
+/**
+ * This function retrieves the checked state of a specific checkbox, constructs the
+ * corresponding URL to update the task's subtask status in the database, and then
+ */
 async function inputCheckBoxInfo(i, j) {
     let checkboxId = `checkbox-${i}-${j}`;
     let checkbox = document.getElementById(checkboxId);
@@ -232,8 +273,10 @@ async function inputCheckBoxInfo(i, j) {
     load();
 }
 
-/** Sends a PATCH request to update data in the database. 
- * This function takes a URL and a data object, converts the data object to a JSON string,*/
+/**
+ * Sends a PATCH request to update data in the database. 
+ * This function takes a URL and a data object, converts the data object to a JSON string,
+ */
 async function postDataCheck(url, data) {
     let response = await fetch(url, {
         method: "PATCH",
@@ -244,7 +287,10 @@ async function postDataCheck(url, data) {
     });
 }
 
-/** Sets the checked state of checkbox elements based on the provided array.*/
+/**
+ * Sets the checked state of checkbox elements based on the provided array.
+ * @param {boolean[]} subtastChecked - An array of boolean values indicating
+ */
 function checked(subtastChecked) {
     let checkboxes = document.getElementsByName('subtask');
     for (let i = 0; i < subtastChecked.length && i < checkboxes.length; i++) {
@@ -262,8 +308,10 @@ function search() {
     searchStart(inputSearch, searchArray);
 }
 
-/** Initiates a search based on the input value and updates the task list accordingly.
- * This function checks the length of the input search value and determines */
+/**
+ * Initiates a search based on the input value and updates the task list accordingly.
+ * This function checks the length of the input search value and determines 
+ */
 function searchStart(inputSearch, searchArray) {
     if (searchArray == '') {
         document.getElementById('emptySearchOn').classList.remove('d_none');
@@ -278,17 +326,26 @@ function searchStart(inputSearch, searchArray) {
     }
 }
 
-/** Highlights an element by adding a specific CSS class to it.*/
+/**
+ * Highlights an element by adding a specific CSS class to it.
+ * @param {string} id - The ID of the element to be highlighted.
+ */
 function highlight(id) {
     document.getElementById(id).classList.add('drag-area-highlight');
 }
 
-/** Removes the highlight from an element by removing a specific CSS class.*/
+/**
+ * Removes the highlight from an element by removing a specific CSS class.
+ * @param {string} id - The ID of the element from which the highlight should be removed.
+ */
 function removeHighlight(id) {
     document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
-/** Adds a task to the task board after validation checks. */
+/**
+ * Adds a task to the task board after validation checks. 
+ * @param {Object} id - The object representing the task to be added. 
+ */
 async function addTaskboard(id) {
     let idAdd = id.id;
     if (checkValidation()) {

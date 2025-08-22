@@ -1,5 +1,38 @@
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const filePicker = document.getElementById('filePicker');
+    const fileList = document.getElementById('fileList');
+    const removeAll = document.getElementById('removeAll');
+
+    if (filePicker) {
+
+    filePicker.addEventListener('change', () => {
+        const allFiles = filePicker.files;
+
+        if (allFiles.length > 0) {
+            Array.from(allFiles).forEach(async file => {
+                const blog = new Blob([file], { type: file.type });
+
+                const base64 = await blobToBase64(blog);
+
+                const img = document.createElement('img');
+                img.src = base64;
+
+                attachments.push({
+                    name: file.name,
+                    type: file.type,
+                    data: base64
+                });
+
+                saveAttachments();
+            })
+        }
+    })
+ }
+})
+
+
 /**
  * Initializes the form submission handling on DOM content load.
  * Prevents the default form submission to handle it with custom logic.
@@ -17,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /**
  * Event listener to close the contacts dropdown when clicking outside of it.
  * Checks if the click target is not within the dropdown or its triggering element.
+ * @param {MouseEvent} event - The click event to check.
  */
 document.addEventListener('click', function (event) {
     const assign = document.getElementById("assign");
@@ -76,6 +110,9 @@ function resetError() {
 
 /**
  * Clears error messages for the specified input and associated error element.
+ * 
+ * @param {string} inputId - The ID of the input element.
+ * @param {string} errorId - The ID of the error element to hide.
  */
 function clearFailAddTask(inputId, errorId) {
     let inputValue = document.getElementById(inputId).value.trim();
@@ -144,6 +181,9 @@ async function addingTask(id) {
 /**
  * Moves the task to the waiting state, collects task details,
  * and pushes data to Firebase.
+ * 
+ * @param {string} id - The ID of the task being processed.
+ * @returns {Promise<void>} - A promise that resolves after a delay.
  */
 async function toWaiting(id) {
     let titleText = document.getElementById('titleText').value;
@@ -218,6 +258,8 @@ function generateRandomNumber() {
 
 /**
  * Validates the task inputs and ensures they meet the required criteria.
+ * 
+ * @returns {boolean} - True if all validations pass; otherwise, false.
  */
 function checkValidation() {
     let task = document.getElementById('titleText').value.trim();
@@ -281,6 +323,8 @@ function checkCategory(category) {
 
 /**
  * Checks the validity of the entered date against the current date.
+ * 
+ * @returns {boolean} - True if the entered date is valid; otherwise, false.
  */
 function dateCheck() {
     let catchedDate = new Date();

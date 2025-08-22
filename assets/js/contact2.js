@@ -47,6 +47,8 @@ function clearFailAdd(inputId, errorId) {
 
 /**
  * If all input fields have valid values, the error message for missing input is also removed.
+ * @param {string} inputId - The ID of the input element to check.
+ * @param {string} errorId - The ID of the error element to hide.
  */
 function clearFailEdit(inputId, errorId) {
     let inputValue = document.getElementById(inputId).value.trim();
@@ -63,6 +65,7 @@ function clearFailEdit(inputId, errorId) {
 
 /**
  * Creates new contact data.
+ * @returns {Promise<void>}
  */
 async function createContactData(name, email, phone, number, firstNameInitial, color) {
     await postCreateData(`/contact/contact${number}`, {
@@ -79,6 +82,9 @@ async function createContactData(name, email, phone, number, firstNameInitial, c
 /**
  * Sends a PATCH request to the specified path with the provided data.
  * Resets the array and reloads the data upon completion.
+ * @param {string} path - The database path where data will be patched.
+ * @param {Object} data - The data object to be sent in the request body.
+ * @returns {Promise<void>}
  */
 async function postCreateData(path = "", data = {}) {
     try {
@@ -98,6 +104,8 @@ async function postCreateData(path = "", data = {}) {
 
 /**
  * Extracts the initials from a given contact name.
+ * @param {string} contactName - The full name of the contact from which to extract initials.
+ * @returns {string} - The extracted initials.
  */
 function extrahiereInitialen(contactName) {
     let nameParts = contactName.split(' ');
@@ -111,6 +119,8 @@ function extrahiereInitialen(contactName) {
 
 /**
  * Extracts the first initial from a given contact name.
+ * @param {string} contactName - The full name of the contact from which to extract the first initial.
+ * @returns {string} - The extracted first initial.
  */
 function extrahiereInitialen2(contactName) {
     let nameParts = contactName.split(' ');
@@ -123,16 +133,18 @@ function extrahiereInitialen2(contactName) {
 
 /**
  * Generates a random color.
+ * @returns {string} - A random color.
  */
 
 function coloGenerator() {
-    let randomColor = colorGen[Math.floor(Math.random() * colorGen.length)];
-    return randomColor;
+    let zufaelligeFarbe = colorGen[Math.floor(Math.random() * colorGen.length)];
+    return zufaelligeFarbe;
 }
 
 
 /**
  * Generates a random 6-digit number ensuring no digit is zero.
+ * @returns {string} - A string representing the generated 6-digit number.
  */
 function generateRandomNumber() {
     let number = '';
@@ -148,11 +160,12 @@ function generateRandomNumber() {
 
 /**
  * Deletes a contact based on the contact number.
+ * @returns {Promise<void>}
  */
-async function deleteContact(number) {
+async function deleteContact(number) { 
     let contactDetails = document.getElementById('contactDetails');
     let path = `/contact/contact${number}`;
-    let url = getDatabaseUrl(path);
+    let url = getDatabaseUrl(path); 
     let response = await fetch(url, {
         method: 'DELETE',
     });
@@ -164,6 +177,8 @@ async function deleteContact(number) {
 
 /**
  * Deletes the contact at the given index and clears the edit view.
+ * @param {number} i - The index of the contact to be deleted.
+ * @returns {Promise<void>}
  */
 function deleteEdit(i) {
     let number = array[i].number;
@@ -173,6 +188,7 @@ function deleteEdit(i) {
 
 /**
  * Updates the contact data.
+ * @returns {Promise<void>}
  */
 async function editContactData(i) {
     let number = array[i].number;
@@ -206,6 +222,8 @@ function saveEditDisplayOff() {
 
 /**
  * Updates the contact data in the database.
+ * @param {string} name - The name of the contact.
+ * @returns {Promise<void>}
  */
 async function editContactFB(name, email, phone, number) {
     let path = `/contact/contact${number}`
@@ -219,6 +237,8 @@ async function editContactFB(name, email, phone, number) {
 /**
  * Sends a PATCH request to update data at the specified path.
  * Clears the array and reloads data upon completion.
+ * @param {string} path - The database path where data will be patched.
+ * @returns {Promise<void>}
  */
 async function postEditData(path, data) {
     try {

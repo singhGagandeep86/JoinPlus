@@ -3,7 +3,7 @@ let array = [];
 let data = {};
 let isEventListenerRegistered = false;
 
-/** array from colornames*/
+
 let colorGen = [
     "Purple", "Hellpurple", "Gelb", "Turkis", "Rosa", "Hellblau",
     "Rotorange", "Hellorange", "Dunkelgelb", "Blau", "Rot",
@@ -14,6 +14,7 @@ let colorGen = [
 /**
  * Loads contact data and user information asynchronously.
  * This function performs the following tasks:
+ * @returns {Promise<void>}
  */
 async function load() {
     await loadData("/contact");
@@ -24,6 +25,7 @@ async function load() {
 
 /**
  * Generates the URL for the database path with an authentication token.
+ * @returns {string} - The complete URL to the resource.
  */
 
 function getDatabaseUrl(path) {
@@ -33,6 +35,7 @@ function getDatabaseUrl(path) {
 
 /**
  * Loads data from the specified URL and adds it to an array.
+ * @returns {Promise<void>}
  */
 
 async function loadData(path) {
@@ -48,6 +51,7 @@ async function loadData(path) {
 
 /**
  * Sends data via a POST request to the specified URL.
+ * @returns {Promise<void>}
  */
 
 async function postData(path, data) {
@@ -62,6 +66,7 @@ async function postData(path, data) {
 
 /**
  * Sorts the array of contacts by their names in ascending order.
+ * @returns {undefined}
  */
 function sortContactsByName() {
     array.sort((a, b) => {
@@ -80,6 +85,7 @@ function sortContactsByName() {
 /**
  * Loads contact data into the contact area.
  * Iterates through the contact array and populates the contact area with HTML for each contact.
+ * @returns {undefined}
  */
 function loadContact() {
     let contactSpace = document.getElementById('contactArea');
@@ -101,6 +107,7 @@ function loadContact() {
 /**
  * Clears the currently active contact by removing the 'active-contact' class from all contact items
  * and clearing the contact details area.
+ * @returns {undefined}
  */
     function clearActiveContact() {
         let allContacts = document.querySelectorAll('.contact-item');
@@ -113,6 +120,9 @@ function loadContact() {
 
 /**
  * Sets a contact as active, loading its details and adding a class of 'active-contact' to the associated contact item.
+ * @param {number} i - The index of the contact to set as active.
+ * @param {string} number - The phone number of the active contact.
+ * @param {string} initials - The initials of the active contact.
  */
     function setActiveContact(i, number, initials) {
         let allContacts = document.querySelectorAll('.contact-item');
@@ -130,6 +140,8 @@ function loadContact() {
 
 /**
  * Toggles the active state of a contact and displays its details when clicked.
+ * @param {number} i - The index of the contact to toggle.
+ * @param {string} initials - The initials of the contact to toggle.
  */
     function showContactDetails(i, initials) {
         let number = array[i].number;
@@ -145,6 +157,9 @@ function loadContact() {
 
 /**
  * Activates the contact and displays its details.
+ * @param {number} i - The index of the contact.
+ * @param {string} number - The phone number of the contact.
+ * @param {string} initials - The initials of the contact.
  */
 
 function activeContact(i, number, initials) {
@@ -162,6 +177,7 @@ function activeContact(i, number, initials) {
 
 /**
  * Displays the contact list by toggling visibility of related UI components.
+ * @param {number} i - The index of the contact to be deactivated.
  */
 function showContactList(i) {
     let allContacts = document.querySelectorAll('.contact-item');
@@ -174,6 +190,7 @@ function showContactList(i) {
 
 /**
  * Opens the edit window for a contact.
+ * @param {number} i - The index of the contact.
  */
 function editContact(i) {
     let contactName = array[i].name;
@@ -201,6 +218,7 @@ function stopEditArea() {
 
 /**
  * Loads the input fields for editing the contact.
+ * @param {number} i - The index of the contact.
  */
 function loadInputEdit(i) {
     document.getElementById("name2").value = array[i].name;
@@ -210,6 +228,7 @@ function loadInputEdit(i) {
 
 /**
  * Initializes the edit button.
+ * @param {number} i - The index of the contact.
  */
 function initializeEditButton(i) {
     let editBtn = document.getElementById('editBtn');
@@ -254,6 +273,7 @@ function editContactOff() {
 
 /**
  * Adds new contact data.
+ * @returns {Promise<void>}
  */
 async function addContactData() {
     let name = document.getElementById('name').value.trim();
@@ -273,6 +293,7 @@ function isValid(input, regex) { return regex.test(input); }
 
 /**
  * Validates name, email, and phone inputs for a form submission.
+ * @returns {boolean} - Returns true if all fields are valid; otherwise, false.
  */
 function valiAdd(name, email, phone) {
     if (!name || !email || !phone) return failAllAdd() && false;
@@ -290,6 +311,7 @@ function isValid(input, regex) { return regex.test(input); }
 
 /**
  * Validates the 'name', 'email', and 'phone' inputs for editing form data.
+ * @returns {boolean} - Returns true if all fields are valid; otherwise, false.
  */
 function valiEdit() {
     let name = document.getElementById('name2').value.trim(),

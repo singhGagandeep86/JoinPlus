@@ -63,3 +63,10 @@ function newSubTemp(newValue) {
  <img onclick="delsubTask(this)" class="deleteIcon" src="../img/SubtasksDel.png">
 </div>`;
 }
+
+function filesTemplate(img, name){
+    return `<div class="file-container">
+    <img src=${img}>
+    <div class="file-name">${name}</div>
+    </div>`
+}
