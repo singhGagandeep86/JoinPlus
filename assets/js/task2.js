@@ -2,34 +2,32 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const filePicker = document.getElementById('filePicker');
-    const fileList = document.getElementById('fileList');
-    const removeAll = document.getElementById('removeAll');
 
     if (filePicker) {
 
-    filePicker.addEventListener('change', () => {
-        const allFiles = filePicker.files;
+        filePicker.addEventListener('change', () => {
+            const allFiles = filePicker.files;
 
-        if (allFiles.length > 0) {
-            Array.from(allFiles).forEach(async file => {
-                const blog = new Blob([file], { type: file.type });
+            if (allFiles.length > 0) {
+                Array.from(allFiles).forEach(async file => {
+                    const blog = new Blob([file], { type: file.type });
 
-                const base64 = await blobToBase64(blog);
+                    const base64 = await blobToBase64(blog);
 
-                const img = document.createElement('img');
-                img.src = base64;
+                    const img = document.createElement('img');
+                    img.src = base64;
 
-                attachments.push({
-                    name: file.name,
-                    type: file.type,
-                    data: base64
-                });
+                    attachments.push({
+                        name: file.name,
+                        type: file.type,
+                        data: base64
+                    });
 
-                saveAttachments();
-            })
-        }
-    })
- }
+                    loadAttachments();
+                })
+            }
+        })
+    }
 })
 
 
@@ -94,6 +92,8 @@ function resetingLocalVariables() {
     document.getElementById('subTsksBoard').innerHTML = '';
     document.getElementById('selCntcts').innerHTML = '';
     document.getElementById('moreIcon').classList.add("d_noneImg");
+    document.getElementById('removeAll').classList.add("selectHide");
+    document.getElementById('fileList').innerHTML = "";
 }
 
 /**
@@ -197,7 +197,7 @@ async function toWaiting(id) {
     let checked = checkedCreate(list);
     let subtask = subtastCreate(list);
     let color = colorFirebase();
-    pushFirebaseData(titleText, desText, actDate, category, newTaskNumber, name, checked, priority, color, subtask, id);
+    pushFirebaseData(titleText, desText, actDate, category, newTaskNumber, name, checked, priority, color, subtask, id, attachments);
     return new Promise(resolve => setTimeout(resolve, 1700));
 }
 
@@ -224,7 +224,7 @@ async function postTask(path = "", data = {}) {
 /**
  * Pushes task data to Firebase.
  */
-function pushFirebaseData(titleText, desText, actDate, category, newTaskNumber, name, checked, priority, color, subtask, id) {
+function pushFirebaseData(titleText, desText, actDate, category, newTaskNumber, name, checked, priority, color, subtask, id, attachments) {
     postTask(`/task/task${newTaskNumber}`, {
         'category': category,
         'color': categoryColourGen(),
@@ -237,7 +237,8 @@ function pushFirebaseData(titleText, desText, actDate, category, newTaskNumber, 
         'prio': priority,
         'subtask': subtask,
         'title': titleText,
-        'checked': checked
+        'checked': checked,
+        'attachments': attachments
     });
 }
 

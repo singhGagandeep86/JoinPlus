@@ -1,3 +1,5 @@
+const { loadavg } = require("os");
+
 let pathC = '';
 
 /** Loads and displays contact data in the contact drop area.*/
@@ -24,7 +26,8 @@ function loadContactDataIf(contact, contactData, firebaseData, contactArea) {
             let initials = extrahiereInitialen(contactName);
             let isChecked = contact.some(selectedContact => selectedContact === contactName) ? 'checked' : '';
             contactArea.innerHTML += checkboxContactTemplate(isChecked, contactName, initials, color);
-        }}
+        }
+    }
 }
 
 /** Loads and displays an empty state for contact data in the contact drop area.*/
@@ -101,7 +104,8 @@ function loadEditData(objData, prioCheck) {
     substartDiv();
     loadSubs(objData);
     priorityEditCheck(prioCheck);
-    initialsLoad(objData)
+    categorieSelect(objData);
+    initialsLoad(objData);
     dateVali();
 }
 
@@ -169,7 +173,18 @@ function priorityEditCheck(prioCheck) {
         if (prio[i].value === prioCheck) {
             prio[i].checked = true;
             break;
-        }}
+        }
+    }
+}
+
+function categorieSelect(objData) {
+    let category = objData.category;
+    console.log(category);
+    let categoryOption = document.getElementById('hiddenSelect');
+    let customSelect = document.getElementById('customSelect');
+    categoryOption.value = category;
+    customSelect.innerText = category;
+    debugger;
 }
 
 /** Retrieves the selected contacts from the contact dropdown.*/
@@ -183,7 +198,9 @@ function getSelectedContacts() {
             if (colorName) {
                 let color = colorName.classList[0].split('-')[1];
                 checkContacts.push({ name: contactName, color: color });
-            }}}
+            }
+        }
+    }
     return checkContacts;
 }
 
@@ -199,7 +216,8 @@ function intiCheckContact() {
             let color = checkContact[i].color;
             let initials = extrahiereInitialen(contactName);
             initialsContact.innerHTML += initialsLoadContact(initials, color);
-        }}
+        }
+    }
 }
 
 /** Initializes the subtask input area by clearing its current content*/
@@ -259,7 +277,8 @@ function saveTask(event, checkElement) {
         let newValue = inputField.value.trim();
         if (newValue !== '') {
             liElement.innerHTML = templateSub2(newValue);
-        }}
+        }
+    }
 }
 
 /** Toggles the edit mode for a subtask when triggered by an event.*/
@@ -304,7 +323,8 @@ function readPrio() {
         if (priorityElements[i].checked) {
             priority = priorityElements[i].value;
             break;
-        }}
+        }
+    }
     return priority;
 }
 

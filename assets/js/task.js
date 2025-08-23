@@ -338,6 +338,7 @@ function deletArray() {
   namesInitials = [];
   colours = [];
   array = [];
+  attachments = [];
 }
 
 /**
@@ -423,28 +424,19 @@ function blobToBase64(blob) {
   });
 }
 
-function saveAttachments() {
-  localStorage.setItem('attachments', JSON.stringify(attachments));
-  fileList.innerHTML = "";
-  loadAttachments();
-}
 
 function loadAttachments() {
-  const storedAttachments = localStorage.getItem('attachments');
-  if (storedAttachments) {
-    attachments = JSON.parse(storedAttachments);
-    removeAll.classList.remove('selectHide');
-    for (let i = 0; i < attachments.length; i++) {
-      const attachment = attachments[i];
-      const name = attachment.name;
-      const base64 = attachment.data;
-      fileList.innerHTML += filesTemplate(base64, name);
-    }
+  fileList.innerHTML = "";
+  removeAll.classList.remove('selectHide');
+  for (let i = 0; i < attachments.length; i++) {
+    const attachment = attachments[i];
+    const name = attachment.name;
+    const base64 = attachment.data;
+    fileList.innerHTML += filesTemplate(base64, name);
   }
 }
 
 function removeAllFiles() {
-  localStorage.clear();
   attachments = [];
   fileList.innerHTML = "";
   removeAll.classList.add("selectHide");

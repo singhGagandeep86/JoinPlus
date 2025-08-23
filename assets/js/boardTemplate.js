@@ -157,6 +157,7 @@ function templateTaskSmallInfo(objDateTask) {
             <div class="prioInfoData"><span>${objDateTask.prio.charAt(0).toUpperCase() + objDateTask.prio.slice(1)}</span>
             <div class="bg_${objDateTask.prio}"></div></div></div>
             <div class="contactInfo"><span class="contactInfoHeadline">Assigned To:</span><div id="contactAreaInfo" class="contactInfoData"></div></div>
+            <div class="attachInfo"><span>Attachments</span><div class="attach-container" id="attachContainer"></div></div>
             <div class="subtaskInfo"><span>Subtasks:</span><div id="subtaskEmtpy"  class="subtaskAreaData"><div id="subtaskArea"></div></div></div>
             <div class="editInfo"><div class="editInfoData"><div><img onclick="deleteData(${objDateTask.number})" class="deletePic" src="../img/Deletecontact.png" alt=""></div>
                 <div><img onclick="editOpen(${objDateTask.number})" class="editPic" src="../img/editcontacts.png" alt=""></div></div></div>
@@ -179,6 +180,10 @@ function templateContact(colors, initials, i) {
 function templateContactInfo(contactscolor, initials, contactName) {
     return `<div class="contactArea"><div class="b-${contactscolor} boxinfo">
     <span>${initials}</span></div> <span class="contactName">${contactName}</span></div>`
+}
+
+function templateAttachInfo(attach) {
+    return `<div class="cardAttach"><img src="${attach.data}"><p>${attach.name}</p></div>`
 }
 
 /** Generates an HTML template for a subtask with a checkbox.*/
@@ -227,58 +232,86 @@ function moveTaskTo4(element) {
 
 /** Generates an HTML template for editing a task.*/
 function editTask(objData) {
-    return `<div id="EditCloseArea" class="popupEdit" onclick="closeDropDownContact()">
-    <div class="closeIconEdit"><img onclick="closePopUpTaskSmall()" src="../img/Close.png" alt=""></div>
-    <div id="edit" class="editArea">
-     <div class="title">
-            <div class="smallHead titleStyle"><span>Title</span>
+    return ` <div id="EditCloseArea" class="popupEdit" onclick="closeDropDownContact()">
+        <div class="closeIconEdit"><img onclick="closePopUpTaskSmall()" src="../img/Close.png"></div>
+        <div id="edit" class="editArea">
+            <div class="leftSide">
+                <div class="title">
+                    <div class="smallHead titleStyle"><span>Title</span></div>
+                    <input id="titleEditFail" class="titleInput " type="text" value="${objData.title}"
+                        oninput="clearFailAdd()">
+                    <div id="failTitleEditBoard" class="fail d_none "><span>Please enter a title</span></div>
+                </div>
+                <div class="description">
+                    <div class="smallHead descSytle">Description</div>
+                    <textarea rows="4" cols="37" class="textAreaData"></textarea>
+                </div>
+
+                <div class="dueDate">
+                    <div class="smallHead dateStyle"><span>Due Date</span>
+                    </div>
+                    <input id="dateEditEnter" class="DueDate" type="text" value="${objData.date}"
+                        onfocus="(this.type='date')">
+                </div>
+                <div class="prioArea">
+                    <span>Priority</span>
+                    <div class="prioForm">
+                        <input type="radio" name="priority" value="urgent" id="urgent">
+                        <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png" alt=""></label>
+
+                        <input type="radio" name="priority" value="medium" id="medium">
+                        <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png" alt=""></label>
+
+                        <input type="radio" name="priority" value="low" id="low">
+                        <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
+                    </div>
+                </div>
+                 <div class="assign">
+                                <label for="hiddenSelect"><span>Category<sup>*</sup></span></label>
+                                <div class="assignments" id="customSelect" onclick="toggleDropdown()">
+                                    Select task category
+                                </div>
+                                <select id="hiddenSelect">
+                                    <option value="" disabled selected>Select task category</option>
+                                    <option value="technical">Technical Task</option>
+                                    <option value="userStory">User Story</option>
+                                </select>
+                                <div id="dropdown" class="selectItems selectHide">
+                                    <div data-value="technical" onclick="selectOption(this)">Technical Task</div>
+                                    <div data-value="userStory" onclick="selectOption(this)">User Story</div>
+                                </div>
+                                <div id="failCategory" class="fail selectHide"><span>Please select a Category for
+                                        Task.</span></div>
+                            </div>
             </div>
-            <input id="titleEditFail" class="titleInput " type="text" value="${objData.title}" oninput="clearFailAdd()">
-            <div id="failTitleEditBoard" class="fail d_none "><span>Please enter a title</span></div>
-        </div>
-        <div class="description">
-            <div class="smallHead descSytle">Description</div>
-            <textarea  rows="4" cols="37"  class="textAreaData"></textarea>
-        </div>
-
-     <div class="dueDate">
-            <div class="smallHead dateStyle"><span>Due Date</span>
+            <div class="partition"></div>
+            <div class="rightSide">
+                <div class="subtaskStyle"><span>Subtaskt</span></div>
+                <div id="subtaskInput" class="substart"></div>
+                <ul id="subTaskBoard" class="ulArea"></ul>
+                <div class="assignContainer">
+                 <div class="assignedStyle"><span>Assigned to</span></div>
+                <div id="contactDropStart" class="contactDrop" onclick="contactDropOpen(event)"><span>Select Contacts to
+                        assgin</span> <img id="arrowContactDrop" src="../img/arrow_drop_runter.png" alt=""></div>
+                <div id="contactDropArea" class="contactDropData d_none" onclick="event.stopPropagation()"></div>
+                <div id="initialsArea" class="initialsEdit"></div>
             </div>
-            <input id="dateEditEnter"  class="DueDate" type="text" value="${objData.date}" onfocus="(this.type='date')">
+                </div>
+                
         </div>
-      <div class="prioArea">
-    <span>Priority</span>
-    <div class="prioForm">
-        <input type="radio" name="priority" value="urgent" id="urgent">
-        <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png" alt=""></label>
 
-        <input type="radio" name="priority" value="medium" id="medium">
-        <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png" alt=""></label>
-
-        <input type="radio" name="priority" value="low" id="low">
-        <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
-    </div>
-</div>
-<div class="assignedStyle"><span>Assigned to</span></div>
-<div id="contactDropStart" class="contactDrop" onclick="contactDropOpen(event)"><span>Select Contacts to assgin</span> <img id="arrowContactDrop"  src="../img/arrow_drop_runter.png" alt=""></div>
-<div id="contactDropArea" class="contactDropData d_none" onclick="event.stopPropagation()"></div>
-<div id="initialsArea" class="initialsEdit"></div>
-<div class="subtaskStyle"><span>Subtaskt</span></div>
-  <div id="subtaskInput" class="substart"></div>
-    <ul id="subTaskBoard" class="ulArea" ></ul>
-    </div>
-
-    <div onclick="readEditData(${objData.number})" class="editAdd"> <span>Ok</span><img class="primevect" src="../img/check.svg"></div>
+            <div onclick="readEditData(${objData.number})" class="editAdd"> <span>Ok</span><img class="primevect"
+                    src="../img/check.svg"></div>
     </div>`
 }
 
 /** Generates an HTML template for a checkbox contact item. */
-function checkboxContactTemplate(isChecked, contactName , initials, color) {
+function checkboxContactTemplate(isChecked, contactName, initials, color) {
     return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ${isChecked} ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><span>${initials}</span></div></div> </label></div>`
 }
 
 /** Generates an HTML template for a checkbox contact item without a checked state.  */
-function checkboxContactTemplateEmpty( contactName , initials, color) {
+function checkboxContactTemplateEmpty(contactName, initials, color) {
     return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><span>${initials}</span></div></div> </label></div>`
 }
 
@@ -348,7 +381,7 @@ function templateSub2(newValue) {
 
 /** Generates an HTML template for a subtask element, providing options to delete or edit/save the subtask.*/
 function templateSub3(newValue) {
-    return`  <span class="taskText">• ${newValue}</span>
+    return `  <span class="taskText">• ${newValue}</span>
             <div class="addDelet">
                 <span><img onclick="deleteTask(event)" src="../img/Propertydelete.png" alt="Delete"></span>
                 <div class="strich"></div>
@@ -358,7 +391,7 @@ function templateSub3(newValue) {
 
 /**  Generates an HTML template for an editable subtask input field. */
 function templateSub4(currentText) {
-    return`
+    return `
         <input class="inputSubAdd" type="text" value="${currentText}">
         <div class="addDelet">
             <span><img onclick="deleteTask(event)" src="../img/Propertydelete.png" alt="Delete"></span>

@@ -26,8 +26,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 525px;
-    height: 800px;
+    /* width: 525px; */
+    /* height: 800px; */
+    padding: 24px;
     background-color: white;
     border-radius: 30px;
     gap: 10px;
@@ -35,14 +36,26 @@
 
 .editArea {
     display: flex;
-    flex-direction: column;
-    margin-top: 30px;
+    flex-direction: row;
+    /* margin-top: 20px; */
     overflow: auto;
-    height: 700px;
-    width: 90%;
-    padding-right: 20px;
+    /* height: 700px; */
+    /* width: 90%; */
+    /* padding: 0px 20px; */
     scroll-behavior: smooth;
-    gap: 10px;
+    gap: 24px;
+}
+
+.leftSide, .rightSide {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.partition {
+    width: 1px;
+    height: 580px;
+    background-color: #d1d1d1;
 }
 
 .substart {
@@ -147,13 +160,13 @@
     padding-right: 10px;
     padding-left: 23px;
     transition: 125ms ease-in-out;
-    
+
 }
 
 .liSubTask:hover {
     background-color: #e3e2e2;
     border-radius: 10px;
-    
+
 }
 
 .liSubTask:hover .addDelet {
@@ -172,7 +185,7 @@
 
 .taskText:hover {
     background: none;
-   
+
 }
 
 .inputSubAdd {
@@ -308,14 +321,19 @@
 }
 
 .contactDropData {
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     height: 200px;
+    margin-top: 84px;
     overflow: auto;
     gap: 2px;
     flex-shrink: 0;
+    box-shadow: 0px 0px 14px 3px #0000000A;
+    background: #FFFFFF;
+    border-radius: 10px;
 }
 
 .initialsEdit {
@@ -389,7 +407,7 @@
     font-size: 20px;
 }
 
-.popupTaskInfo {    
+.popupTaskInfo {
     width: 525px;
     max-height: 931px;
     border-radius: 30px;
@@ -406,7 +424,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;   
+    align-items: center;
 }
 
 .prioArea {
@@ -970,14 +988,22 @@ progress::-moz-progress-bar {
     justify-content: end;
     align-items: center;
     width: 100%;
-    height: 30px;
-    padding-right: 50px;
-    padding-top: 20px;
-    cursor: pointer;
+    /* height: 30px; */
+    /* padding-right: 50px; */
+    /* padding-top: 20px; */
+    /* cursor: pointer; */
+}
+
+.assignContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 8px;
 }
 
 .closeIconEdit img:hover {
     border-radius: 100%;
+    cursor: pointer;
     background-color: #e3e2e2;
 }
 

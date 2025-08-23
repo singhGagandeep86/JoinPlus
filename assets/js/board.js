@@ -50,6 +50,7 @@ function openPopUpTaskSmall(i) {
     info.innerHTML = templateTaskSmallInfo(objDateTask);
     time(objDateTask);
     addcontactInfo(objDateTask);
+    addAttachInfo(objDateTask);
     addSubtaskInfo(objDateTask);
     let area = document.getElementById('closeAreaInfo');
     area.addEventListener('click', (event) => {
@@ -185,6 +186,17 @@ function addcontactInfo(objDateTask) {
             let initials = extrahiereInitialen(contactName[i])
             contactArea.innerHTML += templateContactInfo(contactscolor[i], initials, contactName[i]);
         }}
+}
+
+function addAttachInfo(objDateTask) { 
+    let attachContainer = document.getElementById('attachContainer');
+    attachContainer.innerHTML = '';
+    let attach = objDateTask.attachments
+    if (attach) {
+        for (let i = 0; i < attach.length; i++) {
+        attachContainer.innerHTML += templateAttachInfo(attach[i]);
+        }
+    }
 }
 
 /**
