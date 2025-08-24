@@ -46,7 +46,12 @@
     gap: 24px;
 }
 
-.leftSide, .rightSide {
+.assignStyle {
+    height: 180px !important;
+}
+
+.leftSide,
+.rightSide {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -143,6 +148,7 @@
 .ulArea {
     width: 100%;
     max-height: 150px;
+    height: 58px;
     background-color: white;
     color: #2A3647;
     overflow: auto;
@@ -152,7 +158,7 @@
 }
 
 .liSubTask {
-    width: 95% !important;
+    /* width: 95% !important; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -160,12 +166,12 @@
     padding-right: 10px;
     padding-left: 23px;
     transition: 125ms ease-in-out;
-
+    border-radius: 10px;
+    height: 57px;
 }
 
 .liSubTask:hover {
     background-color: #e3e2e2;
-    border-radius: 10px;
 
 }
 
@@ -185,7 +191,6 @@
 
 .taskText:hover {
     background: none;
-
 }
 
 .inputSubAdd {
@@ -1027,4 +1032,86 @@ progress::-moz-progress-bar {
 .subtaskStyle {
     font-size: 20px;
     color: #2A3647;
+}
+
+.photoArea {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color:#0000000A;
+    z-index: 100;
+}
+
+.imgContainer {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    bottom: 10%;
+    animation: 400ms animation;
+    background-color: #FFFFFF;
+
+    .imgHeader {
+        position: absolute;
+        display: none;
+        width: 100%;
+        height: 42px;
+        background-color: #000000cf;
+
+        p{
+            color: #FFFFFF;
+        }
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.imgContainer:hover {
+    .imgHeader, .imgMover {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 20px;
+    }
+}
+
+@keyframes animation {
+    0% {
+        bottom: -100%;
+    }
+
+    100% {
+        bottom: 10%;
+    }
+}
+
+.imgHandle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+}
+.imgHandle img:hover {
+    cursor: pointer;
+    background-color: #29ABE2;
+    border-radius: 50%;
+}
+
+.imgMover {
+    position: absolute;
+    display: none;
+    top: 50%;
+    height: 24px;
+    width: 100%;
+
+    img {
+        width: auto;
+        height: auto;
+        cursor: pointer;
+    }
 }

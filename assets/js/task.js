@@ -286,7 +286,7 @@ function showCheckBoxes() {
  * Toggles the visibility of the task category dropdown.
  * Shows the dropdown if it is currently hidden; hides it otherwise.
  */
-function toggleDropdown() {
+function toggleDropdown() { 
   const dropdown = document.getElementById('dropdown');
   if (!dropdownOpen) {
     dropdown.classList.remove('selectHide');

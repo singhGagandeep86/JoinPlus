@@ -6,6 +6,7 @@ let searchArray = [];
 let draggedElement;
 let mediaQuery = window.matchMedia("(max-width: 1100px)");
 let toggle = 0;
+let attachmentsToArray = [];
 
 /**
  * Loads initial task data and user data asynchronously.
@@ -87,7 +88,7 @@ function openPopUpTaskSwitch(element) {
     let arrow = document.getElementById('arrowSwitch' + element);
     let objData = createobjFromElement(element);
     let id = objData.id;
-    toggleOpenTaskSwitch(select, arrow, element, id );
+    toggleOpenTaskSwitch(select, arrow, element, id);
     let area = document.getElementById('popupTaskSwitch' + element);
     area.addEventListener('click', (event) => {
         event.stopPropagation();
@@ -95,7 +96,7 @@ function openPopUpTaskSwitch(element) {
 }
 
 /** this function toggle the open task  */
-function toggleOpenTaskSwitch(select, arrow, element, id ) {
+function toggleOpenTaskSwitch(select, arrow, element, id) {
     if (toggle === 0) {
         select.classList.remove('d_none');
         arrow.classList.add('arrowTaskImg');
@@ -185,16 +186,19 @@ function addcontactInfo(objDateTask) {
         for (let i = 0; i < contactName.length; i++) {
             let initials = extrahiereInitialen(contactName[i])
             contactArea.innerHTML += templateContactInfo(contactscolor[i], initials, contactName[i]);
-        }}
+        }
+    }
 }
 
-function addAttachInfo(objDateTask) { 
+function addAttachInfo(objDateTask) {
     let attachContainer = document.getElementById('attachContainer');
     attachContainer.innerHTML = '';
+    attachmentsToArray = [];
     let attach = objDateTask.attachments
+    attachmentsToArray = attach; 
     if (attach) {
         for (let i = 0; i < attach.length; i++) {
-        attachContainer.innerHTML += templateAttachInfo(attach[i]);
+            attachContainer.innerHTML += templateAttachInfo(attach[i], i);
         }
     }
 }
@@ -219,12 +223,15 @@ function addSubtaskInfoIf(subtaskInput, subtaskEmpty, objDateTask) {
         subtaskEmpty.classList.add('d_none')
     } else if (Object.values(objDateTask.subtask).length === 0 && Object.values(objDateTask.checked) === 0) {
         subtaskInput.innerHTML = '';
-    } else { let subtaskTitle = Object.values(objDateTask.subtask);
+    } else {
+        let subtaskTitle = Object.values(objDateTask.subtask);
         let subtastChecked = Object.values(objDateTask.checked);
         for (let j = 0; j < subtaskTitle.length; j++) {
             let element = subtaskTitle[j];
             subtaskInput.innerHTML += templateSubtask(element, objDateTask, j);
-            checked(subtastChecked);}}
+            checked(subtastChecked);
+        }
+    }
 }
 
 /**

@@ -160,9 +160,11 @@ function templateTaskSmallInfo(objDateTask) {
             <div class="attachInfo"><span>Attachments</span><div class="attach-container" id="attachContainer"></div></div>
             <div class="subtaskInfo"><span>Subtasks:</span><div id="subtaskEmtpy"  class="subtaskAreaData"><div id="subtaskArea"></div></div></div>
             <div class="editInfo"><div class="editInfoData"><div><img onclick="deleteData(${objDateTask.number})" class="deletePic" src="../img/Deletecontact.png" alt=""></div>
-                <div><img onclick="editOpen(${objDateTask.number})" class="editPic" src="../img/editcontacts.png" alt=""></div></div></div>
+                <div><img onclick="editOpen(${objDateTask.number})" class="editPic" src="../img/editcontacts.png"></div></div></div>
         </div>
-        </div>`;
+        </div> 
+        <div id="photoArea" class="photoArea d_none">
+      </div>`;
 }
 
 /** Generates an HTML template for a progress bar displaying the completion status of subtasks. */
@@ -182,8 +184,8 @@ function templateContactInfo(contactscolor, initials, contactName) {
     <span>${initials}</span></div> <span class="contactName">${contactName}</span></div>`
 }
 
-function templateAttachInfo(attach) {
-    return `<div class="cardAttach"><img src="${attach.data}"><p>${attach.name}</p></div>`
+function templateAttachInfo(attach, i) {
+    return `<div class="cardAttach"><div class="overlay" onclick="showFile('${attach.data}', '${attach.name}', ${i})"><img class="downloadPic" src="../img/download.png"></div><img src="${attach.data}"><p>${attach.name}</p></div>`
 }
 
 /** Generates an HTML template for a subtask with a checkbox.*/
@@ -266,7 +268,7 @@ function editTask(objData) {
                         <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
                     </div>
                 </div>
-                 <div class="assign">
+                 <div class="assign assignStyle">
                                 <label for="hiddenSelect"><span>Category<sup>*</sup></span></label>
                                 <div class="assignments" id="customSelect" onclick="toggleDropdown()">
                                     Select task category

@@ -1,4 +1,4 @@
-const { loadavg } = require("os");
+// const { loadavg } = require("os");
 
 let pathC = '';
 
@@ -184,7 +184,6 @@ function categorieSelect(objData) {
     let customSelect = document.getElementById('customSelect');
     categoryOption.value = category;
     customSelect.innerText = category;
-    debugger;
 }
 
 /** Retrieves the selected contacts from the contact dropdown.*/
@@ -335,22 +334,24 @@ function readEditData(number) {
     let description = document.querySelector('.textAreaData').value;
     let dueDate = document.querySelector('.DueDate').value;
     let priority = readPrio();
+    let category = document.getElementById('customSelect').innerText;
+    let color = generateCatColor(category);
     let contact = getSelectedContacts();
     let subtask = getAllSubTasks();
     let subtaskobj = subtaskObj(subtask)
     let checked = checkedObj(subtask);
     let contactName = nameObj(contact);
-    let color = colorObj(contact);
-    nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority);
+    let contactColor = colorObj(contact);
+    nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority, category, contactColor);
 }
 
 /** Validates the title of the task during the edit process.*/
-function nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority) {
+function nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority, category, contactColor) {
     if (title === '') {
         failNameEditBoard();
         return false;
     } else {
-        pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority);
+        pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority, category, contactColor);
     }
 }
 
@@ -377,6 +378,15 @@ function subtaskObj(subtask) {
         subtaskobj[`task${i + 1}`] = subtaskText;
     }
     return subtaskobj
+}
+
+function generateCatColor(category) {
+    if (category === 'Technical Task') {
+        return 'Tech';
+    } else {
+        return 'User';
+    }
+
 }
 
 /** Creates an object representing the checked status of subtasks.*/
@@ -414,4 +424,43 @@ function loadnewTaskEdit() {
     arrayLoad = [];
     load();
     closePopUpTaskSmall();
+}
+
+
+function showFile(img, name, index) {
+    console.log(index);
+    document.getElementById('photoArea').classList.remove('d_none');
+    document.getElementById('photoArea').innerHTML = `
+      <div class="imgContainer" onclick="event.stopPropagation()">
+        <div class="imgHeader"><p id="selectionName"></p>
+        <div class="imgHandle"><img src="../img/download.png"><img src="../img/CloseWhite.png" onClick="photoArea()"></div></div>
+        <div class="imgMover"><img src="../img/arrow-Lft-line.png" onclick='slideImage("left", ${index})'><img src="../img/arrow-right-line.png" onclick='slideImage("right", ${index})'></div>
+        <img id="selectedPhoto"></div>`
+    document.getElementById('selectedPhoto').src = img;
+    document.getElementById('selectionName').innerHTML = `${name}`;
+}
+
+function photoArea() {
+    document.getElementById('photoArea').classList.add('d_none');
+}
+
+function slideImage(direction, index) {
+
+
+    if (direction === 'left') {
+        index = index - 1;
+        if (index < 0) {
+            index = attachmentsToArray.length - 1;
+        }
+        let selectedImage = attachmentsToArray[index];
+        showFile(selectedImage.data, selectedImage.name, index);
+    } else {
+        index = index + 1;
+        if (index === attachmentsToArray.length) {
+            index = 0;
+        }
+        let selectedImage = attachmentsToArray[index];
+        showFile(selectedImage.data, selectedImage.name, index);
+    }
+
 }
