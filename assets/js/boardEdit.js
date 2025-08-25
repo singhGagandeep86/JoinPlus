@@ -1,6 +1,37 @@
-// const { loadavg } = require("os");
 
 let pathC = '';
+
+document.addEventListener('DOMContentLoaded', () => {
+    test();
+})
+
+function test() {
+    let filesPicker = document.getElementById('filesPicker');
+
+    if (filesPicker == null) {
+        return;
+    }
+    filesPicker.addEventListener('change', () => {
+        const allFiles = filesPicker.files;
+
+        if (allFiles.length > 0) {
+            Array.from(allFiles).forEach(async file => {
+                const blog = new Blob([file], { type: file.type });
+
+                const base64 = await blobToBase64(blog);
+
+                const img = document.createElement('img');
+                img.src = base64;
+                attachmentsToArray.push({
+                    name: file.name,
+                    type: file.type,
+                    data: base64
+                });
+                loadAllAttachments();
+            })
+        }
+    })
+}
 
 /** Loads and displays contact data in the contact drop area.*/
 function loadContactData(firebaseData, objData) {
@@ -105,6 +136,7 @@ function loadEditData(objData, prioCheck) {
     loadSubs(objData);
     priorityEditCheck(prioCheck);
     categorieSelect(objData);
+    loadAllAttachments();
     initialsLoad(objData);
     dateVali();
 }
@@ -179,11 +211,28 @@ function priorityEditCheck(prioCheck) {
 
 function categorieSelect(objData) {
     let category = objData.category;
-    console.log(category);
     let categoryOption = document.getElementById('hiddenSelect');
     let customSelect = document.getElementById('customSelect');
     categoryOption.value = category;
     customSelect.innerText = category;
+}
+
+function loadAllAttachments() {
+    let fileList = document.getElementById('fileList');
+    fileList.innerHTML = '';
+    if (attachmentsToArray) {
+        removeAll.classList.remove('selectHide');
+        for (let index = 0; index < attachmentsToArray.length; index++) {
+            const attachment = attachmentsToArray[index];
+            fileList.innerHTML += filesTemplate(attachment.data, attachment.name);
+        }
+    }
+}
+
+function removeAllAttachments() {
+    attachmentsToArray = [];
+    fileList.innerHTML = '';
+    removeAll.classList.add("selectHide");
 }
 
 /** Retrieves the selected contacts from the contact dropdown.*/
@@ -246,6 +295,13 @@ function addInputSubtastk() {
         loadSubtaskLi(inputValue);
         substartDiv();
     }
+}
+
+function filesTemplate(img, name) {
+    return `<div class="file-container">
+    <img src=${img}>
+    <div class="file-name">${name}</div>
+    </div>`
 }
 
 /** Loads a new subtask into the subtask area of the task board.*/
@@ -342,16 +398,17 @@ function readEditData(number) {
     let checked = checkedObj(subtask);
     let contactName = nameObj(contact);
     let contactColor = colorObj(contact);
-    nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority, category, contactColor);
+    let attachments = attachmentsToArray; 
+    nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority, category, contactColor, attachments);
 }
 
 /** Validates the title of the task during the edit process.*/
-function nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority, category, contactColor) {
+function nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority, category, contactColor, attachments) {
     if (title === '') {
         failNameEditBoard();
         return false;
     } else {
-        pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority, category, contactColor);
+        pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority, category, contactColor, attachments);
     }
 }
 
@@ -428,14 +485,13 @@ function loadnewTaskEdit() {
 
 
 function showFile(img, name, index) {
-    console.log(index);
     document.getElementById('photoArea').classList.remove('d_none');
     document.getElementById('photoArea').innerHTML = `
       <div class="imgContainer" onclick="event.stopPropagation()">
         <div class="imgHeader"><p id="selectionName"></p>
-        <div class="imgHandle"><img src="../img/download.png"><img src="../img/CloseWhite.png" onClick="photoArea()"></div></div>
+        <div class="imgHandle"><img src="../img/download.png" onClick="downloadFile(${index})"><img src="../img/CloseWhite.png" onClick="photoArea()"></div></div>
         <div class="imgMover"><img src="../img/arrow-Lft-line.png" onclick='slideImage("left", ${index})'><img src="../img/arrow-right-line.png" onclick='slideImage("right", ${index})'></div>
-        <img id="selectedPhoto"></div>`
+        <img class="selectedPhoto" id="selectedPhoto"></div>`
     document.getElementById('selectedPhoto').src = img;
     document.getElementById('selectionName').innerHTML = `${name}`;
 }
@@ -445,8 +501,6 @@ function photoArea() {
 }
 
 function slideImage(direction, index) {
-
-
     if (direction === 'left') {
         index = index - 1;
         if (index < 0) {
@@ -463,4 +517,23 @@ function slideImage(direction, index) {
         showFile(selectedImage.data, selectedImage.name, index);
     }
 
+}
+
+
+function downloadFile(index) {
+
+    let selectedImage = attachmentsToArray[index];
+    let url = selectedImage.data;
+
+    const link = document.createElement('a');
+
+    link.href = url;
+
+    link.download = selectedImage.name;
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
 }

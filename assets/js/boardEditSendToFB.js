@@ -32,7 +32,7 @@ async function postEditData(path = "", data = {}) {
 /**
  * Sends edited task data to the server.
  */
-function pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority, category, contactColor) {
+function pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority, category, contactColor, attachments) {
     postEditData(`/task/task${numberEditElement}`, {
         'contact': contactName,
         'color': color,
@@ -43,7 +43,8 @@ function pushDataEdit(title, description, dueDate, subtaskobj, checked, contactN
         'contactcolor': contactColor,
         'title': title,
         'subtask': subtaskobj,
-        'checked': checked
+        'checked': checked,
+        'attachments': attachments
     });
 }
 

@@ -2,7 +2,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const filePicker = document.getElementById('filePicker');
-
     if (filePicker) {
 
         filePicker.addEventListener('change', () => {

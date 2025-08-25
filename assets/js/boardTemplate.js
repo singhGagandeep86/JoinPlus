@@ -288,6 +288,24 @@ function editTask(objData) {
             </div>
             <div class="partition"></div>
             <div class="rightSide">
+             <div class="attachment">
+                                <span>Attachments</span>
+                                <div class="attachment-info">
+                                <p>Allowed file types are JPEG and PNG</p>
+                                <div id="removeAll" class="remove-file selectHide" onclick="removeAllAttachments()">
+                                    <img src="../img/delete.png">
+                                    <span>Delete all</span>
+                                </div>
+                                </div>
+                                <input id="filesPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
+                                <div class="file-picker" onclick="filesPicker.click(); test()">
+                                    <span>Drag a file or browse</span>
+                                    <img src="../img/plus.png">
+                                </div>
+                                <div class="file-list" id="fileList">
+                                    
+                                </div>
+                            </div>
                 <div class="subtaskStyle"><span>Subtaskt</span></div>
                 <div id="subtaskInput" class="substart"></div>
                 <ul id="subTaskBoard" class="ulArea"></ul>

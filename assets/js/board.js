@@ -194,12 +194,14 @@ function addAttachInfo(objDateTask) {
     let attachContainer = document.getElementById('attachContainer');
     attachContainer.innerHTML = '';
     attachmentsToArray = [];
-    let attach = objDateTask.attachments
-    attachmentsToArray = attach; 
+    let attach = objDateTask.attachments;
     if (attach) {
+        attachmentsToArray = attach;
         for (let i = 0; i < attach.length; i++) {
             attachContainer.innerHTML += templateAttachInfo(attach[i], i);
         }
+    } else {
+        attachmentsToArray = [];
     }
 }
 

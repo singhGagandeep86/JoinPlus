@@ -26,8 +26,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* width: 525px; */
-    /* height: 800px; */
     padding: 24px;
     background-color: white;
     border-radius: 30px;
@@ -37,11 +35,7 @@
 .editArea {
     display: flex;
     flex-direction: row;
-    /* margin-top: 20px; */
     overflow: auto;
-    /* height: 700px; */
-    /* width: 90%; */
-    /* padding: 0px 20px; */
     scroll-behavior: smooth;
     gap: 24px;
 }
@@ -55,6 +49,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    max-width: 440px;
 }
 
 .partition {
@@ -158,7 +153,6 @@
 }
 
 .liSubTask {
-    /* width: 95% !important; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -993,10 +987,6 @@ progress::-moz-progress-bar {
     justify-content: end;
     align-items: center;
     width: 100%;
-    /* height: 30px; */
-    /* padding-right: 50px; */
-    /* padding-top: 20px; */
-    /* cursor: pointer; */
 }
 
 .assignContainer {
@@ -1114,4 +1104,9 @@ progress::-moz-progress-bar {
         height: auto;
         cursor: pointer;
     }
+}
+
+.selectedPhoto {
+    height: auto !important;
+    max-width: 100% !important;
 }
