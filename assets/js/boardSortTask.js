@@ -292,11 +292,11 @@ function subtaskBar(element, checkedCount) {
     let rangeId = `subtaskRange-${element['number']}`;
     let range = document.getElementById(rangeId);
     let subtaskCount = element.subtask ? Object.keys(element.subtask).length : 0;
-    if(subtaskCount === 0){
+    if (subtaskCount === 0) {
         range.innerHTML = '';
-    }else{
+    } else {
         range.innerHTML = templateRange(subtaskCount, checkedCount);
-    }   
+    }
 }
 
 /**
@@ -347,4 +347,21 @@ function extrahiereInitialen(contactName) {
         }
         return initials;
     }
+}
+
+function openContact() {
+    console.log('open contact');
+    let userId = sessionStorage.getItem('uid');
+    let userObject = userData.filter(e => e['uid'] === userId);
+    if (userObject == '') {
+        userObject = [{
+            "email": "",
+            "name": "Guest User",
+            "uid": userId
+        }]
+    }
+    let contactPopUp = document.getElementById('popupContact');
+    contactPopUp.classList.remove('d_none');
+    contactPopUp.innerHTML = editContactTemp(); debugger;
+    getOperator(userObject);
 }

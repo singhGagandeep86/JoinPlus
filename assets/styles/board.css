@@ -479,11 +479,81 @@ html {
         width: max-content;
         height: max-content;
     }
+
     .downloadPic:hover {
         background-color: aquamarine;
         border-radius: 50%;
         transform: scale(0.8);
         padding: 3px;
         background-color: #29ABE2;
+    }
+}
+
+.editContact {
+    display: flex;
+    width: 80%;
+    height: 592px;
+    border-radius: 30px;
+    background-color: white;
+    overflow: hidden;
+
+    .left-part {
+        background-color: #2A3647;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        padding: 46px;
+
+        h2 {
+            font-weight: 700;
+            font-size: 61px;
+            color: #FFFFFF;
+        }
+
+        img {
+            width: 56px;
+        }
+
+        .vector {
+            width: 90px;
+            height: 0px;
+            border: 3px solid #29ABE2;
+        }
+    }
+
+    .right-part {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 16px;
+
+        .initialsCont {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #CE9597;
+            box-shadow: 0px 0px 4px 0px #0000001A;
+            border: 3px solid #FFFFFF;
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: 500;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 120px;
+        }
+
+        .userDetails {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            width: 422px;
+
+            input {
+                width: 100%;
+            }
+        }
     }
 }

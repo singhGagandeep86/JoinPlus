@@ -31,7 +31,7 @@ function validateCredentials(email, password) {
  * @returns {Promise<Response>} - The response object from the API after sending the request.
  */
 function fetchAuthToken(email, password) {
-     return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBUvClF-GJEiTg298gzQneyv8i5Rg9KgQs', {
+    return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBUvClF-GJEiTg298gzQneyv8i5Rg9KgQs', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -221,7 +221,8 @@ function loadInitailUserIf(userId, userObject) {
             let replaceElement = capitalizeName(element)
             createUser(userInitial);
             writeGreetin(replaceElement, userObject);
-        }}
+        }
+    }
 }
 
 
@@ -298,7 +299,7 @@ function extrahiereInitialen(element) {
  * @param {string} path - The database path from which to fetch the user data.
  * @returns {Promise<void>}
  */
-async function fetchUserData(path) { 
+async function fetchUserData(path) {
     let response = await fetch(getDatabaseUrl(path));
     let responsetoJson = await response.json();
     let taskArray = Object.values(responsetoJson);
@@ -402,4 +403,23 @@ function loginVali(email, password) {
         return false;
     }
     return true;
+}
+
+function getOperator(userObject) {
+    console.log(userObject);
+    let initialsCont = document.getElementById('initialCont');
+    // if (userObject == '') {
+    //     console.log('guest user');
+    //     initialsCont.innerText = `GS`;
+    // } else {
+        for (let i = 0; i < userObject.length; i++) {
+            let userName = userObject[i].name;
+            let userEmail = userObject[i].email;
+            let userInitial = extrahiereInitialen(userName)
+            initialsCont.innerText = `${userInitial}`;
+            document.getElementById('userName').value = userName;
+            document.getElementById('userEmail').value = userEmail;
+        }
+    // }
+
 }

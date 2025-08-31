@@ -419,3 +419,26 @@ function templateSub4(currentText) {
             <span><img onclick="toggleEditTask(event, this)" src="../img/Propertycheck.png" alt="Edit/Save"></span>
         </div>`
 }
+
+function editContactTemp() {
+    return `<div class="editContact">
+              <div class="left-part">
+              <img src="../img/Joinlogowhite.png">
+                <h2>My account</h2>
+                <div class="vector"></div>
+              </div>
+              <div class="right-part">
+              <div id="initialCont" class="initialsCont">
+              </div>
+              <div class="userDetails">
+                 <input id="userName">
+                 <input id="userEmail">
+                 <input id="userPhone">
+                <div class="buttonContainer">
+                 <button>Delete my account</button>
+                 <button>Save</button>
+                </div>
+              </div>
+             </div>
+            </div>`
+}

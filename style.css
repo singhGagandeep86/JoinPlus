@@ -186,7 +186,6 @@ html::-webkit-scrollbar-thumb {
     top: 70px;
     right: 19px;
     width: 175px;
-    height: 210px;
     background-color: var(--sideheader-main-color);
     border-radius: 20px 0px 20px 20px;
     padding: 10px;

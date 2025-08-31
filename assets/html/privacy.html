@@ -1,94 +1,112 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="../img/Joinlogowhite.png">
-        <link rel="stylesheet" href="../../style.css">
-        <link rel="stylesheet" href="../styles/privacy.css">
-        <link rel="stylesheet" href="../styles/fonts.css">
-        <link rel="stylesheet" href="../styles/mediaquerry.css">
-        <title>Impressum</title>
-    </head>
-    <body onload="fetchUserData('/user')">
-        <div class="burger-menu" id="burgerMenu">
-            <div class="burger-content">
-                <h2 class="helpOff"><a href="../html/help.html">Help</a></h2>
-                <h2><a href="../html/legecy.html">Legal Notice</a></h2>
-                <h2><a href="../html/privacy.html">Privacy Policy</a></h2>
-                <h2 onclick="logout()">Log Out</h2>
-            </div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../img/Joinlogowhite.png">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../styles/privacy.css">
+    <link rel="stylesheet" href="../styles/fonts.css">
+    <link rel="stylesheet" href="../styles/mediaquerry.css">
+    <title>Impressum</title>
+</head>
+
+<body onload="fetchUserData('/user')">
+    <div class="burger-menu" id="burgerMenu">
+        <div class="burger-content">
+            <h2>Account</h2>
+            <h2 class="helpOff"><a href="../html/help.html">Help</a></h2>
+            <h2><a href="../html/legecy.html">Legal Notice</a></h2>
+            <h2><a href="../html/privacy.html">Privacy Policy</a></h2>
+            <h2 onclick="logout()">Log Out</h2>
         </div>
-        <div class="overDisplay">
-            <aside class="mainDesignAside">
-                <img class="mainDesignAsideImg" src="../img/Joinlogowhite.png" alt="">
-                <div class="mainDesignAsideLinks">
-                    <div class="asideMenuArea">
-                        <div id="summary" class="asideMenu"><a href="../html/summary.html"><img src="../img/Summary.png" alt="">Summary</a></div>
-                        <div id="task" class="asideMenu"><a href="../html/task.html"><img src="../img/Add task.png" alt="">Add Task</a></div>
-                        <div id="board" class="asideMenu "><a href="../html/board.html"> <img class="activeBoard" src="../img/Board.png" alt="">Board</a></div>
-                        <div id="contact" class="asideMenu"><a href="../html/contact.html"><img src="../img/Contacts.png" alt="">Contacts</a></div>
-                    </div>
-                    <div class="legacyMenu">
-                        <a class="activeSite" href="../html/privacy.html">Privacy Policy</a>
-                        <a href="../html/legecy.html">Legal Notice</a>
-                    </div>
+    </div>
+    <div class="overDisplay">
+        <aside class="mainDesignAside">
+            <img class="mainDesignAsideImg" src="../img/Joinlogowhite.png" alt="">
+            <div class="mainDesignAsideLinks">
+                <div class="asideMenuArea">
+                    <div id="summary" class="asideMenu"><a href="../html/summary.html"><img src="../img/Summary.png"
+                                alt="">Summary</a></div>
+                    <div id="task" class="asideMenu"><a href="../html/task.html"><img src="../img/Add task.png"
+                                alt="">Add Task</a></div>
+                    <div id="board" class="asideMenu "><a href="../html/board.html"> <img class="activeBoard"
+                                src="../img/Board.png" alt="">Board</a></div>
+                    <div id="contact" class="asideMenu"><a href="../html/contact.html"><img src="../img/Contacts.png"
+                                alt="">Contacts</a></div>
                 </div>
-            </aside>
-            <div class="mainDesign">
-                <div class="header">
-                    <span class="changeMedia">Kanban Projekt Management Tool</span>
-                    <div class="headerContentRightSide">
-                        <a href="../html/help.html">
-                            <img class="picHelp" src="../img/help.png">
+                <div class="legacyMenu">
+                    <a class="activeSite" href="../html/privacy.html">Privacy Policy</a>
+                    <a href="../html/legecy.html">Legal Notice</a>
+                </div>
+            </div>
+        </aside>
+        <div class="mainDesign">
+            <div class="header">
+                <span class="changeMedia">Kanban Projekt Management Tool</span>
+                <div class="headerContentRightSide">
+                    <a href="../html/help.html">
+                        <img class="picHelp" src="../img/help.png">
+                    </a>
+                    <div class="picSm" id="burgerToggle"><span id="userIni"></span></div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text-2">
+                    <div class="text-arrow">
+                        <h1>Impressum</h1>
+                        <a href="../html/summary.html"><img src="../img/arrow-left-line.png"></a>
+                    </div>
+                    <p>Angaben gemäß § 5 TMG:</p>
+                    <p>
+                        <b>Geschäftsführer:</b> Alexander Winkler, Belal Noori und Gagandeep Singh
+                    </p>
+                    <br>
+                    <p>
+                        <strong>A&B IT-Unternehmen - Schwerpunkt Digitalisierung</strong>
+                    </p>
+                    <span>Im ABC Straße 6789, 12345 Land</span>
+                    <br>
+                    <br>
+                    <p>
+                        <b>Telefon:</b> XXXX / XXXXXXX
+                    </p>
+                    <p>info@musternameemail.de</p>
+                    <br>
+                    <h3>Streitschlichtung</h3>
+                    <br>
+                    <p>
+                        Online-Streitbeilegung gemäß Art. 14 Abs. 1 ODR-VO:
+                        Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit, die Sie
+                        unter
+                        <a href="http://ec.europa.eu/consumers/odr">http://
+                            <br>ec.europa.eu
+                            <br>/consumers/odr
                         </a>
-                        <div class="picSm" id="burgerToggle" ><span id="userIni"></span></div>
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="text-2">
-                        <div class="text-arrow">
-                            <h1>Impressum</h1>
-                            <a href="../html/summary.html"><img src="../img/arrow-left-line.png"></a>
-                        </div>
-                        <p>Angaben gemäß § 5 TMG:</p>
-                        <p>
-                            <b>Geschäftsführer:</b> Alexander Winkler, Belal Noori und Gagandeep Singh
-                        </p>
-                        <br>
-                        <p>
-                            <strong>A&B IT-Unternehmen - Schwerpunkt Digitalisierung</strong>
-                        </p>
-                        <span>Im ABC Straße 6789, 12345 Land</span>
-                        <br>
-                        <br>
-                        <p>
-                            <b>Telefon:</b> XXXX / XXXXXXX
-                        </p>
-                        <p>info@musternameemail.de</p>
-                        <br>
-                        <h3>Streitschlichtung</h3>
-                        <br>
-                        <p>
-                            Online-Streitbeilegung gemäß Art. 14 Abs. 1 ODR-VO:
-                    Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit, die Sie unter
-                            <a href="http://ec.europa.eu/consumers/odr">http://
-                                <br>ec.europa.eu
-                                <br>/consumers/odr
-                            </a>
-                            finden.
-                        </p>
-                        <br>
-                        <p>Wir nehmen nicht an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teil.</p>
-                        <br>
-                        <h3>Urheberrecht</h3>
-                        <br>
-                        <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
-                    </div>
+                        finden.
+                    </p>
+                    <br>
+                    <p>Wir nehmen nicht an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teil.
+                    </p>
+                    <br>
+                    <h3>Urheberrecht</h3>
+                    <br>
+                    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem
+                        deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der
+                        Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des
+                        jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten,
+                        nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber
+                        erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter
+                        als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam
+                        werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen
+                        werden wir derartige Inhalte umgehend entfernen.</p>
                 </div>
             </div>
         </div>
-        <script src="../../script.js"></script>
+    </div>
+    <script src="../../script.js"></script>
     <script src="../js/submenu.js"></script>
-    </body>
+</body>
+
 </html>
