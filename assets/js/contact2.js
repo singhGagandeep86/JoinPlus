@@ -225,7 +225,7 @@ function saveEditDisplayOff() {
  * @param {string} name - The name of the contact.
  * @returns {Promise<void>}
  */
-async function editContactFB(name, email, phone, number) {
+async function editContactFB(name, email, phone, number) { debugger;
     let path = `/contact/contact${number}`
     await postEditData(path, {
         'name': name,

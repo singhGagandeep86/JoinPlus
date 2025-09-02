@@ -421,24 +421,29 @@ function templateSub4(currentText) {
 }
 
 function editContactTemp() {
-    return `<div class="editContact">
+    return  ` <div class="editContact" onclick="event.stopPropagation()">
               <div class="left-part">
-              <img src="../img/Joinlogowhite.png">
-                <h2>My account</h2>
-                <div class="vector"></div>
+                  <img src="../img/Joinlogowhite.png">
+                  <h2 id="title">My account</h2>
+                  <div class="vector"></div>
               </div>
               <div class="right-part">
-              <div id="initialCont" class="initialsCont">
+                  <img onclick="closeContact()" class="close" src="../img/Close.png">
+                  <div class="initialsCont">
+                  <span id="initialCont"></span>
+                    <div id="camera" class="camera d_none">
+                     <img src="../img/camera.png">
+                    </div>
+                  </div>
+                  <div class="userDetails">
+                      <input type="text" id="userName" disabled>
+                      <input type="email" id="userEmail" disabled>
+                      <input type="tel" id="userPhone" disabled>
+                      <div class="buttonContainer">
+                          <button>Delete my account</button>
+                          <button id="editButton" onclick="editContact()">Edit</button>
+                      </div>
+                  </div>
               </div>
-              <div class="userDetails">
-                 <input id="userName">
-                 <input id="userEmail">
-                 <input id="userPhone">
-                <div class="buttonContainer">
-                 <button>Delete my account</button>
-                 <button>Save</button>
-                </div>
-              </div>
-             </div>
-            </div>`
+          </div>`
 }

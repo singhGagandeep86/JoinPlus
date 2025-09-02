@@ -504,6 +504,7 @@ html {
         justify-content: center;
         gap: 12px;
         padding: 46px;
+        width: 45%;
 
         h2 {
             font-weight: 700;
@@ -523,14 +524,29 @@ html {
     }
 
     .right-part {
-        flex: 1;
+        position: relative;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
         gap: 16px;
+        width: 55%;
+        padding: 46px;
+
+        .close {
+            position: absolute;
+            top: 48px;
+            right: 48px;
+        }
+
+        .close:hover {
+            cursor: pointer;
+            border-radius: 50%;
+            background-color: #a8a8a840;
+        }
 
         .initialsCont {
+            position: relative;
             width: 120px;
             height: 120px;
             border-radius: 50%;
@@ -543,16 +559,111 @@ html {
             text-align: center;
             vertical-align: middle;
             line-height: 120px;
+
+            .camera {
+                position: absolute;
+                width: 46px;
+                height: 46px;
+                border-radius: 50%;
+                bottom: 0;
+                right: 0;
+                background-color: #ffffff;
+
+                img {
+                    position: absolute;
+                    top: 15%;
+                    left: 18%;
+                }
+            }
+
+            .camera:hover {
+                cursor: pointer;
+                background-color: #29abe2;
+
+                img {
+                    content: url('../img/camera-white.png');
+                }
+            }
         }
 
         .userDetails {
             display: flex;
             flex-direction: column;
             gap: 32px;
-            width: 422px;
+            width: 70%;
 
             input {
                 width: 100%;
+                height: 50px;
+                border-radius: 10px;
+                gap: 10px;
+                padding: 13px 21px;
+                background-color: #FFFFFF;
+                border: 1px solid #D1D1D1;
+                font-size: 20px;
+                font-weight: 400;
+                cursor: pointer;
+            }
+
+            input:nth-child(1) {
+                background: url('../img/person.png') no-repeat 95% center;
+            }
+
+            input:nth-child(2) {
+                background: url('../img/mail.png') no-repeat 95% center;
+            }
+
+            input:nth-child(3) {
+                background: url('../img/call.png') no-repeat 95% center;
+            }
+
+            input:focus {
+                border-color: #29ABE2;
+                outline: none;
+            }
+
+            .buttonContainer {
+                display: flex;
+                width: 100%;
+                height: 57px;
+                gap: 25px;
+
+                button:nth-child(1) {
+                    border-radius: 8px;
+                    border: 1px solid #D1D1D1;
+                    color: #2A3647;
+                    background-color: transparent;
+                    font-size: 21px;
+                    font-weight: 400;
+                    padding: 15px 24px;
+                    cursor: pointer;
+                }
+
+                button:nth-child(1):hover {
+                    border-color: #29ABE2;
+                    color: #29ABE2;
+                    transition: 300ms ease-out;
+                }
+
+                button:nth-child(2) {
+                    display: flex;
+                    border-radius: 10px;
+                    background-color: #2A3647;
+                    color: #FFFFFF;
+                    padding: 16px;
+                    font-size: 21px;
+                    font-weight: 700;
+                    vertical-align: middle;
+                    line-height: 20px;
+                    gap: 4px;
+                    cursor: pointer;
+                }
+
+                button:nth-child(2):hover {
+                    background-color: #29ABE2;
+                    border: 1px solid #29ABE2;
+                    transition: 300ms ease-out;
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 let toggleButton = document.getElementById('burgerToggle');
 let menu = document.getElementById('burgerMenu');
+let popupContact = document.getElementById('popupContact');
 
 /**
  * Adds an event listener to the toggle button to open or close the burger menu
@@ -19,7 +20,7 @@ toggleButton.addEventListener('click', function(event) {
  */
 
 document.addEventListener('click', function(event) {
-    if (!menu.contains(event.target) && !toggleButton.contains(event.target)) {
+    if (!menu.contains(event.target) && !toggleButton.contains(event.target) && !popupContact.contains(event.target)) {
         menu.classList.remove('open');
     }
 });

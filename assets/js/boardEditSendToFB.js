@@ -18,7 +18,7 @@ async function fetchContact(pathC, objData) {
 /**
  * Sends a PATCH request to update data at the specified path.
  */
-async function postEditData(path = "", data = {}) {
+async function postEditData(path = "", data = {}) { 
     let firebaseUrl = await fetch(getDatabaseUrl(path), {
         method: "PATCH",
         header: {

@@ -349,8 +349,7 @@ function extrahiereInitialen(contactName) {
     }
 }
 
-function openContact() {
-    console.log('open contact');
+function openContact() { 
     let userId = sessionStorage.getItem('uid');
     let userObject = userData.filter(e => e['uid'] === userId);
     if (userObject == '') {
@@ -362,6 +361,6 @@ function openContact() {
     }
     let contactPopUp = document.getElementById('popupContact');
     contactPopUp.classList.remove('d_none');
-    contactPopUp.innerHTML = editContactTemp(); debugger;
+    contactPopUp.innerHTML = editContactTemp();
     getOperator(userObject);
 }

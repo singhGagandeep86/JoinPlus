@@ -406,20 +406,15 @@ function loginVali(email, password) {
 }
 
 function getOperator(userObject) {
-    console.log(userObject);
     let initialsCont = document.getElementById('initialCont');
-    // if (userObject == '') {
-    //     console.log('guest user');
-    //     initialsCont.innerText = `GS`;
-    // } else {
         for (let i = 0; i < userObject.length; i++) {
             let userName = userObject[i].name;
             let userEmail = userObject[i].email;
+            let userPhone = userObject[i].phone;
             let userInitial = extrahiereInitialen(userName)
             initialsCont.innerText = `${userInitial}`;
             document.getElementById('userName').value = userName;
             document.getElementById('userEmail').value = userEmail;
+            document.getElementById('userPhone').value = userPhone;
         }
-    // }
-
 }

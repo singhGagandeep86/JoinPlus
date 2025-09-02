@@ -7,6 +7,7 @@ let draggedElement;
 let mediaQuery = window.matchMedia("(max-width: 1100px)");
 let toggle = 0;
 let attachmentsToArray = [];
+let editContactMode = false;
 
 /**
  * Loads initial task data and user data asynchronously.
@@ -377,5 +378,47 @@ async function addTaskboard(id) {
         load();
         document.getElementById('taskDoneIcon').classList.add("subTaskIcon");
     }
+
+}
+
+function editContact() {
+    if (!editContactMode) {
+        document.getElementById('title').innerHTML = 'Edit account';
+        document.getElementById('editButton').innerHTML = `Save <img src="../img/check.svg">`;
+        document.getElementById('camera').classList.remove('d_none');
+        document.getElementById('userName').removeAttribute('disabled');
+        document.getElementById('userName').focus();
+        document.getElementById('userEmail').removeAttribute('disabled');
+        document.getElementById('userPhone').removeAttribute('disabled');
+        editContactMode = true;
+    } else {
+        saveContact();
+        editContactMode = false;
+    }
+}
+
+function closeContact() {
+    document.getElementById('popupContact').classList.add('d_none');
+}
+
+function saveContact() {
+    document.getElementById('userName').setAttribute("disabled", true);
+    document.getElementById('userEmail').setAttribute("disabled", true);
+    document.getElementById('userPhone').setAttribute("disabled", true);
+    document.getElementById('title').innerHTML = 'My account';
+    document.getElementById('editButton').innerHTML = `Edit`;
+    document.getElementById('camera').classList.add('d_none');
+    let userId = sessionStorage.getItem('uid');
+    let userObject = userData.filter(e => e['uid'] === userId);
+    userObject[0].name = document.getElementById('userName').value;
+    userObject[0].email = document.getElementById('userEmail').value;
+    userObject[0].phone = document.getElementById('userPhone').value;
+    postEditData(`/user/task${userObject[0].pathNumber}`, {
+        'name': userObject[0].name,
+        'email': userObject[0].email,
+        'phone': userObject[0].phone,
+        'uid': userObject[0].uid,
+        'pathNumber': userObject[0].pathNumber
+    });
 
 }
