@@ -186,7 +186,16 @@ function guestLogin() {
  * Logs the user out by removing the authentication token and user ID from session storage, and resets the user data array.
  * Redirects to the login page.
  */
-function logout() {
+async function logout() { 
+    let userId = sessionStorage.getItem('uid');
+    let userObject = userData.filter(e => e['uid'] === userId);
+    if (userObject != '' && userObject[0].pathNumber == 'guest') {
+        deleteContact(`/user/guest`);
+        // getDatabaseUrl(/user/guest);
+    //      await fetch(`/user/guest`, {
+    //     method: 'DELETE',
+    // });
+    }
     sessionStorage.removeItem('authToken');
     sessionStorage.removeItem('uid');
     userData = [];

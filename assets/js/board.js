@@ -410,15 +410,35 @@ function saveContact() {
     document.getElementById('camera').classList.add('d_none');
     let userId = sessionStorage.getItem('uid');
     let userObject = userData.filter(e => e['uid'] === userId);
-    userObject[0].name = document.getElementById('userName').value;
-    userObject[0].email = document.getElementById('userEmail').value;
-    userObject[0].phone = document.getElementById('userPhone').value;
-    postEditData(`/user/task${userObject[0].pathNumber}`, {
-        'name': userObject[0].name,
-        'email': userObject[0].email,
-        'phone': userObject[0].phone,
-        'uid': userObject[0].uid,
-        'pathNumber': userObject[0].pathNumber
-    });
+    if (userObject == '') {
+        postEditData(`/user/guest`, {
+            'name': document.getElementById('userName').value,
+            'email': document.getElementById('userEmail').value,
+            'phone': document.getElementById('userPhone').value,
+            'uid': userId,
+            'pathNumber': 'guest'
+        });
+    } else {
+        userObject[0].name = document.getElementById('userName').value;
+        userObject[0].email = document.getElementById('userEmail').value;
+        userObject[0].phone = document.getElementById('userPhone').value;
+        if (userObject[0].pathNumber == 'guest' || userObject[0].pathNumber == '') {
+            postEditData(`/user/guest`, {
+                'name': userObject[0].name,
+                'email': userObject[0].email,
+                'phone': userObject[0].phone,
+                'uid': userObject[0].uid,
+                'pathNumber': userObject[0].pathNumber
+            });
+        } else {
+            postEditData(`/user/task${userObject[0].pathNumber}`, {
+                'name': userObject[0].name,
+                'email': userObject[0].email,
+                'phone': userObject[0].phone,
+                'uid': userObject[0].uid,
+                'pathNumber': userObject[0].pathNumber
+            });
+        }
+    }
 
 }

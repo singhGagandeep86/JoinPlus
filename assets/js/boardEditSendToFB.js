@@ -29,6 +29,12 @@ async function postEditData(path = "", data = {}) {
     loadnewTaskEdit();
 }
 
+async function deleteContact(path = "") { 
+    let firebaseUrl = await fetch(getDatabaseUrl(path), {
+        method: "DELETE"
+    });
+}
+
 /**
  * Sends edited task data to the server.
  */

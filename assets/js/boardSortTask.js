@@ -349,16 +349,18 @@ function extrahiereInitialen(contactName) {
     }
 }
 
-function openContact() { 
+function openContact() {
     let userId = sessionStorage.getItem('uid');
-    let userObject = userData.filter(e => e['uid'] === userId);
+    let userObject = userData.filter(e => e['uid'] === userId); 
     if (userObject == '') {
         userObject = [{
             "email": "",
             "name": "Guest User",
-            "uid": userId
+            "uid": userId,
+            "pathNumber": "",
+            "phone": ""
         }]
-    }
+    } 
     let contactPopUp = document.getElementById('popupContact');
     contactPopUp.classList.remove('d_none');
     contactPopUp.innerHTML = editContactTemp();
