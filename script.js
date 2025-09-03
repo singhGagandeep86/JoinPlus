@@ -213,7 +213,7 @@ async function logout() {
 async function loadInitailUser() {
     let userId = sessionStorage.getItem('uid');
     let userObject = userData.filter(e => e['uid'] === userId);
-    loadInitailUserIf(userId, userObject);
+    loadInitailUserIf(userObject);
 }
 
 /**
@@ -221,7 +221,7 @@ async function loadInitailUser() {
  * @param {string} userId - The user ID from session storage.
  * @param {Array} userObject - The user data array from session storage.
  */
-function loadInitailUserIf(userId, userObject) {
+function loadInitailUserIf(userObject) {
     if (userObject == '') {
         let guest = 'GS'
         createUser(guest, userObject);
@@ -231,7 +231,7 @@ function loadInitailUserIf(userId, userObject) {
             let element = userObject[i].name;
             let userInitial = extrahiereInitialen(element)
             let replaceElement = capitalizeName(element)
-            createUser(userInitial);
+            createUser(userInitial, userObject);
             writeGreetin(replaceElement, userObject);
         }
     }
@@ -279,10 +279,12 @@ function writeGreetinGuest() {
  * @param {string} userInitial - The initials of the user.
  * @param {string} guest - The identifier for guest users.
  */
-function createUser(userInitial, guest, userObject) {
+function createUser(userInitial, userObject) {
     let userInitials = document.getElementById('userIni');
-    if (userObject == '') {
-        userInitials.innerText = guest;
+    if (!userObject || userObject.length === 0) {
+        userInitials.innerText = `${userInitial}`;
+    } else if (userObject[0].pic) {
+        document.getElementById('burgerToggle').innerHTML = `<img class="userImg" src="${userObject[0].pic}">`;
     } else {
         userInitials.innerText = `${userInitial}`;
     }
