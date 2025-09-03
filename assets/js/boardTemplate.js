@@ -298,7 +298,7 @@ function editTask(objData) {
                                 </div>
                                 </div>
                                 <input id="filesPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
-                                <div class="file-picker" onclick="filesPicker.click(); test()">
+                                <div class="file-picker" onclick="openFilePicker()">
                                     <span>Drag a file or browse</span>
                                     <img src="../img/plus.png">
                                 </div>
@@ -421,7 +421,7 @@ function templateSub4(currentText) {
 }
 
 function editContactTemp() {
-    return  ` <div class="editContact" onclick="event.stopPropagation()">
+    return ` <div class="editContact" onclick="event.stopPropagation()">
               <div class="left-part">
                   <img src="../img/Joinlogowhite.png">
                   <h2 id="title">My account</h2>
@@ -431,7 +431,9 @@ function editContactTemp() {
                   <img onclick="closeContact()" class="close" src="../img/Close.png">
                   <div class="initialsCont">
                   <span id="initialCont"></span>
-                    <div id="camera" class="camera d_none">
+                    <img id="userImg" class="userImg d_none" src="">
+                    <div id="camera" class="camera d_none" onclick="openUserImgPicker()">
+                    <input id="userImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
                      <img src="../img/camera.png">
                     </div>
                   </div>
@@ -440,7 +442,7 @@ function editContactTemp() {
                       <input type="email" id="userEmail" disabled>
                       <input type="tel" id="userPhone" disabled>
                       <div class="buttonContainer">
-                          <button>Delete my account</button>
+                          <button onclick="deleteCurrentUser()">Delete my account</button>
                           <button id="editButton" onclick="editContact()">Edit</button>
                       </div>
                   </div>

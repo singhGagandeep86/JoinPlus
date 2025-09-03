@@ -181,21 +181,24 @@ function guestLogin() {
     });
 }
 
+function deleteGuest() {
+    let userObject = userData.filter(e => e['pathNumber'] === 'guest');
+    if (userObject == '') {
+        logout();
+    } else if (userObject[0].pathNumber == 'guest') {
+        deleteUser(`/user/guest`);
+        logout();
+    } else {
+        logout();
+    }
+}
+
 
 /**
  * Logs the user out by removing the authentication token and user ID from session storage, and resets the user data array.
  * Redirects to the login page.
  */
-async function logout() { 
-    let userId = sessionStorage.getItem('uid');
-    let userObject = userData.filter(e => e['uid'] === userId);
-    if (userObject != '' && userObject[0].pathNumber == 'guest') {
-        deleteContact(`/user/guest`);
-        // getDatabaseUrl(/user/guest);
-    //      await fetch(`/user/guest`, {
-    //     method: 'DELETE',
-    // });
-    }
+async function logout() {
     sessionStorage.removeItem('authToken');
     sessionStorage.removeItem('uid');
     userData = [];
@@ -416,14 +419,21 @@ function loginVali(email, password) {
 
 function getOperator(userObject) {
     let initialsCont = document.getElementById('initialCont');
-        for (let i = 0; i < userObject.length; i++) {
-            let userName = userObject[i].name;
-            let userEmail = userObject[i].email;
-            let userPhone = userObject[i].phone;
-            let userInitial = extrahiereInitialen(userName)
+    let userImg = document.getElementById('userImg');
+    for (let i = 0; i < userObject.length; i++) {
+        let userName = userObject[i].name;
+        let userEmail = userObject[i].email;
+        let userPhone = userObject[i].phone;
+        let userInitial = extrahiereInitialen(userName); 
+        let profilePic = userObject[i].pic;
+        if (profilePic) {
+            userImg.classList.remove('d_none');
+            userImg.src = profilePic;
+        } else {
             initialsCont.innerText = `${userInitial}`;
-            document.getElementById('userName').value = userName;
-            document.getElementById('userEmail').value = userEmail;
-            document.getElementById('userPhone').value = userPhone;
         }
+        document.getElementById('userName').value = userName;
+        document.getElementById('userEmail').value = userEmail;
+        document.getElementById('userPhone').value = userPhone;
+    }
 }

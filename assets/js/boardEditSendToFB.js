@@ -29,7 +29,7 @@ async function postEditData(path = "", data = {}) {
     loadnewTaskEdit();
 }
 
-async function deleteContact(path = "") { 
+async function deleteUser(path = "") { 
     let firebaseUrl = await fetch(getDatabaseUrl(path), {
         method: "DELETE"
     });

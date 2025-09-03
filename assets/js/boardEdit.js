@@ -1,37 +1,4 @@
 
-let pathC = '';
-
-document.addEventListener('DOMContentLoaded', () => {
-    test();
-})
-
-function test() {
-    let filesPicker = document.getElementById('filesPicker');
-
-    if (filesPicker == null) {
-        return;
-    }
-    filesPicker.addEventListener('change', () => {
-        const allFiles = filesPicker.files;
-
-        if (allFiles.length > 0) {
-            Array.from(allFiles).forEach(async file => {
-                const blog = new Blob([file], { type: file.type });
-
-                const base64 = await blobToBase64(blog);
-
-                const img = document.createElement('img');
-                img.src = base64;
-                attachmentsToArray.push({
-                    name: file.name,
-                    type: file.type,
-                    data: base64
-                });
-                loadAllAttachments();
-            })
-        }
-    })
-}
 
 /** Loads and displays contact data in the contact drop area.*/
 function loadContactData(firebaseData, objData) {
@@ -398,7 +365,7 @@ function readEditData(number) {
     let checked = checkedObj(subtask);
     let contactName = nameObj(contact);
     let contactColor = colorObj(contact);
-    let attachments = attachmentsToArray; 
+    let attachments = attachmentsToArray;
     nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority, category, contactColor, attachments);
 }
 
@@ -483,6 +450,34 @@ function loadnewTaskEdit() {
     closePopUpTaskSmall();
 }
 
+function openFilePicker() {
+    let filesPicker = document.getElementById('filesPicker');
+
+    if (!filesPicker) return;
+
+    filesPicker.click();
+
+    filesPicker.addEventListener('change', () => {
+        const allFiles = filesPicker.files;
+
+        if (allFiles.length > 0) { 
+            Array.from(allFiles).forEach(async file => {
+                const blog = new Blob([file], { type: file.type });
+
+                const base64 = await blobToBase64(blog);
+
+                const img = document.createElement('img');
+                img.src = base64;
+                attachmentsToArray.push({
+                    name: file.name,
+                    type: file.type,
+                    data: base64
+                });
+                loadAllAttachments();
+            })
+        }
+    })
+}
 
 function showFile(img, name, index) {
     document.getElementById('photoArea').classList.remove('d_none');

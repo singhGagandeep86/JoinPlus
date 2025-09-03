@@ -1,3 +1,4 @@
+
 let path = "";
 let data = {};
 let url = '';
@@ -381,6 +382,31 @@ async function addTaskboard(id) {
 
 }
 
+function openUserImgPicker() {
+     let userImgPicker = document.getElementById('userImgPicker');
+
+    if (!userImgPicker) return;
+
+    userImgPicker.click();
+
+    userImgPicker.addEventListener('change', async () => { 
+        let userImg = document.getElementById('userImg');
+        const file = userImgPicker.files[0];
+        if (!file) return;
+
+        const blog = new Blob([file], { type: file.type });
+
+                const base64 = await blobToBase64(blog);
+
+                const img = document.createElement('img');
+                img.src = base64;
+
+                document.getElementById('initialCont').classList.add('d_none');
+                userImg.classList.remove('d_none');
+                userImg.src = base64;
+    })
+}
+
 function editContact() {
     if (!editContactMode) {
         document.getElementById('title').innerHTML = 'Edit account';
@@ -402,6 +428,7 @@ function closeContact() {
 }
 
 function saveContact() {
+    let userImg = document.getElementById('userImg');
     document.getElementById('userName').setAttribute("disabled", true);
     document.getElementById('userEmail').setAttribute("disabled", true);
     document.getElementById('userPhone').setAttribute("disabled", true);
@@ -416,7 +443,8 @@ function saveContact() {
             'email': document.getElementById('userEmail').value,
             'phone': document.getElementById('userPhone').value,
             'uid': userId,
-            'pathNumber': 'guest'
+            'pathNumber': 'guest',
+            'pic': userImg.src
         });
     } else {
         userObject[0].name = document.getElementById('userName').value;
@@ -428,7 +456,8 @@ function saveContact() {
                 'email': userObject[0].email,
                 'phone': userObject[0].phone,
                 'uid': userObject[0].uid,
-                'pathNumber': userObject[0].pathNumber
+                'pathNumber': userObject[0].pathNumber,
+                 'pic': userImg.src
             });
         } else {
             postEditData(`/user/task${userObject[0].pathNumber}`, {
@@ -436,9 +465,25 @@ function saveContact() {
                 'email': userObject[0].email,
                 'phone': userObject[0].phone,
                 'uid': userObject[0].uid,
-                'pathNumber': userObject[0].pathNumber
+                'pathNumber': userObject[0].pathNumber,
+                 'pic': userImg.src
             });
         }
+    }
+
+}
+
+function deleteCurrentUser() {
+    let userId = sessionStorage.getItem('uid');
+    let userObject = userData.filter(e => e['uid'] === userId); 
+
+    if (userObject.length > 0 && userObject[0].pathNumber == 'guest') {
+        deleteGuest();
+    } else if (userObject.length > 0) {
+        deleteUser(`/user/task${userObject[0].pathNumber}`);
+        logout();
+    } else {
+        logout();
     }
 
 }

@@ -74,7 +74,7 @@ async function handleRegistration(event) {
     event.preventDefault();
     let userName = document.getElementById('name').value;
     let emailValue = document.getElementById('email').value;
-    let passwordValue = document.getElementById('password').value;debugger;
+    let passwordValue = document.getElementById('password').value;
     try {
         let response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBUvClF-GJEiTg298gzQneyv8i5Rg9KgQs', {
             method: 'POST',
