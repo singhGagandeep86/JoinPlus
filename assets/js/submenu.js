@@ -20,7 +20,7 @@ toggleButton.addEventListener('click', function(event) {
  */
 
 document.addEventListener('click', function(event) {
-    if (!menu.contains(event.target) && !toggleButton.contains(event.target) && !popupContact.contains(event.target)) {
+    if (!menu.contains(event.target) && !menu.classList.contains('contact-ellipse2') && !toggleButton.contains(event.target)) {
         menu.classList.remove('open');
     }
 });

@@ -101,21 +101,27 @@ function loadContact() {
             contactSpace.innerHTML += `<h2>${firstLetter}</h2>`;
             currentLetter = firstLetter;
         }
-        contactSpace.innerHTML += loadContactData(i, initials);
-    }}
+
+        if (array[i].pic) {
+            contactSpace.innerHTML += loadContactWithPic(i, initials, array[i].pic);
+        } else {
+            contactSpace.innerHTML += loadContactWithInitials(i, initials);
+        }
+    }
+}
 
 /**
  * Clears the currently active contact by removing the 'active-contact' class from all contact items
  * and clearing the contact details area.
  * @returns {undefined}
  */
-    function clearActiveContact() {
-        let allContacts = document.querySelectorAll('.contact-item');
-        for (let j = 0; j < allContacts.length; j++) {
-            allContacts[j].classList.remove('active-contact');
-        }
-        document.getElementById('contactDetails').innerHTML = '';
+function clearActiveContact() {
+    let allContacts = document.querySelectorAll('.contact-item');
+    for (let j = 0; j < allContacts.length; j++) {
+        allContacts[j].classList.remove('active-contact');
     }
+    document.getElementById('contactDetails').innerHTML = '';
+}
 
 
 /**
@@ -124,36 +130,36 @@ function loadContact() {
  * @param {string} number - The phone number of the active contact.
  * @param {string} initials - The initials of the active contact.
  */
-    function setActiveContact(i, number, initials) {
-        let allContacts = document.querySelectorAll('.contact-item');
-        let contactDetails = document.getElementById('contactDetails');
+function setActiveContact(i, number, initials) {
+    let allContacts = document.querySelectorAll('.contact-item');
+    let contactDetails = document.getElementById('contactDetails');
 
-        allContacts[i].classList.add('active-contact');
-        contactDetails.classList.add('contact-slide-in');
+    allContacts[i].classList.add('active-contact');
+    contactDetails.classList.add('contact-slide-in');
 
-        if (window.innerWidth <= 800) {
-            document.querySelector('.container').classList.add('hidden');
-            document.querySelector('.contact-container-right').classList.add('OnDetails');
-        }
-        activeContact(i, number, initials);
+    if (window.innerWidth <= 800) {
+        document.querySelector('.container').classList.add('hidden');
+        document.querySelector('.contact-container-right').classList.add('OnDetails');
     }
+    activeContact(i, number, initials);
+}
 
 /**
  * Toggles the active state of a contact and displays its details when clicked.
  * @param {number} i - The index of the contact to toggle.
  * @param {string} initials - The initials of the contact to toggle.
  */
-    function showContactDetails(i, initials) {
-        let number = array[i].number;
-        let allContacts = document.querySelectorAll('.contact-item');
+function showContactDetails(i, initials) {
+    let number = array[i].number;
+    let allContacts = document.querySelectorAll('.contact-item');
 
-        if (allContacts[i].classList.contains('active-contact')) {
-            clearActiveContact();
-        } else {
-            clearActiveContact();
-            setActiveContact(i, number, initials);
-        }
+    if (allContacts[i].classList.contains('active-contact')) {
+        clearActiveContact();
+    } else {
+        clearActiveContact();
+        setActiveContact(i, number, initials);
     }
+}
 
 /**
  * Activates the contact and displays its details.
@@ -164,7 +170,12 @@ function loadContact() {
 
 function activeContact(i, number, initials) {
     let contactDetails = document.getElementById('contactDetails');
-    contactDetails.innerHTML = loadContactDetails(i, initials, number);
+    contactDetails.innerHTML = loadContactDetails(i, number, array[i].color);
+    if (array[i].pic) {
+        document.getElementById('contactContainer').innerHTML = loadContactPic(array[i].pic);
+    } else {
+        document.getElementById('contactContainer').innerHTML = loadContactInitials(initials);
+    }
     initializeEditButton(i);
     contactDetails.onclick = function (event) {
         let editImage2 = document.getElementById('editImage2');
@@ -199,6 +210,16 @@ function editContact(i) {
     document.getElementById('overlayEdit').classList.remove('d_none');
     popUpEdit.innerHTML = '';
     popUpEdit.innerHTML = overlay2(i, initials);
+    if (array[i].pic) {
+        document.getElementById('userImgEdit').classList.remove('d_none');
+        document.getElementById('contactInitials').classList.add('d_none');
+        document.getElementById('userImgEdit').innerHTML = `
+                                <img id="userProfileImg" src="${array[i].pic}" class="profle-pic"> 
+                                <input id="contactImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
+                                <div class="camera" onclick="openImgPicker()">
+                                <img src="../img/camera.png">
+                                </div>`;
+    }
     loadInputEdit(i)
     document.querySelector('.contact-container-right').classList.add('hidden');
     stopEditArea();
@@ -285,7 +306,8 @@ async function addContactData() {
         let color = coloGenerator().toLowerCase();
         await createContactData(name, email, phone, number, firstNameInitial, color);
         reloadAdd();
-    }}
+    }
+}
 
 /**
  * @param {string} input - The input string to be validated.*/
@@ -320,7 +342,7 @@ function valiEdit() {
 
     if (!name || !email || !phone) return failAllEdit() && false;
     if (!isValid(name, /^[a-zA-Z]+( [a-zA-Z]+)*$/)) return failNameEdit() && false;
-    if (!isValid(email, /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/)) 
+    if (!isValid(email, /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/))
         return failEmailEdit() && false;
     if (!isValid(phone, /^[0-9]+$/)) return failPhoneEdit() && false;
     return true;

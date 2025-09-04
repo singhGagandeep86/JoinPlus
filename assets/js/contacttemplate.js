@@ -59,8 +59,13 @@ function overlay2(i, initials) {
                              <img class="strichEdit" src="../img/unterstrichvector.png">
                          </div>
                          <div class="popupEditRight">
-                             <div >
-                                <span class="contact-ellipse2 b-${array[i].color}">${initials}</span>
+                             <div id="userImgEdit" class="userImgEdit contact-ellipse2 b-${array[i].color}" style="position: relative">
+                                 <img id="userProfileImg" class="userImg d_none">
+                                 <span id="contactInitials">${initials}</span>
+                                 <input id="contactImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
+                                 <div class="camera" onclick="openImgPicker()">
+                                     <img src="../img/camera.png">
+                                 </div>
                              </div>
                              <form id="contactFormEdit">
                                  <div class="EditInput">
@@ -96,11 +101,13 @@ function overlay2(i, initials) {
  * @returns {string} - The HTML string for the contact details.
  */
 
-function loadContactDetails(i, initials, number) {
+function loadContactDetails(i, number, color) {
+
     return `
         <div class="contact-ellipse">
         <img onclick="showContactList(${i})" class="arrowContact" src="../img/arrow-left-line.png">
-            <span class="contact-ellipse2 b-${array[i].color}">${initials}</span>
+            <div id="contactContainer" class="b-${color} contact-ellipse2">
+            </div>
             <div class="contact-mini">
                 <h1>${array[i].name}</h1>
                 <div id="editArea" class="editimage">
@@ -129,15 +136,35 @@ function loadContactDetails(i, initials, number) {
                 </div>
 `}
 
+function loadContactPic(pic) {
+    return `   <img id="contactImg" class="profle-pic" src="${pic}">`
+}
+
+function loadContactInitials(initial) {
+    return ` <span id="contactInitials">${initial}</span>`
+}
+
 /**
  * Generates the HTML for displaying a contact item in the contact list.
  * @returns {string} - The HTML string for a contact item.
  */
 
-function loadContactData(i, initials) {
+function loadContactWithInitials(i, initials) {
     return `<div class="contact-group">
                 <div class="contact-item active2" onclick="showContactDetails(${i}, '${initials}')">
                     <div class="avatar"><span class="b-${array[i].color}">${initials}</span></div>
+                    <div class="details">
+                        <div class="name">${array[i].name}</div>
+                        <div class="email changemycolor">${array[i].email}</div>
+                    </div>
+                </div>
+            </div>`;
+}
+
+function loadContactWithPic(i, initials, pic) {
+    return `<div class="contact-group">
+                <div class="contact-item active2" onclick="showContactDetails(${i}, '${initials}')">
+                    <div class="avatar b-${array[i].color}"><img class="profle-pic" src="${pic}"></div>
                     <div class="details">
                         <div class="name">${array[i].name}</div>
                         <div class="email changemycolor">${array[i].email}</div>

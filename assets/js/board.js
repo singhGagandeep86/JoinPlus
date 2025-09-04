@@ -383,27 +383,27 @@ async function addTaskboard(id) {
 }
 
 function openUserImgPicker() {
-     let userImgPicker = document.getElementById('userImgPicker');
+    let userImgPicker = document.getElementById('userImgPicker');
 
     if (!userImgPicker) return;
 
     userImgPicker.click();
 
-    userImgPicker.addEventListener('change', async () => { 
+    userImgPicker.addEventListener('change', async () => {
         let userImg = document.getElementById('userImg');
         const file = userImgPicker.files[0];
         if (!file) return;
 
         const blog = new Blob([file], { type: file.type });
 
-                const base64 = await blobToBase64(blog);
+        const base64 = await blobToBase64(blog);
 
-                const img = document.createElement('img');
-                img.src = base64;
+        const img = document.createElement('img');
+        img.src = base64;
 
-                document.getElementById('initialCont').classList.add('d_none');
-                userImg.classList.remove('d_none');
-                userImg.src = base64;
+        document.getElementById('initialCont').classList.add('d_none');
+        userImg.classList.remove('d_none');
+        userImg.src = base64;
     })
 }
 
@@ -457,7 +457,7 @@ function saveContact() {
                 'phone': userObject[0].phone,
                 'uid': userObject[0].uid,
                 'pathNumber': userObject[0].pathNumber,
-                 'pic': userImg.src
+                'pic': userImg.src
             });
         } else {
             postEditData(`/user/task${userObject[0].pathNumber}`, {
@@ -466,7 +466,7 @@ function saveContact() {
                 'phone': userObject[0].phone,
                 'uid': userObject[0].uid,
                 'pathNumber': userObject[0].pathNumber,
-                 'pic': userImg.src
+                'pic': userImg.src
             });
         }
     }
@@ -475,7 +475,7 @@ function saveContact() {
 
 function deleteCurrentUser() {
     let userId = sessionStorage.getItem('uid');
-    let userObject = userData.filter(e => e['uid'] === userId); 
+    let userObject = userData.filter(e => e['uid'] === userId);
 
     if (userObject.length > 0 && userObject[0].pathNumber == 'guest') {
         deleteGuest();

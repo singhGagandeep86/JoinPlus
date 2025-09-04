@@ -162,10 +162,10 @@ function generateRandomNumber() {
  * Deletes a contact based on the contact number.
  * @returns {Promise<void>}
  */
-async function deleteContact(number) { 
+async function deleteContact(number) {
     let contactDetails = document.getElementById('contactDetails');
     let path = `/contact/contact${number}`;
-    let url = getDatabaseUrl(path); 
+    let url = getDatabaseUrl(path);
     let response = await fetch(url, {
         method: 'DELETE',
     });
@@ -195,8 +195,15 @@ async function editContactData(i) {
     let name = document.getElementById('name2').value;
     let email = document.getElementById('email2').value;
     let phone = document.getElementById('phone2').value;
+    let pic = document.getElementById('userProfileImg').src;
+    console.log(pic);
+
     if (valiEdit()) {
-        await editContactFB(name, email, phone, number)
+        if (pic === "") {
+            await editContactFB(name, email, phone, number);
+        } else {
+            await editContactFB(name, email, phone, number, pic);
+        }
         saveEditDisplayOff();
     }
 }
@@ -225,12 +232,13 @@ function saveEditDisplayOff() {
  * @param {string} name - The name of the contact.
  * @returns {Promise<void>}
  */
-async function editContactFB(name, email, phone, number) { debugger;
+async function editContactFB(name, email, phone, number, pic) {
     let path = `/contact/contact${number}`
     await postEditData(path, {
         'name': name,
         'email': email,
         'rufnummer': phone,
+        'pic': pic
     });
 }
 
@@ -253,4 +261,40 @@ async function postEditData(path, data) {
         load();
     } catch (error) {
     }
+}
+
+function openImgPicker() {
+    let contactImgPicker = document.getElementById('contactImgPicker');
+    let userProfileImg = document.getElementById('userProfileImg');
+    let contactInitials = document.getElementById('contactInitials');
+
+    if (!contactImgPicker) return;
+
+    contactImgPicker.click();
+
+    contactImgPicker.addEventListener('change', async () => {
+        const file = contactImgPicker.files[0];
+        if (!file) return;
+
+        const blog = new Blob([file], { type: file.type });
+
+        const base64 = await blobToBase64(blog);
+
+        const img = document.createElement('img');
+        img.src = base64;
+
+        if (contactInitials) {
+            contactInitials.classList.add('d_none');
+            userProfileImg.classList.remove('d_none');
+        }
+        userProfileImg.src = img.src;
+    });
+}
+
+function blobToBase64(blob) {
+    return new Promise((resolve, _) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(blob);
+    });
 }

@@ -284,7 +284,9 @@ function createUser(userInitial, userObject) {
     if (!userObject || userObject.length === 0) {
         userInitials.innerText = `${userInitial}`;
     } else if (userObject[0].pic) {
-        document.getElementById('burgerToggle').innerHTML = `<img class="userImg" src="${userObject[0].pic}">`;
+        userInitials.classList.add('d_none');
+        document.getElementById('userPic').classList.remove('d_none');
+        document.getElementById('userPic').src = userObject[0].pic;
     } else {
         userInitials.innerText = `${userInitial}`;
     }
