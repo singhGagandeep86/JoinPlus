@@ -446,7 +446,7 @@ function colorObj(contact) {
 /** Loads new task data and refreshes the display.*/
 function loadnewTaskEdit() {
     arrayLoad = [];
-    load();
+    load(); 
     closePopUpTaskSmall();
 }
 

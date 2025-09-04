@@ -1,9 +1,9 @@
 /**
  * Generates an HTML template for displaying a contact item with a checkbox.
 */
-function contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart) {
+function contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart, contactIssuedNumber) {
     return `<label>
-    <input type="checkbox"class="checkboxDesign" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}')">
+    <input type="checkbox"class="checkboxDesign" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}', '${contactIssuedNumber}')">
     <span value="${sanitizedEachName}"></span>${eachName}
     <div class="namesInitials b-${colour}">${firstNameStart}${lastNameStart}</div>
     </label>`;

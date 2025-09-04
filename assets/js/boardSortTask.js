@@ -311,8 +311,8 @@ function loadContactTask(element, contacts, contactName) {
         taskContact.innerHTML = '';
     } else {
         for (let i = 0; i < color.length; i++) {
-            let colors = color[i];
-            let initials = extrahiereInitialen(contactName[i]);
+            let colors = color[i]; 
+            let initials = extrahiereInitialen(contactName[i].name);
             taskContact.innerHTML += templateContact(colors, initials, i);
         }
     }
@@ -338,7 +338,7 @@ function checkForOverflow(taskNumber) {
  * Extracts initials from a given contact name.
  * @param {string} contactName - The full name of the contact from which to extract initials.
  */
-function extrahiereInitialen(contactName) {
+function extrahiereInitialen(contactName) { 
     for (let i = 0; i < contactName.length; i++) {
         let nameParts = contactName.split(' ');
         let initials = '';

@@ -177,7 +177,7 @@ function time(objDateTask) {
  * This function retrieves contact names and their corresponding colors from the 
 */
 function addcontactInfo(objDateTask) {
-    let contactArea = document.getElementById('contactAreaInfo');
+    let contactArea = document.getElementById('contactAreaInfo'); 
     let contactName = objDateTask.contact ? Object.values(objDateTask.contact) : null;
     let contactscolor = objDateTask.contactcolor ? Object.values(objDateTask.contactcolor) : null;
     contactArea.innerHTML = '';
@@ -186,8 +186,10 @@ function addcontactInfo(objDateTask) {
         contactArea.classList.add('d_none')
     } else {
         for (let i = 0; i < contactName.length; i++) {
-            let initials = extrahiereInitialen(contactName[i])
-            contactArea.innerHTML += templateContactInfo(contactscolor[i], initials, contactName[i]);
+            for (let j = 0; j < contactName[i].name.length; j++) {
+                let initials = extrahiereInitialen(contactName[j].name);
+                contactArea.innerHTML += templateContactInfo(contactscolor[j], initials, contactName[j].name);
+            }
         }
     }
 }

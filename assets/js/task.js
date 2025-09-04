@@ -1,7 +1,8 @@
-
+// 
 let token = sessionStorage.getItem('authToken');
 let names = [];
 let namesInitials = [];
+let issuedNumbers = [];
 let colours = [];
 let array = [];
 let expanded = false;
@@ -31,7 +32,7 @@ function getDatabaseUrl(path) {
 async function fetchUrl() {
   let firebaseUrl = await fetch(BASE_URL + ".json?auth=" + token);
   let firebaseUrlAsJson = await firebaseUrl.json();
-  let firebaseData = Object.values(firebaseUrlAsJson);
+  let firebaseData = Object.values(firebaseUrlAsJson); debugger;
   contactsData(firebaseData[0]);
 }
 
@@ -68,7 +69,9 @@ function wthScndName(i, eachName) {
   let lastName = array[i].name.split(' ')[1].toUpperCase();
   let firstNameStart = firstName[0];
   let lastNameStart = lastName[0];
-  contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart);
+  let contactIssuedNumber = array[i].number; debugger;
+  // issuedNumbers.push(contactIssuedNumber);
+  contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart, contactIssuedNumber);
 }
 
 /**
@@ -84,7 +87,8 @@ function wthoutScndName(i, eachName) {
   let contact = document.getElementById("allCntcts");
   let firstNameStart = firstName[0];
   let lastNameStart = '';
-  contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart);
+    let contactIssuedNumber = array[i].number;
+  contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart, contactIssuedNumber);
 }
 
 /**
@@ -93,9 +97,9 @@ function wthoutScndName(i, eachName) {
  * @param {string} name - The name of the selected contact.
  * @param {string} colour - The color associated with the selected contact.
  */
-function selectionContact(name, colour) {
+function selectionContact(name, colour, contactIssuedNumber) {
   const currenID = document.getElementById(name);
-  ifelseLogics(currenID, name, colour);
+  ifelseLogics(currenID, name, colour, contactIssuedNumber);
   let SelectedContactsBoard = document.getElementById('selCntcts');
   SelectedContactsBoard.innerHTML = '';
   for (let i = 0; i < namesInitials.length; i++) {
@@ -112,12 +116,12 @@ function selectionContact(name, colour) {
  * @param {string} name - The name of the contact.
  * @param {string} colour - The color associated with the contact.
  */
-function ifelseLogics(currenID, name, colour) {
+function ifelseLogics(currenID, name, colour, contactIssuedNumber) {
   if (currenID.checked == true) {
-    pushSelection(currenID, name, colour);
+    pushSelection(currenID, name, colour, contactIssuedNumber);
   }
   else {
-    spliceSelection(currenID, name);
+    spliceSelection(currenID, name, contactIssuedNumber);
   }
   if (namesInitials.length > 4) {
     document.getElementById('moreIcon').classList.remove("d_noneImg");
@@ -133,11 +137,12 @@ function ifelseLogics(currenID, name, colour) {
  * @param {string} name - The name of the contact.
  * @param {string} colour - The color associated with the contact.
  */
-function pushSelection(currenID, name, colour) {
+function pushSelection(currenID, name, colour, contactIssuedNumber) {
   currenID.parentElement.style.backgroundColor = "#2A3647";
   currenID.parentElement.style.color = "white";
   currenID.nextElementSibling.style.content = "url(../img/checkButtonSelected.svg)";
   names.push(name);
+  issuedNumbers.push(contactIssuedNumber);
   const nameArray = name.split('_');
   const firstName = nameArray[0].toUpperCase();
   if (nameArray[1]) {
@@ -182,12 +187,13 @@ function clrWthOneName(firstName, colour) {
  * @param {HTMLElement} currenID - The current checkbox element for the contact.
  * @param {string} name - The name of the contact.
  */
-function spliceSelection(currenID, name) {
+function spliceSelection(currenID, name, contactIssuedNumber) {
   currenID.parentElement.style.backgroundColor = "transparent";
   currenID.parentElement.style.color = "black";
   currenID.nextElementSibling.style.content = "url(../img/CheckbuttonEmpty.png)";
   const currentName = names.indexOf(name);
   names.splice(currentName, 1);
+  issuedNumbers.splice(contactIssuedNumber, 1);
   namesInitials.splice(currentName, 1);
   colours.splice(currentName, 1);
 }
@@ -339,6 +345,7 @@ function deletArray() {
   colours = [];
   array = [];
   attachments = [];
+  issuedNumbers = [];
 }
 
 /**
@@ -377,12 +384,13 @@ function checkedCreate(list) {
 /**
  * Creates a contact object from the names array.
 */
-function createContactFire() {
+function createContactFire() { debugger;
   let contacts = {};
   for (let j = 0; j < names.length; j++) {
     let name = names[j];
     let sanitizedName = name.replace(/_/g, ' ');
-    contacts[`contact${j + 1}`] = sanitizedName;
+    let contactIssuedNumber = issuedNumbers[j];
+    contacts[`contact${j + 1}`] = { 'name': sanitizedName, 'number': contactIssuedNumber }; 
   }
   return contacts;
 }

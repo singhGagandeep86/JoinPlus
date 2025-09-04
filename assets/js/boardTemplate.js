@@ -136,7 +136,7 @@ function templateTaskHTML(element) {
             <span>${element['description']}</span>
         </div>
         <div id="${rangeId}"></div>
-    <div id="contactAreaPic-${element['number']}" class="contactAndPrioArea" onmouseover="checkForOverflow(${element['number']})" ondragstart="preventDrag(${element['number']}, event)"><div id="${contactpic}" class="contact" ></div>
+    <div id="contactAreaPic-${element['number']}" class="contactAndPrioArea" onmouseover="checkForOverflow(${element['number']})" ondragstart="preventDrag(${element['number']}, event)"><div id="${contactpic}" class="contact"></div>
     <div class="bg_${element['prio']}"></div> </div>
     <div id="popupTaskSwitch${element['number']}" class="taskSwitchArea d_none" ></div>
     </div>
@@ -174,7 +174,7 @@ function templateRange(subtask, checkedCount) {
 }
 
 /** Generates an HTML template for a contact display box.*/
-function templateContact(colors, initials, i) {
+function templateContact(colors, initials, i) { 
     return ` <div class="b-${colors} box0"> <span>${initials}</span></div>`
 }
 
@@ -326,7 +326,7 @@ function editTask(objData) {
 }
 
 /** Generates an HTML template for a checkbox contact item. */
-function checkboxContactTemplate(isChecked, contactName, initials, color) {
+function checkboxContactTemplate(isChecked, contactName, initials, color) { 
     return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ${isChecked} ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><span>${initials}</span></div></div> </label></div>`
 }
 
