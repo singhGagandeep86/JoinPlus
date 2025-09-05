@@ -11,7 +11,7 @@ function loadContact(objData) {
 async function fetchContact(pathC, objData) {
     let firebaseUrl = await fetch(BASE_URL + pathC + ".json?auth=" + token);
     let firebaseUrlAsJson = await firebaseUrl.json();
-    let firebaseData = Object.values(firebaseUrlAsJson);
+    let firebaseData = Object.values(firebaseUrlAsJson); 
     loadContactData(firebaseData, objData)
 }
 
@@ -38,9 +38,9 @@ async function deleteUser(path = "") {
 /**
  * Sends edited task data to the server.
  */
-function pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, numberEditElement, priority, category, contactColor, attachments) {
+function pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, contacts, numberEditElement, priority, category, contactColor, attachments) {
     postEditData(`/task/task${numberEditElement}`, {
-        'contact': contactName,
+        'contact': contacts,
         'color': color,
         'date': dueDate,
         'description': description,

@@ -311,9 +311,18 @@ function loadContactTask(element, contacts, contactName) {
         taskContact.innerHTML = '';
     } else {
         for (let i = 0; i < color.length; i++) {
-            let colors = color[i]; 
-            let initials = extrahiereInitialen(contactName[i].name);
-            taskContact.innerHTML += templateContact(colors, initials, i);
+            let colors = color[i];
+            if (i < contactName.length) {
+                
+                let contact = contactName[i];
+                let findIndex = allContactsArray.find(e => e.number == contact.number);
+                if (findIndex.pic) {
+                    taskContact.innerHTML += templateContactWithPic(findIndex.pic, colors);
+                } else {
+                    let initials = extrahiereInitialen(contactName[i].name);
+                    taskContact.innerHTML += templateContact(colors, initials, i);
+                }
+            }
         }
     }
 }
@@ -338,7 +347,8 @@ function checkForOverflow(taskNumber) {
  * Extracts initials from a given contact name.
  * @param {string} contactName - The full name of the contact from which to extract initials.
  */
-function extrahiereInitialen(contactName) { 
+function extrahiereInitialen(contactName) {
+    if (!contactName) return '';
     for (let i = 0; i < contactName.length; i++) {
         let nameParts = contactName.split(' ');
         let initials = '';
@@ -351,7 +361,7 @@ function extrahiereInitialen(contactName) {
 
 function openContact() {
     let userId = sessionStorage.getItem('uid');
-    let userObject = userData.filter(e => e['uid'] === userId); 
+    let userObject = userData.filter(e => e['uid'] === userId);
     if (userObject == '') {
         userObject = [{
             "email": "",
@@ -360,7 +370,7 @@ function openContact() {
             "pathNumber": "",
             "phone": ""
         }]
-    } 
+    }
     let contactPopUp = document.getElementById('popupContact');
     contactPopUp.classList.remove('d_none');
     contactPopUp.innerHTML = editContactTemp();

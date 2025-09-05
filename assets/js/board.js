@@ -8,12 +8,16 @@ let draggedElement;
 let mediaQuery = window.matchMedia("(max-width: 1100px)");
 let toggle = 0;
 let attachmentsToArray = [];
+let contactNameArray = [];
+let allcontacts = [];
+let allContactsArray = [];
 let editContactMode = false;
 
 /**
  * Loads initial task data and user data asynchronously.
  */
 async function load() {
+    await loadContacts("/contact");
     await loadData("/task");
     fetchUserData('/user');
 }
@@ -41,6 +45,16 @@ async function loadData(path) {
         }
     }
     taskAdd();
+}
+
+async function loadContacts(path) {
+    let response = await fetch(BASE_URL + path + ".json?auth=" + token);
+    let responsetoJson = await response.json();
+    if (responsetoJson === null) {
+        await createEmptyTaskNode(path);
+    } else {
+        allContactsArray = Array.from(Object.values(responsetoJson));
+    }
 }
 
 /**
@@ -177,8 +191,9 @@ function time(objDateTask) {
  * This function retrieves contact names and their corresponding colors from the 
 */
 function addcontactInfo(objDateTask) {
-    let contactArea = document.getElementById('contactAreaInfo'); 
+    let contactArea = document.getElementById('contactAreaInfo');
     let contactName = objDateTask.contact ? Object.values(objDateTask.contact) : null;
+    contactNameArray = contactName;
     let contactscolor = objDateTask.contactcolor ? Object.values(objDateTask.contactcolor) : null;
     contactArea.innerHTML = '';
     if (contactName == null) {
@@ -186,9 +201,15 @@ function addcontactInfo(objDateTask) {
         contactArea.classList.add('d_none')
     } else {
         for (let i = 0; i < contactName.length; i++) {
-            for (let j = 0; j < contactName[i].name.length; j++) {
-                let initials = extrahiereInitialen(contactName[j].name);
-                contactArea.innerHTML += templateContactInfo(contactscolor[j], initials, contactName[j].name);
+            let currentContact = contactName[i]; 
+            if (currentContact) {
+                let filteredContact = allContactsArray.find(e => e.number == currentContact.number);
+                if (filteredContact.pic) {
+                    contactArea.innerHTML += templateContactHavingPic(currentContact.name, filteredContact.pic, contactscolor[i]);
+                } else {
+                    let initials = extrahiereInitialen(currentContact.name);
+                    contactArea.innerHTML += templateContactInfo(contactscolor[i], initials, currentContact.name);
+                }
             }
         }
     }

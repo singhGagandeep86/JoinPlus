@@ -32,7 +32,7 @@ function getDatabaseUrl(path) {
 async function fetchUrl() {
   let firebaseUrl = await fetch(BASE_URL + ".json?auth=" + token);
   let firebaseUrlAsJson = await firebaseUrl.json();
-  let firebaseData = Object.values(firebaseUrlAsJson); debugger;
+  let firebaseData = Object.values(firebaseUrlAsJson); 
   contactsData(firebaseData[0]);
 }
 
@@ -69,7 +69,7 @@ function wthScndName(i, eachName) {
   let lastName = array[i].name.split(' ')[1].toUpperCase();
   let firstNameStart = firstName[0];
   let lastNameStart = lastName[0];
-  let contactIssuedNumber = array[i].number; debugger;
+  let contactIssuedNumber = array[i].number; 
   // issuedNumbers.push(contactIssuedNumber);
   contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart, contactIssuedNumber);
 }
@@ -384,7 +384,7 @@ function checkedCreate(list) {
 /**
  * Creates a contact object from the names array.
 */
-function createContactFire() { debugger;
+function createContactFire() { 
   let contacts = {};
   for (let j = 0; j < names.length; j++) {
     let name = names[j];
