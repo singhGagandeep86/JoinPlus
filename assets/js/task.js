@@ -1,9 +1,9 @@
-// 
 let token = sessionStorage.getItem('authToken');
 let names = [];
 let namesInitials = [];
 let issuedNumbers = [];
 let colours = [];
+let pictures = [];
 let array = [];
 let expanded = false;
 let dropdownOpen = false;
@@ -32,7 +32,7 @@ function getDatabaseUrl(path) {
 async function fetchUrl() {
   let firebaseUrl = await fetch(BASE_URL + ".json?auth=" + token);
   let firebaseUrlAsJson = await firebaseUrl.json();
-  let firebaseData = Object.values(firebaseUrlAsJson); 
+  let firebaseData = Object.values(firebaseUrlAsJson);
   contactsData(firebaseData[0]);
 }
 
@@ -62,6 +62,7 @@ function contactsData(firebase) {
  * @param {string} eachName - The full name of the contact.
  */
 function wthScndName(i, eachName) {
+
   let colour = array[i].color;
   let sanitizedEachName = eachName.replace(/\s+/g, '_');
   let firstName = array[i].name.split(' ')[0].toUpperCase();
@@ -69,9 +70,13 @@ function wthScndName(i, eachName) {
   let lastName = array[i].name.split(' ')[1].toUpperCase();
   let firstNameStart = firstName[0];
   let lastNameStart = lastName[0];
-  let contactIssuedNumber = array[i].number; 
-  // issuedNumbers.push(contactIssuedNumber);
-  contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart, contactIssuedNumber);
+  let contactIssuedNumber = array[i].number;
+  let profilePic = array[i].pic;
+  if (profilePic) {
+    contact.innerHTML += contactsTempWithPic(sanitizedEachName, colour, eachName, profilePic, contactIssuedNumber);
+  } else {
+    contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart, contactIssuedNumber);
+  }
 }
 
 /**
@@ -87,8 +92,13 @@ function wthoutScndName(i, eachName) {
   let contact = document.getElementById("allCntcts");
   let firstNameStart = firstName[0];
   let lastNameStart = '';
-    let contactIssuedNumber = array[i].number;
-  contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart, contactIssuedNumber);
+  let contactIssuedNumber = array[i].number;
+  let profilePic = array[i].pic;
+  if (profilePic) {
+    contact.innerHTML += contactsTempWithPic(sanitizedEachName, colour, eachName, profilePic, contactIssuedNumber);
+  } else {
+    contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart, contactIssuedNumber);
+  }
 }
 
 /**
@@ -97,15 +107,20 @@ function wthoutScndName(i, eachName) {
  * @param {string} name - The name of the selected contact.
  * @param {string} colour - The color associated with the selected contact.
  */
-function selectionContact(name, colour, contactIssuedNumber) {
+function selectionContact(name, colour, picture, contactIssuedNumber) {
   const currenID = document.getElementById(name);
-  ifelseLogics(currenID, name, colour, contactIssuedNumber);
+  ifelseLogics(currenID, name, colour, picture, contactIssuedNumber);
   let SelectedContactsBoard = document.getElementById('selCntcts');
   SelectedContactsBoard.innerHTML = '';
   for (let i = 0; i < namesInitials.length; i++) {
     const namesInitial = namesInitials[i];
-    const color = colours[i];
-    SelectedContactsBoard.innerHTML += `<div class="namesInitials b-${color}">${namesInitial}</div>`;
+    const color = colours[i]; 
+    const picture = pictures[i];
+    if (picture) {
+      SelectedContactsBoard.innerHTML += `<div class="namesInitials b-${colour}"><img style="height: 100%" src="${picture}"></div>`;
+    } else {
+      SelectedContactsBoard.innerHTML += `<div class="namesInitials b-${color}">${namesInitial}</div>`;
+    }
   }
 }
 
@@ -116,12 +131,12 @@ function selectionContact(name, colour, contactIssuedNumber) {
  * @param {string} name - The name of the contact.
  * @param {string} colour - The color associated with the contact.
  */
-function ifelseLogics(currenID, name, colour, contactIssuedNumber) {
+function ifelseLogics(currenID, name, colour, picture, contactIssuedNumber) {
   if (currenID.checked == true) {
-    pushSelection(currenID, name, colour, contactIssuedNumber);
+    pushSelection(currenID, name, colour, picture, contactIssuedNumber);
   }
   else {
-    spliceSelection(currenID, name, contactIssuedNumber);
+    spliceSelection(currenID, name, picture, contactIssuedNumber);
   }
   if (namesInitials.length > 4) {
     document.getElementById('moreIcon').classList.remove("d_noneImg");
@@ -137,12 +152,13 @@ function ifelseLogics(currenID, name, colour, contactIssuedNumber) {
  * @param {string} name - The name of the contact.
  * @param {string} colour - The color associated with the contact.
  */
-function pushSelection(currenID, name, colour, contactIssuedNumber) {
+function pushSelection(currenID, name, colour, picture, contactIssuedNumber) {
   currenID.parentElement.style.backgroundColor = "#2A3647";
   currenID.parentElement.style.color = "white";
   currenID.nextElementSibling.style.content = "url(../img/checkButtonSelected.svg)";
   names.push(name);
   issuedNumbers.push(contactIssuedNumber);
+  pictures.push(picture);
   const nameArray = name.split('_');
   const firstName = nameArray[0].toUpperCase();
   if (nameArray[1]) {
@@ -187,12 +203,13 @@ function clrWthOneName(firstName, colour) {
  * @param {HTMLElement} currenID - The current checkbox element for the contact.
  * @param {string} name - The name of the contact.
  */
-function spliceSelection(currenID, name, contactIssuedNumber) {
+function spliceSelection(currenID, name, picture, contactIssuedNumber) {
   currenID.parentElement.style.backgroundColor = "transparent";
   currenID.parentElement.style.color = "black";
   currenID.nextElementSibling.style.content = "url(../img/CheckbuttonEmpty.png)";
   const currentName = names.indexOf(name);
   names.splice(currentName, 1);
+  pictures.splice(currentName, 1);
   issuedNumbers.splice(contactIssuedNumber, 1);
   namesInitials.splice(currentName, 1);
   colours.splice(currentName, 1);
@@ -292,7 +309,7 @@ function showCheckBoxes() {
  * Toggles the visibility of the task category dropdown.
  * Shows the dropdown if it is currently hidden; hides it otherwise.
  */
-function toggleDropdown() { 
+function toggleDropdown() {
   const dropdown = document.getElementById('dropdown');
   if (!dropdownOpen) {
     dropdown.classList.remove('selectHide');
@@ -384,13 +401,13 @@ function checkedCreate(list) {
 /**
  * Creates a contact object from the names array.
 */
-function createContactFire() { 
+function createContactFire() {
   let contacts = {};
   for (let j = 0; j < names.length; j++) {
     let name = names[j];
     let sanitizedName = name.replace(/_/g, ' ');
     let contactIssuedNumber = issuedNumbers[j];
-    contacts[`contact${j + 1}`] = { 'name': sanitizedName, 'number': contactIssuedNumber }; 
+    contacts[`contact${j + 1}`] = { 'name': sanitizedName, 'number': contactIssuedNumber };
   }
   return contacts;
 }
