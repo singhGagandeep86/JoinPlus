@@ -114,7 +114,7 @@ function selectionContact(name, colour, picture, contactIssuedNumber) {
   SelectedContactsBoard.innerHTML = '';
   for (let i = 0; i < namesInitials.length; i++) {
     const namesInitial = namesInitials[i];
-    const color = colours[i]; 
+    const color = colours[i];
     const picture = pictures[i];
     if (picture) {
       SelectedContactsBoard.innerHTML += `<div class="namesInitials b-${colour}"><img style="height: 100%" src="${picture}"></div>`;
@@ -452,12 +452,16 @@ function blobToBase64(blob) {
 
 function loadAttachments() {
   fileList.innerHTML = "";
-  removeAll.classList.remove('selectHide');
-  for (let i = 0; i < attachments.length; i++) {
-    const attachment = attachments[i];
-    const name = attachment.name;
-    const base64 = attachment.data;
-    fileList.innerHTML += filesTemplate(base64, name);
+  if (attachments.length === 0) {
+    removeAll.classList.add('selectHide');
+  } else {
+    removeAll.classList.remove('selectHide');
+    for (let i = 0; i < attachments.length; i++) {
+      const attachment = attachments[i];
+      const name = attachment.name;
+      const base64 = attachment.data;
+      fileList.innerHTML += filesTemplate(base64, name);
+    }
   }
 }
 

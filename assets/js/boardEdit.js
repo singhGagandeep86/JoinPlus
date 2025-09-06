@@ -89,7 +89,6 @@ function contactArray(firebaseData) {
 
 /** Opens the edit popup for a specific task and populates it with the task's details.*/
 function editOpen(i) {
-
     let edit = document.getElementById('popupTaskInfo');
     let objData = createobjFromElement(i)
     let prioCheck = objData.prio;
@@ -202,7 +201,9 @@ function categorieSelect(objData) {
 function loadAllAttachments() {
     let fileList = document.getElementById('fileList');
     fileList.innerHTML = '';
-    if (attachmentsToArray) {
+    if (attachmentsToArray.length === 0) {
+        removeAll.classList.add('selectHide');
+    } else {
         removeAll.classList.remove('selectHide');
         for (let index = 0; index < attachmentsToArray.length; index++) {
             const attachment = attachmentsToArray[index];
