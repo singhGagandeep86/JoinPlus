@@ -322,7 +322,7 @@ function editTask(objData) {
                 <div class="assignContainer">
                  <div class="assignedStyle"><span>Assigned to</span></div>
                 <div id="contactDropStart" class="contactDrop" onclick="contactDropOpen(event)"><span>Select Contacts to
-                        assgin</span> <img id="arrowContactDrop" src="../img/arrow_drop_runter.png" alt=""></div>
+                        assign</span> <img id="arrowContactDrop" src="../img/arrow_drop_runter.png" alt=""></div>
                 <div id="contactDropArea" class="contactDropData d_none" onclick="event.stopPropagation()"></div>
                 <div id="initialsArea" class="initialsEdit"></div>
             </div>
@@ -340,6 +340,10 @@ function checkboxContactTemplate(isChecked, contactName, initials, color) {
     return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ${isChecked} ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><span>${initials}</span></div></div> </label></div>`
 }
 
+function checkboxContactTemplateWithPic(isChecked, contactName, img, color) {
+    return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ${isChecked} ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><img style="height: 100%" src="${img}"></div></div> </label></div>`
+}
+
 /** Generates an HTML template for a checkbox contact item without a checked state.  */
 function checkboxContactTemplateEmpty(contactName, initials, color) {
     return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><span>${initials}</span></div></div> </label></div>`
@@ -348,6 +352,10 @@ function checkboxContactTemplateEmpty(contactName, initials, color) {
 /** Generates an HTML template for displaying contact initials with a specified background color. */
 function initialsLoadContact(initials, colorIni) {
     return ` <div class="b-${colorIni} boxinfo "><span>${initials}</span></div> `
+}
+
+function initialsLoadContactWithPic(img, colorIni) {
+    return ` <div class="b-${colorIni} boxinfo "><img style="height: 100%" src="${img}"></div> `
 }
 
 /** Generates an HTML template for a button to add a new subtask. */

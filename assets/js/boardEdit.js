@@ -6,7 +6,7 @@ function loadContactData(firebaseData, objData) {
     let contact = objData.contact === undefined ? null : Object.values(objData.contact).every(name => name === null)
         ? null
         : Object.values(objData.contact);
-    let contactData = contactArray(firebaseData); 
+    let contactData = contactArray(firebaseData);
     contactArea.innerHTML = '';
     loadContactDataIf(contact, contactData, firebaseData, contactArea);
 }
@@ -15,15 +15,21 @@ function loadContactData(firebaseData, objData) {
  * When contacts are provided, each contact's details, including name, initials, color,
  * and checkbox status, are dynamically generated and displayed within the contact area. */
 function loadContactDataIf(contact, contactData, firebaseData, contactArea) {
+
     if (contact == null) {
         loadContactEmpty(contactData, firebaseData)
     } else {
         for (let j = 0; j < firebaseData.length; j++) {
-            let contactName = contactData[j]; 
+            let contactName = contactData[j];
             let color = firebaseData[j].color;
             let initials = extrahiereInitialen(contactName);
-            let isChecked = contact.some(selectedContact => selectedContact === contactName) ? 'checked' : '';
-            contactArea.innerHTML += checkboxContactTemplate(isChecked, contactName, initials, color);
+            let pic = firebaseData[j].pic;
+            let isChecked = contact.some(selectedContact => selectedContact.name === contactName) ? 'checked' : '';
+            if (pic) {
+                contactArea.innerHTML += checkboxContactTemplateWithPic(isChecked, contactName, pic, color);
+            } else {
+                contactArea.innerHTML += checkboxContactTemplate(isChecked, contactName, initials, color);
+            }
         }
     }
 }
@@ -31,7 +37,7 @@ function loadContactDataIf(contact, contactData, firebaseData, contactArea) {
 /** Loads and displays an empty state for contact data in the contact drop area.*/
 function loadContactEmpty(contactData, firebaseData) {
     let contactArea = document.getElementById('contactDropArea');
-    for (let j = 0; j < firebaseData.length; j++) { 
+    for (let j = 0; j < firebaseData.length; j++) {
         let contactName = contactData[j];
         let color = firebaseData[j].color;
         let initials = extrahiereInitialen(contactName);
@@ -40,7 +46,8 @@ function loadContactEmpty(contactData, firebaseData) {
 }
 
 /** Loads and displays the initials of the contacts associated with a given task.*/
-function initialsLoad(objData) { debugger;
+function initialsLoad(objData) {
+
     let contactUser = objData.contact === undefined ? null : Object.values(objData.contact).every(name => name === null)
         ? null
         : Object.values(objData.contact);
@@ -55,12 +62,18 @@ function initialsLoadIf(contactUser, color, initialsContact) {
     if (contactUser == null) {
         initialsContact.innerHTML = '';
         initialsContact.classList.add('d_none');
-    } else { debugger;
+    } else {
+
         for (let k = 0; k < contactUser.length; k++) {
-            let contactName = contactUser[k].name; 
+            let contactName = contactUser[k].name;
             let colorIni = color[k];
-            let initials = extrahiereInitialen(contactName);
-            initialsContact.innerHTML += initialsLoadContact(initials, colorIni);
+            let filteredContact = allContactsArray.find(e => e.number == contactUser[k].number);
+            if (filteredContact && filteredContact.pic) {
+                initialsContact.innerHTML += initialsLoadContactWithPic(filteredContact.pic, colorIni);
+            } else {
+                let initials = extrahiereInitialen(contactName);
+                initialsContact.innerHTML += initialsLoadContact(initials, colorIni);
+            }
         }
     }
 }
@@ -70,12 +83,13 @@ function contactArray(firebaseData) {
     let elementContact = [];
     for (let i = 0; i < firebaseData.length; i++) {
         elementContact.push(firebaseData[i].name);
-    } 
+    }
     return elementContact;
 }
 
 /** Opens the edit popup for a specific task and populates it with the task's details.*/
-function editOpen(i) { debugger;
+function editOpen(i) {
+
     let edit = document.getElementById('popupTaskInfo');
     let objData = createobjFromElement(i)
     let prioCheck = objData.prio;
@@ -104,12 +118,12 @@ function loadEditData(objData, prioCheck) {
     priorityEditCheck(prioCheck);
     categorieSelect(objData);
     loadAllAttachments();
-    initialsLoad(objData); 
+    initialsLoad(objData);
     dateVali();
 }
 
 /** Toggles the visibility of the contact dropdown menu and handles contact selection.*/
-function contactDropOpen(event) { 
+function contactDropOpen(event) {
     event.stopPropagation();
     let contactDropdown = document.getElementById('contactDropArea');
     let arrowContact = document.getElementById('arrowContactDrop');
@@ -120,6 +134,7 @@ function contactDropOpen(event) {
  * Toggles the visibility of a contact dropdown menu and manages dropdown-related behaviors.
  * If the dropdown is opened, an event listener is added to close it when clicking outside;*/
 function contactDropOpenIf(contactDropdown, arrowContact) {
+
     if (!contactDropdown.classList.contains('d_none')) {
         getSelectedContacts();
         intiCheckContact();
@@ -203,26 +218,27 @@ function removeAllAttachments() {
 }
 
 /** Retrieves the selected contacts from the contact dropdown.*/
-function getSelectedContacts() { 
+function getSelectedContacts() {
     let checkContacts = [];
     let checkboxes = document.querySelectorAll('.checkboxDesignContact');
     for (let i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
             let contactName = checkboxes[i].closest('.contactDropCheck').querySelector('.contactNameEdit p').textContent;
-            let colorName = checkboxes[i].closest('.contactDropCheck').querySelector('.boxinfoEdit'); 
-            let number = allContactsArray[i].number; 
+            let colorName = checkboxes[i].closest('.contactDropCheck').querySelector('.boxinfoEdit');
+            let number = allContactsArray[i].number;
             if (colorName) {
                 let color = colorName.classList[0].split('-')[1];
                 checkContacts.push({ name: contactName, color: color, number: number });
             }
         }
-    } 
+    }
     return checkContacts;
 }
 
 /** Initializes and displays the selected contacts' initials in the initials area.*/
 function intiCheckContact() {
-    let initialsContact = document.getElementById('initialsArea'); 
+
+    let initialsContact = document.getElementById('initialsArea');
     let checkContact = getSelectedContacts();
     initialsContact.innerHTML = '';
     if (checkContact != []) {
@@ -231,8 +247,13 @@ function intiCheckContact() {
             let contactName = checkContact[i].name;
             let color = checkContact[i].color;
             let initials = extrahiereInitialen(contactName);
-            let number = contactNameArray[i].number; 
-            initialsContact.innerHTML += initialsLoadContact(initials, color);
+            let number = checkContact[i].number;
+            let filteredContact = allContactsArray.find(e => e.number == number);
+            if (filteredContact && filteredContact.pic) {
+                initialsContact.innerHTML += initialsLoadContactWithPic(filteredContact.pic, color);
+            } else {
+                initialsContact.innerHTML += initialsLoadContact(initials, color);
+            }
         }
     }
 }
@@ -459,7 +480,7 @@ function numberObj(contact) {
 /** Loads new task data and refreshes the display.*/
 function loadnewTaskEdit() {
     arrayLoad = [];
-    load(); 
+    load();
     closePopUpTaskSmall();
 }
 
@@ -473,7 +494,7 @@ function openFilePicker() {
     filesPicker.addEventListener('change', () => {
         const allFiles = filesPicker.files;
 
-        if (allFiles.length > 0) { 
+        if (allFiles.length > 0) {
             Array.from(allFiles).forEach(async file => {
                 const blog = new Blob([file], { type: file.type });
 
