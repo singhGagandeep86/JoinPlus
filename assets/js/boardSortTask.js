@@ -358,21 +358,3 @@ function extrahiereInitialen(contactName) {
         return initials;
     }
 }
-
-function openContact() {
-    let userId = sessionStorage.getItem('uid');
-    let userObject = userData.filter(e => e['uid'] === userId);
-    if (userObject == '') {
-        userObject = [{
-            "email": "",
-            "name": "Guest User",
-            "uid": userId,
-            "pathNumber": "",
-            "phone": ""
-        }]
-    }
-    let contactPopUp = document.getElementById('popupContact');
-    contactPopUp.classList.remove('d_none');
-    contactPopUp.innerHTML = editContactTemp();
-    getOperator(userObject);
-}

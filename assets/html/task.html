@@ -48,11 +48,11 @@
                     <div class="picSm" id="burgerToggle"><span id="userIni"></span></div>
                     <div class="burger-menu" id="burgerMenu">
                         <div class="burger-content">
-                            <h2>Account</h2>
+                            <h2 onclick="openContact()">Account</h2>
                             <h2 class="helpOff"><a href="../html/help.html">Help</a></h2>
                             <h2><a href="../html/legecy.html">Legal Notice</a></h2>
                             <h2><a href="../html/privacy.html">Privacy Policy</a></h2>
-                            <h2 onclick="logout()">Log Out</h2>
+                            <h2 onclick="deleteGuest()">Log Out</h2>
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                                 </div>
                                 <div class="selCntctsDiv">
                                     <div id="selCntcts" class="showSel"></div>
-                                    <div id="moreIcon" class="moreBtn d_noneImg" onclick="scrollOn()"><img
+                                    <div id="moreIcon" class="moreBtn d_none" onclick="scrollOn()"><img
                                             class="moreImg" src="../img/arrow.png"></div>
                                 </div>
                             </div>
@@ -173,6 +173,8 @@
             </div>
         </div>
     </div>
+
+    <div id="popupContact" class="popupArea d_none" onclick="closeContact()"></div>
     <div id="taskDoneIcon" class="subTaskIcon">
         <div class="doneDiv "><img id="imgTest" class="doneIcon " src="../img/addedTask.png"></div>
     </div>

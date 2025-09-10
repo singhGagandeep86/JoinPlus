@@ -21,7 +21,7 @@ async function fetchContact(pathC, objData) {
 async function postEditData(path = "", data = {}) { 
     let firebaseUrl = await fetch(getDatabaseUrl(path), {
         method: "PATCH",
-        header: {
+        headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data)

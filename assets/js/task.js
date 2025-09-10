@@ -139,9 +139,9 @@ function ifelseLogics(currenID, name, colour, picture, contactIssuedNumber) {
     spliceSelection(currenID, name, picture, contactIssuedNumber);
   }
   if (namesInitials.length > 4) {
-    document.getElementById('moreIcon').classList.remove("d_noneImg");
+    document.getElementById('moreIcon').classList.remove("d_none");
   } else {
-    document.getElementById('moreIcon').classList.add("d_noneImg");
+    document.getElementById('moreIcon').classList.add("d_none");
   }
 }
 

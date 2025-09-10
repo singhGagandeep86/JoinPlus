@@ -1,5 +1,4 @@
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const filePicker = document.getElementById('filePicker');
     if (filePicker) {
@@ -90,7 +89,7 @@ function resetingLocalVariables() {
     document.getElementById('arrow').style.transform = "rotate(0deg)";
     document.getElementById('subTsksBoard').innerHTML = '';
     document.getElementById('selCntcts').innerHTML = '';
-    document.getElementById('moreIcon').classList.add("d_noneImg");
+    document.getElementById('moreIcon').classList.add("d_none");
     document.getElementById('removeAll').classList.add("selectHide");
     document.getElementById('fileList').innerHTML = "";
 }
@@ -213,7 +212,7 @@ async function navigateToBoard() {
 async function postTask(path = "", data = {}) {
     await fetch(getDatabaseUrl(path), {
         method: "PUT",
-        header: {
+        headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data)
@@ -364,4 +363,6 @@ function compareDate(year, month, day, inputYear, inputMonth, inputDate) {
         }
     }
 }
+
+
 

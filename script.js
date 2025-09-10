@@ -1,7 +1,7 @@
 
 let userData = [];
 let BASE_URL = "https://join-e54a3-default-rtdb.europe-west1.firebasedatabase.app/";
-
+let editContactMode = false;
 
 /**
  * Retrieves the email and password from the event target.
@@ -181,15 +181,16 @@ function guestLogin() {
     });
 }
 
-function deleteGuest() {
+async function deleteGuest() {
     let userObject = userData.filter(e => e['pathNumber'] === 'guest');
-    if (userObject == '') {
-        logout();
+    if (userObject.length === 0) {
+        await logout();
     } else if (userObject[0].pathNumber == 'guest') {
-        deleteUser(`/user/guest`);
-        logout();
+        console.log(`enterd guest delete`);
+        await deleteUser(`/user/guest`);
+        await logout();
     } else {
-        logout();
+        await logout();
     }
 }
 
@@ -199,6 +200,8 @@ function deleteGuest() {
  * Redirects to the login page.
  */
 async function logout() {
+    console.log(`logging out`);
+
     sessionStorage.removeItem('authToken');
     sessionStorage.removeItem('uid');
     userData = [];
@@ -222,7 +225,7 @@ async function loadInitailUser() {
  * @param {Array} userObject - The user data array from session storage.
  */
 function loadInitailUserIf(userObject) {
-    if (userObject == '') {
+    if (userObject.length === 0) {
         let guest = 'GS'
         createUser(guest, userObject);
         writeGreetinGuest(userObject)
@@ -428,7 +431,7 @@ function getOperator(userObject) {
         let userName = userObject[i].name;
         let userEmail = userObject[i].email;
         let userPhone = userObject[i].phone;
-        let userInitial = extrahiereInitialen(userName); 
+        let userInitial = extrahiereInitialen(userName);
         let profilePic = userObject[i].pic;
         if (profilePic) {
             userImg.classList.remove('d_none');
@@ -441,3 +444,198 @@ function getOperator(userObject) {
         document.getElementById('userPhone').value = userPhone;
     }
 }
+
+
+function closeContact() {
+    document.getElementById('popupContact').classList.add('d_none');
+}
+
+
+function openContact() {
+    let userId = sessionStorage.getItem('uid');
+    let userObject = userData.filter(e => e['uid'] === userId);
+    if (userObject.length === 0) {
+        userObject = [{
+            "email": "",
+            "name": "Guest User",
+            "uid": userId,
+            "pathNumber": "",
+            "phone": ""
+        }]
+    }
+    let contactPopUp = document.getElementById('popupContact');
+    contactPopUp.classList.remove('d_none');
+    contactPopUp.innerHTML = editContactTemp();
+    getOperator(userObject);
+}
+
+
+function editContactTemp() {
+    return ` <div class="editContact" onclick="event.stopPropagation()">
+              <div class="left-part">
+                  <img src="../img/Joinlogowhite.png">
+                  <h2 id="title">My account</h2>
+                  <div class="vector"></div>
+              </div>
+              <div class="right-part">
+                  <img onclick="closeContact()" class="close" src="../img/Close.png">
+                  <div class="initialsCont">
+                  <span id="initialCont"></span>
+                    <img id="userImg" class="userImg d_none">
+                    <div id="camera" class="camera d_none" onclick="openUserImgPicker()">
+                    <input id="userImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
+                     <img src="../img/camera.png">
+                    </div>
+                  </div>
+                  <div class="userDetails">
+                      <input type="text" id="userName" disabled>
+                      <input type="email" id="userEmail" disabled>
+                      <input type="tel" id="userPhone" disabled>
+                      <div class="buttonContainer">
+                          <button onclick="deleteCurrentUser()">Delete my account</button>
+                          <button id="editButton" onclick="editContact()">Edit</button>
+                      </div>
+                  </div>
+              </div>
+          </div>`
+}
+
+
+async function editContact() {
+    if (!editContactMode) {
+        document.getElementById('title').innerHTML = 'Edit account';
+        document.getElementById('editButton').innerHTML = `Save <img src="../img/check.svg">`;
+        document.getElementById('camera').classList.remove('d_none');
+        document.getElementById('userName').removeAttribute('disabled');
+        document.getElementById('userName').focus();
+        document.getElementById('userEmail').removeAttribute('disabled');
+        document.getElementById('userPhone').removeAttribute('disabled');
+        editContactMode = true;
+    } else {
+        await saveContact();
+        editContactMode = false;
+    }
+}
+
+
+function openUserImgPicker() {
+    let userImgPicker = document.getElementById('userImgPicker');
+
+    if (!userImgPicker) return;
+
+    userImgPicker.click();
+
+    userImgPicker.addEventListener('change', async () => {
+        let userImg = document.getElementById('userImg');
+        const file = userImgPicker.files[0];
+        if (!file) return;
+
+        const blog = new Blob([file], { type: file.type });
+
+        const base64 = await blobToBase64(blog);
+
+        const img = document.createElement('img');
+        img.src = base64;
+
+        document.getElementById('initialCont').classList.add('d_none');
+        userImg.classList.remove('d_none');
+        userImg.src = base64;
+    })
+}
+
+
+async function saveContact() {
+    let userImg = document.getElementById('userImg');
+    document.getElementById('userName').setAttribute("disabled", true);
+    document.getElementById('userEmail').setAttribute("disabled", true);
+    document.getElementById('userPhone').setAttribute("disabled", true);
+    document.getElementById('title').innerHTML = 'My account';
+    document.getElementById('editButton').innerHTML = `Edit`;
+    document.getElementById('camera').classList.add('d_none');
+    let userId = sessionStorage.getItem('uid');
+    let userObject = userData.filter(e => e['uid'] === userId);
+    if (userObject.length === 0) {
+        await postEditData(`/user/guest`, {
+            'name': document.getElementById('userName').value,
+            'email': document.getElementById('userEmail').value,
+            'phone': document.getElementById('userPhone').value,
+            'uid': userId,
+            'pathNumber': 'guest',
+            'pic': userImg.src
+        });
+    } else {
+        userObject[0].name = document.getElementById('userName').value;
+        userObject[0].email = document.getElementById('userEmail').value;
+        userObject[0].phone = document.getElementById('userPhone').value;
+        if (userObject[0].pathNumber == 'guest' || userObject[0].pathNumber == '') {
+            await postEditData(`/user/guest`, {
+                'name': userObject[0].name,
+                'email': userObject[0].email,
+                'phone': userObject[0].phone,
+                'uid': userObject[0].uid,
+                'pathNumber': userObject[0].pathNumber,
+                'pic': userImg.src
+            });
+        } else {
+            await postEditData(`/user/task${userObject[0].pathNumber}`, {
+                'name': userObject[0].name,
+                'email': userObject[0].email,
+                'phone': userObject[0].phone,
+                'uid': userObject[0].uid,
+                'pathNumber': userObject[0].pathNumber,
+                'pic': userImg.src
+            });
+        }
+
+    }
+
+}
+
+async function deleteCurrentUser() {
+    let userId = sessionStorage.getItem('uid');
+    let userObject = userData.filter(e => e['uid'] === userId);
+
+    await saveContact();
+
+    if (userObject.length > 0 && userObject[0].pathNumber == 'guest') {
+        await deleteGuest();
+    } else if (userObject.length > 0) {
+        await deleteUser(`/user/task${userObject[0].pathNumber}`);
+        await logout();
+    } else {
+        await logout();
+    }
+}
+
+
+/**
+ * Sends a PATCH request to update data at the specified path.
+ */
+async function postEditData(path = "", data = {}) {
+    let response = await fetch(getDatabaseUrl(path), {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    });
+    if (!response.ok) {
+        throw new Error("Speichern fehlgeschlagen!");
+    }
+
+    await loadnewTaskEdit();
+    return response;
+}
+
+async function deleteUser(path = "") {
+    let firebaseUrl = await fetch(getDatabaseUrl(path), {
+        method: "DELETE"
+    });
+}
+
+
+/** Loads new task data and refreshes the display.*/
+async function loadnewTaskEdit() {
+    fetchUserData('/user');
+}
+

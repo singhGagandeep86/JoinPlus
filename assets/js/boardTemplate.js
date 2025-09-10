@@ -52,7 +52,7 @@ function templatePopUpTask(id) {
                                 </div>
                                 <div class="selCntctsDiv">
                                     <div id="selCntcts" class="showSel"></div>
-                                    <div id="moreIcon" class="moreBtn d_noneImg" onclick="scrollOn()"><img class="moreImg" src="../img/arrow.png"></div>
+                                    <div id="moreIcon" class="moreBtn d_none" onclick="scrollOn()"><img class="moreImg" src="../img/arrow.png"></div>
                                 </div>
                             </div>
                         </div>
@@ -436,34 +436,4 @@ function templateSub4(currentText) {
             <div class="strich"></div>
             <span><img onclick="toggleEditTask(event, this)" src="../img/Propertycheck.png" alt="Edit/Save"></span>
         </div>`
-}
-
-function editContactTemp() {
-    return ` <div class="editContact" onclick="event.stopPropagation()">
-              <div class="left-part">
-                  <img src="../img/Joinlogowhite.png">
-                  <h2 id="title">My account</h2>
-                  <div class="vector"></div>
-              </div>
-              <div class="right-part">
-                  <img onclick="closeContact()" class="close" src="../img/Close.png">
-                  <div class="initialsCont">
-                  <span id="initialCont"></span>
-                    <img id="userImg" class="userImg d_none" src="">
-                    <div id="camera" class="camera d_none" onclick="openUserImgPicker()">
-                    <input id="userImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
-                     <img src="../img/camera.png">
-                    </div>
-                  </div>
-                  <div class="userDetails">
-                      <input type="text" id="userName" disabled>
-                      <input type="email" id="userEmail" disabled>
-                      <input type="tel" id="userPhone" disabled>
-                      <div class="buttonContainer">
-                          <button onclick="deleteCurrentUser()">Delete my account</button>
-                          <button id="editButton" onclick="editContact()">Edit</button>
-                      </div>
-                  </div>
-              </div>
-          </div>`
 }

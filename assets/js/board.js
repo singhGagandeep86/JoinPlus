@@ -11,7 +11,6 @@ let attachmentsToArray = [];
 let contactNameArray = [];
 let allcontacts = [];
 let allContactsArray = [];
-let editContactMode = false;
 
 /**
  * Loads initial task data and user data asynchronously.
@@ -401,112 +400,6 @@ async function addTaskboard(id) {
         closePopUpTask();
         load();
         document.getElementById('taskDoneIcon').classList.add("subTaskIcon");
-    }
-
-}
-
-function openUserImgPicker() {
-    let userImgPicker = document.getElementById('userImgPicker');
-
-    if (!userImgPicker) return;
-
-    userImgPicker.click();
-
-    userImgPicker.addEventListener('change', async () => {
-        let userImg = document.getElementById('userImg');
-        const file = userImgPicker.files[0];
-        if (!file) return;
-
-        const blog = new Blob([file], { type: file.type });
-
-        const base64 = await blobToBase64(blog);
-
-        const img = document.createElement('img');
-        img.src = base64;
-
-        document.getElementById('initialCont').classList.add('d_none');
-        userImg.classList.remove('d_none');
-        userImg.src = base64;
-    })
-}
-
-function editContact() {
-    if (!editContactMode) {
-        document.getElementById('title').innerHTML = 'Edit account';
-        document.getElementById('editButton').innerHTML = `Save <img src="../img/check.svg">`;
-        document.getElementById('camera').classList.remove('d_none');
-        document.getElementById('userName').removeAttribute('disabled');
-        document.getElementById('userName').focus();
-        document.getElementById('userEmail').removeAttribute('disabled');
-        document.getElementById('userPhone').removeAttribute('disabled');
-        editContactMode = true;
-    } else {
-        saveContact();
-        editContactMode = false;
-    }
-}
-
-function closeContact() {
-    document.getElementById('popupContact').classList.add('d_none');
-}
-
-function saveContact() {
-    let userImg = document.getElementById('userImg');
-    document.getElementById('userName').setAttribute("disabled", true);
-    document.getElementById('userEmail').setAttribute("disabled", true);
-    document.getElementById('userPhone').setAttribute("disabled", true);
-    document.getElementById('title').innerHTML = 'My account';
-    document.getElementById('editButton').innerHTML = `Edit`;
-    document.getElementById('camera').classList.add('d_none');
-    let userId = sessionStorage.getItem('uid');
-    let userObject = userData.filter(e => e['uid'] === userId);
-    if (userObject == '') {
-        postEditData(`/user/guest`, {
-            'name': document.getElementById('userName').value,
-            'email': document.getElementById('userEmail').value,
-            'phone': document.getElementById('userPhone').value,
-            'uid': userId,
-            'pathNumber': 'guest',
-            'pic': userImg.src
-        });
-    } else {
-        userObject[0].name = document.getElementById('userName').value;
-        userObject[0].email = document.getElementById('userEmail').value;
-        userObject[0].phone = document.getElementById('userPhone').value;
-        if (userObject[0].pathNumber == 'guest' || userObject[0].pathNumber == '') {
-            postEditData(`/user/guest`, {
-                'name': userObject[0].name,
-                'email': userObject[0].email,
-                'phone': userObject[0].phone,
-                'uid': userObject[0].uid,
-                'pathNumber': userObject[0].pathNumber,
-                'pic': userImg.src
-            });
-        } else {
-            postEditData(`/user/task${userObject[0].pathNumber}`, {
-                'name': userObject[0].name,
-                'email': userObject[0].email,
-                'phone': userObject[0].phone,
-                'uid': userObject[0].uid,
-                'pathNumber': userObject[0].pathNumber,
-                'pic': userImg.src
-            });
-        }
-    }
-
-}
-
-function deleteCurrentUser() {
-    let userId = sessionStorage.getItem('uid');
-    let userObject = userData.filter(e => e['uid'] === userId);
-
-    if (userObject.length > 0 && userObject[0].pathNumber == 'guest') {
-        deleteGuest();
-    } else if (userObject.length > 0) {
-        deleteUser(`/user/task${userObject[0].pathNumber}`);
-        logout();
-    } else {
-        logout();
     }
 
 }
