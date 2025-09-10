@@ -61,7 +61,7 @@ async function loadContacts(path) {
  */
 function openPopUpTaskSmall(i) {
     let info = document.getElementById('popupTaskInfo');
-    document.getElementById('popupTaskInfo').classList.remove('d_none');
+    info.classList.remove('d_none');
     let objDateTask = createobjFromElement(i);
     info.innerHTML = templateTaskSmallInfo(objDateTask);
     time(objDateTask);
@@ -191,23 +191,25 @@ function time(objDateTask) {
 */
 function addcontactInfo(objDateTask) {
     let contactArea = document.getElementById('contactAreaInfo');
+    let allContactsSection = document.getElementById('allContactsSection');
     let contactName = objDateTask.contact ? Object.values(objDateTask.contact) : null;
     contactNameArray = contactName;
     let contactscolor = objDateTask.contactcolor ? Object.values(objDateTask.contactcolor) : null;
-    contactArea.innerHTML = '';
+    allContactsSection.innerHTML = '';
     if (contactName == null) {
-        contactArea.innerHTML = '';
+        allContactsSection.innerHTML = '';
         contactArea.classList.add('d_none')
     } else {
         for (let i = 0; i < contactName.length; i++) {
             let currentContact = contactName[i]; 
             if (currentContact) {
                 let filteredContact = allContactsArray.find(e => e.number == currentContact.number);
+                contactArea.classList.remove('d_none');
                 if (filteredContact.pic) {
-                    contactArea.innerHTML += templateContactHavingPic(currentContact.name, filteredContact.pic, contactscolor[i]);
+                    allContactsSection.innerHTML += templateContactHavingPic(currentContact.name, filteredContact.pic, contactscolor[i]);
                 } else {
                     let initials = extrahiereInitialen(currentContact.name);
-                    contactArea.innerHTML += templateContactInfo(contactscolor[i], initials, currentContact.name);
+                    allContactsSection.innerHTML += templateContactInfo(contactscolor[i], initials, currentContact.name);
                 }
             }
         }
@@ -216,13 +218,15 @@ function addcontactInfo(objDateTask) {
 
 function addAttachInfo(objDateTask) {
     let attachContainer = document.getElementById('attachContainer');
-    attachContainer.innerHTML = '';
+    let allAttachesSection = document.getElementById('allAttachesSection');
+    allAttachesSection.innerHTML = '';
     attachmentsToArray = [];
     let attach = objDateTask.attachments;
     if (attach) {
+        attachContainer.classList.remove('d_none');
         attachmentsToArray = attach;
         for (let i = 0; i < attach.length; i++) {
-            attachContainer.innerHTML += templateAttachInfo(attach[i], i);
+            allAttachesSection.innerHTML += templateAttachInfo(attach[i], i);
         }
     } else {
         attachmentsToArray = [];

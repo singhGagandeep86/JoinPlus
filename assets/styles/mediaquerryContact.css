@@ -58,15 +58,15 @@
     .container {
         justify-content: initial;
     }
-
+/* 
     .header {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         padding: 10px;
-    }
+    } */
 
-    .header span {
+    /* .header span {
         width: 34px;
-    }
+    } */
 
     .popup {
         width: 1000px;
@@ -118,10 +118,10 @@
         border-radius: 10px;
     }
 
-    .header {
+    /* .header {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         padding: 10px;
-    }
+    } */
 
     .mainDesign {
         height: 100%;
@@ -132,9 +132,9 @@
         width: 100%;
     }
 
-    .header span {
+    /* .header span {
         width: 34px;
-    }
+    } */
 
     .content {
         padding: 0;

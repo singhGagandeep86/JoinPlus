@@ -6,6 +6,10 @@
     --sideheader-font-color: #CDCDCD;
 }
 
+.d_none {
+    display: none !important;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -63,7 +67,6 @@ body {
     top: 90px;
     right: 19px;
     width: 175px;
-    height: 210px;
     background-color: var(--sideheader-main-color);
     border-radius: 20px 0px 20px 20px;
     padding: 10px;
@@ -74,11 +77,5 @@ body {
 @media(max-width: 480px) {
     .text-arrow h1{
         font-size:40px;
-    }
-}
-
-@media(max-width: 1300px) {
-    .headerContentRightSide {
-        display: none;
     }
 }

@@ -451,7 +451,7 @@ function closeContact() {
 }
 
 
-function openContact() {
+function openContact() { 
     let userId = sessionStorage.getItem('uid');
     let userObject = userData.filter(e => e['uid'] === userId);
     if (userObject.length === 0) {
@@ -493,7 +493,7 @@ function editContactTemp() {
                       <input type="tel" id="userPhone" disabled>
                       <div class="buttonContainer">
                           <button onclick="deleteCurrentUser()">Delete my account</button>
-                          <button id="editButton" onclick="editContact()">Edit</button>
+                          <button id="editButton" onclick="editUser()">Edit</button>
                       </div>
                   </div>
               </div>
@@ -501,7 +501,7 @@ function editContactTemp() {
 }
 
 
-async function editContact() {
+async function editUser() {
     if (!editContactMode) {
         document.getElementById('title').innerHTML = 'Edit account';
         document.getElementById('editButton').innerHTML = `Save <img src="../img/check.svg">`;
@@ -515,6 +515,14 @@ async function editContact() {
         await saveContact();
         editContactMode = false;
     }
+}
+
+function blobToBase64(blob) {
+  return new Promise((resolve, _) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(blob);
+  });
 }
 
 

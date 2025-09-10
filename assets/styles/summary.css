@@ -9,6 +9,10 @@
     --details-font-color: #007CEE;
 }
 
+.d_none {
+    display: none !important;
+}
+
 .content {
     max-width: 1440px;
     display: flex;

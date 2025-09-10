@@ -13,6 +13,10 @@
     font-family: 'Inter';
 }
 
+.d_none {
+    display: none !important;
+}
+
 .content {
     padding: 4rem 4rem 0 4rem;
 }
@@ -178,7 +182,6 @@
     top: 91px;
     right: 19px;
     width: 175px;
-    height: 158px;
     background-color: var(--sideheader-main-color);
     border-radius: 20px 0px 20px 20px;
     padding: 10px;
@@ -287,10 +290,6 @@ span {
         height: 80px;
         align-items: center;
         z-index: 99;
-    }
-
-    .burger-menu{
-        height:210px ;
     }
 
     .asideMenu {

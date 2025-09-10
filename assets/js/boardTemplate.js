@@ -156,8 +156,8 @@ function templateTaskSmallInfo(objDateTask) {
             <div class="prioInfo"><div><span>Priorty:</span></div>
             <div class="prioInfoData"><span>${objDateTask.prio.charAt(0).toUpperCase() + objDateTask.prio.slice(1)}</span>
             <div class="bg_${objDateTask.prio}"></div></div></div>
-            <div class="contactInfo"><span class="contactInfoHeadline">Assigned To:</span><div id="contactAreaInfo" class="contactInfoData"></div></div>
-            <div class="attachInfo"><span>Attachments</span><div class="attach-container" id="attachContainer"></div></div>
+            <div id="contactAreaInfo"  class="d_none contactInfo"><span class="contactInfoHeadline">Assigned To:</span><div id="allContactsSection" class="contactInfoData"></div></div>
+            <div id="attachContainer" class="d_none attachInfo"><span>Attachments</span><div class="attach-container" id="allAttachesSection"></div></div>
             <div class="subtaskInfo"><span>Subtasks:</span><div id="subtaskEmtpy"  class="subtaskAreaData"><div id="subtaskArea"></div></div></div>
             <div class="editInfo"><div class="editInfoData"><div><img onclick="deleteData(${objDateTask.number})" class="deletePic" src="../img/Deletecontact.png" alt=""></div>
                 <div><img onclick="editOpen(${objDateTask.number})" class="editPic" src="../img/editcontacts.png"></div></div></div>
