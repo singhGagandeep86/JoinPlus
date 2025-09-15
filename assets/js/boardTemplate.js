@@ -197,6 +197,7 @@ function templateContact(colors, initials, i) {
     return ` <div class="b-${colors} box0"> <span>${initials}</span></div>`
 }
 
+/**Generates an HTML template for a contact display box with a picture. */
 function templateContactWithPic(img, colors) {
     return ` <div class="b-${colors} box0"> <img src="${img}"></div>`
 }
@@ -208,11 +209,13 @@ function templateContactInfo(contactscolor, initials, contactName) {
     <span>${initials}</span></div> <span class="contactName">${contactName}</span></div>`
 }
 
+/**Generates an HTML template for a contact display box with a picture. */
 function templateContactHavingPic(contactName, img, contactscolor) {
     return `<div class="contactArea"><div class="b-${contactscolor} boxinfo">
     <img style="height: 100%" src="${img}"></div> <span class="contactName">${contactName}</span></div>`
 }
 
+/**Generates an HTML template for displaying a file attachment. */
 function templateAttachInfo(attach, i) {
     return `<div class="cardAttach"><div class="overlay" onclick="showFile('${attach.data}', '${attach.name}', ${i})"><img class="downloadPic" src="../img/download.png"></div><img src="${attach.data}"><p>${attach.name}</p></div>`
 }

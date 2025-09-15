@@ -38,6 +38,7 @@ function getDatabaseUrl(path) {
  * @returns {Promise<void>}
  */
 
+/** Loads data from the specified URL and adds it to an array. */
 async function loadData(path) {
     let response = await fetch(getDatabaseUrl(path));
     let responsetoJson = await response.json();
@@ -54,6 +55,7 @@ async function loadData(path) {
  * @returns {Promise<void>}
  */
 
+/**Sends data via a POST request to the specified URL. */
 async function postData(path, data) {
     let response = await fetch(getDatabaseUrl(path), {
         method: "POST",
@@ -83,9 +85,9 @@ function sortContactsByName() {
 }
 
 /**
- * Loads contact data into the contact area.
- * Iterates through the contact array and populates the contact area with HTML for each contact.
- * @returns {undefined}
+ * Loads the contacts from the array into the contact space.
+ * Clears the contact space and generates HTML for each contact in the array.
+ * Calls contactManip for each contact to generate the HTML.
  */
 function loadContact() {
     let contactSpace = document.getElementById('contactArea');
@@ -93,21 +95,26 @@ function loadContact() {
     let currentLetter = '';
 
     for (let i = 0; i < array.length; i++) {
-        let contactName = array[i].name;
+     contactManip(i, contactSpace, currentLetter);
+    }
+}
+
+/**
+ * Generates HTML for a contact item based on its index in the array of contacts.
+ * Checks if the contact has a picture and generates HTML accordingly. */
+function contactManip(i, contactSpace, currentLetter) {
+       let contactName = array[i].name;
         let initials = extrahiereInitialen(contactName);
         let firstLetter = contactName.charAt(0).toUpperCase();
-
         if (firstLetter !== currentLetter) {
             contactSpace.innerHTML += `<h2>${firstLetter}</h2>`;
             currentLetter = firstLetter;
         }
-
         if (array[i].pic) {
             contactSpace.innerHTML += loadContactWithPic(i, initials, array[i].pic);
         } else {
             contactSpace.innerHTML += loadContactWithInitials(i, initials);
         }
-    }
 }
 
 /**
@@ -213,12 +220,7 @@ function editContact(i) {
     if (array[i].pic) {
         document.getElementById('userImgEdit').classList.remove('d_none');
         document.getElementById('contactInitials').classList.add('d_none');
-        document.getElementById('userImgEdit').innerHTML = `
-                                <img id="userProfileImg" src="${array[i].pic}" class="profle-pic"> 
-                                <input id="contactImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
-                                <div class="camera" onclick="openImgPicker()">
-                                <img src="../img/camera.png">
-                                </div>`;
+        document.getElementById('userImgEdit').innerHTML = showImagePicker(array[i].pic);
     }
     loadInputEdit(i)
     document.querySelector('.contact-container-right').classList.add('hidden');

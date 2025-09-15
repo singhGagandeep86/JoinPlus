@@ -83,6 +83,7 @@ async function deleteData(element) {
 }
 
 
+/** Moves the task to the waiting state, collects task details, and pushes data to Firebase. */
 async function toWaitingSecondary(id) {
     let titleText = document.getElementById('titleText').value;
     let desText = document.getElementById('desText').value;

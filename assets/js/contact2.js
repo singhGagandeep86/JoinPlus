@@ -79,13 +79,9 @@ async function createContactData(name, email, phone, number, firstNameInitial, c
 }
 
 
+
 /**
- * Sends a PATCH request to the specified path with the provided data.
- * Resets the array and reloads the data upon completion.
- * @param {string} path - The database path where data will be patched.
- * @param {Object} data - The data object to be sent in the request body.
- * @returns {Promise<void>}
- */
+ * Sends a PATCH request to update data at the specified path in Firebase.\ */
 async function postCreateData(path = "", data = {}) {
     try {
         let firebaseUrl = await fetch(getDatabaseUrl(path), {
@@ -96,9 +92,16 @@ async function postCreateData(path = "", data = {}) {
             body: JSON.stringify(data)
         });
 
+        if (!firebaseUrl.ok) {
+            throw new Error(`Firebase Error: ${response.status} ${response.statusText}`);
+        }
+
+
         array = [];
         load();
     } catch (error) {
+        console.error("Error sending data in Firebase:", error);
+        throw error;
     }
 }
 
@@ -263,38 +266,38 @@ async function postEditData(path, data) {
     }
 }
 
+/** Opens the contact image picker. If the contact image picker element exists, it adds an event listener to the 'change' event and simulates 
+ * a click on the element to open it. */
 function openImgPicker() {
     let contactImgPicker = document.getElementById('contactImgPicker');
-    let userProfileImg = document.getElementById('userProfileImg');
-    let contactInitials = document.getElementById('contactInitials');
 
     if (!contactImgPicker) return;
 
+    contactImgPicker.addEventListener('change', handlePickedPic);
+
     contactImgPicker.click();
 
-    contactImgPicker.addEventListener('change', async () => {
-        const file = contactImgPicker.files[0];
-        if (!file) return;
-
-        const blog = new Blob([file], { type: file.type });
-
-        const base64 = await blobToBase64(blog);
-
-        const img = document.createElement('img');
-        img.src = base64;
-
-        if (contactInitials) {
-            contactInitials.classList.add('d_none');
-            userProfileImg.classList.remove('d_none');
-        }
-        userProfileImg.src = img.src;
-    });
 }
 
-// function blobToBase64(blob) {
-//     return new Promise((resolve, _) => {
-//         const reader = new FileReader();
-//         reader.onloadend = () => resolve(reader.result);
-//         reader.readAsDataURL(blob);
-//     });
-// }
+/**Handles the contact image picker 'change' event. Retrieves the selected image and displays it in the contact image element.
+ * If the contact initials element exists, it hides the contact initials and displays the contact image. */
+async function handlePickedPic(event) {
+
+    let userProfileImg = document.getElementById('userProfileImg');
+    let contactInitials = document.getElementById('contactInitials');
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const blog = new Blob([file], { type: file.type });
+
+    const base64 = await blobToBase64(blog);
+
+    const img = document.createElement('img');
+    img.src = base64;
+
+    if (contactInitials) {
+        contactInitials.classList.add('d_none');
+        userProfileImg.classList.remove('d_none');
+    }
+    userProfileImg.src = img.src;
+}

@@ -431,13 +431,13 @@ function subtaskObj(subtask) {
     return subtaskobj
 }
 
+/**Generates a string representing the color associated with the task category. */
 function generateCatColor(category) {
     if (category === 'Technical Task') {
         return 'Tech';
     } else {
         return 'User';
     }
-
 }
 
 /** Creates an object representing the checked status of subtasks.*/
@@ -470,6 +470,7 @@ function colorObj(contact) {
     return color
 }
 
+/**Creates an object mapping contact names to numbered keys and their corresponding numbers.*/
 function numberObj(contact) {
     let contacts = {};
     for (let i = 0; i < contact.length; i++) {
@@ -487,35 +488,41 @@ function loadnewTaskEdit() {
     closePopUpTaskSmall();
 }
 
+/** Opens the file picker element by simulating a click event. */
 function openFilePicker() {
     let filesPicker = document.getElementById('filesPicker');
 
     if (!filesPicker) return;
 
+    if (!filesPicker.dataset.listener) {
+        filesPicker.addEventListener('change', handlepickedFiles);
+        filesPicker.dataset.listener = "true";
+    }
+
     filesPicker.click();
 
-    filesPicker.addEventListener('change', () => {
-        const allFiles = filesPicker.files;
-
-        if (allFiles.length > 0) {
-            Array.from(allFiles).forEach(async file => {
-                const blog = new Blob([file], { type: file.type });
-
-                const base64 = await blobToBase64(blog);
-
-                const img = document.createElement('img');
-                img.src = base64;
-                attachmentsToArray.push({
-                    name: file.name,
-                    type: file.type,
-                    data: base64
-                });
-                loadAllAttachments();
-            })
-        }
-    })
 }
 
+/**Handles the file picker change event, converting the selected files to base64 strings and adding them to the attachments array.*/
+function handlepickedFiles(event) {
+    const allFiles = event.target.files;
+    if (allFiles.length > 0) {
+        Array.from(allFiles).forEach(async file => {
+            const blog = new Blob([file], { type: file.type });
+            const base64 = await blobToBase64(blog);
+            const img = document.createElement('img');
+            img.src = base64;
+            attachmentsToArray.push({
+                name: file.name,
+                type: file.type,
+                data: base64
+            });
+            loadAllAttachments();
+        })
+    }
+}
+
+/** Displays the selected image in a popup area with controls to download the image, close the popup, and navigate left and right. */
 function showFile(img, name, index) {
     document.getElementById('photoArea').classList.remove('d_none');
     document.getElementById('photoArea').innerHTML = `
@@ -528,44 +535,49 @@ function showFile(img, name, index) {
     document.getElementById('selectionName').innerHTML = `${name}`;
 }
 
+/**Hides the photo area element and removes any displayed image. */
 function photoArea() {
     document.getElementById('photoArea').classList.add('d_none');
 }
 
+/**Slides the image in the given direction (left or right) to the new index.*/
 function slideImage(direction, index) {
     if (direction === 'left') {
-        index = index - 1;
-        if (index < 0) {
-            index = attachmentsToArray.length - 1;
-        }
-        let selectedImage = attachmentsToArray[index];
-        showFile(selectedImage.data, selectedImage.name, index);
+        slideLeft(index);
     } else {
-        index = index + 1;
-        if (index === attachmentsToArray.length) {
-            index = 0;
-        }
-        let selectedImage = attachmentsToArray[index];
-        showFile(selectedImage.data, selectedImage.name, index);
+        slideRight(index);
     }
-
 }
 
+/** Slides the image in the photo area to the left by one index. If the index is less than 0, it wraps around to the last index in the attachments array. */
+function slideLeft(index) {
+    index = index - 1;
+    if (index < 0) {
+        index = attachmentsToArray.length - 1;
+    }
+    let selectedImage = attachmentsToArray[index];
+    showFile(selectedImage.data, selectedImage.name, index);
+}
 
+/**Slides the image in the photo area to the right by one index. If the index is equal to the length of the attachments array, it wraps around to the first index in the attachments array. */
+function slideRight(index) {
+    index = index + 1;
+    if (index === attachmentsToArray.length) {
+        index = 0;
+    }
+    let selectedImage = attachmentsToArray[index];
+    showFile(selectedImage.data, selectedImage.name, index);
+}
+
+/**Downloads the image at the given index from the attachments array. */
 function downloadFile(index) {
-
     let selectedImage = attachmentsToArray[index];
     let url = selectedImage.data;
-
     const link = document.createElement('a');
 
     link.href = url;
-
     link.download = selectedImage.name;
-
     document.body.appendChild(link);
-
     link.click();
-
     document.body.removeChild(link);
 }

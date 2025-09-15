@@ -144,7 +144,7 @@
                     background-color: transparent;
                     font-size: 21px;
                     font-weight: 400;
-                    padding: 15px 24px;
+                    padding: 6px;
                     cursor: pointer;
                 }
 
@@ -198,7 +198,6 @@
     vertical-align: middle;
     line-height: 120px;
 }
-
 
 @media (max-width: 1300px) {
 
@@ -256,11 +255,6 @@
                 content: url('../img/Closewhite.png');
             }
 
-            /* .initialsCont {
-                position: absolute;
-                top: 33%;
-            } */
-
             .initialsCont {
                 display: none;
             }
@@ -268,7 +262,7 @@
             .userDetails {
                 width: 100%;
 
-                & .buttonContainer {
+                .buttonContainer {
                     button:nth-child(1) {
                         padding: 8px 15px;
                     }

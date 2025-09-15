@@ -172,3 +172,11 @@ function loadContactWithPic(i, initials, pic) {
                 </div>
             </div>`;
 }
+
+function showImagePicker(pic) {
+    return `   <img id="userProfileImg" src="${pic}" class="profle-pic"> 
+               <input id="contactImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
+               <div class="camera" onclick="openImgPicker()">
+               <img src="../img/camera.png">
+               </div>`
+}

@@ -46,6 +46,10 @@ async function loadData(path) {
     taskAdd();
 }
 
+/**
+ * Fetches contact data from the database at the specified path, initializes with empty data if none exists
+ * @param {string} path - The database path to fetch contact data from
+ */
 async function loadContacts(path) {
     let response = await fetch(BASE_URL + path + ".json?auth=" + token);
     let responsetoJson = await response.json();
@@ -186,9 +190,10 @@ function time(objDateTask) {
 }
 
 /**
- * Adds contact information to the contact area for a given task.
- * This function retrieves contact names and their corresponding colors from the 
-*/
+ * Manipulates the contact area information based on the provided task object.
+ * If no contacts are provided, it clears the contact area section and hides the contact area.
+ * If contacts are provided, it populates the contact area section with the provided contact names and colors.
+ */
 function addcontactInfo(objDateTask) {
     let contactArea = document.getElementById('contactAreaInfo');
     let allContactsSection = document.getElementById('allContactsSection');
@@ -199,8 +204,19 @@ function addcontactInfo(objDateTask) {
     if (contactName == null) {
         allContactsSection.innerHTML = '';
         contactArea.classList.add('d_none')
-    } else {
-        for (let i = 0; i < contactName.length; i++) {
+    } else { 
+      contactAreaManupulate(contactName, contactscolor, allContactsSection, contactArea);
+    }
+}
+
+/**
+ * Manipulates the contact area information based on the provided task object.
+ * Iterates through the contact names and corresponding colors to populate the contact area section.
+ * If a contact has a picture, it uses the `templateContactHavingPic` function to generate the HTML,
+ * otherwise it uses the `templateContactInfo` function.
+ */
+function contactAreaManupulate(contactName, contactscolor, allContactsSection, contactArea) {
+    for (let i = 0; i < contactName.length; i++) {
             let currentContact = contactName[i]; 
             if (currentContact) {
                 let filteredContact = allContactsArray.find(e => e.number == currentContact.number);
@@ -213,9 +229,13 @@ function addcontactInfo(objDateTask) {
                 }
             }
         }
-    }
 }
 
+/**
+ * Populates the attachment area with the provided task object's attachments.
+ * If no attachments are provided, it clears the attachment area section and hides the attachment area.
+ * If attachments are provided, it populates the attachment area section with the provided attachment names and files.
+ */
 function addAttachInfo(objDateTask) {
     let attachContainer = document.getElementById('attachContainer');
     let allAttachesSection = document.getElementById('allAttachesSection');
@@ -395,7 +415,7 @@ function removeHighlight(id) {
  * Adds a task to the task board after validation checks. 
  * @param {Object} id - The object representing the task to be added. 
  */
-async function addTaskboard(id) { debugger;
+async function addTaskboard(id) {
     let idAdd = id.id;
     if (checkValidation()) {
         document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");
