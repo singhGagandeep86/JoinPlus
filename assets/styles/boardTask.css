@@ -231,8 +231,6 @@
     gap: 4px;
     cursor: pointer;
     transition: 125ms ease-in-out;
-    margin-right: 50px;
-    margin-bottom: 10px;
 }
 
 .titleInput {
@@ -272,14 +270,16 @@
 }
 
 .taskArea {
-    width: 1116px;
-    height: 870px;
+    /* width: 1116px;
+    height: 870px; */
     background-color: white;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
     animation: slideIn 125ms ease-in-out;
     z-index: 99;
+    padding: 36px;
+    gap: 36px;
 }
 
 @keyframes slideIn {
@@ -925,8 +925,8 @@ progress::-moz-progress-bar {
     font-size: 61px;
     font-weight: 700;
     max-width: 1208px;
-    margin-top: 86px;
-    margin-left: 36px;
+    /* margin-top: 86px;
+    margin-left: 36px; */
 }
 
 .headingBoardAdd img {
@@ -935,6 +935,10 @@ progress::-moz-progress-bar {
     margin-right: 50px;
     cursor: pointer;
     transition: 125ms ease-in-out;
+}
+
+.formularArea {
+    margin: 0 !important;
 }
 
 .headingBoardAdd img:hover {

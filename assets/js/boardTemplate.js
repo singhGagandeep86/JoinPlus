@@ -26,8 +26,8 @@ function templateTaskEmptyDone() {
 function templatePopUpTask(id) {
     return `<div id="CloseArea" class="taskArea">
          <div class="headingBoardAdd">Add Task <img onclick="closePopUpTask()" src="../img/Close.png" alt=""></div>
-           <form id="myForm">
-                    <div class="formular">
+           <form id="myForm" class="formularArea">
+                       <div class="formular">
                         <div class="leftSubmition">
                             <div class="title">
                                 <div class="smallHead"><span>Title <sup>*</sup></span>
@@ -42,22 +42,6 @@ function templatePopUpTask(id) {
                                 <textarea rows="4" cols="37" placeholder="Enter a Description" id="desText"
                                     class="descriptionTxt"></textarea>
                             </div>
-                            <div class="assignCntcts">
-                                <label for="contacts">Assigned to</label>
-                                <div class="assignment" id="assign" onclick="showCheckBoxes()">
-                                    Select contacts to assign
-                                    <img class="arrow" id="arrow" src="../img/dropArrow.svg">
-                                </div>
-                                <div id="allCntcts" class="checkboxes">
-                                </div>
-                                <div class="selCntctsDiv">
-                                    <div id="selCntcts" class="showSel"></div>
-                                    <div id="moreIcon" class="moreBtn d_none" onclick="scrollOn()"><img class="moreImg" src="../img/arrow.png"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="partition"></div>
-                        <div class="rightSubmition">
                             <div class="dueDate">
                                 <div class="smallHead"><span>Due Date <sup>*</sup></span>
                                 </div>
@@ -96,7 +80,28 @@ function templatePopUpTask(id) {
                                 <div id="failCategory" class="fail selectHide"><span>Please select a Category for
                                         Task.</span></div>
                             </div>
+                        </div>
+                        <div class="partition"></div>
+                        <div class="rightSubmition">
+                            <div class="attachment">
+                                <span>Attachments</span>
+                                <div class="attachment-info">
+                                    <p>Allowed file types are JPEG and PNG</p>
+                                    <div id="removeAll" class="remove-file selectHide" onclick="removeAllFiles()">
+                                        <img src="../img/delete.png">
+                                        <span>Delete all</span>
+                                    </div>
+                                </div>
+                                <input id="filesPicker" type="file" style="display: none;"
+                                    accept="image/JPEG, image/PNG">
+                                <div class="file-picker" onclick="openFilePicker()">
+                                    <span>Drag a file or browse</span>
+                                    <img src="../img/plus.png">
+                                </div>
+                                <div class="file-list" id="fileList">
 
+                                </div>
+                            </div>
                             <div id="inputSubClass" class="subtasks">
                                 <div class="smallHead">Subtasks</div>
                                 <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
@@ -105,6 +110,20 @@ function templatePopUpTask(id) {
                                 </div>
                             </div>
                             <ul class="a" id="subTsksBoard"></ul>
+                            <div class="assignCntcts">
+                                <label for="contacts">Assigned to</label>
+                                <div class="assignment" id="assign" onclick="showCheckBoxes()">
+                                    Select contacts to assign
+                                    <img class="arrow" id="arrow" src="../img/dropArrow.svg">
+                                </div>
+                                <div id="allCntcts" class="checkboxes">
+                                </div>
+                                <div class="selCntctsDiv">
+                                    <div id="selCntcts" class="showSel"></div>
+                                    <div id="moreIcon" class="moreBtn d_none" onclick="scrollOn()"><img
+                                            class="moreImg" src="../img/arrow.png"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="info">
@@ -158,7 +177,7 @@ function templateTaskSmallInfo(objDateTask) {
             <div class="bg_${objDateTask.prio}"></div></div></div>
             <div id="contactAreaInfo"  class="d_none contactInfo"><span class="contactInfoHeadline">Assigned To:</span><div id="allContactsSection" class="contactInfoData"></div></div>
             <div id="attachContainer" class="d_none attachInfo"><span>Attachments</span><div class="attach-container" id="allAttachesSection"></div></div>
-            <div class="subtaskInfo"><span>Subtasks:</span><div id="subtaskEmtpy"  class="subtaskAreaData"><div id="subtaskArea"></div></div></div>
+            <div id="subtaskEmtpy" class="subtaskInfo"><span>Subtasks:</span><div class="subtaskAreaData"><div id="subtaskArea"></div></div></div>
             <div class="editInfo"><div class="editInfoData"><div><img onclick="deleteData(${objDateTask.number})" class="deletePic" src="../img/Deletecontact.png" alt=""></div>
                 <div><img onclick="editOpen(${objDateTask.number})" class="editPic" src="../img/editcontacts.png"></div></div></div>
         </div>
@@ -269,13 +288,13 @@ function editTask(objData) {
                     <span>Priority</span>
                     <div class="prioForm">
                         <input type="radio" name="priority" value="urgent" id="urgent">
-                        <label class="prioBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png" alt=""></label>
+                        <label class="prioBtn secBtn" for="urgent">Urgent <img src="../img/Priorityhigh.png" alt=""></label>
 
                         <input type="radio" name="priority" value="medium" id="medium">
-                        <label class="prioBtn" for="medium">Medium <img src="../img/Prioritymiddel.png" alt=""></label>
+                        <label class="prioBtn secBtn" for="medium">Medium <img src="../img/Prioritymiddel.png" alt=""></label>
 
                         <input type="radio" name="priority" value="low" id="low">
-                        <label class="prioBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
+                        <label class="prioBtn secBtn" for="low">Low <img src="../img/Prioritylow.png" alt=""></label>
                     </div>
                 </div>
                  <div class="assign assignStyle">

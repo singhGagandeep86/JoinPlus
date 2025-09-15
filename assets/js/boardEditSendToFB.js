@@ -81,3 +81,21 @@ async function deleteData(element) {
     arrayLoad = [];
     loadData("/task");
 }
+
+
+async function toWaitingSecondary(id) {
+    let titleText = document.getElementById('titleText').value;
+    let desText = document.getElementById('desText').value;
+    let actDate = document.getElementById('dateData').value;
+    let category = document.getElementById('customSelect').innerText;
+    let priority = document.querySelector('input[name="priority"]:checked').value;
+    let list = subTsksBoard.getElementsByTagName("li");
+    let newTaskNumber = generateRandomNumber();
+    let name = createContactFire();
+    let checked = checkedCreate(list);
+    let subtask = subtastCreate(list);
+    let color = colorFirebase();
+    pushFirebaseData(titleText, desText, actDate, category, newTaskNumber, name, checked, priority, color, subtask, id, attachmentsToArray);
+    attachmentsToArray = [];
+    return new Promise(resolve => setTimeout(resolve, 1700));
+}

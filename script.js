@@ -424,36 +424,56 @@ function loginVali(email, password) {
     return true;
 }
 
+/**
+ * Retrieves the operator's initials and image from the user data array.
+ * Iterates over the user data array and calls the issueValues function for each item.
+ * @param {Array} userObject - The array containing user data objects.
+ */
 function getOperator(userObject) {
-    let initialsCont = document.getElementById('initialCont');
+    let initialCont = document.getElementById('initialCont');
     let userImg = document.getElementById('userImg');
     for (let i = 0; i < userObject.length; i++) {
-        let userName = userObject[i].name;
-        let userEmail = userObject[i].email;
-        let userPhone = userObject[i].phone;
-        let userInitial = extrahiereInitialen(userName);
-        let profilePic = userObject[i].pic;
-        if (profilePic) {
-            userImg.classList.remove('d_none');
-            userImg.src = profilePic;
-        } else {
-            initialsCont.innerText = `${userInitial}`;
-        }
-        document.getElementById('userName').value = userName;
-        document.getElementById('userEmail').value = userEmail;
-        document.getElementById('userPhone').value = userPhone;
+        issueValues(i, initialCont, userImg, userObject);
     }
 }
 
+/**
+ * Issues the user's initials and image to the DOM.
+ * @param {number} i - The index of the user data object in the user data array.
+ * @param {Element} initialsCont - The element to display the user's initials.
+ * @param {Element} userImg - The element to display the user's profile picture.
+ */
+function issueValues(i, initialCont, userImg, userObject) {
+    let userName = userObject[i].name;
+    let userEmail = userObject[i].email;
+    let userPhone = userObject[i].phone;
+    let userInitial = extrahiereInitialen(userName);
+    let profilePic = userObject[i].pic;
+    if (profilePic) {
+        userImg.classList.remove('d_none');
+        userImg.src = profilePic;
+    } else {
+        initialCont.innerHTML = `${userInitial}`;
+    }
+    document.getElementById('userName').value = userName;
+    document.getElementById('userEmail').value = userEmail;
+    document.getElementById('userPhone').value = userPhone;
+}
 
 function closeContact() {
     document.getElementById('popupContact').classList.add('d_none');
 }
 
 
-function openContact() { 
+/**
+ * Opens the edit contact popup and fills it with the user's data.
+ * Retrieves the user data from the user data array and calls the getOperator function to fill the popup with the user's data.
+ * If the user data array is empty, a default user object is created and used to fill the popup.
+ */
+function openContact() {
     let userId = sessionStorage.getItem('uid');
     let userObject = userData.filter(e => e['uid'] === userId);
+    let contactPopUp = document.getElementById('popupContact');
     if (userObject.length === 0) {
         userObject = [{
             "email": "",
@@ -463,44 +483,53 @@ function openContact() {
             "phone": ""
         }]
     }
-    let contactPopUp = document.getElementById('popupContact');
     contactPopUp.classList.remove('d_none');
     contactPopUp.innerHTML = editContactTemp();
     getOperator(userObject);
 }
 
 
+/**
+ * Generates an HTML template for editing a contact, with an input field prefilled with the current contact value.
+ * @returns {string} - The HTML string for the edit contact popup.
+ */
 function editContactTemp() {
-    return ` <div class="editContact" onclick="event.stopPropagation()">
-              <div class="left-part">
-                  <img src="../img/Joinlogowhite.png">
-                  <h2 id="title">My account</h2>
-                  <div class="vector"></div>
-              </div>
-              <div class="right-part">
-                  <img onclick="closeContact()" class="close" src="../img/Close.png">
-                  <div class="initialsCont">
-                  <span id="initialCont"></span>
-                    <img id="userImg" class="userImg d_none">
-                    <div id="camera" class="camera d_none" onclick="openUserImgPicker()">
+    return `  <div class="editContact" onclick="event.stopPropagation()">
+        <div class="left-part">
+            <img src="../img/Joinlogowhite.png">
+            <h2 id="title">My account</h2>
+            <div class="vector"></div>
+        </div>
+        <div class="right-part">
+            <img onclick="closeContact()" class="close" src="../img/Close.png">
+            <div class="initialsCont">
+                <span id="initialCont"></span>
+                <img id="userImg" class="userImg d_none">
+                <div id="camera" class="camera d_none" onclick="openUserImgPicker()">
                     <input id="userImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
-                     <img src="../img/camera.png">
-                    </div>
-                  </div>
-                  <div class="userDetails">
-                      <input type="text" id="userName" disabled>
-                      <input type="email" id="userEmail" disabled>
-                      <input type="tel" id="userPhone" disabled>
-                      <div class="buttonContainer">
-                          <button onclick="deleteCurrentUser()">Delete my account</button>
-                          <button id="editButton" onclick="editUser()">Edit</button>
-                      </div>
-                  </div>
-              </div>
-          </div>`
+                    <img src="../img/camera.png">
+                </div>
+            </div>
+            <div class="userDetails">
+                <input type="text" id="userName" disabled>
+                <input type="email" id="userEmail" disabled>
+                <input type="tel" id="userPhone" disabled>
+                <div class="buttonContainer">
+                    <button onclick="deleteCurrentUser()">Delete my account</button>
+                    <button id="editButton" onclick="editUser()">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+`
 }
 
 
+/**
+ * Toggles the edit mode for the user account.
+ * If not in edit mode, it will enable the text fields and the camera button, and change the edit button to a save button.
+ * If in edit mode, it will save the changes and disable the text fields and the camera button, and change the edit button back to an edit button.
+ */
 async function editUser() {
     if (!editContactMode) {
         document.getElementById('title').innerHTML = 'Edit account';
@@ -517,88 +546,134 @@ async function editUser() {
     }
 }
 
+/**
+ * Converts a blob to a base64 string.
+ * @param {Blob} blob - The blob to be converted.
+ * @returns {Promise<string>} - A promise that resolves with the base64 string.
+ */
 function blobToBase64(blob) {
-  return new Promise((resolve, _) => {
-    const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result);
-    reader.readAsDataURL(blob);
-  });
+    return new Promise((resolve, _) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(blob);
+    });
 }
 
 
+/**
+ * Opens the user image picker. Checks if the user image picker element exists and if an event listener for the 'change' event has been added.
+ * If the event listener has not been added, it adds the event listener and sets a dataset attribute to keep track of it.
+ * Finally, it simulates a click on the user image picker element to open it.
+ */
 function openUserImgPicker() {
     let userImgPicker = document.getElementById('userImgPicker');
 
     if (!userImgPicker) return;
 
+    if (!userImgPicker.dataset.listener) {
+        userImgPicker.addEventListener('change', handleUserImageChange);
+        userImgPicker.dataset.listener = "true";
+    }
+
     userImgPicker.click();
-
-    userImgPicker.addEventListener('change', async () => {
-        let userImg = document.getElementById('userImg');
-        const file = userImgPicker.files[0];
-        if (!file) return;
-
-        const blog = new Blob([file], { type: file.type });
-
-        const base64 = await blobToBase64(blog);
-
-        const img = document.createElement('img');
-        img.src = base64;
-
-        document.getElementById('initialCont').classList.add('d_none');
-        userImg.classList.remove('d_none');
-        userImg.src = base64;
-    })
 }
 
 
+/**
+ * Handles the user image change event, converting the selected image to a base64 string and displaying it in the user image element.
+ * @param {Event} event - The change event triggered by the user image picker.
+ */
+async function handleUserImageChange(event) {
+    let userImg = document.getElementById('userImg');
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const blog = new Blob([file], { type: file.type });
+
+    const base64 = await blobToBase64(blog);
+
+    const img = document.createElement('img');
+    img.src = base64;
+
+    document.getElementById('initialCont').classList.add('d_none');
+    userImg.classList.remove('d_none');
+    userImg.src = base64;
+}
+
+/**
+ * Saves changes to the user's account.
+ * Disables input fields and gets user ID from session storage.
+ * If no user exists or path is 'guest' / empty → save to guest endpoint.
+ * Otherwise → save to user endpoint with the user's path number.
+ */
 async function saveContact() {
     let userImg = document.getElementById('userImg');
+    disableInputs();
+    let userId = sessionStorage.getItem('uid');
+    let userObject = userData.filter(e => e['uid'] === userId);
+    if (userObject.length === 0) {
+        await postEditData(`/user/guest`, guestAsUserFormat(userImg, userId));
+    } else {
+        if (userObject[0].pathNumber == 'guest' || userObject[0].pathNumber == '') {
+            await postEditData(`/user/guest`, userFormat(userObject, userImg));
+        } else {
+            await postEditData(`/user/task${userObject[0].pathNumber}`, userFormat(userObject, userImg));
+        }
+    }
+}
+
+/**
+ * Disables all input fields and sets the title back to 'My account'.
+ * It also hides the camera button and changes the edit button back to 'Edit'.
+ */
+function disableInputs() {
     document.getElementById('userName').setAttribute("disabled", true);
     document.getElementById('userEmail').setAttribute("disabled", true);
     document.getElementById('userPhone').setAttribute("disabled", true);
     document.getElementById('title').innerHTML = 'My account';
     document.getElementById('editButton').innerHTML = `Edit`;
     document.getElementById('camera').classList.add('d_none');
-    let userId = sessionStorage.getItem('uid');
-    let userObject = userData.filter(e => e['uid'] === userId);
-    if (userObject.length === 0) {
-        await postEditData(`/user/guest`, {
-            'name': document.getElementById('userName').value,
-            'email': document.getElementById('userEmail').value,
-            'phone': document.getElementById('userPhone').value,
-            'uid': userId,
-            'pathNumber': 'guest',
-            'pic': userImg.src
-        });
-    } else {
-        userObject[0].name = document.getElementById('userName').value;
-        userObject[0].email = document.getElementById('userEmail').value;
-        userObject[0].phone = document.getElementById('userPhone').value;
-        if (userObject[0].pathNumber == 'guest' || userObject[0].pathNumber == '') {
-            await postEditData(`/user/guest`, {
-                'name': userObject[0].name,
-                'email': userObject[0].email,
-                'phone': userObject[0].phone,
-                'uid': userObject[0].uid,
-                'pathNumber': userObject[0].pathNumber,
-                'pic': userImg.src
-            });
-        } else {
-            await postEditData(`/user/task${userObject[0].pathNumber}`, {
-                'name': userObject[0].name,
-                'email': userObject[0].email,
-                'phone': userObject[0].phone,
-                'uid': userObject[0].uid,
-                'pathNumber': userObject[0].pathNumber,
-                'pic': userImg.src
-            });
-        }
-
-    }
-
 }
 
+/**
+ * Returns an object containing the user's name, email, phone, user ID, path number and profile picture.
+ * @param {Array} userObject - The array containing user data objects.
+ * @param {Element} userImg - The element containing the user's profile picture.
+ * @returns {Object} - An object containing the user's data.
+ */
+function userFormat(userObject, userImg) {
+    return {
+        'name': document.getElementById('userName').value,
+        'email': document.getElementById('userEmail').value,
+        'phone': document.getElementById('userPhone').value,
+        'uid': userObject[0].uid,
+        'pathNumber': userObject[0].pathNumber,
+        'pic': userImg.src
+    }
+}
+
+/**
+ * Returns an object containing the user's name, email, phone, user ID, path number and profile picture for a guest user.
+ * @param {Element} userImg - The element containing the user's profile picture.
+ * @param {string} userId - The user ID from session storage.
+ * @returns {Object} - An object containing the user's data.
+ */
+function guestAsUserFormat(userImg, userId) {
+    return {
+        'name': document.getElementById('userName').value,
+        'email': document.getElementById('userEmail').value,
+        'phone': document.getElementById('userPhone').value,
+        'uid': userId,
+        'pathNumber': 'guest',
+        'pic': userImg.src
+    }
+}
+
+/**
+ * Deletes the current user and logs them out.
+ * If the user is a guest user, only logs them out.
+ * If the user is not a guest user, deletes the user data from the database and logs them out.
+ */
 async function deleteCurrentUser() {
     let userId = sessionStorage.getItem('uid');
     let userObject = userData.filter(e => e['uid'] === userId);

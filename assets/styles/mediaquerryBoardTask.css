@@ -1,0 +1,74 @@
+@media (max-width: 992px) {
+
+    .popupEdit {
+        padding: 24px 18px;
+    }
+
+    .editArea {
+        gap: 18px;
+    }
+
+    .leftSide, .rightSide {
+        max-width: 392px;
+    }
+}
+
+
+@media (max-width: 892px) {
+    .leftSide, .rightSide {
+        max-width: 368px;
+    }
+}
+
+@media (max-width: 832px) {
+    .partition {
+        display: none;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .popupEdit {
+        height: 93vh;
+        padding: 24px;
+        max-width: 510px;
+    }
+
+    .editArea {
+        flex-direction: column;
+        width: 100%;
+        flex: 1;
+    }
+
+    .leftSide, .rightSide {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 530px) {
+    .secBtn {
+        width: 120px !important;
+    }
+}
+
+@media (max-width: 475px) {
+    .popupEdit {
+        padding: 24px 8px;
+    }
+
+    .secBtn {
+        width: 110px !important;
+    }
+}
+
+@media (max-width: 395px) {
+    .popupEdit {
+        width: 98%;
+        padding: 24px 2px;
+    }
+
+    .secBtn {
+        width: 100px !important;
+    }
+}

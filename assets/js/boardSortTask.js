@@ -233,7 +233,8 @@ function allowDrop(ev) {
  */
 function openPopUpTask(id) {
     let taskPopUp = document.getElementById('popupTaskMain');
-    init();
+    fetchUrl();
+    fetchUserData('/user');
     if (handleMediaChange(mediaQuery)) {
         window.location.href = 'task.html';
     } else {
@@ -313,7 +314,7 @@ function loadContactTask(element, contacts, contactName) {
         for (let i = 0; i < color.length; i++) {
             let colors = color[i];
             if (i < contactName.length) {
-                
+
                 let contact = contactName[i];
                 let findIndex = allContactsArray.find(e => e.number == contact.number);
                 if (findIndex.pic) {

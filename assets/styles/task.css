@@ -353,7 +353,8 @@ label {
 
 
 .selectItems {
-    width: 440px;
+    width: 100%;
+    max-width: 440px;
     background-color: #FFFFFF;
     z-index: 99;
     border: 1px transparent;

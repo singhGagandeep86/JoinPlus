@@ -200,6 +200,7 @@ function categorieSelect(objData) {
 
 function loadAllAttachments() {
     let fileList = document.getElementById('fileList');
+    let removeAll = document.getElementById('removeAll');
     fileList.innerHTML = '';
     if (attachmentsToArray.length === 0) {
         removeAll.classList.add('selectHide');
@@ -392,6 +393,7 @@ function readEditData(number) {
     let contacts = numberObj(contact);
     let attachments = attachmentsToArray;
     nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, contacts, numberEditElement, priority, category, contactColor, attachments);
+    attachmentsToArray = [];
 }
 
 /** Validates the title of the task during the edit process.*/
