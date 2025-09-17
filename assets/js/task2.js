@@ -5,20 +5,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         filePicker.addEventListener('change', () => {
             const allFiles = filePicker.files;
-
+            if (!allFiles[0].type.startsWith('image/')) {
+                document.getElementById('error').innerHTML = `<b>${allFiles[0].type} </b>type is not Allowed!`;
+                return;
+            }
             if (allFiles.length > 0) {
                 Array.from(allFiles).forEach(async file => {
-                    const blog = new Blob([file], { type: file.type });
+                    const blog = new Blob([file], { type: file.type }, { size: file.size });
+
+                    const compressedBase64 = await compressImage(file, 800, 800, 0.7);
 
                     const base64 = await blobToBase64(blog);
 
+                    const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
+
                     const img = document.createElement('img');
-                    img.src = base64;
+                    img.src = compressedBase64;
 
                     attachments.push({
                         name: file.name,
                         type: file.type,
-                        data: base64
+                        size: sizeInMB + "MB",
+                        data: compressedBase64
                     });
 
                     loadAttachments();
@@ -26,8 +34,44 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
     }
-})
+});
 
+document.getElementById('fileDrop').addEventListener("drop", dropHandler);
+
+window.addEventListener("dragover", (e) => {
+    e.preventDefault();
+});
+window.addEventListener("drop", (e) => {
+    e.preventDefault();
+});
+
+function dropHandler(ev) {
+    ev.preventDefault();
+    const error = document.getElementById('error');
+    error.innerHTML = '';
+    [...ev.dataTransfer.items].forEach(async(item, i) => {
+        if (item.kind === "file") {
+            const file = item.getAsFile(); debugger;
+            if (!file.type.startsWith('image/')) {
+                error.innerHTML = `<b>${file.type} </b>type is not Allowed!`;
+                return;
+            }
+            const blog = new Blob([file], { type: file.type }, { size: file.size });
+            const compressedBase64 = await compressImage(file, 800, 800, 0.7);
+            const base64 = blobToBase64(blog);
+            const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
+            const img = document.createElement('img');
+            img.src = compressedBase64;
+            attachments.push({
+                name: file.name,
+                type: file.type,
+                size: sizeInMB + "MB",
+                data: compressedBase64
+            });
+            loadAttachments();
+        }
+    });
+}
 
 /**
  * Initializes the form submission handling on DOM content load.
@@ -364,5 +408,63 @@ function compareDate(year, month, day, inputYear, inputMonth, inputDate) {
     }
 }
 
+
+function showAttachments(index, img, name) {
+    let attachmentsContainer = document.getElementById('attachmentsCont');
+    attachmentsContainer.classList.remove('d_none');
+    attachmentsContainer.innerHTML = `
+      <div class="imgContainer" onclick="event.stopPropagation()">
+        <div class="imgHeader"><p id="selectionName"></p>
+        <div class="imgHandle"><img src="../img/CloseWhite.png" onClick="closeOverlay()"></div></div>
+        <div class="imgMover"><img src="../img/arrow-Lft-line.png" onclick='slideImage("left", ${index})'><img src="../img/arrow-right-line.png" onclick='slideImage("right", ${index})'></div>
+        <img class="selectedPhoto" id="selectedPhoto"></div>`
+    document.getElementById('selectedPhoto').src = img;
+    document.getElementById('selectionName').innerHTML = `${name}`;
+}
+
+
+function closeOverlay() {
+    let attachmentsContainer = document.getElementById('attachmentsCont');
+    attachmentsContainer.classList.add('d_none');
+}
+
+
+function removeAttachment(event, name) {
+    event.stopPropagation();
+    let filter = attachments.indexOf(attachments.filter(attachment => attachment.name == name)[0]);
+    attachments.splice(filter, 1);
+    fileList.innerHTML = '';
+    for (let i = 0; i < attachments.length; i++) {
+        const attachment = attachments[i];
+        const name = attachment.name;
+        const base64 = attachment.data;
+        fileList.innerHTML += filesTemplate(i, base64, name);
+    }
+}
+
+function slideImage(direction, index) {
+    if (direction === 'left') {
+        slideLeft(index);
+    } else {
+        slideRight(index);
+    }
+}
+
+function slideLeft(index) {
+    index = index - 1;
+    if (index < 0) {
+        index = attachments.length - 1;
+    }
+    let selectedImage = attachments[index];
+    showAttachments(index, selectedImage.data, selectedImage.name);
+}
+function slideRight(index) {
+    index = index + 1;
+    if (index === attachments.length) {
+        index = 0;
+    }
+    let selectedImage = attachments[index];
+    showAttachments(index, selectedImage.data, selectedImage.name);
+}
 
 

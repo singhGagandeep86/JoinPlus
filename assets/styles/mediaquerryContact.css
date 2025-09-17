@@ -25,12 +25,19 @@
         width: 700px;
     }
 
+    .popupEditRight {
+        flex-direction: column;
+    }
+
     .closeBtnEdit {
+        position: absolute;
+        top: 20px;
         right: 20px;
     }
 
     #contactFormEdit {
         margin-left: 0;
+        width: 90%;
     }
 
     .contact-ellipse2 {
@@ -58,15 +65,6 @@
     .container {
         justify-content: initial;
     }
-/* 
-    .header {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        padding: 10px;
-    } */
-
-    /* .header span {
-        width: 34px;
-    } */
 
     .popup {
         width: 1000px;

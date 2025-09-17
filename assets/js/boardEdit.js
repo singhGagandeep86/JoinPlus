@@ -208,7 +208,7 @@ function loadAllAttachments() {
         removeAll.classList.remove('selectHide');
         for (let index = 0; index < attachmentsToArray.length; index++) {
             const attachment = attachmentsToArray[index];
-            fileList.innerHTML += filesTemplate(attachment.data, attachment.name);
+            fileList.innerHTML += filesTemplate(index, attachment.data, attachment.name);
         }
     }
 }
@@ -289,8 +289,9 @@ function addInputSubtastk() {
     }
 }
 
-function filesTemplate(img, name) {
+function filesTemplate(index, img, name) { 
     return `<div class="file-container">
+    <div class="removeAttach"><img src="../img/closewhite.png"></div>
     <img src=${img}>
     <div class="file-name">${name}</div>
     </div>`

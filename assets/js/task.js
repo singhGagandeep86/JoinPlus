@@ -441,15 +441,6 @@ function resetingGlobalVariable() {
   namesInitials = [];
 }
 
-function blobToBase64(blob) {
-  return new Promise((resolve, _) => {
-    const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result);
-    reader.readAsDataURL(blob);
-  });
-}
-
-
 function loadAttachments() {
   fileList.innerHTML = "";
   if (attachments.length === 0) {
@@ -460,7 +451,7 @@ function loadAttachments() {
       const attachment = attachments[i];
       const name = attachment.name;
       const base64 = attachment.data;
-      fileList.innerHTML += filesTemplate(base64, name);
+      fileList.innerHTML += filesTemplate(i, base64, name);
     }
   }
 }

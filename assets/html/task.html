@@ -120,7 +120,7 @@
                             <div class="attachment">
                                 <span>Attachments</span>
                                 <div class="attachment-info">
-                                    <p>Allowed file types are JPEG and PNG</p>
+                                    <p>Allowed file types are JPEG and PNG<span id="error"></span></p>
                                     <div id="removeAll" class="remove-file selectHide" onclick="removeAllFiles()">
                                         <img src="../img/delete.png">
                                         <span>Delete all</span>
@@ -128,7 +128,7 @@
                                 </div>
                                 <input id="filePicker" type="file" style="display: none;"
                                     accept="image/JPEG, image/PNG">
-                                <div class="file-picker" onclick="filePicker.click()">
+                                <div id="fileDrop" class="file-picker" onclick="filePicker.click()">
                                     <span>Drag a file or browse</span>
                                     <img src="../img/plus.png">
                                 </div>
@@ -179,6 +179,7 @@
     <div id="taskDoneIcon" class="subTaskIcon">
         <div class="doneDiv "><img id="imgTest" class="doneIcon " src="../img/addedTask.png"></div>
     </div>
+    <div id="attachmentsCont" class="popupArea d_none" onclick="closeOverlay()"></div>
     <script src="../../script.js"></script>
     <script src="../js/task.js"></script>
     <script src="../js/task2.js"></script>

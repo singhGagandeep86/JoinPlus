@@ -72,8 +72,9 @@ function newSubTemp(newValue) {
 </div>`;
 }
 
-function filesTemplate(img, name) {
-    return `<div class="file-container">
+function filesTemplate(index, img, name) {
+    return `<div class="file-container" onclick="showAttachments('${index}', '${img}', '${name}')">
+    <img class="removeAttach d_none" src="../img/closewhite.png" onclick="removeAttachment(event, '${name}')">
     <img src=${img}>
     <div class="file-name">${name}</div>
     </div>`

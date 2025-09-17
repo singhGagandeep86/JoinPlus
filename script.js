@@ -559,6 +559,45 @@ function blobToBase64(blob) {
     });
 }
 
+function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const img = new Image();
+            img.onload = () => { resolve(optimiseImage(img, maxWidth, maxHeight, quality)); };
+            img.onerror = () => reject('Fehler beim Laden des Bildes.');
+            img.src = event.target.result;
+        };
+        reader.onerror = () => reject('Fehler beim Lesen der Datei.');
+        reader.readAsDataURL(file);
+    });
+}
+
+function adjustImageSize(width, height, maxWidth, maxHeight) {
+    if (width > height) {
+        height = (height * maxWidth) / width;
+        width = maxWidth;
+    } else {
+        width = (width * maxHeight) / height;
+        height = maxHeight;
+    }
+    return { width, height };
+}
+
+function optimiseImage(img, maxWidth, maxHeight, quality) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    let width = img.width;
+    let height = img.height;
+    if (width > maxWidth || height > maxHeight) {
+        ({ width, height } = adjustImageSize(width, height, maxWidth, maxHeight));
+    }
+    canvas.width = width;
+    canvas.height = height;
+    ctx.drawImage(img, 0, 0, width, height);
+    return canvas.toDataURL('image/jpeg', quality);
+}
+
 
 /**
  * Opens the user image picker. Checks if the user image picker element exists and if an event listener for the 'change' event has been added.
@@ -721,4 +760,5 @@ async function deleteUser(path = "") {
 async function loadnewTaskEdit() {
     fetchUserData('/user');
 }
+
 
