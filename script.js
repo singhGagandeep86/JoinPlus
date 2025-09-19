@@ -761,4 +761,3 @@ async function loadnewTaskEdit() {
     fetchUserData('/user');
 }
 
-

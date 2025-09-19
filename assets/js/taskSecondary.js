@@ -1,76 +1,43 @@
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const filePicker = document.getElementById('filePicker');
+    const error = document.getElementById('error'); 
+    if (error) {
+    error.innerHTML = '';    
+    }
     if (filePicker) {
-
         filePicker.addEventListener('change', () => {
             const allFiles = filePicker.files;
-            if (!allFiles[0].type.startsWith('image/')) {
-                document.getElementById('error').innerHTML = `<b>${allFiles[0].type} </b>type is not Allowed!`;
-                return;
-            }
-            if (allFiles.length > 0) {
-                Array.from(allFiles).forEach(async file => {
-                    const blog = new Blob([file], { type: file.type }, { size: file.size });
-
-                    const compressedBase64 = await compressImage(file, 800, 800, 0.7);
-
-                    const base64 = await blobToBase64(blog);
-
-                    const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
-
-                    const img = document.createElement('img');
-                    img.src = compressedBase64;
-
-                    attachments.push({
-                        name: file.name,
-                        type: file.type,
-                        size: sizeInMB + "MB",
-                        data: compressedBase64
-                    });
-
-                    loadAttachments();
-                })
-            }
+            if (allFiles.length === 0) return;
+                if (!allFiles[0].type.startsWith('image/')) return error.innerHTML = `<b>${allFiles[0].type}</b>type is not Allowed!`;
+                Array.from(allFiles).forEach(async file => manipulateFile(file))
         })
     }
 });
 
-document.getElementById('fileDrop').addEventListener("drop", dropHandler);
+async function manipulateFile(file) {
+    document.getElementById('error').innerHTML = '';
+    const compressedBase64 = await compressImage(file, 800, 800, 0.7);
+    document.createElement('img').src = compressedBase64;
+    loadAttachmentsArray(file, compressedBase64, createSize(compressedBase64));
+    loadAttachments();
+}
 
-window.addEventListener("dragover", (e) => {
-    e.preventDefault();
-});
-window.addEventListener("drop", (e) => {
-    e.preventDefault();
-});
-
-function dropHandler(ev) {
-    ev.preventDefault();
-    const error = document.getElementById('error');
-    error.innerHTML = '';
-    [...ev.dataTransfer.items].forEach(async(item, i) => {
-        if (item.kind === "file") {
-            const file = item.getAsFile(); debugger;
-            if (!file.type.startsWith('image/')) {
-                error.innerHTML = `<b>${file.type} </b>type is not Allowed!`;
-                return;
-            }
-            const blog = new Blob([file], { type: file.type }, { size: file.size });
-            const compressedBase64 = await compressImage(file, 800, 800, 0.7);
-            const base64 = blobToBase64(blog);
-            const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
-            const img = document.createElement('img');
-            img.src = compressedBase64;
-            attachments.push({
-                name: file.name,
-                type: file.type,
-                size: sizeInMB + "MB",
-                data: compressedBase64
-            });
-            loadAttachments();
-        }
+function loadAttachmentsArray(file, compressedBase64, createSize) {
+    attachments.push({
+        name: file.name,
+        type: file.type,
+        size: createSize,
+        data: compressedBase64
     });
+}
+
+function createSize(compressedBase64) {
+    let stringLength = compressedBase64.length - (compressedBase64.indexOf(',') + 1);
+    let sizeInKB = ((stringLength * 3) / (4096)).toFixed(2);
+    return sizeInKB + "KB";
 }
 
 /**

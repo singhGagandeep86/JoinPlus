@@ -889,6 +889,11 @@ li:hover {
     align-items: center;
 }
 
+.picker-active {
+    border: solid 1px #29ABE2;
+    color: #29ABE2;
+}
+
 .file-list {
     display: flex;
     height: 81px;
