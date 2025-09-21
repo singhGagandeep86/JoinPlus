@@ -389,12 +389,10 @@ function showAttachments(index, img, name) {
     document.getElementById('selectionName').innerHTML = `${name}`;
 }
 
-
 function closeOverlay() {
     let attachmentsContainer = document.getElementById('attachmentsCont');
     attachmentsContainer.classList.add('d_none');
 }
-
 
 function removeAttachment(event, name) {
     event.stopPropagation();
@@ -406,6 +404,9 @@ function removeAttachment(event, name) {
         const name = attachment.name;
         const base64 = attachment.data;
         fileList.innerHTML += filesTemplate(i, base64, name);
+    }
+    if (attachments.length == 0) {
+        removeAll.classList.add('d_none');
     }
 }
 

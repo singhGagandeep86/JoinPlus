@@ -249,6 +249,11 @@ html::-webkit-scrollbar-thumb {
     z-index: 999;
 }
 
+.picker-active {
+    border: solid 1px #29ABE2 !important;
+    color: #29ABE2;
+}
+
 @media (max-width: 1100px) {
     .responsivePopup {
         display: none;

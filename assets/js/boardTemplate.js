@@ -86,15 +86,15 @@ function templatePopUpTask(id) {
                             <div class="attachment">
                                 <span>Attachments</span>
                                 <div class="attachment-info">
-                                    <p>Allowed file types are JPEG and PNG</p>
-                                    <div id="removeAll" class="remove-file selectHide" onclick="removeAllFiles()">
+                                    <p>Allowed file types are JPEG and PNG<span id="error"></span></p>
+                                    <div id="removeAll" class="remove-file selectHide" onclick="removeAttachmentsToArray()">
                                         <img src="../img/delete.png">
                                         <span>Delete all</span>
                                     </div>
                                 </div>
                                 <input id="filesPicker" type="file" style="display: none;"
                                     accept="image/JPEG, image/PNG">
-                                <div class="file-picker" onclick="openFilePicker()">
+                                <div class="file-picker" id="pickerArea" ondragover="activatePickArea(event)" ondragleave="deactivatePickArea(event)" ondrop="dropHandler(event)" onclick="openFilePicker()">
                                     <span>Drag a file or browse</span>
                                     <img src="../img/plus.png">
                                 </div>
@@ -138,6 +138,27 @@ function templatePopUpTask(id) {
                     </div>
                 </form>  
         </div>`
+}
+
+function attachFilesTemplate(index, img, name) {
+    return `<div class="file-container" onclick="showSelAttachment('${index}', '${img}', '${name}')">
+    <img class="removeAttach d_none" src="../img/closewhite.png" onclick="removeAttachmentFile(event, '${name}')">
+    <img src=${img}>
+    <div class="file-name">${name}</div>
+    </div>`
+}
+
+function showSelAttachment(index, img, name) {
+    let attachmentsContainer = document.getElementById('attachmentsContainer');
+    attachmentsContainer.classList.remove('d_none');
+    attachmentsContainer.innerHTML = `
+      <div class="imgContainer" onclick="event.stopPropagation()">
+        <div class="imgHeader"><p id="selectionName"></p>
+        <div class="imgHandle"><img src="../img/CloseWhite.png" onClick="closeAttachOverlay()"></div></div>
+        <div class="imgMover"><img src="../img/arrow-Lft-line.png" onclick='slideImage("left", ${index})'><img src="../img/arrow-right-line.png" onclick='slideImage("right", ${index})'></div>
+        <img class="selectedPhoto" id="selectedPhoto"></div>`
+    document.getElementById('selectedPhoto').src = img;
+    document.getElementById('selectionName').innerHTML = `${name}`;
 }
 
 /** Generates an HTML template for a task element.*/
@@ -323,14 +344,14 @@ function editTask(objData) {
              <div class="attachment">
                                 <span>Attachments</span>
                                 <div class="attachment-info">
-                                <p>Allowed file types are JPEG and PNG</p>
+                                <p>Allowed file types are JPEG and PNG<span id="error"></span></p>
                                 <div id="removeAll" class="remove-file selectHide" onclick="removeAllAttachments()">
                                     <img src="../img/delete.png">
                                     <span>Delete all</span>
                                 </div>
                                 </div>
                                 <input id="filesPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
-                                <div class="file-picker" onclick="openFilePicker()">
+                                <div class="file-picker" id="pickerArea" ondragover="activatePickArea(event)" ondragleave="deactivatePickArea(event)" ondrop="dropHandler(event)" onclick="openFilePicker()">
                                     <span>Drag a file or browse</span>
                                     <img src="../img/plus.png">
                                 </div>

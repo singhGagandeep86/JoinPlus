@@ -3,23 +3,23 @@
 
 document.getElementById('fileDrop').addEventListener("drop", dropHandler);
 
-document.getElementById('fileDrop').addEventListener("dragover", (e) => {
-    e.preventDefault();
+document.getElementById('fileDrop').addEventListener("dragover", (event) => { 
+    event.preventDefault();
     document.getElementById('fileDrop').classList.add('picker-active');
 });
 
-document.getElementById('fileDrop').addEventListener("drop", (e) => {
-    e.preventDefault();
+document.getElementById('fileDrop').addEventListener("drop", (event) => {
+    event.preventDefault();
     document.getElementById('fileDrop').classList.remove('picker-active');
 });
 
-document.getElementById('fileDrop').addEventListener("dragleave", (e) => {
-    e.preventDefault();
+document.getElementById('fileDrop').addEventListener("dragleave", (event) => {
+    event.preventDefault();
     document.getElementById('fileDrop').classList.remove('picker-active');
 });
 
 
-function dropHandler(event) {
+function dropHandler(event) { 
     event.preventDefault();
      document.getElementById('fileDrop').classList.remove('picker-active');
     const error = document.getElementById('error');

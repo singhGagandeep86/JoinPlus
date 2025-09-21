@@ -12,6 +12,7 @@ let contactNameArray = [];
 let allcontacts = [];
 let allContactsArray = [];
 
+
 /**
  * Loads initial task data and user data asynchronously.
  */

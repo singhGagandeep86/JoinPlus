@@ -99,7 +99,7 @@ function editOpen(i) {
     let area = document.getElementById('EditCloseArea');
     area.addEventListener('click', (event) => {
         event.stopPropagation()
-    })
+    });
 }
 
 /** Sets the minimum allowable date for the date input field to today's date.*/
@@ -208,7 +208,7 @@ function loadAllAttachments() {
         removeAll.classList.remove('selectHide');
         for (let index = 0; index < attachmentsToArray.length; index++) {
             const attachment = attachmentsToArray[index];
-            fileList.innerHTML += filesTemplate(index, attachment.data, attachment.name);
+            fileList.innerHTML += attachFilesTemplate(index, attachment.data, attachment.name);
         }
     }
 }
@@ -217,6 +217,22 @@ function removeAllAttachments() {
     attachmentsToArray = [];
     fileList.innerHTML = '';
     removeAll.classList.add("selectHide");
+}
+
+function removeAttachmentFile(event, name) {
+    event.stopPropagation(); 
+    let filter = attachmentsToArray.indexOf(attachmentsToArray.filter(attachment => attachment.name == name)[0]);
+    attachmentsToArray.splice(filter, 1);
+    fileList.innerHTML = '';
+    for (let i = 0; i < attachmentsToArray.length; i++) {
+        const attachment = attachmentsToArray[i];
+        const name = attachment.name;
+        const base64 = attachment.data;
+        fileList.innerHTML += attachFilesTemplate(i, base64, name);
+    }
+    if (attachmentsToArray.length === 0) {
+        removeAll.classList.add('selectHide');
+    }
 }
 
 /** Retrieves the selected contacts from the contact dropdown.*/
@@ -239,7 +255,6 @@ function getSelectedContacts() {
 
 /** Initializes and displays the selected contacts' initials in the initials area.*/
 function intiCheckContact() {
-
     let initialsContact = document.getElementById('initialsArea');
     let checkContact = getSelectedContacts();
     initialsContact.innerHTML = '';
@@ -289,7 +304,7 @@ function addInputSubtastk() {
     }
 }
 
-function filesTemplate(index, img, name) { 
+function filesTemplate(index, img, name) {
     return `<div class="file-container">
     <div class="removeAttach"><img src="../img/closewhite.png"></div>
     <img src=${img}>
@@ -489,6 +504,30 @@ function loadnewTaskEdit() {
     closePopUpTaskSmall();
 }
 
+function dropHandler(event) {
+    event.preventDefault();
+    document.getElementById('pickerArea').classList.remove('picker-active');
+    const error = document.getElementById('error');
+    error.innerHTML = '';
+    [...event.dataTransfer.items].forEach(async (item, i) => {
+        if (item.kind === "file") {
+            const file = item.getAsFile();
+            if (!file.type.startsWith('image/')) return error.innerHTML = `<b>${file.type}</b>type is not Allowed!`;
+            manipulatePickedFile(file);
+        }
+    });
+}
+
+function activatePickArea(event) {
+    event.preventDefault();
+    document.getElementById('pickerArea').classList.add('picker-active');
+}
+
+function deactivatePickArea(event) {
+    event.preventDefault();
+    document.getElementById('pickerArea').classList.remove('picker-active');
+}
+
 /** Opens the file picker element by simulating a click event. */
 function openFilePicker() {
     let filesPicker = document.getElementById('filesPicker');
@@ -507,20 +546,46 @@ function openFilePicker() {
 /**Handles the file picker change event, converting the selected files to base64 strings and adding them to the attachments array.*/
 function handlepickedFiles(event) {
     const allFiles = event.target.files;
+    let error = document.getElementById('error');
+    if (error) error.innerHTML = '';
     if (allFiles.length > 0) {
-        Array.from(allFiles).forEach(async file => {
-            const blog = new Blob([file], { type: file.type });
-            const base64 = await blobToBase64(blog);
-            const img = document.createElement('img');
-            img.src = base64;
-            attachmentsToArray.push({
-                name: file.name,
-                type: file.type,
-                data: base64
-            });
-            loadAllAttachments();
-        })
+        if (!allFiles[0].type.startsWith('image/')) return error.innerHTML = `<b>${allFiles[0].type}</b>type is not Allowed!`;
+        Array.from(allFiles).forEach(async file => manipulatePickedFile(file));
     }
+}
+
+async function manipulatePickedFile(file) {
+    document.getElementById('error').innerHTML = '';
+    const compressedBase64 = await compressImage(file, 800, 800, 0.7);
+    document.createElement('img').src = compressedBase64;
+    loadAttachmentsToArray(file, compressedBase64, createSizeUnit(compressedBase64));
+    loadAllAttachments();
+}
+
+function loadAttachmentsToArray(file, compressedBase64, createSize) {
+    attachmentsToArray.push({
+        name: file.name,
+        type: file.type,
+        size: createSize,
+        data: compressedBase64
+    });
+}
+
+function createSizeUnit(compressedBase64) {
+    let stringLength = compressedBase64.length - (compressedBase64.indexOf(',') + 1);
+    let sizeInKB = ((stringLength * 3) / (4096)).toFixed(2);
+    return sizeInKB + "KB";
+}
+
+function removeAttachmentsToArray() {
+    attachmentsToArray = [];
+    fileList.innerHTML = "";
+    removeAll.classList.add("selectHide");
+}
+
+function closeAttachOverlay() {
+    let attachmentsContainer = document.getElementById('attachmentsContainer');
+    attachmentsContainer.classList.add('d_none');
 }
 
 /** Displays the selected image in a popup area with controls to download the image, close the popup, and navigate left and right. */
