@@ -1,22 +1,25 @@
 
 
-
+/**
+ * Handles file input on DOM load, validates image files and processes them with manipulateFile().
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const filePicker = document.getElementById('filePicker');
-    const error = document.getElementById('error'); 
+    const error = document.getElementById('error');
     if (error) {
-    error.innerHTML = '';    
+        error.innerHTML = '';
     }
     if (filePicker) {
         filePicker.addEventListener('change', () => {
             const allFiles = filePicker.files;
             if (allFiles.length === 0) return;
-                if (!allFiles[0].type.startsWith('image/')) return error.innerHTML = `<b>${allFiles[0].type}</b>type is not Allowed!`;
-                Array.from(allFiles).forEach(async file => manipulateFile(file))
+            if (!allFiles[0].type.startsWith('image/')) return error.innerHTML = `<b>${allFiles[0].type}</b>type is not Allowed!`;
+            Array.from(allFiles).forEach(async file => manipulateFile(file))
         })
     }
 });
 
+/** Manipulates a given file by compressing it and adding it to the attachments array. */
 async function manipulateFile(file) {
     document.getElementById('error').innerHTML = '';
     const compressedBase64 = await compressImage(file, 800, 800, 0.7);
@@ -25,6 +28,7 @@ async function manipulateFile(file) {
     loadAttachments();
 }
 
+/** Adds a file to the attachments array. */
 function loadAttachmentsArray(file, compressedBase64, createSize) {
     attachments.push({
         name: file.name,
@@ -34,6 +38,8 @@ function loadAttachmentsArray(file, compressedBase64, createSize) {
     });
 }
 
+
+/** Calculates the size of a given base64 string in kilobytes. */
 function createSize(compressedBase64) {
     let stringLength = compressedBase64.length - (compressedBase64.indexOf(',') + 1);
     let sizeInKB = ((stringLength * 3) / (4096)).toFixed(2);
@@ -348,52 +354,44 @@ function dateCheck() {
     let inputDate = splittedDate[2];
     if (enteredDate) {
         return compareDate(year, month, day, inputYear, inputMonth, inputDate);
-    } else {
-        return false;
-    }
+    } else return false;
 }
 
 /**
  * Compares the entered date with the current date.
 */
 function compareDate(year, month, day, inputYear, inputMonth, inputDate) {
-    if (inputYear > year && inputYear < 10000) {
-        return true;
-    }
+    if (inputYear > year && inputYear < 10000) return true;
     else {
-        if (inputYear == year & inputMonth > month) {
-            return true;
-        }
+        if (inputYear == year && inputMonth > month) return true;
         else {
-            if (inputYear == year & inputMonth == month & inputDate >= day) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            if (inputYear == year && inputMonth == month && inputDate >= day) return true;
+            else return false;
         }
     }
 }
 
-
+/** Displays the selected image in a popup area with controls to download the image, close the popup, and navigate left and right. */
 function showAttachments(index, img, name) {
     let attachmentsContainer = document.getElementById('attachmentsCont');
     attachmentsContainer.classList.remove('d_none');
     attachmentsContainer.innerHTML = `
       <div class="imgContainer" onclick="event.stopPropagation()">
         <div class="imgHeader"><p id="selectionName"></p>
-        <div class="imgHandle"><img src="../img/CloseWhite.png" onClick="closeOverlay()"></div></div>
+        <div class="imgHandle"><img src="../img/Closewhite.png" onClick="closeOverlay()"></div></div>
         <div class="imgMover"><img src="../img/arrow-Lft-line.png" onclick='slideImage("left", ${index})'><img src="../img/arrow-right-line.png" onclick='slideImage("right", ${index})'></div>
         <img class="selectedPhoto" id="selectedPhoto"></div>`
     document.getElementById('selectedPhoto').src = img;
     document.getElementById('selectionName').innerHTML = `${name}`;
 }
 
+/** Hides the attachments container and removes its event listeners. */
 function closeOverlay() {
     let attachmentsContainer = document.getElementById('attachmentsCont');
     attachmentsContainer.classList.add('d_none');
 }
 
+/** Removes an attachment file from the list of attachments. */
 function removeAttachment(event, name) {
     event.stopPropagation();
     let filter = attachments.indexOf(attachments.filter(attachment => attachment.name == name)[0]);
@@ -410,7 +408,8 @@ function removeAttachment(event, name) {
     }
 }
 
-function slideImage(direction, index) {
+/** Changes the displayed image in the popup area to the left or right by one index. */
+function slideImage(direction, index) { 
     if (direction === 'left') {
         slideLeft(index);
     } else {
@@ -418,6 +417,8 @@ function slideImage(direction, index) {
     }
 }
 
+/** Changes the displayed image in the popup area to the left by one index.
+ * If the index is less than 0, it wraps around to the last index in the attachments array.*/
 function slideLeft(index) {
     index = index - 1;
     if (index < 0) {
@@ -426,6 +427,9 @@ function slideLeft(index) {
     let selectedImage = attachments[index];
     showAttachments(index, selectedImage.data, selectedImage.name);
 }
+
+/** Changes the displayed image in the popup area to the right by one index.
+ *  If the index is equal to the length of the attachments array, it wraps around to the first index.*/
 function slideRight(index) {
     index = index + 1;
     if (index === attachments.length) {

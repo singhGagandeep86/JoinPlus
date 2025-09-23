@@ -62,20 +62,16 @@ function contactsData(firebase) {
  * @param {string} eachName - The full name of the contact.
  */
 function wthScndName(i, eachName) {
-
   let colour = array[i].color;
   let sanitizedEachName = eachName.replace(/\s+/g, '_');
   let firstName = array[i].name.split(' ')[0].toUpperCase();
-  let contact = document.getElementById("allCntcts");
   let lastName = array[i].name.split(' ')[1].toUpperCase();
-  let firstNameStart = firstName[0];
-  let lastNameStart = lastName[0];
   let contactIssuedNumber = array[i].number;
   let profilePic = array[i].pic;
   if (profilePic) {
-    contact.innerHTML += contactsTempWithPic(sanitizedEachName, colour, eachName, profilePic, contactIssuedNumber);
+    document.getElementById("allCntcts").innerHTML += contactsTempWithPic(sanitizedEachName, colour, eachName, profilePic, contactIssuedNumber);
   } else {
-    contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart, contactIssuedNumber);
+    document.getElementById("allCntcts").innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstName[0], lastName[0], contactIssuedNumber);
   }
 }
 
@@ -90,14 +86,12 @@ function wthoutScndName(i, eachName) {
   let sanitizedEachName = eachName.replace(/\s+/g, '_');
   let firstName = array[i].name.split(' ')[0].toUpperCase();
   let contact = document.getElementById("allCntcts");
-  let firstNameStart = firstName[0];
-  let lastNameStart = '';
   let contactIssuedNumber = array[i].number;
   let profilePic = array[i].pic;
   if (profilePic) {
     contact.innerHTML += contactsTempWithPic(sanitizedEachName, colour, eachName, profilePic, contactIssuedNumber);
   } else {
-    contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart, contactIssuedNumber);
+    contact.innerHTML += contactsTemp(sanitizedEachName, colour, eachName, firstName[0], '', contactIssuedNumber);
   }
 }
 
@@ -441,6 +435,9 @@ function resetingGlobalVariable() {
   namesInitials = [];
 }
 
+/** Populates the attachment area with the provided task object's attachments.
+ * If no attachments are provided, it clears the attachment area section and hides the attachment area.
+ * If attachments are provided, it populates the attachment area section with the provided attachment names and files. */
 function loadAttachments() {
   fileList.innerHTML = "";
   if (attachments.length === 0) {
@@ -456,6 +453,7 @@ function loadAttachments() {
   }
 }
 
+/** Clears the attachments array and resets the file list display. Hides the 'remove all' button. */
 function removeAllFiles() {
   attachments = [];
   fileList.innerHTML = "";

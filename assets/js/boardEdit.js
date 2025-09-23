@@ -11,25 +11,27 @@ function loadContactData(firebaseData, objData) {
     loadContactDataIf(contact, contactData, firebaseData, contactArea);
 }
 
-/**
- * When contacts are provided, each contact's details, including name, initials, color,
- * and checkbox status, are dynamically generated and displayed within the contact area. */
+/*Checks if the contact data is null and loads either an empty state or avatars in the contact drop area.*/
 function loadContactDataIf(contact, contactData, firebaseData, contactArea) {
-
     if (contact == null) {
         loadContactEmpty(contactData, firebaseData)
     } else {
-        for (let j = 0; j < firebaseData.length; j++) {
-            let contactName = contactData[j];
-            let color = firebaseData[j].color;
-            let initials = extrahiereInitialen(contactName);
-            let pic = firebaseData[j].pic;
-            let isChecked = contact.some(selectedContact => selectedContact.name === contactName) ? 'checked' : '';
-            if (pic) {
-                contactArea.innerHTML += checkboxContactTemplateWithPic(isChecked, contactName, pic, color);
-            } else {
-                contactArea.innerHTML += checkboxContactTemplate(isChecked, contactName, initials, color);
-            }
+        loadContactAvatar(contact, contactData, firebaseData, contactArea);
+    }
+}
+
+/** Loads contact data with pictures in the contact drop area.*/
+function loadContactAvatar(contact, contactData, firebaseData, contactArea) {
+    for (let j = 0; j < firebaseData.length; j++) {
+        let contactName = contactData[j];
+        let color = firebaseData[j].color;
+        let initials = extrahiereInitialen(contactName);
+        let pic = firebaseData[j].pic;
+        let isChecked = contact.some(selectedContact => selectedContact.name === contactName) ? 'checked' : '';
+        if (pic) {
+            contactArea.innerHTML += checkboxContactTemplateWithPic(isChecked, contactName, pic, color);
+        } else {
+            contactArea.innerHTML += checkboxContactTemplate(isChecked, contactName, initials, color);
         }
     }
 }
@@ -63,17 +65,23 @@ function initialsLoadIf(contactUser, color, initialsContact) {
         initialsContact.innerHTML = '';
         initialsContact.classList.add('d_none');
     } else {
+        renderContactAvatar(contactUser, color, initialsContact);
+    }
+}
 
-        for (let k = 0; k < contactUser.length; k++) {
-            let contactName = contactUser[k].name;
-            let colorIni = color[k];
-            let filteredContact = allContactsArray.find(e => e.number == contactUser[k].number);
-            if (filteredContact && filteredContact.pic) {
-                initialsContact.innerHTML += initialsLoadContactWithPic(filteredContact.pic, colorIni);
-            } else {
-                let initials = extrahiereInitialen(contactName);
-                initialsContact.innerHTML += initialsLoadContact(initials, colorIni);
-            }
+/**Renders contact avatars based on the provided contact list and associated colors. Iterates through the contact list and checks if each contact 
+ * has a picture. If a contact has a picture, it uses the `initialsLoadContactWithPic` function to generate the HTML,
+ * otherwise it uses the `initialsLoadContact` function. */
+function renderContactAvatar(contactUser, color, initialsContact) {
+    for (let k = 0; k < contactUser.length; k++) {
+        let contactName = contactUser[k].name;
+        let colorIni = color[k];
+        let filteredContact = allContactsArray.find(e => e.number == contactUser[k].number);
+        if (filteredContact && filteredContact.pic) {
+            initialsContact.innerHTML += initialsLoadContactWithPic(filteredContact.pic, colorIni);
+        } else {
+            let initials = extrahiereInitialen(contactName);
+            initialsContact.innerHTML += initialsLoadContact(initials, colorIni);
         }
     }
 }
@@ -133,7 +141,6 @@ function contactDropOpen(event) {
  * Toggles the visibility of a contact dropdown menu and manages dropdown-related behaviors.
  * If the dropdown is opened, an event listener is added to close it when clicking outside;*/
 function contactDropOpenIf(contactDropdown, arrowContact) {
-
     if (!contactDropdown.classList.contains('d_none')) {
         getSelectedContacts();
         intiCheckContact();
@@ -190,6 +197,8 @@ function priorityEditCheck(prioCheck) {
     }
 }
 
+/** Sets the value of the hidden category select element and the custom category select element
+ * text content to the provided category value from the task object.*/
 function categorieSelect(objData) {
     let category = objData.category;
     let categoryOption = document.getElementById('hiddenSelect');
@@ -198,6 +207,9 @@ function categorieSelect(objData) {
     customSelect.innerText = category;
 }
 
+/**Populates the attachment area with the provided task object's attachments.
+ * If no attachments are provided, it clears the attachment area section and hides the attachment area.
+ * If attachments are provided, it populates the attachment area section with the provided attachment names and files.*/
 function loadAllAttachments() {
     let fileList = document.getElementById('fileList');
     let removeAll = document.getElementById('removeAll');
@@ -213,14 +225,49 @@ function loadAllAttachments() {
     }
 }
 
+function loadTheAttachments() {
+    let fileListNew = document.getElementById('file-List');
+    let removeAllNew = document.getElementById('remove-All');
+    fileListNew.innerHTML = '';
+    if (attachmentsToArray.length === 0) {
+        removeAllNew.classList.add('selectHide');
+    } else {
+        removeAllNew.classList.remove('selectHide');
+        for (let index = 0; index < attachmentsToArray.length; index++) {
+            const attachment = attachmentsToArray[index];
+            fileListNew.innerHTML += attachTheFilesTemplate(index, attachment.data, attachment.name);
+        }
+    }
+}
+
+function removeTheAttachmentFile(event, name) {
+    event.stopPropagation();
+    let filter = attachmentsToArray.indexOf(attachmentsToArray.filter(attachment => attachment.name == name)[0]);
+    let fileListNew = document.getElementById('file-List');
+    let removeAllNew = document.getElementById('remove-All');
+    attachmentsToArray.splice(filter, 1);
+    fileListNew.innerHTML = '';
+    for (let i = 0; i < attachmentsToArray.length; i++) {
+        const attachment = attachmentsToArray[i];
+        const name = attachment.name;
+        const base64 = attachment.data;
+        fileListNew.innerHTML += attachTheFilesTemplate(i, base64, name);
+    }
+    if (attachmentsToArray.length === 0) {
+        removeAllNew.classList.add('selectHide');
+    }
+}
+
+/**Clears the attachment area section and hides the attachment area.*/
 function removeAllAttachments() {
     attachmentsToArray = [];
     fileList.innerHTML = '';
     removeAll.classList.add("selectHide");
 }
 
+/**Removes an attachment file from the list of attachments.*/
 function removeAttachmentFile(event, name) {
-    event.stopPropagation(); 
+    event.stopPropagation();
     let filter = attachmentsToArray.indexOf(attachmentsToArray.filter(attachment => attachment.name == name)[0]);
     attachmentsToArray.splice(filter, 1);
     fileList.innerHTML = '';
@@ -261,17 +308,22 @@ function intiCheckContact() {
     if (checkContact != []) {
         initialsContact.classList.remove('d_none');
         for (let i = 0; i < checkContact.length; i++) {
-            let contactName = checkContact[i].name;
-            let color = checkContact[i].color;
-            let initials = extrahiereInitialen(contactName);
-            let number = checkContact[i].number;
-            let filteredContact = allContactsArray.find(e => e.number == number);
-            if (filteredContact && filteredContact.pic) {
-                initialsContact.innerHTML += initialsLoadContactWithPic(filteredContact.pic, color);
-            } else {
-                initialsContact.innerHTML += initialsLoadContact(initials, color);
-            }
+            renderSelectedContactAvatar(checkContact[i], initialsContact);
         }
+    }
+}
+
+/**Renders the initials of the selected contact in the initials area.*/
+function renderSelectedContactAvatar(checkContact, initialsContact) {
+    let contactName = checkContact.name;
+    let color = checkContact.color;
+    let initials = extrahiereInitialen(contactName);
+    let number = checkContact.number;
+    let filteredContact = allContactsArray.find(e => e.number == number);
+    if (filteredContact && filteredContact.pic) {
+        initialsContact.innerHTML += initialsLoadContactWithPic(filteredContact.pic, color);
+    } else {
+        initialsContact.innerHTML += initialsLoadContact(initials, color);
     }
 }
 
@@ -304,9 +356,10 @@ function addInputSubtastk() {
     }
 }
 
+/** Generates an HTML template for a file attachment. */
 function filesTemplate(index, img, name) {
     return `<div class="file-container">
-    <div class="removeAttach"><img src="../img/closewhite.png"></div>
+    <div class="removeAttach"><img src="../img/Closewhite.png"></div>
     <img src=${img}>
     <div class="file-name">${name}</div>
     </div>`
@@ -504,6 +557,9 @@ function loadnewTaskEdit() {
     closePopUpTaskSmall();
 }
 
+/** Handles file drop event in task edit page. Prevents default event handler and removes active class from picker area.
+ * Iterates over the dropped files and checks if the file is an image. If the file is not an image, an error message is displayed.
+ * If the file is an image, it is sent to be manipulated.*/
 function dropHandler(event) {
     event.preventDefault();
     document.getElementById('pickerArea').classList.remove('picker-active');
@@ -518,11 +574,13 @@ function dropHandler(event) {
     });
 }
 
+/** Adds the 'picker-active' class to the picker area, indicating that file drops are allowed. */
 function activatePickArea(event) {
     event.preventDefault();
     document.getElementById('pickerArea').classList.add('picker-active');
 }
 
+/** Removes the 'picker-active' class from the picker area, indicating that file drops are no longer allowed. */
 function deactivatePickArea(event) {
     event.preventDefault();
     document.getElementById('pickerArea').classList.remove('picker-active');
@@ -554,14 +612,16 @@ function handlepickedFiles(event) {
     }
 }
 
+/** Handles a single file picked by the user, compressing it to a base64 string and adding it to the attachments array. */
 async function manipulatePickedFile(file) {
     document.getElementById('error').innerHTML = '';
     const compressedBase64 = await compressImage(file, 800, 800, 0.7);
     document.createElement('img').src = compressedBase64;
     loadAttachmentsToArray(file, compressedBase64, createSizeUnit(compressedBase64));
-    loadAllAttachments();
+    loadTheAttachments();
 }
 
+/** Adds a file to the attachments array. */
 function loadAttachmentsToArray(file, compressedBase64, createSize) {
     attachmentsToArray.push({
         name: file.name,
@@ -571,18 +631,21 @@ function loadAttachmentsToArray(file, compressedBase64, createSize) {
     });
 }
 
+/** Calculates the size of a given base64 string in kilobytes. */
 function createSizeUnit(compressedBase64) {
     let stringLength = compressedBase64.length - (compressedBase64.indexOf(',') + 1);
     let sizeInKB = ((stringLength * 3) / (4096)).toFixed(2);
     return sizeInKB + "KB";
 }
 
+/** Clears the attachments array and resets the file list display. Hides the 'remove all' button. */
 function removeAttachmentsToArray() {
     attachmentsToArray = [];
     fileList.innerHTML = "";
     removeAll.classList.add("selectHide");
 }
 
+/** Hides the attachments container and removes its event listeners. */
 function closeAttachOverlay() {
     let attachmentsContainer = document.getElementById('attachmentsContainer');
     attachmentsContainer.classList.add('d_none');
@@ -594,29 +657,25 @@ function showFile(img, name, index) {
     document.getElementById('photoArea').innerHTML = `
       <div class="imgContainer" onclick="event.stopPropagation()">
         <div class="imgHeader"><p id="selectionName"></p>
-        <div class="imgHandle"><img src="../img/download.png" onClick="downloadFile(${index})"><img src="../img/CloseWhite.png" onClick="photoArea()"></div></div>
-        <div class="imgMover"><img src="../img/arrow-Lft-line.png" onclick='slideImage("left", ${index})'><img src="../img/arrow-right-line.png" onclick='slideImage("right", ${index})'></div>
+        <div class="imgHandle"><img src="../img/download.png" onClick="downloadFile(${index})"><img src="../img/Closewhite.png" onClick="photoArea()"></div></div>
+        <div class="imgMover"><img src="../img/arrow-Lft-line.png" onclick='changeImage("left", ${index})'><img src="../img/arrow-right-line.png" onclick='changeImage("right", ${index})'></div>
         <img class="selectedPhoto" id="selectedPhoto"></div>`
     document.getElementById('selectedPhoto').src = img;
     document.getElementById('selectionName').innerHTML = `${name}`;
 }
 
-/**Hides the photo area element and removes any displayed image. */
-function photoArea() {
-    document.getElementById('photoArea').classList.add('d_none');
-}
-
-/**Slides the image in the given direction (left or right) to the new index.*/
-function slideImage(direction, index) {
+/** Changes the displayed image in the popup area based on the given direction and index. */
+function changeImage(direction, index) {
     if (direction === 'left') {
-        slideLeft(index);
+        changeLeft(index);
     } else {
-        slideRight(index);
+        changeRight(index);
     }
 }
 
-/** Slides the image in the photo area to the left by one index. If the index is less than 0, it wraps around to the last index in the attachments array. */
-function slideLeft(index) {
+/** Changes the displayed image in the popup area to the left by one index. If the index is less than 0, it wraps around to the last index 
+ * in the attachments array. */
+function changeLeft(index) {
     index = index - 1;
     if (index < 0) {
         index = attachmentsToArray.length - 1;
@@ -624,9 +683,9 @@ function slideLeft(index) {
     let selectedImage = attachmentsToArray[index];
     showFile(selectedImage.data, selectedImage.name, index);
 }
-
-/**Slides the image in the photo area to the right by one index. If the index is equal to the length of the attachments array, it wraps around to the first index in the attachments array. */
-function slideRight(index) {
+/** Changes the displayed image in the popup area to the right by one index. If the index is equal to the length of the attachments array, 
+ * it wraps around to the first index. */
+function changeRight(index) {
     index = index + 1;
     if (index === attachmentsToArray.length) {
         index = 0;
@@ -635,12 +694,45 @@ function slideRight(index) {
     showFile(selectedImage.data, selectedImage.name, index);
 }
 
+/**Hides the photo area element and removes any displayed image. */
+function photoArea() {
+    document.getElementById('photoArea').classList.add('d_none');
+}
+
+/**Slides the image in the given direction (left or right) to the new index.*/
+function slideImages(direction, index) {
+    if (direction === 'left') {
+        slideToLeft(index);
+    } else {
+        slideToRight(index);
+    }
+}
+
+/** Slides the image in the photo area to the left by one index. If the index is less than 0, it wraps around to the last index in the attachments array. */
+function slideToLeft(index) {
+    index = index - 1;
+    if (index < 0) {
+        index = attachmentsToArray.length - 1;
+    }
+    let selectedImage = attachmentsToArray[index];
+    showSelAttachment(index, selectedImage.data, selectedImage.name);
+}
+
+/**Slides the image in the photo area to the right by one index. If the index is equal to the length of the attachments array, it wraps around to the first index in the attachments array. */
+function slideToRight(index) {
+    index = index + 1;
+    if (index === attachmentsToArray.length) {
+        index = 0;
+    }
+    let selectedImage = attachmentsToArray[index];
+    showSelAttachment(index, selectedImage.data, selectedImage.name);
+}
+
 /**Downloads the image at the given index from the attachments array. */
 function downloadFile(index) {
     let selectedImage = attachmentsToArray[index];
     let url = selectedImage.data;
     const link = document.createElement('a');
-
     link.href = url;
     link.download = selectedImage.name;
     document.body.appendChild(link);

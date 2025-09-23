@@ -199,8 +199,6 @@ async function editContactData(i) {
     let email = document.getElementById('email2').value;
     let phone = document.getElementById('phone2').value;
     let pic = document.getElementById('userProfileImg').src;
-    console.log(pic);
-
     if (valiEdit()) {
         if (pic === "") {
             await editContactFB(name, email, phone, number);

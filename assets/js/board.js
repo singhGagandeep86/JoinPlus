@@ -12,27 +12,20 @@ let contactNameArray = [];
 let allcontacts = [];
 let allContactsArray = [];
 
-
-/**
- * Loads initial task data and user data asynchronously.
- */
+/** Loads initial task data and user data asynchronously. */
 async function load() {
     await loadContacts("/contact");
     await loadData("/task");
     fetchUserData('/user');
 }
 
-/**
- * Constructs a full URL for accessing the database with the provided path and authentication token.
- */
+/** Constructs a full URL for accessing the database with the provided path and authentication token. */
 function getDatabaseUrl(path) {
     let token = sessionStorage.getItem('authToken');
     return `${BASE_URL}${path}.json?auth=${token}`;
 }
 
-/**
- * Fetches task data from the database at the specified path, initializes with empty data if none exists,
- */
+/** Fetches task data from the database at the specified path, initializes with empty data if none exists. */
 async function loadData(path) {
     let response = await fetch(BASE_URL + path + ".json?auth=" + token);
     let responsetoJson = await response.json();
@@ -205,8 +198,8 @@ function addcontactInfo(objDateTask) {
     if (contactName == null) {
         allContactsSection.innerHTML = '';
         contactArea.classList.add('d_none')
-    } else { 
-      contactAreaManupulate(contactName, contactscolor, allContactsSection, contactArea);
+    } else {
+        contactAreaManupulate(contactName, contactscolor, allContactsSection, contactArea);
     }
 }
 
@@ -218,18 +211,18 @@ function addcontactInfo(objDateTask) {
  */
 function contactAreaManupulate(contactName, contactscolor, allContactsSection, contactArea) {
     for (let i = 0; i < contactName.length; i++) {
-            let currentContact = contactName[i]; 
-            if (currentContact) {
-                let filteredContact = allContactsArray.find(e => e.number == currentContact.number);
-                contactArea.classList.remove('d_none');
-                if (filteredContact.pic) {
-                    allContactsSection.innerHTML += templateContactHavingPic(currentContact.name, filteredContact.pic, contactscolor[i]);
-                } else {
-                    let initials = extrahiereInitialen(currentContact.name);
-                    allContactsSection.innerHTML += templateContactInfo(contactscolor[i], initials, currentContact.name);
-                }
+        let currentContact = contactName[i];
+        if (currentContact) {
+            let filteredContact = allContactsArray.find(e => e.number == currentContact.number);
+            contactArea.classList.remove('d_none');
+            if (filteredContact.pic) {
+                allContactsSection.innerHTML += templateContactHavingPic(currentContact.name, filteredContact.pic, contactscolor[i]);
+            } else {
+                let initials = extrahiereInitialen(currentContact.name);
+                allContactsSection.innerHTML += templateContactInfo(contactscolor[i], initials, currentContact.name);
             }
         }
+    }
 }
 
 /**
@@ -272,9 +265,8 @@ function addSubtaskInfoIf(subtaskInput, subtaskEmpty, objDateTask) {
     if (!objDateTask.subtask) {
         subtaskInput.innerHTML = '';
         subtaskEmpty.classList.add('d_none')
-    } else if (Object.values(objDateTask.subtask).length === 0 && Object.values(objDateTask.checked) === 0) {
-        subtaskInput.innerHTML = '';
-    } else {
+    } else if (Object.values(objDateTask.subtask).length === 0 && Object.values(objDateTask.checked) === 0) subtaskInput.innerHTML = '';
+    else {
         let subtaskTitle = Object.values(objDateTask.subtask);
         let subtastChecked = Object.values(objDateTask.checked);
         for (let j = 0; j < subtaskTitle.length; j++) {

@@ -87,7 +87,7 @@ function templatePopUpTask(id) {
                                 <span>Attachments</span>
                                 <div class="attachment-info">
                                     <p>Allowed file types are JPEG and PNG<span id="error"></span></p>
-                                    <div id="removeAll" class="remove-file selectHide" onclick="removeAttachmentsToArray()">
+                                    <div id="remove-All" class="remove-file selectHide" onclick="removeAttachmentsToArray()">
                                         <img src="../img/delete.png">
                                         <span>Delete all</span>
                                     </div>
@@ -98,7 +98,7 @@ function templatePopUpTask(id) {
                                     <span>Drag a file or browse</span>
                                     <img src="../img/plus.png">
                                 </div>
-                                <div class="file-list" id="fileList">
+                                <div class="file-list" id="file-List">
 
                                 </div>
                             </div>
@@ -140,22 +140,32 @@ function templatePopUpTask(id) {
         </div>`
 }
 
+/** Generates an HTML template for a file attachment. */
 function attachFilesTemplate(index, img, name) {
     return `<div class="file-container" onclick="showSelAttachment('${index}', '${img}', '${name}')">
-    <img class="removeAttach d_none" src="../img/closewhite.png" onclick="removeAttachmentFile(event, '${name}')">
+    <img class="removeAttach d_none" src="../img/Closewhite.png" onclick="removeAttachmentFile(event, '${name}')">
     <img src=${img}>
     <div class="file-name">${name}</div>
     </div>`
 }
 
+function attachTheFilesTemplate(index, img, name) {
+    return `<div class="file-container" onclick="showSelAttachment('${index}', '${img}', '${name}')">
+    <img class="removeAttach d_none" src="../img/Closewhite.png" onclick="removeTheAttachmentFile(event, '${name}')">
+    <img src=${img}>
+    <div class="file-name">${name}</div>
+    </div>`
+}
+
+/** Displays the selected image in a popup area with controls to download the image, close the popup, and navigate left and right. */
 function showSelAttachment(index, img, name) {
     let attachmentsContainer = document.getElementById('attachmentsContainer');
     attachmentsContainer.classList.remove('d_none');
     attachmentsContainer.innerHTML = `
       <div class="imgContainer" onclick="event.stopPropagation()">
         <div class="imgHeader"><p id="selectionName"></p>
-        <div class="imgHandle"><img src="../img/CloseWhite.png" onClick="closeAttachOverlay()"></div></div>
-        <div class="imgMover"><img src="../img/arrow-Lft-line.png" onclick='slideImage("left", ${index})'><img src="../img/arrow-right-line.png" onclick='slideImage("right", ${index})'></div>
+        <div class="imgHandle"><img src="../img/Closewhite.png" onClick="closeAttachOverlay()"></div></div>
+        <div class="imgMover"><img src="../img/arrow-Lft-line.png" onclick='slideImages("left", ${index})'><img src="../img/arrow-right-line.png" onclick='slideImages("right", ${index})'></div>
         <img class="selectedPhoto" id="selectedPhoto"></div>`
     document.getElementById('selectedPhoto').src = img;
     document.getElementById('selectionName').innerHTML = `${name}`;

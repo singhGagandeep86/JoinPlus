@@ -240,6 +240,7 @@ function openPopUpTask(id) {
     } else {
         taskPopUp.classList.remove('d_none');
         taskPopUp.innerHTML = '';
+        attachmentsToArray = [];
         taskPopUp.innerHTML = templatePopUpTask(id);
         setDateDisable();
         stopAddTaskBoardArea();
@@ -276,13 +277,28 @@ function handleMediaChange(e) {
  * Closes the task popup and resets the necessary states.
  */
 function closePopUpTask() {
-    resetAll();
+    resetTask();
     let button = document.getElementById('btnTaskPopupcloseArea');
     button.addEventListener('click', (event) => {
         event.stopPropagation()
     })
     let taskPopUp = document.getElementById('popupTaskMain');
     taskPopUp.classList.add('d_none');
+}
+
+function resetTask() {
+    deletArray()
+    resetingGlobalVariable();
+    resetError();
+    let allContacts = document.getElementById('allCntcts');
+    let allLabels = allContacts.getElementsByTagName('label');
+    for (i = 0; i < allLabels.length; i++) {
+        let label = allLabels[i];
+        let chkBox = label.querySelector('span');
+        label.style.backgroundColor = "transparent";
+        label.style.color = "black";
+        chkBox.style.content = "url(../img/CheckbuttonEmpty.png)";
+    }
 }
 
 /**
@@ -311,18 +327,24 @@ function loadContactTask(element, contacts, contactName) {
     if (color == null && contactName == null) {
         taskContact.innerHTML = '';
     } else {
-        for (let i = 0; i < color.length; i++) {
-            let colors = color[i];
-            if (i < contactName.length) {
+        renderContact(taskContact, color, contactName);
+    }
+}
 
-                let contact = contactName[i];
-                let findIndex = allContactsArray.find(e => e.number == contact.number);
-                if (findIndex.pic) {
-                    taskContact.innerHTML += templateContactWithPic(findIndex.pic, colors);
-                } else {
-                    let initials = extrahiereInitialen(contactName[i].name);
-                    taskContact.innerHTML += templateContact(colors, initials, i);
-                }
+/**
+ * Renders contact information for a given task element.
+ */
+function renderContact(taskContact, color, contactName) {
+    for (let i = 0; i < color.length; i++) {
+        let colors = color[i];
+        if (i < contactName.length) {
+            let contact = contactName[i];
+            let findIndex = allContactsArray.find(e => e.number == contact.number);
+            if (findIndex.pic) {
+                taskContact.innerHTML += templateContactWithPic(findIndex.pic, colors);
+            } else {
+                let initials = extrahiereInitialen(contactName[i].name);
+                taskContact.innerHTML += templateContact(colors, initials, i);
             }
         }
     }
