@@ -286,6 +286,10 @@ function closePopUpTask() {
     taskPopUp.classList.add('d_none');
 }
 
+/**
+ * Resets the form and its associated variables when the reset button is clicked.
+ * Deletes all global variables in the task array, resets global variables, resets error messages, and resets the contact area checkboxes.
+ */
 function resetTask() {
     deletArray()
     resetingGlobalVariable();
@@ -340,7 +344,7 @@ function renderContact(taskContact, color, contactName) {
         if (i < contactName.length) {
             let contact = contactName[i];
             let findIndex = allContactsArray.find(e => e.number == contact.number);
-            if (findIndex.pic) {
+            if (findIndex && findIndex.pic) {
                 taskContact.innerHTML += templateContactWithPic(findIndex.pic, colors);
             } else {
                 let initials = extrahiereInitialen(contactName[i].name);

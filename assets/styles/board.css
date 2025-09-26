@@ -321,10 +321,6 @@ html {
     border-radius: 16px;
 }
 
-.d_none {
-    display: none;
-}
-
 .activeBoard {
     content: url("../img/IconsBoard.png");
 }
@@ -350,7 +346,7 @@ html {
     height: 40px;
     display: flex;
     position: relative;
-    font-size: 12px;
+    font-size: 14px;
     overflow: auto;
 }
 
@@ -378,14 +374,14 @@ html {
     justify-content: center;
     align-items: center;
     height: 32px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .boxinfo {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size:14px;
     width: 42px;
     height: 42px;
     color: white;
@@ -396,7 +392,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 14px;
     width: 42px;
     height: 42px;
     flex-shrink: 0;
@@ -441,6 +437,8 @@ html {
     img {
         width: 112px;
         height: 56px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
 
     img:hover {
@@ -448,9 +446,13 @@ html {
     }
 
     p {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 400;
         color: #A8A8A8;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
     }
 
     p:hover {

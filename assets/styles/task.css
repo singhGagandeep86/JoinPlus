@@ -785,10 +785,6 @@ li:hover {
     }
 }
 
-.d_none {
-    display: none !important;
-}
-
 .fail {
     width: 100%;
     height: 18px;
@@ -830,7 +826,6 @@ li:hover {
 
 .attachment {
     width: 100%;
-    /* height: 106px; */
     gap: 8px;
     display: flex;
     flex-direction: column;

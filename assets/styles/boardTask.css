@@ -1030,8 +1030,6 @@ progress::-moz-progress-bar {
 .imgContainer {
     position: absolute;
     width: 80%;
-    /* height: 80%;
-    bottom: 10%; */
     animation: 400ms animation;
     background-color: #FFFFFF;
 

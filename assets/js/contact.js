@@ -192,7 +192,6 @@ function activeContact(i, number, initials) {
     };
 }
 
-
 /**
  * Displays the contact list by toggling visibility of related UI components.
  * @param {number} i - The index of the contact to be deactivated.
@@ -226,7 +225,6 @@ function editContact(i) {
     document.querySelector('.contact-container-right').classList.add('hidden');
     stopEditArea();
 }
-
 
 /**
  * Prevents the event from bubbling up from the EditAreaStop element, thus preventing the click event from
@@ -286,7 +284,6 @@ function closeEditImage() {
     editImage2.classList.add('d_none');
 }
 
-
 /**
  * Hides the edit contact overlay.
  */
@@ -320,7 +317,7 @@ function isValid(input, regex) { return regex.test(input); }
  * @returns {boolean} - Returns true if all fields are valid; otherwise, false.
  */
 function valiAdd(name, email, phone) {
-    if (!name || !email || !phone) return failAllAdd() && false;
+    if (!name && !email && !phone) return failAllAdd() && false;
     if (!isValid(name, /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/)) return failName() && false;
     if (!isValid(email, /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/))
         return failEmailAdd() && false;
@@ -342,7 +339,7 @@ function valiEdit() {
         email = document.getElementById('email2').value.trim(),
         phone = document.getElementById('phone2').value.trim();
 
-    if (!name || !email || !phone) return failAllEdit() && false;
+    if (!name && !email && !phone) return failAllEdit() && false;
     if (!isValid(name, /^[a-zA-Z]+( [a-zA-Z]+)*$/)) return failNameEdit() && false;
     if (!isValid(email, /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/))
         return failEmailEdit() && false;
@@ -352,65 +349,65 @@ function valiEdit() {
 
 /**
  * Marks the name field as invalid by adding a 'failinput' class and
- * displays an error message by removing the 'd_none' class.
+ * displays an error message by removing the 'hide' class.
  */
 function failName() {
     document.getElementById('name').classList.add('failinput');
-    document.getElementById('failName').classList.remove('d_none');
+    document.getElementById('failName').classList.remove('hide');
 }
 
 /**
  * Marks the phone field as invalid by adding a 'failinput' class and
- * displays an error message by removing the 'd_none' class.
+ * displays an error message by removing the 'hide' class.
  */
-function failPhoneAdd() {
+function failPhoneAdd() { 
     document.getElementById('phone').classList.add('failinput');
-    document.getElementById('failPhone').classList.remove('d_none');
+    document.getElementById('failPhone').classList.remove('hide');
 }
 
 /**
  * Marks the email field as invalid by adding a 'failinput' class and
- * displays an error message by removing the 'd_none' class.
+ * displays an error message by removing the 'hide' class.
  */
 function failEmailAdd() {
     document.getElementById('email').classList.add('failinput');
-    document.getElementById('failEmail').classList.remove('d_none');
+    document.getElementById('failEmail').classList.remove('hide');
 }
 
 /**
  * Marks all fields in the add contact form as invalid by adding a 'failinput' class to each element
- * and displays an error message by removing the 'd_none' class from the 'failAll' element.
+ * and displays an error message by removing the 'hide' class from the 'failAll' element.
  */
 function failAllAdd() {
     document.getElementById('name').classList.add('failinput');
     document.getElementById('email').classList.add('failinput');
     document.getElementById('phone').classList.add('failinput');
-    document.getElementById('failAll').classList.remove('d_none');
+    document.getElementById('failAll').classList.remove('hide');
 }
 
 /**
  * Marks all fields in the edit contact form as invalid by adding a 'failinput' class to each element
- * and displays an error message by removing the 'd_none' class from the 'failAllEdit' element.
+ * and displays an error message by removing the 'hide' class from the 'failAllEdit' element.
  */
-function failAllEdit() {
+function failAllEdit() { 
     document.getElementById('name2').classList.add('failinput');
     document.getElementById('email2').classList.add('failinput');
     document.getElementById('phone2').classList.add('failinput');
-    document.getElementById('failAllEdit').classList.remove('d_none');
+    document.getElementById('failAllEdit').classList.remove('hide');
 }
 
 /**
  * Adds a red border to the phone input field and makes the error message visible in the edit contact form.
  */
-function failPhoneEdit() {
+function failPhoneEdit() { 
     document.getElementById('phone2').classList.add('failinput');
-    document.getElementById('failPhoneEdit').classList.remove('d_none');
+    document.getElementById('failPhoneEdit').classList.remove('hide');
 }
 
 /**
  * Adds a red border to the email input field and makes the error message visible in the edit contact form.
  */
-function failEmailEdit() {
+function failEmailEdit() { 
     document.getElementById('email2').classList.add('failinput');
-    document.getElementById('failEmailEdit').classList.remove('d_none');
+    document.getElementById('failEmailEdit').classList.remove('hide');
 }

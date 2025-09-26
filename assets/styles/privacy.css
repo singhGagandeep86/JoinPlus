@@ -6,10 +6,6 @@
     --sideheader-font-color: #CDCDCD;
 }
 
-.d_none {
-    display: none !important;
-}
-
 * {
     margin: 0;
     padding: 0;

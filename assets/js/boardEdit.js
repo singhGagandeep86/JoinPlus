@@ -224,7 +224,9 @@ function loadAllAttachments() {
         }
     }
 }
-
+/** Populates the attachment area with the provided task object's attachments.
+ * If no attachments are provided, it clears the attachment area section and hides the attachment area.
+ * If attachments are provided, it populates the attachment area section with the provided attachment names and files. */
 function loadTheAttachments() {
     let fileListNew = document.getElementById('file-List');
     let removeAllNew = document.getElementById('remove-All');
@@ -240,6 +242,9 @@ function loadTheAttachments() {
     }
 }
 
+/**
+ * Removes an attachment file from the list of attachments.
+ */
 function removeTheAttachmentFile(event, name) {
     event.stopPropagation();
     let filter = attachmentsToArray.indexOf(attachmentsToArray.filter(attachment => attachment.name == name)[0]);
@@ -357,11 +362,11 @@ function addInputSubtastk() {
 }
 
 /** Generates an HTML template for a file attachment. */
-function filesTemplate(index, img, name) {
+function filesTemplate(index, img, name, size) {
     return `<div class="file-container">
     <div class="removeAttach"><img src="../img/Closewhite.png"></div>
     <img src=${img}>
-    <div class="file-name">${name}</div>
+    <div class="file-name">${name}(${size})</div>
     </div>`
 }
 
@@ -560,7 +565,7 @@ function loadnewTaskEdit() {
 /** Handles file drop event in task edit page. Prevents default event handler and removes active class from picker area.
  * Iterates over the dropped files and checks if the file is an image. If the file is not an image, an error message is displayed.
  * If the file is an image, it is sent to be manipulated.*/
-function dropHandler(event) {
+function dropHandler(event, picker) {
     event.preventDefault();
     document.getElementById('pickerArea').classList.remove('picker-active');
     const error = document.getElementById('error');
@@ -568,32 +573,42 @@ function dropHandler(event) {
     [...event.dataTransfer.items].forEach(async (item, i) => {
         if (item.kind === "file") {
             const file = item.getAsFile();
-            if (!file.type.startsWith('image/')) return error.innerHTML = `<b>${file.type}</b>type is not Allowed!`;
-            manipulatePickedFile(file);
+            if (!allowedTypes.includes(file.type)) return error.innerHTML = `<b>${file.type}</b>type is not Allowed!`;
+            manipulatePickedFile(file, picker);
         }
     });
 }
 
 /** Adds the 'picker-active' class to the picker area, indicating that file drops are allowed. */
-function activatePickArea(event) {
+function activatePickArea(event, mode) {
     event.preventDefault();
-    document.getElementById('pickerArea').classList.add('picker-active');
+   if (mode === 'newTask') {
+        document.getElementById('pickerArea').classList.add('picker-active');
+    }
+    if (mode === 'editTask') {
+        document.getElementById('picker-Area').classList.add('picker-active');
+    }
 }
 
 /** Removes the 'picker-active' class from the picker area, indicating that file drops are no longer allowed. */
-function deactivatePickArea(event) {
+function deactivatePickArea(event, mode) {
     event.preventDefault();
-    document.getElementById('pickerArea').classList.remove('picker-active');
+    if (mode === 'newTask') {
+        document.getElementById('pickerArea').classList.remove('picker-active');
+    }
+    if (mode === 'editTask') {
+        document.getElementById('picker-Area').classList.remove('picker-active');
+    }
 }
 
 /** Opens the file picker element by simulating a click event. */
-function openFilePicker() {
+function openFilePicker(picker) {
     let filesPicker = document.getElementById('filesPicker');
 
     if (!filesPicker) return;
 
     if (!filesPicker.dataset.listener) {
-        filesPicker.addEventListener('change', handlepickedFiles);
+        filesPicker.addEventListener('change', (event) => handlepickedFiles(event, picker));
         filesPicker.dataset.listener = "true";
     }
 
@@ -602,23 +617,27 @@ function openFilePicker() {
 }
 
 /**Handles the file picker change event, converting the selected files to base64 strings and adding them to the attachments array.*/
-function handlepickedFiles(event) {
+function handlepickedFiles(event, picker) {
     const allFiles = event.target.files;
     let error = document.getElementById('error');
     if (error) error.innerHTML = '';
     if (allFiles.length > 0) {
-        if (!allFiles[0].type.startsWith('image/')) return error.innerHTML = `<b>${allFiles[0].type}</b>type is not Allowed!`;
-        Array.from(allFiles).forEach(async file => manipulatePickedFile(file));
+        if (!allowedTypes.includes(allFiles[0].type)) return error.innerHTML = `<b>${allFiles[0].type}</b>type is not Allowed!`;
+        Array.from(allFiles).forEach(async file => manipulatePickedFile(file, picker));
     }
 }
 
 /** Handles a single file picked by the user, compressing it to a base64 string and adding it to the attachments array. */
-async function manipulatePickedFile(file) {
+async function manipulatePickedFile(file, picker) {
     document.getElementById('error').innerHTML = '';
     const compressedBase64 = await compressImage(file, 800, 800, 0.7);
     document.createElement('img').src = compressedBase64;
+    const { width, height } = await getImageDimensions(compressedBase64); 
+    file.width = width;
+    file.height = height;
     loadAttachmentsToArray(file, compressedBase64, createSizeUnit(compressedBase64));
-    loadTheAttachments();
+    if (picker === 'editTask') loadAllAttachments();
+    if (picker === 'newTask') loadTheAttachments();
 }
 
 /** Adds a file to the attachments array. */
@@ -627,7 +646,8 @@ function loadAttachmentsToArray(file, compressedBase64, createSize) {
         name: file.name,
         type: file.type,
         size: createSize,
-        data: compressedBase64
+        data: compressedBase64,
+        dimensions: { 'width': `${file.width}px`, 'height': `${file.height}px` }
     });
 }
 
@@ -715,7 +735,7 @@ function slideToLeft(index) {
         index = attachmentsToArray.length - 1;
     }
     let selectedImage = attachmentsToArray[index];
-    showSelAttachment(index, selectedImage.data, selectedImage.name);
+    showSelAttachment(index, selectedImage.data, selectedImage.name, 'newTask');
 }
 
 /**Slides the image in the photo area to the right by one index. If the index is equal to the length of the attachments array, it wraps around to the first index in the attachments array. */
@@ -725,7 +745,7 @@ function slideToRight(index) {
         index = 0;
     }
     let selectedImage = attachmentsToArray[index];
-    showSelAttachment(index, selectedImage.data, selectedImage.name);
+    showSelAttachment(index, selectedImage.data, selectedImage.name, 'newTask');
 }
 
 /**Downloads the image at the given index from the attachments array. */

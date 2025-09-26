@@ -6,7 +6,7 @@
  */
 function failNameEdit() {
     document.getElementById('name2').classList.add('failinput');
-    document.getElementById('failNameEdit').classList.remove('d_none');
+    document.getElementById('failNameEdit').classList.remove('hide');
 }
 
 

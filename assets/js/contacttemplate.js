@@ -71,18 +71,18 @@ function overlay2(i, initials) {
                                  <div class="EditInput">
                                      <div class="input-container"><input id="name2" class="input" type="text" placeholder="Name"
                                      oninput="clearFailEdit('name2', 'failNameEdit')">
-                                     <div id="failNameEdit" class="fail d_none "><span>Please enter a correct name</span>
+                                     <div id="failNameEdit" class="fail hide"><span>Please enter a correct name</span>
                                         </div>
                                      </div>
                                      <div class="input-container"><input id="email2" class="input" type="email" placeholder="Email"
                                      oninput="clearFailEdit('email2', 'failEmailEdit')">
-                                     <div id="failEmailEdit" class="fail d_none "><span>Please enter a correct email, example alex@test.de</span></div>
+                                     <div id="failEmailEdit" class="fail hide"><span>Please enter a correct email</span></div>
                                      </div>
                                      <div class="input-container"><input id="phone2" class="input" type="tel" placeholder="Phone"
                                      oninput="clearFailEdit('phone2', 'failPhoneEdit')">
-                                     <div id="failPhoneEdit" class="fail d_none "><span>Please enter a correct number, just a number.</span></div>
+                                     <div id="failPhoneEdit" class="fail hide"><span>Please enter a correct number, just a number.</span></div>
                                      </div>
-                                    <div id="failAllEdit" class="fail d_none"><span>Please enter a name, email and phone number.</span></div>
+                                    <div id="failAllEdit" class="fail hide"><span>Please enter a name, email and phone number.</span></div>
                                  </div>
                                  <div class="popup-actions">
                                      <button onclick="deleteEdit(${i})" type="button" id="cancel-icon" class="deleteBtnEditContact">Delete</button>
@@ -136,10 +136,16 @@ function loadContactDetails(i, number, color) {
                 </div>
 `}
 
+/**
+ * Generates the HTML for displaying a contact picture.
+ */
 function loadContactPic(pic) {
     return `   <img id="contactImg" class="profle-pic" src="${pic}">`
 }
 
+/**
+ * Generates an HTML string for displaying a contact's initials.
+ */
 function loadContactInitials(initial) {
     return ` <span id="contactInitials">${initial}</span>`
 }
@@ -148,7 +154,6 @@ function loadContactInitials(initial) {
  * Generates the HTML for displaying a contact item in the contact list.
  * @returns {string} - The HTML string for a contact item.
  */
-
 function loadContactWithInitials(i, initials) {
     return `<div class="contact-group">
                 <div class="contact-item active2" onclick="showContactDetails(${i}, '${initials}')">
@@ -161,6 +166,8 @@ function loadContactWithInitials(i, initials) {
             </div>`;
 }
 
+/** Generates the HTML for displaying a contact item with a picture.
+ */
 function loadContactWithPic(i, initials, pic) {
     return `<div class="contact-group">
                 <div class="contact-item active2" onclick="showContactDetails(${i}, '${initials}')">
@@ -173,6 +180,9 @@ function loadContactWithPic(i, initials, pic) {
             </div>`;
 }
 
+
+/** Generates an HTML string for displaying a contact's profile picture
+ * and a button for uploading a new picture. */
 function showImagePicker(pic) {
     return `   <img id="userProfileImg" src="${pic}" class="profle-pic"> 
                <input id="contactImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">

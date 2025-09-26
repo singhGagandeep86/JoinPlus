@@ -230,7 +230,7 @@ function contactAreaManupulate(contactName, contactscolor, allContactsSection, c
  * If no attachments are provided, it clears the attachment area section and hides the attachment area.
  * If attachments are provided, it populates the attachment area section with the provided attachment names and files.
  */
-function addAttachInfo(objDateTask) {
+function addAttachInfo(objDateTask) { 
     let attachContainer = document.getElementById('attachContainer');
     let allAttachesSection = document.getElementById('allAttachesSection');
     allAttachesSection.innerHTML = '';

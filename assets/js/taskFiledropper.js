@@ -30,7 +30,7 @@ function dropHandler(event) {
     [...event.dataTransfer.items].forEach(async (item, i) => {
         if (item.kind === "file") {
             const file = item.getAsFile();
-            if (!file.type.startsWith('image/')) return error.innerHTML = `<b>${file.type}</b>type is not Allowed!`;
+            if (!allowedTypes.includes(file.type)) return error.innerHTML = `<b>${file.type}</b>type is not Allowed!`;
             manipulateFile(file);
         }
     });

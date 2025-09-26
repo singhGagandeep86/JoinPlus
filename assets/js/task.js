@@ -448,7 +448,8 @@ function loadAttachments() {
       const attachment = attachments[i];
       const name = attachment.name;
       const base64 = attachment.data;
-      fileList.innerHTML += filesTemplate(i, base64, name);
+      const size = attachment.size;
+      fileList.innerHTML += filesTemplate(i, base64, name, size);
     }
   }
 }

@@ -116,11 +116,6 @@
         border-radius: 10px;
     }
 
-    /* .header {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        padding: 10px;
-    } */
-
     .mainDesign {
         height: 100%;
         width: 100%;
@@ -129,10 +124,6 @@
     .contact-group {
         width: 100%;
     }
-
-    /* .header span {
-        width: 34px;
-    } */
 
     .content {
         padding: 0;
@@ -182,6 +173,10 @@
     }
 
     .popup-left {
+
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 30px;
+
         .logo {
             display: none;
         }
@@ -195,8 +190,6 @@
             display: none;
         }
 
-        border-bottom-left-radius:0 ;
-        border-top-right-radius: 30px;
     }
 
     .popup-right {
@@ -314,14 +307,6 @@
         padding: 0;
     }
 
-    .contact-slide-in {
-        height: 300vh;
-    }
-
-    .content {
-        height: 300vh;
-    }
-
     .contact-text {
         display: block;
     }
@@ -392,6 +377,12 @@
     }
 }
 
+@media (max-height: 675px) {
+    .content {
+        padding-bottom: 80px;
+    }
+}
+
 @media(max-width: 320px) {
     .popup-test {
         display: block;
@@ -416,7 +407,7 @@
     }
 }
 
-@media (min-width: 200px) and (max-width:460px) {
+@media (min-width: 200px) and (max-width:460px) and (min-height: 710px) {
     .popupEdit {
         animation: slideInMobile 0.5s forwards ease;
         width: 300px;

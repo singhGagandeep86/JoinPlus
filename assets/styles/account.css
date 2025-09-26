@@ -256,7 +256,8 @@
             }
 
             .initialsCont {
-                display: none;
+                position: absolute;
+                bottom: 50%;
             }
 
             .userDetails {
@@ -298,4 +299,20 @@
         display: block !important;
     }
 
+}
+
+@media (max-width: 420px) and (max-height: 682px) {
+    .editContact{
+        height: 100%;
+        .left-part {
+            padding: 0px;
+        }
+        .right-part {
+            padding: 0px;
+            .initialsCont {
+                top: 20%;
+                right: 0%;
+            }
+        }
+    }
 }

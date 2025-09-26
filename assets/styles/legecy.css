@@ -13,10 +13,6 @@
     font-family: 'Inter';
 }
 
-.d_none {
-    display: none !important;
-}
-
 .content {
     padding: 4rem 4rem 0 4rem;
 }

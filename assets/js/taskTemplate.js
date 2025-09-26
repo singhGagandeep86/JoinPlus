@@ -9,6 +9,9 @@ function contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastN
     </label>`;
 }
 
+/**
+ * Generates an HTML template for displaying a contact item with a checkbox and a picture.
+ */
 function contactsTempWithPic(sanitizedEachName, colour, eachName, picture, contactIssuedNumber) {
     return `<label>
     <input type="checkbox"class="checkboxDesign" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}', '${picture}', '${contactIssuedNumber}')">
@@ -72,8 +75,11 @@ function newSubTemp(newValue) {
 </div>`;
 }
 
-function filesTemplate(index, img, name) {
-    return `<div class="file-container" onclick="showAttachments('${index}', '${img}', '${name}')">
+/**
+ * Generates an HTML template for a file attachment.
+ */
+function filesTemplate(index, img, name, size) {
+    return `<div class="file-container" onclick="showAttachments('${index}', '${img}', '${name}', '${size}')">
     <img class="removeAttach d_none" src="../img/Closewhite.png" onclick="removeAttachment(event, '${name}')">
     <img src=${img}>
     <div class="file-name">${name}</div>

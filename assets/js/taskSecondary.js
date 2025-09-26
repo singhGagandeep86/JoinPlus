@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         filePicker.addEventListener('change', () => {
             const allFiles = filePicker.files;
             if (allFiles.length === 0) return;
-            if (!allFiles[0].type.startsWith('image/')) return error.innerHTML = `<b>${allFiles[0].type}</b>type is not Allowed!`;
+            if (!allowedTypes.includes(allFiles[0].type)) return error.innerHTML = `<b>${allFiles[0].type}</b>type is not Allowed!`;
             Array.from(allFiles).forEach(async file => manipulateFile(file))
         })
     }
@@ -24,6 +24,9 @@ async function manipulateFile(file) {
     document.getElementById('error').innerHTML = '';
     const compressedBase64 = await compressImage(file, 800, 800, 0.7);
     document.createElement('img').src = compressedBase64;
+    const { width, height } = await getImageDimensions(compressedBase64);
+    file.width = width;
+    file.height = height;
     loadAttachmentsArray(file, compressedBase64, createSize(compressedBase64));
     loadAttachments();
 }
@@ -34,7 +37,8 @@ function loadAttachmentsArray(file, compressedBase64, createSize) {
         name: file.name,
         type: file.type,
         size: createSize,
-        data: compressedBase64
+        data: compressedBase64,
+        dimensions: { 'width': `${file.width}px`, 'height': `${file.height}px` }
     });
 }
 
@@ -372,7 +376,7 @@ function compareDate(year, month, day, inputYear, inputMonth, inputDate) {
 }
 
 /** Displays the selected image in a popup area with controls to download the image, close the popup, and navigate left and right. */
-function showAttachments(index, img, name) {
+function showAttachments(index, img, name, size) { 
     let attachmentsContainer = document.getElementById('attachmentsCont');
     attachmentsContainer.classList.remove('d_none');
     attachmentsContainer.innerHTML = `
@@ -382,7 +386,7 @@ function showAttachments(index, img, name) {
         <div class="imgMover"><img src="../img/arrow-Lft-line.png" onclick='slideImage("left", ${index})'><img src="../img/arrow-right-line.png" onclick='slideImage("right", ${index})'></div>
         <img class="selectedPhoto" id="selectedPhoto"></div>`
     document.getElementById('selectedPhoto').src = img;
-    document.getElementById('selectionName').innerHTML = `${name}`;
+    document.getElementById('selectionName').innerHTML = `${name} (${size})`;
 }
 
 /** Hides the attachments container and removes its event listeners. */
@@ -401,7 +405,8 @@ function removeAttachment(event, name) {
         const attachment = attachments[i];
         const name = attachment.name;
         const base64 = attachment.data;
-        fileList.innerHTML += filesTemplate(i, base64, name);
+        const size = attachment.size;
+        fileList.innerHTML += filesTemplate(i, base64, name, size);
     }
     if (attachments.length == 0) {
         removeAll.classList.add('d_none');
