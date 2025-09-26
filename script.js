@@ -83,7 +83,6 @@ function handleLoginError() {
  * @returns {void}
  */
 function handleLogin(event) {
-    debugger;
     event.preventDefault();
     let { email, password } = getEmailAndPassword(event);
     if (validateCredentials(email, password)) {

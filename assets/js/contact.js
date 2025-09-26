@@ -2,7 +2,7 @@ let path = '';
 let array = [];
 let data = {};
 let isEventListenerRegistered = false;
-
+let contactValid = true;
 
 let colorGen = [
     "Purple", "Hellpurple", "Gelb", "Turkis", "Rosa", "Hellblau",
@@ -95,7 +95,7 @@ function loadContact() {
     let currentLetter = '';
 
     for (let i = 0; i < array.length; i++) {
-     contactManip(i, contactSpace, currentLetter);
+        contactManip(i, contactSpace, currentLetter);
     }
 }
 
@@ -103,18 +103,18 @@ function loadContact() {
  * Generates HTML for a contact item based on its index in the array of contacts.
  * Checks if the contact has a picture and generates HTML accordingly. */
 function contactManip(i, contactSpace, currentLetter) {
-       let contactName = array[i].name;
-        let initials = extrahiereInitialen(contactName);
-        let firstLetter = contactName.charAt(0).toUpperCase();
-        if (firstLetter !== currentLetter) {
-            contactSpace.innerHTML += `<h2>${firstLetter}</h2>`;
-            currentLetter = firstLetter;
-        }
-        if (array[i].pic) {
-            contactSpace.innerHTML += loadContactWithPic(i, initials, array[i].pic);
-        } else {
-            contactSpace.innerHTML += loadContactWithInitials(i, initials);
-        }
+    let contactName = array[i].name;
+    let initials = extrahiereInitialen(contactName);
+    let firstLetter = contactName.charAt(0).toUpperCase();
+    if (firstLetter !== currentLetter) {
+        contactSpace.innerHTML += `<h2>${firstLetter}</h2>`;
+        currentLetter = firstLetter;
+    }
+    if (array[i].pic) {
+        contactSpace.innerHTML += loadContactWithPic(i, initials, array[i].pic);
+    } else {
+        contactSpace.innerHTML += loadContactWithInitials(i, initials);
+    }
 }
 
 /**
@@ -299,7 +299,8 @@ async function addContactData() {
     let name = document.getElementById('name').value.trim();
     let email = document.getElementById('email').value.trim();
     let phone = document.getElementById('phone').value.trim();
-    if (valiAdd(name, email, phone)) {
+    valiAdd(name, email, phone);
+    if (contactValid) {
         let number = generateRandomNumber();
         let firstNameInitial = extrahiereInitialen2(name);
         let color = coloGenerator().toLowerCase();
@@ -317,12 +318,14 @@ function isValid(input, regex) { return regex.test(input); }
  * @returns {boolean} - Returns true if all fields are valid; otherwise, false.
  */
 function valiAdd(name, email, phone) {
-    if (!name && !email && !phone) return failAllAdd() && false;
-    if (!isValid(name, /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/)) return failName() && false;
-    if (!isValid(email, /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/))
-        return failEmailAdd() && false;
-    if (!isValid(phone, /^[0-9]+$/)) return failPhoneAdd() && false;
-    return true;
+    contactValid = true;
+    if (!name && !email && !phone) return failAllAdd();
+    else {
+        if (!isValid(name, /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/)) failName();
+        if (!isValid(email, /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/))
+            failEmailAdd();
+        if (!isValid(phone, /^[0-9]+$/)) failPhoneAdd();
+    }
 }
 
 /**
@@ -354,15 +357,19 @@ function valiEdit() {
 function failName() {
     document.getElementById('name').classList.add('failinput');
     document.getElementById('failName').classList.remove('hide');
+    document.getElementById('failAll').classList.add('hide');
+    contactValid = false;
 }
 
 /**
  * Marks the phone field as invalid by adding a 'failinput' class and
  * displays an error message by removing the 'hide' class.
  */
-function failPhoneAdd() { 
+function failPhoneAdd() {
     document.getElementById('phone').classList.add('failinput');
     document.getElementById('failPhone').classList.remove('hide');
+    document.getElementById('failAll').classList.add('hide');
+    contactValid = false;
 }
 
 /**
@@ -372,6 +379,8 @@ function failPhoneAdd() {
 function failEmailAdd() {
     document.getElementById('email').classList.add('failinput');
     document.getElementById('failEmail').classList.remove('hide');
+    document.getElementById('failAll').classList.add('hide');
+    contactValid = false;
 }
 
 /**
@@ -383,13 +392,14 @@ function failAllAdd() {
     document.getElementById('email').classList.add('failinput');
     document.getElementById('phone').classList.add('failinput');
     document.getElementById('failAll').classList.remove('hide');
+    contactValid = false;
 }
 
 /**
  * Marks all fields in the edit contact form as invalid by adding a 'failinput' class to each element
  * and displays an error message by removing the 'hide' class from the 'failAllEdit' element.
  */
-function failAllEdit() { 
+function failAllEdit() {
     document.getElementById('name2').classList.add('failinput');
     document.getElementById('email2').classList.add('failinput');
     document.getElementById('phone2').classList.add('failinput');
@@ -399,7 +409,7 @@ function failAllEdit() {
 /**
  * Adds a red border to the phone input field and makes the error message visible in the edit contact form.
  */
-function failPhoneEdit() { 
+function failPhoneEdit() {
     document.getElementById('phone2').classList.add('failinput');
     document.getElementById('failPhoneEdit').classList.remove('hide');
 }
@@ -407,7 +417,7 @@ function failPhoneEdit() {
 /**
  * Adds a red border to the email input field and makes the error message visible in the edit contact form.
  */
-function failEmailEdit() { 
+function failEmailEdit() {
     document.getElementById('email2').classList.add('failinput');
     document.getElementById('failEmailEdit').classList.remove('hide');
 }
