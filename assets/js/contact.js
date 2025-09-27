@@ -341,13 +341,16 @@ function valiEdit() {
     let name = document.getElementById('name2').value.trim(),
         email = document.getElementById('email2').value.trim(),
         phone = document.getElementById('phone2').value.trim();
-
-    if (!name && !email && !phone) return failAllEdit() && false;
-    if (!isValid(name, /^[a-zA-Z]+( [a-zA-Z]+)*$/)) return failNameEdit() && false;
-    if (!isValid(email, /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/))
-        return failEmailEdit() && false;
-    if (!isValid(phone, /^[0-9]+$/)) return failPhoneEdit() && false;
-    return true;
+    contactValid = true;
+    if (!name && !email && !phone) {
+        return failAllEdit();
+    }
+    else {
+        if (!isValid(name, /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/)) failNameEdit();
+        if (!isValid(email, /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/))
+            failEmailEdit();
+        if (!isValid(phone, /^[0-9]+$/)) failPhoneEdit();
+    }
 }
 
 /**
@@ -404,6 +407,7 @@ function failAllEdit() {
     document.getElementById('email2').classList.add('failinput');
     document.getElementById('phone2').classList.add('failinput');
     document.getElementById('failAllEdit').classList.remove('hide');
+    contactValid = false;
 }
 
 /**
@@ -412,6 +416,8 @@ function failAllEdit() {
 function failPhoneEdit() {
     document.getElementById('phone2').classList.add('failinput');
     document.getElementById('failPhoneEdit').classList.remove('hide');
+    document.getElementById('failAllEdit').classList.add('hide');
+    contactValid = false;
 }
 
 /**
@@ -420,4 +426,6 @@ function failPhoneEdit() {
 function failEmailEdit() {
     document.getElementById('email2').classList.add('failinput');
     document.getElementById('failEmailEdit').classList.remove('hide');
+    document.getElementById('failAllEdit').classList.add('hide');
+    contactValid = false;
 }

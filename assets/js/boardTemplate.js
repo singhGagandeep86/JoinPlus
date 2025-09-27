@@ -104,9 +104,9 @@ function templatePopUpTask(id) {
                             </div>
                             <div id="inputSubClass" class="subtasks">
                                 <div class="smallHead">Subtasks</div>
-                                <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
+                                <div class="inputWrapper" onclick="renderSubTask()"><input id="inputField" class="subtasksTxt"
                                         placeholder="Add new subtask" type="text">
-                                    <img class="tsksGen" src="../img/subTaskIcon.svg">
+                                    <img class="tsksGen" onclick="renderSubTask()" src="../img/subTaskIcon.svg">
                                 </div>
                             </div>
                             <ul class="a" id="subTsksBoard"></ul>

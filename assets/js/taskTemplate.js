@@ -26,9 +26,9 @@ function contactsTempWithPic(sanitizedEachName, colour, eachName, picture, conta
 function subTaskTemp() {
     return `<div class="smallHead">Subtasks</div>
     <div class="inputWrapper">
-    <input id="inputField" class="subtasksTxt" placeholder="Add  new subtask" type="text" onfocus="renderSubTask()">
+    <input id="inputField" class="subtasksTxt" placeholder="Add new subtask" type="text" onfocus="renderSubTask()">
     <div class="tsksBtns"><img class="inputIcon" src="../img/subTaskCancel.svg" onclick="resetInput()"><img onclick="addList()" class="inputIcon2" src="../img/subTaskEnter.svg"></div>
-</div>`;
+  </div><p id="emptySubError" style="color: red;" class="subTaskIcons">Please Enter a Subtask !!</p>`;
 }
 
 /**
@@ -49,7 +49,8 @@ function generatedList(subTaskInput) {
 function emptyField() {
     return `<div class="smallHead">Subtasks</div>
     <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt" placeholder="Add new subtask" type="text">
-    <img class="tsksGen" src="../img/subTaskIcon.svg"></div>`;
+    <img class="tsksGen" src="../img/subTaskIcon.svg"></div>
+     <p id="emptySubError" style="color: red;" class="subTaskIcons">Please Enter a Subtask !!</p>`;
 }
 
 /**

@@ -7,6 +7,8 @@
 function failNameEdit() {
     document.getElementById('name2').classList.add('failinput');
     document.getElementById('failNameEdit').classList.remove('hide');
+    document.getElementById('failAllEdit').classList.add('hide');
+    contactValid = false;
 }
 
 
@@ -199,7 +201,8 @@ async function editContactData(i) {
     let email = document.getElementById('email2').value;
     let phone = document.getElementById('phone2').value;
     let pic = document.getElementById('userProfileImg').src;
-    if (valiEdit()) {
+    valiEdit();
+    if (contactValid) {
         if (pic === "") {
             await editContactFB(name, email, phone, number);
         } else {

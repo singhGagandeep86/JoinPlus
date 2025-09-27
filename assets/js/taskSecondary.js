@@ -113,6 +113,7 @@ function resetingLocalVariables() {
     document.getElementById('moreIcon').classList.add("d_none");
     document.getElementById('removeAll').classList.add("selectHide");
     document.getElementById('fileList').innerHTML = "";
+    document.getElementById('inputSubClass').innerHTML = emptyField();
 }
 
 /**

@@ -617,7 +617,7 @@ label {
 .primaryCheck:hover {
     box-shadow: 0px 4px 4px 0px #00000040;
     background: #29ABE2;
-    border: 0px;
+    border-color: transparent;
 }
 
 .primevect {
@@ -700,6 +700,10 @@ li:hover {
 
 .subTaskIcon {
     display: none;
+}
+
+.subTaskIcons {
+    opacity: 0;
 }
 
 .subTaskInput {
@@ -836,7 +840,7 @@ li:hover {
     }
 
     p {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 400;
         color: #848484;
     }

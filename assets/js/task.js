@@ -215,6 +215,7 @@ function spliceSelection(currenID, name, picture, contactIssuedNumber) {
 function renderSubTask() {
   if (!document.getElementById('inputField')) {
     document.getElementById('inputSubClass').innerHTML = subTaskTemp();
+    document.getElementById('inputField').focus();
     document.getElementById('inputField').style.backgroundImage = 'none';
   }
 }
@@ -235,7 +236,13 @@ function addList() {
   let subTaskInput = document.getElementById('inputField').value;
   let subTaskBoard = document.getElementById('subTsksBoard');
   if (subTaskInput) {
-    subTaskBoard.innerHTML += generatedList(subTaskInput);
+    if (subTaskInput.trim() === '') {
+      document.getElementById('inputField').focus();
+      document.getElementById('emptySubError').classList.remove('subTaskIcons');
+      return;
+    } else {
+      subTaskBoard.innerHTML += generatedList(subTaskInput);
+    }
   }
   document.getElementById('inputSubClass').innerHTML = emptyField();
 }
@@ -245,7 +252,7 @@ function addList() {
 */
 function hoverEffect(element) {
   let buttons = element.querySelector('.btns');
-  buttons.classList.remove('subTaskIcon');
+  buttons.classList.remove('subTaskIcons');
 }
 
 /**
@@ -253,7 +260,7 @@ function hoverEffect(element) {
 */
 function normalEffect(element) {
   let buttons = element.querySelector('.btns');
-  buttons.classList.add('subTaskIcon');
+  buttons.classList.add('subTaskIcons');
 }
 
 /**
