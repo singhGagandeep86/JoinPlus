@@ -119,8 +119,10 @@ function templatePopUpTask(id) {
                                 <div id="allCntcts" class="checkboxes">
                                 </div>
                                 <div class="selCntctsDiv">
+                                   <div id="moreIconLft" class="moreBtn flip hide" onclick="scrollOn('left')"><img class="moreImg"
+                                            src="../img/arrow.png"></div>
                                     <div id="selCntcts" class="showSel"></div>
-                                    <div id="moreIcon" class="moreBtn d_none" onclick="scrollOn()"><img
+                                    <div id="moreIconRht" class="moreBtn hide" onclick="scrollOn('right')"><img
                                             class="moreImg" src="../img/arrow.png"></div>
                                 </div>
                             </div>

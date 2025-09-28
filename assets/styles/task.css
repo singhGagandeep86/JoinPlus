@@ -657,6 +657,7 @@ ul.a {
     list-style: none;
     padding-left: 0;
     margin-left: 0.75em;
+    margin-top: 28px;
     text-align: left;
     scrollbar-width: none;
 }
@@ -815,6 +816,10 @@ li:hover {
     cursor: pointer;
     border: none;
     transition: 125ms ease-in-out;
+}
+
+.flip {
+    transform: scaleX(-1);
 }
 
 .moreBtn:hover {

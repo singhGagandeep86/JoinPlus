@@ -28,7 +28,7 @@ function subTaskTemp() {
     <div class="inputWrapper">
     <input id="inputField" class="subtasksTxt" placeholder="Add new subtask" type="text" onfocus="renderSubTask()">
     <div class="tsksBtns"><img class="inputIcon" src="../img/subTaskCancel.svg" onclick="resetInput()"><img onclick="addList()" class="inputIcon2" src="../img/subTaskEnter.svg"></div>
-  </div><p id="emptySubError" style="color: red;" class="subTaskIcons">Please Enter a Subtask !!</p>`;
+  </div><p id="emptySubError" style="color: red;" class="subTaskIcons">Please Enter a Text !!</p>`;
 }
 
 /**
@@ -37,7 +37,7 @@ function subTaskTemp() {
 function generatedList(subTaskInput) {
     return `<li onmouseover="hoverEffect(this)" onmouseleave="normalEffect(this)" ondblclick="editsubTask(this)">
     <div class="leftPart"><span class="bullet"></span>${subTaskInput}</div>
-    <div class="btns subTaskIcon">
+    <div class="btns subTaskIcons">
     <img onclick="editsubTask(this, '${subTaskInput}')" class="inputIcon" src="../img/SubtasksEdit.png">
     <img onclick="delsubTask(this)" class="deleteIcon" src="../img/SubtasksDel.png">
 </div></li>`;
@@ -50,7 +50,7 @@ function emptyField() {
     return `<div class="smallHead">Subtasks</div>
     <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt" placeholder="Add new subtask" type="text">
     <img class="tsksGen" src="../img/subTaskIcon.svg"></div>
-     <p id="emptySubError" style="color: red;" class="subTaskIcons">Please Enter a Subtask !!</p>`;
+     <p id="emptySubError" style="color: red;" class="subTaskIcons">Please Enter a Text !!</p>`;
 }
 
 /**
@@ -70,7 +70,7 @@ function editTempelate(currentValue) {
 */
 function newSubTemp(newValue) {
     return ` <div class="leftPart"><span class="bullet"></span>${newValue}</div>
- <div class="btns subTaskIcon">
+ <div class="btns subTaskIcons">
  <img onclick="editsubTask(this, '${newValue}')" class="inputIcon" src="../img/SubtasksEdit.png">
  <img onclick="delsubTask(this)" class="deleteIcon" src="../img/SubtasksDel.png">
 </div>`;

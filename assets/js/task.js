@@ -1,3 +1,4 @@
+
 let token = sessionStorage.getItem('authToken');
 let names = [];
 let namesInitials = [];
@@ -133,9 +134,9 @@ function ifelseLogics(currenID, name, colour, picture, contactIssuedNumber) {
     spliceSelection(currenID, name, picture, contactIssuedNumber);
   }
   if (namesInitials.length > 4) {
-    document.getElementById('moreIcon').classList.remove("d_none");
+    document.getElementById('moreIconRht').classList.remove("hide");
   } else {
-    document.getElementById('moreIcon').classList.add("d_none");
+    document.getElementById('moreIconRht').classList.add("hide");
   }
 }
 
@@ -241,6 +242,7 @@ function addList() {
       document.getElementById('emptySubError').classList.remove('subTaskIcons');
       return;
     } else {
+      document.getElementById('emptySubError').classList.add('subTaskIcons');
       subTaskBoard.innerHTML += generatedList(subTaskInput);
     }
   }
@@ -425,17 +427,34 @@ function colorFirebase() {
   return coloursAsObject;
 }
 
-/**
- * Scrolls the contact selection area to the right.
-*/
-function scrollOn() {
+/** Scrolls the task contacts selection area left or right by a specified number of pixels.
+ * @param {string} direction - The direction to scroll the selection area. Can be either 'left' or 'right'. */
+function scrollOn(direction) {
   let scrollDiv = document.getElementById('selCntcts');
-  scrollDiv.scrollLeft = scrollDiv.scrollWidth;
+  let scrollPixels = 100;
+  if (direction === 'left') scrollLeft(scrollDiv, scrollPixels);
+  if (direction === 'right') scrollRight(scrollDiv, scrollPixels);
 }
 
-/**
- * Resets global variables related to contacts and their states.
-*/
+/** Scrolls the task contacts selection area to the left by a specified number of pixels.
+ * Removes the left arrow icon if the selection area is already at the start. */
+function scrollLeft(scrollDiv, scrollPixels) {
+  document.getElementById('moreIconRht').classList.remove("hide");
+  scrollDiv.scrollLeft -= scrollPixels;
+  if (scrollDiv.scrollLeft <= scrollPixels)
+    document.getElementById('moreIconLft').classList.add("hide");
+}
+
+/** Scrolls the task contacts selection area to the right by a specified number of pixels.
+ * Adds the right arrow icon if the selection area is not already at the end. */
+function scrollRight(scrollDiv, scrollPixels) {
+  document.getElementById('moreIconLft').classList.remove("hide");
+  scrollDiv.scrollLeft += scrollPixels;
+  if (scrollDiv.scrollLeft + scrollDiv.clientWidth >= scrollDiv.scrollWidth - scrollPixels)
+    document.getElementById('moreIconRht').classList.add("hide");
+}
+
+/** Resets global variables related to contacts and their states. */
 function resetingGlobalVariable() {
   expanded = false;
   names = [];

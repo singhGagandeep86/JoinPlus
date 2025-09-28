@@ -110,7 +110,8 @@ function resetingLocalVariables() {
     document.getElementById('arrow').style.transform = "rotate(0deg)";
     document.getElementById('subTsksBoard').innerHTML = '';
     document.getElementById('selCntcts').innerHTML = '';
-    document.getElementById('moreIcon').classList.add("d_none");
+    document.getElementById('moreIconLft').classList.add("hide");
+    document.getElementById('moreIconRht').classList.add("hide");
     document.getElementById('removeAll').classList.add("selectHide");
     document.getElementById('fileList').innerHTML = "";
     document.getElementById('inputSubClass').innerHTML = emptyField();

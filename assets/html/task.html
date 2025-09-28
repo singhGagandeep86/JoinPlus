@@ -143,7 +143,8 @@
                                         placeholder="Add new subtask" type="text">
                                     <img class="tsksGen" src="../img/subTaskIcon.svg">
                                 </div>
-                                <p id="emptySubError" style="color: red;" class="subTaskIcons">Please Enter a Subtask !!</p>
+                                <p id="emptySubError" style="color: red;" class="subTaskIcons">Please Enter a Text !!
+                                </p>
                             </div>
                             <ul class="a" id="subTsksBoard"></ul>
                             <div class="assignCntcts">
@@ -155,8 +156,10 @@
                                 <div id="allCntcts" class="checkboxes">
                                 </div>
                                 <div class="selCntctsDiv">
+                                    <div id="moreIconLft" class="moreBtn flip hide" onclick="scrollOn('left')"><img class="moreImg"
+                                            src="../img/arrow.png"></div>
                                     <div id="selCntcts" class="showSel"></div>
-                                    <div id="moreIcon" class="moreBtn d_none" onclick="scrollOn()"><img class="moreImg"
+                                    <div id="moreIconRht" class="moreBtn hide" onclick="scrollOn('right')"><img class="moreImg"
                                             src="../img/arrow.png"></div>
                                 </div>
                             </div>
