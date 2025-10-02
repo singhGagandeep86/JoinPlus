@@ -1,7 +1,7 @@
 @media (min-width: 1301px) {
-    .content {
+    /* .content {
         padding: 0;
-    }
+    } */
 
     .mini-add-contact {
         display: none;
@@ -9,6 +9,7 @@
 
     .mainDesign {
         width: 100%;
+        height: 100vh;
     }
 
     .arrowContact {
@@ -17,6 +18,29 @@
 
     .contact-text img {
         content: url("../img/Vectorstrich.png");
+    }
+}
+
+@media(max-width: 1114px) {
+    .popupEditRight {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .popupEditLeft {
+        padding: 10px;
+    }
+
+    #contactFormEdit {
+        margin: 0;
+    }
+
+    .EditInput {
+        margin: 10px;
+    }
+
+    .popup-actions {
+        justify-content: center;
     }
 }
 
@@ -58,9 +82,9 @@
 }
 
 @media(min-width: 801px) and (max-width:1300px) {
-    .content {
+    /* .content {
         padding: 0;
-    }
+    } */
 
     .container {
         justify-content: initial;
@@ -103,6 +127,7 @@
 
     .contact-container-right {
         margin-left: 20px;
+        padding-left: 0px;
     }
 
     .contact-mini {
@@ -126,8 +151,9 @@
     }
 
     .content {
-        padding: 0;
+        /* padding: 0; */
         width: 100%;
+        overflow: visible;
     }
 
     .picHelp {
@@ -137,6 +163,7 @@
     .container {
         overflow: auto;
         width: 100%;
+        padding-bottom: 80px !important;
     }
 
     .contact-container-right {
@@ -232,7 +259,8 @@
         animation: slideInMobile 0.5s forwards ease;
         width: 396px;
         flex-direction: column;
-        height: 760px;
+        gap: 60px;
+        /* height: 760px; */
     }
 
     .logoEdit {
@@ -278,13 +306,16 @@
 
     .EditInput {
         width: 364px;
-        gap: 24px;
-        margin-bottom: 10px;
+        gap: 2px;
+        margin: 0px;
     }
 
     .closeBtnEdit {
-        top: -700px;
-        right: -150px;
+        /* top: -700px;
+        right: -150px; */
+        top: 10px;
+        right: 10px;
+        position: absolute;
     }
 
     .closeBtnEdit img {
@@ -297,6 +328,49 @@
 
     .contact-mini {
         width: 50%;
+    }
+
+    #contactFormEdit {
+        width: auto;
+    }
+}
+
+@media (max-width: 800px) {
+    .popup {
+        padding-bottom: 14px;
+    }
+
+    .form-group {
+        margin-bottom: 14px;
+        gap: 14px;
+    }
+}
+
+@media (max-width: 460px) {
+
+    .btn-image {
+        display: none;
+    }
+
+    .mini-personadd-contact {
+        width: 64px;
+        display: flex;
+        position: absolute;
+        bottom: 90px;
+        height: 64px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .mini-add-contact {
+        border: none;
+        background: none;
+        padding-right: 50px;
+        width: 100%;
+        height: 60px;
+        position: fixed;
+        top: 400px;
+        left: 0;
     }
 }
 
@@ -315,7 +389,7 @@
         padding-left: 10px;
         margin-left: 0;
         margin-top: 0px;
-        overflow: auto;
+        overflow: visible;
     }
 
     .contact-text h1 {
@@ -377,11 +451,11 @@
     }
 }
 
-@media (max-height: 675px) {
+/* @media (max-height: 675px) {
     .content {
         padding-bottom: 80px;
     }
-}
+} */
 
 @media(max-width: 320px) {
     .popup-test {
@@ -416,10 +490,11 @@
         left: 3%;
     }
 
+    /* 
     .closeBtnEdit {
         top: -530px;
         right: -110px;
-    }
+    } */
 
     .popupEditRight span {
         position: relative;
@@ -448,30 +523,5 @@
     #contactFormEdit .popup-actions {
         scale: 0.7;
         transform: translate(-70px, -60px);
-    }
-
-    .mini-personadd-contact {
-        width: 64px;
-        display: flex;
-        position: absolute;
-        bottom: 90px;
-        height: 64px;
-        right: 0px;
-        cursor: pointer;
-    }
-
-    .btn-image {
-        display: none;
-    }
-
-    .mini-add-contact {
-        border: none;
-        background: none;
-        padding-right: 50px;
-        width: 100%;
-        height: 60px;
-        position: fixed;
-        top: 400px;
-        left: 0;
     }
 }

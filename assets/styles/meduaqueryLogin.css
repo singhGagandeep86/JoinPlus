@@ -1,3 +1,11 @@
+@media (max-width: 885px){
+    .loginarea {
+        padding: 20px 0px;
+        margin: 0px 0px 0px 82px;
+    }
+}
+
+
 @media (max-width: 800px) {
     .Screen-Logo {
         background-color: #2A3647;
@@ -49,11 +57,11 @@
 
 @media (max-width: 698px) {
     .loginarea {
-        width: 350px;
+        margin: 0px;
     }
 
     .loginarea form .custome-input input {
-        width: 300px;
+        width: 100%;
     }
 
     footer .footercontent {
@@ -63,10 +71,6 @@
 }
 
 @media (max-width: 594px) {
-    .loginarea {
-        width: 250px;
-    }
-
     footer .footercontent {
         gap: 25px;
         padding: 8px;
@@ -79,7 +83,8 @@
 
 @media (max-width: 496px) {
     .loginarea {
-        width: 150px;
+        padding: 20px;
+        width: 90%;
     }
 
     .loginheadline .textline  {
@@ -136,14 +141,6 @@
 }
 
 @media (max-width: 430px) {
-    .loginarea {
-        width: 150px;
-        padding: 0px 80px;
-    }
-
-    .loginarea form .custome-input input {
-        width: 200px;
-    }
 
     .loginheadline .textline  {
         margin-top: 15px;
@@ -198,7 +195,7 @@
 
 @media (max-width: 397px) {
     .loginarea {
-        width: 200px;
+        /* width: 200px; */
         padding: 0 40px;
     }
 
@@ -230,12 +227,7 @@
 
 @media (max-width: 360px) {
     .loginarea {
-        width: 200px;
         padding: 0 40px;
-    }
-
-    .loginarea form .custome-input input {
-        width: 200px;
     }
 
     footer .footercontent {

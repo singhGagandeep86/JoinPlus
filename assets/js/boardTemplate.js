@@ -34,8 +34,7 @@ function templatePopUpTask(id) {
                                 </div>
                                 <input id="titleText" class="titleTxt" type="text" placeholder="Enter a title"
                                     oninput="clearFailAddTask('titleText', 'failName')">
-                                <div id="failName" class="fail selectHide"><span>Please enter a correct Task in text
-                                        Format.</span></div>
+                                <div id="failName" class="fail selectHide"><span>Please enter a Task in text Format.</span></div>
                             </div>
                             <div class="description">
                                 <div class="smallHead">Description</div>
@@ -68,7 +67,7 @@ function templatePopUpTask(id) {
                                 <div class="assignments" id="customSelect" onclick="toggleDropdown()">
                                     Select task category
                                 </div>
-                                <select id="hiddenSelect">
+                                <select id="hiddenSelect" style="display: none;">
                                     <option value="" disabled selected>Select task category</option>
                                     <option value="technical">Technical Task</option>
                                     <option value="userStory">User Story</option>
@@ -344,7 +343,7 @@ function editTask(objData) {
                                 <div class="assignments" id="customSelect" onclick="toggleDropdown()">
                                     Select task category
                                 </div>
-                                <select id="hiddenSelect">
+                                <select id="hiddenSelect" style="display: none;">
                                     <option value="" disabled selected>Select task category</option>
                                     <option value="technical">Technical Task</option>
                                     <option value="userStory">User Story</option>

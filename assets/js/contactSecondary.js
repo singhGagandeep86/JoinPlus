@@ -283,9 +283,9 @@ function openImgPicker() {
 /**Handles the contact image picker 'change' event. Retrieves the selected image and displays it in the contact image element.
  * If the contact initials element exists, it hides the contact initials and displays the contact image. */
 async function handlePickedPic(event) {
-
     let userProfileImg = document.getElementById('userProfileImg');
     let contactInitials = document.getElementById('contactInitials');
+    let contactInitialsSmall = document.getElementById('contactInitialsSmall');
     const file = event.target.files[0];
     if (!file) return;
 
@@ -296,8 +296,9 @@ async function handlePickedPic(event) {
     const img = document.createElement('img');
     img.src = base64;
 
-    if (contactInitials) {
+    if (contactInitials) { 
         contactInitials.classList.add('d_none');
+        contactInitialsSmall.classList.add('d_none');
         userProfileImg.classList.remove('d_none');
     }
     userProfileImg.src = img.src;

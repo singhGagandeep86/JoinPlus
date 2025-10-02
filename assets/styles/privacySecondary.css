@@ -138,10 +138,6 @@ html::-webkit-scrollbar-thumb {
     padding: 64px 0px 64px 0px;
 }
 
-html{
-    overflow: hidden;
-}
-
 .mainDesignAsideLinks {
     height: 100%;
     width: 232px;

@@ -41,8 +41,7 @@ html::-webkit-scrollbar-thumb {
 form {
     flex-direction: column;
     display: flex;
-    margin-left: 36px;
-    margin-top: 82px;
+    margin: 82px 0px 82px 36px;
     gap: 8px;
 }
 
@@ -857,9 +856,10 @@ li:hover {
     align-items: center;
     height: 24px;
 
-    p{
+    p {
         width: 100%;
-        span{
+
+        span {
             margin-left: 2%;
             color: red;
             font-size: 10px;
@@ -867,13 +867,13 @@ li:hover {
     }
 }
 
-.remove-file{
+.remove-file {
     display: flex;
     align-items: center;
     gap: 8px;
     cursor: pointer;
 
-    span{
+    span {
         font-size: 16px;
         font-weight: 400;
         color: #2A3647;

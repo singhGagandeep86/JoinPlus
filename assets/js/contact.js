@@ -216,7 +216,7 @@ function editContact(i) {
     document.getElementById('overlayEdit').classList.remove('d_none');
     popUpEdit.innerHTML = '';
     popUpEdit.innerHTML = overlay2(i, initials);
-    if (array[i].pic) {
+    if (array[i].pic) { 
         document.getElementById('userImgEdit').classList.remove('d_none');
         document.getElementById('contactInitials').classList.add('d_none');
         document.getElementById('userImgEdit').innerHTML = showImagePicker(array[i].pic);

@@ -58,8 +58,16 @@ function overlay2(i, initials) {
                              <h2>Edit contact</h2>
                              <img class="strichEdit" src="../img/unterstrichvector.png">
                          </div>
+                           <div id="userImgEdit" class="userImgEdit smallScreen contact-ellipse2 b-${array[i].color}">
+                                 <img id="userProfileImg" class="userImg d_none">
+                                 <span id="contactInitialsSmall">${initials}</span>
+                                 <input id="contactImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
+                                 <div class="camera" onclick="openImgPicker()">
+                                     <img src="../img/camera.png">
+                                 </div>
+                             </div>
                          <div class="popupEditRight">
-                             <div id="userImgEdit" class="userImgEdit contact-ellipse2 b-${array[i].color}" style="position: relative">
+                             <div id="userImgEdit" class="userImgEdit normalScreen contact-ellipse2 b-${array[i].color}">
                                  <img id="userProfileImg" class="userImg d_none">
                                  <span id="contactInitials">${initials}</span>
                                  <input id="contactImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">

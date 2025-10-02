@@ -129,7 +129,7 @@
         align-items: center;
         justify-content: center;
         gap: 21px;
-        margin-bottom: 0px;
+        margin: 12px 0;
     }
 
     .loginarea form .btns .login {

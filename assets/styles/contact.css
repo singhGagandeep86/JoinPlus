@@ -11,10 +11,9 @@
 
 html,
 body {
-    height: 100%;
+    /* height: 100%; */
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
 .content {
@@ -22,7 +21,9 @@ body {
     display: flex;
     flex: 1;
     overflow: auto;
+    padding: 0px !important;
 }
+
 .content::-webkit-scrollbar {
     display: none;
 }
@@ -31,7 +32,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    position: relative;
     width: 352px;
+    height: fit-content;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 32px 24px 32px 24px;
@@ -79,7 +82,7 @@ body {
 .contactArea {
     /* overflow: auto; */
     width: 100%;
-    height: 80vh;
+    /* height: 80vh; */
     flex-shrink: 0;
 }
 
@@ -193,6 +196,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     height: 120px;
     border-radius: 50%;
     border: 3px solid white;
@@ -200,7 +204,6 @@ body {
     line-height: 56.4px;
     color: white;
     text-align: center;
-    margin-top: 20px;
 }
 
 .contact-mini {
@@ -399,12 +402,11 @@ body {
 .popup {
     display: flex;
     background: white;
-    height: 600px;
     border-radius: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     animation: slideIn 0.5s forwards ease-in-out;
     width: 1212px;
-    height: 592px;
+    min-height: 592px;
 }
 
 .maintestpopup {
@@ -440,6 +442,8 @@ body {
     padding-right: 50px;
     width: 100%;
     height: 60px;
+    cursor: pointer;
+    background: url("../img/miniaddperson.png") no-repeat center;
 }
 
 .editimage2 {
@@ -581,7 +585,7 @@ body {
 .fail {
     width: 100%;
     height: 18px;
-    font-size: 16px;
+    font-size: 14px;
     color: rgba(249, 25, 25, 0.5);
 }
 
@@ -600,7 +604,7 @@ body {
 .input-container:nth-child(2) input {
     background: url('../img/mail.png');
     background-repeat: no-repeat;
-    background-position:center;
+    background-position: center;
     background-position-x: 96%;
 }
 
@@ -610,6 +614,7 @@ body {
     background-position: center;
     background-position-x: 96%;
 }
+
 input::placeholder {
     color: #D1D1D1;
 }
@@ -656,10 +661,6 @@ input::placeholder {
     border: 1px solid var(--button-hover-color);
     color: var(--button-hover-color);
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
-}
-
-#addContactSmall {
-    cursor: pointer;
 }
 
 .cancel-icon {
@@ -752,7 +753,49 @@ input::placeholder {
     }
 }
 
-@media (max-height: 780px){
+.smallScreen {
+    display: none;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    right: 50%;
+    left: 50%;
+    transform: translate(-65%, -100%);
+}
+
+@media (max-width: 800px) {
+    .normalScreen {
+        display: none;
+    }
+
+    .smallScreen {
+        display: flex;
+    }
+}
+
+@media (max-width: 460px) {
+    .smallScreen {
+        height: 60px !important;
+        width: 60px !important;
+        font-size: 24px !important;
+        top: 44%;
+    }
+
+    .camera {
+        width: 28px;
+        height: 28px;
+
+        img {
+            top: 15%;
+            left: 15%;
+            height: 75%;
+            width: 75%;
+        }
+    }
+
+}
+
+@media (max-height: 780px) {
     .contact-container-right {
         overflow: auto;
     }
