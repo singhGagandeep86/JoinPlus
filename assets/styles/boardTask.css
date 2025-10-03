@@ -134,7 +134,9 @@
     height: 58px;
     background-color: white;
     color: #2A3647;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: thin;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;

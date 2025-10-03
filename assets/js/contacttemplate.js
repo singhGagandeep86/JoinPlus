@@ -132,15 +132,11 @@ function loadContactDetails(i, number, color) {
             ${array[i].rufnummer || ''}
         </div>
 
-        <button id="editBtn" onclick="editMenuOn()" class="mini-add-contact">
-                    <img  src="../img/MenuContactoptions.png">
-        </button>
+        <button id="editBtn" onclick="editMenuOn()" class="mini-add-contact"></button>
 
-        <div id="editImage2" class="d_none">
-        <div  class="editimage2 ">
-                    <img onclick="editContact(${i})" class="editimages" src="../img/editcontacts.png">
+        <div id="editImage2" class="d_none editimage2">
+                     <img onclick="editContact(${i})" class="editimages" src="../img/editcontacts.png">
                     <img onclick="deleteContact(${number})" class="editimages2" src="../img/Deletecontact.png">
-                </div>
                 </div>
 `}
 

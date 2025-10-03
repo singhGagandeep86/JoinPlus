@@ -96,7 +96,7 @@ function closePopUpTaskSmall() {
  * Toggles the visibility of the task switch popup.
  * It updates the arrow icon to indicate the current state of the popup.
  */
-function openPopUpTaskSwitch(element) {
+function openPopUpTaskSwitch(element) { 
     let select = document.getElementById('popupTaskSwitch' + element);
     let arrow = document.getElementById('arrowSwitch' + element);
     let objData = createobjFromElement(element);
@@ -150,6 +150,7 @@ function dataSwitch(id, element) {
  * updates the UI by removing the arrow indicator, and reloads the task data from the server.
  */
 async function changeIdTaskValue(value, element) {
+    toggle = 0;
     let arrow = document.getElementById('arrowSwitch' + element);
     await changeIdTask(value, element);
     arrayLoad = [];

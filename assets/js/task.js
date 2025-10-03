@@ -103,7 +103,7 @@ function wthoutScndName(i, eachName) {
  * @param {string} colour - The color associated with the selected contact.
  */
 function selectionContact(name, colour, picture, contactIssuedNumber) {
-  const currenID = document.getElementById(name);
+  const currenID = document.getElementById(contactIssuedNumber);
   ifelseLogics(currenID, name, colour, picture, contactIssuedNumber);
   let SelectedContactsBoard = document.getElementById('selCntcts');
   SelectedContactsBoard.innerHTML = '';

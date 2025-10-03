@@ -156,7 +156,7 @@ function setActiveContact(i, number, initials) {
  * @param {number} i - The index of the contact to toggle.
  * @param {string} initials - The initials of the contact to toggle.
  */
-function showContactDetails(i, initials) {
+function showContactDetails(i, initials) {  
     let number = array[i].number;
     let allContacts = document.querySelectorAll('.contact-item');
 

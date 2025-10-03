@@ -1,8 +1,5 @@
 @media (min-width: 1301px) {
-    /* .content {
-        padding: 0;
-    } */
-
+  
     .mini-add-contact {
         display: none;
     }
@@ -82,9 +79,6 @@
 }
 
 @media(min-width: 801px) and (max-width:1300px) {
-    /* .content {
-        padding: 0;
-    } */
 
     .container {
         justify-content: initial;
@@ -175,7 +169,9 @@
     }
 
     .contact-container-right.OnDetails {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
     }
 
     .contact-text {
@@ -260,7 +256,6 @@
         width: 396px;
         flex-direction: column;
         gap: 60px;
-        /* height: 760px; */
     }
 
     .logoEdit {
@@ -311,8 +306,6 @@
     }
 
     .closeBtnEdit {
-        /* top: -700px;
-        right: -150px; */
         top: 10px;
         right: 10px;
         position: absolute;
@@ -360,17 +353,6 @@
         height: 64px;
         right: 10px;
         cursor: pointer;
-    }
-
-    .mini-add-contact {
-        border: none;
-        background: none;
-        padding-right: 50px;
-        width: 100%;
-        height: 60px;
-        position: fixed;
-        top: 400px;
-        left: 0;
     }
 }
 
@@ -451,12 +433,6 @@
     }
 }
 
-/* @media (max-height: 675px) {
-    .content {
-        padding-bottom: 80px;
-    }
-} */
-
 @media(max-width: 320px) {
     .popup-test {
         display: block;
@@ -489,12 +465,6 @@
         height: 500px;
         left: 3%;
     }
-
-    /* 
-    .closeBtnEdit {
-        top: -530px;
-        right: -110px;
-    } */
 
     .popupEditRight span {
         position: relative;

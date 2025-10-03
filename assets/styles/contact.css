@@ -11,7 +11,6 @@
 
 html,
 body {
-    /* height: 100%; */
     margin: 0;
     padding: 0;
 }
@@ -255,12 +254,28 @@ body {
     cursor: pointer;
 }
 
+.editimages {
+    width: 60px;
+    height: 22px;
+}
+
 .editimages:hover {
     content: url("../img/edithovertask.png");
+    cursor: pointer;
+    width: 60px;
+    height: 22px;
+}
+
+.editimages2 {
+    width: 60px;
+    height: 22px;
 }
 
 .editimages2:hover {
     content: url("../img/delethovertask.png");
+    cursor: pointer;
+    width: 60px;
+    height: 22px;
 }
 
 .contact-slide-in {
@@ -425,13 +440,12 @@ body {
 }
 
 .mini-add-contact {
-    display: flex;
-    justify-content: end;
-    border: none;
-    background: none;
-    padding-right: 50px;
+    position: relative;
     width: 100%;
-    height: 60px;
+    height: 66px;
+    background: url("../img/MenuContactoptions.png") no-repeat right;
+    cursor: pointer;
+    border: none;
 }
 
 .mini-personadd-contact {
@@ -452,9 +466,7 @@ body {
     align-items: start;
     justify-content: center;
     padding-left: 10px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-radius: 20px 20px 0px 20px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 116px;
@@ -463,15 +475,7 @@ body {
     position: fixed;
     right: 0;
     bottom: 20%;
-    /* top: 400px; */
-    margin-right: 10px;
     gap: 10px;
-}
-
-.mini-add-contact img {
-    width: 54px;
-    height: 54px;
-    cursor: pointer;
 }
 
 .contact-text {
@@ -584,7 +588,6 @@ body {
 
 .fail {
     width: 100%;
-    height: 18px;
     font-size: 14px;
     color: rgba(249, 25, 25, 0.5);
 }
@@ -798,5 +801,9 @@ input::placeholder {
 @media (max-height: 780px) {
     .contact-container-right {
         overflow: auto;
+    }
+
+    .content {
+        padding-bottom: 80px !important;
     }
 }

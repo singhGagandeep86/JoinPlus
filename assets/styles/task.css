@@ -350,7 +350,6 @@ label {
     margin-inline: 120px;
 }
 
-
 .selectItems {
     width: 100%;
     max-width: 440px;
@@ -649,7 +648,8 @@ label {
 }
 
 ul.a {
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
     height: 98px;
     width: 97%;
     border-radius: 10px;
@@ -658,7 +658,11 @@ ul.a {
     margin-left: 0.75em;
     margin-top: 28px;
     text-align: left;
-    scrollbar-width: none;
+    scrollbar-width: thin;
+}
+
+ul::-webkit-scrollbar-y {
+    display: block !important;
 }
 
 .leftPart {

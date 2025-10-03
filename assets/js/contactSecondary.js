@@ -24,10 +24,10 @@ function reloadAdd() {
     document.getElementById('name').classList.remove('failinput');
     document.getElementById('email').classList.remove('failinput');
     document.getElementById('phone').classList.remove('failinput');
-    document.getElementById('failEmail').classList.add('d_none');
-    document.getElementById('failPhone').classList.add('d_none');
-    document.getElementById('failName').classList.add('d_none');
-    document.getElementById('failAll').classList.add('d_none');
+    document.getElementById('failEmail').classList.add('hide');
+    document.getElementById('failPhone').classList.add('hide');
+    document.getElementById('failName').classList.add('hide');
+    document.getElementById('failAll').classList.add('hide');
     document.getElementById('overlay').classList.remove('show');
 }
 
@@ -37,13 +37,13 @@ function reloadAdd() {
 function clearFailAdd(inputId, errorId) {
     let inputValue = document.getElementById(inputId).value.trim();
     if (inputValue !== '') {
-        document.getElementById(errorId).classList.add('d_none');
+        document.getElementById(errorId).classList.add('hide');
         document.getElementById(inputId).classList.remove('failinput');
     }
     if (document.getElementById('name').value.trim() !== '' &&
         document.getElementById('email').value.trim() !== '' &&
         document.getElementById('phone').value.trim() !== '') {
-        document.getElementById('failAll').classList.add('d_none');
+        document.getElementById('failAll').classList.add('hide');
     }
 }
 
@@ -55,13 +55,13 @@ function clearFailAdd(inputId, errorId) {
 function clearFailEdit(inputId, errorId) {
     let inputValue = document.getElementById(inputId).value.trim();
     if (inputValue !== '') {
-        document.getElementById(errorId).classList.add('d_none');
+        document.getElementById(errorId).classList.add('hide');
         document.getElementById(inputId).classList.remove('failinput');
     }
     if (document.getElementById('name2').value.trim() !== '' &&
         document.getElementById('email2').value.trim() !== '' &&
         document.getElementById('phone2').value.trim() !== '') {
-        document.getElementById('failAllEdit').classList.add('d_none');
+        document.getElementById('failAllEdit').classList.add('hide');
     }
 }
 
@@ -168,16 +168,53 @@ function generateRandomNumber() {
  * @returns {Promise<void>}
  */
 async function deleteContact(number) {
-    let contactDetails = document.getElementById('contactDetails');
     let path = `/contact/contact${number}`;
     let url = getDatabaseUrl(path);
-    let response = await fetch(url, {
-        method: 'DELETE',
-    });
+    await fetch(url, { method: 'DELETE' });
+    clearContactFromTasks(number);
     saveEditDisplayOff();
-
     array = [];
     load();
+}
+
+/**
+ * Clears a contact from all tasks based on the contact number.
+ * This function fetches all tasks, loops through them and clears the contact from each task if it exists.
+ * @param {string} number - The contact number to clear from all tasks.
+ * @returns {Promise<void>}
+ */
+async function clearContactFromTasks(number) {
+    let tasksUrl = getDatabaseUrl('/task');
+    let tasksRes = await fetch(tasksUrl);
+    let tasks = await tasksRes.json();
+    if (tasks) {
+        for (let taskId in tasks) {
+            let task = tasks[taskId];
+            if (task.contact) {
+                clearingContact(taskId, task.contact, number);
+            }
+        }
+    }
+}
+
+/**
+ * Clears a contact from a task based on the contact number.
+ * @param {string} taskId - The task ID.
+ * @param {object} contacts - The contacts object for the task.
+ * @param {string} number - The contact number to clear.
+ * @returns {Promise<void>}
+ */
+async function clearingContact(taskId, contacts, number) {
+    for (let contactKey in contacts) {
+        const keyNumber = contactKey.replace('contact', '');
+        const contact = contacts[contactKey];
+        if (contact.number == number) {
+            let taskRefUrl = getDatabaseUrl(`/task/${taskId}/contact/${contactKey}`);
+            let taskColourRefUrl = getDatabaseUrl(`/task/${taskId}/contactcolor/color${keyNumber}`);
+            await fetch(taskRefUrl, { method: 'DELETE' });
+            await fetch(taskColourRefUrl, { method: 'DELETE' });
+        }
+    }
 }
 
 /**
@@ -223,10 +260,10 @@ function saveEditDisplayOff() {
         document.querySelector('.container').classList.add('OnDetails');
         document.querySelector('.contact-container-right').classList.remove('OnDetails');
         document.querySelector('.contact-container-right').classList.add('hidden');
-        document.getElementById('overlayEdit').classList.add('d_none');
+        document.getElementById('overlayEdit').classList.add('hide');
         contactDetail.innerHTML = '';
     } else {
-        document.getElementById('overlayEdit').classList.add('d_none');
+        document.getElementById('overlayEdit').classList.add('hide');
         contactDetail.innerHTML = '';
     }
 }
@@ -296,7 +333,7 @@ async function handlePickedPic(event) {
     const img = document.createElement('img');
     img.src = base64;
 
-    if (contactInitials) { 
+    if (contactInitials) {
         contactInitials.classList.add('d_none');
         contactInitialsSmall.classList.add('d_none');
         userProfileImg.classList.remove('d_none');

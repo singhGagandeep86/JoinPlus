@@ -3,7 +3,7 @@
 */
 function contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastNameStart, contactIssuedNumber) {
     return `<label>
-    <input type="checkbox"class="checkboxDesign" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}', '', '${contactIssuedNumber}')">
+    <input type="checkbox"class="checkboxDesign" id="${contactIssuedNumber}" onchange="selectionContact('${sanitizedEachName}', '${colour}', '', '${contactIssuedNumber}')">
     <span value="${sanitizedEachName}"></span>${eachName}
     <div class="namesInitials b-${colour}">${firstNameStart}${lastNameStart}</div>
     </label>`;
@@ -14,7 +14,7 @@ function contactsTemp(sanitizedEachName, colour, eachName, firstNameStart, lastN
  */
 function contactsTempWithPic(sanitizedEachName, colour, eachName, picture, contactIssuedNumber) {
     return `<label>
-    <input type="checkbox"class="checkboxDesign" id="${sanitizedEachName}" onchange="selectionContact('${sanitizedEachName}', '${colour}', '${picture}', '${contactIssuedNumber}')">
+    <input type="checkbox"class="checkboxDesign" id="${contactIssuedNumber}" onchange="selectionContact('${sanitizedEachName}', '${colour}', '${picture}', '${contactIssuedNumber}')">
     <span value="${sanitizedEachName}"></span>${eachName}
     <div class="namesInitials b-${colour}"><img style="height: 100%" src="${picture}"></div>
     </label>`;

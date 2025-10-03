@@ -17,6 +17,7 @@
 
 body {
     height: 100vh;
+    max-width: 1440px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,12 +26,14 @@ body {
 header {
     position: absolute;
     top: 80px;
-    right: 77px;
+    width: 100%;
+    max-width: 1440px;
 }
 
 .topline {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 35px;
 }
 
