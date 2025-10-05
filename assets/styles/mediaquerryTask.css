@@ -157,17 +157,8 @@
     .heading {
         text-align: start;
     }
-/* 
-    .info {
-        flex-direction: row;
-    } */
-/* 
-    .secondary {
-        display: none;
-    } */
 
     .info div:nth-of-type(1) {
-        /* margin-right: 0px; */
         margin-right: auto;
     }
 

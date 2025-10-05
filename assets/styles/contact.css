@@ -186,7 +186,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 54px;
+    gap: 32px;
     margin-top: 20px;
 }
 
@@ -220,7 +220,6 @@ body {
 .contact-info {
     display: flex;
     flex-direction: column;
-    /* padding: 20px; */
     gap: 22px;
     border-radius: 10px;
 }
@@ -278,11 +277,16 @@ body {
     height: 22px;
 }
 
+.contactDetails {
+    overflow: hidden;
+}
+
 .contact-slide-in {
     height: 100%;
+    width: 100%;
     position: relative;
     opacity: 0;
-    transform: translateX(-100%);
+    transform: translateX(100%);
     animation: slideIn 0.5s forwards ease;
 }
 
@@ -294,17 +298,19 @@ body {
 
     100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(0%);
     }
 }
 
 @keyframes slideInMobile {
     0% {
+        opacity: 0;
         transform: translateY(100%);
     }
 
     100% {
-        transform: translateY(-5%);
+        opacity: 1;
+        transform: translateY(0%);
     }
 }
 

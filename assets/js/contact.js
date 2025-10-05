@@ -139,10 +139,10 @@ function clearActiveContact() {
  */
 function setActiveContact(i, number, initials) {
     let allContacts = document.querySelectorAll('.contact-item');
-    let contactDetails = document.getElementById('contactDetails');
+    // let contactDetails = document.getElementById('contactDetails');
 
     allContacts[i].classList.add('active-contact');
-    contactDetails.classList.add('contact-slide-in');
+    // contactDetails.classList.add('contact-slide-in');
 
     if (window.innerWidth <= 800) {
         document.querySelector('.container').classList.add('hidden');

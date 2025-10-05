@@ -110,10 +110,9 @@ function overlay2(i, initials) {
  */
 
 function loadContactDetails(i, number, color) {
-
     return `
-        <div class="contact-ellipse">
-        <img onclick="showContactList(${i})" class="arrowContact" src="../img/arrow-left-line.png">
+        <div class="contact-ellipse contact-slide-in">
+            <img onclick="showContactList(${i})" class="arrowContact" src="../img/arrow-left-line.png">
             <div id="contactContainer" class="b-${color} contact-ellipse2">
             </div>
             <div class="contact-mini">
@@ -124,7 +123,7 @@ function loadContactDetails(i, number, color) {
                 </div>
             </div>
         </div>
-        <div class="contact-info">
+        <div class="contact-info contact-slide-in">
             <span class="CI-info">Contact Information</span>
             <p><b>Email</b></p>
             <div class="changemycolor">${array[i].email}</div>
@@ -135,9 +134,9 @@ function loadContactDetails(i, number, color) {
         <button id="editBtn" onclick="editMenuOn()" class="mini-add-contact"></button>
 
         <div id="editImage2" class="d_none editimage2">
-                     <img onclick="editContact(${i})" class="editimages" src="../img/editcontacts.png">
-                    <img onclick="deleteContact(${number})" class="editimages2" src="../img/Deletecontact.png">
-                </div>
+            <img onclick="editContact(${i})" class="editimages" src="../img/editcontacts.png">
+            <img onclick="deleteContact(${number})" class="editimages2" src="../img/Deletecontact.png">
+        </div>
 `}
 
 /**
