@@ -409,7 +409,7 @@ function removeHighlight(id) {
  * Adds a task to the task board after validation checks. 
  * @param {Object} id - The object representing the task to be added. 
  */
-async function addTaskboard(id) {
+async function addTaskboard(id) { 
     let idAdd = id.id;
     if (checkValidation()) {
         document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");

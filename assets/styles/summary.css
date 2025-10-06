@@ -213,7 +213,7 @@
 .block-mid .pen-section-2:hover,
 .block-end .pen-section-3:hover {
     background-color: var(--sideheader-main-color);
-    transform: scale(1.05); /* vergrößert das Element leicht */
+    transform: scale(1.05); 
     transition: transform 0.3s ease, background-color 0.3s ease;
     color: white;
     cursor: pointer;

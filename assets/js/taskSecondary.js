@@ -192,7 +192,7 @@ function failAll() {
  *  Adds a new task if validation passes, then navigates to the task board.
 */
 async function addingTask(id) {
-    if (checkValidation()) {
+    if (checkValidation()) { 
         document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");
         await toWaiting(id);
         await navigateToBoard();
