@@ -96,7 +96,7 @@ function closePopUpTaskSmall() {
  * Toggles the visibility of the task switch popup.
  * It updates the arrow icon to indicate the current state of the popup.
  */
-function openPopUpTaskSwitch(element) { 
+function openPopUpTaskSwitch(element) {
     let select = document.getElementById('popupTaskSwitch' + element);
     let arrow = document.getElementById('arrowSwitch' + element);
     let objData = createobjFromElement(element);
@@ -231,7 +231,7 @@ function contactAreaManupulate(contactName, contactscolor, allContactsSection, c
  * If no attachments are provided, it clears the attachment area section and hides the attachment area.
  * If attachments are provided, it populates the attachment area section with the provided attachment names and files.
  */
-function addAttachInfo(objDateTask) { 
+function addAttachInfo(objDateTask) {
     let attachContainer = document.getElementById('attachContainer');
     let allAttachesSection = document.getElementById('allAttachesSection');
     allAttachesSection.innerHTML = '';
@@ -420,4 +420,29 @@ async function addTaskboard(id) {
         document.getElementById('taskDoneIcon').classList.add("subTaskIcon");
     }
 
+}
+
+function scrollMoreContacts(direction, number) {;
+    let scrollDiv = document.getElementById(`contact-${number}`);
+    let scrollPixels = 80; 
+    if (direction === 'left') scrollContactsLeft(scrollDiv, scrollPixels, number);
+    if (direction === 'right') scrollContactsRight(scrollDiv, scrollPixels, number);
+}
+
+/** Scrolls the task contacts selection area to the left by a specified number of pixels.
+ * Removes the left arrow icon if the selection area is already at the start. */
+function scrollContactsLeft(scrollDiv, scrollPixels, number) {
+    document.getElementById(`moreContactsRight-${number}`).classList.remove("hide");
+    scrollDiv.scrollLeft -= scrollPixels;
+    if (scrollDiv.scrollLeft <= 0)
+        document.getElementById(`moreContactsLeft-${number}`).classList.add("hide");
+}
+
+/** Scrolls the task contacts selection area to the right by a specified number of pixels.
+ * Adds the right arrow icon if the selection area is not already at the end. */
+function scrollContactsRight(scrollDiv, scrollPixels, number) { 
+    document.getElementById(`moreContactsLeft-${number}`).classList.remove("hide");
+    scrollDiv.scrollLeft += scrollPixels;
+    if (scrollDiv.scrollLeft + scrollDiv.clientWidth >= scrollDiv.scrollWidth)
+        document.getElementById(`moreContactsRight-${number}`).classList.add("hide");
 }

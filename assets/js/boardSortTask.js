@@ -44,6 +44,7 @@ function renderTask(element) {
     let contactName = element.contact ? Object.values(element.contact) : null;
     let checkBoxObject = element.checked ? Object.values(element.checked) : null;
     document.getElementById('toDo').innerHTML += templateTaskHTML(element);
+    if (element.contact) renderScrollMoreContacts(element);
     if (element.subtask === null) {
         loadContactTask(element, contacts, contactName);
     } else {
@@ -94,6 +95,7 @@ function renderInProgressTask(element) {
     let contactName = element.contact ? Object.values(element.contact) : null;
     let checkBoxObject = element.checked ? Object.values(element.checked) : null;
     document.getElementById('progress').innerHTML += templateTaskHTML(element);
+    if (element.contact) renderScrollMoreContacts(element);
     if (element.subtask === null) {
         loadContactTask(element, contacts, contactName);
     } else {
@@ -145,6 +147,7 @@ function renderAwaitTask(element) {
     let contactName = element.contact ? Object.values(element.contact) : null;
     let checkBoxObject = element.checked ? Object.values(element.checked) : null;
     document.getElementById('await').innerHTML += templateTaskHTML(element);
+    if (element.contact) renderScrollMoreContacts(element);
     if (element.subtask === null) {
         loadContactTask(element, contacts, contactName);
     } else {
@@ -195,6 +198,7 @@ function renderDoneTask(element) {
     let contactName = element.contact ? Object.values(element.contact) : null;
     let checkBoxObject = element.checked ? Object.values(element.checked) : null;
     document.getElementById('done').innerHTML += templateTaskHTML(element);
+    if (element.contact) renderScrollMoreContacts(element);
     if (element.subtask === null) {
         loadContactTask(element, contacts, contactName);
     } else {
@@ -207,6 +211,14 @@ function processDoneSubtasks(element, contacts, contactName, checkBoxObject) {
     let checkedCount = checkBoxObject ? checkBoxObject.filter(e => e === true).length : 0;
     subtaskBar(element, checkedCount);
     loadContactTask(element, contacts, contactName);
+}
+
+function renderScrollMoreContacts(element) {
+    let contactsArray = Object.keys(element.contact).length;
+    if (contactsArray > 3) {
+        let id = document.getElementById(`moreContactsRight-${element['number']}`);
+        id.classList.remove('hide');
+    }
 }
 
 /**

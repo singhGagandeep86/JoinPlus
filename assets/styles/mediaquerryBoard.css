@@ -1,6 +1,5 @@
-
 @media(max-width:563px) {
-    
+
     .infoTitle span {
         font-size: 16px;
         width: 150px
@@ -158,12 +157,16 @@
         width: 100%;
     }
 
-    .substart2{
+    .substart2 {
         width: 100%;
     }
 
-    .subAddIn{
+    .subAddIn {
         width: 100%;
+    }
+
+    .smallTaskData {
+       width: 100%;
     }
 
     .subtaskAreaData {
@@ -180,7 +183,20 @@
         height: 500px;
         gap: 24px;
         overflow: auto;
-        padding: 48px 40px 48px 40px;
+        padding: 28px 20px;
+        animation: slideInMobile 125ms ease-in-out;
+    }
+
+    @keyframes slideInMobile {
+        0% {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0%);
+        }
     }
 
     .popupTaskInfo::-webkit-scrollbar {
@@ -208,7 +224,7 @@
         justify-content: space-between;
     }
 
-    
+
     .contactInfoData {
         width: 100%;
         height: 150px;
@@ -264,7 +280,7 @@
     }
 
     .subtaskInfo span:nth-of-type(1) {
-        font-size: 16px;        
+        font-size: 16px;
     }
 
     .overDisplay {
@@ -386,13 +402,13 @@
         width: 1050px;
     }
 
-    .popupTitleInfo{
+    .popupTitleInfo {
         font-size: 50px;
         min-height: 100px;
     }
-    
-    .content{
-        min-height: 170vh !important; 
+
+    .content {
+        min-height: 170vh !important;
     }
 
     .overDisplay {
@@ -478,7 +494,7 @@
         padding-left: 90px;
     }
 
-    .taskName span:nth-of-type(2){
+    .taskName span:nth-of-type(2) {
         display: none;
     }
 
@@ -529,7 +545,7 @@
         max-width: 1208px;
     }
 
-    .taskName span:nth-of-type(2){
+    .taskName span:nth-of-type(2) {
         display: none;
     }
 

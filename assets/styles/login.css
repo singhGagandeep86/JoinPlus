@@ -81,7 +81,7 @@ header .topline p {
     animation: logoScreen 1.5s forwards;
     animation-timing-function: ease;
     animation-delay: 1s;
-    z-index: 1000;
+    z-index: 1000 !important;
 }
 
 .join-logo {

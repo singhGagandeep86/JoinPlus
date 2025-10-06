@@ -8,14 +8,17 @@
         gap: 18px;
     }
 
-    .leftSide, .rightSide {
+    .leftSide,
+    .rightSide {
         max-width: 392px;
     }
 }
 
 
 @media (max-width: 892px) {
-    .leftSide, .rightSide {
+
+    .leftSide,
+    .rightSide {
         max-width: 368px;
     }
 }
@@ -35,13 +38,18 @@
         max-width: 510px;
     }
 
+    .closeIconEdit {
+        width: 96%;
+    }
+
     .editArea {
         flex-direction: column;
-        width: 100%;
+        width: 96%;
         flex: 1;
     }
 
-    .leftSide, .rightSide {
+    .leftSide,
+    .rightSide {
         max-width: 100%;
     }
 }

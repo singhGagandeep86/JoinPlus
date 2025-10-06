@@ -1,4 +1,4 @@
-@media (max-width: 885px){
+@media (max-width: 885px) {
     .loginarea {
         padding: 20px 0px;
         margin: 0px 0px 0px 82px;
@@ -29,6 +29,7 @@
             width: 140px;
             height: 200px;
         }
+
         100% {
             top: 25px;
             left: 50px;
@@ -46,6 +47,7 @@
             height: 200px;
             opacity: 1;
         }
+
         100% {
             top: 50px;
             left: 50px;
@@ -76,7 +78,7 @@
         padding: 8px;
     }
 
-    .failEnter p{
+    .failEnter p {
         font-size: 14px;
     }
 }
@@ -87,7 +89,7 @@
         width: 90%;
     }
 
-    .loginheadline .textline  {
+    .loginheadline .textline {
         font-size: 40px;
         line-height: 56.4px;
         text-align: center;
@@ -109,8 +111,11 @@
     }
 
     header {
+        display: flex;
+        justify-content: center;
+        left: 0;
         top: 85vh;
-        left: 100px;
+        width: 100%;
     }
 
     header .topline p {
@@ -135,14 +140,14 @@
         padding: 8px;
     }
 
-    .failEnter p{
+    .failEnter p {
         font-size: 12px;
     }
 }
 
 @media (max-width: 430px) {
 
-    .loginheadline .textline  {
+    .loginheadline .textline {
         margin-top: 15px;
         font-size: 35px;
         line-height: 56.4px;
@@ -169,7 +174,6 @@
     header {
         margin-top: 2vh;
         margin-bottom: 10px;
-        left: 70px;
     }
 
     header .topline .login {
@@ -188,18 +192,18 @@
         padding: 6px;
         margin-bottom: 15px;
     }
-    .failEnter p{
+
+    .failEnter p {
         font-size: 12px;
     }
 }
 
 @media (max-width: 397px) {
     .loginarea {
-        /* width: 200px; */
-        padding: 0 40px;
+        padding: 0 20px;
     }
 
-    .failEnter p{
+    .failEnter p {
         font-size: 12px;
     }
 
@@ -226,21 +230,9 @@
 }
 
 @media (max-width: 360px) {
-    .loginarea {
-        padding: 0 40px;
-    }
-
     footer .footercontent {
         gap: 8px;
         padding: 4px;
         margin-bottom: 8px;
     }
 }
-
-@media (max-width: 320px) {
-    .loginarea {
-        width: 200px;
-        padding: 0 35px;
-    }
-}
-

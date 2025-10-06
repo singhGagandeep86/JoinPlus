@@ -186,14 +186,17 @@ function templateTaskHTML(element) {
     <div class="taskInfo">
         <div id="taskSwitch" class="taskName">
         <span class="bg_${element['color']}">${element['category']}</span>
-        <span  onclick="openPopUpTaskSwitch(${element['number']});event.stopPropagation();"><img class="arrowImg" id="arrowSwitch${element['number']}" src="../img/arrow_drop_downaa.svg" alt=""></span>
+        <span onclick="openPopUpTaskSwitch(${element['number']});event.stopPropagation();"><img class="arrowImg" id="arrowSwitch${element['number']}" src="../img/arrow_drop_downaa.svg" alt=""></span>
         </div>
         <div class="taskTitle">
             <span>${element['title']}</span>
             <span>${element['description']}</span>
         </div>
         <div id="${rangeId}"></div>
-    <div id="contactAreaPic-${element['number']}" class="contactAndPrioArea" onmouseover="checkForOverflow(${element['number']})" ondragstart="preventDrag(${element['number']}, event)"><div id="${contactpic}" class="contact"></div>
+    <div id="contactAreaPic-${element['number']}" class="contactAndPrioArea" onmouseover="checkForOverflow(${element['number']})" ondragstart="preventDrag(${element['number']}, event)">
+    <div id="moreContactsLeft-${element['number']}" onclick="event.stopPropagation(); scrollMoreContacts('left', ${element['number']})" class="showMore flip hide"><img src="../img/arrow.png"></div>
+    <div id="${contactpic}" class="contact"></div>
+    <div id="moreContactsRight-${element['number']}" onclick="event.stopPropagation(); scrollMoreContacts('right', ${element['number']})" class="showMore hide"><img src="../img/arrow.png"></div>
     <div class="bg_${element['prio']}"></div> </div>
     <div id="popupTaskSwitch${element['number']}" class="taskSwitchArea d_none" ></div>
     </div>
