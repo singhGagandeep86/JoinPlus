@@ -101,6 +101,8 @@ function openPopUpTaskSwitch(element) {
     let arrow = document.getElementById('arrowSwitch' + element);
     let objData = createobjFromElement(element);
     let id = objData.id;
+    toggle = 0;
+    closeAllTaskSwitches();
     toggleOpenTaskSwitch(select, arrow, element, id);
     let area = document.getElementById('popupTaskSwitch' + element);
     area.addEventListener('click', (event) => {
@@ -115,10 +117,12 @@ function toggleOpenTaskSwitch(select, arrow, element, id) {
         arrow.classList.add('arrowTaskImg');
         select.innerHTML = dataSwitch(id, element);
         toggle = 1;
+        setTimeout(() => document.addEventListener('click', outsideClickListener), 0);
     } else if (toggle === 1) {
         closePopUpTaskSwitch(element);
         arrow.classList.remove('arrowTaskImg');
         toggle = 0;
+        document.removeEventListener('click', outsideClickListener);
     }
 }
 /**
@@ -129,10 +133,27 @@ function closePopUpTaskSwitch(element) {
     select.classList.add('d_none');
 }
 
-/**
- * Switches the task to a new status based on the provided task ID.
- * This function determines the target status of a task (e.g., 'toDo', 'progress', 'await', or 'done')
- */
+/** Listens for a click event outside of the task switch popup and hides
+ * it if the event target is not within the popup or its triggering element.
+ * It also removes the event listener once the popup is closed. */
+function outsideClickListener(event) {
+    if (!event.target.closest('.taskSwitchArea') && !event.target.closest('.arrowImg')) {
+        document.querySelectorAll('.taskSwitchArea').forEach(el => el.classList.add('d_none'));
+        document.querySelectorAll('.arrowImg').forEach(el => el.classList.remove('arrowTaskImg'));
+        document.removeEventListener('click', outsideClickListener);
+        toggle = 0;
+    }
+}
+
+/** Hides all task switch popups and removes the arrow indicator.
+ * This function is called when a task switch popup is closed to ensure that all other popups are also hidden.*/
+function closeAllTaskSwitches() {
+    document.querySelectorAll('.taskSwitchArea').forEach(el => el.classList.add('d_none'));
+    document.querySelectorAll('.arrowImg').forEach(el => el.classList.remove('arrowTaskImg'));
+}
+
+/** Switches the task to a new status based on the provided task ID.
+ * This function determines the target status of a task (e.g., 'toDo', 'progress', 'await', or 'done') */
 function dataSwitch(id, element) {
     if ('toDo' == id) {
         return moveTaskTo1(element);
@@ -409,7 +430,7 @@ function removeHighlight(id) {
  * Adds a task to the task board after validation checks. 
  * @param {Object} id - The object representing the task to be added. 
  */
-async function addTaskboard(id) { 
+async function addTaskboard(id) {
     let idAdd = id.id;
     if (checkValidation()) {
         document.getElementById('taskDoneIcon').classList.remove("subTaskIcon");
@@ -422,9 +443,9 @@ async function addTaskboard(id) {
 
 }
 
-function scrollMoreContacts(direction, number) {;
+function scrollMoreContacts(direction, number) {
     let scrollDiv = document.getElementById(`contact-${number}`);
-    let scrollPixels = 80; 
+    let scrollPixels = 80;
     if (direction === 'left') scrollContactsLeft(scrollDiv, scrollPixels, number);
     if (direction === 'right') scrollContactsRight(scrollDiv, scrollPixels, number);
 }
@@ -440,7 +461,7 @@ function scrollContactsLeft(scrollDiv, scrollPixels, number) {
 
 /** Scrolls the task contacts selection area to the right by a specified number of pixels.
  * Adds the right arrow icon if the selection area is not already at the end. */
-function scrollContactsRight(scrollDiv, scrollPixels, number) { 
+function scrollContactsRight(scrollDiv, scrollPixels, number) {
     document.getElementById(`moreContactsLeft-${number}`).classList.remove("hide");
     scrollDiv.scrollLeft += scrollPixels;
     if (scrollDiv.scrollLeft + scrollDiv.clientWidth >= scrollDiv.scrollWidth)

@@ -178,11 +178,11 @@ function nameInputVali() {
     let nameRegex = /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/;
     if (name.value.trim() != '') {
         name.classList.remove('failinput');
-        failtext.classList.add('d_none')
+        failtext.classList.add('hide')
     }
     if (!nameRegex.test(name.value.trim())) {
         name.classList.add('failinput');
-        failtext.classList.remove('d_none')
+        failtext.classList.remove('hide')
     }
 }
 
@@ -195,11 +195,11 @@ function emailInputVali() {
     let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
     if (email.value.trim() != '') {
         email.classList.remove('failinput');
-        failtext.classList.add('d_none')
+        failtext.classList.add('hide')
     }
     if (!emailRegex.test(email.value.trim())) {
         email.classList.add('failinput');
-        failtext.classList.remove('d_none')
+        failtext.classList.remove('hide')
     }
 }
 
@@ -212,9 +212,9 @@ function passwordInputVali() {
     let failtext = document.getElementById('failPassword');
     if (password.value.trim() === confirmPassword.value.trim()) {
         confirmPassword.classList.remove('failinput');
-        failtext.classList.add('d_none')
+        failtext.classList.add('hide')
     } else {
         confirmPassword.classList.add('failinput');
-        failtext.classList.remove('d_none')
+        failtext.classList.remove('hide')
     }
 }

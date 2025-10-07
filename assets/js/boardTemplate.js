@@ -387,7 +387,11 @@ function editTask(objData) {
                 <div id="contactDropStart" class="contactDrop" onclick="contactDropOpen(event)"><span>Select Contacts to
                         assign</span> <img id="arrowContactDrop" src="../img/arrow_drop_runter.png" alt=""></div>
                 <div id="contactDropArea" class="contactDropData d_none" onclick="event.stopPropagation()"></div>
+                <div class="initialsContainer">
+                <div class="contactScroller hide" id="contactLftScroller" onclick="scrollContacts('left')"><img class="flip" src="../img/arrow.png" alt=""></div>
                 <div id="initialsArea" class="initialsEdit"></div>
+                 <div class="contactScroller hide" id="contactRghtScroller" onclick="scrollContacts('right')"><img src="../img/arrow.png" alt=""></div>
+                </div>
             </div>
                 </div>
                 

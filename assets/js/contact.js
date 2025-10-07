@@ -90,30 +90,17 @@ function sortContactsByName() {
  * Calls contactManip for each contact to generate the HTML.
  */
 function loadContact() {
-    let contactSpace = document.getElementById('contactArea');
-    contactSpace.innerHTML = '';
+    document.getElementById('contactArea').innerHTML = '';
     let currentLetter = '';
-
     for (let i = 0; i < array.length; i++) {
-        contactManip(i, contactSpace, currentLetter);
-    }
-}
-
-/**
- * Generates HTML for a contact item based on its index in the array of contacts.
- * Checks if the contact has a picture and generates HTML accordingly. */
-function contactManip(i, contactSpace, currentLetter) {
-    let contactName = array[i].name;
-    let initials = extrahiereInitialen(contactName);
-    let firstLetter = contactName.charAt(0).toUpperCase();
-    if (firstLetter !== currentLetter) {
-        contactSpace.innerHTML += `<h2>${firstLetter}</h2>`;
+        let contactArea = document.getElementById('contactArea');
+        let contactName = array[i].name;
+        let initials = extrahiereInitialen(contactName);
+        let firstLetter = contactName.charAt(0).toUpperCase();
+        if (firstLetter !== currentLetter) contactArea.innerHTML += `<h2>${firstLetter}</h2>`;
         currentLetter = firstLetter;
-    }
-    if (array[i].pic) {
-        contactSpace.innerHTML += loadContactWithPic(i, initials, array[i].pic);
-    } else {
-        contactSpace.innerHTML += loadContactWithInitials(i, initials);
+        if (array[i].pic) contactArea.innerHTML += loadContactWithPic(i, initials, array[i].pic);
+        else contactArea.innerHTML += loadContactWithInitials(i, initials);
     }
 }
 
@@ -156,7 +143,7 @@ function setActiveContact(i, number, initials) {
  * @param {number} i - The index of the contact to toggle.
  * @param {string} initials - The initials of the contact to toggle.
  */
-function showContactDetails(i, initials) {  
+function showContactDetails(i, initials) {
     let number = array[i].number;
     let allContacts = document.querySelectorAll('.contact-item');
 
@@ -216,7 +203,7 @@ function editContact(i) {
     document.getElementById('overlayEdit').classList.remove('d_none');
     popUpEdit.innerHTML = '';
     popUpEdit.innerHTML = overlay2(i, initials);
-    if (array[i].pic) { 
+    if (array[i].pic) {
         document.getElementById('userImgEdit').classList.remove('d_none');
         document.getElementById('contactInitials').classList.add('d_none');
         document.getElementById('userImgEdit').innerHTML = showImagePicker(array[i].pic);

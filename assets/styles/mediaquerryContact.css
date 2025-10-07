@@ -335,7 +335,7 @@
     }
 
     .EditInput {
-        width: 364px;
+        width: 100%;
         gap: 2px;
         margin: 0px;
     }
@@ -359,7 +359,7 @@
     }
 
     #contactFormEdit {
-        width: auto;
+        width: 100%;
     }
 
     .contactDetails {

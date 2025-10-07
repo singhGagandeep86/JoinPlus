@@ -260,10 +260,10 @@ function saveEditDisplayOff() {
         document.querySelector('.container').classList.add('OnDetails');
         document.querySelector('.contact-container-right').classList.remove('OnDetails');
         document.querySelector('.contact-container-right').classList.add('hidden');
-        document.getElementById('overlayEdit').classList.add('hide');
+        document.getElementById('overlayEdit').classList.add('d_none');
         contactDetail.innerHTML = '';
     } else {
-        document.getElementById('overlayEdit').classList.add('hide');
+        document.getElementById('overlayEdit').classList.add('d_none');
         contactDetail.innerHTML = '';
     }
 }

@@ -137,6 +137,9 @@ input::placeholder {
     text-decoration: none;
 }
 
+.hide {
+    opacity: 0 !important;
+}
 
 .loginarea form .check-container p {
     font-size: 16px;

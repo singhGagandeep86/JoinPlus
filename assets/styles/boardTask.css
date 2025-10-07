@@ -323,10 +323,18 @@
     border-radius: 10px;
 }
 
+.initialsContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .initialsEdit {
     display: flex;
+    align-items: center;
     gap: 2px;
-    width: 95%;
+    width: 232px;
     height: 60px;
     overflow: auto;
     flex-shrink: 0;
@@ -640,7 +648,7 @@ input[type="radio"] {
 }
 
 progress {
-    width: 128px;
+    width: 124px;
     height: 8px;
     border: 1px solid #f4f4f4;
     border-radius: 8px;
@@ -665,10 +673,7 @@ progress::-moz-progress-bar {
 }
 
 .range span {
-    width: 75px;
-    height: 14px;
-    display: flex;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .subtastTitle {
@@ -1023,7 +1028,7 @@ progress::-moz-progress-bar {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color:#0000000A;
+    background-color: #0000000A;
     z-index: 100;
 }
 
@@ -1040,7 +1045,7 @@ progress::-moz-progress-bar {
         height: 42px;
         background-color: #000000cf;
 
-        p{
+        p {
             color: #FFFFFF;
         }
     }
@@ -1052,7 +1057,9 @@ progress::-moz-progress-bar {
 }
 
 .imgContainer:hover {
-    .imgHeader, .imgMover {
+
+    .imgHeader,
+    .imgMover {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -1076,6 +1083,7 @@ progress::-moz-progress-bar {
     align-items: center;
     gap: 6px;
 }
+
 .imgHandle img:hover {
     cursor: pointer;
     background-color: #29ABE2;
@@ -1101,4 +1109,29 @@ progress::-moz-progress-bar {
     max-height: 600px !important;
     max-width: 100% !important;
     object-fit: contain !important;
+}
+
+.contactScroller {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    width: 30px;
+    background: #2A3647;
+    border-radius: 4px;
+    border: none;
+    transition: 125ms ease-in-out;
+
+    img {
+        height: 80%;
+        width: 100%;
+        filter: invert(1);
+    }
+}
+
+.contactScroller:hover {
+    box-shadow: 0px 4px 4px 0px #00000040;
+    background: #29ABE2;
+    border: 0px;
+    cursor: pointer;
 }

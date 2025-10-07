@@ -77,6 +77,7 @@ function renderContactAvatar(contactUser, color, initialsContact) {
         let contactName = contactUser[k].name;
         let colorIni = color[k];
         let filteredContact = allContactsArray.find(e => e.number == contactUser[k].number);
+        if (contactUser.length > 5) document.getElementById('contactRghtScroller').classList.remove('hide');
         if (filteredContact && filteredContact.pic) {
             initialsContact.innerHTML += initialsLoadContactWithPic(filteredContact.pic, colorIni);
         } else {
@@ -582,7 +583,7 @@ function dropHandler(event, picker) {
 /** Adds the 'picker-active' class to the picker area, indicating that file drops are allowed. */
 function activatePickArea(event, mode) {
     event.preventDefault();
-   if (mode === 'newTask') {
+    if (mode === 'newTask') {
         document.getElementById('pickerArea').classList.add('picker-active');
     }
     if (mode === 'editTask') {
@@ -632,7 +633,7 @@ async function manipulatePickedFile(file, picker) {
     document.getElementById('error').innerHTML = '';
     const compressedBase64 = await compressImage(file, 800, 800, 0.7);
     document.createElement('img').src = compressedBase64;
-    const { width, height } = await getImageDimensions(compressedBase64); 
+    const { width, height } = await getImageDimensions(compressedBase64);
     file.width = width;
     file.height = height;
     loadAttachmentsToArray(file, compressedBase64, createSizeUnit(compressedBase64));
@@ -758,4 +759,26 @@ function downloadFile(index) {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+}
+
+function scrollContacts(direction) {
+    let scrollArea = document.getElementById('initialsArea');
+    let scrollPixels = 80;
+    if (direction === 'left') toLeft(scrollArea, scrollPixels);
+    if (direction === 'right') toRight(scrollArea, scrollPixels);
+}
+
+function toLeft(scrollArea, scrollPixels) {
+    document.getElementById('contactRghtScroller').classList.remove("hide");
+    scrollArea.scrollLeft -= scrollPixels;
+    if (scrollArea.scrollLeft <= 0)
+        document.getElementById('contactLftScroller').classList.add("hide");
+}
+
+
+function toRight(scrollArea, scrollPixels) {
+    document.getElementById('contactLftScroller').classList.remove("hide");
+    scrollArea.scrollLeft += scrollPixels;
+    if (scrollArea.scrollLeft + scrollArea.clientWidth >= scrollArea.scrollWidth)
+        document.getElementById('contactRghtScroller').classList.add("hide");
 }

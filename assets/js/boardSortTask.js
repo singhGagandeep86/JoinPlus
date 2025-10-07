@@ -215,7 +215,7 @@ function processDoneSubtasks(element, contacts, contactName, checkBoxObject) {
 
 function renderScrollMoreContacts(element) {
     let contactsArray = Object.keys(element.contact).length;
-    if (contactsArray > 3) {
+    if (contactsArray > 4) {
         let id = document.getElementById(`moreContactsRight-${element['number']}`);
         id.classList.remove('hide');
     }
