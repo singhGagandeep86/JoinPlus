@@ -15,8 +15,7 @@
 }
 
 .contact-container-right {
-    margin-top: 70px;
-    margin-left: 40px;
+    width: 100%;
 }
 
 .contact-text {
@@ -40,10 +39,8 @@
 .block-main {
     display: flex;
     gap: 25px;
-    width: 560px;
+    width: 100%;
     height: 168px;
-    margin-left: 40px;
-    margin-top: 40px;
 }
 
 .block-main .pen-section-1 {
@@ -79,15 +76,14 @@
 
 .block-mid {
     display: flex;
-    margin-left: 40px;
-    margin-top: 40px;
     gap: 30px;
 }
 
 .pen-section-2 {
     background-color: white;
     border-radius: 30px;
-    width: 555px;
+    max-width: 555px;
+    width: 100%;
     height: 168px;
     padding: 28px;
     display: flex;
@@ -163,17 +159,15 @@
     color: white;
 }
 
-.activeSummary{
+.activeSummary {
     content: url("../img/IconsSummary.png");
 }
 
 .block-end {
     display: flex;
     gap: 25px;
-    width: 560px;
+    width: 100%;
     height: 170px;
-    margin-left: 40px;
-    margin-top: 40px;
 }
 
 .block-end .pen-section-3 {
@@ -213,7 +207,7 @@
 .block-mid .pen-section-2:hover,
 .block-end .pen-section-3:hover {
     background-color: var(--sideheader-main-color);
-    transform: scale(1.05); 
+    transform: scale(1.05);
     transition: transform 0.3s ease, background-color 0.3s ease;
     color: white;
     cursor: pointer;
@@ -221,7 +215,7 @@
 
 .block-main .pen-section-1,
 .block-mid .pen-section-2,
-.block-end .pen-section-3{
+.block-end .pen-section-3 {
     transition: 125ms ease-in-out;
 }
 
@@ -229,38 +223,42 @@
     color: white;
 }
 
-.summaryContent{
+.summaryContent {
     display: flex;
     flex-direction: column;
+    max-height: 814px;
+    padding: 70px 40px;
+    gap: 40px;
 }
-#divHead{
+
+#divHead {
     width: 3px;
     height: 64px;
-    background-color:#29ABE2 ;
+    background-color: #29ABE2;
     transform: rotate(180deg);
     border: 3px;
 }
 
-.greating{
+.greating {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width:385px;
-   min-height: 136px;
+    max-width: 385px;
+    min-height: 136px;
 }
 
-.greating span:nth-of-type(1){
+.greating span:nth-of-type(1) {
     font-size: 47px;
     font-weight: 500;
     color: #243647;
 
 }
-.greating span:nth-of-type(2){
+
+.greating span:nth-of-type(2) {
     font-size: 48px;
     font-weight: 700;
     color: #29ABE2;
     width: 100%;
     height: 70%;
-    text-align: center;
 }

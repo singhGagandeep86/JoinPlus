@@ -204,7 +204,7 @@ function addGreating() {
     let greatingArea = document.getElementById('greatingDay');
     let greeting = loadGreeting();
     greatingArea.innerHTML = ''
-    greatingArea.innerHTML = `<span>${greeting}</span>, <span id="greetingName"></span>`;
+    greatingArea.innerHTML = `<span>${greeting}</span> <span id="greetingName"></span>`;
 }
 
 /**
