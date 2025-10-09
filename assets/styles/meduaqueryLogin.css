@@ -1,58 +1,107 @@
-@media (max-width: 885px) {
-    .loginarea {
-        padding: 20px 0px;
-        margin: 0px 0px 0px 82px;
+@media (min-width: 1301px) {
+    .Screen-Logo {
+        left: calc(50% - 450px);
     }
 }
 
+@media (max-width: 885px) {
+    .loginarea {
+        padding: 20px 0px;
+        margin: 0px;
+    }
 
-@media (max-width: 800px) {
     .Screen-Logo {
         background-color: #2A3647;
-        display: block;
     }
 
     .join-logo {
+        width: 152px;
+        height: 292px;
+        top: 25%;
+        left: 32%;
         opacity: 0;
-        z-index: 1000;
     }
 
     .final-logo {
         display: block;
+        top: 33% !important;
         content: url("../img/logowhite.png");
     }
 
     @keyframes JoinlogoScreen {
         0% {
-            top: 50%;
-            left: 50%;
+            top: 40%;
+            left: 35%;
             width: 140px;
             height: 200px;
+            opacity: 0;
+        }
+
+        40% {
+            top: 40%;
+            left: 35%;
+            width: 140px;
+            height: 200px;
+            opacity: 0;
         }
 
         100% {
             top: 25px;
-            left: 50px;
-            width: 100px;
-            height: 200px;
+            left: 25px;
+            height: 300px;
+            width: 200px;
             opacity: 1;
         }
     }
 
     @keyframes FinalLogoScreen {
         0% {
-            top: 51%;
-            left: 50%;
+            top: 33%;
+            left: 33%;
             width: 140px;
-            height: 200px;
+            height: 190px;
             opacity: 1;
         }
 
         100% {
-            top: 50px;
-            left: 50px;
+            top: 40%;
+            left: 35%;
             width: 100px;
             height: 135px;
+            opacity: 0;
+        }
+    }
+
+    @keyframes logoScreen {
+        0% {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            background-color: #2A3647;
+            z-index: 1000;
+        }
+
+        20% {
+            background-color: #2A3647;
+            opacity: 0.6;
+        }
+
+
+        35% {
+            background-color: transparent;
+            opacity: 0.4;
+        }
+
+        65% {
+            background-color: transparent;
+            opacity: 0.1;
+        }
+
+        100% {
+            background: none;
+            transform: scale(0.5) translate(-50%, -50%);
+            z-index: -1;
         }
     }
 }
@@ -111,11 +160,14 @@
     }
 
     header {
-        display: flex;
-        justify-content: center;
+        position: absolute;
         left: 0;
         top: 85vh;
         width: 100%;
+    }
+
+    .topline {
+        justify-content: center;
     }
 
     header .topline p {
@@ -138,6 +190,7 @@
     footer .footercontent {
         gap: 10px;
         padding: 8px;
+        margin-bottom: 0px !important;
     }
 
     .failEnter p {
@@ -235,4 +288,18 @@
         padding: 4px;
         margin-bottom: 8px;
     }
+}
+
+@media (max-height: 820px) and (max-width: 496px) {
+
+    body {
+        min-height: 970px;
+    }
+
+    header {
+        z-index: 999;
+        bottom: 10px;
+        top: auto;
+    }
+
 }

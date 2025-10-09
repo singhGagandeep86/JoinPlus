@@ -267,7 +267,7 @@
 
     .contact-ellipse {
         scale: 0.7;
-        transform: translate(-100px);
+        transform: translate(-22%) !important;
         margin-top: 0;
     }
 
@@ -391,11 +391,12 @@
     .mini-personadd-contact {
         width: 64px;
         display: flex;
-        position: absolute;
-        bottom: 90px;
+        position: sticky;
+        top: 78%;
         height: 64px;
-        right: 10px;
+        left: 78%;
         cursor: pointer;
+        z-index: 999;
     }
 }
 
@@ -432,7 +433,7 @@
 
     .contact-ellipse {
         scale: 0.6;
-        transform: translate(-100px);
+        transform: translate(-35%) !important;
     }
 
     .popup {

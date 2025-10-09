@@ -1,3 +1,9 @@
+@media (min-width: 1301px) {
+   .join-logo {
+    position: unset;
+   }
+}
+
 @media (max-width: 1040px) {
     .logo {
         top: 19px;
@@ -12,12 +18,6 @@
     .loginarea {
         padding: 20px 115px;
         width: 400px;
-    }
-}
-
-@media (max-width: 800px) {
-    .Screen-Logo {
-        display: none;
     }
 }
 
@@ -99,6 +99,10 @@
         line-height: 19.2px;
         font-weight: 400;
     }
+
+    .finishText {
+        width: 90%;
+    }
 }
 
 @media (max-width: 430px) {
@@ -158,7 +162,8 @@
     .loginarea {
         width: 200px;
         padding: 0 40px;
-        height: 500px;
+        height: 492px;
+        width: 4px;
     }
 
     .loginarea form .custome-input input {
@@ -180,60 +185,11 @@
         font-weight: 400;
     }
 
-    .Screen-Logo {
-        background-color: #2A3647;
-        display: block;
-    }
-
-    .join-logo {
-        opacity: 0;
-        z-index: 1000;
-    }
-
-    .final-logo {
-        display: block;
-        content: url("../img/logowhite.png");
-    }
-
     .loginheadline .textline {
         font-size: 35px;
         line-height: 56.4px;
         text-align: center;
         font-weight: 700;
-    }
-
-    @keyframes JoinlogoScreen {
-        0% {
-            top: 50%;
-            left: 50%;
-            width: 140px;
-            height: 200px;
-        }
-
-        100% {
-            top: 50px;
-            left: 50px;
-            width: 140px;
-            height: 200px;
-            opacity: 1;
-        }
-    }
-
-    @keyframes FinalLogoScreen {
-        0% {
-            top: 50%;
-            left: 50%;
-            width: 140px;
-            height: 200px;
-            opacity: 1;
-        }
-
-        100% {
-            top: 50px;
-            left: 50px;
-            width: 140px;
-            height: 200px;
-        }
     }
 
     .loginarea form .custome-input .socialicons{

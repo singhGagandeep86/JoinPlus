@@ -158,6 +158,14 @@ html::-webkit-scrollbar-thumb {
     z-index: 100;
 }
 
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1440px;
+}
+
 .headerContentRightSide {
     position: relative;
     display: flex;

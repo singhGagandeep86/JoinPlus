@@ -41,11 +41,12 @@
                 <div class="custome-input">
                     <input type="password" class="inputSignUp" id="password" name="password" placeholder="Password">
                     <img class="socialicons" src="../img/lock.png">
+                    <div id="failBasicPassword" class="fail hide"><span>Weak Password!! (min. 8 char & includes a Number & a Letter)</span></div>
                 </div>
                 <div class="custome-input">
                     <input  type="password" class="inputSignUp" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" oninput="passwordInputVali()">
                     <img class="socialicons" src="../img/lock.png">
-                    <div id="failPassword" class="fail hide "><span>Please enter the same password</span></div>
+                    <div id="failPassword" class="fail hide "><span>Weak Password!! Please try again</span></div>
                 </div>
                 <div class="check-container">
                     <label class="checkLabel" for="privacyPolicy">
@@ -60,6 +61,9 @@
     </div>
 
     <div id="popupContact" class="popupArea hide" onclick="closeContact()"></div>
+       <div id="registDoneIcon" class="d_none">
+        <div class="finishDiv"><span class="finishText">You have successfully registered<br>You will be redirected to the login page!!!</span></div>
+    </div>
     <footer>
         <div class="footercontent">
             <a href="../html/privacySecondary.html">

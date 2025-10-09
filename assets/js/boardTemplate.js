@@ -193,10 +193,12 @@ function templateTaskHTML(element) {
             <span>${element['description']}</span>
         </div>
         <div id="${rangeId}"></div>
+        <div class="contactsAttachArea">
+         <div class="showMore left flip hide"><img src="../img/arrow.png"></div>
     <div id="contactAreaPic-${element['number']}" class="contactAndPrioArea" onmouseover="checkForOverflow(${element['number']})" ondragstart="preventDrag(${element['number']}, event)">
-    <div id="moreContactsLeft-${element['number']}" onclick="event.stopPropagation(); scrollMoreContacts('left', ${element['number']})" class="showMore flip hide"><img src="../img/arrow.png"></div>
+   
     <div id="${contactpic}" class="contact"></div>
-    <div id="moreContactsRight-${element['number']}" onclick="event.stopPropagation(); scrollMoreContacts('right', ${element['number']})" class="showMore hide"><img src="../img/arrow.png"></div>
+   </div> <div id="moreContactsRight-${element['number']}" class="showMore right hide"><img src="../img/arrow.png"></div> 
     <div class="bg_${element['prio']}"></div> </div>
     <div id="popupTaskSwitch${element['number']}" class="taskSwitchArea d_none" ></div>
     </div>

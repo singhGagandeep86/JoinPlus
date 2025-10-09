@@ -442,28 +442,3 @@ async function addTaskboard(id) {
     }
 
 }
-
-function scrollMoreContacts(direction, number) {
-    let scrollDiv = document.getElementById(`contact-${number}`);
-    let scrollPixels = 80;
-    if (direction === 'left') scrollContactsLeft(scrollDiv, scrollPixels, number);
-    if (direction === 'right') scrollContactsRight(scrollDiv, scrollPixels, number);
-}
-
-/** Scrolls the task contacts selection area to the left by a specified number of pixels.
- * Removes the left arrow icon if the selection area is already at the start. */
-function scrollContactsLeft(scrollDiv, scrollPixels, number) {
-    document.getElementById(`moreContactsRight-${number}`).classList.remove("hide");
-    scrollDiv.scrollLeft -= scrollPixels;
-    if (scrollDiv.scrollLeft <= 0)
-        document.getElementById(`moreContactsLeft-${number}`).classList.add("hide");
-}
-
-/** Scrolls the task contacts selection area to the right by a specified number of pixels.
- * Adds the right arrow icon if the selection area is not already at the end. */
-function scrollContactsRight(scrollDiv, scrollPixels, number) {
-    document.getElementById(`moreContactsLeft-${number}`).classList.remove("hide");
-    scrollDiv.scrollLeft += scrollPixels;
-    if (scrollDiv.scrollLeft + scrollDiv.clientWidth >= scrollDiv.scrollWidth)
-        document.getElementById(`moreContactsRight-${number}`).classList.add("hide");
-}

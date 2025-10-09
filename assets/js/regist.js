@@ -1,3 +1,5 @@
+const { register } = require("module");
+
 /**
  * Validates the user input from the form.
  * Checks the validity of the name, email, passwords, and privacy policy agreement.
@@ -63,7 +65,12 @@ function disableSubmitButton(button) {
     button.classList.remove('login');
 }
 
-
+function checkPasswordStrength(password) {
+    const minLength = 8;
+    const hasLetter = /[a-zA-Z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    return password.length >= minLength && hasLetter && hasNumbers;
+}
 /**
  * Handles the user registration process.
  * This function prevents the default form submission, retrieves user input values,
@@ -75,35 +82,53 @@ async function handleRegistration(event) {
     let userName = document.getElementById('name').value;
     let emailValue = document.getElementById('email').value;
     let passwordValue = document.getElementById('password').value;
-    try {
-        let response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBUvClF-GJEiTg298gzQneyv8i5Rg9KgQs', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: emailValue,
-                password: passwordValue,
-                returnSecureToken: true
-            })
-        });
-        if (!response.ok) {
-            throw new Error(`Fehler: ${response.status} ${response.statusText}`);
-        }
-
-        let data = await response.json();
-        if (data.idToken && data.localId) {
-            let token = data.idToken;
-            let uid = data.localId;
-            await createDataFb(userName, emailValue, token, uid);
-            sessionStorage.setItem('authToken', token);
-            window.location.href = "../html/summary.html";
-        } else {
-            throw new Error("Registrierung fehlgeschlagen: Kein Token oder UID erhalten");
-        }
-    } catch (error) {
-        console.error(error);
+    if (!checkPasswordStrength(passwordValue)) {
+        showPasswordError();
+        return;
     }
+    try {
+        let response = await register(emailValue, passwordValue);
+        let data = await response.json();
+        if (!response.ok) {
+            showError(data);
+            return;
+        }
+        if (data.idToken && data.localId) await afterDone(data, userName, emailValue);
+        else throw new Error("Registrierung fehlgeschlagen: Kein Token oder UID erhalten");
+    } catch (error) { console.error(error); }
+}
+
+async function register(emailValue, passwordValue) {
+    let response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBUvClF-GJEiTg298gzQneyv8i5Rg9KgQs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            email: emailValue,
+            password: passwordValue,
+            returnSecureToken: true
+        })
+    });
+    return response;
+}
+
+function showError(data) {
+    let errorMessage = data.error?.message || "Unbekannter Fehler";
+    document.getElementById('failBasicPassword').classList.remove('hide');
+    document.getElementById('failBasicPassword').innerHTML = `<span>${errorMessage}</span>`;
+}
+
+async function afterDone(data, userName, emailValue) {
+    let token = data.idToken;
+    let uid = data.localId;
+    await createDataFb(userName, emailValue, token, uid);
+    sessionStorage.setItem('authToken', token);
+    document.getElementById('registDoneIcon').classList.remove('d_none');
+    setTimeout(() => { window.location.href = "../../index.html" }, 2000);
+}
+
+function showPasswordError() {
+    document.getElementById('failBasicPassword').classList.remove('hide');
+    document.getElementById('failBasicPassword').innerHTML = `<span>Weak Password!! (min. 8 char & includes a Number & a Letter)</span>`;
 }
 
 /**
@@ -121,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /**
  * Creates a new user entry in the Firebase database.
  */
-async function createDataFb(name, emailValue, token, uid) { 
+async function createDataFb(name, emailValue, token, uid) {
     let number = generateRandomNumber();
     let path = `/user/task${number}`;
     try {
@@ -165,7 +190,7 @@ function generateRandomNumber() {
  * Constructs the full URL for accessing the Firebase Realtime Database.
  */
 function getDatabaseUrl(path, token) {
-     let base_Url = 'https://join-e54a3-default-rtdb.europe-west1.firebasedatabase.app';
+    let base_Url = 'https://join-e54a3-default-rtdb.europe-west1.firebasedatabase.app';
     return `${base_Url}${path}.json?auth=${token}`;
 }
 

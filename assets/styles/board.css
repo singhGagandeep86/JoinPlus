@@ -330,11 +330,13 @@ html {
 }
 
 .contactAndPrioArea {
-    width: 220px;
+    width: 128px;
     height: 32px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    overflow: hidden;
+    position: relative;
 }
 
 .contactAndPrioArea img {
@@ -343,11 +345,11 @@ html {
 }
 
 .contact {
-    width: 135px;
+    width: 128px;
     display: flex;
     position: relative;
     font-size: 14px;
-    overflow: auto;
+    transition: transform 0.3s ease;
 }
 
 .contact::-webkit-scrollbar {
@@ -369,6 +371,14 @@ html {
     display: block;
 }
 
+.contactsAttachArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 4px;
+}
+
 .showMore {
     background: #2A3647;
     width: 20px;
@@ -379,8 +389,12 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 100;
+
     img {
-          filter: invert(1);
+        width: 100%;
+        height: 100%;
+        filter: invert(1);
     }
 }
 

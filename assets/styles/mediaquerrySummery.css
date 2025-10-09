@@ -49,8 +49,9 @@
     }
 
     .greating {
-        align-items: flex-start;
-        max-width: none;
+        /* align-items: flex-start;
+        max-width: none; */
+        display: none;
     }
 
     .block-end {
@@ -86,15 +87,7 @@
         align-items: center;
         gap: 16px;
     }
-
-    .greating {
-        align-items: center;
-    }
-
-    .greating span:nth-of-type(2) {
-        text-align: center;
-    }
-
+    
     #hiHead {
         order: 0;
     }

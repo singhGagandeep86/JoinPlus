@@ -121,15 +121,19 @@ html::-webkit-scrollbar-thumb {
 
 .header {
     width: 100%;
-    /* max-width: 1440px; */
     background-color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 20px;
     position: relative;
     z-index: 80;
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1440px;
 }
 
 .headerContentRightSide {

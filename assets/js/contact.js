@@ -146,6 +146,7 @@ function setActiveContact(i, number, initials) {
 function showContactDetails(i, initials) {
     let number = array[i].number;
     let allContacts = document.querySelectorAll('.contact-item');
+    document.getElementById('addContactSmall').classList.add('d_none');
 
     if (allContacts[i].classList.contains('active-contact')) {
         clearActiveContact();
@@ -185,6 +186,7 @@ function activeContact(i, number, initials) {
  */
 function showContactList(i) {
     let allContacts = document.querySelectorAll('.contact-item');
+      document.getElementById('addContactSmall').classList.remove('d_none');
     document.querySelector('.container').classList.remove('hidden');
     document.querySelector('.contact-container-right').classList.remove('OnDetails');
     document.querySelector('.container').classList.add('OnDetails');

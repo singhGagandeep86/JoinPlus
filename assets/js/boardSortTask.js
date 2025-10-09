@@ -50,6 +50,7 @@ function renderTask(element) {
     } else {
         processSubtasks(element, contacts, contactName, checkBoxObject);
     }
+    initContactScroll();
 }
 
 /**Function for processing subtasks and contacts for "ToDo" tasks */
@@ -101,6 +102,7 @@ function renderInProgressTask(element) {
     } else {
         processProgressSubtasks(element, contacts, contactName, checkBoxObject);
     }
+    initContactScroll();
 }
 
 /**Function for processing subtasks and contacts for "in Progress" tasks */
@@ -109,7 +111,6 @@ function processProgressSubtasks(element, contacts, contactName, checkBoxObject)
     subtaskBar(element, checkedCount);
     loadContactTask(element, contacts, contactName);
 }
-
 
 /**
  * Renders tasks in the "Awaiting" category within the UI.
@@ -153,6 +154,7 @@ function renderAwaitTask(element) {
     } else {
         processAwaitSubtasks(element, contacts, contactName, checkBoxObject);
     }
+    initContactScroll();
 }
 
 /**Function for processing subtasks and contacts for "await" tasks */
@@ -204,6 +206,7 @@ function renderDoneTask(element) {
     } else {
         processDoneSubtasks(element, contacts, contactName, checkBoxObject);
     }
+    initContactScroll();
 }
 
 /**Function for processing subtasks and contacts for "done" tasks */
@@ -396,4 +399,30 @@ function extrahiereInitialen(contactName) {
         }
         return initials;
     }
+}
+
+/**
+ * Initializes contact scrolling functionality on all elements with the class 'contactsAttachArea'.
+ * It iterates through all elements with the class 'contactsAttachArea' and checks if there are any contacts.
+ * If there are contacts, it initializes the contact scrolling buttons and sets up event listeners for the buttons.
+ * It also sets up an updateView function to manage the visibility of the contact scrolling buttons and to update the transform of the contact list.
+ */
+function initContactScroll() {
+    document.querySelectorAll('.contactsAttachArea').forEach(group => {
+        const list = group.querySelector('.contact');
+        const contacts = list.querySelectorAll('.box0');
+        if (!contacts.length) return;
+        const prevBtn = group.querySelector('.left');
+        const nextBtn = group.querySelector('.right');
+        let currentPage = 0;
+        const totalPages = Math.ceil(contacts.length / 4);
+        function updateView() {
+            list.style.transform = `translateX(${-currentPage * 100}%)`;
+            prevBtn.classList.toggle('hide', currentPage === 0);
+            nextBtn.classList.toggle('hide', currentPage === totalPages - 1);
+        }
+        nextBtn.onclick = (event) => { event.stopPropagation(); if (currentPage < totalPages - 1) { currentPage++; updateView(); } };
+        prevBtn.onclick = (event) => { event.stopPropagation(); if (currentPage > 0) { currentPage--; updateView(); } };
+        updateView();
+    });
 }

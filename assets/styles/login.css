@@ -17,15 +17,16 @@
 
 body {
     height: 100vh;
-    max-width: 1440px;
+    min-height: 820px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 25px;
+    position: relative;
 }
 
 header {
-    position: absolute;
-    top: 80px;
     width: 100%;
     max-width: 1440px;
 }
@@ -35,6 +36,7 @@ header {
     align-items: center;
     justify-content: flex-end;
     gap: 35px;
+    padding: 0px 25px;
 }
 
 header .topline p {
@@ -76,7 +78,6 @@ header .topline p {
     position: fixed;
     top: 0;
     right: 0;
-    left: 0;
     background-color: white;
     animation: logoScreen 1.5s forwards;
     animation-timing-function: ease;
@@ -101,7 +102,7 @@ header .topline p {
     position: absolute;
     width: 140px;
     height: 190px;
-    top: 33%;
+    top: 50%;
     left: 33%;
     animation-fill-mode: forwards;
     animation-timing-function: ease;
@@ -111,8 +112,8 @@ header .topline p {
 
 @keyframes JoinlogoScreen {
     from {
-        top: 50%;
-        left: 50%;
+        top: 33%;
+        left: 33%;
         width: 274px;
         height: 334px;
     }
@@ -286,10 +287,6 @@ input::placeholder {
 }
 
 footer .footercontent {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
     padding: 10px;
     display: flex;
     align-items: center;
@@ -315,11 +312,6 @@ footer .footercontent {
     color: var(--button-hover-color);
     font-weight: bold;
 }
-
-/* .custome-input .input {
-    background: url("../img/mail.png") no-repeat;
-    background-position: 95% center;
-} */
 
 form:nth-child(1) {
     .input {
