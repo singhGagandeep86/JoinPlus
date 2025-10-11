@@ -321,7 +321,8 @@ async function fetchUserData(path) {
  */
 function getDatabaseUrl(path) {
     let token = sessionStorage.getItem('authToken');
-    return `${BASE_URL}${path}.json?auth=${token}`;
+    let url = `${BASE_URL.replace(/\/$/, '')}/${path.replace(/^\//, '')}.json?auth=${token}`;
+    return url;
 }
 
 /**
@@ -446,6 +447,7 @@ function issueValues(i, initialCont, userImg, userObject) {
  */
 function closeContact() {
     document.getElementById('popupContact').classList.add('d_none');
+    document.body.style.overflow = '';
 }
 
 /**
@@ -467,6 +469,7 @@ function openContact() {
         }]
     }
     contactPopUp.classList.remove('d_none');
+    document.body.style.overflow = 'hidden';
     contactPopUp.innerHTML = editContactTemp();
     getOperator(userObject);
 }
@@ -484,7 +487,7 @@ function editContactTemp() {
         </div>
         <div class="right-part">
             <img onclick="closeContact()" class="close" src="../img/Close.png">
-            <div class="initialsCont">
+            <div class="initialsContMain">
                 <span id="initialCont"></span>
                 <img id="userImg" class="userImg d_none">
                 <div id="camera" class="camera d_none" onclick="openUserImgPicker()">

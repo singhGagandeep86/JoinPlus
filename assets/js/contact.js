@@ -186,7 +186,7 @@ function activeContact(i, number, initials) {
  */
 function showContactList(i) {
     let allContacts = document.querySelectorAll('.contact-item');
-      document.getElementById('addContactSmall').classList.remove('d_none');
+    document.getElementById('addContactSmall').classList.remove('d_none');
     document.querySelector('.container').classList.remove('hidden');
     document.querySelector('.contact-container-right').classList.remove('OnDetails');
     document.querySelector('.container').classList.add('OnDetails');
@@ -198,21 +198,29 @@ function showContactList(i) {
  * Opens the edit window for a contact.
  * @param {number} i - The index of the contact.
  */
-function editContact(i) {
+function editContact(i) { 
     let contactName = array[i].name;
     let initials = extrahiereInitialen(contactName);
     let popUpEdit = document.getElementById('overlayEdit');
     document.getElementById('overlayEdit').classList.remove('d_none');
+    document.body.style.overflow = 'hidden';
     popUpEdit.innerHTML = '';
     popUpEdit.innerHTML = overlay2(i, initials);
     if (array[i].pic) {
-        document.getElementById('userImgEdit').classList.remove('d_none');
-        document.getElementById('contactInitials').classList.add('d_none');
-        document.getElementById('userImgEdit').innerHTML = showImagePicker(array[i].pic);
+        showImagePicker(i);
     }
     loadInputEdit(i)
     document.querySelector('.contact-container-right').classList.add('hidden');
     stopEditArea();
+}
+
+function showImagePicker(i) {
+    document.getElementById('userProfileImg').classList.remove('d_none');
+    document.getElementById('userProfileImg').src = array[i].pic;
+    document.getElementById('userProfileImgSmall').classList.remove('d_none');
+    document.getElementById('userProfileImgSmall').src = array[i].pic;
+    document.getElementById('contactInitialsNormal').classList.add('d_none');
+    document.getElementById('contactInitialsSmall').classList.add('d_none');
 }
 
 /**

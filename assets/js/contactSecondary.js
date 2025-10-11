@@ -323,6 +323,7 @@ async function handlePickedPic(event) {
     let userProfileImg = document.getElementById('userProfileImg');
     let contactInitials = document.getElementById('contactInitials');
     let contactInitialsSmall = document.getElementById('contactInitialsSmall');
+    let contactInitialsNormal = document.getElementById('contactInitialsNormal');
     const file = event.target.files[0];
     if (!file) return;
 
@@ -336,6 +337,7 @@ async function handlePickedPic(event) {
     if (contactInitials) {
         contactInitials.classList.add('d_none');
         contactInitialsSmall.classList.add('d_none');
+        contactInitialsNormal.classList.add('d_none');
         userProfileImg.classList.remove('d_none');
     }
     userProfileImg.src = img.src;

@@ -291,7 +291,8 @@
         height: 100%;
         border-radius: 0;
         flex-direction: column;
-        gap: 60px;
+        overflow: auto;
+        /* gap: 60px; */
     }
 
     .logoEdit {
@@ -301,7 +302,7 @@
     .popupEditLeft {
         width: 100%;
         border-radius: 0;
-        height: 351px;
+        /* height: 351px; */
         padding: 24px;
     }
 
@@ -313,7 +314,7 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        height: 50%;
+        /* height: 50%; */
     }
 
     .popupEditRight span {
@@ -325,10 +326,10 @@
     #contactFormEdit button {
         scale: 0.8;
     }
-
+/* 
     #contactFormEdit .popup-actions {
         width: 364px;
-    }
+    } */
 
     #contactFormEdit {
         margin-top: 0px;
@@ -502,13 +503,6 @@
 }
 
 @media (min-width: 200px) and (max-width:460px) and (min-height: 710px) {
-    .popupEdit {
-        animation: slideInMobile 0.5s forwards ease;
-        width: 300px;
-        flex-direction: column;
-        height: 500px;
-        left: 3%;
-    }
 
     .popupEditRight span {
         position: relative;
@@ -521,21 +515,9 @@
         font-size: 35px;
     }
 
-    .EditInput {
-        width: 90%;
-        gap: 2px;
-        scale: 0.9;
-        transform: translate(0, -30px);
-    }
-
     #contactFormEdit {
         width: 100%;
         margin: 0;
         padding-left: 20px;
-    }
-
-    #contactFormEdit .popup-actions {
-        scale: 0.7;
-        transform: translate(-70px, -60px);
     }
 }

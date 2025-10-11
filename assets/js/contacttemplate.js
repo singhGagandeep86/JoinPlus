@@ -48,7 +48,7 @@ document.getElementById('overlay').addEventListener('click', function (event) {
  * @returns {string} - The HTML string for the edit overlay.
  */
 
-function overlay2(i, initials) {
+function overlay2(i, initials) { 
     return `
                      <div id="EditAreaStop" class="popupEdit">
                          <div class="popupEditLeft">
@@ -58,8 +58,8 @@ function overlay2(i, initials) {
                              <h2>Edit contact</h2>
                              <img class="strichEdit" src="../img/unterstrichvector.png">
                          </div>
-                           <div id="userImgEdit" class="userImgEdit smallScreen contact-ellipse2 b-${array[i].color}">
-                                 <img id="userProfileImg" class="userImg d_none">
+                           <div id="userImgEdit" class="userImgEdit smallScreen d_none contact-ellipse2 b-${array[i].color}">
+                                 <img id="userProfileImgSmall" class="userImg d_none">
                                  <span id="contactInitialsSmall">${initials}</span>
                                  <input id="contactImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
                                  <div class="camera" onclick="openImgPicker()">
@@ -69,7 +69,7 @@ function overlay2(i, initials) {
                          <div class="popupEditRight">
                              <div id="userImgEdit" class="userImgEdit normalScreen contact-ellipse2 b-${array[i].color}">
                                  <img id="userProfileImg" class="userImg d_none">
-                                 <span id="contactInitials">${initials}</span>
+                                 <span id="contactInitialsNormal">${initials}</span>
                                  <input id="contactImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
                                  <div class="camera" onclick="openImgPicker()">
                                      <img src="../img/camera.png">
@@ -101,7 +101,7 @@ function overlay2(i, initials) {
                                      <img src="../img/Close.png">
                                  </div>
                          </div>
-</div>`}
+                            </div>`}
 
 /**
  * Generates the HTML for displaying detailed contact information.
@@ -117,10 +117,10 @@ function loadContactDetails(i, number, color) {
             </div>
             <div class="contact-mini">
                 <h1>${array[i].name}</h1>
-                <div id="editArea" class="editimage">
-                    <img onclick="editContact(${i})" class="editimages" src="../img/editcontacts.png">
-                    <img onclick="deleteContact(${number})" class="editimages2" src="../img/Deletecontact.png">
-                </div>
+                 <div id="editArea" class="editimage">
+            <div class="editimages" onclick="editContact(${i})"><img src="../img/edit.png"><span>Edit</span></div>
+            <div class="editimages2" onclick="deleteContact(${number})"><img src="../img/delete.png"><span>Delete</span></div> 
+        </div>
             </div>
         </div> </div>
         <div class="contact-info contact-slide-in">
@@ -134,10 +134,9 @@ function loadContactDetails(i, number, color) {
         <button id="editBtn" onclick="editMenuOn()" class="mini-add-contact"></button>
 
         <div id="editImage2" class="d_none editimage2">
-            <img onclick="editContact(${i})" class="editimages" src="../img/editcontacts.png">
-            <img onclick="deleteContact(${number})" class="editimages2" src="../img/Deletecontact.png">
-        </div>
-`}
+            <div class="editimages" onclick="editContact(${i})"><img src="../img/edit.png"><span>Edit</span></div>
+            <div class="editimages2" onclick="deleteContact(${number})"><img src="../img/delete.png"><span>Delete</span></div> 
+        </div>`}
 
 /**
  * Generates the HTML for displaying a contact picture.
@@ -181,15 +180,4 @@ function loadContactWithPic(i, initials, pic) {
                     </div>
                 </div>
             </div>`;
-}
-
-
-/** Generates an HTML string for displaying a contact's profile picture
- * and a button for uploading a new picture. */
-function showImagePicker(pic) {
-    return `   <img id="userProfileImg" src="${pic}" class="profle-pic"> 
-               <input id="contactImgPicker" type="file" style="display: none;" accept="image/JPEG, image/PNG">
-               <div class="camera" onclick="openImgPicker()">
-               <img src="../img/camera.png">
-               </div>`
 }
