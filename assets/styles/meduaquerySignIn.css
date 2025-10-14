@@ -9,12 +9,13 @@
     .loginarea {
         padding: 20px 115px;
         width: 400px;
+        margin-top: 20px;
     }
 }
 
 @media (max-width: 938px) {
     .logo {
-        top: 19px;
+        top: 0;
     }
 
     .logo img {
@@ -108,7 +109,6 @@
 
 @media (max-width: 430px) {
     .loginarea {
-        /* height: 520px; */
         width: 200px;
         padding: 0px 80px;
     }

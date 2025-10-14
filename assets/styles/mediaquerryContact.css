@@ -292,7 +292,6 @@
         border-radius: 0;
         flex-direction: column;
         overflow: auto;
-        /* gap: 60px; */
     }
 
     .logoEdit {
@@ -302,7 +301,6 @@
     .popupEditLeft {
         width: 100%;
         border-radius: 0;
-        /* height: 351px; */
         padding: 24px;
     }
 
@@ -314,7 +312,6 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        /* height: 50%; */
     }
 
     .popupEditRight span {
@@ -326,11 +323,7 @@
     #contactFormEdit button {
         scale: 0.8;
     }
-/* 
-    #contactFormEdit .popup-actions {
-        width: 364px;
-    } */
-
+    
     #contactFormEdit {
         margin-top: 0px;
     }
