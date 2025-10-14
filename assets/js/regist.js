@@ -1,4 +1,3 @@
-const { register } = require("module");
 
 /**
  * Validates the user input from the form.

@@ -75,7 +75,7 @@ header .topline p {
     align-items: center;
     width: 100%;
     height: 100%;
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     background-color: white;

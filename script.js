@@ -192,7 +192,7 @@ async function deleteGuest() {
  * Logs the user out by removing the authentication token and user ID from session storage, and resets the user data array.
  * Redirects to the login page.
  */
-async function logout() {
+async function logout() { 
     sessionStorage.removeItem('authToken');
     sessionStorage.removeItem('uid');
     userData = [];
@@ -763,4 +763,5 @@ async function deleteUser(path = "") {
 async function loadnewTaskEdit() {
     fetchUserData('/user');
 }
+
 
