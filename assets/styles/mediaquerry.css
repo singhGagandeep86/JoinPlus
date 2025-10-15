@@ -198,6 +198,7 @@
         flex-direction: row;
         height: 100%;
         margin-top: 0;
+        gap: 85px;
     }
 
     .changeMedia {
@@ -242,7 +243,7 @@
 }
 
 @media (max-width: 460px) {
-     .asideMenuArea {
+    .asideMenuArea {
         gap: 32px;
     }
 
@@ -253,7 +254,7 @@
 }
 
 @media (max-width: 420px) {
-     .asideMenuArea {
+    .asideMenuArea {
         gap: 20px;
     }
 }
