@@ -227,7 +227,7 @@
     display: flex;
     flex-direction: column;
     background-color: #f6f7f8;
-    max-height: 814px;
+    height: 100%;
     padding: 70px 40px;
     gap: 40px;
 }
@@ -261,5 +261,4 @@
     font-weight: 700;
     color: #29ABE2;
     width: 100%;
-    height: 70%;
 }

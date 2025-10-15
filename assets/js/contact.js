@@ -284,8 +284,9 @@ function closeEditImage() {
 /**
  * Hides the edit contact overlay.
  */
-function editContactOff() {
+function editContactOff() { 
     document.getElementById('overlayEdit').classList.add('d_none');
+     document.body.style.overflow = '';
 }
 
 /**

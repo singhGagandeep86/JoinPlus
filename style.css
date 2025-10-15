@@ -79,7 +79,7 @@ html::-webkit-scrollbar-thumb {
     flex-direction: column;
     height: 229px;
     width: 232px;
-    gap: 20px;
+    gap: 85px;
     margin-top: 64px;
 }
 

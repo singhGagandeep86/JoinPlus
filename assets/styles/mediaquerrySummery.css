@@ -1,6 +1,6 @@
 @media (max-width: 1300px) {
     .summaryContent {
-        padding: 70px 80px 100px 80px;
+        padding: 70px 80px;
         max-height: none;
     }
 }
@@ -8,7 +8,7 @@
 @media (max-width: 1070px) {
 
     .summaryContent {
-        padding: 70px 40px 100px 40px;
+        padding: 70px 40px;
     }
 
 }
@@ -29,35 +29,35 @@
     }
 }
 
-
-@media (max-width:1000px) {
-
+@media (max-width:940px) {
     .summaryContent {
-        align-items: center;
-    }
-
-    .contact-text {
-        justify-content: center;
-    }
-
-    .block-main {
-        justify-content: center;
+        padding: 40px;
     }
 
     .block-mid {
-        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 928px) {
+    .summaryContent {
+        padding: 40px 20px;
     }
 
-    .greating {
-        display: none;
+    .greating span:nth-of-type(1) {
+        font-size: 32px;
     }
 
-    .block-end {
-        justify-content: center;
+    .greating span:nth-of-type(2) {
+        font-size: 32px;
     }
 }
 
 @media(max-width:800px) {
+    .summaryContent {
+        padding-bottom: 90px;
+    }
+
     .asideMenu:nth-of-type(1) {
         padding: 0;
         border-radius: 10px;
@@ -70,6 +70,17 @@
     .mainDesign {
         width: 100%;
     }
+
+    .greating {
+        display: none;
+    }
+
+    .contact-text,
+    .block-main,
+    .block-mid,
+    .block-end {
+        justify-content: center;
+    }
 }
 
 @media(max-width:700px) {
@@ -79,22 +90,11 @@
     }
 
     .contact-text {
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-        align-items: center;
-        gap: 16px;
-    }
-    
-    #hiHead {
-        order: 0;
+        gap: 10px;
     }
 
-    #divHead {
-        transform: rotate(180deg);
-        order: 2;
-        height: 3px;
-        width: 90px;
+    #hiHead {
+        order: 0;
     }
 
     #textHead {
@@ -103,6 +103,71 @@
 
     .mainDesign {
         width: 100%;
+    }
+}
+
+@media (max-width: 635px) {
+    .contact-text h1 {
+        font-size: 52px;
+    }
+
+    #divHead {
+        height: 52px;
+    }
+
+    .contact-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 16px;
+    }
+
+    #divHead {
+        transform: rotate(180deg);
+        order:  1 !important;
+        height: 3px;
+        width: 90px;
+    }
+
+    .block-main, .block-mid{
+        height: 140px;
+    }
+
+    .block-end {
+        height: 130px;
+    }
+
+    .pen-section-1 {
+        height: 100%;
+    }
+
+    .pen-section-2 {
+        gap: 38px;
+        width: auto;
+    }
+
+    .block-main .pen-section-1, .block-mid .pen-section-2, .block-end .pen-section-3 {
+        height: 100%;
+    }
+
+    .block-main .pen-section-1 {
+        width: 210px;
+    }
+
+    .block-end .pen-section-3 {
+        width: 130px;
+        padding: 0;
+    }
+
+    .block-end .pen-section-3 .pen-3 h1 {
+        font-size: 62px;
+        line-height: 62px;
+    }
+
+    .block-end .pen-section-3 .pen-3 p {
+        font-size: 16px;
+        line-height: 16px;
     }
 }
 
@@ -115,23 +180,17 @@
 
     .summaryContent {
         padding: 40px 20px 100px 20px;
-        gap: 20px;
-    }
-
-    .block-mid {
-        width: 100%;
+        gap: 30px;
     }
 }
 
 @media(max-width:560px) {
     .summaryContent {
         padding: 30px 10px 90px 10px;
-        gap: 10px;
     }
 
     .block-main,
-    .block-mid,
-    .block-end {
+    .block-mid{
         gap: 10px;
     }
 
@@ -146,24 +205,41 @@
 }
 
 @media(max-width:492px) {
-    .block-main {
-        scale: 0.9;
-    }
-
-    .block-mid {
-        scale: 0.9;
+    .block-main .pen-section-1 {
+        width: 188px;
     }
 
     .block-end {
         scale: 0.9;
+        height: 120px;
+    }
+
+    .block-end .pen-section-3 {
+        padding: 0;
     }
 
     .mainDesign {
         height: 100%;
         width: 100%;
     }
-     .pen-section-2 {
-        gap: 25px;
+
+    .pen-section-2 {
+        gap: 12px;
+    }
+
+    .ontake2 h1 {
+        font-size: 64px;
+        line-height: 62px;
+    }
+
+    .psmall {
+        font-size: 16px;
+    }
+}
+
+@media(max-width:412px) {
+    .block-end {
+        scale: 1;
     }
 }
 
@@ -178,5 +254,10 @@
 
     .block-end {
         scale: 0.80;
+    }
+
+    .block-end .pen-section-3 .pen-3 p {
+        font-size: 14px;
+        line-height: 14px;
     }
 }

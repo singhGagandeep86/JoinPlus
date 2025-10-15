@@ -446,7 +446,9 @@ body {
 }
 
 .mini-add-contact {
-    position: relative;
+    position: fixed;
+    bottom: 90px;
+    right: 10px;
     width: 100%;
     height: 66px;
     background: url("../img/MenuContactoptions.png") no-repeat right;
@@ -781,8 +783,16 @@ input::placeholder {
     .contact-container-right {
         overflow: auto;
     }
-
-    .content {
-        padding-bottom: 80px !important;
-    }
 }
+
+    @media (max-height: 670px) {
+        .mini-personadd-contact {
+            top: 68% !important;
+        }
+    }
+    
+    @media (max-height: 460px) {
+        .mini-personadd-contact {
+            top: 50% !important;
+        }
+    }
