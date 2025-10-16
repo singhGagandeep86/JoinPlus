@@ -55,7 +55,7 @@
 
 @media(max-width:800px) {
     .summaryContent {
-        padding-bottom: 90px;
+        padding: 20px 75px 90px 75px;
     }
 
     .asideMenu:nth-of-type(1) {
@@ -79,7 +79,19 @@
     .block-main,
     .block-mid,
     .block-end {
-        justify-content: center;
+        justify-content: space-between;
+    }
+
+    .pen-section-2 {
+        max-width: none;
+    }
+
+    .block-end {
+        height: 150px;
+    }
+
+    .block-end .pen-section-3 {
+        height: 100%;
     }
 }
 
@@ -119,18 +131,19 @@
         display: flex;
         flex-direction: column;
         justify-content: start;
-        align-items: center;
-        gap: 16px;
+        align-items: flex-start;
+        gap: 6px;
     }
 
     #divHead {
         transform: rotate(180deg);
-        order:  1 !important;
+        order: 1 !important;
         height: 3px;
         width: 90px;
     }
 
-    .block-main, .block-mid{
+    .block-main,
+    .block-mid {
         height: 140px;
     }
 
@@ -142,12 +155,9 @@
         height: 100%;
     }
 
-    .pen-section-2 {
-        gap: 38px;
-        width: auto;
-    }
-
-    .block-main .pen-section-1, .block-mid .pen-section-2, .block-end .pen-section-3 {
+    .block-main .pen-section-1,
+    .block-mid .pen-section-2,
+    .block-end .pen-section-3 {
         height: 100%;
     }
 
@@ -179,18 +189,18 @@
     }
 
     .summaryContent {
-        padding: 40px 20px 100px 20px;
+        padding: 40px 60px 100px 60px;
         gap: 30px;
     }
 }
 
 @media(max-width:560px) {
     .summaryContent {
-        padding: 30px 10px 90px 10px;
+        padding: 30px 40px 90px 40px;
     }
 
     .block-main,
-    .block-mid{
+    .block-mid {
         gap: 10px;
     }
 
@@ -210,12 +220,23 @@
     }
 
     .block-end {
-        scale: 0.9;
-        height: 120px;
+        height: 110px;
+        gap: 8px;
     }
 
     .block-end .pen-section-3 {
-        padding: 0;
+        padding: 0px 4px;
+        width: 110px;
+    }
+
+    .block-end .pen-section-3 .pen-3 h1 {
+        font-size: 56px;
+        line-height: 56px;
+    }
+
+    .block-end .pen-section-3 .pen-3 p {
+        font-size: 14px;
+        line-height: 14px;
     }
 
     .mainDesign {
@@ -238,26 +259,36 @@
 }
 
 @media(max-width:412px) {
-    .block-end {
-        scale: 1;
+
+    .summaryContent {
+        padding: 30px 20px 90px 20px;
     }
+
 }
 
 @media(max-width:380px) {
-    .block-main {
-        scale: 0.80;
-    }
-
-    .block-mid {
-        scale: 0.80;
-    }
-
-    .block-end {
-        scale: 0.80;
-    }
 
     .block-end .pen-section-3 .pen-3 p {
         font-size: 14px;
         line-height: 14px;
+    }
+}
+
+@media(max-width:372px) {
+
+    .contact-text p {
+        font-size: 22px;
+        line-height: 22px;
+    }
+
+    .block-main .pen-section-1 {
+        width: 150px;
+        padding: 0;
+        gap: 4px;
+    }
+
+    .block-end .pen-section-3 {
+        padding: 0px;
+        width: 100%;
     }
 }
