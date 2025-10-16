@@ -23,8 +23,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 918px;
     overflow-y: auto;
+    min-height: 890px;
 }
 
 .logo {
@@ -33,9 +33,9 @@ body {
 }
 
 .logo img {
-    width: 100.03px;
-    height: 121.97px;
-    margin-left: 35px;
+    width: 100px;
+    height: 121px;
+    margin-left: 128px;
 }
 
 .loginarea {
@@ -48,7 +48,7 @@ body {
     height: 600px;
     background-color: white;
     border-radius: 30px;
-    padding: 48px 115px 48px 115px;
+    padding: 18px 92px 18px 92px;
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
     margin-bottom: 22px;
 }

@@ -273,14 +273,20 @@ html::-webkit-scrollbar-thumb {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    min-height: 970px;
 }
 
 @media (max-width: 1100px) {
     .responsivePopup {
         display: none;
+    }
+}
+
+@media (max-width: 496px) {
+    .main-container {
+        min-height: 970px;
+        justify-content: center;
     }
 }
 

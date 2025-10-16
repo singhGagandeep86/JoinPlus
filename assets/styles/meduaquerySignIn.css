@@ -1,7 +1,12 @@
-@media (min-width: 1301px) {
-   .join-logo {
-    position: unset;
-   }
+@media (min-width: 1430px) {
+    body {
+        min-height: 918px;
+    }
+
+    .join-logo {
+        position: unset;
+    }
+
 }
 
 @media (max-width: 968px) {
@@ -39,13 +44,14 @@
     .loginarea form .custome-input input {
         width: 300px;
         padding: 10px 20px;
-        font-size: 15px;        
+        font-size: 15px;
     }
 
-    .loginarea form .custome-input .socialicons{
+    .loginarea form .custome-input .socialicons {
         right: 20px;
         top: 10px;
     }
+
     .loginheadline .textline {
         font-size: 40px;
         line-height: 56.4px;
@@ -191,7 +197,7 @@
         font-weight: 700;
     }
 
-    .loginarea form .custome-input .socialicons{
+    .loginarea form .custome-input .socialicons {
         right: 20px;
     }
 }
@@ -206,14 +212,14 @@
         width: 200px;
     }
 
-@media (max-width: 320px) {
-    .loginarea {
-        width: 200px;
-        padding: 0 35px;
+    @media (max-width: 320px) {
+        .loginarea {
+            width: 200px;
+            padding: 0 35px;
+        }
     }
-}
 
-.loginarea form .custome-input .socialicons{
-    right: 20px;
-}
+    .loginarea form .custome-input .socialicons {
+        right: 20px;
+    }
 }
