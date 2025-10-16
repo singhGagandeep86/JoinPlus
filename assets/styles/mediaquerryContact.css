@@ -493,12 +493,6 @@
     .contact-text h1 {
         font-size: 35px;
     }
-
-    .mini-personadd-contact {
-        display: flex;
-        position: absolute;
-        bottom: 90px;
-    }
 }
 
 @media (min-width: 200px) and (max-width:460px) and (min-height: 710px) {

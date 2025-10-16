@@ -3,6 +3,7 @@ let userData = [];
 let BASE_URL = "https://join-e54a3-default-rtdb.europe-west1.firebasedatabase.app/";
 let editContactMode = false;
 let allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+let inputValid = false;
 
 /**
  * Retrieves the email and password from the event target.
@@ -497,8 +498,11 @@ function editContactTemp() {
             </div>
             <div class="userDetails">
                 <input type="text" id="userName" disabled>
+                <div id="incorrectName" class="fail hide"><span>Please enter a correct Name</span></div>
                 <input type="email" id="userEmail" disabled>
+                <div id="incorrectEmail" class="fail hide"><span>Please enter a correct Email</span></div>
                 <input type="tel" id="userPhone" disabled>
+                  <div id="incorrectPhone" class="fail hide"><span>Please enter a correct number, just a number.</span></div>
                 <div class="buttonContainer">
                     <button onclick="deleteCurrentUser()">Delete my account</button>
                     <button id="editButton" onclick="editUser()">Edit</button>
@@ -524,8 +528,9 @@ async function editUser() {
         document.getElementById('userEmail').removeAttribute('disabled');
         document.getElementById('userPhone').removeAttribute('disabled');
         editContactMode = true;
-    } else {
-        await saveContact();
+    } else { 
+        checkingInputs();
+        if (inputValid) await saveContact();
         editContactMode = false;
     }
 }
@@ -641,6 +646,32 @@ async function handleUserImageChange(event) {
     userImg.src = base64;
 }
 
+function checkingInputs(){
+    let userName = document.getElementById('userName').value;
+    let userEmail = document.getElementById('userEmail').value;
+    let userPhone = document.getElementById('userPhone').value;
+    inputValid = true;
+    if (!isCorrect(userName, /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/)) incorrectEntry('name');
+    if (!isCorrect(userEmail, /^$|^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,}$/)) incorrectEntry('email');
+    if (!isCorrect(userPhone, /^$|^[0-9]+$/)) incorrectEntry('phone');
+}
+
+
+/**
+ * @returns {boolean} - Returns true if the input matches the regex; otherwise, false.
+ */
+function isCorrect(input, regex) { return regex.test(input); }
+
+function incorrectEntry(type) {
+    let incorrectName = document.getElementById('incorrectName');
+    let incorrectEmail = document.getElementById('incorrectEmail');
+    let incorrectPhone = document.getElementById('incorrectPhone');
+    if (type === 'name') incorrectName.classList.remove('hide');
+    if (type === 'email') incorrectEmail.classList.remove('hide');
+    if (type === 'phone') incorrectPhone.classList.remove('hide');
+    inputValid = false;
+}
+
 /**
  * Saves changes to the user's account.
  * Disables input fields and gets user ID from session storage.
@@ -674,6 +705,9 @@ function disableInputs() {
     document.getElementById('title').innerHTML = 'My account';
     document.getElementById('editButton').innerHTML = `Edit`;
     document.getElementById('camera').classList.add('d_none');
+    document.getElementById('incorrectName').classList.add('hide');
+    document.getElementById('incorrectEmail').classList.add('hide');
+    document.getElementById('incorrectPhone').classList.add('hide');
 }
 
 /**

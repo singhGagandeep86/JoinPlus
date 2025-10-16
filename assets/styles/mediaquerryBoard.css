@@ -18,7 +18,7 @@
     .prioBtn {
         width: 60%;
         height: 40px;
-        font-size: 12px !important;
+        font-size: 14px !important;
         gap: 5px;
     }
 
@@ -29,7 +29,7 @@
     }
 
     .contactNameEdit p {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .liSubTask {

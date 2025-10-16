@@ -28,41 +28,46 @@
 
         <form id="registrationForm">
             <div class="custome-input">
-                <input id="name" class="inputSignUp" type="name"  name="name" placeholder="Name" oninput="nameInputVali()">
+                <input id="name" class="inputSignUp" type="name" name="name" placeholder="Name"
+                    oninput="nameInputVali()">
                 <img class="socialicons" src="../img/person.png">
                 <div id="failName" class="fail hide"><span>Please enter a correct name</span>
                 </div>
             </div>
-                <div class="custome-input">
-                    <input id="email" class="inputSignUp " type="email" name="email" placeholder="Email" oninput="emailInputVali()">
-                    <img class="socialicons" src="../img/mail.png">
-                    <div id="failEmail" class="fail hide "><span>Please enter a correct email,example gagandeep@test.de</span></div>
-                </div>
-                <div class="custome-input">
-                    <input type="password" class="inputSignUp" id="password" name="password" placeholder="Password">
-                    <img class="socialicons" src="../img/lock.png">
-                    <div id="failBasicPassword" class="fail hide"><span>Weak Password!! (min. 8 char & includes a Number & a Letter)</span></div>
-                </div>
-                <div class="custome-input">
-                    <input  type="password" class="inputSignUp" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" oninput="passwordInputVali()">
-                    <img class="socialicons" src="../img/lock.png">
-                    <div id="failPassword" class="fail hide "><span>Weak Password!! Please try again</span></div>
-                </div>
-                <div class="check-container">
-                    <label class="checkLabel" for="privacyPolicy">
-                        <input type="checkbox" id="privacyPolicy">
-                        <p>I accept the <a href="../html/privacySecondary.html" class="policycolor">Privacy policy</a></p>
-                    </label>
-                </div>
-                <div class="btns">
-                    <button class=" btnOff" id="submitButton" disabled>Sign up</button>
-                </div>
+            <div class="custome-input">
+                <input id="email" class="inputSignUp " type="email"
+                    name="email" placeholder="Email" oninput="emailInputVali()">
+                <img class="socialicons" src="../img/mail.png">
+                <div id="failEmail" class="fail hide "><span>Please enter a correct email,example gagandeep@test.de</span></div>
+            </div>
+            <div class="custome-input">
+                <input type="password" class="inputSignUp" id="password" name="password" placeholder="Password">
+                <img class="socialicons" src="../img/lock.png">
+                <div id="failBasicPassword" class="fail hide"><span>Weak Password!! (min. 8 char & includes a Number & a
+                        Letter)</span></div>
+            </div>
+            <div class="custome-input">
+                <input type="password" class="inputSignUp" id="confirmPassword" name="confirmPassword"
+                    placeholder="Confirm Password" oninput="passwordInputVali()">
+                <img class="socialicons" src="../img/lock.png">
+                <div id="failPassword" class="fail hide "><span>Weak Password!! Please try again</span></div>
+            </div>
+            <div class="check-container">
+                <label class="checkLabel" for="privacyPolicy">
+                    <input type="checkbox" id="privacyPolicy">
+                    <p>I accept the <a href="../html/privacySecondary.html" class="policycolor">Privacy policy</a></p>
+                </label>
+            </div>
+            <div class="btns">
+                <button class=" btnOff" id="submitButton" disabled>Sign up</button>
+            </div>
         </form>
     </div>
 
     <div id="popupContact" class="popupArea hide" onclick="closeContact()"></div>
-       <div id="registDoneIcon" class="d_none">
-        <div class="finishDiv"><span class="finishText">You have successfully registered<br>You will be redirected to the login page!!!</span></div>
+    <div id="registDoneIcon" class="d_none">
+        <div class="finishDiv"><span class="finishText">You have successfully registered<br>You will be redirected to
+                the login page!!!</span></div>
     </div>
     <footer>
         <div class="footercontent">

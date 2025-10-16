@@ -20,10 +20,12 @@ body {
 
 .mainDesign{
     background-color: #F6F7F8;
+    height: 100vh;
+    overflow: auto;
 }
 
 .content {
-    padding: 4rem 4rem 0 4rem;
+    padding: 4rem !important;
     max-width: 1440px;
 }
 
@@ -52,10 +54,6 @@ body {
 
 .text-2 p, span {
     font-size: 1rem;
-}
-
-.text-2 a {
-    color: black;
 }
 
 .burger-menu {

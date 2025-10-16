@@ -292,7 +292,6 @@ label {
 
 .namesInitials {
     color: white;
-    border: 1px solid white;
     border-radius: 50%;
     width: 42px;
     height: 42px;
@@ -648,7 +647,7 @@ label {
 }
 
 ul.a {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     height: 98px;
     width: 97%;
@@ -659,10 +658,6 @@ ul.a {
     margin-top: 28px;
     text-align: left;
     scrollbar-width: thin;
-}
-
-ul::-webkit-scrollbar-y {
-    display: block !important;
 }
 
 .leftPart {
@@ -765,7 +760,7 @@ li:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .doneIcon {
@@ -937,7 +932,7 @@ li:hover {
     height: 18px;
     width: 100%;
     color: #A8A8A8;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     text-align: center;
     word-wrap: break-word;

@@ -7,17 +7,17 @@
     animation: slideIn 0.5s forwards ease;
 
     .left-part {
-    width: 40%;
-    height: 100%;
-    min-height: 270px;
-    background-color: #2A3647;
-    display: flex;
-    gap: 12px;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 46px;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
+        width: 40%;
+        height: 100%;
+        min-height: 270px;
+        background-color: #2A3647;
+        display: flex;
+        gap: 12px;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 46px;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
 
         h2 {
             font-weight: 700;
@@ -37,21 +37,21 @@
     }
 
     .initialsContMain {
-    width: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid white;
-    font-size: 47px;
-    line-height: 56.4px;
-    color: white;
-    background-color: #BD7577;
-    text-align: center;
+        width: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        height: 120px;
+        border-radius: 50%;
+        border: 3px solid white;
+        font-size: 47px;
+        line-height: 56.4px;
+        color: white;
+        background-color: #BD7577;
+        text-align: center;
 
-    .initialsCont {
+        .initialsCont {
             position: relative;
             width: 120px;
             height: 120px;
@@ -92,50 +92,51 @@
             }
         }
     }
-    
-        .userDetails {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-            width: 70%;
 
-            input {
-                width: 100%;
-                height: 50px;
-                border-radius: 10px;
-                gap: 10px;
-                padding: 13px 21px;
-                background-color: #FFFFFF;
-                border: 1px solid #D1D1D1;
-                font-size: 20px;
-                font-weight: 400;
-                cursor: pointer;
-            }
+    .userDetails {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
 
-            input:nth-child(1) {
-                background: url('../img/person.png') no-repeat 95% center;
-            }
+        input {
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+            gap: 10px;
+            padding: 13px 21px;
+            margin: 30px 0px 5px 0px;
+            background-color: #FFFFFF;
+            border: 1px solid #D1D1D1;
+            font-size: 20px;
+            font-weight: 400;
+            cursor: pointer;
+        }
 
-            input:nth-child(2) {
-                background: url('../img/mail.png') no-repeat 95% center;
-            }
+        input:nth-child(1) {
+            background: url('../img/person.png') no-repeat 95% center;
+            margin-top: 0px !important;
+        }
 
-            input:nth-child(3) {
-                background: url('../img/call.png') no-repeat 95% center;
-            }
+        input:nth-child(2) {
+            background: url('../img/mail.png') no-repeat 95% center;
+        }
 
-            input:focus {
-                border-color: #29ABE2;
-                outline: none;
-            }
-}
+        input:nth-child(3) {
+            background: url('../img/call.png') no-repeat 95% center;
+        }
+
+        input:focus {
+            border-color: #29ABE2;
+            outline: none;
+        }
+    }
 
     .right-part {
-          display: flex;
-    width: 60%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
+        display: flex;
+        width: 60%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
 
         .close {
             position: absolute;
@@ -149,51 +150,52 @@
             background-color: #a8a8a840;
         }
 
-            .buttonContainer {
+        .buttonContainer {
+            display: flex;
+            width: 100%;
+            height: 57px;
+            gap: 25px;
+            margin-top: 30px;
+
+            button:nth-child(1) {
+                border-radius: 8px;
+                border: 1px solid #D1D1D1;
+                color: #2A3647;
+                background-color: transparent;
+                font-size: 21px;
+                font-weight: 400;
+                padding: 6px;
+                cursor: pointer;
+            }
+
+            button:nth-child(1):hover {
+                border-color: #29ABE2;
+                color: #29ABE2;
+                transition: 300ms ease-out;
+            }
+
+            button:nth-child(2) {
                 display: flex;
-                width: 100%;
-                height: 57px;
-                gap: 25px;
+                border-radius: 10px;
+                background-color: #2A3647;
+                color: #FFFFFF;
+                padding: 16px;
+                font-size: 21px;
+                font-weight: 700;
+                vertical-align: middle;
+                line-height: 20px;
+                gap: 4px;
+                cursor: pointer;
+            }
 
-                button:nth-child(1) {
-                    border-radius: 8px;
-                    border: 1px solid #D1D1D1;
-                    color: #2A3647;
-                    background-color: transparent;
-                    font-size: 21px;
-                    font-weight: 400;
-                    padding: 6px;
-                    cursor: pointer;
-                }
-
-                button:nth-child(1):hover {
-                    border-color: #29ABE2;
-                    color: #29ABE2;
-                    transition: 300ms ease-out;
-                }
-
-                button:nth-child(2) {
-                    display: flex;
-                    border-radius: 10px;
-                    background-color: #2A3647;
-                    color: #FFFFFF;
-                    padding: 16px;
-                    font-size: 21px;
-                    font-weight: 700;
-                    vertical-align: middle;
-                    line-height: 20px;
-                    gap: 4px;
-                    cursor: pointer;
-                }
-
-                button:nth-child(2):hover {
-                    background-color: #29ABE2;
-                    border: 1px solid #29ABE2;
-                    transition: 300ms ease-out;
-                }
+            button:nth-child(2):hover {
+                background-color: #29ABE2;
+                border: 1px solid #29ABE2;
+                transition: 300ms ease-out;
             }
         }
     }
+}
 
 @media (max-width: 1300px) {
 
@@ -271,6 +273,7 @@
             }
         }
     }
+
     .editContact::-webkit-scrollbar {
         display: none;
     }

@@ -106,7 +106,7 @@ function editOpen(i) {
     edit.innerHTML = editTask(objData);
     loadEditData(objData, prioCheck)
     let area = document.getElementById('EditCloseArea');
-    area.addEventListener('click', (event) => {
+    area.addEventListener('click', (event) => { 
         event.stopPropagation()
     });
 }
@@ -131,7 +131,7 @@ function loadEditData(objData, prioCheck) {
 }
 
 /** Toggles the visibility of the contact dropdown menu and handles contact selection.*/
-function contactDropOpen(event) {
+function contactDropOpen(event) { 
     event.stopPropagation();
     let contactDropdown = document.getElementById('contactDropArea');
     let arrowContact = document.getElementById('arrowContactDrop');

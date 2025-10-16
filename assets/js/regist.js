@@ -216,7 +216,7 @@ function nameInputVali() {
 function emailInputVali() {
     let email = document.getElementById('email');
     let failtext = document.getElementById('failEmail');
-    let emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/;
+    let emailRegex = /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,}$/;
     if (email.value.trim() != '') {
         email.classList.remove('failinput');
         failtext.classList.add('hide')

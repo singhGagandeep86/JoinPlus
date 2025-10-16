@@ -29,7 +29,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 .content {
-    padding: 4rem 4rem 0 4rem;
+    padding: 4rem;
     max-width: 1208px;
 }
 

@@ -259,8 +259,28 @@ function openPopUpTask(id) {
         taskPopUp.innerHTML = templatePopUpTask(id);
         setDateDisable();
         stopAddTaskBoardArea();
+        document.getElementById('CloseArea').addEventListener('click', closeContactArea);
     }
 }
+
+/**
+ * Event listener to close the contacts dropdown when clicking outside of it.
+ * Checks if the click target is not within the dropdown or its triggering element.
+ * @param {MouseEvent} event - The click event to check.
+ */
+function closeContactArea(event) {
+    const assign = document.getElementById("assign");
+    const allCntcts = document.getElementById("allCntcts");
+    if (expanded && !assign.contains(event.target) && !allCntcts.contains(event.target)) {
+        allCntcts.style.display = "none";
+        document.getElementById('arrow').style.transform = "rotate(0deg)";
+        expanded = false;
+        document.getElementById("allCntcts").addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+    }
+}
+// });
 
 /**
  * Prevents click events from propagating when interacting with 
@@ -321,9 +341,17 @@ function resetTask() {
 }
 
 /**
- * Updates the subtask progress bar for a given task element.
+ * Renders the subtask input field if it doesn't exist.
+*/
+function renderSubTask() { debugger;
+  if (!document.getElementById('inputField')) {
+    document.getElementById('inputSubClass').innerHTML = subTaskTemp();
+    document.getElementById('inputField').focus();
+    document.getElementById('inputField').style.backgroundImage = 'none';
+  }
+}
 
- */
+/** Updates the subtask progress bar for a given task element.*/
 function subtaskBar(element, checkedCount) {
     let rangeId = `subtaskRange-${element['number']}`;
     let range = document.getElementById(rangeId);

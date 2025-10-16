@@ -198,7 +198,7 @@ function showContactList(i) {
  * Opens the edit window for a contact.
  * @param {number} i - The index of the contact.
  */
-function editContact(i) { 
+function editContact(i) {
     let contactName = array[i].name;
     let initials = extrahiereInitialen(contactName);
     let popUpEdit = document.getElementById('overlayEdit');
@@ -214,6 +214,8 @@ function editContact(i) {
     stopEditArea();
 }
 
+/** Displays the contact image in the edit window by removing the 'd_none' class from the contact image elements.
+ * Hides the contact initials elements. @param {number} i - The index of the contact. */
 function showImagePicker(i) {
     document.getElementById('userProfileImg').classList.remove('d_none');
     document.getElementById('userProfileImg').src = array[i].pic;
@@ -284,9 +286,9 @@ function closeEditImage() {
 /**
  * Hides the edit contact overlay.
  */
-function editContactOff() { 
+function editContactOff() {
     document.getElementById('overlayEdit').classList.add('d_none');
-     document.body.style.overflow = '';
+    document.body.style.overflow = '';
 }
 
 /**
@@ -320,7 +322,7 @@ function valiAdd(name, email, phone) {
     if (!name && !email && !phone) return failAllAdd();
     else {
         if (!isValid(name, /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/)) failName();
-        if (!isValid(email, /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/))
+        if (!isValid(email, /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,}$/))
             failEmailAdd();
         if (!isValid(phone, /^[0-9]+$/)) failPhoneAdd();
     }
@@ -345,7 +347,7 @@ function valiEdit() {
     }
     else {
         if (!isValid(name, /^[a-zA-ZäöüÄÖÜ]+( [a-zA-ZäöüÄÖÜ]+)*$/)) failNameEdit();
-        if (!isValid(email, /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|mil|info|biz|de|uk|fr|ca|au|us|cn|jp|in|ru|app|shop|tech|online|blog)$/))
+        if (!isValid(email, /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,}$/))
             failEmailEdit();
         if (!isValid(phone, /^[0-9]+$/)) failPhoneEdit();
     }

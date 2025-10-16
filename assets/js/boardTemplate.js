@@ -102,11 +102,13 @@ function templatePopUpTask(id) {
                                 </div>
                             </div>
                             <div id="inputSubClass" class="subtasks">
-                                <div class="smallHead">Subtasks</div>
-                                <div class="inputWrapper" onclick="renderSubTask()"><input id="inputField" class="subtasksTxt"
+                              <div class="smallHead">Subtasks</div>
+                                <div class="inputWrapper" onclick="renderSubTask()"><input class="subtasksTxt"
                                         placeholder="Add new subtask" type="text">
-                                    <img class="tsksGen" onclick="renderSubTask()" src="../img/subTaskIcon.svg">
+                                    <img class="tsksGen" src="../img/subTaskIcon.svg">
                                 </div>
+                                <p id="emptySubError" style="color: red;" class="subTaskIcons">Please Enter a Text !!
+                                </p>̦̦̦
                             </div>
                             <ul class="a" id="subTsksBoard"></ul>
                             <div class="assignCntcts">
@@ -255,7 +257,7 @@ function templateContactInfo(contactscolor, initials, contactName) {
 /**Generates an HTML template for a contact display box with a picture. */
 function templateContactHavingPic(contactName, img, contactscolor) {
     return `<div class="contactArea"><div class="b-${contactscolor} boxinfo">
-    <img style="height: 100%" src="${img}"></div> <span class="contactName">${contactName}</span></div>`
+    <img style="height: 100%; border-radius: 50%" src="${img}"></div><span class="contactName">${contactName}</span></div>`
 }
 
 /**Generates an HTML template for displaying a file attachment. */
@@ -420,11 +422,11 @@ function checkboxContactTemplateEmpty(contactName, initials, color) {
 
 /** Generates an HTML template for displaying contact initials with a specified background color. */
 function initialsLoadContact(initials, colorIni) {
-    return ` <div class="b-${colorIni} boxinfo "><span>${initials}</span></div> `
+    return ` <div class="b-${colorIni} boxinfo"><span>${initials}</span></div> `
 }
 
 function initialsLoadContactWithPic(img, colorIni) {
-    return ` <div class="b-${colorIni} boxinfo "><img style="height: 100%" src="${img}"></div> `
+    return ` <div class="b-${colorIni} boxinfo"><img style="height: 100%; border-radius: 50%" src="${img}"></div> `
 }
 
 /** Generates an HTML template for a button to add a new subtask. */
