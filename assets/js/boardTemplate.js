@@ -257,7 +257,7 @@ function templateContactInfo(contactscolor, initials, contactName) {
 /**Generates an HTML template for a contact display box with a picture. */
 function templateContactHavingPic(contactName, img, contactscolor) {
     return `<div class="contactArea"><div class="b-${contactscolor} boxinfo">
-    <img style="height: 100%; border-radius: 50%" src="${img}"></div><span class="contactName">${contactName}</span></div>`
+    <img style="height: 100%; width:100%; border-radius: 50%" src="${img}"></div><span class="contactName">${contactName}</span></div>`
 }
 
 /**Generates an HTML template for displaying a file attachment. */
@@ -412,7 +412,7 @@ function checkboxContactTemplate(isChecked, contactName, initials, color) {
 }
 
 function checkboxContactTemplateWithPic(isChecked, contactName, img, color) {
-    return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ${isChecked} ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><img style="height: 100%" src="${img}"></div></div> </label></div>`
+    return ` <div class="contactDropCheck"><label class="labelContact"><input type="checkbox" class="checkboxDesignContact" name="contact" ${isChecked} ><div class="checkImg"><span></span></div><div class="contactNameEdit"><p>${contactName}</p> <div class="b-${color} boxinfoEdit"><img style="height: 100%; width: 100%; border-radius: 50%" src="${img}"></div></div> </label></div>`
 }
 
 /** Generates an HTML template for a checkbox contact item without a checked state.  */
@@ -426,7 +426,7 @@ function initialsLoadContact(initials, colorIni) {
 }
 
 function initialsLoadContactWithPic(img, colorIni) {
-    return ` <div class="b-${colorIni} boxinfo"><img style="height: 100%; border-radius: 50%" src="${img}"></div> `
+    return ` <div class="b-${colorIni} boxinfo"><img style="height: 100%; width: 42px; border-radius: 50%" src="${img}"></div> `
 }
 
 /** Generates an HTML template for a button to add a new subtask. */
@@ -507,4 +507,26 @@ function templateSub4(currentText) {
             <div class="strich"></div>
             <span><img onclick="toggleEditTask(event, this)" src="../img/Propertycheck.png" alt="Edit/Save"></span>
         </div>`
+}
+
+/** Displays the selected image in a popup area with controls to download the image, close the popup, and navigate left and right. */
+function showFile(img, name, index) {
+    document.getElementById('photoArea').classList.remove('d_none');
+    document.getElementById('photoArea').innerHTML = `
+      <div class="imgContainer" onclick="event.stopPropagation()">
+        <div class="imgHeader"><p id="selectionName"></p>
+        <div class="imgHandle"><img src="../img/download.png" onClick="downloadFile(${index})"><img src="../img/Closewhite.png" onClick="photoArea()"></div></div>
+        <div class="imgMover"><img src="../img/arrow-Lft-line.png" onclick='changeImage("left", ${index})'><img src="../img/arrow-right-line.png" onclick='changeImage("right", ${index})'></div>
+        <img class="selectedPhoto" id="selectedPhoto"></div>`
+    document.getElementById('selectedPhoto').src = img;
+    document.getElementById('selectionName').innerHTML = `${name}`;
+}
+
+/** Generates an HTML template for a file attachment. */
+function filesTemplate(index, img, name, size) {
+    return `<div class="file-container">
+    <div class="removeAttach"><img src="../img/Closewhite.png"></div>
+    <img src=${img}>
+    <div class="file-name">${name}(${size})</div>
+    </div>`
 }

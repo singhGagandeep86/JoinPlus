@@ -112,7 +112,7 @@ function selectionContact(name, colour, picture, contactIssuedNumber) {
     const color = colours[i];
     const picture = pictures[i];
     if (picture) {
-      SelectedContactsBoard.innerHTML += `<div class="namesInitials b-${colour}"><img style="height: 100%; border-radius: 50%;" src="${picture}"></div>`;
+      SelectedContactsBoard.innerHTML += `<div class="namesInitials b-${colour}"><img style="height: 100%; width: 100%; border-radius: 50%;" src="${picture}"></div>`;
     } else {
       SelectedContactsBoard.innerHTML += `<div class="namesInitials b-${color}">${namesInitial}</div>`;
     }

@@ -180,7 +180,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 .picSm:hover {
-    content: url(../img/sm\ hover.png);
+    content: url(../img/sm/hover.png);
 }
 
 .active {

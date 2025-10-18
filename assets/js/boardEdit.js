@@ -1,101 +1,4 @@
 
-
-/** Loads and displays contact data in the contact drop area.*/
-function loadContactData(firebaseData, objData) {
-    let contactArea = document.getElementById('contactDropArea');
-    let contact = objData.contact === undefined ? null : Object.values(objData.contact).every(name => name === null)
-        ? null
-        : Object.values(objData.contact);
-    let contactData = contactArray(firebaseData);
-    contactArea.innerHTML = '';
-    loadContactDataIf(contact, contactData, firebaseData, contactArea);
-}
-
-/*Checks if the contact data is null and loads either an empty state or avatars in the contact drop area.*/
-function loadContactDataIf(contact, contactData, firebaseData, contactArea) {
-    if (contact == null) {
-        loadContactEmpty(contactData, firebaseData)
-    } else {
-        loadContactAvatar(contact, contactData, firebaseData, contactArea);
-    }
-}
-
-/** Loads contact data with pictures in the contact drop area.*/
-function loadContactAvatar(contact, contactData, firebaseData, contactArea) {
-    for (let j = 0; j < firebaseData.length; j++) {
-        let contactName = contactData[j];
-        let color = firebaseData[j].color;
-        let initials = extrahiereInitialen(contactName);
-        let pic = firebaseData[j].pic;
-        let isChecked = contact.some(selectedContact => selectedContact.name === contactName) ? 'checked' : '';
-        if (pic) {
-            contactArea.innerHTML += checkboxContactTemplateWithPic(isChecked, contactName, pic, color);
-        } else {
-            contactArea.innerHTML += checkboxContactTemplate(isChecked, contactName, initials, color);
-        }
-    }
-}
-
-/** Loads and displays an empty state for contact data in the contact drop area.*/
-function loadContactEmpty(contactData, firebaseData) {
-    let contactArea = document.getElementById('contactDropArea');
-    for (let j = 0; j < firebaseData.length; j++) {
-        let contactName = contactData[j];
-        let color = firebaseData[j].color;
-        let initials = extrahiereInitialen(contactName);
-        contactArea.innerHTML += checkboxContactTemplateEmpty(contactName, initials, color);
-    }
-}
-
-/** Loads and displays the initials of the contacts associated with a given task.*/
-function initialsLoad(objData) {
-
-    let contactUser = objData.contact === undefined ? null : Object.values(objData.contact).every(name => name === null)
-        ? null
-        : Object.values(objData.contact);
-    let color = objData.contactcolor === undefined ? null : Object.values(objData.contactcolor);
-    let initialsContact = document.getElementById('initialsArea');
-    initialsLoadIf(contactUser, color, initialsContact)
-}
-
-/**
- * Loads and displays initials for each user in the provided contact list.*/
-function initialsLoadIf(contactUser, color, initialsContact) {
-    if (contactUser == null) {
-        initialsContact.innerHTML = '';
-        initialsContact.classList.add('d_none');
-    } else {
-        renderContactAvatar(contactUser, color, initialsContact);
-    }
-}
-
-/**Renders contact avatars based on the provided contact list and associated colors. Iterates through the contact list and checks if each contact 
- * has a picture. If a contact has a picture, it uses the `initialsLoadContactWithPic` function to generate the HTML,
- * otherwise it uses the `initialsLoadContact` function. */
-function renderContactAvatar(contactUser, color, initialsContact) {
-    for (let k = 0; k < contactUser.length; k++) {
-        let contactName = contactUser[k].name;
-        let colorIni = color[k];
-        let filteredContact = allContactsArray.find(e => e.number == contactUser[k].number);
-        if (contactUser.length > 5) document.getElementById('contactRghtScroller').classList.remove('hide');
-        if (filteredContact && filteredContact.pic) {
-            initialsContact.innerHTML += initialsLoadContactWithPic(filteredContact.pic, colorIni);
-        } else {
-            let initials = extrahiereInitialen(contactName);
-            initialsContact.innerHTML += initialsLoadContact(initials, colorIni);
-        }
-    }
-}
-
-/** Extracts and returns an array of contact names from the given Firebase data.*/
-function contactArray(firebaseData) {
-    let elementContact = [];
-    for (let i = 0; i < firebaseData.length; i++) {
-        elementContact.push(firebaseData[i].name);
-    }
-    return elementContact;
-}
-
 /** Opens the edit popup for a specific task and populates it with the task's details.*/
 function editOpen(i) {
     let edit = document.getElementById('popupTaskInfo');
@@ -106,7 +9,7 @@ function editOpen(i) {
     edit.innerHTML = editTask(objData);
     loadEditData(objData, prioCheck)
     let area = document.getElementById('EditCloseArea');
-    area.addEventListener('click', (event) => { 
+    area.addEventListener('click', (event) => {
         event.stopPropagation()
     });
 }
@@ -131,7 +34,7 @@ function loadEditData(objData, prioCheck) {
 }
 
 /** Toggles the visibility of the contact dropdown menu and handles contact selection.*/
-function contactDropOpen(event) { 
+function contactDropOpen(event) {
     event.stopPropagation();
     let contactDropdown = document.getElementById('contactDropArea');
     let arrowContact = document.getElementById('arrowContactDrop');
@@ -259,9 +162,7 @@ function removeTheAttachmentFile(event, name) {
         const base64 = attachment.data;
         fileListNew.innerHTML += attachTheFilesTemplate(i, base64, name);
     }
-    if (attachmentsToArray.length === 0) {
-        removeAllNew.classList.add('selectHide');
-    }
+    if (attachmentsToArray.length === 0) removeAllNew.classList.add('selectHide');
 }
 
 /**Clears the attachment area section and hides the attachment area.*/
@@ -302,8 +203,7 @@ function getSelectedContacts() {
                 checkContacts.push({ name: contactName, color: color, number: number });
             }
         }
-    }
-    return checkContacts;
+    } return checkContacts;
 }
 
 /** Initializes and displays the selected contacts' initials in the initials area.*/
@@ -360,15 +260,6 @@ function addInputSubtastk() {
         loadSubtaskLi(inputValue);
         substartDiv();
     }
-}
-
-/** Generates an HTML template for a file attachment. */
-function filesTemplate(index, img, name, size) {
-    return `<div class="file-container">
-    <div class="removeAttach"><img src="../img/Closewhite.png"></div>
-    <img src=${img}>
-    <div class="file-name">${name}(${size})</div>
-    </div>`
 }
 
 /** Loads a new subtask into the subtask area of the task board.*/
@@ -452,13 +343,7 @@ function readPrio() {
 
 /** Reads and collects data from the edit task form.*/
 function readEditData(number) {
-    let numberEditElement = number;
-    let title = document.querySelector('.titleInput').value.trim();
-    let description = document.querySelector('.textAreaData').value;
-    let dueDate = document.querySelector('.DueDate').value;
     let priority = readPrio();
-    let category = document.getElementById('customSelect').innerText;
-    let color = generateCatColor(category);
     let contact = getSelectedContacts();
     let subtask = getAllSubTasks();
     let subtaskobj = subtaskObj(subtask)
@@ -466,18 +351,22 @@ function readEditData(number) {
     let contactName = nameObj(contact);
     let contactColor = colorObj(contact);
     let contacts = numberObj(contact);
-    let attachments = attachmentsToArray;
-    nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, contacts, numberEditElement, priority, category, contactColor, attachments);
+    nameValiEdit(subtaskobj, checked, contactName, contacts, number, priority, contactColor);
     attachmentsToArray = [];
 }
 
 /** Validates the title of the task during the edit process.*/
-function nameValiEdit(title, description, dueDate, subtaskobj, checked, contactName, color, contacts, numberEditElement, priority, category, contactColor, attachments) {
+function nameValiEdit(subtaskobj, checked, contactName, contacts, number, priority, contactColor) {
+     let title = document.querySelector('.titleInput').value.trim();
+    let description = document.querySelector('.textAreaData').value;
+    let dueDate = document.querySelector('.DueDate').value;
+    let category = document.getElementById('customSelect').innerText;
+    let color = generateCatColor(category);
     if (title === '') {
         failNameEditBoard();
         return false;
     } else {
-        pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, contacts, numberEditElement, priority, category, contactColor, attachments);
+        pushDataEdit(title, description, dueDate, subtaskobj, checked, contactName, color, contacts, number, priority, category, contactColor);
     }
 }
 
@@ -672,19 +561,6 @@ function closeAttachOverlay() {
     attachmentsContainer.classList.add('d_none');
 }
 
-/** Displays the selected image in a popup area with controls to download the image, close the popup, and navigate left and right. */
-function showFile(img, name, index) {
-    document.getElementById('photoArea').classList.remove('d_none');
-    document.getElementById('photoArea').innerHTML = `
-      <div class="imgContainer" onclick="event.stopPropagation()">
-        <div class="imgHeader"><p id="selectionName"></p>
-        <div class="imgHandle"><img src="../img/download.png" onClick="downloadFile(${index})"><img src="../img/Closewhite.png" onClick="photoArea()"></div></div>
-        <div class="imgMover"><img src="../img/arrow-Lft-line.png" onclick='changeImage("left", ${index})'><img src="../img/arrow-right-line.png" onclick='changeImage("right", ${index})'></div>
-        <img class="selectedPhoto" id="selectedPhoto"></div>`
-    document.getElementById('selectedPhoto').src = img;
-    document.getElementById('selectionName').innerHTML = `${name}`;
-}
-
 /** Changes the displayed image in the popup area based on the given direction and index. */
 function changeImage(direction, index) {
     if (direction === 'left') {
@@ -761,6 +637,8 @@ function downloadFile(index) {
     document.body.removeChild(link);
 }
 
+/** Scrolls the task contacts selection area to the left or right by a specified number of pixels.
+ * @param {string} direction - The direction to scroll the selection area. Can be either 'left' or 'right'. */
 function scrollContacts(direction) {
     let scrollArea = document.getElementById('initialsArea');
     let scrollPixels = 80;
@@ -768,6 +646,8 @@ function scrollContacts(direction) {
     if (direction === 'right') toRight(scrollArea, scrollPixels);
 }
 
+/** Scrolls the task contacts selection area to the left by a specified number of pixels.
+ * Hides the left arrow icon if the selection area is already at the start.*/
 function toLeft(scrollArea, scrollPixels) {
     document.getElementById('contactRghtScroller').classList.remove("hide");
     scrollArea.scrollLeft -= scrollPixels;
@@ -776,6 +656,10 @@ function toLeft(scrollArea, scrollPixels) {
 }
 
 
+/**
+ * Scrolls the task contacts selection area to the right by a specified number of pixels.
+ * Shows the left arrow icon if the selection area is not already at the end.
+ * Hides the right arrow icon if the selection area is already at the end*/
 function toRight(scrollArea, scrollPixels) {
     document.getElementById('contactLftScroller').classList.remove("hide");
     scrollArea.scrollLeft += scrollPixels;

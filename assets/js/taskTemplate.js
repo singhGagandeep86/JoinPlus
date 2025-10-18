@@ -16,7 +16,7 @@ function contactsTempWithPic(sanitizedEachName, colour, eachName, picture, conta
     return `<label>
     <input type="checkbox"class="checkboxDesign" id="${contactIssuedNumber}" onchange="selectionContact('${sanitizedEachName}', '${colour}', '${picture}', '${contactIssuedNumber}')">
     <span value="${sanitizedEachName}"></span>${eachName}
-    <div class="namesInitials b-${colour}"><img style="height: 100%; border-radius: 50%;" src="${picture}"></div>
+    <div class="namesInitials b-${colour}"><img style="height: 100%; width: 100%; border-radius: 50%;" src="${picture}"></div>
     </label>`;
 }
 
