@@ -14,18 +14,6 @@
     .loginarea {
         padding: 20px 115px;
         width: 400px;
-        margin-top: 20px;
-    }
-}
-
-@media (max-width: 938px) {
-    .logo {
-        top: 0;
-    }
-
-    .logo img {
-        transform: scale(0.8);
-        margin-left: 50px;
     }
 }
 

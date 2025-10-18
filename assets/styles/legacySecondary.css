@@ -250,8 +250,6 @@ span {
 
 @media(max-width: 1301px) {
     .content {
-        /* padding-left: 10px;
-        padding-right: 0px; */
         padding: 10px;
     }
 
